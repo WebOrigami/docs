@@ -1,0 +1,16 @@
+body {
+  padding: 4em;
+}
+
+.error {
+  background: #fff5f7;
+  border: 1px solid red;
+  margin-bottom: 1em;
+  padding: 1em;
+  --color-canvas-subtle: transparent;
+}
+
+.error pre {
+  padding: 0;
+  margin: 16px 0 0 0;
+}

@@ -22,8 +22,8 @@ export default async function mdExamples(markdownBuffer) {
       const { actual } = asserts[count];
       const actualText = YAML.stringify(actual).trim();
       errorMessage = `
-<div style="background: #fff5f7; border: 1px solid red; padding: 1em;">
-<strong>ERROR</strong> — actual result was:
+<div class="error">
+<strong>ERROR</strong> — actual result of the above example was:
 <pre>
 ${actualText}
 </pre>
