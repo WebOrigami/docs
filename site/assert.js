@@ -11,13 +11,19 @@ export default async function (variant) {
   const test = new (MetaMixin(ExplorableObject))(obj);
   const description = await test.get("description");
   const expected = await test.get("expected");
+  const expectedPlain = ExplorableGraph.isExplorable(expected)
+    ? await ExplorableGraph.plain(expected)
+    : expected;
   const actual = await test.get("actual");
+  const actualPlain = ExplorableGraph.isExplorable(actual)
+    ? await ExplorableGraph.plain(actual)
+    : actual;
   try {
-    assert.deepStrictEqual(actual, expected);
+    assert.deepStrictEqual(actualPlain, expectedPlain);
     return undefined;
   } catch (e) {
     const result = description ? { description } : {};
-    Object.assign(result, { expected, actual });
+    Object.assign(result, { expected: expectedPlain, actual: actualPlain });
     return result;
   }
 }

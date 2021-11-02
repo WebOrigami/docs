@@ -5,20 +5,45 @@ import { default as mdYaml, mdYamlRegex } from "./mdYaml.js";
 export default async function mdExamples(markdownBuffer) {
   const markdown = String(markdownBuffer);
   const yamlBlocks = await mdYaml(markdown);
-  const tests = Object.values(yamlBlocks).map((yamlBlock) =>
+  const codes = Object.values(yamlBlocks).map((yamlBlock) =>
     YAML.parse(yamlBlock)
   );
-  const asserts = await Promise.all(tests.map((test) => assert(test)));
+
+  let fixture = null;
+  const tests = codes.map((code) => {
+    if (code.fixture) {
+      // Fixture
+      fixture = code.fixture;
+      return undefined;
+    } else if (code.expected) {
+      // Test
+      const test = Object.assign(
+        {
+          fixture,
+        },
+        code
+      );
+      return test;
+    } else {
+      // Neither fixture nor test -- some other YAML block.
+      return undefined;
+    }
+  });
+
+  const asserts = await Promise.all(
+    tests.map((test) => (test ? assert(test) : undefined))
+  );
+
   let count = -1;
   const result = markdown.replace(mdYamlRegex, () => {
     count++;
     const test = tests[count];
-    const { description, expected } = test;
-    if (expected === undefined) {
+    if (test === undefined) {
       // Not a test; reconstruct the original YAML block.
       return `\n\`\`\`\n${yamlBlocks[count + 1]}\n\`\`\`\n`;
     }
 
+    const { description, expected } = test;
     const invocation = getTestInvocation(test);
     const expectedText = YAML.stringify(expected).trim();
     let errorMessage = "";
