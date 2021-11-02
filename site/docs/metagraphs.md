@@ -4,7 +4,7 @@ A _metagraph_ is a graph that defines its own transformation. The transformation
 
 ## Example: Metagraph with a key that includes a formula
 
-```
+```yaml
 fixture:
   a: Hello
   b = a: ""
@@ -40,7 +40,7 @@ fixture:
   a: Hello
   b = a: ""
 actual = fixture/b:
-expected: Hello!
+expected: Hello, world!
 ```
 
 ```yaml

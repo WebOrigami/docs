@@ -14,6 +14,11 @@ export default async function mdExamples(markdownBuffer) {
     count++;
     const test = tests[count];
     const { description, expected } = test;
+    if (expected === undefined) {
+      // Not a test; reconstruct the original YAML block.
+      return `\n\`\`\`\n${yamlBlocks[count + 1]}\n\`\`\`\n`;
+    }
+
     const invocation = getTestInvocation(test);
     const expectedText = YAML.stringify(expected).trim();
     let errorMessage = "";
@@ -23,12 +28,13 @@ export default async function mdExamples(markdownBuffer) {
       const actualText = YAML.stringify(actual).trim();
       errorMessage = `
 <div class="error">
-<strong>ERROR</strong> — actual result of the above example was:
+<strong>ERROR</strong> — actual result of the above example is:
 <pre>
 ${actualText}
 </pre>
 </div>`;
     }
+
     return `${description}
 
 \`\`\`

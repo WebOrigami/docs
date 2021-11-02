@@ -1,5 +1,10 @@
 body {
   padding: 4em;
+  max-width: 800px;
+}
+
+.markdown-body {
+  margin: 0 auto;
 }
 
 .error {
