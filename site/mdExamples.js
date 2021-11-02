@@ -50,7 +50,7 @@ export default async function mdExamples(markdownBuffer) {
     if (asserts[count]) {
       // Test failed
       const { actual } = asserts[count];
-      const actualText = YAML.stringify(actual).trim();
+      const actualText = YAML.stringify(actual)?.trim();
       errorMessage = `
 <div class="error">
 <strong>ERROR</strong> — actual result of the above example is:
