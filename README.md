@@ -1,1 +1,1 @@
-# explorablegraph.org
+# ExplorableGraph documentation site

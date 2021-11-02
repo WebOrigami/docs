@@ -1,0 +1,9 @@
+{
+  "name": "docs",
+  "version": "0.0.1",
+  "type": "module",
+  "dependencies": {
+    "@explorablegraph/explorable": "file:../explorable",
+    "yaml": "2.0.0-8"
+  }
+}
