@@ -15,7 +15,7 @@ Let's first look at an example of a formula that references inputs from other gr
 ```yaml
 fixture:
   index.html = hbs(index.hbs, index.yaml): ""
-  index.hbs: Hello, <b>{{name}}</b>.
+  index.hbs: Hello, {{name}}.
   index.yaml:
     name: Alice
 ```
@@ -26,16 +26,16 @@ Note that the _value_ associated with the `index.html` formula key is the empty 
 description: |
   The formula for `index.html` references the separate template and data values as input, and combines those to create the final HTML.
 actual = fixture/index.html: ""
-expected: Hello, <b>Alice</b>.
+expected: Hello, Alice.
 ```
 
 ## Example: An HTML formula that references `this` for its template
 
-Since the Handlebars template above is so trivial, we can inline it: we can define it as the value behind the formula key. If this were a file, we would put the template inside the file.
+Since the Handlebars template above is so trivial, we can essentially inline it: we define it as the value behind the formula key (instead of the empty string shown above). If this were a file, we would put the template in the file.
 
 ```yaml
 fixture:
-  index.html = hbs(this, index.yaml): Hello, <b>{{name}}</b>.
+  index.html = hbs(this, index.yaml): Hello, {{name}}.
   index.yaml:
     name: Alice
 ```
@@ -44,18 +44,18 @@ fixture:
 description: |
   The formula for `index.html` references the separate `.hbs` Handlebars template, but here the data will come from the value stored behind that formula.
 actual = fixture/index.html: ""
-expected: Hello, <b>Alice</b>.
+expected: Hello, Alice.
 ```
 
 ## Example: Using a file extension with `this`
 
-One advantage of the original example is that it defined the template in a file called `index.hbs`. The `.hbs` file extension is a hint to tools that the content of the file is a Handlebars template. Among other things, a tool like a code editor could use that hint to apply syntax highlighting.
+One advantage of the original example is that it defined the template in a file called `index.hbs`. The `.hbs` file extension is a hint to tools that the content of the file is a Handlebars template. Among other things, tools like code editors use that hint to apply syntax highlighting appropriate for a Handlebars template.
 
-To preserve that useful feature, we can add a `.hbs` file extension to our formula key.
+To preserve that useful feature, we can add a `.hbs` file extension at the end of our formula key.
 
 ```yaml
 fixture:
-  index.html = hbs(this, index.yaml).hbs: Hello, <b>{{name}}</b>.
+  index.html = hbs(this, index.yaml).hbs: Hello, {{name}}.
   index.yaml:
     name: Alice
 ```
@@ -64,7 +64,7 @@ The `.hbs` file extension serves as a hint to tools — and ourselves — that t
 
 ```yaml
 description: |
-  The formula with `.hbs` works as before:
+  The file extension will be ignored for purposes of evaluating the formula, so this produces the same result as before:
 actual = fixture/index.html: ""
-expected: Hello, <b>Alice</b>.
+expected: Hello, Alice.
 ```

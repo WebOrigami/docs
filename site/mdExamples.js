@@ -40,7 +40,7 @@ export default async function mdExamples(markdownBuffer) {
     const test = tests[count];
     if (test === undefined) {
       // Not a test; reconstruct the original YAML block.
-      return `\n\`\`\`\n${yamlBlocks[count + 1]}\n\`\`\`\n`;
+      return `\n\`\`\`yaml\n${yamlBlocks[count + 1]}\n\`\`\`\n`;
     }
 
     const { description, expected } = test;
@@ -62,7 +62,7 @@ ${actualText}
 
     return `${description}
 
-\`\`\`
+\`\`\`yaml
 $ eg ${invocation}
 ${expectedText}
 \`\`\`${errorMessage}

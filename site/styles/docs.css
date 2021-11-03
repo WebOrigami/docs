@@ -1,10 +1,25 @@
 body {
   padding: 4em;
   max-width: 800px;
+  --color-canvas-subtle: #f6f8fa;
 }
 
 .markdown-body {
   margin: 0 auto;
+}
+
+pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: var(--color-canvas-subtle);
+  border-radius: 6px;
+}
+
+pre,
+code {
+  font-family: "Consolas", "Menlo", "Courier New", "Courier", monospace;
 }
 
 .error {
