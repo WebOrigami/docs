@@ -1,35 +1,12 @@
 import YAML from "yaml";
 import assert from "./assert.js";
-import { default as mdYaml, mdYamlRegex } from "./mdYaml.js";
+import { default as mdYamls, mdYamlRegex } from "./mdYamls.js";
+import yamlsTests from "./yamlsTests.js";
 
 export default async function mdExamples(markdownBuffer) {
   const markdown = String(markdownBuffer);
-  const yamlBlocks = await mdYaml(markdown);
-  const codes = Object.values(yamlBlocks).map((yamlBlock) =>
-    YAML.parse(yamlBlock)
-  );
-
-  let fixture = null;
-  const tests = codes.map((code) => {
-    if (code.fixture) {
-      // Fixture
-      fixture = code.fixture;
-      return undefined;
-    } else if (code.expected) {
-      // Test
-      const test = Object.assign(
-        {
-          fixture,
-        },
-        code
-      );
-      return test;
-    } else {
-      // Neither fixture nor test -- some other YAML block.
-      return undefined;
-    }
-  });
-
+  const yamls = await mdYamls(markdown);
+  const tests = await yamlsTests(yamls);
   const asserts = await Promise.all(
     tests.map((test) => (test ? assert(test) : undefined))
   );
@@ -38,9 +15,9 @@ export default async function mdExamples(markdownBuffer) {
   const result = markdown.replace(mdYamlRegex, () => {
     count++;
     const test = tests[count];
-    if (test === undefined) {
+    if (!test) {
       // Not a test; reconstruct the original YAML block.
-      return `\n\`\`\`yaml\n${yamlBlocks[count + 1]}\n\`\`\`\n`;
+      return `\n\`\`\`yaml\n${yamls[count + 1]}\n\`\`\`\n`;
     }
 
     const { description, expected } = test;

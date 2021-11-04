@@ -6,6 +6,9 @@ import {
 import assert from "assert/strict";
 
 export default async function (variant) {
+  if (!variant) {
+    return null;
+  }
   const graph = ExplorableGraph.from(variant);
   const obj = await ExplorableGraph.plain(graph);
   const test = new (MetaMixin(ExplorableObject))(obj);

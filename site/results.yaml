@@ -1,0 +1,9 @@
+"0": null
+"1": null
+"2":
+  description: The value of `b` is *also* "Hello", obtained by interpreting the
+    formula `b = a`.
+  expected: Hello, world!
+  actual: Hello
+"3": null
+

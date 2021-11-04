@@ -5,5 +5,8 @@
   "dependencies": {
     "@explorablegraph/explorable": "file:../explorable",
     "yaml": "2.0.0-8"
+  },
+  "scripts": {
+    "test": "eg 'defined(map(yamlsTests(mdYamls(docs/metagraph.md)), assert))'"
   }
 }
