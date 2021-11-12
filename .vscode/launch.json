@@ -10,6 +10,7 @@
       "name": "serve",
       "skipFiles": ["<node_internals>/**"],
       "program": "${workspaceFolder}/node_modules/@explorablegraph/explorable/src/eg/eg.js",
+      "runtimeArgs": ["--preserve-symlinks"],
       "cwd": "${workspaceFolder}/site",
       "args": ["serve"]
     }
