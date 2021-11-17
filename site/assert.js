@@ -12,6 +12,9 @@ export default async function (variant) {
   const graph = ExplorableGraph.from(variant);
   const obj = await ExplorableGraph.plain(graph);
   const test = new (MetaMixin(ExplorableObject))(obj);
+  if (this?.scope) {
+    test.scope = new Compose(graph, this.scope);
+  }
   const description = await test.get("description");
   const expected = await test.get("expected");
   const expectedPlain = ExplorableGraph.isExplorable(expected)
