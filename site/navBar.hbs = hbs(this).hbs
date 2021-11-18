@@ -1,16 +1,15 @@
 ---
-areas:
-  start: Getting Started
-  api: API
-  blog: Blog
-  egret: Egret
+start: Getting Started
+api: API
+blog: Blog
+egret: Egret
 ---
 <nav>
   <ul>
     <li>
       <a href="/">Home</a>
     </li>
-    {{#each areas}}
+    {{#each this}}
     <li>
       <a href="/{{@key}}/">{{this}}</a>
     </li>
