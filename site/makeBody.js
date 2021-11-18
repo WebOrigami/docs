@@ -1,4 +1,7 @@
 export default async function makeBody(content) {
-  const body = String(content);
-  return { body };
+  return content
+    ? {
+        body: String(content),
+      }
+    : undefined;
 }
