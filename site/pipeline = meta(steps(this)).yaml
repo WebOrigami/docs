@@ -12,4 +12,4 @@
 - mapTypes(it, '.html', '.json', context%makeBody)
 
 # Apply the page template to those JSON objects to create final HTML.
-- mapTypes(it, '.json', '.html', bind(hbs, context%page.hbs))
+- mapTypes(it, '.json', '.html', bind(hbs, context%docPage.hbs))

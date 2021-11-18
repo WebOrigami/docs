@@ -1,11 +1,8 @@
 body {
   padding: 4em;
   max-width: 800px;
-  --color-canvas-subtle: #f6f8fa;
-}
-
-.markdown-body {
   margin: 0 auto;
+  --color-canvas-subtle: #f6f8fa;
 }
 
 pre {
