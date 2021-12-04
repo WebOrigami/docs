@@ -1,15 +1,15 @@
 # Start with our local docs folder containing markdown files.
-- context%docs
+- docs
 
 # Extract the examples from the markdown files and test them.
 # This will create new markdown files that include the test results.
-- map(it, context%mdExamples)
+- map(it, mdExamples)
 
 # Convert the graph from markdown files to HTML files.
 - mapTypes(it, '.md', '.html', mdHtml)
 
 # Incorporate the HTML content into the `body` property of an JSON object.
-- mapTypes(it, '.html', '.json', context%makeBody)
+- mapTypes(it, '.html', '.json', makeBody)
 
 # Apply the page template to those JSON objects to create final HTML.
-- mapTypes(it, '.json', '.html', bind(hbs, context%docPage.hbs))
+- mapTypes(it, '.json', '.html', bind(hbs, docPage.hbs))

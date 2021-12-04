@@ -4,6 +4,7 @@
   "type": "module",
   "dependencies": {
     "@explorablegraph/explorable": "file:../explorable",
+    "algoliasearch": "4.11.0",
     "yaml": "2.0.0-8"
   },
   "scripts": {

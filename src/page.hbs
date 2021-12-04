@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <!--
+    <link rel="stylesheet" href="/styles/github-subset.css">
+    <link rel="stylesheet" href="/styles/github.min.css">
+    <link rel="stylesheet" href="/styles/docs.css">
+    -->
+    {{#if title}}
+      <title>{{title}}</title>
+    {{/if}}
+  </head>
+  <body>
+    {{#if title}}
+    <h1>{{title}}</h1>
+    {{/if}}
+    {{> @partial-block }}
+  </body>
+</html>
