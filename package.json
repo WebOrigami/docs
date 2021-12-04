@@ -5,9 +5,11 @@
   "dependencies": {
     "@explorablegraph/explorable": "file:../explorable",
     "algoliasearch": "4.11.0",
+    "handlebars": "4.7.7",
     "yaml": "2.0.0-8"
   },
   "scripts": {
-    "test": "eg 'defined(map(yamlsTests(mdYamls(docs/metagraph.md)), assert))'"
+    "test": "eg 'defined(map(yamlsTests(mdYamls(docs/metagraph.md)), assert))'",
+    "index": "eg 'index/indexDocs'"
   }
 }

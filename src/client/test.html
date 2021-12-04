@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <script type="importmap">
+      {
+        "imports": {
+          "yaml": "../../node_modules/yaml/browser/index.js"
+        }
+      }
+    </script>
+    <script type="module">
+      // import { ExplorableGraph } from "@explorablegraph/explorable";
+      // import ExplorableGraph from "../../node_modules/@explorablegraph/explorable/src/core/ExplorableGraph.js";
+
+      window.addEventListener("load", async () => {
+        // const bundleResult = await fetch("bundle.yaml");
+        // const bundleText = await bundleResult.text();
+        // const bundle = ExplorableGraph.from(bundleText);
+        // const readMe = await bundle.get("ReadMe.md");
+        const bundleResult = await fetch("bundle.json");
+        const bundle = await bundleResult.json();
+        const readMe = bundle["ReadMe.md"];
+        document.querySelector("#readMe").innerHTML = readMe;
+      });
+    </script>
+  </head>
+  <body>
+    <pre id="readMe"></pre>
+  </body>
+</html>
