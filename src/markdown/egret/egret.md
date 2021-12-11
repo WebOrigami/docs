@@ -1,8 +1,6 @@
 ---
-category: Egret
+title: Egret
 ---
-
-# Egret
 
 Egret is a content pipeline construction kit. You can use it to make:
 
