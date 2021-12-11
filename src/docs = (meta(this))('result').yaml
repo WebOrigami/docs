@@ -1,0 +1,5 @@
+# Convert markdown to HTML while preserving front matter
+html = map(markdown, mdHtml, '.md', '.html'): ""
+
+# Apply the documentation page template
+result = map(html, docPage.hbs):
