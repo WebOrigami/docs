@@ -1,0 +1,12 @@
+---
+items = keys(.):
+frontMatter: |
+  ---
+  title: Index
+  ---
+---
+{{frontMatter}}
+
+{{#each items}}
+* [{{this}}]({{this}})
+{{/each}}
