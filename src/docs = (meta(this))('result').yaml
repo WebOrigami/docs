@@ -2,4 +2,4 @@
 html = map(markdown, mdHtml, '.md', '.html'): ""
 
 # Apply the documentation page template
-result = map(html, docPage.hbs):
+result = map(html, templates%docPage.hbs):
