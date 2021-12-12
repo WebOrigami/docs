@@ -1,14 +1,13 @@
 ---
-items = keys(.):
+items = map(keys(scope()), indexItem):
 frontMatter: |
   ---
   title: Index
   ---
 ---
 {{frontMatter}}
-
 {{#each items}}
 <li>
-  <a href="{{this}}">{{this}}</a>
+  <a href="{{href}}">{{text}}</a>
 </li>
 {{/each}}
