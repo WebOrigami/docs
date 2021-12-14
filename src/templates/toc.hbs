@@ -1,0 +1,14 @@
+{{#if this}}
+<ul>
+{{#each this}}
+  {{#if title}}
+    <li>
+      <a href="{{@key}}">{{title}}</a>
+    </li>
+  {{else}}
+    <li>{{@key}}</li>
+    {{> toc this}}
+  {{/if}}
+{{/each}}
+</ul>
+{{/if}}
