@@ -1,11 +1,11 @@
 import {
-  applyMixinToObject,
   CachedValuesTransform,
   ExplorableGraph,
+  transformObject,
 } from "@explorablegraph/explorable";
 
 export default async function cacheValues(variant) {
   const graph = ExplorableGraph.from(variant);
-  const mixed = applyMixinToObject(CachedValuesTransform, graph);
+  const mixed = transformObject(CachedValuesTransform, graph);
   return mixed;
 }

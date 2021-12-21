@@ -1,0 +1,11 @@
+---
+items = map(keys(parent()), js%indexItem):
+title: Index
+---
+{{#>page}}
+{{#each items}}
+  <li>
+    <a href="{{href}}">{{text}}</a>
+  </li>
+{{/each}}
+{{/page}}

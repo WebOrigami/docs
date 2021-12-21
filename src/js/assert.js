@@ -2,7 +2,7 @@ import {
   config,
   ExplorableGraph,
   ExplorableObject,
-  MetaMixin,
+  MetaTransform,
   StringWithGraph,
 } from "@explorablegraph/explorable";
 import assert from "assert/strict";
@@ -13,7 +13,7 @@ export default async function (variant) {
   }
   const graph = ExplorableGraph.from(variant);
   const obj = await ExplorableGraph.plain(graph);
-  const test = new (MetaMixin(ExplorableObject))(obj);
+  const test = new (MetaTransform(ExplorableObject))(obj);
   test.scope = this?.graph ?? (await config());
   const description = await test.get("description");
   const expected = await test.get("expected");
