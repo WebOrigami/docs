@@ -14,7 +14,7 @@ export default async function (variant) {
   const graph = ExplorableGraph.from(variant);
   const obj = await ExplorableGraph.plain(graph);
   const test = new (MetaTransform(ExplorableObject))(obj);
-  test.scope = this?.graph ?? (await config());
+  test.parent = this?.graph ?? (await config());
   const description = await test.get("description");
   const expected = await test.get("expected");
   const expectedPlain = await plainResult(expected);
