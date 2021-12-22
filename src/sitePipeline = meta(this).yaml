@@ -2,10 +2,7 @@
 tested = map(markdown, js%mdExamples):
 
 # Convert markdown to HTML while preserving front matter
-html = map(tested, mdHtml, '.md', '.md.html'):
+html = map(tested, mdHtml, '.md', '.html'):
 
 # Apply the documentation page template
-templated = map(html, templates%docPage.hbs, '.md.html', '.html'):
-
-# If explicit keys are defined, expose just those.
-result = explicitKeys(templated):
+result = map(html, templates%docPage.hbs):
