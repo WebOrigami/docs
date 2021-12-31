@@ -5,10 +5,8 @@
     <li>
       <a href="{{@key}}">{{title}}</a>
     </li>
-  {{else}}
-    <li>{{@key}}</li>
-    {{> toc this}}
   {{/if}}
+  {{> toc this}}
 {{/each}}
 </ul>
 {{/if}}
