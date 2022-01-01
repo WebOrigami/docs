@@ -1,6 +1,7 @@
 ---
 title: eg
 pages:
+  - start.html: Hands-On Intro
   - syntax.html: Syntax
   - commands.html: Commands
 ---
