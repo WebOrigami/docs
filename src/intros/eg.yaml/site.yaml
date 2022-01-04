@@ -1,0 +1,24 @@
+index.html: |
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>Index</title>
+    </head>
+    <body>
+      <h1>Index</h1>
+      <a href="about/">About</a>
+    </body>
+  </html>
+
+about:
+  index.html: |
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>About</title>
+      </head>
+      <body>
+        <h1>About</h1>
+        <p>This site is defined in a YAML file.</p>
+      </body>
+    </html>

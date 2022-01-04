@@ -16,7 +16,7 @@ Let's first look at an example of a formula that references inputs from other gr
 
 ```yaml
 fixture:
-  index.html = hbs(index.hbs, index.yaml): ""
+  index.html = index.hbs(index.yaml): ""
   index.hbs: Hello, {{name}}.
   index.yaml:
     name: Alice
@@ -37,7 +37,7 @@ Since the Handlebars template above is so trivial, we can essentially inline it:
 
 ```yaml
 fixture:
-  index.html = hbs(this, index.yaml): Hello, {{name}}.
+  index.html = this(index.yaml).hbs: Hello, {{name}}.
   index.yaml:
     name: Alice
 ```

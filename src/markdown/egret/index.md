@@ -6,7 +6,7 @@ pages:
   - this.html: this keyword
 ---
 
-Egret is a content pipeline construction kit. You can use it to make:
+Egret is a content transformation kit. You can use it to make:
 
 - web sites/apps
 - documentation sites

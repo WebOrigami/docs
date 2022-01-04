@@ -1,8 +1,9 @@
 ---
 title: Explorable Graph
 pages:
-  - docs/eg: eg
-  - docs/egret: Egret
+  - explorable: Explorable
+  - eg: eg
+  - egret: Egret
   - ideas: Ideas
   - blog: Blog
 ---
@@ -11,5 +12,5 @@ This is the Explorable Graph site.
 
 Three quick hands-on introductions:
 
-- [Intro to eg](docs/eg/start.html)
-- [Intro to Egret](docs/egret/start.html)
+- [Intro to eg](eg/intro.html)
+- [Intro to Egret](egret/intro.html)

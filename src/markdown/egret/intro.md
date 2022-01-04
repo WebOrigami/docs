@@ -17,7 +17,7 @@ b = a: ""
 
 ## Generate a page with a formula
 
-index.html = `Hello, world.`
+index.html = greet()
 
 ## Generate a page with a JavaScript file
 
@@ -34,3 +34,9 @@ index.html = greet('world')
 ## Map markdown files to HTML files
 
 html = map(markdown, mdHtml)
+
+## Map data to HTML with a template
+
+## Use formulas in front matter
+
+## Inherit functions and other values

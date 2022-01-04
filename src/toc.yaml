@@ -1,18 +1,20 @@
-site/start.html:
+site/intro.html:
   title: Hands-On Intro
-site/docs:
-  title: Docs
-  site/docs/eg:
-    title: eg
-    site/docs/eg/commands.html:
-      title: eg Commands
-    site/docs/eg/syntax.html:
-      title: eg Syntax
-  site/docs/egret:
-    title: Egret
-    site/docs/egret/metagraph.html:
-      title: Metagraphs
-    site/docs/egret/this.html:
-      title: this keyword
+site/eg:
+  title: eg
+  site/eg/intro.html:
+    title: Hands-On Intro
+  site/eg/commands.html:
+    title: eg Commands
+  site/eg/syntax.html:
+    title: eg Syntax
+site/egret:
+  title: Egret
+  site/egret/intro.html:
+    title: Hands-On Intro
+  site/egret/metagraph.html:
+    title: Metagraphs
+  site/egret/this.html:
+    title: this keyword
 site/blog:
   title: Blog
