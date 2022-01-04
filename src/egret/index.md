@@ -1,7 +1,7 @@
 ---
 title: Egret
 pages:
-  - start.html: Hands-On Intro
+  - intro.html: Hands-On Intro
   - metagraph.html: Metagraphs
   - this.html: this keyword
 ---

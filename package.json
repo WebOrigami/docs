@@ -9,7 +9,7 @@
     "yaml": "2.0.0-8"
   },
   "scripts": {
-    "build": "eg copy netlify:app:src, files:dist",
+    "build": "eg copy netlify:app:site, files:dist",
     "test": "eg 'defined(map(yamlsTests(mdYamls(docs/metagraph.md)), assert))'",
     "index": "eg 'index/indexDocs'"
   }

@@ -1,8 +1,8 @@
 # Find any code examples in the markdown and test them
-tested = map(markdown, js%mdExamples):
+tested = map(src, src%js%mdExamples):
 
 # Convert markdown to HTML while preserving front matter
 html = map(tested, mdHtml, '.md', '.html'):
 
 # Apply the documentation page template
-result = map(html, templates%docPage.hbs):
+result = map(html, src%templates%docPage.hbs, '.html', '.html'):
