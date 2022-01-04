@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
-    "@explorablegraph/explorable": "file:../explorable",
+    "@explorablegraph/explorable": "github:ExplorableGraph/explorable#77bbf477",
     "algoliasearch": "4.11.0",
     "handlebars": "4.7.7",
     "yaml": "2.0.0-8"
