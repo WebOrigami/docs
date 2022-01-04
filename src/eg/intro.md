@@ -1,5 +1,5 @@
 ---
-title: Quick Hands-On Intro to eg
+title: Hands-On Intro to eg
 ---
 
 The `eg` command line app is a multi-purpose tool that:
@@ -37,8 +37,8 @@ A common task `eg` can accomplish is unpacking the values of a JSON or YAML file
 Copy/paste or type the following into your terminal:
 
 ```sh
-$ eg copy https://explorablegraph.org/intros/eg.yaml, files/intro
-$ cd intro
+$ eg copy https://explorablegraph.org/intros/eg.yaml, files/eg-intro
+$ cd eg-intro
 ```
 
 This should create a new folder called `intro` containing a tree of files. `eg` treated the indicated YAML file as a graph, and the `copy` function read values out of that graph and wrote them into the file system graph.
@@ -66,17 +66,17 @@ At its core, `eg` exists to bridge the shell and JavaScript. When you invoke `eg
 Enter this command from inside the `intro` folder:
 
 ```sh
-$ eg text.txt
+$ eg sample.txt
 This is a plain text file.
 ```
 
-Here, `eg` interpreted the expression `text.txt`, and determined that this was an identifier. It looked up "text.txt" in the current _scope_. The scope is a graph. By default, the scope is a graph that includes:
+Here, `eg` interpreted the expression `sample.txt`, and determined that this was an identifier. It looked up "sample.txt" in the current _scope_. The scope is a graph. By default, the scope is a graph that includes:
 
 - the files in the current folder
 - the functions exported by JavaScript modules in the current folder
 - functions built into `eg`
 
-In this case, "text.txt" is a text file. `eg` reads that file from the current folder, and this becomes the result of the expression. `eg` then renders that result – the contents of the file — to the console.
+In this case, "sample.txt" is a text file. `eg` reads that file from the current folder, and this becomes the result of the expression. `eg` then renders that result – the contents of the file — to the console.
 
 At this rudimentary level, `eg` is effectively a tool for displaying files like the Unix `cat` command. But it can do more interesting things.
 
