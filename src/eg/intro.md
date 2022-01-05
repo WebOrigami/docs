@@ -474,7 +474,7 @@ The most important thing to understand about `map` is that it does _not_ do all 
 
 In contrast to the `map` function found in places like JavaScript's `Array` class, which immediately applies a map function to every element in an array, the `map` function here only does work when it has to. In this `uppercase` example, `eg` does end up doing all the `uppercase` work — but only because we're asking `eg` to display the complete results. In other cases, such the following example, the work will only be done when asked.
 
-# Use a graph as a map
+## Use a graph as a map
 
 Above it was noted that the mapping function passed to `map` can actually be any graph. This lets you use data to transform other data.
 
@@ -539,7 +539,7 @@ Bob: Hello, Bob.
 Carol: Hello, Carol.
 ```
 
-Making the full contents of a site more freely available will be anathema to some people, but much web content is already available even if it's not so convenient. Here `eg` is simply embracing the spirit of the browser's View Source command. That works on a single web page at a time; `eg` applies that philosophy to the site as a whole.
+Making the full contents of a site more freely available will be anathema to some people, but much web content is already available, just not conveniently inspectable. Here `eg` embraces the spirit of the browser's View Source feature, which looks at a single web page at a time. `eg` can extend that philosophy to the site as a whole.
 
 ## Copy a live web site to local files
 
