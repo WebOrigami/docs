@@ -13,7 +13,9 @@ export default function (body) {
       }
     </style>
   </head>
-  <body>${body}</body>
+  <body>
+    ${body}
+  </body>
 </html>
 `;
 }

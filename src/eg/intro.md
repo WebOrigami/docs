@@ -13,7 +13,7 @@ This page introduces the basics of `eg` by demonstrating common, useful actions 
 
 ## Start
 
-Start a terminal window running whatever shell you prefer. (The examples here show `bash`.) You'll need [node](https://nodejs.org) installed.
+Start a terminal window running bash (shown here) or whatever shell you prefer. You'll need [node](https://nodejs.org) installed.
 
 ---> for now, install globally
 
@@ -32,7 +32,7 @@ $ eg
 
 ## Unpack some files
 
-A common task `eg` can accomplish is unpacking the values of a JSON or YAML file into a folder tree, so let's use that first to obtain sample files for the examples that follow.
+One of the many tasks `eg` can perform is unpacking the values of a JSON or YAML file into a folder tree — so let's use that first to obtain sample files for the examples that follow.
 
 Copy/paste or type the following into your terminal:
 
@@ -124,6 +124,19 @@ In path syntax, all path keys are implicitly quoted, so you can pass text like "
 
 `eg` lets you invoke and compose functions in any combination without having to write permanent code. This can be useful when you're experimenting or need to do one-off operations from the shell.
 
+Suppose you have a collection of functions:
+
+```sh
+$ eg uppercase.js
+export default (x) => x.toString().toUpperCase();
+$ eg double.js
+export default (x) => `${x}${x}`;
+$ eg greet.js
+export default (x) => `Hello, ${x}. `;
+```
+
+You can then use `eg` to mix and match these functions from the shell:
+
 ```sh
 $ eg uppercase/world
 WORLD
@@ -163,13 +176,23 @@ $ eg uppercase sample.txt
 THIS IS A TEXT FILE.
 ```
 
-## Read input from stdin
+## Reading input from stdin
 
 You can pipe data into JavaScript functions with the built-in `stdin` function:
 
 ```sh
 $ echo hi | eg uppercase stdin
 HI
+```
+
+## Writing output to a file
+
+You can use regular shell features to pipe the output from your JavaScript function to a file:
+
+```sh
+$ eg uppercase sample.txt > uppercase.txt
+$ eg uppercase.txt
+THIS IS A TEXT FILE.
 ```
 
 ## Rendering a graph
@@ -184,6 +207,10 @@ Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
 ```
+
+This defines a graph:
+
+![](greetings.svg)
 
 `eg` natively understands a number of graph formats:
 
@@ -288,6 +315,37 @@ Or render the folder as JSON:
 $ eg json . > package.json
 ```
 
+## Unpack files into the file system
+
+You already saw the unpacking a YAML or JSON file into files as the first step in this introduction. This uses the `copy` function to write a YAML/JSON graph into the file system graph.
+
+We can unpack the greetings in `greetings.yaml` as individual files:
+
+```sh
+$ eg greetings.yaml
+Alice: Hello, Alice.
+Bob: Hello, Bob.
+Charlie: Hello, Charlie.
+$ eg copy greetings.yaml, files/greetings
+$ ls greetings
+Alice   Bob     Charlie
+$ cat greetings/Alice
+Hello, Alice.
+```
+
+The key/value pairs in the YAML file are now individual files in the file system.
+
+The important point here is that _all graphs look the same to `eg`_. It doesn't matter whether a graph is defined in a single file like YAML, or a collection of loose files in the file system. If, having unpacked the `greetings.yaml` file above, we can ask `eg` to display the `greetings` folder we just created:
+
+```
+$ eg greetings
+Alice: Hello, Alice.
+Bob: Hello, Bob.
+Charlie: Hello, Charlie.
+```
+
+The `greetings` folder and the `greetings.yaml` file both define the same graph, even though the underlying definition is stored in completely different ways.
+
 ## Serve a graph
 
 You can serve any graph with the `serve` function, which starts a local web server.
@@ -331,7 +389,9 @@ export default function (body) {
       }
     </style>
   </head>
-  <body>${body}</body>
+  <body>
+    ${body}
+  </body>
 </html>
 `;
 }
@@ -355,7 +415,9 @@ $ eg template greetings.yaml/Alice
     }
   </style>
 </head>
-  <body>Hello, Alice.</body>
+  <body>
+    Hello, Alice.
+  </body>
 </html>
 ```
 
@@ -379,26 +441,32 @@ Bob: HELLO, BOB.
 Charlie: HELLO, CHARLIE.
 ```
 
----> diagram
+Note that the second argument to `map` is a function. (Technically, this can be any explorable graph, but for our purposes, let's assume it's a regular JavaScript function.) We want to treat that function as a first-class object, which means we _don't_ want `eg` to do its normal implicit function invocation here. To prevent that, you must manually specific the parentheses, which generally requires quoting the arguments to `eg` or otherwise escaping them.
 
-The second argument to `map` is a map function. Technically, this can be any explorable graph, but for our purposes, let's assume it's a regular JavaScript function. When invoking `map`, we want to treat the map function as a first-class object, which means we _don't_ want `eg` to do its normal implicit function invocation here. To prevent that, you must manually specific the parentheses, which generally requires quoting the arguments to `eg` or otherwise escaping them.
+In any event, this `map` takes the original greetings graph
+
+![](greetings.svg)
+
+and creates a new graph where all the values are uppercase:
+
+![](uppercase.svg)
 
 In this intro, we're just transforming text, but you can transform anything in bulk, including images and other binaries. If you can write a function to transform a single thing in JavaScript, you can use `eg` to apply that transformation to an entire graph of things.
 
-## Serve a transformed graph of stuff
-
 The most important thing to understand about `map` is that it does _not_ do all its work when invoked. Instead, it immediately returns a new explorable graph that will invoke the mapping function on demand. An explorable graph is a _lazy dictionary_.
 
-In contrast to the `map` function found in places like JavaScript's `Array` class, which immediately applies a map function to every element in an array, the `map` function here only does work when it has to. In the `uppercase` example above, `eg` does end up doing all the `uppercase` work — but only because we're asking `eg` to display the complete results. In other cases, the work will only be done when asked.
+In contrast to the `map` function found in places like JavaScript's `Array` class, which immediately applies a map function to every element in an array, the `map` function here only does work when it has to. In this `uppercase` example, `eg` does end up doing all the `uppercase` work — but only because we're asking `eg` to display the complete results. In other cases, such the following example, the work will only be done when asked.
 
-For example, we can ask `eg` to serve HTML created using `map` and the template we saw earlier.
+## Serve a transformed graph of stuff
+
+We can ask `eg` to serve HTML created using `map` and the template we saw earlier.
 
 ```sh
 $ eg "serve map(greetings.yaml, template)"
 Server running at http://localhost:5000
 ```
 
-The served site does _not_ have an index page, but you can browse to one of the defined pages like http://localhost:5000/Alice. You'll see a message like "Hello, Alice." rendered in HTML. That rendering work is _only done on request_.
+The served site does _not_ have an index page, but you can browse to one of the defined pages like http://localhost:5000/Alice. You'll see a message like "Hello, Alice." rendered in HTML. Due to the lazy nature of `map`, that rendering work is _only done on request_.
 
 ## Turn a transformed graph of stuff into files
 
@@ -410,7 +478,7 @@ $ ls html
 Alice   Bob     Charlie
 ```
 
-You can do such a `copy` operation in preparation for deploying HTML pages to a static web server.
+You can do such a `copy` operation in preparation for deploying HTML pages to a static web server. The web page you're reading right now gets deployed in exactly that way.
 
 ## Copy a live web site to local files
 
