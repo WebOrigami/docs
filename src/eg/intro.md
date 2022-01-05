@@ -539,7 +539,7 @@ Bob: Hello, Bob.
 Carol: Hello, Carol.
 ```
 
-Making the full contents of a site more freely available will be anathema to some people, but much web content is already available even if it's not so convenient. Here `eg` is simply embracing the spirit of the browser's View Source command. That works on a single web page at a time; `eg` applies that philosophy to the site as a whole.[z](https://)
+Making the full contents of a site more freely available will be anathema to some people, but much web content is already available even if it's not so convenient. Here `eg` is simply embracing the spirit of the browser's View Source command. That works on a single web page at a time; `eg` applies that philosophy to the site as a whole.
 
 ## Copy a live web site to local files
 
@@ -547,7 +547,7 @@ If you can view a live site as a graph, then you can use `eg` to copy it to loca
 
 ```bash
 $ eg copy https://explorablegraph.org/samples/greetings, files/snapshot
-$ ls greetings
+$ ls snapshot
 Alice Bob   Carol
 ```
 
