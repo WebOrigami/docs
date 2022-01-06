@@ -591,7 +591,7 @@ $ eg https://explorablegraph.org/samples/greetings/.keys.json
 ["Alice","Bob","Carol"]
 ```
 
-When you ask to view `https://explorablegraph.org/samples/greetings/`, `eg` asks that server for its `.keys.json` file, then uses that information to download and display that list of resources as a graph.
+When you ask to view a route, `eg` asks that server for its `.keys.json` file, then uses that information to download and display that list of resources as a graph.
 
 Making the full contents of a site more freely available might be concerning to some people, but most web content is already available to users; it's just not conveniently inspectable. `eg` extends the spirit of the browser's View Source feature (which looks at a single web page at a time) to let you inspect everything at a particular web route.
 

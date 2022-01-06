@@ -1,5 +1,5 @@
 body {
-  padding: 4em;
+  padding: 1em;
   max-width: 800px;
   margin: 0 auto;
   --color-canvas-subtle: #f6f8fa;
@@ -30,4 +30,10 @@ code {
 .error pre {
   padding: 0;
   margin: 16px 0 0 0;
+}
+
+@media (min-width: 600px) {
+  body {
+    padding: 4em;
+  }
 }
