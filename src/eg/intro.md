@@ -119,8 +119,8 @@ When you ask `eg` to evaluate "greet":
 You can pass arguments to JavaScript functions from the shell. One way to do this is by quoting the argument(s) to `eg`:
 
 ```sh
-$ eg "greet('world')"
-Hello, world.
+$ eg "greet('Alice')"
+Hello, Alice.
 ```
 
 `eg` accepts strings in single quotes or backticks, but _not_ double quotes. The double quotes shown above are parsed by the _shell_, not `eg`. The double quotes are necessary because the `bash` shell shown here would otherwise consume the single quotes and prevent `eg` from seeing them.
@@ -128,11 +128,11 @@ Hello, world.
 In the explorable graph paradigm, a function is also a graph (and vice versa). This means you can use path syntax as a convenient alternative way to specify a string argument with implicit quotes:
 
 ```sh
-$ eg greet/world
-Hello, world.
+$ eg greet/Alice
+Hello, Alice.
 ```
 
-In path syntax, all path keys are implicitly quoted, so you can pass text like "world" more easily.
+In path syntax, all path keys are implicitly quoted, so you can pass text arguments more easily.
 
 ## Use `eg` as a general-purpose JavaScript shell tool
 
@@ -159,9 +159,9 @@ Hello, WORLD.
 $ eg uppercase greet/world
 HELLO, WORLD.
 $ eg double greet/world
-Hello, world.Hello, world.
+Hello, world. Hello, world.
 $ eg double greet uppercase/world
-Hello, WORLD.Hello, WORLD.
+Hello, WORLD. Hello, WORLD.
 ```
 
 If it helps to visualize these examples using parentheses, here's the equivalent verbose form with quotes:
@@ -174,9 +174,9 @@ Hello, WORLD.
 $ eg "uppercase(greet('world'))"
 HELLO, WORLD.
 $ eg "double(greet('world'))"
-Hello, world.Hello, world.
+Hello, world. Hello, world.
 $ eg "double(greet(uppercase('world')))"
-Hello, WORLD.Hello, WORLD.
+Hello, WORLD. Hello, WORLD.
 ```
 
 ## Reading and creating files with `eg`
