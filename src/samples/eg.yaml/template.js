@@ -7,10 +7,10 @@ export default function (body) {
     <style>
       body {
         background: #fbf0f2;
-        font-family: Zapfino;
+        font-family: Zapfino, Segoe Script, cursive;
         color: darkred;
         font-size: 48px;
-      }
+      }    
     </style>
   </head>
   <body>
