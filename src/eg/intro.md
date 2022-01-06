@@ -132,7 +132,21 @@ $ eg greet/Alice
 Hello, Alice.
 ```
 
-In path syntax, all path keys are implicitly quoted, so you can pass text arguments more easily.
+In path syntax, all path keys are implicitly quoted, making this a convenient syntax for passing string arguments in the shell.
+
+## Loading functions as ES modules
+
+Aside: The above definition of `greet.js` is an ES (EcmaScript) module that exports a function using standard JavaScript `export` syntax. By default, Node imports .js files as CommonJS modules. To allow `eg` to dynamically import JavaScript files as ES modules, you will need to include a `package.json` file in the folder with your .js file or in any parent folder. That `package.json` should include the line `"type": "module"`:
+
+The `samples` folder you're working already includes such a `package.json` file:
+
+```sh
+$ eg package.json
+{
+  "comment": "This file exists to tell Node to load .js files as ES modules",
+  "type": "module"
+}
+```
 
 ## Use `eg` as a general-purpose JavaScript shell tool
 
@@ -141,43 +155,49 @@ In path syntax, all path keys are implicitly quoted, so you can pass text argume
 Suppose you have a collection of functions:
 
 ```sh
-$ eg uppercase.js
-export default (x) => x.toString().toUpperCase();
 $ eg double.js
 export default (x) => `${x}${x}`;
 $ eg greet.js
-export default (x) => `Hello, ${x}. `;
+export default (name = "world") => `Hello, ${name}. `;
+$ eg uppercase.js
+export default (x) => x.toString().toUpperCase();
 ```
 
 You can then use `eg` to mix and match these functions from the shell:
 
 ```sh
-$ eg uppercase/world
-WORLD
-$ eg greet uppercase/world
-Hello, WORLD.
-$ eg uppercase greet/world
+$ eg greet
+Hello, world.
+$ eg uppercase/hi
+HI
+$ eg greet uppercase/there
+Hello, THERE.
+$ eg uppercase greet
 HELLO, WORLD.
-$ eg double greet/world
+$ eg double greet
 Hello, world. Hello, world.
-$ eg double greet uppercase/world
-Hello, WORLD. Hello, WORLD.
+$ eg double greet uppercase/there
+Hello, THERE. Hello, THERE.
 ```
 
 If it helps to visualize these examples using parentheses, here's the equivalent verbose form with quotes:
 
 ```sh
-$ eg "uppercase('world')"
-WORLD
-$ eg "greet(uppercase('world'))"
-Hello, WORLD.
-$ eg "uppercase(greet('world'))"
+$ eg "greet()"
+Hello, world.
+$ eg "uppercase('hi')"
+HI
+$ eg "greet(uppercase('there'))"
+Hello, THERE.
+$ eg "uppercase(greet())"
 HELLO, WORLD.
-$ eg "double(greet('world'))"
+$ eg "double(greet())"
 Hello, world. Hello, world.
-$ eg "double(greet(uppercase('world')))"
-Hello, WORLD. Hello, WORLD.
+$ eg "double(greet(uppercase('there')))"
+Hello, THERE. Hello, THERE.
 ```
+
+At this level, `eg` lets you use the shell as a basic JavaScript console.
 
 ## Reading and creating files with `eg`
 
@@ -192,16 +212,18 @@ THIS IS A TEXT FILE.
 
 Note that, in order to interpret "sample.txt" as the name of a file, you _don't_ want to quote that name.
 
+In this example, `eg` ends up feeding a file buffer (a Node `Buffer` object) to the `uppercase` function. The `uppercase` function includes a `toString()` call which, in this situation, will extract the text from the file buffer. It can then do its uppercasing work on the resulting text.
+
 ## Reading input from stdin
 
 You can pipe data into JavaScript functions with the built-in `stdin` function:
 
 ```sh
-$ echo hi | eg uppercase stdin
-HI
+$ echo This is input from the shell | eg uppercase stdin
+THIS IS INPUT FROM THE SHELL
 ```
 
-The value of the `stdin` function will be the complete standard input fed to the `eg` command.
+The result of the `stdin` function will be the complete standard input fed to the `eg` command.
 
 ## Writing output to a file
 
@@ -505,7 +527,7 @@ $ eg people.yaml
 - Carol
 ```
 
-And some other data that maps people to a greeting:
+And some other data that associates a person's name with a greeting:
 
 ```bash
 $ eg greetings.yaml
@@ -514,7 +536,7 @@ Bob: Hello, Bob.
 Carol: Hello, Carol.
 ```
 
-You can then treat both the base data and the mapping as graphs, and pass those to `map`, to turn a list of people into a list of greetings:
+You can then treat both the base data and the greetings data as graphs, and pass those to `map`, to turn the list of specific people into a list of greetings:
 
 ```bash
 $ eg "map(people.yaml, greetings.yaml)"
@@ -558,11 +580,11 @@ Bob: Hello, Bob.
 Carol: Hello, Carol.
 ```
 
-Making the full contents of a site more freely available will be anathema to some people, but much web content is already available, just not conveniently inspectable. Here `eg` embraces the spirit of the browser's View Source feature, which looks at a single web page at a time. `eg` can extend that philosophy to the site as a whole.
+Making the full contents of a site more freely available might be anathema to some people, but most web content is already available to users, just not conveniently inspectable. Here `eg` extends the spirit of the browser's View Source feature, which looks at a single web page at a time, to a site as a whole.
 
 ## Copy a live web site to local files
 
-If you can view a live site as a graph, then you can use `eg` to copy it to local files:
+If you can view a live site as a graph, then you can use `eg` to copy that graph to local files:
 
 ```bash
 $ eg copy https://explorablegraph.org/samples/greetings, files/snapshot
@@ -570,4 +592,4 @@ $ ls snapshot
 Alice Bob   Carol
 ```
 
-Of course, just because this is possible doesn't mean it's efficient. If your regular task is copy web resources to local files, you can faster tools for that job. But if you only do that infrequently, or don't want to invest the time to research and develop specialized tools, the general-purpose `eg` tool may suffice.
+Of course, just because this is possible doesn't mean it's efficient. If your regular task is copy web resources to local files, you can find faster tools for that job. But if you only do that infrequently, or don't want to spend time researching and developing specialized tools, the general-purpose `eg` may suffice.
