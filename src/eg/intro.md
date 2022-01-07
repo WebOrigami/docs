@@ -13,7 +13,7 @@ h2:before {
 }
 </style>
 
-z`eg` is a multi-purpose command line tool that:
+`eg` is a multi-purpose command line tool that:
 
 - bridges the shell and JavaScript, so you can easily invoke JavaScript from the command line, pass files to JavaScript functions, and freely mix shell tools and JavaScript.
 - manipulates data representable in the [Explorable](/explorable) graph interface, such as JSON and YAML files, file system folders, JavaScript objects, and web resources.
