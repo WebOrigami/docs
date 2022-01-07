@@ -131,11 +131,13 @@ Hello, Alice.
 
 In this path syntax, all path keys after the first slash are implicitly quoted.
 
+Regardless of which syntax you use, `eg` lets you invoke JavaScript functions like `greet` from the shell without the function itself having to parse command line arguments. Among other things, this can let you directly test a function that's normally invoked in some other way.
+
 ## Aside: Loading functions as ES modules
 
-The above definition of `greet.js` is an ES (EcmaScript) module that exports a function using standard JavaScript `export` syntax. By default, Node imports .js files as CommonJS modules. To allow `eg` to dynamically import JavaScript files as ES modules, you will need to include a `package.json` file in the folder with your .js file or in any parent folder. That `package.json` should include the line `"type": "module"`:
+The above definition of `greet.js` is an ES (EcmaScript) module that exports a function using standard JavaScript `export` syntax. By default, Node imports .js files as CommonJS modules. To allow `eg` to dynamically import JavaScript files as ES modules, you will need to include a `package.json` file in the folder with your .js file or in any parent folder. That `package.json` should include the entry `"type": "module"`:
 
-The `samples` folder you're working already includes such a `package.json` file:
+The `samples` folder you're working in already includes a minimalist `package.json` file with such an entry:
 
 ```sh
 $ eg package.json
