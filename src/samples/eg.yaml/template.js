@@ -1,12 +1,8 @@
-export default function (body) {
-  return `<!DOCTYPE html>
-<html lang="en">
+export default (body) => `<!DOCTYPE html>
+<html>
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <style>
       body {
-        background: #fbf0f2;
         font-family: Zapfino, Segoe Script, cursive;
         color: darkred;
         font-size: 48px;
@@ -18,4 +14,3 @@ export default function (body) {
   </body>
 </html>
 `;
-}

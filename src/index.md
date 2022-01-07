@@ -8,9 +8,8 @@ pages:
   - blog: Blog
 ---
 
-This is the Explorable Graph site.
+Hands-on introductions:
 
-Three quick hands-on introductions:
-
+- [Intro to explorable graphs](explorable/intro.html)
 - [Intro to eg](eg/intro.html)
 - [Intro to Egret](egret/intro.html)
