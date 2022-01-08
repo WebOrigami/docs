@@ -16,7 +16,7 @@ h2:before {
 `eg` is a multi-purpose command line tool that:
 
 - bridges the shell and JavaScript, so you can easily invoke JavaScript from the command line, pass files to JavaScript functions, and freely mix shell tools and JavaScript.
-- manipulates data representable in the [Explorable](/explorable) graph interface, such as JSON and YAML files, file system folders, JavaScript objects, and web resources.
+- manipulates data representable in the [Explorable](/explorable) graph interface, such as JSON or YAML files, file system folders, JavaScript objects, and web resources.
 
 This page introduces the basics of `eg` by demonstrating useful actions you can perform with it. You can follow along with these examples on your own machine.
 
@@ -78,13 +78,13 @@ $ eg sample.txt
 This is a text file.
 ```
 
-Here, `eg` parsed the expression `sample.txt` as an identifier, and looked that up in the current _scope_. By default, the scope includes:
+Here, `eg` parses the expression `sample.txt` as an identifier. (In JavaScript, `sample.txt` is not a valid identifier because it contains a period, but `eg`'s expression parser can recognize file names as identifiers.) `eg` looks up that identifier in the current _scope_. By default, the scope includes:
 
 - the files in the current folder
 - the functions exported by JavaScript modules in the current folder
 - functions built into `eg`
 
-In this case, "sample.txt" is the name of a file, so `eg`reads that file from the current folder, and the contents become the result of the expression.`eg` then renders that result to the console.
+In this case, `eg` finds that "sample.txt" is the name of a file, and reads that file from the current folder. The file's contents become the result of the expression, which `eg` then renders to the console.
 
 At this basic level, `eg` is effectively a tool for displaying files like the Unix `cat` command.
 
@@ -131,7 +131,7 @@ Hello, Alice.
 
 In this path syntax, all path keys after the first slash are implicitly quoted.
 
-Regardless of which syntax you use, `eg` lets you invoke JavaScript functions like `greet` from the shell without the function itself having to parse command line arguments. Among other things, this can let you directly test a function that's normally invoked in some other way.
+Regardless of which syntax you use, `eg` lets you write and use a JavaScript function like `greet` from the shell without the function having to parse command line arguments.
 
 ## Aside: Loading functions as ES modules
 
@@ -147,7 +147,7 @@ $ eg package.json
 }
 ```
 
-If you want to use `eg` in a JavaScript project of your own, you'll need to create a `package.json` file that contains such a `"type": "module"` entry.
+If you want to use `eg` in a JavaScript project of your own, create a `package.json` file that contains such a `"type": "module"` entry.
 
 ## Use `eg` as a general-purpose JavaScript shell tool
 
