@@ -42,7 +42,7 @@ This should display a list of pre-installed `eg` commands.
 
 ## Unpack some files
 
-One task `eg` can perform is unpacking the values of a JSON or YAML file into a folder tree, so let's use that now to obtain sample files for the examples that follow:
+One task `eg` can perform is unpacking the values of a JSON or YAML file into a folder tree, so let's use that now to obtain sample files for the examples that follow and copy them into a local folder called `samples`:
 
 ```sh
 $ eg copy https://explorablegraph.org/samples/eg.yaml, files/samples
@@ -78,7 +78,7 @@ $ eg sample.txt
 This is a text file.
 ```
 
-Here, `eg` parses the expression `sample.txt` as an identifier. (In JavaScript, `sample.txt` is not a valid identifier because it contains a period, but `eg`'s expression parser can recognize file names as identifiers.) `eg` looks up that identifier in the current _scope_. By default, the scope includes:
+Here, `eg` parses the expression `sample.txt` as an identifier. In JavaScript, `sample.txt` is not a valid identifier because it contains a period, but `eg`'s expression parser can recognize file names as identifiers. `eg` looks up that identifier in the current _scope_. By default, the scope includes:
 
 - the files in the current folder
 - the functions exported by JavaScript modules in the current folder
@@ -106,10 +106,11 @@ Hello, world.
 
 When you ask `eg` to evaluate "greet":
 
-- It will not find a file called "greet", so `eg` looks next to see if "greet.js" exists.
-- This time it finds a JavaScript module with that name. `eg` dynamically imports the module and obtains its default export.
+- It looks for a file called `greet` but doesn't find one.
+- `eg` looks next to see if "greet.js" exists. This time it finds a JavaScript module with that name.
+- `eg` dynamically imports the module and obtains its default export.
 - The exported result is a JavaScript function, which `eg` executes.
-- The function's result is the string "Hello, world.", so `eg` displays that.
+- The function's result is the string "Hello, world.", which `eg` displays.
 
 ## Pass a string to a function
 
@@ -122,7 +123,7 @@ Hello, Alice.
 
 `eg` accepts strings in single quotes or backticks, but _not_ double quotes. The double quotes shown above are parsed by the _shell_, and are necessary because the `bash` shell shown here would otherwise prevent `eg` from seeing the single quotes.
 
-In the explorable graph paradigm discussed later, a function is also a graph and vice versa. This means you can use path syntax as a convenient alternative to specify a string argument to a function:
+In the explorable graph paradigm discussed later, a function can also be treated like a graph, and vice versa. This means you can use path syntax as a convenient alternative to specify a string argument to a function:
 
 ```sh
 $ eg greet/Alice
@@ -131,7 +132,7 @@ Hello, Alice.
 
 In this path syntax, all path keys after the first slash are implicitly quoted.
 
-Regardless of which syntax you use, `eg` lets you write and use a JavaScript function like `greet` from the shell without the function having to parse command line arguments.
+Regardless of which syntax you use, `eg` lets you write and use a JavaScript function like `greet` from the shell without the function needing to parse command line arguments.
 
 ## Aside: Loading functions as ES modules
 
@@ -224,7 +225,7 @@ $ echo This is input from the shell | eg uppercase stdin
 THIS IS INPUT FROM THE SHELL
 ```
 
-The result of the `stdin` function will be the complete standard input fed to the `eg` command.
+The result of the `stdin` function will be the complete standard input fed to the `eg` command. This lets you pipe data to a JavaScript function that accepts a simple argument instead of needing specialize the function specifically to read data from the console.
 
 ## Writing output to a file
 
@@ -238,7 +239,7 @@ THIS IS A TEXT FILE.
 
 ## Explorable graphs
 
-`eg` is generally useful as a way to invoke JavaScript from the shell, but it's especially good at dealing with graphs. More specifically, `eg` is designed to work with _explorable graphs_: a type of graph that can tell you what's in it, and can be either synchronous or asynchronous. Many common data structures can be represented as explorable graphs.
+`eg` is generally useful as a way to invoke JavaScript from the shell, but it's especially good at dealing with graphs. More specifically, `eg` is designed to work with _explorable graphs_: graph that can tell you what's in it, and can be either synchronous or asynchronous. Many common data structures can be represented as explorable graphs.
 
 Let's start with a simple YAML file:
 
@@ -614,7 +615,7 @@ Using `eg` to work with graphs at a high level means that many tasks which were 
 
 For example, it's generally not easy today to immediately see the complete contents of a web site. But if a web site is modeled as an explorable graph, and the server follows a simple protocol for implementing the Explorable interface, viewing a portion of a site (or the entire site) becomes trivial.
 
-The web site you're reading now supports viewing its contents as an explorable graph, so you can reference it directly in `eg`. For example, this site includes a route /samples/greetings, and you can view the files there just by passing that URL to `eg`:
+The web site you're reading now supports viewing its contents as an explorable graph, so you can reference it directly in `eg`. For example, this site includes a route `/samples/greetings`, and you can view the files there just by passing that URL to `eg`:
 
 ```sh
 $ eg https://explorablegraph.org/samples/greetings/
