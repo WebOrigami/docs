@@ -68,7 +68,7 @@ When you invoke `eg`, it:
 
 1. Parses its arguments as an expression
 2. Evaluates that expression, looking up identifiers in the current scope (defined below)
-3. If the value of an identifier is a JavaScript module, `eg` imports the module and obtains its default export. If it's a JavaScript functions, `eg` executes it.
+3. If the value of an identifier is a JavaScript module, `eg` imports the module and obtains its default export. If it's a JavaScript function, `eg` executes it.
 4. Displays the result
 
 From inside the `samples` folder:
