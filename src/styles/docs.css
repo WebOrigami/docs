@@ -32,6 +32,30 @@ code {
   margin: 16px 0 0 0;
 }
 
+a.current {
+  color: inherit;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-style: italic;
+  margin-bottom: 1rem;
+  margin-top: -1rem;
+}
+
+nav {
+  margin-bottom: 2rem;
+}
+nav a {
+  text-decoration: none;
+}
+nav a:hover {
+  text-decoration: underline;
+}
+nav a + a {
+  margin-left: 1em;
+}
+
 @media (min-width: 600px) {
   body {
     padding: 4em;

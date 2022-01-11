@@ -11,8 +11,12 @@
     {{/if}}
   </head>
   <body>
+  {{> navBar}}
   {{#if title}}
   <h1>{{title}}</h1>
+  {{/if}}
+  {{#if subtitle}}
+  <p class="subtitle">{{subtitle}}</p>
   {{/if}}
 {{> @partial-block }}
   </body>
