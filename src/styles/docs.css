@@ -127,7 +127,6 @@ nav a:hover {
       "sideBar main";
     grid-template-columns: 200px minmax(0, 1fr);
     grid-template-rows: auto auto;
-    padding: 4em;
   }
 
   .logo {
@@ -141,5 +140,11 @@ nav a:hover {
 
   #sidebar {
     grid-column: auto;
+  }
+}
+
+@media (min-width: 1000px) {
+  body {
+    padding: 2em 4em;
   }
 }
