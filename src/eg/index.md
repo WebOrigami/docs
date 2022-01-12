@@ -1,7 +1,7 @@
 ---
 title: eg
 subtitle: Command-line tool for working with JavaScript and graphs
-areaEg: true
+path: /eg/index.html
 ---
 
 `eg` is a general-purpose command line tool that:

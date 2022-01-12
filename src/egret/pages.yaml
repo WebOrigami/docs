@@ -1,3 +1,6 @@
-- intro.html: Hands-On Intro
-- metagraph.html: Metagraphs
-- this.html: this keyword
+- href: intro.html
+  text: Hands-On Intro
+- href: metagraph.html
+  text: Metagraphs
+- href: this.html
+  text: this keyword

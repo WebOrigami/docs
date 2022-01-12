@@ -1,4 +1,4 @@
 ---
 title: Blog
-areaBlog: True
+path: /blog/index.html
 ---

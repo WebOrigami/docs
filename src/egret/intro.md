@@ -1,6 +1,6 @@
 ---
 title: Quick Hands-On Intro to Egret
-areaEgret: true
+path: /egret/intro.html
 ---
 
 ## Start

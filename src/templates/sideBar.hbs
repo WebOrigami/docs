@@ -1,9 +1,7 @@
 <nav id="sideBar">
   {{#each pages}}
-  {{#each this}}
     <li>
-      <a href="{{@key}}">{{this}}</a>
+      <a href="{{href}}"{{#if current}} class="current"{{/if}}>{{text}}</a>
     </li>
-  {{/each}}
   {{/each}}
 </nav>

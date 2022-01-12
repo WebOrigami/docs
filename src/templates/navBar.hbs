@@ -1,7 +1,5 @@
 <nav id="navBar">
-  <a id="homeLink"{{#if areaHome}} class="current"{{/if}} href="/">Home</a>
-  <a id="coreLink"{{#if areaCore}} class="current"{{/if}} href="/core">Core</a>
-  <a id="egLink"{{#if areaEg}} class="current"{{/if}} href="/eg">eg</a>
-  <a id="egretLink"{{#if areaEgret}} class="current"{{/if}} href="/egret">Egret</a>
-  <a id="blogLink"{{#if areaBlog}} class="current"{{/if}} href="/blog">Blog</a>
+  {{#each areas}}
+    <a href="{{href}}"{{#if current}} class="current"{{/if}}>{{text}}</a>
+  {{/each}}
 </nav>

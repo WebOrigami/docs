@@ -65,7 +65,6 @@ code {
 
 a.current {
   color: inherit;
-  font-weight: bold;
 }
 
 .subtitle {
@@ -139,7 +138,7 @@ nav a:hover {
     grid-area: logo;
   }
 
-  #homeLink {
+  #navBar a[href="/"] {
     display: none;
   }
 

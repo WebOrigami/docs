@@ -1,3 +1,6 @@
-- intro.html: Hands-On Intro
-- syntax.html: Syntax
-- commands.html: Commands
+- href: intro.html
+  text: Hands-On Intro
+- href: syntax.html
+  text: Syntax
+- href: commands.html
+  text: Commands

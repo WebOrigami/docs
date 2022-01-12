@@ -1,12 +1,16 @@
 ---
 title: Explorable Graph
 subtitle: A conceptual framework and tools for creating sites and content pipelines
-areaHome: true
 pages:
-  - core: Core
-  - eg: eg
-  - egret: Egret
-  - blog: Blog
+  - href: core
+    text: Core
+  - href: eg
+    text: eg
+  - href: egret
+    text: Egret
+  - href: blog
+    text: Blog
+path: /
 ---
 
 Hands-on introductions:

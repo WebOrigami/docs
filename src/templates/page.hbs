@@ -1,5 +1,18 @@
 ---
-pages = parse(pages.yaml):
+areas = (js%markCurrent)(this, currentArea):
+  - href: /
+    text: Home
+  - href: /core
+    text: Core
+  - href: /eg
+    text: eg
+  - href: /egret
+    text: Egret
+  - href: /blog
+    text: Blog
+currentArea = (js%pathArea)(path):
+currentPage = (js%pathPage)(path):
+pages = (js%markCurrent)(parse(pages.yaml), currentPage):
 ---
 <!DOCTYPE html>
 <html lang="en">

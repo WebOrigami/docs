@@ -1,6 +1,6 @@
 ---
 title: The Explorable interface
-areaCore: true
+path: /core/explorable.html
 ---
 
 “lazy dictionary”

@@ -1,6 +1,6 @@
 ---
 title: Hands-On Intro to eg
-areaEg: true
+path: /eg/intro.html
 ---
 
 This page introduces the basics of `eg` by demonstrating useful actions you can perform with it. You can follow along with these examples on your own machine.
@@ -33,15 +33,16 @@ One task `eg` can perform is unpacking the values of a JSON or YAML file into a 
 $ eg copy https://explorablegraph.org/samples/eg.yaml, files/samples
 $ cd samples
 $ ls
-double.js      greetings.yaml package.json   sample.txt     template.js    uppercase.js
-greet.js       letters.json   people.yaml    site.yaml      text.js
+double.js      letters.json   sample.txt     text.js
+greet.js       package.json   site.yaml      uppercase.js
+greetings.yaml people.yaml    template.js
 ```
 
 Note the comma after the URL — the `copy` command takes two arguments that must be separated with a comma.
 
-The new `samples` folder should show a small collection of files. `eg` treated the indicated YAML file as a graph (more on graphs later). The `copy` function read values out of that graph and wrote them into the file system graph.
+The new `samples` folder should show a small collection of files. `eg` treated the indicated YAML file as a graph (more on graphs later). The `copy` function read values out of that graph and wrote them into the file system graph.``
 
-If you prefer, you can wrap `eg` function arguments in parentheses — but since command shells typically interpret parentheses, you may have to quote them:
+If you prefer, you can wrap `eg` function arguments in parentheses — but since command shells typically interpret parentheses, you may have to quote them:
 
 ```sh
 $ eg "copy(https://explorablegraph.org/samples/eg.yaml, files/samples)"
