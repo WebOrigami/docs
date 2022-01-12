@@ -50,6 +50,8 @@ One task `eg` can perform is unpacking the values of a JSON or YAML file into a 
 $ eg copy https://explorablegraph.org/samples/eg.yaml, files/samples
 $ cd samples
 $ ls
+double.js      greetings.yaml package.json   sample.txt     template.js    uppercase.js
+greet.js       letters.json   people.yaml    site.yaml      text.js
 ```
 
 Note the comma after the URL — the `copy` command takes two arguments that must be separated with a comma.
@@ -101,7 +103,7 @@ export default (name = "world") => `Hello, ${name}.`;
 
 When you ask `eg` to evaluate "greet.js", it looks up that key in the current scope and displays the contents of the indicated JavaScript file.
 
-But if you leave off the `.js` extension, `eg` _invokes_ that function.
+But if you leave off the `.js` extension, `eg` invokes the function exported by that file:
 
 ```sh
 $ eg greet
@@ -134,16 +136,16 @@ Hello, Alice.
 
 `eg` accepts strings in single quotes or backticks, but _not_ double quotes. The double quotes shown above are parsed by the _shell_, and are necessary because the `bash` shell shown here would otherwise prevent `eg` from seeing the single quotes.
 
-In the explorable graph paradigm discussed later, anyh function can be treated like a graph, and vice versa. This means you can use path syntax as a convenient alternative to specify a string argument to a function:
+In the explorable graph paradigm discussed later, any function can be treated like a graph, and vice versa. This means you can use path syntax as a convenient alternative to specify a string argument:
 
 ```sh
 $ eg greet/Alice
 Hello, Alice.
 ```
 
-In this path syntax, all path keys after the first slash are implicitly quoted.
+In this path syntax, all path keys after the first slash are implicitly quoted. Otherwise, both ways of passing arguments behave the same.
 
-Regardless of which syntax you use, `eg` lets you write and use a JavaScript function like `greet` from the shell without the function needing to parse command line arguments.
+Regardless of which syntax you use, `eg` lets you write and use a JavaScript function like `greet` from the shell without needing to write code parse command line arguments. `eg` does that for you.
 
 ## Aside: Loading functions as ES modules
 
@@ -212,7 +214,7 @@ Hello, THERE. Hello, THERE.
 
 ## Read files with `eg`
 
-You can use `eg` to feed files to your JavaScript functions without you having to write code to deal with files. When you reference a file in an expression,`eg` loads its contents from the local graph (the current folder). At that point it can feed the file contents to a function you specify.
+You can use `eg` to feed files to your JavaScript functions without you having to write code to deal with files. When you reference a file in an expression, `eg` loads its contents from the local graph (the current folder). At that point it can feed the file contents to a function you specify.
 
 ```sh
 $ eg sample.txt
@@ -284,6 +286,8 @@ You can use path syntax to extract a specific value from a graph.
 $ eg greetings.yaml/Alice
 Hello, Alice.
 ```
+
+This graph is very simple, but it can be hierarchical or arbitrarily complex.
 
 An explorable graph can also be invoked like a function, so you also have the option of using function call syntax:
 
