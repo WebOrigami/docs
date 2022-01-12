@@ -1,7 +1,6 @@
 ---
 title: this keyword
 areaEgret: true
-pages = parse(pages.yaml):
 ---
 
 In an explorable application, an eg formula is defined in the _key_ in a [metagraph](metagraph.html). For example, the formula might be used in the name of a file inside a folder that will be interpreted as a metagraph.

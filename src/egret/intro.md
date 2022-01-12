@@ -1,7 +1,6 @@
 ---
 title: Quick Hands-On Intro to Egret
 areaEgret: true
-pages = parse(pages.yaml):
 ---
 
 ## Start

@@ -1,7 +1,6 @@
 ---
 title: Hands-On Intro to eg
 areaEg: true
-pages = parse(pages.yaml):
 ---
 
 <style>

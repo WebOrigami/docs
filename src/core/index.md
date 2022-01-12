@@ -2,5 +2,4 @@
 title: Core
 subtitle: Foundational interface and core library for working with explorable graphs
 areaCore: true
-pages = parse(pages.yaml):
 ---

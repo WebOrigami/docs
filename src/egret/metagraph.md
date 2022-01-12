@@ -1,7 +1,6 @@
 ---
 title: Metagraphs
 areaEgret: true
-pages = parse(pages.yaml):
 ---
 
 A _metagraph_ is a graph that defines its own transformation. The transformation is defined by formulas in keys: instead of a key being a simple string like "a", you create a key with a formula like "b = a". The metagraph will parse and evaluate this formula to define a new, virtual key called "b" that has the same value "a" has.
