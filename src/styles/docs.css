@@ -74,7 +74,8 @@ a.current {
   margin-top: -1rem;
 }
 
-.logo {
+#logo {
+  align-self: start;
   display: none;
 }
 
@@ -100,12 +101,12 @@ img {
   margin-bottom: 1rem;
 }
 
-.logo a,
+#logo a,
 nav a {
   text-decoration: none;
 }
 
-.logo a:hover,
+#logo a:hover,
 nav a:hover {
   text-decoration: underline;
 }
@@ -133,7 +134,7 @@ nav a:hover {
     grid-template-rows: auto auto;
   }
 
-  .logo {
+  #logo {
     display: inherit;
     grid-area: logo;
   }
