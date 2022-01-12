@@ -1,8 +1,39 @@
+* {
+  box-sizing: border-box;
+}
+
+/*
+ * Body
+ */
+
 body {
+  counter-reset: h2;
+  display: grid;
+  gap: 0.5rem;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "header"
+    "sidebar"
+    "main";
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: repeat(3, auto);
   padding: 1em;
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
   --color-canvas-subtle: #f6f8fa;
+}
+
+/*
+ * Stock elements
+ */
+
+h2:before {
+  counter-increment: h2;
+  content: counter(h2) ". ";
+}
+
+p:first-child {
+  margin-top: 0;
 }
 
 pre {
@@ -43,21 +74,72 @@ a.current {
   margin-top: -1rem;
 }
 
-nav {
-  margin-bottom: 2rem;
+.logo {
+  display: none;
 }
+
+header {
+  grid-area: header;
+}
+
+main {
+  grid-area: main;
+}
+
+/*
+ * Navigation
+ */
+
+#navBar {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.logo a,
 nav a {
   text-decoration: none;
 }
+
+.logo a:hover,
 nav a:hover {
   text-decoration: underline;
 }
-nav a + a {
-  margin-left: 1em;
+
+#sideBar {
+  grid-area: sideBar;
+  grid-column: 1; /* Baffled as to why this is necessary. */
 }
+
+#sideBar li {
+  list-style: none;
+}
+
+/*
+ * Responsive queries
+ */
 
 @media (min-width: 600px) {
   body {
+    gap: 1rem;
+    grid-template-areas:
+      "logo header"
+      "sideBar main";
+    grid-template-columns: 200px minmax(0, 1fr);
+    grid-template-rows: auto auto;
     padding: 4em;
+  }
+
+  .logo {
+    display: inherit;
+    grid-area: logo;
+  }
+
+  #homeLink {
+    display: none;
+  }
+
+  #sidebar {
+    grid-column: auto;
   }
 }

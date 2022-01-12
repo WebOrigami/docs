@@ -1,3 +1,6 @@
+---
+pages = parse(pages.yaml):
+---
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,13 +14,23 @@
     {{/if}}
   </head>
   <body>
-  {{> navBar}}
-  {{#if title}}
-  <h1>{{title}}</h1>
-  {{/if}}
-  {{#if subtitle}}
-  <p class="subtitle">{{subtitle}}</p>
-  {{/if}}
-{{> @partial-block }}
+    <div class="logo">
+      <a{{#if areaHome}} class="current"{{/if}} href="/">ExplorableGraph</a>
+    </div>
+    <header>
+      {{> navBar}}
+      {{#if title}}
+      <h1>{{title}}</h1>
+      {{/if}}
+      {{#if subtitle}}
+      <p class="subtitle">{{subtitle}}</p>
+      {{/if}}
+    </header>
+    {{> sideBar }}
+    <main>
+      <div class="markdown-body">
+        {{{bodyText}}}
+      </div>
+    </main>
   </body>
 </html>

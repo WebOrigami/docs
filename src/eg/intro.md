@@ -3,22 +3,6 @@ title: Hands-On Intro to eg
 areaEg: true
 ---
 
-<style>
-body {
-  counter-reset: h2;
-}
-
-h2:before {
-  counter-increment: h2;
-  content: counter(h2) ". ";
-}
-</style>
-
-`eg` is a general-purpose command line tool that:
-
-- **bridges the shell and JavaScript**, so you can easily invoke JavaScript from the command line, pass arguments and files to JavaScript functions, and freely mix shell tools and JavaScript.
-- **manipulates hierarchies, graphs, and other data** representable in the [Explorable](/core/explorable.html) graph interface, such as JSON or YAML files, file system folders, JavaScript objects, and web resources.
-
 This page introduces the basics of `eg` by demonstrating useful actions you can perform with it. You can follow along with these examples on your own machine.
 
 ## Start

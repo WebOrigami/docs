@@ -5,4 +5,4 @@ tested = map(src, src%js%mdExamples):
 html = map(tested, mdHtml, '.md', '.html'):
 
 # Apply the documentation page template
-result = map(html, src%templates%docPage.hbs, '.html', '.html'):
+result = map(html, src%templates%page.hbs, '.html', '.html'):

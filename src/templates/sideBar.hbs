@@ -1,0 +1,9 @@
+<nav id="sideBar">
+  {{#each pages}}
+  {{#each this}}
+    <li>
+      <a href="{{@key}}">{{this}}</a>
+    </li>
+  {{/each}}
+  {{/each}}
+</nav>
