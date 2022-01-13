@@ -1,6 +1,7 @@
 ---
 title: Hands-On Intro to eg
 path: /eg/intro.html
+numberHeadings: true
 ---
 
 This page introduces the basics of `eg` by demonstrating useful actions you can perform with it. You can follow along with these examples on your own machine.
@@ -38,7 +39,7 @@ greet.js       package.json   site.yaml      uppercase.js
 greetings.yaml people.yaml    template.js
 ```
 
-Note the comma after the URL — the `copy` command takes two arguments that must be separated with a comma.
+Note the comma after the URL — the [copy](/eg/commands.html#copy) command takes two arguments that must be separated with a comma.
 
 The new `samples` folder should show a small collection of files. `eg` treated the indicated YAML file as a graph (more on graphs later). The `copy` function read values out of that graph and wrote them into the file system graph.``
 
@@ -390,7 +391,7 @@ $ cat greetings/Alice
 Hello, Alice.
 ```
 
-The `files/greetings` argument indicates that `copy` should copy the input YAML graph to a file system graph under a folder named `greetings`. As a result, the key/value pairs in the YAML file are now individual files in a `greetings` folder.
+The `files/greetings` argument indicates that [copy](/eg/commands.html#copy) should copy the input YAML graph to a file system graph under a folder named `greetings`. As a result, the key/value pairs in the YAML file are now individual files in a `greetings` folder.
 
 The important point here is that _all graphs look the same to `eg`_. It doesn't matter whether a graph is defined in a single file like YAML, or a collection of loose files in the file system. Having unpacked the `greetings.yaml` file above, we can ask `eg` to display the `greetings` folder we just created:
 
@@ -425,7 +426,7 @@ Writing code to work with folder and files this way can be much easier than usin
 
 ## Serve a graph
 
-You can serve any graph with the `serve` function, which starts a local web server.
+You can serve any graph with the [serve](/eg/commands.html#serve) function, which starts a local web server.
 
 For example, the sample `site.yaml` file defines a tiny graph with two web pages:
 

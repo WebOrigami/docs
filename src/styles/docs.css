@@ -27,7 +27,7 @@ body {
  * Stock elements
  */
 
-h2:before {
+.numberHeadings h2:before {
   counter-increment: h2;
   content: counter(h2) ". ";
 }

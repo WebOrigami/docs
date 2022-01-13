@@ -26,7 +26,7 @@ pages = (js%markCurrent)(parse(pages.yaml), currentPage):
       <title>{{title}}</title>
     {{/if}}
   </head>
-  <body>
+  <body{{#if numberHeadings}} class="numberHeadings"{{/if}}>
     <div id="logo">
       <a{{#if areaHome}} class="current"{{/if}} href="/">ExplorableGraph</a>
     </div>
