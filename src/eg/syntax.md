@@ -42,9 +42,29 @@ The following types of expressions are supported by the `eg` tool and in Egret f
 
 See also Egret [formulas](/egret/formulas.html), which define additional syntax for assignments and other types of declarations.
 
+### Implicit vs explicit parentheses
+
+`eg` generally permits use of implicit parentheses for function calls to make it easier for you to invoke functions from a command-line shell, as shells often interpret parentheses.
+
+```console
+$ eg greet.js
+export default (name = "world") => `Hello, ${name}.`;
+$ eg "greet()"
+Hello, world.
+$ eg greet
+Hello, world.
+```
+
+Here, both the `greet()` and `greet` forms are equivalent.
+
+The last function in a command is a special case, and treated differently depending on the environment in which the expression is being evaluated:
+
+- If an expression is invoked from the command line, and the expression ends with an identifier (like `greet` above), and the value of that identifier is function, the function will be invoked. This allows the easy invocation of functions from the command line. If you want to pass a function as a first-class object to a receiving function ([map](#map), say), use explicit parentheses for the receiving function.
+- If the expression appears in an Egret [formula](/egret/Formula.html), a final function name in an expression will _not_ be invoked. This difference in behavior allows a formula to return a function as a first-class object. If you want to invoke a final function in a formula, use explicit parentheses.
+
 ## Formal grammar
 
-_This grammar is meant to suffice until `eg` syntax can be more exhaustively documented._
+The `eg` shell command parses an expression by starting with the `expression` term below. The [Formula](/egret/Formula.html) class used by [MetaMixin](/egret/MetaMixin.html) and the [meta](/eg/meta.html) command parses a key which may be a formula by starting with the `key` term.
 
 ```
 args: parentheticalArgs
@@ -145,5 +165,3 @@ variableName: for now, JavaScript identifiers with ASCII letters
 
 variableReference: ${variableName}[extension]
 ```
-
-The `eg` shell command parses an expression by starting with `expression`. The [Formula](/egret/Formula.html) class used by [MetaMixin](/egret/MetaMixin.html) and the [meta](/eg/meta.html) command parses a key which may be a formula by starting with `key`.

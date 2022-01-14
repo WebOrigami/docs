@@ -628,7 +628,7 @@ Using `eg` to work with graphs at a high level means that many tasks which were 
 
 For example, it's generally not easy today to immediately see the complete contents of a web site. But if a web site is modeled as an explorable graph, and the server follows a simple protocol for implementing the Explorable interface, viewing a portion of a site (or the entire site) becomes trivial.
 
-The web site you're reading now supports viewing its contents as an explorable graph, so you can reference it directly in `eg`. For example, this site includes a route `/samples/greetings`, and you can view the files there just by passing that URL to `eg`:
+The web site you're reading now supports viewing its contents as an explorable graph, so you can reference it directly in `eg`. For example, this site includes a route `/samples/greetings/`, and you can view the files there just by passing that URL to `eg`:
 
 ```console
 $ eg https://explorablegraph.org/samples/greetings/
