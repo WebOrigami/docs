@@ -53,13 +53,15 @@ Displays this page, showing the documentation for the built-in function with the
 
 Returns an [ExplorableSite](/core/ExplorableSite.html) for the given HTTP URL. See also [https](#https) for details on arguments.
 
+<a name="https"></a>
+
 ## https(domain, ...keys)
 
 Returns an [ExplorableSite](/core/ExplorableSite.html) for the given HTTPS URL.
 
 The first argument is a string indicating the URL domain; the remainder are the portions of the URL path within that domain. E.g., for the URL `example.com/foo/bar`, the arguments would be `example.com`, `foo`, and `bar`.
 
-You normally won't need to call this function directly. `eg` will parse the URL `https://example.com/foo/bar` into the function call `https('example.com, 'foo', 'bar')` for you, so you can use the more readable URL format.
+You normally won't need to call this function directly. `eg` will parse the URL `https://example.com/foo/bar` into the function call `https('example.com', 'foo', 'bar')` for you, so you can use the more readable URL format.
 
 <a name="json"></a>
 
