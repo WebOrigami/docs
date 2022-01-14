@@ -24,7 +24,7 @@ To confirm the installation, invoke `eg` with no arguments.
 $ eg
 ```
 
-This should display a list of pre-installed `eg` commands.
+This should display the list of [built-in functions](/eg/builtins.html) that are included with `eg`.
 
 ## Unpack some files
 
@@ -39,7 +39,7 @@ greet.js       package.json   site.yaml      uppercase.js
 greetings.yaml people.yaml    template.js
 ```
 
-Note the comma after the URL — the [copy](/eg/commands.html#copy) command takes two arguments that must be separated with a comma.
+Note the comma after the URL — the [copy](/eg/builtins.html#copy) function takes two arguments that must be separated with a comma.
 
 The new `samples` folder should show a small collection of files. `eg` treated the indicated YAML file as a graph (more on graphs later). The `copy` function read values out of that graph and wrote them into the file system graph.``
 
@@ -305,7 +305,7 @@ $ eg json greetings.yaml
 }
 ```
 
-In the other direction, you can render a JSON file as YAML with the [yaml](/eg/commands.html#yaml) function:
+In the other direction, you can render a JSON file as YAML with the [yaml](/eg/builtins.html#yaml) function:
 
 ```sh
 $ eg letters.json
@@ -391,7 +391,7 @@ $ cat greetings/Alice
 Hello, Alice.
 ```
 
-The `files/greetings` argument indicates that [copy](/eg/commands.html#copy) should copy the input YAML graph to a file system graph under a folder named `greetings`. As a result, the key/value pairs in the YAML file are now individual files in a `greetings` folder.
+The `files/greetings` argument indicates that [copy](/eg/builtins.html#copy) should copy the input YAML graph to a file system graph under a folder named `greetings`. As a result, the key/value pairs in the YAML file are now individual files in a `greetings` folder.
 
 The important point here is that _all graphs look the same to `eg`_. It doesn't matter whether a graph is defined in a single file like YAML, or a collection of loose files in the file system. Having unpacked the `greetings.yaml` file above, we can ask `eg` to display the `greetings` folder we just created:
 
@@ -426,7 +426,7 @@ Writing code to work with folder and files this way can be much easier than usin
 
 ## Serve a graph
 
-You can serve any graph with the [serve](/eg/commands.html#serve) function, which starts a local web server.
+You can serve any graph with the [serve](/eg/builtins.html#serve) function, which starts a local web server.
 
 For example, the sample `site.yaml` file defines a tiny graph with two web pages:
 

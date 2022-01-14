@@ -121,6 +121,7 @@ nav a:hover {
 
 #sideBar li {
   list-style: none;
+  margin-bottom: 0.5rem;
 }
 
 /*

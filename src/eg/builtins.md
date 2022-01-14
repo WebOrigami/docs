@@ -1,9 +1,9 @@
 ---
-title: eg Commands
-path: /eg/commands.html
+title: Built-In Functions
+path: /eg/builtins.html
 ---
 
-These examples generally demonstrate invoking `eg` commands from the command line, although the same commands can also be used in Egret formulas.
+These examples generally demonstrate invoking built-in functions from the command line, although the same functions can also be used in Egret formulas.
 
 <a name="copy"></a>
 
@@ -45,7 +45,7 @@ Converts any graph [variant](/core/variants.html) into an explorable graph.
 
 ## help([name])
 
-Displays this page, showing the documentation for the command with the indicated name.
+Displays this page, showing the documentation for the built-in function with the indicated name.
 
 <a name="http"></a>
 
@@ -116,7 +116,7 @@ $ eg parse "'[1, 2, 3]'"
 - 3
 ```
 
-This is similar to the separate [plain](#plain) command, which can only parse JSON/YAML representing graphs. In contrast, the `parse` command can handle text representing things that aren't graphs, such as arrays, dates, and numbers.
+This is similar to the separate [plain](#plain) function, which can only parse JSON/YAML representing graphs. In contrast, the `parse` function can handle text representing things that aren't graphs, such as arrays, dates, and numbers.
 
 <a name="plain"></a>
 
@@ -139,7 +139,20 @@ Server running at http://localhost:5000
 
 A web route like `a/b/c` will be turned into a graph traversal operation that returns the graph value at that path.
 
-If no `graph` is supplied, `serve` uses the current graph (from the command line, that will be the current folder) transformed via the [app](#app) command into an application.
+If no `graph` is supplied, `serve` uses the current graph (from the command line, that will be the current folder) transformed via the [app](#app) function into an application.
+
+<a name="stdin"></a>
+
+## stdin()
+
+Returns the complete contents of the standard input stream. This lets you pipe data into JavaScript functions:
+
+```sh
+$ eg uppercase.js
+export default (x) => x.toString().toUpperCase();
+$ echo This is input from the shell | eg uppercase stdin
+THIS IS INPUT FROM THE SHELL
+```
 
 <a name="values"></a>
 
@@ -166,7 +179,7 @@ See also [keys](#keys).
 
 Render the contents of the object in YAML format.
 
-The `eg` tool uses YAML as its default output format, so you won't often need to invoke the `yaml` command yourself from the command line. One occasion to use it would be to convert a JSON file to YAML.
+The `eg` tool uses YAML as its default output format, so you won't often need to invoke the `yaml` function yourself from the command line. One occasion to use it would be to convert a JSON file to YAML.
 
 ```sh
 $ eg letters.json

@@ -1,6 +1,6 @@
 - href: intro.html
   text: Hands-On Intro
+- href: builtins.html
+  text: Built-In Functions
 - href: syntax.html
   text: Syntax
-- href: commands.html
-  text: Commands
