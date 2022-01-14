@@ -13,7 +13,7 @@ Traverses the `sourceGraph` and writes all values into the `targetGraph`.
 
 For example, to copy the values from a YAML file into individual files:
 
-```sh
+```console
 $ eg greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
@@ -71,7 +71,7 @@ Render the contents of the object in JSON format.
 
 The `eg` tool uses YAML as its default output format, so you can use the `json` command to reformat the output as JSON:
 
-```sh
+```console
 $ eg greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
@@ -90,7 +90,7 @@ $ eg json greetings.yaml
 
 Returns an array of the top-level keys in the indicated graph, which can be any graph [variant](/core/variants.html).
 
-```sh
+```console
 $ eg greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
@@ -111,7 +111,7 @@ Parses the indicated text as JSON or YAML. The parsed plain JavaScript object is
 
 Parsing a quoted argument on the command line:
 
-```sh
+```console
 $ eg parse "'[1, 2, 3]'"
 - 1
 - 2
@@ -134,7 +134,7 @@ A common use for `plain` is to convert a graph into a form that you can pass to 
 
 Starts a local web server to serve the contents of `graph`. To serve the current folder:
 
-```sh
+```console
 $ eg serve .
 Server running at http://localhost:5000
 ```
@@ -149,7 +149,7 @@ If no `graph` is supplied, `serve` uses the current graph (from the command line
 
 Returns the complete contents of the standard input stream. This lets you pipe data into JavaScript functions:
 
-```sh
+```console
 $ eg uppercase.js
 export default (x) => x.toString().toUpperCase();
 $ echo This is input from the shell | eg uppercase stdin
@@ -162,7 +162,7 @@ THIS IS INPUT FROM THE SHELL
 
 Returns an array of the top-level values in the indicated graph, which can be any graph [variant](/core/variants.html).
 
-```sh
+```console
 $ eg greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
@@ -183,7 +183,7 @@ Render the contents of the object in YAML format.
 
 The `eg` tool uses YAML as its default output format, so you won't often need to invoke the `yaml` function yourself from the command line. One occasion to use it would be to convert a JSON file to YAML.
 
-```sh
+```console
 $ eg letters.json
 {
   "a": "The letter A",

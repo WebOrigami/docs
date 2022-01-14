@@ -40,20 +40,6 @@ h2 {
   margin-top: 0;
 }
 
-pre {
-  padding: 16px;
-  overflow: auto;
-  font-size: 85%;
-  line-height: 1.45;
-  background-color: var(--color-canvas-subtle);
-  border-radius: 6px;
-}
-
-pre,
-code {
-  font-family: "Consolas", "Menlo", "Courier New", "Courier", monospace;
-}
-
 .error {
   background: #fff5f7;
   border: 1px solid red;
@@ -92,6 +78,35 @@ main {
 
 img {
   max-width: 100%;
+}
+
+/*
+ * Code
+ */
+
+pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: var(--color-canvas-subtle);
+  border-radius: 6px;
+}
+
+pre,
+code {
+  font-family: "Consolas", "Menlo", "Courier New", "Courier", monospace;
+}
+
+code.language-console,
+code.language-console .hljs-meta {
+  color: #333;
+  font-weight: normal;
+}
+
+code.language-console span {
+  color: #222;
+  font-weight: bold;
 }
 
 /*

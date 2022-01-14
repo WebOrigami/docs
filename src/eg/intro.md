@@ -12,7 +12,7 @@ Start a terminal window running a shell — the examples here use `bash`. You'll
 
 To install `eg` on your machine:
 
-```sh
+```console
 $ npm install -g @explorablegraph/explorable
 ```
 
@@ -20,7 +20,7 @@ _Reviewer's note: during development of `eg`, it's part of a larger repository o
 
 To confirm the installation, invoke `eg` with no arguments.
 
-```sh
+```console
 $ eg
 ```
 
@@ -30,7 +30,7 @@ This should display the list of [built-in functions](/eg/builtins.html) that are
 
 One task `eg` can perform is unpacking the values of a JSON or YAML file into a folder tree, so let's use that now to obtain sample files for the examples that follow and copy them into a local folder called `samples`:
 
-```sh
+```console
 $ eg copy https://explorablegraph.org/samples/eg.yaml, files/samples
 $ cd samples
 $ ls
@@ -45,7 +45,7 @@ The new `samples` folder should show a small collection of files. `eg` treated t
 
 If you prefer, you can wrap `eg` function arguments in parentheses — but since command shells typically interpret parentheses, you may have to quote them:
 
-```sh
+```console
 $ eg "copy(https://explorablegraph.org/samples/eg.yaml, files/samples)"
 ```
 
@@ -62,7 +62,7 @@ When you invoke `eg`, it:
 
 From inside the `samples` folder:
 
-```sh
+```console
 $ eg sample.txt
 This is a text file.
 ```
@@ -81,7 +81,7 @@ At this basic level, `eg` is effectively a tool for displaying files like the Un
 
 One of the sample files is a JavaScript function:
 
-```sh
+```console
 $ eg greet.js
 export default (name = "world") => `Hello, ${name}.`;
 ```
@@ -90,7 +90,7 @@ When you ask `eg` to evaluate "greet.js", it looks up that key in the current sc
 
 But if you leave off the `.js` extension, `eg` invokes the function exported by that file:
 
-```sh
+```console
 $ eg greet
 Hello, world.
 ```
@@ -105,7 +105,7 @@ When you ask `eg` to evaluate "greet":
 
 With explicit parentheses, the above is equivalent to:
 
-```sh
+```console
 $ eg "greet()"
 Hello, world.
 ```
@@ -114,7 +114,7 @@ Hello, world.
 
 You can pass arguments to JavaScript functions from the shell. One way is to quote the argument(s) to `eg`:
 
-```sh
+```console
 $ eg "greet('Alice')"
 Hello, Alice.
 ```
@@ -123,7 +123,7 @@ Hello, Alice.
 
 In the explorable graph paradigm discussed later, any function can be treated like a graph, and vice versa. This means you can use path syntax as a convenient alternative to specify a string argument:
 
-```sh
+```console
 $ eg greet/Alice
 Hello, Alice.
 ```
@@ -138,7 +138,7 @@ The above definition of `greet.js` is an ES (EcmaScript) module that exports a f
 
 The `samples` folder you're working in already includes a minimalist `package.json` file with such an entry:
 
-```sh
+```console
 $ eg package.json
 {
   "comment": "This file exists to tell Node to load .js files as ES modules",
@@ -154,7 +154,7 @@ If you want to use `eg` with JavaScript functions defined in your own project, c
 
 Suppose you have a collection of functions:
 
-```sh
+```console
 $ eg double.js
 export default (x) => `${x}${x}`;
 $ eg greet.js
@@ -165,7 +165,7 @@ export default (x) => x.toString().toUpperCase();
 
 You can then use `eg` to mix and match these functions from the shell:
 
-```sh
+```console
 $ eg greet
 Hello, world.
 $ eg uppercase/hi
@@ -182,7 +182,7 @@ Hello, THERE. Hello, THERE.
 
 If it helps to visualize these examples using parentheses, here are the equivalent verbose form with quotes:
 
-```sh
+```console
 $ eg "greet()"
 Hello, world.
 $ eg "uppercase('hi')"
@@ -201,7 +201,7 @@ Hello, THERE. Hello, THERE.
 
 You can use `eg` to feed files to your JavaScript functions without you having to write code to deal with files. When you reference a file in an expression, `eg` loads its contents from the local graph (the current folder). At that point it can feed the file contents to a function you specify.
 
-```sh
+```console
 $ eg sample.txt
 This is a text file.
 $ eg uppercase.js
@@ -218,7 +218,7 @@ In this example, `eg` ends up passing a file buffer to the `uppercase` function.
 
 You can pipe data into JavaScript functions with the built-in `stdin` function:
 
-```sh
+```console
 $ echo This is input from the shell | eg uppercase stdin
 THIS IS INPUT FROM THE SHELL
 ```
@@ -229,7 +229,7 @@ The result of the `stdin` function will be the complete standard input fed to th
 
 You can use regular shell features to pipe the output from your JavaScript functions to a file:
 
-```sh
+```console
 $ eg uppercase sample.txt > uppercase.txt
 $ eg uppercase.txt
 THIS IS A TEXT FILE.
@@ -241,7 +241,7 @@ THIS IS A TEXT FILE.
 
 Let's start with a simple YAML file:
 
-```sh
+```console
 $ eg greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
@@ -267,7 +267,7 @@ Carol: Hello, Carol.
 
 You can use path syntax to extract a specific value from a graph.
 
-```sh
+```console
 $ eg greetings.yaml/Alice
 Hello, Alice.
 ```
@@ -276,14 +276,14 @@ This graph is very simple, but it can be hierarchical or arbitrarily complex.
 
 An explorable graph can also be invoked like a function, so you also have the option of using function call syntax:
 
-```sh
+```console
 $ eg "greetings.yaml('Alice')"
 Hello, Alice.
 ```
 
 You can easily combine `eg` features like JSON/YAML parsing, path syntax, and function invocation to have `eg` parse a specific value out of a graph and feed that directly to your function.
 
-```sh
+```console
 $ eg uppercase greetings.yaml/Alice
 HELLO, ALICE.
 ```
@@ -292,7 +292,7 @@ HELLO, ALICE.
 
 You can use `eg` to transform a graph from one format to another. By default, `eg` renders graphs in YAML format, a superset of JSON which can be easier to read. If you prefer JSON format, you can ask for that with the `json` function:
 
-```sh
+```console
 $ eg greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
@@ -307,7 +307,7 @@ $ eg json greetings.yaml
 
 In the other direction, you can render a JSON file as YAML with the [yaml](/eg/builtins.html#yaml) function:
 
-```sh
+```console
 $ eg letters.json
 {
   "a": "The letter A",
@@ -328,7 +328,7 @@ You can use `eg` to parse a JSON or YAML file into a plain JavaScript object tha
 
 Suppose you have a focused function that does something with a flat, plain object. Perhaps it returns the text of an object's values:
 
-```sh
+```console
 $ eg text.js
 export default function text(obj) {
   return Object.values(obj).join("\t");
@@ -337,14 +337,14 @@ export default function text(obj) {
 
 You can use the built-in `plain` function to convert a YAML file to a plain JavaScript object, then pass that to the sample `text` function:
 
-```sh
+```console
 $ eg text plain greetings.yaml
 Hello, Alice.   Hello, Bob.     Hello, Carol.
 ```
 
 Or pass a parsed JSON file to your function:
 
-```sh
+```console
 $ eg text plain letters.json
 The letter A    The letter B    The letter C
 ```
@@ -355,7 +355,7 @@ Separating the parsing from your function like this lets you keep your function 
 
 The file system is just another graph that `eg` natively understands. If you give `eg` a path to a folder, it will treat that as a graph. For example, you can specify the current folder with `.`:
 
-```sh
+```console
 $ eg .
 ```
 
@@ -363,13 +363,13 @@ This will render the complete contents of the current folder, including subfolde
 
 You can capture that result to package up the current folder as a YAML file.
 
-```sh
+```console
 $ eg . > package.yaml
 ```
 
 Or package the folder as JSON:
 
-```sh
+```console
 $ eg json . > package.json
 ```
 
@@ -379,7 +379,7 @@ You already saw the unpacking of a YAML file into separate files at the start of
 
 As another example, you can unpack the greetings in `greetings.yaml` into individual files:
 
-```sh
+```console
 $ eg greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
@@ -395,7 +395,7 @@ The `files/greetings` argument indicates that [copy](/eg/builtins.html#copy) sho
 
 The important point here is that _all graphs look the same to `eg`_. It doesn't matter whether a graph is defined in a single file like YAML, or a collection of loose files in the file system. Having unpacked the `greetings.yaml` file above, we can ask `eg` to display the `greetings` folder we just created:
 
-```sh
+```console
 $ eg greetings
 Alice: Hello, Alice.
 Bob: Hello, Bob.
@@ -417,7 +417,7 @@ This means that we can use `plain` to convert a _folder_ to a plain JavaScript o
 
 We can therefore feed the `greetings` folder to the simple JavaScript function `text(obj)` shown earlier that displayed the text values of a plain JavaScript object.
 
-```sh
+```console
 $ eg text plain greetings
 Hello, Alice.   Hello, Bob.     Hello, Carol.
 ```
@@ -430,7 +430,7 @@ You can serve any graph with the [serve](/eg/builtins.html#serve) function, whic
 
 For example, the sample `site.yaml` file defines a tiny graph with two web pages:
 
-```sh
+```console
 $ eg site.yaml
 index.html: |
   <!DOCTYPE html>
@@ -458,7 +458,7 @@ The graph looks like this:
 
 You can serve this tiny site directly from the file:
 
-```sh
+```console
 $ eg serve site.yaml
 Server running at http://localhost:5000
 ```
@@ -471,7 +471,7 @@ Press Ctrl+C to stop the server.
 
 You can serve any graph. To serve the current folder:
 
-```sh
+```console
 $ eg serve .
 Server running at http://localhost:5000
 ```
@@ -482,7 +482,7 @@ This effectively lets `eg` work as a static file server.
 
 Template languages are useful for translating data into something you can present to a user. As a bare-bones template language, let's look at a function that renders HTML using a native JavaScript template literal:
 
-```sh
+```console
 $ eg template.js
 export default (body) => `<!DOCTYPE html>
 <html>
@@ -504,7 +504,7 @@ export default (body) => `<!DOCTYPE html>
 
 We can use `eg` to apply this template to data, potentially plucked out of a graph, to render that data as HTML:
 
-```sh
+```console
 $ eg template greetings.yaml/Alice
 <!DOCTYPE html>
 <html>
@@ -531,14 +531,14 @@ It is easy to transform an entire explorable graph of one type of object into a 
 
 Earlier you saw an `uppercase` function that takes a string argument and returns an uppercase version:
 
-```sh
+```console
 $ eg uppercase greetings.yaml/Alice
 HELLO, ALICE.
 ```
 
 You can apply that `uppercase` transformation to an entire graph with the `eg`'s built-in `map` function:
 
-```sh
+```console
 $ eg "map(greetings.yaml, uppercase)"
 Alice: HELLO, ALICE.
 Bob: HELLO, BOB.
@@ -563,7 +563,7 @@ Significantly, `map` doesn't do all its work when invoked, but immediately retur
 
 In this `uppercase` example, `eg` does end up doing all the `uppercase` work — but only if you ask `eg` to display the complete results. If you ask for a specific value, then only that value is computed:
 
-```sh
+```console
 $ eg "map(greetings.yaml, uppercase)/Alice"
 HELLO, ALICE.
 ```
@@ -574,7 +574,7 @@ Above it was noted that the mapping function passed to `map` can actually be any
 
 Suppose that you have base data, like an array of people:
 
-```bash
+```console
 $ eg people.yaml
 - Alice
 - Carol
@@ -582,7 +582,7 @@ $ eg people.yaml
 
 And some other data that associates a person's name with a greeting:
 
-```bash
+```console
 $ eg greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
@@ -591,7 +591,7 @@ Carol: Hello, Carol.
 
 You can then treat both the base data and the greetings data as graphs, and pass those to `map`, to turn the list of specific people into a list of greetings:
 
-```bash
+```console
 $ eg "map(people.yaml, greetings.yaml)"
 - Hello, Alice.
 - Hello, Carol.
@@ -603,7 +603,7 @@ Here the second `greetings.yaml` graph is used as a function to transform the in
 
 You can ask `eg` to serve data transformed into HTML using `map` and the template we saw earlier.
 
-```sh
+```console
 $ eg "serve map(greetings.yaml, template)"
 Server running at http://localhost:5000
 ```
@@ -614,7 +614,7 @@ The served site does _not_ have an index page, but you can browse to one of the 
 
 You can transform a graph and save the results as a new graph. For example, instead of serving a set of templated web pages, you can render them as files by copying the lazy dictionary defined by `map`.
 
-```sh
+```console
 $ eg "copy map(greetings.yaml, template), files/html"
 $ ls html
 Alice   Bob     Carol
@@ -630,7 +630,7 @@ For example, it's generally not easy today to immediately see the complete conte
 
 The web site you're reading now supports viewing its contents as an explorable graph, so you can reference it directly in `eg`. For example, this site includes a route `/samples/greetings`, and you can view the files there just by passing that URL to `eg`:
 
-```sh
+```console
 $ eg https://explorablegraph.org/samples/greetings/
 Alice: Hello, Alice.
 Bob: Hello, Bob.
@@ -639,14 +639,14 @@ Carol: Hello, Carol.
 
 While that result may look like a YAML file, each of those lines is actually coming from a separate web resource.
 
-```bash
+```console
 $ eg https://explorablegraph.org/samples/greetings/Alice
 Hello, Alice.
 ```
 
 `eg` can discover all the resources at the `/samples/greetings/` route because this server supports a simple protocol: for every route on this server, a `.keys.json` file exists that enumerates the resources at that route.
 
-```sh
+```console
 $ eg https://explorablegraph.org/samples/greetings/.keys.json
 ["Alice","Bob","Carol"]
 ```
@@ -659,7 +659,7 @@ Making the full contents of a site more freely available might be concerning to 
 
 Since a web site like explorablegraph.org is an explorable graph, and `eg` can serve explorable graphs, then you can easily set up a local mirror for this site:
 
-```sh
+```console
 $ eg serve https://explorablegraph.org
 Server running at http://localhost:5000
 ```
@@ -670,7 +670,7 @@ Your local server is now mirroring the explorablegraph.org site: when you browse
 
 You can also use `eg` to copy an explorable web route to local files:
 
-```bash
+```console
 $ eg copy https://explorablegraph.org/samples/greetings, files/snapshot
 $ ls snapshot
 Alice Bob   Carol
@@ -684,7 +684,7 @@ This concludes the `eg` introduction.
 
 If you're finished and won't use `eg` after this, now is a good time to uninstall it and clean up:
 
-```sh
+```console
 $ cd ..
 $ rm -r samples
 $ npm uninstall -g @explorablegraph/explorable
