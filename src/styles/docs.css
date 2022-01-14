@@ -27,12 +27,16 @@ body {
  * Stock elements
  */
 
+h2 {
+  margin-top: 2rem;
+}
+
 .numberHeadings h2:before {
   counter-increment: h2;
   content: counter(h2) ". ";
 }
 
-p:first-child {
+.markdown-body > :first-child {
   margin-top: 0;
 }
 

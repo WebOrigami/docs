@@ -305,7 +305,7 @@ $ eg json greetings.yaml
 }
 ```
 
-In the other direction, you can render a JSON file as YAML with the `yaml` function:
+In the other direction, you can render a JSON file as YAML with the [yaml](/eg/commands.html#yaml) function:
 
 ```sh
 $ eg letters.json
