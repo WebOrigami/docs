@@ -158,7 +158,8 @@ nav a:hover {
     grid-area: logo;
   }
 
-  #navBar a[href="/"] {
+  #navBar a[href="/"],
+  #sideBar a[href="/"] {
     display: none;
   }
 
