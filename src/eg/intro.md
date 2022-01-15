@@ -230,6 +230,8 @@ The result of the `stdin` function will be the complete standard input fed to th
 You can use regular shell features to pipe the output from your JavaScript functions to a file:
 
 ```console
+$ eg sample.txt
+This is a text file.
 $ eg uppercase sample.txt > uppercase.txt
 $ eg uppercase.txt
 THIS IS A TEXT FILE.
@@ -422,7 +424,7 @@ $ eg text plain greetings
 Hello, Alice.   Hello, Bob.     Hello, Carol.
 ```
 
-Writing code to work with folder and files this way can be much easier than using Node's file system API directly. There is a performance trade-off implied by building an in-memory object to hold the file system data, but in many cases this still be very fast. And in practice it can much easier to manipulate a complete file system hierarchy as an in-memory object than working with a file system API.
+Writing code to work with folder and files this way can be much easier than using Node's file system API directly. There is a performance trade-off implied by building an in-memory object to hold the file system data, but in many cases this is still very fast. And in practice it can much easier to manipulate a complete file system hierarchy as an in-memory object than working with a file system API.
 
 ## Serve a graph
 
@@ -671,12 +673,14 @@ Your local server is now mirroring the explorablegraph.org site: when you browse
 You can also use `eg` to copy an explorable web route to local files:
 
 ```console
-$ eg copy https://explorablegraph.org/samples/greetings, files/snapshot
+$ eg copy https://explorablegraph.org/samples/greetings/, files/snapshot
 $ ls snapshot
 Alice Bob   Carol
 ```
 
-Of course, just because this is possible doesn't mean it's efficient. If you regularly need to copy web resources to local files, there are faster tools for that job. But if you only do that infrequently, the general-purpose `eg` may suffice.
+While some people may balk at letting people freely copy web resources to their own machine, there are plenty of cases where the entire point of the site is to make information freely available.
+
+Of course, just because copying a site is possible doesn't mean it's efficient. If you regularly need to copy web resources to local files, there are faster tools for that job. But if you only do that infrequently, the general-purpose `eg` may suffice.
 
 ## Finish
 
