@@ -41,7 +41,7 @@ greetings.yaml people.yaml    template.js
 
 Note the comma after the URL — the [copy](/eg/builtins.html#copy) function takes two arguments that must be separated with a comma.
 
-The new `samples` folder should show a small collection of files. (The specific files may differ slightly from what's shown above.) `eg` treated the indicated YAML file as a graph (more on graphs later). The `copy` function read values out of that graph and wrote them into the file system graph.``
+The new `samples` folder should show a small collection of files. (The specific files may differ slightly from what's shown above.) `eg` treated the indicated YAML file as a graph — more on graphs later. The `copy` function read values out of that graph and wrote them into the file system graph.``
 
 If you prefer, you can wrap `eg` function arguments in parentheses — but since command shells typically interpret parentheses, you may have to quote them:
 
@@ -93,6 +93,13 @@ $ eg greet
 Hello, world.
 ```
 
+Or, with explicit parentheses:
+
+```console
+$ eg "greet()"
+Hello, world.
+```
+
 When you ask `eg` to evaluate `greet`:
 
 - It looks for a file called `greet` but doesn't find one.
@@ -101,16 +108,9 @@ When you ask `eg` to evaluate `greet`:
 - The exported result is a JavaScript function, which `eg` executes.
 - The function's result is the string "Hello, world.", which `eg` displays.
 
-With explicit parentheses, the above is equivalent to:
-
-```console
-$ eg "greet()"
-Hello, world.
-```
-
 ## Pass a string to a function
 
-You can pass arguments to JavaScript functions from the shell. One way to pass a string is to quote the argument(s) to `eg`:
+You can pass arguments to JavaScript functions from the shell:
 
 ```console
 $ eg "greet('Alice')"
@@ -195,7 +195,7 @@ Hello, THERE. Hello, THERE.
 
 ## Read files with `eg`
 
-You can easily feed a file to a JavaScript function:
+You can feed a file to a JavaScript function:
 
 ```console
 $ eg sample.txt
@@ -270,7 +270,7 @@ $ eg greetings.yaml/Alice
 Hello, Alice.
 ```
 
-This graph is very simple, but it can be hierarchical or arbitrarily complex.
+The `greetings.yaml` graph is a flat list, but it can be a hierarchical tree or arbitrarily complex.
 
 An explorable graph can also be invoked like a function, so you also have the option of using function call syntax:
 
@@ -322,7 +322,7 @@ The `json` function isn't a specific YAML-to-JSON transformation; it can transfo
 
 ## Parse JSON/YAML files
 
-You can use `eg` to parse a JSON or YAML file into a plain JavaScript object that your JavaScript function can then handle, relieving you of parsing work.
+You can use `eg` to parse a JSON or YAML file into a plain JavaScript object that your JavaScript function can then handle.
 
 Suppose you have a focused function that does something with a flat, plain object. Perhaps it returns the text of an object's values:
 
@@ -351,7 +351,7 @@ Separating the parsing from your function like this lets you keep your function 
 
 ## Render the current file system tree as a graph
 
-The file system is just another graph that `eg` natively understands. If you give `eg` a path to a folder, it will treat that as a graph. For example, you can specify the current folder with `.`:
+The file system is just another graph that `eg` natively understands. If you give `eg` a path to a folder, it will treat that as a graph. For example, you can specify the current folder with a period (`.`):
 
 ```console
 $ eg .
@@ -373,9 +373,7 @@ $ eg json . > package.json
 
 ## Unpack files into the file system
 
-You already saw the unpacking of a YAML file into separate files at the start of this `eg` introduction.
-
-As another example, you can unpack the greetings in `greetings.yaml` into individual files:
+This `eg` introduction began with you unpacking a YAML file into separate files. As another example, you can unpack the greetings in `greetings.yaml` into individual files:
 
 ```console
 $ eg greetings.yaml
@@ -406,19 +404,19 @@ The `greetings` folder and the `greetings.yaml` file both define the same graph,
 
 ## Process a folder tree as a JavaScript object
 
-Let's connect two ideas:
-
-- A folder like the `greetings` folder created in the above example is just another graph that `eg` can process.
-- `eg` to convert any graph to a plain JavaScript object with the `plain` function.
-
-This means that we can use the `plain` function to convert a _folder_ to a plain JavaScript object too. The keys will be the file/folder names, and the values will be the file contents or folder subgraphs.
-
-We can therefore feed the `greetings` folder to the simple JavaScript function `text(obj)` shown earlier that displayed the text values of a plain JavaScript object.
+Because the `greetings` folder created in the above example is just another graph `eg` can process, you can feed it to the simple JavaScript function `text(obj)` shown earlier that displayed the text values of a plain JavaScript object.
 
 ```console
 $ eg text plain greetings
 Hello, Alice.   Hello, Bob.     Hello, Carol.
 ```
+
+This connects two ideas:
+
+- A folder like `greetings` is a explorable graph `eg` can understand.
+- `eg` to convert any graph to a plain JavaScript object with the `plain` function.
+
+This means that you can use the `plain` function to convert a _folder_ to a plain JavaScript object too. The keys will be the file/folder names, and the values will be the file contents or folder subgraphs.
 
 Writing code to work with folder and files this way can be much easier than using Node's file system API directly. There is a performance trade-off implied by building an in-memory object to hold the file system data, but in many cases this is still very fast. And in practice it can much easier to manipulate a complete file system hierarchy as an in-memory object than working with a file system API.
 
@@ -426,9 +424,7 @@ Another important benefit of working with explorable graphs is that you can chan
 
 ## Serve a graph
 
-You can serve any graph with the [serve](/eg/builtins.html#serve) function, which starts a local web server.
-
-For example, the sample `site.yaml` file defines a tiny graph with two web pages:
+You can serve any graph with the [serve](/eg/builtins.html#serve) function. For example, the sample `site.yaml` file defines a tiny graph with two web pages:
 
 ```console
 $ eg site.yaml
@@ -476,14 +472,14 @@ $ eg serve .
 Server running at http://localhost:5000
 ```
 
-Or, as a shorthand, you can omit the `.`. If you don't specify a graph to serve, then `serve` serves up the current folder.
+This effectively lets `eg` work as a static file server.
+
+As a shorthand, you can omit the period (`.`). If you don't specify a graph to serve, `serve` serves up the current folder.
 
 ```console
 $ eg serve
 Server running at http://localhost:5000
 ```
-
-This effectively lets `eg` work as a static file server.
 
 ## Transform data into something presentable with a template
 
@@ -554,7 +550,7 @@ It is easy to transform an entire explorable graph of one type of object into a 
 
 The second argument to `map` is a function. (Technically, the second argument can be any explorable graph, but for the moment, we'll use a regular JavaScript function.) We want to treat that function as a first-class object, which means we _don't_ want `eg` to do its normal implicit function invocation here. To prevent that, you must include the parentheses by quoting the arguments to `eg` or otherwise escaping them.
 
-This `map` takes the original greetings graph
+The `map` example above takes the original greetings graph:
 
 ![](greetings.svg)
 
@@ -566,7 +562,7 @@ In this intro, we're just transforming text, but you can transform anything in b
 
 ## Traversing a transformed graph
 
-If you ask for a specific value, then only that value is computed:
+If you ask for a specific value from a `map` graph, then only that value is computed:
 
 ```console
 $ eg "map(greetings.yaml, uppercase)/Alice"
@@ -576,8 +572,6 @@ HELLO, ALICE.
 `map` doesn't do all its work when invoked, but immediately returns a new explorable graph that will invoke the mapping function on demand. You can think of such an explorable graph as a _lazy dictionary_. The lazy dictionary doesn't have a permanent entry for "Alice", but if you ask for "Alice", the lazy dictionary will go and compute the desired value.
 
 ## Use a graph as a map
-
-Above it was noted that the second argument passed to `map` can actually be any graph, not just a mapping function. This lets you use data to transform other data.
 
 Suppose that you have base data, like an array of people:
 
@@ -604,11 +598,11 @@ $ eg "map(people.yaml, greetings.yaml)"
 - Hello, Carol.
 ```
 
-Here the second `greetings.yaml` graph is used as a function to transform the individual names coming from `people.yaml` into greetings.
+Above it was noted that the second argument passed to `map` can actually be any graph, not just a mapping function. This lets you use data to transform other data. Here the second `greetings.yaml` graph is used as a function to transform the individual names coming from `people.yaml` into greetings.
 
 ## Serve a transformed graph of stuff
 
-You can ask `eg` to serve data transformed into HTML using `map` and the template we saw earlier.
+You can ask `eg` to serve data transformed on demand into HTML using `map` and the template we saw earlier.
 
 ```console
 $ eg "serve map(greetings.yaml, template)"
@@ -619,7 +613,7 @@ The served site does _not_ have an index page, but you can browse to one of the 
 
 ## Turn a transformed graph of stuff into files
 
-You can transform a graph and save the results as a new graph. For example, instead of serving a set of templated web pages, you can render them as files by copying the lazy dictionary defined by `map`.
+You can transform a graph and save the results as files.
 
 ```console
 $ eg "copy map(greetings.yaml, template), files/html"
@@ -627,7 +621,14 @@ $ ls html
 Alice   Bob     Carol
 ```
 
-You can do such a `copy` operation in preparation for deploying HTML pages to a static web server. The web page you're reading right now was created and deployed in exactly that way.
+If you serve the `html` folder now, the user experience will be the same as when the HTML pages were generated dynamically by `map`:
+
+```console
+$ eg serve html
+Server running at http://localhost:5000
+```
+
+You can perform a `copy` operation like the one in this example in preparation for deploying HTML pages to a static web server. The web page you're reading right now was created and deployed in exactly that way.
 
 ## Inspect a live web site
 
