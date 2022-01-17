@@ -4,6 +4,11 @@ path: /eg/intro.html
 numberHeadings: true
 ---
 
+`eg` is a general-purpose command line tool that lets you:
+
+- **use the shell as a basic JavaScript console**. You can invoke JavaScript functions, pass arguments (including files or folder trees) to functions, and capture function output as files. You can quickly experiment, test, or do ad hoc operations from the shell.
+- **manipulate hierarchies, graphs, and other data** representable in the [Explorable](/core/explorable.html) graph interface — including data files, file system folders, JavaScript objects, and web resources.
+
 This page introduces the basics of `eg` by demonstrating useful actions you can perform with it. You can follow along with these examples on your own machine.
 
 ## Start
@@ -24,11 +29,11 @@ To confirm the installation, invoke `eg` with no arguments.
 $ eg
 ```
 
-This should display the list of [built-in functions](/eg/builtins.html) that are included with `eg`.
+This should display the list of [built-in functions](/eg/builtins.html) included with `eg`.
 
 ## Unpack some files
 
-`eg` can unpack a single file into a folder tree, so you can use that feature to copy some sample files into a new local folder called `samples`:
+You can use `eg` itself to copy sample files used in this introduction into a new local folder called `samples`:
 
 ```console
 $ eg copy https://explorablegraph.org/samples/eg.yaml, files/samples
@@ -39,9 +44,9 @@ greet.js       package.json   site.yaml      uppercase.js
 greetings.yaml people.yaml    template.js
 ```
 
-Note the comma after the URL — the [copy](/eg/builtins.html#copy) function takes two arguments that must be separated with a comma.
+Note the comma after the URL — `eg` is invoking a function called [copy](/eg/builtins.html#copy) that takes two arguments which must be separated with a comma.
 
-The new `samples` folder should show a small collection of files. (The specific files may differ slightly from what's shown above.) `eg` treated the indicated YAML file as a graph — more on graphs later. The `copy` function read values out of that graph and wrote them into the file system graph.``
+The new `samples` folder should show a small collection of files. (The specific files may differ slightly from what's shown above.) `eg` treated the indicated YAML file as a graph — more on graphs later. The `copy` function read values out of that graph and wrote them into the file system graph.
 
 If you prefer, you can wrap `eg` function arguments in parentheses — but since command shells typically interpret parentheses, you may have to quote them:
 
@@ -174,7 +179,7 @@ $ eg double greet uppercase/there
 Hello, THERE. Hello, THERE.
 ```
 
-If it helps to visualize these examples using parentheses, here are the equivalent verbose form with quotes:
+Here are the equivalent verbose forms with parentheses:
 
 ```console
 $ eg "greet()"
@@ -686,12 +691,20 @@ Of course, just because copying a site is possible doesn't mean it's efficient. 
 
 ## Finish
 
-This concludes the `eg` introduction.
+This concludes the `eg` introduction. As you've seen, `eg` is useful for
 
-If you're finished and won't use `eg` after this, now is a good time to uninstall it and clean up:
+- invoking JavaScript functions from the shell
+- parsing arguments from the command line and passing those to JavaScript functions
+- passing files and folder trees to JavaScript functions
+- capturing function output to files
+- working with graphs defined in JSON/YAML files, the file system, or web sites
+
+If you won't use `eg` after this, now is a good time to uninstall it and clean up:
 
 ```console
 $ cd ..
 $ rm -r samples
 $ npm uninstall -g @explorablegraph/explorable
 ```
+
+_Reviewer's note: Feel free to experiment further with `eg` if you'd like, but understand that it's not yet stable and will likely undergo further change. Anyone interested in using it should be in contact with [@JanMiksovsky](https://twitter.com/JanMiksovsky), and at this stage should be prepared to participate in the project at some level beyond just filing bug reports and expecting those bugs to be fixed._
