@@ -13,6 +13,12 @@ Returns the current graph as an explorable application. This creates an [Explora
 
 If a key is supplied, this gets the indicated key from the resulting explorable application.
 
+<a name="cache"></a>
+
+## cache(cache, graph, filter)
+
+_This experimental function is not yet stable enough to document._
+
 <a name="clean"></a>
 
 ## clean()
@@ -202,23 +208,69 @@ _This experimental function is not yet stable enough to document._
 
 <a name="map"></a>
 
-## map()
+## map(graph, mapFn, [sourceExtension], [targetExtension])
+
+Returns a new [MapGraph](/core/MapGraph.html) that applies the given `mapFn` to the values in the `graph`.
+
+```console
+$ eg greetings.yaml
+Alice: Hello, Alice.
+Bob: Hello, Bob.
+Carol: Hello, Carol.
+$ eg uppercase.js
+export default (x) => x.toString().toUpperCase();
+$ eg "map(greetings.yaml, uppercase)"
+Alice: HELLO, ALICE.
+Bob: HELLO, BOB.
+Carol: HELLO, CAROL.
+```
+
+If a `sourceExtension` or `targetExtension` are supplied, this returns a [MapTypesGraph](/core/MapTypesGraph.html) instead, which will only apply the `mapFn` to values whose keys end in the indicated `sourceExtension`. In that case, the mapped `asyncIterator` will change the key's extension to the indicated `targetExtension`.
+
+Unlike a JavaScript [Array map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), the `map` function does not do any mapping work upon invocation — it only does the work when someone requests the mapped graph's keys or values.
+
+The `mapFn` mapping function is typically a JavaScript function, but can be any graph [variant](/core/variants.html). For example, you can use a second [graph as a map](/eg/intro.html#use-a-graph-as-a-map).
+
+`map` works on all levels of a graph. If you only want to transform the top-level values in a graph, see [shallowMap](#shallowMap).
 
 <a name="mdHtml"></a>
 
-## mdHtml()
+## mdHtml(markdown)
+
+Formats the indicated [markdown](https://github.github.com/gfm/) (GitHub-flavored) to HTML.
+
+Any front matter in the markdown will be preserved at the top of the HTML output.
 
 <a name="meta"></a>
 
-## meta()
+## meta(graph)
+
+Returns an Egret [metagraph](/egret/metagraph.html) by applying a [MetaTransform](/egret/MetaTransform.html) to the indicated graph. This interprets [formulas](/egret/formulas.html) in the graph's keys as `eg` expressions.
 
 <a name="nulls"></a>
 
-## nulls()
+## nulls(graph)
+
+Returns a new graph with all values equal to null.
+
+```console
+$ eg greetings.yaml
+Alice: Hello, Alice.
+Bob: Hello, Bob.
+Carol: Hello, Carol.
+$ eg nulls greetings.yaml
+? Alice
+? Bob
+? Carol
+```
+
+`nulls` can be useful when you want to display the structure of a graph (especially a hierarchical graph) without concern for the actual data values.
 
 <a name="parent"></a>
 
-## parent()
+## parent(graph)
+
+_This experimental function is not yet stable enough to document._
 
 <a name="parse"></a>
 
@@ -266,19 +318,42 @@ If no `graph` is supplied, `serve` uses the current graph (from the command line
 
 <a name="shallowMap"></a>
 
-## shallowMap()
+## shallowMap(graph, mapFn)
+
+Like [map](#map), but only transforms the top-level values of a graph. Any values which are subgraphs will be handed to the `mapFn` mapping function as is.
 
 <a name="shell"></a>
 
-## shell()
+## shell(command)
+
+Returns the output of executing the indicated shell command.
 
 <a name="shuffle"></a>
 
-## shuffle()
+## shuffle(graph)
+
+Returns a new graph with the original `graph` keys randomly shuffled.
+
+```console
+$ eg greetings.yaml
+Alice: Hello, Alice.
+Bob: Hello, Bob.
+Carol: Hello, Carol.
+$ eg shuffle greetings.yaml
+Carol: Hello, Carol.
+Alice: Hello, Alice.
+Bob: Hello, Bob.
+$ eg shuffle greetings.yaml
+Carol: Hello, Carol.
+Bob: Hello, Bob.
+Alice: Hello, Alice.
+```
 
 <a name="static"></a>
 
-## static()
+## static(graph)
+
+_This experimental function is not yet stable enough to document._
 
 <a name="stdin"></a>
 
@@ -295,15 +370,65 @@ THIS IS INPUT FROM THE SHELL
 
 <a name="stdout"></a>
 
-## stdout()
+## stdout(obj)
+
+Writes the indicated object `obj` to the standard output stream. This `stdout` function is used by `eg` itself to write the evaluated result of an expression to the console. If you wish to override the standard `stdout` implementation to, say, default to JSON output instead of YAML, you can do so by defining your own function named `stdout` in the `eg` [config file](/eg/config.html).
 
 <a name="svg"></a>
 
-## svg()
+## svg(graph)
+
+Returns a Scalable Vector Graphics [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG) text describing a two-dimensional visual representation of the indicated graph, which can be any [variant](/core/variants.html).
 
 <a name="table"></a>
 
-## table()
+## table(graph)
+
+Returns a basic tabular representation of the keys and values in the indicated `graph`.
+
+If the graph is flat — that is, has only a single level of keys and values — the table will have two columns listing those.
+
+```console
+$ eg greetings.yaml
+Alice: Hello, Alice.
+Bob: Hello, Bob.
+Carol: Hello, Carol.
+$ eg table greetings.yaml
+Key     Value
+Alice   Hello, Alice.
+Bob     Hello, Bob.
+Carol   Hello, Carol.
+```
+
+If the graph has two levels, the row headings will contain the top-level keys, and the column headings will be the second-level keys. (The first subgraph in the graph will be taken as representative of the remaining subgraphs.)
+
+```console
+$ eg languages.json
+{
+  "english": {
+    "a": "Hello, a.",
+    "b": "Hello, b.",
+    "c": "Hello, c."
+  },
+  "french": {
+    "a": "Bonjour, a.",
+    "b": "Bonjour, b.",
+    "c": "Bonjour, c."
+  },
+  "spanish": {
+    "a": "Hola, a.",
+    "b": "Hola, b.",
+    "c": "Hola, c."
+  }
+}
+$ eg table languages.json | column -t -s$'\t'
+         a            b            c
+english  Hello, a.    Hello, b.    Hello, c.
+french   Bonjour, a.  Bonjour, b.  Bonjour, c.
+spanish  Hola, a.     Hola, b.     Hola, c.
+```
+
+`table` separates columns with TAB characters. To ensure visual column alignment requires using other shell tools (such as [column](https://www.man7.org/linux/man-pages/man1/column.1.html), above).
 
 <a name="values"></a>
 
@@ -348,3 +473,5 @@ c: The letter C
 <a name="watch"></a>
 
 ## watch()
+
+_This experimental function is not yet stable enough to document._
