@@ -1,4 +1,6 @@
 - href: explorable.html
   text: Explorable interface
+- href: ExplorableObject.html
+  text: ExplorableObject
 - href: variants.html
   text: Variants
