@@ -15,7 +15,7 @@ This page introduces the basics of `eg` by demonstrating useful actions you can 
 
 Start a terminal window running a shell — the examples here use `bash`. You'll need [node](https://nodejs.org) installed.
 
-To install `eg` on your machine:
+You can install `eg` globally to make the tool available in all directories. (Or see below for instructions and adjustments to install `eg` in just one directory.)
 
 ```console
 $ npm install -g @explorablegraph/explorable
@@ -30,6 +30,15 @@ $ eg
 ```
 
 This should display the list of [built-in functions](/eg/builtins.html) included with `eg`.
+
+If you'd prefer not to install things globally, inside a new directory run `npm install` without the `-g` global flag. Because `eg` won't be available everywhere, however, you will need to always use Node's [npx](https://docs.npmjs.com/cli/v7/commands/npx) command to invoke `eg`:
+
+```console
+$ npm install @explorablegraph/explorable
+$ npx eg
+```
+
+If you go this route, use `npx eg` wherever the instructions below use `eg`. When run this way, `eg` will also be a little slower.
 
 ## Unpack some files
 
@@ -46,7 +55,7 @@ greetings.yaml people.yaml    template.js
 
 Note the comma after the URL — `eg` is invoking a function called [copy](/eg/builtins.html#copy) that takes two arguments which must be separated with a comma.
 
-The new `samples` folder should show a small collection of files. (The specific files may differ slightly from what's shown above.) `eg` treated the indicated YAML file as a graph — more on graphs later. The `copy` function read values out of that graph and wrote them into the file system graph.
+The new `samples` folder should show a small collection of files. (The specific files may differ slightly from what's shown above.) `eg` treated the indicated YAML file as a graph — more on graphs later. The `copy` function read values out of that graph and wrote them into the destination graph: a file system (`files`) folder called `samples`.
 
 If you prefer, you can wrap `eg` function arguments in parentheses — but since command shells typically interpret parentheses, you may have to quote them:
 
@@ -69,7 +78,7 @@ When you invoke `eg`:
 
 1. It parses its arguments as an expression.
 2. It evaluates that expression, looking up identifiers in the current scope (defined below).
-3. If the value of an identifier is a JavaScript module, `eg` imports the module and obtains its default export. If it's a JavaScript function, `eg` executes it.
+3. If the value of the expression is a JavaScript module, `eg` imports the module and obtains its default export. If it's a JavaScript function, `eg` executes it.
 4. It displays the result.
 
 Here `eg` parses the expression `sample.txt` as an identifier. In JavaScript, `sample.txt` is not a valid identifier because it contains a period, but `eg`'s expression parser can recognize file names as identifiers. `eg` looks up that identifier in the current _scope_. By default, the scope includes:
@@ -84,7 +93,7 @@ At this basic level, `eg` is effectively a tool for displaying files like the Un
 
 ## Invoke a function
 
-One of the sample files, `greet.js`, defines a JavaScript function.
+One of the sample files, `greet.js`, defines a JavaScript function. If you ask `eg` for `greet.js`, it returns the contents of that file:
 
 ```console
 $ eg greet.js
@@ -108,9 +117,9 @@ Hello, world.
 When you ask `eg` to evaluate `greet`:
 
 - It looks for a file called `greet` but doesn't find one.
-- `eg` tries adding `.js` to see if "greet.js" exists. This time it finds a JavaScript module with that name.
-- `eg` dynamically imports the module and obtains its default export.
-- The exported result is a JavaScript function, which `eg` executes.
+- `eg` tries adding `.js` to see if `greet.js` exists. This time it finds a JavaScript module with that name.
+- `eg` dynamically imports the module and obtains the default export (a function).
+- Because the result is a JavaScript function, `eg` executes it.
 - The function's result is the string "Hello, world.", which `eg` displays.
 
 ## Pass a string to a function
@@ -122,7 +131,7 @@ $ eg "greet('Alice')"
 Hello, Alice.
 ```
 
-`eg` accepts strings in single quotes or backticks, but _not_ double quotes. The double quotes shown above are parsed by the _shell_, and are necessary because the `bash` shell shown here would otherwise prevent `eg` from seeing the single quotes.
+`eg` accepts strings in single quotes. The double quotes shown above are parsed by the _shell_, and are necessary because the `bash` shell shown here would otherwise prevent `eg` from seeing the single quotes.
 
 In the explorable graph paradigm discussed later, any function can be treated like a graph, and vice versa. This means you can use path syntax as a convenient alternative to specify a string argument:
 
@@ -131,7 +140,7 @@ $ eg greet/Alice
 Hello, Alice.
 ```
 
-In this path syntax, all path keys after the first slash are implicitly quoted. Otherwise, both ways of passing arguments behave the same.
+In this path syntax, the first path segment (`greet`) will be looked up in the currents cope. All subsequent path segments (like `Alice`) are used as is. Otherwise, both ways of passing arguments behave the same.
 
 `eg` lets you call a JavaScript function like `greet` from the shell without needing to write JavaScript code to parse command line arguments.
 
@@ -699,12 +708,14 @@ This concludes the `eg` introduction. As you've seen, `eg` is useful for
 - capturing function output to files
 - working with graphs defined in JSON/YAML files, the file system, or web sites
 
-If you won't use `eg` after this, now is a good time to uninstall it and clean up:
+If you installed `eg` globally at the start of this introduction, but won't use `eg` after this, now is a good time to uninstall it and clean up:
 
 ```console
 $ cd ..
 $ rm -r samples
 $ npm uninstall -g @explorablegraph/explorable
 ```
+
+If you installed `eg` without the `-g` global flag, you can just delete the directory you were working in.
 
 _Reviewer's note: Feel free to experiment further with `eg` if you'd like, but understand that it's not yet stable and will likely undergo further change. Anyone interested in using it should be in contact with [@JanMiksovsky](https://twitter.com/JanMiksovsky), and at this stage should be prepared to participate in the project at some level beyond just filing bug reports and expecting those bugs to be fixed._
