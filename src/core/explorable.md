@@ -38,7 +38,7 @@ Some notes on the JavaScript shown above:
 
 - All of the functions in the `Explorable` interface are marked with the [async](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) keyword, indicating that they are asynchronous functions. In practice, the functions may return immediately, but they have the potential, at least, to do work that will require a bit of time: retrieving data from the file system, accessing data from a network, or performing long calculations.
 
-In a strongly-typed language like TypeScript, the interface would look like:
+In a strongly-typed language like TypeScript, the interface looks like:
 
 ```ts
 interface Explorable {
@@ -97,3 +97,13 @@ Carol: Hello, Carol.
 ```
 
 Note that the `for await` loop implicitly invokes the graph's `Symbol.asyncIterator`. That specific symbol lets JavaScript know which function the `for await` loop should iterate over.
+
+## Wrappers
+
+Instead of directly defining a class or object that implements the `Explorable` interface, you can make use of various wrappers that will turn something into an explorable version:
+
+- [ExplorableArray](ExplorableArray.html) can wrap a JavaScript `Array` instance
+- [ExplorableFiles](ExplorableFiles.html) can wrap a file system folder
+- [ExplorableFunction](ExplorableFunctions.html) can wrap a JavaScript function and an optional domain
+- [ExplorableObject](ExplorableObject.html) can wrap a plain JavaScript object
+- [ExplorableSite](ExplorableSite.html) can wrap a web site

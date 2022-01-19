@@ -1,3 +1,5 @@
+- href: intro.html
+  text: Intro to explorable graphs
 - href: explorable.html
   text: Explorable interface
 - href: ExplorableObject.html

@@ -1,12 +1,12 @@
 ---
-title: Hands-On Intro to eg
+title: Hands-on intro to eg
 path: /eg/intro.html
 numberHeadings: true
 ---
 
-`eg` is a general-purpose command line tool that lets you:
+This page introduces `eg`, a command line tool that lets you:
 
-- **use the shell as a basic JavaScript console**. You can invoke JavaScript functions, pass arguments (including files or folder trees) to functions, and capture function output as files. You can quickly experiment, test, or do ad hoc operations from the shell.
+- **easily call JavaScript from the shell**. You can invoke functions, pass arguments (including files or folder trees), and capture output as files. You can quickly experiment, test, or do ad hoc operations from the shell.
 - **manipulate hierarchies, graphs, and other data** representable in the [Explorable](/core/explorable.html) graph interface — including data files, file system folders, JavaScript objects, and web resources.
 
 This page introduces the basics of `eg` by demonstrating useful actions you can perform with it. You can follow along with these examples on your own machine.
@@ -15,7 +15,7 @@ This page introduces the basics of `eg` by demonstrating useful actions you can 
 
 Start a terminal window running a shell — the examples here use `bash`. You'll need [node](https://nodejs.org) installed.
 
-You can install `eg` globally to make the tool available in all directories. (Or see below for instructions and adjustments to install `eg` in just one directory.)
+You can install `eg` globally to make the tool available in all directories. (Or see below for instructions for installing `eg` in just one directory.)
 
 ```console
 $ npm install -g @explorablegraph/explorable
@@ -38,7 +38,7 @@ $ npm install @explorablegraph/explorable
 $ npx eg
 ```
 
-If you go this route, use `npx eg` wherever the instructions below use `eg`. When run this way, `eg` will also be a little slower.
+If you go this route, use `npx eg` wherever the instructions below use `eg`. When run this way, `eg` will be a little slower.
 
 ## Unpack some files
 
