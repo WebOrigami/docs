@@ -3,7 +3,7 @@ title: Graph variants
 path: /core/variants.html
 ---
 
-Many features in the core library and many of the `pika` [built-in functions](/pika/builtins.html) accept explorable graphs in a variety of types. These types are called _graph variants_.
+Many features in the core library and many of the pika [built-in functions](/pika/builtins.html) accept explorable graphs in a variety of types. These types are called _graph variants_.
 
 The graph variant types are:
 

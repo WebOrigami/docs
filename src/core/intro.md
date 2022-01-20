@@ -15,19 +15,19 @@ The `samples` folder contains a JavaScript file `direct.js` that defines a graph
 
 // Define a set of greetings directly in explorable graph form.
 export default {
-  // Return the keys in this graph
+  // Iterate over this graph node's keys.
   async *[Symbol.asyncIterator]() {
     yield* ["Alice", "Bob", "Carol"];
   },
 
-  // Get the value of a given key
+  // Get the value of a given key.
   async get(key) {
     return `Hello, ${key}.`;
   },
 };
 ```
 
-You can use the `pika` tool to load and display the above graph:
+You can use the pika tool to load and display the above graph:
 
 ```console
 $ pika direct

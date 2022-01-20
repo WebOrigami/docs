@@ -3,20 +3,20 @@ title: pika Syntax
 path: /pika/syntax.html
 ---
 
-This describes the syntax of the small expression language by both the `pika` command-line tool and formulas in [Egret](/egret).
+This describes the syntax of the small expression language by both the pika command-line tool and formulas in [Egret](/egret).
 
 ## Requirements
 
-The `pika` syntax is designed to be relatively easy to type and read in several different environments, each of which impose some constraints:
+The pika syntax is designed to be relatively easy to type and read in several different environments, each of which impose some constraints:
 
 - Windows filenames, which cannot use the characters `\ / : * ? " < > |`
 - macOS filenames, whose requirements are a subset of Windows'
 - Terminal shells such as `bash`, which suggests avoiding the characters `( ) { } &`
-- YAML file keys. This file format can technically represent any string key, but it's desirable to let authors write `pika` formulas as YAML keys with a minimum degree of quoting or escaping.
+- YAML file keys. This file format can technically represent any string key, but it's desirable to let authors write pika formulas as YAML keys with a minimum degree of quoting or escaping.
 
 ## Expressions
 
-The following types of expressions are supported by the `pika` tool and in Egret formulas:
+The following types of expressions are supported by the pika tool and in Egret formulas:
 
 | Description                                   |              | Examples               |
 | :-------------------------------------------- | ------------ | :--------------------- |
@@ -44,7 +44,7 @@ See also Egret [formulas](/egret/formulas.html), which define additional syntax 
 
 ### Implicit vs explicit parentheses
 
-`pika` generally permits use of implicit parentheses for function calls to make it easier for you to invoke functions from a command-line shell, as shells often interpret parentheses.
+pika generally permits use of implicit parentheses for function calls to make it easier for you to invoke functions from a command-line shell, as shells often interpret parentheses.
 
 ```console
 $ pika greet.js
@@ -64,7 +64,7 @@ The last function in a command is a special case, and treated differently depend
 
 ## Formal grammar
 
-The `pika` shell command parses an expression by starting with the `expression` term below. The [Formula](/egret/Formula.html) class used by [MetaMixin](/egret/MetaMixin.html) and the [meta](/pika/meta.html) command parses a key which may be a formula by starting with the `key` term.
+The pika shell command parses an expression by starting with the `expression` term below. The [Formula](/egret/Formula.html) class used by [MetaMixin](/egret/MetaMixin.html) and the [meta](/pika/meta.html) command parses a key which may be a formula by starting with the `key` term.
 
 ```
 args: parentheticalArgs

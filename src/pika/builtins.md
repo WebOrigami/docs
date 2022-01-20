@@ -35,7 +35,7 @@ This composes the indicated graphs, which can be any graph [variant](/core/varia
 
 ## config([relativePath])
 
-This returns the graph for the active `pika` configuration that applies to the indicated directory. This directory will be the current folder, or the folder at the indicated `relativePath` if supplied.
+This returns the graph for the active pika configuration that applies to the indicated directory. This directory will be the current folder, or the folder at the indicated `relativePath` if supplied.
 
 <a name="copy"></a>
 
@@ -65,7 +65,7 @@ The `targetGraph` must support the [`set`](/core/set.html) method. The only type
 
 ## defaultGraph([relativePath])
 
-Returns the default graph that will be used by `pika` as the scope for evaluating commands. This graph will be the current folder, or the folder at the indicated `relativePath` if supplied.
+Returns the default graph that will be used by pika as the scope for evaluating commands. This graph will be the current folder, or the folder at the indicated `relativePath` if supplied.
 
 The default graph will be an instance of [ExplorableFiles](/core/ExplorableFiles.html) transformed in various ways to facilitate commands. Among other things, if the resulting graph is asked for a key like `foo` which does not exist, the graph will make a second check to see if a module `foo.js` exists and, if so, to return the default export from that module.
 
@@ -152,7 +152,7 @@ Returns an [ExplorableSite](/core/ExplorableSite.html) for the given HTTPS URL.
 
 The first argument is a string indicating the URL domain; the remainder are the portions of the URL path within that domain. E.g., for the URL `example.com/foo/bar`, the arguments would be `example.com`, `foo`, and `bar`.
 
-You normally won't need to call this function directly. `pika` will parse the URL `https://example.com/foo/bar` into the function call `https('example.com', 'foo', 'bar')` for you, so you can use the more readable URL format.
+You normally won't need to call this function directly. pika will parse the URL `https://example.com/foo/bar` into the function call `https('example.com', 'foo', 'bar')` for you, so you can use the more readable URL format.
 
 <a name="inners"></a>
 
@@ -166,7 +166,7 @@ Returns the inner nodes — the nodes with children — in the indicated `graph`
 
 Render the contents of the object in JSON format.
 
-The `pika` tool uses YAML as its default output format, so you can use the `json` command to reformat the output as JSON:
+The pika tool uses YAML as its default output format, so you can use the `json` command to reformat the output as JSON:
 
 ```console
 $ pika greetings.yaml
@@ -245,7 +245,7 @@ Any front matter in the markdown will be preserved at the top of the HTML output
 
 ## meta(graph)
 
-Returns an Egret [metagraph](/egret/metagraph.html) by applying a [MetaTransform](/egret/MetaTransform.html) to the indicated graph. This interprets [formulas](/egret/formulas.html) in the graph's keys as `pika` expressions.
+Returns an Egret [metagraph](/egret/metagraph.html) by applying a [MetaTransform](/egret/MetaTransform.html) to the indicated graph. This interprets [formulas](/egret/formulas.html) in the graph's keys as pika expressions.
 
 <a name="nulls"></a>
 
@@ -372,7 +372,7 @@ THIS IS INPUT FROM THE SHELL
 
 ## stdout(obj)
 
-Writes the indicated object `obj` to the standard output stream. This `stdout` function is used by `pika` itself to write the evaluated result of an expression to the console. If you wish to override the standard `stdout` implementation to, say, default to JSON output instead of YAML, you can do so by defining your own function named `stdout` in the `pika` [config file](/pika/config.html).
+Writes the indicated object `obj` to the standard output stream. This `stdout` function is used by pika itself to write the evaluated result of an expression to the console. If you wish to override the standard `stdout` implementation to, say, default to JSON output instead of YAML, you can do so by defining your own function named `stdout` in the pika [config file](/pika/config.html).
 
 <a name="svg"></a>
 
@@ -455,7 +455,7 @@ See also [keys](#keys).
 
 Render the contents of the object in YAML format.
 
-The `pika` tool uses YAML as its default output format, so you won't often need to invoke the `yaml` function yourself from the command line. One occasion to use it would be to convert a JSON file to YAML.
+The pika tool uses YAML as its default output format, so you won't often need to invoke the `yaml` function yourself from the command line. One occasion to use it would be to convert a JSON file to YAML.
 
 ```console
 $ pika letters.json

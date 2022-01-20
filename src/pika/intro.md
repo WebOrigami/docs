@@ -4,45 +4,45 @@ path: /pika/intro.html
 numberHeadings: true
 ---
 
-This page introduces `pika`, a command line tool that lets you:
+This page introduces pika, a command line tool that lets you:
 
 - **easily call JavaScript from the shell**. You can invoke functions, pass arguments (including files or folder trees), and capture output as files. You can quickly experiment, test, or do ad hoc operations from the shell.
 - **manipulate hierarchies, graphs, and other data** representable in the [Explorable](/core/explorable.html) graph interface — including data files, file system folders, JavaScript objects, and web resources.
 
-This page introduces the basics of `pika` by demonstrating useful actions you can perform with it. You can follow along with these examples on your own machine.
+This page introduces the basics of pika by demonstrating useful actions you can perform with it. You can follow along with these examples on your own machine.
 
 ## Start
 
 Start a terminal window running a shell — the examples here use `bash`. You'll need [node](https://nodejs.org) installed.
 
-You can install `pika` globally to make the tool available in all directories, or see below for instructions for installing `pika` in just one directory.
+You can install pika globally to make the tool available in all directories, or see below for instructions for installing pika in just one directory.
 
 ```console
 $ npm install -g @explorablegraph/explorable
 ```
 
-_Reviewer's note: during development of `pika`, it's part of a larger repository of Explorable Graph work. Eventually, it will be published on its own._
+_Reviewer's note: during development of pika, it's part of a larger repository of Explorable Graph work. Eventually, it will be published on its own._
 
-To confirm the installation, invoke `pika` with no arguments.
+To confirm the installation, invoke pika with no arguments.
 
 ```console
 $ pika
 ```
 
-This should display the list of [built-in functions](/pika/builtins.html) included with `pika`.
+This should display the list of [built-in functions](/pika/builtins.html) included with pika.
 
-If you'd prefer not to install things globally: inside a new directory, run `npm install` without the `-g` global flag. Because `pika` won't be available everywhere, wherever the instructions below refer to `pika`, you will need to always use Node's [npx](https://docs.npmjs.com/cli/v7/commands/npx) command to invoke `pika`:
+If you'd prefer not to install things globally: inside a new directory, run `npm install` without the `-g` global flag. Because pika won't be available everywhere, wherever the instructions below refer to pika, you will need to always use Node's [npx](https://docs.npmjs.com/cli/v7/commands/npx) command to invoke pika:
 
 ```console
 $ npm install @explorablegraph/explorable
 $ npx pika
 ```
 
-Note that it is somewhat slower to invoke `npx pika` than to invoke a globally-installed `pika`.
+Note that it is somewhat slower to invoke `npx pika` than to invoke a globally-installed pika.
 
 ## Unpack some files
 
-You can use `pika` itself to copy sample files used in this introduction into a new local folder called `samples`:
+You can use pika itself to copy sample files used in this introduction into a new local folder called `samples`:
 
 ```console
 $ pika copy https://explorablegraph.org/samples/pika.yaml, files/samples
@@ -53,17 +53,17 @@ greet.js       package.json   site.yaml      uppercase.js
 greetings.yaml people.yaml    template.js
 ```
 
-Note the comma after the URL — `pika` is invoking a function called [copy](/pika/builtins.html#copy) that takes two arguments which must be separated with a comma.
+Note the comma after the URL — pika is invoking a function called [copy](/pika/builtins.html#copy) that takes two arguments which must be separated with a comma.
 
-The new `samples` folder should show a small collection of files. (The specific files may differ slightly from what's shown above.) `pika` treated the indicated YAML file as a graph — more on graphs later. The `copy` function read values out of that graph and wrote them into the destination graph: a file system (`files`) folder called `samples`.
+The new `samples` folder should show a small collection of files. (The specific files may differ slightly from what's shown above.) pika treated the indicated YAML file as a graph — more on graphs later. The `copy` function read values out of that graph and wrote them into the destination graph: a file system (`files`) folder called `samples`.
 
-If you prefer, you can wrap `pika` function arguments in parentheses — but since command shells typically interpret parentheses, you may have to quote them:
+If you prefer, you can wrap pika function arguments in parentheses — but since command shells typically interpret parentheses, you may have to quote them:
 
 ```console
 $ pika "copy(https://explorablegraph.org/samples/pika.yaml, files/samples)"
 ```
 
-The expression parser in `pika` makes parentheses implicit, so in many cases you don't have to type them. There are some cases where parentheses are necessary; you'll see an example of that later.
+The expression parser in pika makes parentheses implicit, so in many cases you don't have to type them. There are some cases where parentheses are necessary; you'll see an example of that later.
 
 ## Display a file from the file system
 
@@ -74,33 +74,33 @@ $ pika sample.txt
 This is a text file.
 ```
 
-When you invoke `pika`:
+When you invoke pika:
 
 1. It parses its arguments as an expression.
 2. It evaluates that expression, looking up identifiers in the current scope (defined below).
-3. If the value of the expression is a JavaScript module, `pika` imports the module and obtains its default export. If it's a JavaScript function, `pika` executes it.
+3. If the value of the expression is a JavaScript module, pika imports the module and obtains its default export. If it's a JavaScript function, pika executes it.
 4. It displays the result.
 
-Here `pika` parses the expression `sample.txt` as an identifier. In JavaScript, `sample.txt` is not a valid identifier because it contains a period, but `pika`'s expression parser can recognize file names as identifiers. `pika` looks up that identifier in the current _scope_. By default, the scope includes:
+Here pika parses the expression `sample.txt` as an identifier. In JavaScript, `sample.txt` is not a valid identifier because it contains a period, but pika's expression parser can recognize file names as identifiers. pika looks up that identifier in the current _scope_. By default, the scope includes:
 
 - the files in the current folder
 - the functions exported by JavaScript modules in the current folder
-- the functions built into `pika`
+- the functions built into pika
 
-In this case, `pika` finds that "sample.txt" is the name of a file, and reads that file from the current folder. The file's contents become the result of the expression, which `pika` then renders to the console.
+In this case, pika finds that "sample.txt" is the name of a file, and reads that file from the current folder. The file's contents become the result of the expression, which pika then renders to the console.
 
-At this basic level, `pika` is effectively a tool for displaying files like the Unix `cat` command.
+At this basic level, pika is effectively a tool for displaying files like the Unix `cat` command.
 
 ## Invoke a function
 
-One of the sample files, `greet.js`, defines a JavaScript function. If you ask `pika` for `greet.js`, it returns the contents of that file:
+One of the sample files, `greet.js`, defines a JavaScript function. If you ask pika for `greet.js`, it returns the contents of that file:
 
 ```console
 $ pika greet.js
 export default (name = "world") => `Hello, ${name}.`;
 ```
 
-But if you leave off the `.js` extension, `pika` invokes the function exported by that file:
+But if you leave off the `.js` extension, pika invokes the function exported by that file:
 
 ```console
 $ pika greet
@@ -114,13 +114,13 @@ $ pika "greet()"
 Hello, world.
 ```
 
-When you ask `pika` to evaluate `greet`:
+When you ask pika to evaluate `greet`:
 
 - It looks for a file called `greet` but doesn't find one.
-- `pika` tries adding `.js` to see if `greet.js` exists. This time it finds a JavaScript module with that name.
-- `pika` dynamically imports the module and obtains the default export (a function).
-- Because the result is a JavaScript function, `pika` executes it.
-- The function's result is the string "Hello, world.", which `pika` displays.
+- pika tries adding `.js` to see if `greet.js` exists. This time it finds a JavaScript module with that name.
+- pika dynamically imports the module and obtains the default export (a function).
+- Because the result is a JavaScript function, pika executes it.
+- The function's result is the string "Hello, world.", which pika displays.
 
 ## Pass a string to a function
 
@@ -131,7 +131,7 @@ $ pika "greet('Alice')"
 Hello, Alice.
 ```
 
-`pika` accepts strings in single quotes. The double quotes shown above are parsed by the _shell_, and are necessary because the `bash` shell shown here would otherwise prevent `pika` from seeing the single quotes.
+pika accepts strings in single quotes. The double quotes shown above are parsed by the _shell_, and are necessary because the `bash` shell shown here would otherwise prevent pika from seeing the single quotes.
 
 In the explorable graph paradigm discussed later, any function can be treated like a graph, and vice versa. This means you can use path syntax as a convenient alternative to specify a string argument:
 
@@ -142,7 +142,7 @@ Hello, Alice.
 
 In this path syntax, the first path segment (`greet`) will be looked up in the currents cope. All subsequent path segments (like `Alice`) are used as is. Otherwise, both ways of passing arguments behave the same.
 
-`pika` lets you call a JavaScript function like `greet` from the shell without needing to write JavaScript code to parse command line arguments.
+pika lets you call a JavaScript function like `greet` from the shell without needing to write JavaScript code to parse command line arguments.
 
 ## Aside: Loading functions as ES modules
 
@@ -156,9 +156,9 @@ $ pika package.json
 }
 ```
 
-By default, Node imports .js files as CommonJS modules. To allow `pika` to dynamically import JavaScript files in your own projects as ES modules, you will need to include a `package.json` file in the folder with your .js file or in any parent folder. That `package.json` should include the entry `"type": "module"`.
+By default, Node imports .js files as CommonJS modules. To allow pika to dynamically import JavaScript files in your own projects as ES modules, you will need to include a `package.json` file in the folder with your .js file or in any parent folder. That `package.json` should include the entry `"type": "module"`.
 
-## Use `pika` as a general-purpose JavaScript shell tool
+## Use pika as a general-purpose JavaScript shell tool
 
 Suppose you have a collection of functions:
 
@@ -171,7 +171,7 @@ $ pika uppercase.js
 export default (x) => x.toString().toUpperCase();
 ```
 
-You can then use `pika` to mix and match these functions from the shell:
+You can then use pika to mix and match these functions from the shell:
 
 ```console
 $ pika greet
@@ -205,9 +205,9 @@ $ pika "double(greet(uppercase('there')))"
 Hello, THERE. Hello, THERE.
 ```
 
-`pika` lets you use the shell as a basic JavaScript console, so you can invoke and compose functions in any combination without having to write permanent code. This can be useful when you're experimenting, testing, or need to do one-off operations from the shell.
+pika lets you use the shell as a basic JavaScript console, so you can invoke and compose functions in any combination without having to write permanent code. This can be useful when you're experimenting, testing, or need to do one-off operations from the shell.
 
-## Read files with `pika`
+## Read files with pika
 
 You can feed a file to a JavaScript function:
 
@@ -222,7 +222,7 @@ THIS IS A TEXT FILE.
 
 This lets you pass files to your JavaScript functions without you having to write code to deal with files.
 
-In this example, `pika` ends up passing a file buffer to the `uppercase` function. The `uppercase` function includes a `toString()` call which here will extract the text from the file buffer. It can then do its uppercasing work on the resulting text.
+In this example, pika ends up passing a file buffer to the `uppercase` function. The `uppercase` function includes a `toString()` call which here will extract the text from the file buffer. It can then do its uppercasing work on the resulting text.
 
 ## Reading input from stdin
 
@@ -233,7 +233,7 @@ $ echo This is input from the shell | pika uppercase stdin
 THIS IS INPUT FROM THE SHELL
 ```
 
-The result of the `stdin` function will be the complete standard input fed to the `pika` command. This lets you pipe data to a JavaScript function that accepts a simple argument instead of needing specialize the function specifically to read data from the console.
+The result of the `stdin` function will be the complete standard input fed to the pika command. This lets you pipe data to a JavaScript function that accepts a simple argument instead of needing specialize the function specifically to read data from the console.
 
 ## Writing output to a file
 
@@ -249,7 +249,7 @@ THIS IS A TEXT FILE.
 
 ## Explorable graphs
 
-`pika` is is especially good at dealing with graphs. One way to define a graph is in YAML format:
+pika is especially good at dealing with graphs. One way to define a graph is in YAML format:
 
 ```console
 $ pika greetings.yaml
@@ -258,13 +258,13 @@ Bob: Hello, Bob.
 Carol: Hello, Carol.
 ```
 
-`pika` can interpret this file as the following graph:
+pika can interpret this file as the following graph:
 
 ![](greetings.svg)
 
-More specifically, `pika` is designed to work with _explorable graphs_: a graph that can tell you what's in it, and can be either synchronous or asynchronous. Many common data structures can be represented as explorable graphs.
+More specifically, pika is designed to work with _explorable graphs_: a graph that can tell you what's in it, and can be either synchronous or asynchronous. Many common data structures can be represented as explorable graphs.
 
-`pika` natively understands several types of explorable graphs:
+pika natively understands several types of explorable graphs:
 
 - JSON
 - YAML
@@ -273,7 +273,7 @@ More specifically, `pika` is designed to work with _explorable graphs_: a graph 
 - JavaScript functions
 - folder trees
 - web sites (some operations require support for [.keys.json](/pika/.keys.json) files, discussed later)
-- any object that implements the [Explorable](/explorable) interface
+- any object that implements the [Explorable](/core/explorable.html) interface
 
 ## Extract specific values out of a graph
 
@@ -293,7 +293,7 @@ $ pika "greetings.yaml('Alice')"
 Hello, Alice.
 ```
 
-You can easily combine `pika` features like JSON/YAML parsing, path syntax, and function invocation to have `pika` parse a specific value out of a graph and feed that directly to your function.
+You can easily combine pika features like JSON/YAML parsing, path syntax, and function invocation to have pika parse a specific value out of a graph and feed that directly to your function.
 
 ```console
 $ pika uppercase greetings.yaml/Alice
@@ -302,7 +302,7 @@ HELLO, ALICE.
 
 ## Translate JSON to YAML and vice versa
 
-You can use `pika` to transform a graph from one format to another. By default, `pika` renders graphs in YAML format, but you can ask for JSON format with the `json` function:
+You can use pika to transform a graph from one format to another. By default, pika renders graphs in YAML format, but you can ask for JSON format with the `json` function:
 
 ```console
 $ pika greetings.yaml
@@ -336,7 +336,7 @@ The `json` function isn't a specific YAML-to-JSON transformation; it can transfo
 
 ## Parse JSON/YAML files
 
-You can use `pika` to parse a JSON or YAML file into a plain JavaScript object that your JavaScript function can then handle.
+You can use pika to parse a JSON or YAML file into a plain JavaScript object that your JavaScript function can then handle.
 
 Suppose you have a focused function that does something with a flat, plain object. Perhaps it returns the text of an object's values:
 
@@ -365,7 +365,7 @@ Separating the parsing from your function like this lets you keep your function 
 
 ## Render the current file system tree as a graph
 
-The file system is just another graph that `pika` natively understands. If you give `pika` a path to a folder, it will treat that as a graph. For example, you can specify the current folder with a period (`.`):
+The file system is just another graph that pika natively understands. If you give pika a path to a folder, it will treat that as a graph. For example, you can specify the current folder with a period (`.`):
 
 ```console
 $ pika .
@@ -387,7 +387,7 @@ $ pika json . > package.json
 
 ## Unpack files into the file system
 
-This `pika` introduction began with you unpacking a YAML file into separate files. As another example, you can unpack the greetings in `greetings.yaml` into individual files:
+This pika introduction began with you unpacking a YAML file into separate files. As another example, you can unpack the greetings in `greetings.yaml` into individual files:
 
 ```console
 $ pika greetings.yaml
@@ -403,7 +403,7 @@ Hello, Alice.
 
 The `files/greetings` argument indicates that [copy](/pika/builtins.html#copy) should copy the input YAML graph to a file system graph under a folder named `greetings`. As a result, the key/value pairs in the YAML file are now individual files in a `greetings` folder.
 
-The important point here is that _all graphs look the same to `pika`_. It doesn't matter whether a graph is defined in a single file like YAML, or a collection of loose files in the file system. Having unpacked the `greetings.yaml` file above, we can ask `pika` to display the `greetings` folder we just created:
+The important point here is that _all graphs look the same to pika_. It doesn't matter whether a graph is defined in a single file like YAML, or a collection of loose files in the file system. Having unpacked the `greetings.yaml` file above, we can ask pika to display the `greetings` folder we just created:
 
 ```console
 $ pika greetings
@@ -412,13 +412,13 @@ Bob: Hello, Bob.
 Carol: Hello, Carol.
 ```
 
-It _looks_ like `greetings` is a YAML file, but it's not — it's really a folder. `pika` is just displaying the folder's contents in the default YAML output format. Each line of that output is actually coming from a different file.
+It _looks_ like `greetings` is a YAML file, but it's not — it's really a folder. pika is just displaying the folder's contents in the default YAML output format. Each line of that output is actually coming from a different file.
 
 The `greetings` folder and the `greetings.yaml` file both define the same graph, even though the underlying data is stored in completely different ways and accessed via different APIs.
 
 ## Process a folder tree as a JavaScript object
 
-Because the `greetings` folder created in the above example is just another graph `pika` can process, you can feed it to the simple JavaScript function `text(obj)` shown earlier that displayed the text values of a plain JavaScript object.
+Because the `greetings` folder created in the above example is just another graph pika can process, you can feed it to the simple JavaScript function `text(obj)` shown earlier that displayed the text values of a plain JavaScript object.
 
 ```console
 $ pika text plain greetings
@@ -427,8 +427,8 @@ Hello, Alice.   Hello, Bob.     Hello, Carol.
 
 This connects two ideas:
 
-- A folder like `greetings` is a explorable graph `pika` can understand.
-- `pika` to convert any graph to a plain JavaScript object with the `plain` function.
+- A folder like `greetings` is a explorable graph pika can understand.
+- pika to convert any graph to a plain JavaScript object with the `plain` function.
 
 This means that you can use the `plain` function to convert a _folder_ to a plain JavaScript object too. The keys will be the file/folder names, and the values will be the file contents or folder subgraphs.
 
@@ -486,7 +486,7 @@ $ pika serve .
 Server running at http://localhost:5000
 ```
 
-This effectively lets `pika` work as a static file server.
+This effectively lets pika work as a static file server.
 
 As a shorthand, you can omit the period (`.`). If you don't specify a graph to serve, `serve` serves up the current folder.
 
@@ -519,7 +519,7 @@ export default (body) => `<!DOCTYPE html>
 `;
 ```
 
-We can use `pika` to apply this template to data, potentially plucked out of a graph, to render that data as HTML:
+We can use pika to apply this template to data, potentially plucked out of a graph, to render that data as HTML:
 
 ```console
 $ pika template greetings.yaml/Alice
@@ -551,7 +551,7 @@ $ pika uppercase greetings.yaml/Alice
 HELLO, ALICE.
 ```
 
-You can apply that `uppercase` transformation to an entire graph with the `pika`'s built-in `map` function:
+You can apply that `uppercase` transformation to an entire graph with the pika's built-in `map` function:
 
 ```console
 $ pika "map(greetings.yaml, uppercase)"
@@ -560,9 +560,9 @@ Bob: HELLO, BOB.
 Carol: HELLO, CAROL.
 ```
 
-It is easy to transform an entire explorable graph of one type of object into a new graph of a different type of object. You only need to identify or define a one-to-one transformation function that handles a single object, and `pika` can apply that as a many-to-many transformation of an entire graph.
+It is easy to transform an entire explorable graph of one type of object into a new graph of a different type of object. You only need to identify or define a one-to-one transformation function that handles a single object, and pika can apply that as a many-to-many transformation of an entire graph.
 
-The second argument to `map` is a function. (Technically, the second argument can be any explorable graph, but for the moment, we'll use a regular JavaScript function.) We want to treat that function as a first-class object, which means we _don't_ want `pika` to do its normal implicit function invocation here. To prevent that, you must include the parentheses by quoting the arguments to `pika` or otherwise escaping them.
+The second argument to `map` is a function. (Technically, the second argument can be any explorable graph, but for the moment, we'll use a regular JavaScript function.) We want to treat that function as a first-class object, which means we _don't_ want pika to do its normal implicit function invocation here. To prevent that, you must include the parentheses by quoting the arguments to pika or otherwise escaping them.
 
 The `map` example above takes the original greetings graph:
 
@@ -572,7 +572,7 @@ and creates a new graph where all the values are uppercase:
 
 ![](uppercase.svg)
 
-In this intro, we're just transforming text, but you can transform anything in bulk, including images and other binaries. If you can write a function to transform a single thing in JavaScript, you can use `pika` to apply that transformation to an entire graph of things.
+In this intro, we're just transforming text, but you can transform anything in bulk, including images and other binaries. If you can write a function to transform a single thing in JavaScript, you can use pika to apply that transformation to an entire graph of things.
 
 ## Traversing a transformed graph
 
@@ -616,7 +616,7 @@ Above it was noted that the second argument passed to `map` can actually be any 
 
 ## Serve a transformed graph of stuff
 
-You can ask `pika` to serve data transformed on demand into HTML using `map` and the template we saw earlier.
+You can ask pika to serve data transformed on demand into HTML using `map` and the template we saw earlier.
 
 ```console
 $ pika "serve map(greetings.yaml, template)"
@@ -646,7 +646,7 @@ You can perform a `copy` operation like the one in this example in preparation f
 
 ## Inspect a live web site
 
-The web site you're reading now supports viewing its contents as an explorable graph, so you can reference it directly in `pika`. For example, this site includes a route [/samples/greetings/](/samples/greetings/), and you can pass that URL to `pika` to view the files there:
+The web site you're reading now supports viewing its contents as an explorable graph, so you can reference it directly in pika. For example, this site includes a route [/samples/greetings/](/samples/greetings/), and you can pass that URL to pika to view the files there:
 
 ```console
 $ pika https://explorablegraph.org/samples/greetings/
@@ -662,20 +662,20 @@ $ pika https://explorablegraph.org/samples/greetings/Alice
 Hello, Alice.
 ```
 
-`pika` can discover all the resources at the `/samples/greetings/` route because this server supports a simple protocol: for every route on this server, a `.keys.json` file exists that enumerates the resources at that route.
+pika can discover all the resources at the `/samples/greetings/` route because this server supports a simple protocol: for every route on this server, a `.keys.json` file exists that enumerates the resources at that route.
 
 ```console
 $ pika https://explorablegraph.org/samples/greetings/.keys.json
 ["Alice","Bob","Carol"]
 ```
 
-When you ask to view a route, `pika` asks that server for its `.keys.json` file, then uses that information to traverse all the resources at that route.
+When you ask to view a route, pika asks that server for its `.keys.json` file, then uses that information to traverse all the resources at that route.
 
-Making the full contents of a site more freely available might be concerning to some people, but most web content is already available to users; it's just not conveniently inspectable. `pika` extends the spirit of the browser's View Source feature, which looks at a single web page at a time, to let you inspect everything at a particular web route.
+Making the full contents of a site more freely available might be concerning to some people, but most web content is already available to users; it's just not conveniently inspectable. pika extends the spirit of the browser's View Source feature, which looks at a single web page at a time, to let you inspect everything at a particular web route.
 
 ## Create a web site mirror
 
-Since a web site like explorablegraph.org is an explorable graph, and `pika` can serve explorable graphs, then you can easily set up a local mirror for this site:
+Since a web site like explorablegraph.org is an explorable graph, and pika can serve explorable graphs, then you can easily set up a local mirror for this site:
 
 ```console
 $ pika serve https://explorablegraph.org
@@ -686,7 +686,7 @@ Your local server is now mirroring the explorablegraph.org site: when you browse
 
 ## Copy a live web site to local files
 
-You can also use `pika` to copy an explorable web route to local files:
+You can also use pika to copy an explorable web route to local files:
 
 ```console
 $ pika copy https://explorablegraph.org/samples/greetings/, files/snapshot
@@ -696,11 +696,11 @@ Alice Bob   Carol
 
 While some people may balk at letting people freely copy web resources to their own machine, there are plenty of cases where the entire point of the site is to make information freely available.
 
-Of course, just because copying a site is possible doesn't mean it's efficient. If you regularly need to copy web resources to local files, there are faster tools for that job. But if you only do that infrequently, the general-purpose `pika` may suffice.
+Of course, just because copying a site is possible doesn't mean it's efficient. If you regularly need to copy web resources to local files, there are faster tools for that job. But if you only do that infrequently, the general-purpose pika may suffice.
 
 ## Finish
 
-This concludes the `pika` introduction. As you've seen, `pika` is useful for
+This concludes the pika introduction. As you've seen, pika is useful for
 
 - invoking JavaScript functions from the shell
 - parsing arguments from the command line and passing those to JavaScript functions
@@ -708,7 +708,7 @@ This concludes the `pika` introduction. As you've seen, `pika` is useful for
 - capturing function output to files
 - working with graphs defined in JSON/YAML files, the file system, or web sites
 
-If you installed `pika` globally at the start of this introduction, but won't use `pika` after this, now is a good time to uninstall it and clean up:
+If you installed pika globally at the start of this introduction, but won't use pika after this, now is a good time to uninstall it and clean up:
 
 ```console
 $ cd ..
@@ -716,6 +716,6 @@ $ rm -r samples
 $ npm uninstall -g @explorablegraph/explorable
 ```
 
-If you installed `pika` without the `-g` global flag, you can just delete the directory you were working in.
+If you installed pika without the `-g` global flag, you can just delete the directory you were working in.
 
-_Reviewer's note: Feel free to experiment further with `pika` if you'd like, but understand that it's not yet stable and will likely undergo further change. Anyone interested in using it should be in contact with [@JanMiksovsky](https://twitter.com/JanMiksovsky), and at this stage should be prepared to participate in the project at some level beyond just filing bug reports and expecting those bugs to be fixed._
+_Reviewer's note: Feel free to experiment further with pika if you'd like, but understand that it's not yet stable and will likely undergo further change. Anyone interested in using it should be in contact with [@JanMiksovsky](https://twitter.com/JanMiksovsky), and at this stage should be prepared to participate in the project at some level beyond just filing bug reports and expecting those bugs to be fixed._

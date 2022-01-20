@@ -24,9 +24,14 @@ JavaScript does not have a first-class representation of interfaces, but a graph
 
 ```js
 const graph = {
+  // Iterate over this graph node's keys.
   async *[Symbol.asyncIterator]() { ... }
+
+  // Get the value of a given key.
   async get(key) { ... }
-  async set(key, value) { ... } // Optional
+
+  // Optional: set the value of a given key.
+  async set(key, value) { ... }
 }
 ```
 
@@ -50,7 +55,7 @@ interface Explorable {
 
 ## Representing a simple graph
 
-Suppose we want to represent the small graph used in the [introduction](/pika/intro.md) to the `pika` command-line tool:
+Suppose we want to represent the small graph used in the [introduction](/pika/intro.md) to the pika command-line tool:
 
 ![](/pika/greetings.svg)
 
@@ -58,19 +63,19 @@ The small circle on the left is a graph node with three keys ("Alice", "Bob", "C
 
 ```js
 const graph = {
-  // Return the keys in this graph
+  // Iterate over this graph node's keys.
   async *[Symbol.asyncIterator]() {
     yield* ["Alice", "Bob", "Carol"];
   },
 
-  // Get the value of a given key
+  // Get the value of a given key.
   async get(key) {
     return `Hello, ${key}.`;
   },
 };
 ```
 
-The [yield\*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/yield*) keyword is a kind of `return` statement used in a JavaScript generator to produce a sequence of values from an object — here, an array. The first time you call this `Symbol.asyncIterator`, it will yield the key "Alice", then pause and hand control back to your invoking code. The next time you call the iterator, it will yield the key "Bob". The third time it will yield "Carol" and also indicate that the graph has no more keys it wants to share.
+The [yield\*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/yield*) keyword is a kind of `return` statement used in a JavaScript generator to produce a sequence of values from an object — here, from an array. The first time you call this `Symbol.asyncIterator`, it will yield the key "Alice", then pause and hand control back to your invoking code. The next time you call the iterator, it will yield the key "Bob". The third time it will yield "Carol" and also indicate that the graph has no more keys it wants to share.
 
 ## Traversing an explorable graph
 
