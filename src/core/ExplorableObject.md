@@ -33,7 +33,8 @@ class ExplorableObject {
   // Return the value for the given key.
   async get(key) {
     let value = this.object[key];
-    if (isPlainObject(value) && !(value instanceof this.constructor)) {
+    if (isPlainObject(value)) {
+      // Wrap a returned plain object as an ExplorableObject.
       value = Reflect.construct(this.constructor, [value]);
     }
     return value;
@@ -41,4 +42,4 @@ class ExplorableObject {
 }
 ```
 
-As shown, the graph's keys are the keys of the wrapped object, and asking the graph for the value of a key delegates the request to the wrapped object. The `isPlainObject` check ensures that any returned sub-object value will itself be wrapped in an instance of `ExplorableObject`.
+As shown, the graph's keys are the keys of the wrapped object, and asking the graph for the value of a key delegates the request to the inner object. If the value of a key is a plain object, that object is wrapped by an ExplorableObject before being returned.

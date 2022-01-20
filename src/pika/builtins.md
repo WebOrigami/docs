@@ -1,6 +1,6 @@
 ---
 title: Built-In Functions
-path: /eg/builtins.html
+path: /pika/builtins.html
 ---
 
 These examples generally demonstrate invoking built-in functions from the command line, although the same functions can also be used in Egret formulas.
@@ -35,7 +35,7 @@ This composes the indicated graphs, which can be any graph [variant](/core/varia
 
 ## config([relativePath])
 
-This returns the graph for the active `eg` configuration that applies to the indicated directory. This directory will be the current folder, or the folder at the indicated `relativePath` if supplied.
+This returns the graph for the active `pika` configuration that applies to the indicated directory. This directory will be the current folder, or the folder at the indicated `relativePath` if supplied.
 
 <a name="copy"></a>
 
@@ -46,11 +46,11 @@ Traverses the `sourceGraph` and writes all values into the `targetGraph`.
 For example, to copy the values from a YAML file into individual files:
 
 ```console
-$ eg greetings.yaml
+$ pika greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
-$ eg copy greetings.yaml, files/greetings
+$ pika copy greetings.yaml, files/greetings
 $ ls greetings
 Alice   Bob     Carol
 $ cat greetings/Alice
@@ -65,7 +65,7 @@ The `targetGraph` must support the [`set`](/core/set.html) method. The only type
 
 ## defaultGraph([relativePath])
 
-Returns the default graph that will be used by `eg` as the scope for evaluating commands. This graph will be the current folder, or the folder at the indicated `relativePath` if supplied.
+Returns the default graph that will be used by `pika` as the scope for evaluating commands. This graph will be the current folder, or the folder at the indicated `relativePath` if supplied.
 
 The default graph will be an instance of [ExplorableFiles](/core/ExplorableFiles.html) transformed in various ways to facilitate commands. Among other things, if the resulting graph is asked for a key like `foo` which does not exist, the graph will make a second check to see if a module `foo.js` exists and, if so, to return the default export from that module.
 
@@ -102,13 +102,13 @@ Returns an [ExplorableFiles](/core/ExplorableFiles.html) representation of the c
 Returns any _front matter_ parsed from the start of the indicated text. The front matter data should be in JSON or YAML format and delimited before and after by three hyphens on a line by themselves.
 
 ```console
-$ eg hello.md
+$ pika hello.md
 ​---
 title: Hello
 ​---
 
 Hello, world.
-$ eg front hello.md
+$ pika front hello.md
 title: Hello
 ```
 
@@ -152,7 +152,7 @@ Returns an [ExplorableSite](/core/ExplorableSite.html) for the given HTTPS URL.
 
 The first argument is a string indicating the URL domain; the remainder are the portions of the URL path within that domain. E.g., for the URL `example.com/foo/bar`, the arguments would be `example.com`, `foo`, and `bar`.
 
-You normally won't need to call this function directly. `eg` will parse the URL `https://example.com/foo/bar` into the function call `https('example.com', 'foo', 'bar')` for you, so you can use the more readable URL format.
+You normally won't need to call this function directly. `pika` will parse the URL `https://example.com/foo/bar` into the function call `https('example.com', 'foo', 'bar')` for you, so you can use the more readable URL format.
 
 <a name="inners"></a>
 
@@ -166,14 +166,14 @@ Returns the inner nodes — the nodes with children — in the indicated `graph`
 
 Render the contents of the object in JSON format.
 
-The `eg` tool uses YAML as its default output format, so you can use the `json` command to reformat the output as JSON:
+The `pika` tool uses YAML as its default output format, so you can use the `json` command to reformat the output as JSON:
 
 ```console
-$ eg greetings.yaml
+$ pika greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
-$ eg json greetings.yaml
+$ pika json greetings.yaml
 {
   "Alice": "Hello, Alice.",
   "Bob": "Hello, Bob.",
@@ -188,11 +188,11 @@ $ eg json greetings.yaml
 Returns an array of the top-level keys in the indicated graph, which can be any graph [variant](/core/variants.html).
 
 ```console
-$ eg greetings.yaml
+$ pika greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
-$ eg keys greetings.yaml
+$ pika keys greetings.yaml
 - Alice
 - Bob
 - Carol
@@ -213,13 +213,13 @@ _This experimental function is not yet stable enough to document._
 Returns a new [MapGraph](/core/MapGraph.html) that applies the given `mapFn` to the values in the `graph`.
 
 ```console
-$ eg greetings.yaml
+$ pika greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
-$ eg uppercase.js
+$ pika uppercase.js
 export default (x) => x.toString().toUpperCase();
-$ eg "map(greetings.yaml, uppercase)"
+$ pika "map(greetings.yaml, uppercase)"
 Alice: HELLO, ALICE.
 Bob: HELLO, BOB.
 Carol: HELLO, CAROL.
@@ -229,7 +229,7 @@ If a `sourceExtension` or `targetExtension` are supplied, this returns a [MapTyp
 
 Unlike a JavaScript [Array map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), the `map` function does not do any mapping work upon invocation — it only does the work when someone requests the mapped graph's keys or values.
 
-The `mapFn` mapping function is typically a JavaScript function, but can be any graph [variant](/core/variants.html). For example, you can use a second [graph as a map](/eg/intro.html#use-a-graph-as-a-map).
+The `mapFn` mapping function is typically a JavaScript function, but can be any graph [variant](/core/variants.html). For example, you can use a second [graph as a map](/pika/intro.html#use-a-graph-as-a-map).
 
 `map` works on all levels of a graph. If you only want to transform the top-level values in a graph, see [shallowMap](#shallowMap).
 
@@ -245,7 +245,7 @@ Any front matter in the markdown will be preserved at the top of the HTML output
 
 ## meta(graph)
 
-Returns an Egret [metagraph](/egret/metagraph.html) by applying a [MetaTransform](/egret/MetaTransform.html) to the indicated graph. This interprets [formulas](/egret/formulas.html) in the graph's keys as `eg` expressions.
+Returns an Egret [metagraph](/egret/metagraph.html) by applying a [MetaTransform](/egret/MetaTransform.html) to the indicated graph. This interprets [formulas](/egret/formulas.html) in the graph's keys as `pika` expressions.
 
 <a name="nulls"></a>
 
@@ -254,11 +254,11 @@ Returns an Egret [metagraph](/egret/metagraph.html) by applying a [MetaTransform
 Returns a new graph with all values equal to null.
 
 ```console
-$ eg greetings.yaml
+$ pika greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
-$ eg nulls greetings.yaml
+$ pika nulls greetings.yaml
 ? Alice
 ? Bob
 ? Carol
@@ -281,7 +281,7 @@ Parses the indicated text as JSON or YAML. The parsed plain JavaScript object is
 Parsing a quoted argument on the command line:
 
 ```console
-$ eg parse "'[1, 2, 3]'"
+$ pika parse "'[1, 2, 3]'"
 - 1
 - 2
 - 3
@@ -308,7 +308,7 @@ A common use for `plain` is to convert a graph into a form that you can pass to 
 Starts a local web server to serve the contents of `graph`. To serve the current folder:
 
 ```console
-$ eg serve .
+$ pika serve .
 Server running at http://localhost:5000
 ```
 
@@ -335,15 +335,15 @@ Returns the output of executing the indicated shell command.
 Returns a new graph with the original `graph` keys randomly shuffled.
 
 ```console
-$ eg greetings.yaml
+$ pika greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
-$ eg shuffle greetings.yaml
+$ pika shuffle greetings.yaml
 Carol: Hello, Carol.
 Alice: Hello, Alice.
 Bob: Hello, Bob.
-$ eg shuffle greetings.yaml
+$ pika shuffle greetings.yaml
 Carol: Hello, Carol.
 Bob: Hello, Bob.
 Alice: Hello, Alice.
@@ -362,9 +362,9 @@ _This experimental function is not yet stable enough to document._
 Returns the complete contents of the standard input stream. This lets you pipe data into JavaScript functions:
 
 ```console
-$ eg uppercase.js
+$ pika uppercase.js
 export default (x) => x.toString().toUpperCase();
-$ echo This is input from the shell | eg uppercase stdin
+$ echo This is input from the shell | pika uppercase stdin
 THIS IS INPUT FROM THE SHELL
 ```
 
@@ -372,7 +372,7 @@ THIS IS INPUT FROM THE SHELL
 
 ## stdout(obj)
 
-Writes the indicated object `obj` to the standard output stream. This `stdout` function is used by `eg` itself to write the evaluated result of an expression to the console. If you wish to override the standard `stdout` implementation to, say, default to JSON output instead of YAML, you can do so by defining your own function named `stdout` in the `eg` [config file](/eg/config.html).
+Writes the indicated object `obj` to the standard output stream. This `stdout` function is used by `pika` itself to write the evaluated result of an expression to the console. If you wish to override the standard `stdout` implementation to, say, default to JSON output instead of YAML, you can do so by defining your own function named `stdout` in the `pika` [config file](/pika/config.html).
 
 <a name="svg"></a>
 
@@ -389,11 +389,11 @@ Returns a basic tabular representation of the keys and values in the indicated `
 If the graph is flat — that is, has only a single level of keys and values — the table will have two columns listing those.
 
 ```console
-$ eg greetings.yaml
+$ pika greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
-$ eg table greetings.yaml
+$ pika table greetings.yaml
 Key     Value
 Alice   Hello, Alice.
 Bob     Hello, Bob.
@@ -403,7 +403,7 @@ Carol   Hello, Carol.
 If the graph has two levels, the row headings will contain the top-level keys, and the column headings will be the second-level keys. (The first subgraph in the graph will be taken as representative of the remaining subgraphs.)
 
 ```console
-$ eg languages.json
+$ pika languages.json
 {
   "english": {
     "a": "Hello, a.",
@@ -421,7 +421,7 @@ $ eg languages.json
     "c": "Hola, c."
   }
 }
-$ eg table languages.json | column -t -s$'\t'
+$ pika table languages.json | column -t -s$'\t'
          a            b            c
 english  Hello, a.    Hello, b.    Hello, c.
 french   Bonjour, a.  Bonjour, b.  Bonjour, c.
@@ -437,11 +437,11 @@ spanish  Hola, a.     Hola, b.     Hola, c.
 Returns an array of the top-level values in the indicated graph, which can be any graph [variant](/core/variants.html).
 
 ```console
-$ eg greetings.yaml
+$ pika greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
-$ eg values greetings.yaml
+$ pika values greetings.yaml
 - Hello, Alice.
 - Hello, Bob.
 - Hello, Carol.
@@ -455,16 +455,16 @@ See also [keys](#keys).
 
 Render the contents of the object in YAML format.
 
-The `eg` tool uses YAML as its default output format, so you won't often need to invoke the `yaml` function yourself from the command line. One occasion to use it would be to convert a JSON file to YAML.
+The `pika` tool uses YAML as its default output format, so you won't often need to invoke the `yaml` function yourself from the command line. One occasion to use it would be to convert a JSON file to YAML.
 
 ```console
-$ eg letters.json
+$ pika letters.json
 {
   "a": "The letter A",
   "b": "The letter B",
   "c": "The letter C"
 }
-$ eg yaml letters.json
+$ pika yaml letters.json
 a: The letter A
 b: The letter B
 c: The letter C

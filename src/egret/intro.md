@@ -5,7 +5,7 @@ path: /egret/intro.html
 
 ## Start
 
-eg copy stuff locally
+pika copy stuff locally
 
 ## Create a virtual value with a formula
 

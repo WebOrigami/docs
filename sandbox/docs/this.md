@@ -1,6 +1,6 @@
 # `this` in formulas
 
-In an explorable application, an eg formula is defined in the _key_ in a [metagraph](metagraph.html). For example, the formula might be used in the name of a file inside a folder that will be interpreted as a metagraph.
+In an explorable application, an pika formula is defined in the _key_ in a [metagraph](metagraph.html). For example, the formula might be used in the name of a file inside a folder that will be interpreted as a metagraph.
 
 Such formula keys may be defined with no value. That is, a file may have a formula for its file name, but the file itself may be empty.
 

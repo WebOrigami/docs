@@ -7,4 +7,4 @@ path: /
 
 Hands-on introductions:
 
-- [Intro to eg](eg/intro.html)
+- [Intro to pika](pika/intro.html)

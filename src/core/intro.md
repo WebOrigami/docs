@@ -1,6 +1,6 @@
 ---
 title: Hands-on intro to explorable graphs
-path: /eg/intro.html
+path: /pika/intro.html
 numberHeadings: true
 ---
 
@@ -27,10 +27,10 @@ export default {
 };
 ```
 
-You can use the `eg` tool to load and display the above graph:
+You can use the `pika` tool to load and display the above graph:
 
 ```console
-$ eg direct
+$ pika direct
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
@@ -52,7 +52,7 @@ export default new ExplorableObject({
 ```
 
 ```console
-$ eg object
+$ pika object
 Alice: Hello, Alice. [from an object]
 Bob: Hello, Bob. [from an object]
 Carol: Hello, Carol. [from an object]
@@ -73,8 +73,20 @@ export default new ExplorableFunction(
 ```
 
 ```console
-$ eg function
+$ pika function
 Alice: Hello, Alice. [from a function]
 Bob: Hello, Bob. [from a function]
 Carol: Hello, Carol. [from a function]
 ```
+
+## Transforming a graph
+
+## Serving a graph
+
+## Serving a graph with Express
+
+## Composing multiple graphs together
+
+## Caching a graph
+
+## Copying a graph to files

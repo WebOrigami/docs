@@ -50,9 +50,9 @@ interface Explorable {
 
 ## Representing a simple graph
 
-Suppose we want to represent the small graph used in the [introduction](/eg/intro.md) to the `eg` command-line tool:
+Suppose we want to represent the small graph used in the [introduction](/pika/intro.md) to the `pika` command-line tool:
 
-![](/eg/greetings.svg)
+![](/pika/greetings.svg)
 
 The small circle on the left is a graph node with three keys ("Alice", "Bob", "Carol") that correspond to three values ("Hello, Alice", etc.). This can be represented in the `Explorable` interface as:
 
