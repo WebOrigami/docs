@@ -1,5 +1,7 @@
+- href: index.html
+  text: Overview
 - href: intro.html
-  text: Intro to xg
+  text: Intro to pika
 - href: builtins.html
   text: Built-In Functions
 - href: syntax.html
