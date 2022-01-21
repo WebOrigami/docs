@@ -1,0 +1,33 @@
+english:
+  Alice: Hello, Alice.
+  Bob: Hello, Bob.
+  Carol: Hello, Carol.
+  yaml: |
+    ---
+    title: yaml
+    path: /english/yaml
+    ---
+    Hello, world.
+  path: /english
+french:
+  Alice: Bonjour, Alice.
+  Bob: Bonjour, Bob.
+  Carol: Bonjour, Carol.
+  json: |
+    ---
+    {
+      "title": "json",
+      "path": "/french/json"
+    }
+    ---
+    Hello, json.
+  path: /french
+spanish:
+  Alice: Hola, Alice.
+  Bob: Hola, Bob.
+  Carol: Hola, Carol.
+  object:
+    title: object
+    path: /spanish/object
+  path: /spanish
+path: /

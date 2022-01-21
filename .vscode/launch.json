@@ -5,6 +5,15 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "node",
+      "request": "launch",
+      "name": "pika",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/node_modules/@explorablegraph/explorable/src/eg/eg.js",
+      "cwd": "${workspaceFolder}/src/js/",
+      "args": ["addPaths languages.yaml"]
+    },
+    {
       "name": "tsdoc",
       "program": "${workspaceFolder}/node_modules/@explorablegraph/explorable/src/eg/eg.js",
       "request": "launch",

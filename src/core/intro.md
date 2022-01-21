@@ -1,6 +1,6 @@
 ---
 title: Hands-on intro to explorable graphs
-path: /pika/intro.html
+path: /core/intro.html
 numberHeadings: true
 ---
 
