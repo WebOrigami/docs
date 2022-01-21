@@ -3,7 +3,7 @@ title: ExplorableObject
 path: /core/ExplorableObject.html
 ---
 
-`ExplorableObject` is a class provides a convenient wrapper around plain JavaScript objects.
+`ExplorableObject` is a class that can wrap a plain JavaScript object to create an explorable object.
 
 ```js
 import { ExplorableObject } from "@explorablegraph/explorable";
@@ -14,6 +14,15 @@ const graph = new ExplorableObject({
   Bob: "Hello, Bob.",
   Carol: "Hello, Carol.",
 });
+```
+
+The [pika](/pika) tool will display the contents of the resulting `ExplorableObject`.
+
+```console
+$ pika object
+Alice: Hello, Alice.
+Bob: Hello, Bob.
+Carol: Hello, Carol.
 ```
 
 The core interface methods of the `ExplorableObject` [implementation](https://github.com/ExplorableGraph/explorable/blob/main/src/core/ExplorableObject.js) are:
