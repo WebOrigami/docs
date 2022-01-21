@@ -1,6 +1,5 @@
 ---
 title: ExplorableObject
-path: /core/ExplorableObject.html
 ---
 
 `ExplorableObject` is a class that can wrap a plain JavaScript object to create an explorable object.

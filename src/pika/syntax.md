@@ -1,6 +1,5 @@
 ---
 title: pika Syntax
-path: /pika/syntax.html
 ---
 
 This describes the syntax of the small expression language by both the pika command-line tool and formulas in [Egret](/egret).

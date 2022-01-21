@@ -1,6 +1,5 @@
 ---
 title: Quick Hands-On Intro to Egret
-path: /egret/intro.html
 ---
 
 ## Start

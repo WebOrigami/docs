@@ -31,6 +31,7 @@
       "runtimeArgs": ["--preserve-symlinks"],
       // "cwd": "${workspaceFolder}/site",
       "args": ["serve app/site"]
+      // "args": ["serve"]
     }
   ]
 }

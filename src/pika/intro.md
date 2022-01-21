@@ -1,6 +1,5 @@
 ---
 title: Hands-on intro to pika
-path: /pika/intro.html
 numberHeadings: true
 ---
 

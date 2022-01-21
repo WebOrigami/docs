@@ -1,6 +1,5 @@
 ---
 title: Built-In Functions
-path: /pika/builtins.html
 ---
 
 These examples generally demonstrate invoking built-in functions from the command line, although the same functions can also be used in Egret formulas.

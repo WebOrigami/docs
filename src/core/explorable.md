@@ -1,6 +1,5 @@
 ---
 title: The Explorable interface
-path: /core/explorable.html
 ---
 
 The `Explorable` interface is a simple and flexible way to represent a wide variety of data types as graphs.

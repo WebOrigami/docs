@@ -1,6 +1,5 @@
 ---
 title: ExplorableFunction
-path: /core/ExplorableFunction.html
 ---
 
 `ExplorableFunction` is a class that can wrap a JavaScript function and an optional domain for that function to create an graph that implements the [Explorable](Explorable.html) interface.

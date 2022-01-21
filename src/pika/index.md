@@ -1,7 +1,6 @@
 ---
 title: pika
 subtitle: Command-line tool for working with JavaScript and graphs
-path: /pika/index.html
 ---
 
 pika is a command line tool that lets you:

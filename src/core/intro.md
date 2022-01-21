@@ -1,6 +1,5 @@
 ---
 title: Hands-on intro to explorable graphs
-path: /core/intro.html
 numberHeadings: true
 ---
 
