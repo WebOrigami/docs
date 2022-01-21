@@ -139,7 +139,7 @@ $ pika greet/Alice
 Hello, Alice.
 ```
 
-In this path syntax, the first path segment (`greet`) will be looked up in the currents cope. All subsequent path segments (like `Alice`) are used as is. Otherwise, both ways of passing arguments behave the same.
+In this path syntax, the first path segment (`greet`) will be looked up in the current scope. All subsequent path segments (like `Alice`) are used as is. Otherwise, both ways of passing arguments behave the same.
 
 pika lets you call a JavaScript function like `greet` from the shell without needing to write JavaScript code to parse command line arguments.
 
