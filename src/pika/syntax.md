@@ -83,24 +83,29 @@ declaration: variableDeclaration
 
 expression: singleQuoteString
             backtickQuoteString
-            indirectCall
-            group
             spaceUrl
             spacePathCall
             protocolCall
+            functionCall
+            group
             slashCall
             percentCall
-            functionCall
             number
-            reference
+            getReference
 
 extension:  .literal
 
-functionCall: reference [args]
+functionCall: functionCallTarget args
+
+functionCallTarget: group
+                    protocolCall
+                    slashCall
+                    percentCall
+                    getReference
+
+getReference: reference
 
 group: ( expression )
-
-indirectCall: group args
 
 key: assignment
      inheritableDeclaration
@@ -117,9 +122,8 @@ omittedParensArgs: whitespace list
 
 parentheticalArgs: ( [list] )
 
-pathHead: indirectCall
-          group
-          functionCall
+pathHead: group
+          simpleFunctionCall
           getReference
 
 pathKey: group
@@ -129,15 +133,17 @@ reference: thisReference
            variableReference
            literal
 
-singleQuoteString: '[text]'
-
 percentCall: pathHead "/" [percentPath]
 
 percentPath: pathKey / percentPath
            pathKey
 
-protocolCall: pathHead ":"|"://" slashPath
-              pathHead ":"|"://" protocolCall
+protocolCall: pathKey ":"|"://" slashPath
+              pathKey ":"|"://" protocolCall
+
+simpleFunctionCall: getReference parentheticalArgs
+
+singleQuoteString: '[text]'
 
 slashCall: ["//"] pathHead "/" [slashPath]
 
