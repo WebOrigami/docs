@@ -4,7 +4,7 @@ tested = map(src, src%js%mdExamples):
 # Convert markdown to HTML while preserving front matter
 html = map(tested, mdHtml, '.md', '.html'):
 
-withPaths = (src%js%addPaths)(html):
+withPaths = src%js%addPaths(html):
 
 # Apply the documentation page template
 result = map(withPaths, src%templates%page.hbs, '.html', '.html'):
