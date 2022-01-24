@@ -66,13 +66,14 @@ The last function in a command is a special case, and treated differently depend
 The pika shell command parses an expression by starting with the `expression` term below. The [Formula](/egret/Formula.html) class used by [MetaMixin](/egret/MetaMixin.html) and the [meta](/pika/meta.html) command parses a key which may be a formula by starting with the `key` term.
 
 ```
-args: parentheticalArgs
-      omittedParensArgs
+args: parensArgs
+      implicitParensArgs
+
+argsChain: args [argsChain]
 
 assignment: ["…"]declaration = expression [extension]
 
-backtickContents: backtickText variableReference backtickContents
-                  backtickText
+backtickContents: backtickText [variableReference backtickContents]
 
 backtickQuoteString: `backtickContents`
 
@@ -86,16 +87,16 @@ expression: singleQuoteString
             spaceUrl
             spacePathCall
             protocolCall
-            functionCall
-            group
+            functionComposition
             slashCall
             percentCall
+            group
             number
             getReference
 
 extension:  .literal
 
-functionCall: functionCallTarget args
+functionComposition: functionCallTarget argsChain
 
 functionCallTarget: group
                     protocolCall
@@ -118,9 +119,9 @@ literal: everything but =(){}$&"'/`%, and whitespace
 
 number: (valid JavaScript signed/unsigned integer or floating point number)
 
-omittedParensArgs: whitespace list
+implicitParensArgs: whitespace list
 
-parentheticalArgs: ( [list] )
+parensArgs: ( [list] )
 
 pathHead: group
           simpleFunctionCall
@@ -141,7 +142,7 @@ percentPath: pathKey / percentPath
 protocolCall: pathKey ":"|"://" slashPath
               pathKey ":"|"://" protocolCall
 
-simpleFunctionCall: getReference parentheticalArgs
+simpleFunctionCall: getReference parensArgs
 
 singleQuoteString: '[text]'
 
