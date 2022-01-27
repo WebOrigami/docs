@@ -14,7 +14,7 @@ This page introduces the basics of pika by demonstrating useful actions you can 
 
 Start a terminal window running a shell — the examples here use `bash`. You'll need [node](https://nodejs.org) installed.
 
-You can install pika globally to make the tool available in all directories, or see below for instructions for installing pika in just one directory.
+**Global installation:** Installing pika globally will make it easier to invoke it in the rest of this tutorial:
 
 ```console
 $ npm install -g @explorablegraph/explorable
@@ -30,14 +30,12 @@ $ pika
 
 This should display the list of [built-in functions](/pika/builtins.html) included with pika.
 
-If you'd prefer not to install things globally: inside a new directory, run `npm install` without the `-g` global flag. Because pika won't be available everywhere, wherever the instructions below refer to pika, you will need to always use Node's [npx](https://docs.npmjs.com/cli/v7/commands/npx) command to invoke pika:
+**Local installation:** As an alternative to global installation, run `npm install` without the `-g` global flag inside a new directory. Because pika won't be available everywhere, wherever the instructions below refer to pika, use Node's [npx](https://docs.npmjs.com/cli/v7/commands/npx) command to invoke pika:
 
 ```console
 $ npm install @explorablegraph/explorable
 $ npx pika
 ```
-
-Note that it is somewhat slower to invoke `npx pika` than to invoke a globally-installed pika.
 
 ## Unpack some files
 
@@ -69,9 +67,13 @@ The expression parser in pika makes parentheses implicit, so in many cases you d
 From inside the `samples` folder:
 
 ```console
+$ cat sample.txt
+This is a text file.
 $ pika sample.txt
 This is a text file.
 ```
+
+At this basic level, pika behaves like the `cat` command, but it can handle more than just files.
 
 When you invoke pika:
 
@@ -88,18 +90,16 @@ Here pika parses the expression `sample.txt` as an identifier. In JavaScript, `s
 
 In this case, pika finds that "sample.txt" is the name of a file, and reads that file from the current folder. The file's contents become the result of the expression, which pika then renders to the console.
 
-At this basic level, pika is effectively a tool for displaying files like the Unix `cat` command.
-
 ## Invoke a function
 
-One of the sample files, `greet.js`, defines a JavaScript function. If you ask pika for `greet.js`, it returns the contents of that file:
+If you ask pika for the sample file `greet.js`, it returns the contents of that file:
 
 ```console
 $ pika greet.js
 export default (name = "world") => `Hello, ${name}.`;
 ```
 
-But if you leave off the `.js` extension, pika invokes the function exported by that file:
+If you leave off the `.js` extension, pika _invokes_ the function exported by that file:
 
 ```console
 $ pika greet

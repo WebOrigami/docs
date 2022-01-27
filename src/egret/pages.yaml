@@ -1,7 +1,9 @@
 - href: index.html
   text: Overview
 - href: intro.html
-  text: Hands-On Intro
+  text: Intro
+- href: transformation.html
+  text: Transformation
 - href: metagraph.html
   text: Metagraphs
 - href: this.html

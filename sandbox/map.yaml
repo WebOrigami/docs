@@ -1,0 +1,11 @@
+# Apply docHtml to the three docs areas
+core = docHtml(src/core):
+pika = docHtml(src/pika):
+egret = docHtml(src/egret):
+
+# Special transform for blog area
+blog = blogHtml(src/blog):
+
+# Serve the following areas as is
+samples = src/samples:
+styles = src/styles:
