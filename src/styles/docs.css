@@ -27,8 +27,16 @@ body {
  * Stock elements
  */
 
+h1 {
+  font-size: 2.25rem;
+}
+
 h2 {
-  margin-top: 2rem;
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-size: 1.4rem;
 }
 
 .numberHeadings h2:before {
