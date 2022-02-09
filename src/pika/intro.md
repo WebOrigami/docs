@@ -52,7 +52,7 @@ greetings.yaml people.yaml    template.js
 
 Note the comma after the URL — pika is invoking a function called [copy](/pika/builtins.html#copy) that takes two arguments which must be separated with a comma.
 
-The new `samples` folder should show a small collection of files. (The specific files may differ slightly from what's shown above.) pika treated the indicated YAML file as a graph — more on graphs later. The `copy` function read values out of that graph and wrote them into the destination graph: a file system (`files`) folder called `samples`.
+The new `samples` folder should show a small collection of files. (The specific files may differ slightly from what's shown above.) pika treated the indicated file as a graph — more on graphs later. The `copy` function read values out of that graph and wrote them into the destination graph: a file system (`files`) folder called `samples`.
 
 If you prefer, you can wrap pika function arguments in parentheses — but since command shells typically interpret parentheses, you may have to quote them:
 
@@ -248,7 +248,7 @@ THIS IS A TEXT FILE.
 
 ## Explorable graphs
 
-pika is especially good at dealing with graphs. One way to define a graph is in YAML format:
+pika is especially good at dealing with graphs. One way to define a graph is in [YAML](https://yaml.org/) format.
 
 ```console
 $ pika greetings.yaml
@@ -263,7 +263,9 @@ pika can interpret this file as the following graph:
 
 More specifically, pika is designed to work with _explorable graphs_: a graph that can tell you what's in it, and can be either synchronous or asynchronous. Many common data structures can be represented as explorable graphs.
 
-pika natively understands several types of explorable graphs:
+The YAML data format shown above can be easier for people to read than formats like JSON. If you prefer, you can just as easily use the ubiquitous JSON format.
+
+pika itself natively understands several types of explorable graphs:
 
 - JSON
 - YAML

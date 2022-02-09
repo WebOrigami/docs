@@ -44,6 +44,11 @@ h3 {
   content: counter(h2) ". ";
 }
 
+.numberHeadings h3:before {
+  counter-increment: h3;
+  content: counter(h2) "." counter(h3) ". ";
+}
+
 .markdown-body > :first-child {
   margin-top: 0;
 }
@@ -86,6 +91,12 @@ main {
 
 img {
   max-width: 100%;
+}
+
+blockquote {
+  border: none;
+  color: inherit;
+  padding: 0.5rem 2rem;
 }
 
 /*
