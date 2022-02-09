@@ -2,6 +2,12 @@
   text: Overview
 - href: intro.html
   text: Intro
+- href: intro2.html
+  text: Intro part 2
+- href: intro3.html
+  text: Intro part 3
+- href: intro4.html
+  text: Intro part 4
 - href: transformation.html
   text: Transformation
 - href: metagraph.html

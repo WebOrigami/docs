@@ -1,21 +1,12 @@
 ---
-title: Intro to Egret
+title: |
+  Intro to Egret: Warmup
 numberHeadings: true
 ---
 
-Egret is a framework for transforming digital content — data, files, and other resources — into forms that can be viewed and used by your audience. It's built on a mental framework for considering common development tasks that can be translated directly into a very efficient language for describing what you want.
+Egret is a framework for transforming digital content — data, files, and other resources — into forms that can be viewed and used by your audience. It's built on a conceptual paradigm for considering common development tasks that can be translated directly into a very efficient language for describing what you want.
 
-As a motivating example, this introduction leads you through the following hypothetical design and development task:
-
-> _You've been given the task of designing and developing an "About Us" area for your organization's site. The main About Us page will need to include a list of people on the team, with links to separate pages for each team member. A team member's page should show their position, bio, and a photo._
-
-Before going further, think for a moment about how you would approach this engineering problem. The Egret approach will likely be quite different. Among other things, it will entail writing very little traditional programming code, leaning instead on:
-
-- HTML to describe the structure of the pages
-- CSS to define the appearance of pages
-- a data file with information about the team in human-readable and -editable form
-- templates to transform data to HTML
-- and formulas to define the transformations you want
+This introduction walks you through the practical example of creating a simple About Us area for a hypothetical organization. Before tackling that, let's first warm up with some "Hello, world" exercises that exercise basic Egret features.
 
 ## Start
 
@@ -35,13 +26,13 @@ Server running at http://localhost:5000
 
 You should be able to open http://localhost:5000 and see a listing of the project files. At the moment, all of the files you see are regular files in the file system.
 
-## Create virtual files with formulas
+## Create a formula
 
-The Egret framework lets you quickly create virtual files by putting formulas _in file names_. Before diving into the About Us task, let's warm up by creating some formulas that will transform data in various ways.
+The Egret framework lets you quickly create virtual files by putting formulas in the _file names_ of real files.
 
-In a code editor, open the sample project and view the contents of the `step1` folder. This folder is initially empty.
+In a code editor, open the sample project and view the contents of the `hello` folder. This folder is initially empty.
 
-In the `step1` folder, create a new, empty file with the following name:
+In the `hello` folder, create a new, empty file with the following name:
 
 ```console
 message = 'Hello, world!'
@@ -51,42 +42,54 @@ The file name should be that whole formula, including the `=` sign and the singl
 
 - The left-hand side of the formula defines the name of a virtual file, `message`.
 - The right-hand side is an expression that will be evaluated to determine the value or contents of that virtual file. Here the virtual `message` file will be a text string.
+- The file name itself is sufficient to define the behavior. The file itself can be empty, although it may also contain useful information that can be processed by the formula.
 
-Without needing to do anything else, point your browser at http://localhost:5000/step1. You should now see a listing that includes the real file you just created, as well as the virtual `message` file the formula implies.
+Without needing to do anything else, point your browser at http://localhost:5000/hello. You should now see a listing that includes:
 
-If you click on the name of that virtual `message` file, you will navigate to a page called http://localhost:5000/step1/message that says "Hello, world!"
+1. the real file you just created with the formula name
+1. the virtual `message` file implied by that formula
 
-The `pika` web server you started earlier is aware of Egret formulas. The server will parse file names that contain formulas with an `=` sign and interpret them. The file name itself is sufficient to define the behavior. The file itself can be empty, although the file itself may also contain useful information used by the formula.
+If you click on the name of that `message` file, you will navigate to a page called http://localhost:5000/hello/message that says "Hello, world!"
+
+The pika `serve` command you issued earlier is aware of Egret formulas. The server will parse file names that contain formulas with an `=` sign and interpret them.
+
+### Interpreting real files and virtual files as graphs
 
 ### View the result of a formula in the command line
 
 The Egret framework and the pika command line tool use the same formula language. In addition to viewing the result of a formula in the browser as you did above, at any time you can also view the value of a formula in the command line with the pika tool.
 
-In the terminal, change to the `step1` directory and run this command:
+In the terminal, change to the `hello` directory and run these commands:
 
 ```console
 $ ls
 message = 'Hello, world!'
 $ pika files
 "message = 'Hello, world!'": ""
-$ pika app
-message: Hello, world!
-"message = 'Hello, world!'": ""
-$ pika app/message
-Hello, world!
 ```
 
-The `step1` folder only contains one real file called `message = 'Hello, world!'`. If you ask pika to display the local `files` graph, it will list (in YAML form) the single real file and indicate that it is empty (`""`).
+The `hello` folder only contains one real file called `message = 'Hello, world!'`. If you ask pika to display the local `files` graph, it will list (in YAML form) the single real file and indicate that it is empty (`""`).
 
 If you ask pika to render the local `app` graph, however, it will interpret any formulas and return both real and virtual files. In this case, it returns the real file that defines the formula, plus the virtual `message` file whose contents are "Hello, world!"
 
-You can ask pika to display just the virtual file `message` by asking for `app/message`.
+```console
+$ pika app
+message: Hello, world!
+"message = 'Hello, world!'": ""
+```
+
+You can ask pika to display just the virtual file:
+
+```console
+$ pika app/message
+Hello, world!
+```
 
 In the steps that follow, you will define formulas that dynamically create data and HTML pages. At any point you can view those in the browser, or use pika to view those virtual files in the command line.
 
 ## Invoke JavaScript functions
 
-In your code editor, open the `step2` folder. It contains just a JavaScript module, `greet.js`, that defines a "Hello, world" function:
+In the same `hello` folder, creating a JavaScript file called `greet.js` and paste in the following:
 
 ```js
 // greet.js
@@ -105,27 +108,29 @@ hello.html = greet()
 
 This will define a virtual file called `hello.html`. The value or contents of that virtual file will be the result of invoking the function exported by the `greet.js` module. Egret follows a convention that `greet` is a reference to the whatever is exported by `greet.js`. In this case, that's a function that can be invoked.
 
-If you open http://localhost:5000/step2/hello.html, you'll now see "Hello, **world**!".
+If you open http://localhost:5000/hello/hello.html, you'll now see "Hello, **world**!".
 
 Each time you ask for `hello.html`, the web server will evaluate the formula you defined.
 
 ### Pass an argument to a function
 
-You can pass arguments to function like `greet`. Still in the `step2` folder, create a new file called:
+You can pass arguments to function like `greet`. In the same `hello` folder, create a new file called:
 
 ```console
 alice.html = greet('Alice')
 ```
 
-Be sure to use single quotes, not double quotes. Because Microsoft Windows does not allow double quotes in file names, Egret doesn't recognize them to encourage cross-platform project compatibility.
+Be sure to use single quotes, not double quotes. To encourage cross-platform compatibility with Microsoft Windows — which does not allow double quotes in file names — Egret doesn't recognize them.
 
-You should now be able to open http://localhost:5000/step2/alice.html to see "Hello, **Alice**!"
+You should now be able to open http://localhost:5000/hello/alice.html to see "Hello, **Alice**!"
 
-Since the function the formula calls is regular JavaScript, you can use that JavaScript to create HTML by any means you like. If the function is asynchronous, Egret will `await` the result before serving it to the browser.
+Since the function the formula calls is regular JavaScript, you can use that JavaScript to create HTML by any means you like. If the function is asynchronous, Egret will `await` the result before serving it to the browser. With that, you should be able to do essentially anything you want in the JavaScript function to create any HTML result.
+
+A function like `greet` here is essentially transforming content from one form (a string) into a different form — HTML intended for presentation. But the function and the formula that invokes it could just as easily be transforming the data into other forms; there's nothing special about HTML here.
 
 ## Transform data into HTML with a template
 
-At this point, we're ready to begin transforming content into a form we can present to our site visitors. Using plain JavaScript to create HTML for this could work, but for many cases like this would be overkill.
+Transforming data into HTML can be done with plain JavaScript, but for many cases that's overkill.
 
 --> deciding how to represent team member data
 
