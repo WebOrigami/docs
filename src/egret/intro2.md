@@ -5,39 +5,45 @@ title: |
 numberHeadings: true
 ---
 
-You can approach software design tasks by thinking about _transformation_:
+This section builds on the [previous section on formulas](intro.html).
+
+## Task statement
+
+As a motivating example, the rest of this introduction leads you through the following hypothetical design and development task:
+
+> _Your team needs to design and implement an "About Us" area for your organization's site. The main About Us page will need to include a list of people on the team, with links to separate pages for each team member. A team member's page should show their position, bio, and a photo._
+
+Before going further, think for a moment about how you would approach this engineering problem.
+
+## Creating digital content through transformation
+
+You can approach creative tasks by thinking about _transformation_.
+
+Given the hypothetical task statement above, you can't directly manifest a site's About Us area out of thin air. The design you have for the area is currently sitting only in your head. You eventually want to end up with something a site visitor can browse.
+
+Somehow you have to get the idea out of your head into some initial digital form. In most cases, it would be inefficient for you to manually create the content in some immediately consumable form. Instead, you'll type or gather data and code into some initial form. You'll then apply various transformations to that content to produce a final artifact that you can make available to your audience.
+
+![](pipeline.svg)
+
+Given this pipeline, ask yourself these questions:
 
 1. What is the final form of the content I want to end up with?
-1. What is the best form of the content I can start with?
-1. How am I going to transform the starting content into the final content?
+1. What is the most appropriate initial form for the content I can start with?
+1. How am I going to transform the starting form into the final usable artifact?
 
 Most designers and developers will ultimately touch on these questions, but often don't ask them directly. Doing so can give you a better understanding of what you are trying to do, and thereby help you do whatever it is better and more easily.
 
 Egret is a mental paradigm and programming framework for doing this.
 
-## Task statement
+## Desired final form of the About Us content
 
-As a motivating example, this introduction leads you through the following hypothetical design and development task:
+--> graph diagram
 
-> _Your team needs to design and implement an "About Us" area for your organization's site. The main About Us page will need to include a list of people on the team, with links to separate pages for each team member. A team member's page should show their position, bio, and a photo._
+--> index page
 
-Before going further, think for a moment about how you would approach this engineering problem. The Egret approach will likely be quite different. Among other things, it will entail writing very little traditional programming code, leaning mostly on:
+--> person page
 
-- HTML to describe the structure of the pages
-- CSS to define the appearance of pages
-- a data file with information about the team in human-readable and -editable form
-- templates to transform data to HTML
-- and formulas to define the transformations you want
-
-## Creating things for people
-
-![](artifact.svg)
-
-![](transformation.svg)
-
-## Final form of the content
-
-## Starting form of the content
+## Considering the initial form of digital content
 
 Where is the data going to come from?
 
@@ -75,26 +81,6 @@ Hard:
 - Spreadsheets
 - rich text
 
-## Creating a site's About Us area
-
-1. What is the final form of the content I want to end up with?
-1. What is the form of the content I can start with?
-1. How am I going to transform the starting content into the end result?
-
-Before going further, think for a moment about how you would approach this engineering problem.
-
-Let's consider these questions in turn.
-
-## Question 2: What is the content's final form?
-
---> graph diagram
-
---> index page
-
---> person page
-
-## Question 1: What is the starting form of the content?
-
 often need to work on both these questions at the same time
 
 small team of 10 people
@@ -104,9 +90,11 @@ will also need to ask for bios
 can put all this into some form that can be easily read programmatically
 photo comes separately
 
+## Choosing the initial form of the About Us content
+
 --> graph diagram
 
-## Question 3: What transformations need to take place?
+## Identifying the necessary transformations
 
 Given the initial conception of the starting form of the content and the desired final form, you'll have to conceptually transform this content in several ways
 
