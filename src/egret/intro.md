@@ -69,7 +69,7 @@ The pika `files` function returns a graph of the real files in the current folde
 
 You can visualize the `files` graph as a node (the folder) that points to a single value (an empty file).
 
-![](filesGraph.svg)
+![](figures/filesGraph.svg)
 
 If you ask pika to render the local `app` graph, it interprets any formulas and returns both real and virtual files.
 
@@ -81,7 +81,7 @@ message: Hello, world!
 
 In this case, the `app` graph includes: 1) the virtual `message` file whose contents are "Hello, world!", and 2) the empty real file whose file name implies the creation of the virtual file. This virtual `app` graph looks like:
 
-![](appGraph.svg)
+![](figures/appGraph.svg)
 
 This virtual `app` graph was created by transforming the real `files` graph above. During this transformation, the presence of a real file with a formula for its name implied the existence of a virtual file.
 
@@ -168,7 +168,7 @@ Since YAML is a little easier to read and write by hand, the rest of this introd
 
 Either way, the data file defines an array. We can visualize that array as a graph:
 
-![](arrayGraph.svg)
+![](figures/arrayGraph.svg)
 
 In Egret, a graph is a first-class data type, so you can transform a graph like this with a formula. Create a new empty file called:
 
@@ -182,7 +182,7 @@ If you open http://localhost:5000/hello/, you'll see a new entry for a virtual `
 
 Your `greetings` formula transforms the array in `team.yaml` into a new graph of HTML greetings pages.
 
-![](greetingsGraph.svg)
+![](figures/greetingsGraph.svg)
 
 The `map` function, and the graphs used by Egret generally, are _lazy_. They only do work when they need to. Unlike a JavaScript [Array map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), the `map` function here does not do any mapping work upon invocation — it only does the work when someone requests the mapped graph's keys or values. The `greetings` graph represents _potential_ work.
 
@@ -285,7 +285,7 @@ Each block of data for an individual person has a key. The field we use for the 
 
 We can represent the above data set as a graph:
 
-![](dataGraph.svg)
+--> graph
 
 The `step4` folder also contains the same `person.hbs` Handlebars template that can transform the data for a single person into an HTML page for that person. We now want to apply that `person.hbs` template as a function to the entire set of team members.
 
@@ -297,7 +297,7 @@ team = shallowMap(team.yaml, person.hbs)
 
 This transforms the above graph of data into a new graph of virtual HTML files:
 
-![](htmlGraph.svg)
+--> graph
 
 You've now seen the basics of Egret: creating virtual files with formulas, invoking JavaScript from formulas, and using formulas to transform graphs.
 
