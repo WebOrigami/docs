@@ -105,8 +105,7 @@ We'll come back to graph transformations, but first let's create some more inter
 In the same `hello` folder, creating a JavaScript file called `greet.js` and paste in the following:
 
 ```js
-// greet.js
-export default (name = "world") => `Hello, <strong>${name}</strong>!`;
+{{ inline ../samples/egret.yaml/hello/greet.js }}
 ```
 
 This function generates an HTML fragment that greets a person by name if a name is supplied (or just says "Hello, world!" if no name is given).
@@ -127,7 +126,7 @@ And as before, you can view the contents of this HTML page in the command line:
 
 ```console
 $ pika app/hello.html
-Hello, <strong>world</strong>!
+{{ inline ../samples/egret.yaml/hello/hello.html }}
 ```
 
 ## Pass an argument to a function
@@ -153,18 +152,16 @@ If you want to create a greeting page for several people, you could create a for
 Create a new file called `team.yaml` and enter an array of names:
 
 ```yaml
-- Alice
-- Bob
-- Carol
+{ { inline ../samples/egret.yaml/hello/team.yaml } }
 ```
 
 If you prefer JSON, you can go through this exercise by creating a `team.json` file instead:
 
 ```json
-["Alice", "Bob", "Carol"]
+{{ inline ../samples/egret.yaml/hello/team.json }}
 ```
 
-Since YAML is a little easier to read and write by hand, the rest of this introduction will use YAML.
+Since YAML can be a little easier to read and write by hand (particularly when text needs to span multiple lines), the rest of this introduction will use YAML.
 
 Either way, the data file defines an array. We can visualize that array as a graph:
 

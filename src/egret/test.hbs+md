@@ -1,0 +1,12 @@
+---
+hello = ..%samples%egret.yaml%hello:
+foo: bar
+---
+
+{{foo}}
+
+Here is some **text**.
+
+```js
+{{{hello.[greet.js]}}}
+```
