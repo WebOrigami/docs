@@ -17,25 +17,25 @@ The pika syntax is designed to be relatively easy to type and read in several di
 
 The following types of expressions are supported by the pika tool and in Egret formulas:
 
-| Description                                   |              | Examples               |
-| :-------------------------------------------- | ------------ | :--------------------- |
-| String with single quotes                     | &nbsp;&nbsp; | `'hello'`              |
-| String with backticks and variable references |              | `` `Hello, ${name}` `` |
-| Function call                                 |              | `greet('world')`       |
-|                                               |              | `fn('foo', 'bar')`     |
-| Function call with implicit parentheses       |              | `greet 'world'`        |
-|                                               |              | `fn 'foo', 'bar'`      |
-| Indirect function call                        |              | `(fn())()`             |
-| Slash-separated function call or path¹        |              | `greet/world`          |
-| Percent-separated function call or path¹      |              | `greet%world`          |
-| Integers                                      |              | `42`                   |
-| Floating-point numbers                        |              | `3.14`                 |
-| Literal reference to a key in scope           |              | `foo`                  |
-|                                               |              | `file.txt`             |
-| Self-reference to the value defined by a key  |              | `this`                 |
-| Bound variable reference in a formula         |              | `${x}`                 |
-| HTTP or HTTPS URL                             |              | `https://example.com`  |
-| Parentheses group                             |              | `(foo)`                |
+| Description                                  |              | Examples               |
+| :------------------------------------------- | ------------ | :--------------------- |
+| String with single quotes                    | &nbsp;&nbsp; | `'hello'`              |
+| Template literal with substitution           |              | `` `Hello, ${name}` `` |
+| Function call                                |              | `greet('world')`       |
+|                                              |              | `fn('foo', 'bar')`     |
+| Function call with implicit parentheses      |              | `greet 'world'`        |
+|                                              |              | `fn 'foo', 'bar'`      |
+| Indirect function call                       |              | `(fn())()`             |
+| Slash-separated function call or path¹       |              | `greet/world`          |
+| Percent-separated function call or path¹     |              | `greet%world`          |
+| Integers                                     |              | `42`                   |
+| Floating-point numbers                       |              | `3.14`                 |
+| Literal reference to a key in scope          |              | `foo`                  |
+|                                              |              | `file.txt`             |
+| Self-reference to the value defined by a key |              | `this`                 |
+| Bound variable reference in a formula        |              | `${x}`                 |
+| HTTP or HTTPS URL                            |              | `https://example.com`  |
+| Parentheses group                            |              | `(foo)`                |
 
 ¹ You can use slashes in paths in the command-line, but Windows prevents the use of slashes in file names, and even macOS applications may not expect slashes to appear in file names. For this reason, it's recommended to use percent signs in paths that appear in file names.
 
@@ -73,17 +73,11 @@ argsChain: args [argsChain]
 
 assignment: ["…"]declaration = expression [extension]
 
-backtickContents: backtickText [variableReference backtickContents]
-
-backtickQuoteString: `backtickContents`
-
-backtickText: everything but ` and $
-
 declaration: variableDeclaration
              literal
 
 expression: singleQuoteString
-            backtickQuoteString
+            templateLiteral
             spaceUrl
             spacePathCall
             protocolCall
@@ -128,7 +122,8 @@ pathHead: group
           getReference
 
 pathKey: group
-         reference
+         substitution
+         literal
 
 reference: thisReference
            variableReference
@@ -160,6 +155,14 @@ spaceUrlPath: pathKey whitespace spaceUrlPath
               pathKey
 
 spacePathCall: "."|".." [spaceUrlPath]
+
+substitution: ${expression}
+
+template: templateText [substitution template]
+
+templateLiteral: `template`
+
+templateText: everything but ` and $
 
 thisReference: "this"
 
