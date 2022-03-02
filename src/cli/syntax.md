@@ -77,6 +77,7 @@ declaration: variableDeclaration
              literal
 
 expression: singleQuoteString
+            taggedTemplate
             templateLiteral
             spaceUrl
             spacePathCall
@@ -156,7 +157,9 @@ spaceUrlPath: pathKey whitespace spaceUrlPath
 
 spacePathCall: "."|".." [spaceUrlPath]
 
-substitution: ${expression}
+substitution: {{expression}}
+
+taggedTemplate: "pika"templateLiteral
 
 template: templateText [substitution template]
 
