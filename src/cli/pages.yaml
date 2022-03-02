@@ -1,7 +1,7 @@
 - href: index.html
   text: Overview
 - href: intro.html
-  text: Intro to pika
+  text: Intro to Pika CLI
 - href: builtins.html
   text: Built-In Functions
 - href: syntax.html
