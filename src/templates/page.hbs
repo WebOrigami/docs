@@ -1,21 +1,5 @@
 ---
-areas = (js%markCurrent)(this, currentArea):
-  - href: /
-    text: Home
-  - href: /interface
-    text: Concept
-  - href: /core
-    text: Core library
-  - href: /cli
-    text: CLI
-  - href: /framework
-    text: Framework
-  - href: /language
-    text: Language
-  # - href: blog
-  #   text: Blog
-  - href: https://github.com/ExplorableGraph/explorable
-    text: GitHub
+areas = (js%markCurrent)(parse(areas.yaml), currentArea):
 currentArea = (js%pathArea)(path):
 currentPage = (js%pathPage)(path):
 pages = (js%markCurrent)(parse(pages.yaml), currentPage):

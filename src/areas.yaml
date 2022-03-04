@@ -1,0 +1,14 @@
+- href: /
+  text: Home
+- href: /interface
+  text: Concept
+- href: /core
+  text: Core library
+- href: /cli
+  text: CLI
+- href: /framework
+  text: Framework
+- href: /language
+  text: Language
+- href: https://github.com/ExplorableGraph/explorable
+  text: GitHub
