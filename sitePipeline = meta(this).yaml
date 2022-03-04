@@ -10,4 +10,4 @@ html = map(inlined, mdHtml, '.md', '.html'):
 withPaths = src/js/addPaths(html):
 
 # Apply the documentation page template
-result = map(withPaths, src/templates/page.hbs, '.html', '.html'):
+result = map(withPaths, src/templates/page.pkt, '.html', '.html'):

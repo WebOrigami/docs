@@ -6,5 +6,5 @@ pages = areas:
 
 Hands-on introductions:
 
-- [Intro to pika](pika/intro.html)
-- [Intro to Egret](egret/intro.html)
+- Intro to the [Pika CLI](cli/intro.html)
+- Intro to the [Pika Framework](framework/intro.html)

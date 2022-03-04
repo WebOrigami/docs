@@ -1,0 +1,8 @@
+---
+areas = (js%markCurrent)(parse(areas.yaml), currentArea):
+currentArea = (js%pathArea)(path):
+---
+<nav id="navBar">
+{{ map areas, =>`        {{ templates/linkCurrent.pkt()}}
+`
+}}      </nav>
