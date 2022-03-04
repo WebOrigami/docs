@@ -9,13 +9,13 @@
       "request": "launch",
       "name": "pika",
       "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/node_modules/@explorablegraph/explorable/src/eg/eg.js",
+      "program": "${workspaceFolder}/node_modules/@explorablegraph/explorable/src/cli/pika.js",
       "cwd": "${workspaceFolder}/src/js/",
       "args": ["addPaths languages.yaml"]
     },
     {
       "name": "tsdoc",
-      "program": "${workspaceFolder}/node_modules/@explorablegraph/explorable/src/eg/eg.js",
+      "program": "${workspaceFolder}/node_modules/@explorablegraph/explorable/src/cli/pika.js",
       "request": "launch",
       "skipFiles": ["<node_internals>/**"],
       "type": "pwa-node",
@@ -27,7 +27,7 @@
       "request": "launch",
       "name": "serve",
       "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/node_modules/@explorablegraph/explorable/src/eg/eg.js",
+      "program": "${workspaceFolder}/node_modules/@explorablegraph/explorable/src/cli/pika.js",
       "runtimeArgs": ["--preserve-symlinks"],
       // "cwd": "${workspaceFolder}/site",
       "args": ["serve watch app/site"]

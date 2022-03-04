@@ -1,17 +1,16 @@
 ---
-title: pika Syntax
+title: Pika language syntax
 ---
-
-This describes the syntax of the small expression language by both the pika command-line tool and formulas in [Egret](/egret).
 
 ## Requirements
 
-The pika syntax is designed to be relatively easy to type and read in several different environments, each of which impose some constraints:
+The Pika syntax is designed to be relatively easy to type and read in several different environments, each of which impose some constraints:
 
 - Windows filenames, which cannot use the characters `\ / : * ? " < > |`
 - macOS filenames, whose requirements are a subset of Windows'
 - Terminal shells such as `bash`, which suggests avoiding the characters `( ) { } &`
-- YAML file keys. This file format can technically represent any string key, but it's desirable to let authors write pika formulas as YAML keys with a minimum degree of quoting or escaping.
+- YAML/JSON file keys. These file formats can technically represent any string key, but it's desirable to let authors write Pika formulas as string keys, particularly in YAML, with a minimum degree of quoting or escaping.
+- Templates, in which Pika expressions can appear inside `{{}}` substitutions.
 
 ## Expressions
 
@@ -36,6 +35,7 @@ The following types of expressions are supported by the pika tool and in Egret f
 | Bound variable reference in a formula        |              | `${x}`                  |
 | HTTP or HTTPS URL                            |              | `https://example.com`   |
 | Parentheses group                            |              | `(foo)`                 |
+| Lambda expressions (anonymous functions)     |              | `=> message`            |
 
 ¹ You can use slashes in paths in the command-line, but Windows prevents the use of slashes in file names, and even macOS applications may not expect slashes to appear in file names. For this reason, it's recommended to use percent signs in paths that appear in file names.
 
@@ -60,120 +60,3 @@ The last function in a command is a special case, and treated differently depend
 
 - If an expression is invoked from the command line, and the expression ends with an identifier (like `greet` above), and the value of that identifier is function, the function will be invoked. This allows the easy invocation of functions from the command line. If you want to pass a function as a first-class object to a receiving function ([map](#map), say), use explicit parentheses for the receiving function.
 - If the expression appears in an Egret [formula](/egret/Formula.html), a final function name in an expression will _not_ be invoked. This difference in behavior allows a formula to return a function as a first-class object. If you want to invoke a final function in a formula, use explicit parentheses.
-
-## Formal grammar
-
-The pika shell command parses an expression by starting with the `expression` term below. The [Formula](/egret/Formula.html) class used by [MetaMixin](/egret/MetaMixin.html) and the [meta](/pika/meta.html) command parses a key which may be a formula by starting with the `key` term.
-
-```
-args: parensArgs
-      implicitParensArgs
-
-argsChain: args [argsChain]
-
-assignment: ["…"]declaration = expression [extension]
-
-declaration: variableDeclaration
-             literal
-
-expression: singleQuoteString
-            taggedTemplate
-            templateLiteral
-            spaceUrl
-            spacePathCall
-            protocolCall
-            functionComposition
-            slashCall
-            percentCall
-            group
-            number
-            getReference
-
-extension:  .literal
-
-functionComposition: functionCallTarget argsChain
-
-functionCallTarget: group
-                    protocolCall
-                    slashCall
-                    percentCall
-                    getReference
-
-getReference: reference
-
-group: ( expression )
-
-key: assignment
-     inheritableDeclaration
-     declaration
-
-list: expression , list
-      expression
-
-literal: everything but =(){}$&"'/`%, and whitespace
-
-number: (valid JavaScript signed/unsigned integer or floating point number)
-
-implicitParensArgs: whitespace list
-
-parensArgs: ( [list] )
-
-pathHead: group
-          simpleFunctionCall
-          getReference
-
-pathKey: group
-         substitution
-         literal
-
-reference: thisReference
-           variableReference
-           literal
-
-percentCall: pathHead "/" [percentPath]
-
-percentPath: pathKey / percentPath
-           pathKey
-
-protocolCall: pathKey ":"|"://" slashPath
-              pathKey ":"|"://" protocolCall
-
-simpleFunctionCall: getReference parensArgs
-
-singleQuoteString: '[text]'
-
-slashCall: ["//"] pathHead "/" [slashPath]
-
-slashPath: pathKey / slashPath
-           pathKey
-
-spaceUrl: spaceUrlProtocol whitespace spaceUrlPath
-
-spaceUrlProtocol: https
-                  http
-
-spaceUrlPath: pathKey whitespace spaceUrlPath
-              pathKey
-
-spacePathCall: "."|".." [spaceUrlPath]
-
-substitution: {{expression}}
-
-taggedTemplate: "pika"templateLiteral
-
-template: templateText [substitution template]
-
-templateLiteral: `template`
-
-templateText: everything but ` and $
-
-thisReference: "this"
-
-valueDeclaration: ["…"]declaration
-
-variableDeclaration: {variableName}[extension]
-
-variableName: for now, JavaScript identifiers with ASCII letters
-
-variableReference: ${variableName}[extension]
-```
