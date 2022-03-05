@@ -11,7 +11,7 @@
   <body>
     <div id="logo">
       <a href="/">ExplorableGraph</a>
-      <img class="origami" src="/assets/crane.svg">
+      <img class="origami" src="/assets/{{ js/chooseIcon(path, assets) }}">
     </div>
     <header>
 {{ templates/navBar.pkt() }}
