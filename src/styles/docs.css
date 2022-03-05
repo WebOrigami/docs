@@ -159,6 +159,15 @@ nav a:hover {
 }
 
 /*
+ * Design
+ */
+img.origami {
+  margin: 1rem 0;
+  max-width: 100px;
+  opacity: 0.5;
+}
+
+/*
  * Responsive queries
  */
 

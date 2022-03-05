@@ -12,5 +12,7 @@
   text: Transformation
 - href: metagraph.html
   text: Metagraphs
+- href: templates.html
+  text: Templates
 - href: this.html
   text: this keyword

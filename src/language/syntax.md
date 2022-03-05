@@ -1,41 +1,41 @@
 ---
-title: Pika language syntax
+title: Origami language syntax
 ---
 
 ## Requirements
 
-The Pika syntax is designed to be relatively easy to type and read in several different environments, each of which impose some constraints:
+The Origami syntax is designed to be relatively easy to type and read in several different environments, each of which impose some constraints:
 
 - Windows filenames, which cannot use the characters `\ / : * ? " < > |`
 - macOS filenames, whose requirements are a subset of Windows'
 - Terminal shells such as `bash`, which suggests avoiding the characters `( ) { } &`
-- YAML/JSON file keys. These file formats can technically represent any string key, but it's desirable to let authors write Pika formulas as string keys, particularly in YAML, with a minimum degree of quoting or escaping.
-- Templates, in which Pika expressions can appear inside `{{}}` substitutions.
+- YAML/JSON file keys. These file formats can technically represent any string key, but it's desirable to let authors write Origami formulas as string keys, particularly in YAML, with a minimum degree of quoting or escaping.
+- Templates, in which Origami expressions can appear inside `\{\{}}` substitutions.
 
 ## Expressions
 
-The following types of expressions are supported by the pika tool and in Egret formulas:
+The following types of expressions are supported by the Origami CLI and in Egret formulas:
 
-| Description                                  |              | Examples                |
-| :------------------------------------------- | ------------ | :---------------------- |
-| String with single quotes                    | &nbsp;&nbsp; | `'hello'`               |
-| Template literal with substitution           |              | `` `Hello, {{name}}` `` |
-| Function call                                |              | `greet('world')`        |
-|                                              |              | `fn('foo', 'bar')`      |
-| Function call with implicit parentheses      |              | `greet 'world'`         |
-|                                              |              | `fn 'foo', 'bar'`       |
-| Indirect function call                       |              | `(fn())()`              |
-| Slash-separated function call or path¹       |              | `greet/world`           |
-| Percent-separated function call or path¹     |              | `greet%world`           |
-| Integers                                     |              | `42`                    |
-| Floating-point numbers                       |              | `3.14`                  |
-| Literal reference to a key in scope          |              | `foo`                   |
-|                                              |              | `file.txt`              |
-| Self-reference to the value defined by a key |              | `this`                  |
-| Bound variable reference in a formula        |              | `${x}`                  |
-| HTTP or HTTPS URL                            |              | `https://example.com`   |
-| Parentheses group                            |              | `(foo)`                 |
-| Lambda expressions (anonymous functions)     |              | `=> message`            |
+| Description                                  |              | Examples                  |
+| :------------------------------------------- | ------------ | :------------------------ |
+| String with single quotes                    | &nbsp;&nbsp; | `'hello'`                 |
+| Template literal with substitution           |              | `` `Hello, \{\{name}}` `` |
+| Function call                                |              | `greet('world')`          |
+|                                              |              | `fn('foo', 'bar')`        |
+| Function call with implicit parentheses      |              | `greet 'world'`           |
+|                                              |              | `fn 'foo', 'bar'`         |
+| Indirect function call                       |              | `(fn())()`                |
+| Slash-separated function call or path¹       |              | `greet/world`             |
+| Percent-separated function call or path¹     |              | `greet%world`             |
+| Integers                                     |              | `42`                      |
+| Floating-point numbers                       |              | `3.14`                    |
+| Literal reference to a key in scope          |              | `foo`                     |
+|                                              |              | `file.txt`                |
+| Self-reference to the value defined by a key |              | `this`                    |
+| Bound variable reference in a formula        |              | `${x}`                    |
+| HTTP or HTTPS URL                            |              | `https://example.com`     |
+| Parentheses group                            |              | `(foo)`                   |
+| Lambda expressions (anonymous functions)     |              | `=> message`              |
 
 ¹ You can use slashes in paths in the command-line, but Windows prevents the use of slashes in file names, and even macOS applications may not expect slashes to appear in file names. For this reason, it's recommended to use percent signs in paths that appear in file names.
 
@@ -43,14 +43,14 @@ See also Egret [formulas](/egret/formulas.html), which define additional syntax 
 
 ### Implicit vs explicit parentheses
 
-pika generally permits use of implicit parentheses for function calls to make it easier for you to invoke functions from a command-line shell, as shells often interpret parentheses.
+Origami generally permits use of implicit parentheses for function calls to make it easier for you to invoke functions from a command-line shell, as shells often interpret parentheses.
 
 ```console
-$ pika greet.js
+$ ori greet.js
 export default (name = "world") => `Hello, ${name}.`;
-$ pika "greet()"
+$ ori "greet()"
 Hello, world.
-$ pika greet
+$ ori greet
 Hello, world.
 ```
 
