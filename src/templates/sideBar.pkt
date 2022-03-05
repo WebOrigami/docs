@@ -2,10 +2,8 @@
 currentPage = (js%pathPage)(path):
 pages = (js%markCurrent)(parse(pages.yaml), currentPage):
 ---
-<nav id="sideBar">
-{{ map pages, =>
-`      <li>
+    <nav id="sideBar">{{ map pages, =>`
+      <li>
         {{ templates/linkCurrent.pkt() }}
-      </li>
-`
-}}    </nav>
+      </li>`}}
+    </nav>

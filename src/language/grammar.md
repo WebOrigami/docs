@@ -102,9 +102,13 @@ substitution: "{{" expression "}}"
 
 template: templateText [substitution template]
 
+templateDocument: templateDocumentText [substitution templateDocument]
+
 templateLiteral: "`" template "`"
 
-templateText: everything but ` and $
+templateDocumentText: everything but "{{"
+
+templateText: everything but "{{" and "`"
 
 thisReference: "this"
 

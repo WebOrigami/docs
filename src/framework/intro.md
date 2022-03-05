@@ -104,8 +104,8 @@ We'll come back to graph transformations, but first let's create some more inter
 
 In the same `hello` folder, creating a JavaScript file called `greet.js` and paste in the following:
 
-```js
-{{ inline ../samples/egret.yaml/hello/greet.js }}
+```{{'js'}}
+{{ samples/egret.yaml/hello/greet.js }}
 ```
 
 This function generates an HTML fragment that greets a person by name if a name is supplied (or just says "Hello, world!" if no name is given).
@@ -126,7 +126,7 @@ And as before, you can view the contents of this HTML page in the command line:
 
 ```console
 $ pika app/hello.html
-{{ inline ../samples/egret.yaml/hello/hello.html }}
+{{ samples/egret.yaml/hello/hello.html }}
 ```
 
 ## Pass an argument to a function
@@ -151,14 +151,14 @@ If you want to create a greeting page for several people, you could create a for
 
 Create a new file called `team.yaml` and enter an array of names:
 
-```yaml
-{ { inline ../samples/egret.yaml/hello/team.yaml } }
+```{{'yaml'}}
+{{ samples/egret.yaml/hello/team.yaml }}
 ```
 
 If you prefer JSON, you can go through this exercise by creating a `team.json` file instead:
 
 ```json
-{{ inline ../samples/egret.yaml/hello/team.json }}
+{{ samples/egret.yaml/hello/team.json }}
 ```
 
 Since YAML can be a little easier to read and write by hand (particularly when text needs to span multiple lines), the rest of this introduction will use YAML.
@@ -195,21 +195,7 @@ If all you want to do is pour data into a template, a template language can be m
 
 The `step3` folder also contains a Handlebars template called `person.hbs` designed to work with the above data schema. The primary user-visible content of that template is as follows:
 
-```handlebars
-<img
-  class="avatar large"
-  src="/src/assets/headshots/{{id}}.jpg"
-  alt="{{name}}"
-/>
-<h2 class="name">{{name}}</h2>
-<div class="position">
-  {{position}},
-  {{location}}
-</div>
-<p class="bio">
-  {{bio}}
-</p>
-```
+... template goes here ..
 
 A template is essentially a function for turning data into a text format like HTML, so Egret allows you to invoke a Handlebars template as a function. All you have to do is give that function data to transform.
 

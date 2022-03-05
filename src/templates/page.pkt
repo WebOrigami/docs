@@ -12,7 +12,8 @@
     <div id="logo">
       <a href="/">ExplorableGraph</a>
     </div>
-    <header>{{ templates/navBar.pkt() }}
+    <header>
+{{ templates/navBar.pkt() }}
       <h1>{{title}}</h1>
       <p class="subtitle">{{subtitle}}</p>
     </header>
