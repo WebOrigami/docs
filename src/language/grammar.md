@@ -1,8 +1,8 @@
 ---
-title: Pika formal grammar
+title: Origami formal grammar
 ---
 
-The [Pika CLI](/cli) parses command-line arguments by starting with the `expression` term below. The [Formula](/egret/Formula.html) class used by [MetaMixin](/egret/MetaMixin.html) and the [meta](/pika/meta.html) command parses file names and other keys by starting with the `key` term.
+The [Pika CLI](/cli) parses command-line arguments by starting with the `expression` term below. The [Formula](/egret/Formula.html) class used by [MetaMixin](/egret/MetaMixin.html) and the [meta](/pika/meta.html) command parses file names and other keys by starting with the `key` term. [Templates](/framework/templates.html) parse templates by starting with the `templateDocument` term.
 
 ```
 args: parensArgs
@@ -98,7 +98,7 @@ spaceUrlPath: pathKey whitespace spaceUrlPath
 
 spacePathCall: "."|".." [spaceUrlPath]
 
-substitution: "{{" expression "}}"
+substitution: "\{\{" expression "}}"
 
 template: templateText [substitution template]
 
@@ -106,9 +106,9 @@ templateDocument: templateDocumentText [substitution templateDocument]
 
 templateLiteral: "`" template "`"
 
-templateDocumentText: everything but "{{"
+templateDocumentText: everything but "\{\{"
 
-templateText: everything but "{{" and "`"
+templateText: everything but "\{\{" and "`"
 
 thisReference: "this"
 

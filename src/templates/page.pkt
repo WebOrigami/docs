@@ -10,11 +10,11 @@
   </head>
   <body>
     <div id="logo">
-      <a href="/">ExplorableGraph</a>
-      <img class="origami" src="/assets/{{ js/chooseIcon(path, assets) }}">
+      <a href="/">Origami</a>
     </div>
-    <header>
 {{ templates/navBar.pkt() }}
+    <img class="origami" src="/assets/{{ js/chooseIcon(path, assets) }}">
+    <header>
       <h1>{{title}}</h1>
       <p class="subtitle">{{subtitle}}</p>
     </header>

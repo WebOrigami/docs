@@ -82,11 +82,11 @@ a.current {
 }
 
 header {
-  grid-area: header;
+  /* grid-area: header; */
 }
 
 main {
-  grid-area: main;
+  /* grid-area: main; */
 }
 
 img {
@@ -149,7 +149,7 @@ nav a:hover {
 }
 
 #sideBar {
-  grid-area: sideBar;
+  /* grid-area: sideBar; */
   grid-column: 1; /* Baffled as to why this is necessary. */
 }
 
@@ -175,16 +175,16 @@ img.origami {
 @media (min-width: 800px) {
   body {
     gap: 1rem;
-    grid-template-areas:
+    /* grid-template-areas:
       "logo header"
-      "sideBar main";
+      "sideBar main"; */
     grid-template-columns: 200px minmax(0, 1fr);
-    grid-template-rows: auto auto;
+    /* grid-template-rows: auto auto; */
   }
 
   #logo {
     display: inherit;
-    grid-area: logo;
+    /* grid-area: logo; */
   }
 
   #navBar a[href="/"],
