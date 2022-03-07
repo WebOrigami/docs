@@ -1,6 +1,6 @@
 ---
-title: Explorable Graph
-subtitle: A conceptual framework and tools for creating sites and content pipelines
+title: Origami
+subtitle: A conceptual framework and tools for creating sites, docs, data, and other content
 pages = areas:
 ---
 

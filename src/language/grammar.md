@@ -2,7 +2,7 @@
 title: Origami formal grammar
 ---
 
-The [Pika CLI](/cli) parses command-line arguments by starting with the `expression` term below. The [Formula](/egret/Formula.html) class used by [MetaMixin](/egret/MetaMixin.html) and the [meta](/pika/meta.html) command parses file names and other keys by starting with the `key` term. [Templates](/framework/templates.html) parse templates by starting with the `templateDocument` term.
+The [Pika CLI](/cli) parses command-line arguments by starting with the `expression` term below. The [Formula](/framework/Formula.html) class used by [MetaMixin](/framework/MetaMixin.html) and the [meta](/pika/meta.html) command parses file names and other keys by starting with the `key` term. [Templates](/framework/templates.html) parse templates by starting with the `templateDocument` term.
 
 ```
 args: parensArgs

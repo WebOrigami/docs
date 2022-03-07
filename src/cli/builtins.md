@@ -4,14 +4,6 @@ title: Built-In Functions
 
 These examples generally demonstrate invoking built-in functions from the command line, although the same functions can also be used in Egret formulas.
 
-<a name="app"></a>
-
-## app([key])
-
-Returns the current graph as an explorable application. This creates an [ExplorableFiles](/core/ExplorableFiles.html) at the current graph or folder, then wraps that in a [graphApp](#graphApp).
-
-If a key is supplied, this gets the indicated key from the resulting explorable application.
-
 <a name="cache"></a>
 
 ## cache(cache, graph, filter)
@@ -119,11 +111,11 @@ If the indicated text includes no front matter, this returns `undefined`.
 
 Converts any graph [variant](/core/variants.html) into an explorable graph.
 
-<a name="graphApp"></a>
+<a name="graphVirtual"></a>
 
-## graphApp(graph)
+## graphVirtual(graph)
 
-Wraps any graph [variant](/core/variants.html) as an [Egret](/egret) application. This will include the same [MetaTransform](/egret/MetaTransform.html) used by the [meta](#meta) function, as well as adding default pages like `index.html` via [DefaultPages](/egret/DefaultPages.html).
+Wraps any graph [variant](/core/variants.html) as a virtual application using the Origami [framework](/framework). This will include the same [MetaTransform](/framework/MetaTransform.html) used by the [meta](#meta) function, as well as adding default pages like `index.html` via [DefaultPages](/framework/DefaultPages.html).
 
 <a name="hbs"></a>
 
@@ -244,7 +236,7 @@ Any front matter in the markdown will be preserved at the top of the HTML output
 
 ## meta(graph)
 
-Returns an Egret [metagraph](/egret/metagraph.html) by applying a [MetaTransform](/egret/MetaTransform.html) to the indicated graph. This interprets [formulas](/egret/formulas.html) in the graph's keys as pika expressions.
+Returns an Egret [metagraph](/framework/metagraph.html) by applying a [MetaTransform](/framework/MetaTransform.html) to the indicated graph. This interprets [formulas](/framework/formulas.html) in the graph's keys as pika expressions.
 
 <a name="nulls"></a>
 
@@ -470,6 +462,14 @@ c: The letter C
 ```
 
 <a name="watch"></a>
+
+<a name="virtual"></a>
+
+## virtual([key])
+
+Returns the current graph as an explorable application. This creates an [ExplorableFiles](/core/ExplorableFiles.html) at the current graph or folder, then wraps that with a virtual app via [graphVirtual](#graphVirtual).
+
+If a key is supplied, this gets the indicated key from the resulting explorable application.
 
 ## watch()
 
