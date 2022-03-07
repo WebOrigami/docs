@@ -1,5 +1,5 @@
 ---
-title: "Intro to Egret: Formulas"
+title: "Origami framework intro: Formulas"
 numberHeadings: true
 ---
 
@@ -69,6 +69,8 @@ The pika `files` function returns a graph of the real files in the current folde
 
 You can visualize the `files` graph as a node (the folder) that points to a single value (an empty file).
 
+<div class="sequence">1</div>
+
 ![](figures/filesGraph.svg)
 
 If you ask pika to render the local `app` graph, it interprets any formulas and returns both real and virtual files.
@@ -80,6 +82,8 @@ message: Hello, world!
 ```
 
 In this case, the `app` graph includes: 1) the virtual `message` file whose contents are "Hello, world!", and 2) the empty real file whose file name implies the creation of the virtual file. This virtual `app` graph looks like:
+
+<div class="sequence">2</div>
 
 ![](figures/appGraph.svg)
 
@@ -165,6 +169,8 @@ Since YAML can be a little easier to read and write by hand (particularly when t
 
 Either way, the data file defines an array. We can visualize that array as a graph:
 
+<div class="sequence">1</div>
+
 ![](figures/arrayGraph.svg)
 
 In Egret, a graph is a first-class data type, so you can transform a graph like this with a formula. Create a new empty file called:
@@ -179,6 +185,8 @@ If you open http://localhost:5000/hello/, you'll see a new entry for a virtual `
 
 Your `greetings` formula transforms the array in `team.yaml` into a new graph of HTML greetings pages.
 
+<div class="sequence">2</div>
+
 ![](figures/greetingsGraph.svg)
 
 The `map` function, and the graphs used by Egret generally, are _lazy_. They only do work when they need to. Unlike a JavaScript [Array map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), the `map` function here does not do any mapping work upon invocation — it only does the work when someone requests the mapped graph's keys or values. The `greetings` graph represents _potential_ work.
@@ -186,6 +194,21 @@ The `map` function, and the graphs used by Egret generally, are _lazy_. They onl
 In this case, the HTML greeting for a person like Carol is only generated when you actually try to visit that URL.
 
 Although this graph is essentially flat — it has only level of values, graphs in Egret can be arbitrarily deep. A `map` applied to a deep graph will return a new, deep graph of transformed values.
+
+<div class="two-up">
+  <div>
+    <div class="sequence">1</div>
+    <div>
+      <img src="figures/arrayGraph.svg">
+    </div>
+  </div>
+  <div>
+    <div class="sequence">2</div>
+    <div>
+      <img src="figures/greetingsGraph.svg">
+    </div>
+  </div>
+</div>
 
 ## Transform data into HTML with a template
 

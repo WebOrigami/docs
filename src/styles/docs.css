@@ -162,10 +162,28 @@ nav a:hover {
  * Design
  */
 img.origami {
+  align-self: center;
   margin: 1rem 0;
   max-width: 100px;
   max-height: 100px;
   opacity: 0.5;
+}
+
+.sequence {
+  align-items: center;
+  aspect-ratio: 1;
+  background: black;
+  border-radius: 50%;
+  color: white;
+  display: inline-grid;
+  height: 2rem;
+  justify-content: center;
+  width: 2rem;
+}
+
+.two-up {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 /*

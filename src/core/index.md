@@ -1,5 +1,4 @@
 ---
-title: Core
-subtitle: Foundational interface and core library for working with explorable graphs
-areaCore: true
+title: Core library
+subtitle: Basic building blocks for working with explorable graphs
 ---

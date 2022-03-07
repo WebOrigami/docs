@@ -1,48 +1,48 @@
 ---
-title: Hands-on intro to the Pika CLI
+title: Hands-on intro to the Origami CLI
 numberHeadings: true
 ---
 
-This page introduces the Pika command line interface, which lets you:
+This page introduces the Origami command line interface, which lets you:
 
 - **easily call JavaScript from the shell**. You can invoke functions, pass arguments (including files or folder trees), and capture output as files. You can quickly experiment, test, or do ad hoc operations from the shell.
 - **manipulate hierarchies, graphs, and other data** representable in the [Explorable](/core/explorable.html) graph interface — including data files, file system folders, JavaScript objects, and web resources.
 
-This page introduces the basics of pika by demonstrating useful actions you can perform with it. You can follow along with these examples on your own machine.
+This page introduces the basics of ori by demonstrating useful actions you can perform with it. You can follow along with these examples on your own machine.
 
 ## Start
 
 Start a terminal window running a shell — the examples here use `bash`. You'll need [node](https://nodejs.org) installed.
 
-**Global installation:** Installing pika globally will make it easier to invoke it in the rest of this tutorial:
+**Global installation:** Installing ori globally will make it easier to invoke it in the rest of this tutorial:
 
 ```console
 $ npm install -g @explorablegraph/explorable
 ```
 
-_Reviewer's note: during development of pika, it's part of a larger repository of Explorable Graph work. Eventually, it will be published on its own._
+_Reviewer's note: during development of ori, it's part of a larger repository of Explorable Graph work. Eventually, it will be published on its own._
 
-To confirm the installation, invoke pika with no arguments.
+To confirm the installation, invoke ori with no arguments.
 
 ```console
-$ pika
+$ ori
 ```
 
-This should display the list of [built-in functions](/pika/builtins.html) included with pika.
+This should display the list of [built-in functions](/ori/builtins.html) included with ori.
 
-**Local installation:** As an alternative to global installation, run `npm install` without the `-g` global flag inside a new directory. Because pika won't be available everywhere, wherever the instructions below refer to pika, use Node's [npx](https://docs.npmjs.com/cli/v7/commands/npx) command to invoke pika:
+**Local installation:** As an alternative to global installation, run `npm install` without the `-g` global flag inside a new directory. Because ori won't be available everywhere, wherever the instructions below refer to ori, use Node's [npx](https://docs.npmjs.com/cli/v7/commands/npx) command to invoke ori:
 
 ```console
 $ npm install @explorablegraph/explorable
-$ npx pika
+$ npx ori
 ```
 
 ## Unpack some files
 
-You can use pika itself to copy sample files used in this introduction into a new local folder called `samples`:
+You can use ori itself to copy sample files used in this introduction into a new local folder called `samples`:
 
 ```console
-$ pika copy https://explorablegraph.org/samples/pika.yaml, files/samples
+$ ori copy https://explorablegraph.org/samples/ori.yaml, files/samples
 $ cd samples
 $ ls
 double.js      letters.json   sample.txt     text.js
@@ -50,17 +50,17 @@ greet.js       package.json   site.yaml      uppercase.js
 greetings.yaml people.yaml    template.js
 ```
 
-Note the comma after the URL — pika is invoking a function called [copy](/pika/builtins.html#copy) that takes two arguments which must be separated with a comma.
+Note the comma after the URL — ori is invoking a function called [copy](/ori/builtins.html#copy) that takes two arguments which must be separated with a comma.
 
-The new `samples` folder should show a small collection of files. (The specific files may differ slightly from what's shown above.) pika treated the indicated file as a graph — more on graphs later. The `copy` function read values out of that graph and wrote them into the destination graph: a file system (`files`) folder called `samples`.
+The new `samples` folder should show a small collection of files. (The specific files may differ slightly from what's shown above.) ori treated the indicated file as a graph — more on graphs later. The `copy` function read values out of that graph and wrote them into the destination graph: a file system (`files`) folder called `samples`.
 
-If you prefer, you can wrap pika function arguments in parentheses — but since command shells typically interpret parentheses, you may have to quote them:
+If you prefer, you can wrap ori function arguments in parentheses — but since command shells typically interpret parentheses, you may have to quote them:
 
 ```console
-$ pika "copy(https://explorablegraph.org/samples/pika.yaml, files/samples)"
+$ ori "copy(https://explorablegraph.org/samples/ori.yaml, files/samples)"
 ```
 
-The expression parser in pika makes parentheses implicit, so in many cases you don't have to type them. There are some cases where parentheses are necessary; you'll see an example of that later.
+The expression parser in ori makes parentheses implicit, so in many cases you don't have to type them. There are some cases where parentheses are necessary; you'll see an example of that later.
 
 ## Display a file from the file system
 
@@ -69,203 +69,203 @@ From inside the `samples` folder:
 ```console
 $ cat sample.txt
 This is a text file.
-$ pika sample.txt
+$ ori sample.txt
 This is a text file.
 ```
 
-At this basic level, pika behaves like the `cat` command, but it can handle more than just files.
+At this basic level, ori behaves like the `cat` command, but it can handle more than just files.
 
-When you invoke pika:
+When you invoke ori:
 
 1. It parses its arguments as an expression.
 2. It evaluates that expression, looking up identifiers in the current scope (defined below).
-3. If the value of the expression is a JavaScript module, pika imports the module and obtains its default export. If it's a JavaScript function, pika executes it.
+3. If the value of the expression is a JavaScript module, ori imports the module and obtains its default export. If it's a JavaScript function, ori executes it.
 4. It displays the result.
 
-Here pika parses the expression `sample.txt` as an identifier. In JavaScript, `sample.txt` is not a valid identifier because it contains a period, but pika's expression parser can recognize file names as identifiers. pika looks up that identifier in the current _scope_. By default, the scope includes:
+Here ori parses the expression `sample.txt` as an identifier. In JavaScript, `sample.txt` is not a valid identifier because it contains a period, but ori's expression parser can recognize file names as identifiers. ori looks up that identifier in the current _scope_. By default, the scope includes:
 
 - the files in the current folder
 - the functions exported by JavaScript modules in the current folder
-- the functions built into pika
+- the functions built into ori
 
-In this case, pika finds that "sample.txt" is the name of a file, and reads that file from the current folder. The file's contents become the result of the expression, which pika then renders to the console.
+In this case, ori finds that "sample.txt" is the name of a file, and reads that file from the current folder. The file's contents become the result of the expression, which ori then renders to the console.
 
 ## Invoke a function
 
-If you ask pika for the sample file `greet.js`, it returns the contents of that file:
+If you ask ori for the sample file `greet.js`, it returns the contents of that file:
 
 ```console
-$ pika greet.js
+$ ori greet.js
 export default (name = "world") => `Hello, ${name}.`;
 ```
 
-If you leave off the `.js` extension, pika _invokes_ the function exported by that file:
+If you leave off the `.js` extension, ori _invokes_ the function exported by that file:
 
 ```console
-$ pika greet
+$ ori greet
 Hello, world.
 ```
 
 Or, with explicit parentheses:
 
 ```console
-$ pika "greet()"
+$ ori "greet()"
 Hello, world.
 ```
 
-When you ask pika to evaluate `greet`:
+When you ask ori to evaluate `greet`:
 
 - It looks for a file called `greet` but doesn't find one.
-- pika tries adding `.js` to see if `greet.js` exists. This time it finds a JavaScript module with that name.
-- pika dynamically imports the module and obtains the default export (a function).
-- Because the result is a JavaScript function, pika executes it.
-- The function's result is the string "Hello, world.", which pika displays.
+- ori tries adding `.js` to see if `greet.js` exists. This time it finds a JavaScript module with that name.
+- ori dynamically imports the module and obtains the default export (a function).
+- Because the result is a JavaScript function, ori executes it.
+- The function's result is the string "Hello, world.", which ori displays.
 
 ## Pass a string to a function
 
 You can pass arguments to JavaScript functions from the shell:
 
 ```console
-$ pika "greet('Alice')"
+$ ori "greet('Alice')"
 Hello, Alice.
 ```
 
-pika accepts strings in single quotes. The double quotes shown above are parsed by the _shell_, and are necessary because the `bash` shell shown here would otherwise prevent pika from seeing the single quotes.
+ori accepts strings in single quotes. The double quotes shown above are parsed by the _shell_, and are necessary because the `bash` shell shown here would otherwise prevent ori from seeing the single quotes.
 
 In the explorable graph paradigm discussed later, any function can be treated like a graph, and vice versa. This means you can use path syntax as a convenient alternative to specify a string argument:
 
 ```console
-$ pika greet/Alice
+$ ori greet/Alice
 Hello, Alice.
 ```
 
 In this path syntax, the first path segment (`greet`) will be looked up in the current scope. All subsequent path segments (like `Alice`) are used as is. Otherwise, both ways of passing arguments behave the same.
 
-pika lets you call a JavaScript function like `greet` from the shell without needing to write JavaScript code to parse command line arguments.
+ori lets you call a JavaScript function like `greet` from the shell without needing to write JavaScript code to parse command line arguments.
 
 ## Aside: Loading functions as ES modules
 
 The `samples` folder you're working in includes a file called `package.json` that instructs Node to load `.js` files as ES (EcmaScript) modules:
 
 ```console
-$ pika package.json
+$ ori package.json
 {
   "comment": "This file exists to tell Node to load .js files as ES modules",
   "type": "module"
 }
 ```
 
-By default, Node imports .js files as CommonJS modules. To allow pika to dynamically import JavaScript files in your own projects as ES modules, you will need to include a `package.json` file in the folder with your .js file or in any parent folder. That `package.json` should include the entry `"type": "module"`.
+By default, Node imports .js files as CommonJS modules. To allow ori to dynamically import JavaScript files in your own projects as ES modules, you will need to include a `package.json` file in the folder with your .js file or in any parent folder. That `package.json` should include the entry `"type": "module"`.
 
-## Use pika as a general-purpose JavaScript shell tool
+## Use ori as a general-purpose JavaScript shell tool
 
 Suppose you have a collection of functions:
 
 ```console
-$ pika double.js
+$ ori double.js
 export default (x) => `${x}${x}`;
-$ pika greet.js
+$ ori greet.js
 export default (name = "world") => `Hello, ${name}. `;
-$ pika uppercase.js
+$ ori uppercase.js
 export default (x) => x.toString().toUpperCase();
 ```
 
-You can then use pika to mix and match these functions from the shell:
+You can then use ori to mix and match these functions from the shell:
 
 ```console
-$ pika greet
+$ ori greet
 Hello, world.
-$ pika uppercase/hi
+$ ori uppercase/hi
 HI
-$ pika greet uppercase/there
+$ ori greet uppercase/there
 Hello, THERE.
-$ pika uppercase greet
+$ ori uppercase greet
 HELLO, WORLD.
-$ pika double greet
+$ ori double greet
 Hello, world. Hello, world.
-$ pika double greet uppercase/there
+$ ori double greet uppercase/there
 Hello, THERE. Hello, THERE.
 ```
 
 Here are the equivalent verbose forms with parentheses:
 
 ```console
-$ pika "greet()"
+$ ori "greet()"
 Hello, world.
-$ pika "uppercase('hi')"
+$ ori "uppercase('hi')"
 HI
-$ pika "greet(uppercase('there'))"
+$ ori "greet(uppercase('there'))"
 Hello, THERE.
-$ pika "uppercase(greet())"
+$ ori "uppercase(greet())"
 HELLO, WORLD.
-$ pika "double(greet())"
+$ ori "double(greet())"
 Hello, world. Hello, world.
-$ pika "double(greet(uppercase('there')))"
+$ ori "double(greet(uppercase('there')))"
 Hello, THERE. Hello, THERE.
 ```
 
-pika lets you use the shell as a basic JavaScript console, so you can invoke and compose functions in any combination without having to write permanent code. This can be useful when you're experimenting, testing, or need to do one-off operations from the shell.
+ori lets you use the shell as a basic JavaScript console, so you can invoke and compose functions in any combination without having to write permanent code. This can be useful when you're experimenting, testing, or need to do one-off operations from the shell.
 
-## Read files with pika
+## Read files with ori
 
 You can feed a file to a JavaScript function:
 
 ```console
-$ pika sample.txt
+$ ori sample.txt
 This is a text file.
-$ pika uppercase.js
+$ ori uppercase.js
 export default (x) => x.toString().toUpperCase();
-$ pika uppercase sample.txt
+$ ori uppercase sample.txt
 THIS IS A TEXT FILE.
 ```
 
 This lets you pass files to your JavaScript functions without you having to write code to deal with files.
 
-In this example, pika ends up passing a file buffer to the `uppercase` function. The `uppercase` function includes a `toString()` call which here will extract the text from the file buffer. It can then do its uppercasing work on the resulting text.
+In this example, ori ends up passing a file buffer to the `uppercase` function. The `uppercase` function includes a `toString()` call which here will extract the text from the file buffer. It can then do its uppercasing work on the resulting text.
 
 ## Reading input from stdin
 
 You can pipe data into JavaScript functions with the built-in `stdin` function:
 
 ```console
-$ echo This is input from the shell | pika uppercase stdin
+$ echo This is input from the shell | ori uppercase stdin
 THIS IS INPUT FROM THE SHELL
 ```
 
-The result of the `stdin` function will be the complete standard input fed to the pika command. This lets you pipe data to a JavaScript function that accepts a simple argument instead of needing specialize the function specifically to read data from the console.
+The result of the `stdin` function will be the complete standard input fed to the ori command. This lets you pipe data to a JavaScript function that accepts a simple argument instead of needing specialize the function specifically to read data from the console.
 
 ## Writing output to a file
 
 You can use regular shell features to pipe the output from your JavaScript functions to a file:
 
 ```console
-$ pika sample.txt
+$ ori sample.txt
 This is a text file.
-$ pika uppercase sample.txt > uppercase.txt
-$ pika uppercase.txt
+$ ori uppercase sample.txt > uppercase.txt
+$ ori uppercase.txt
 THIS IS A TEXT FILE.
 ```
 
 ## Explorable graphs
 
-pika is especially good at dealing with graphs. One way to define a graph is in [YAML](https://yaml.org/) format.
+ori is especially good at dealing with graphs. One way to define a graph is in [YAML](https://yaml.org/) format.
 
 ```console
-$ pika greetings.yaml
+$ ori greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
 ```
 
-pika can interpret this file as the following graph:
+ori can interpret this file as the following graph:
 
 ![](greetings.svg)
 
-More specifically, pika is designed to work with _explorable graphs_: a graph that can tell you what's in it, and can be either synchronous or asynchronous. Many common data structures can be represented as explorable graphs.
+More specifically, ori is designed to work with _explorable graphs_: a graph that can tell you what's in it, and can be either synchronous or asynchronous. Many common data structures can be represented as explorable graphs.
 
 The YAML data format shown above can be easier for people to read than formats like JSON. If you prefer, you can just as easily use the ubiquitous JSON format.
 
-pika itself natively understands several types of explorable graphs:
+ori itself natively understands several types of explorable graphs:
 
 - JSON
 - YAML
@@ -273,7 +273,7 @@ pika itself natively understands several types of explorable graphs:
 - JavaScript arrays
 - JavaScript functions
 - folder trees
-- web sites (some operations require support for [.keys.json](/pika/.keys.json) files, discussed later)
+- web sites (some operations require support for [.keys.json](/ori/.keys.json) files, discussed later)
 - any object that implements the [Explorable](/core/explorable.html) interface
 
 ## Extract specific values out of a graph
@@ -281,7 +281,7 @@ pika itself natively understands several types of explorable graphs:
 You can use path syntax to extract a specific value from a graph.
 
 ```console
-$ pika greetings.yaml/Alice
+$ ori greetings.yaml/Alice
 Hello, Alice.
 ```
 
@@ -290,27 +290,27 @@ The `greetings.yaml` graph is a flat list, but it can be a hierarchical tree or 
 An explorable graph can also be invoked like a function, so you also have the option of using function call syntax:
 
 ```console
-$ pika "greetings.yaml('Alice')"
+$ ori "greetings.yaml('Alice')"
 Hello, Alice.
 ```
 
-You can easily combine pika features like JSON/YAML parsing, path syntax, and function invocation to have pika parse a specific value out of a graph and feed that directly to your function.
+You can easily combine ori features like JSON/YAML parsing, path syntax, and function invocation to have ori parse a specific value out of a graph and feed that directly to your function.
 
 ```console
-$ pika uppercase greetings.yaml/Alice
+$ ori uppercase greetings.yaml/Alice
 HELLO, ALICE.
 ```
 
 ## Translate JSON to YAML and vice versa
 
-You can use pika to transform a graph from one format to another. By default, pika renders graphs in YAML format, but you can ask for JSON format with the `json` function:
+You can use ori to transform a graph from one format to another. By default, ori renders graphs in YAML format, but you can ask for JSON format with the `json` function:
 
 ```console
-$ pika greetings.yaml
+$ ori greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
-$ pika json greetings.yaml
+$ ori json greetings.yaml
 {
   "Alice": "Hello, Alice.",
   "Bob": "Hello, Bob.",
@@ -318,16 +318,16 @@ $ pika json greetings.yaml
 }
 ```
 
-In the other direction, you can render a JSON file as YAML with the [yaml](/pika/builtins.html#yaml) function:
+In the other direction, you can render a JSON file as YAML with the [yaml](/ori/builtins.html#yaml) function:
 
 ```console
-$ pika letters.json
+$ ori letters.json
 {
   "a": "The letter A",
   "b": "The letter B",
   "c": "The letter C"
 }
-$ pika yaml letters.json
+$ ori yaml letters.json
 a: The letter A
 b: The letter B
 c: The letter C
@@ -337,12 +337,12 @@ The `json` function isn't a specific YAML-to-JSON transformation; it can transfo
 
 ## Parse JSON/YAML files
 
-You can use pika to parse a JSON or YAML file into a plain JavaScript object that your JavaScript function can then handle.
+You can use ori to parse a JSON or YAML file into a plain JavaScript object that your JavaScript function can then handle.
 
 Suppose you have a focused function that does something with a flat, plain object. Perhaps it returns the text of an object's values:
 
 ```console
-$ pika text.js
+$ ori text.js
 export default function text(obj) {
   return Object.values(obj).join("\t");
 }
@@ -351,14 +351,14 @@ export default function text(obj) {
 You can use the built-in `plain` function to convert a YAML file to a plain JavaScript object, then pass that to the sample `text` function:
 
 ```console
-$ pika text plain greetings.yaml
+$ ori text plain greetings.yaml
 Hello, Alice.   Hello, Bob.     Hello, Carol.
 ```
 
 Or pass a parsed JSON file to your function:
 
 ```console
-$ pika text plain letters.json
+$ ori text plain letters.json
 The letter A    The letter B    The letter C
 ```
 
@@ -366,10 +366,10 @@ Separating the parsing from your function like this lets you keep your function 
 
 ## Render the current file system tree as a graph
 
-The file system is just another graph that pika natively understands. If you give pika a path to a folder, it will treat that as a graph. For example, you can specify the current folder with a period (`.`):
+The file system is just another graph that ori natively understands. If you give ori a path to a folder, it will treat that as a graph. For example, you can specify the current folder with a period (`.`):
 
 ```console
-$ pika .
+$ ori .
 ```
 
 This will render the complete contents of the current folder, including subfolders, in YAML.
@@ -377,59 +377,59 @@ This will render the complete contents of the current folder, including subfolde
 You can capture that result to package up the current folder as a YAML file.
 
 ```console
-$ pika . > package.yaml
+$ ori . > package.yaml
 ```
 
 Or package the folder as JSON:
 
 ```console
-$ pika json . > package.json
+$ ori json . > package.json
 ```
 
 ## Unpack files into the file system
 
-This pika introduction began with you unpacking a YAML file into separate files. As another example, you can unpack the greetings in `greetings.yaml` into individual files:
+This ori introduction began with you unpacking a YAML file into separate files. As another example, you can unpack the greetings in `greetings.yaml` into individual files:
 
 ```console
-$ pika greetings.yaml
+$ ori greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
-$ pika copy greetings.yaml, files/greetings
+$ ori copy greetings.yaml, files/greetings
 $ ls greetings
 Alice   Bob     Carol
 $ cat greetings/Alice
 Hello, Alice.
 ```
 
-The `files/greetings` argument indicates that [copy](/pika/builtins.html#copy) should copy the input YAML graph to a file system graph under a folder named `greetings`. As a result, the key/value pairs in the YAML file are now individual files in a `greetings` folder.
+The `files/greetings` argument indicates that [copy](/ori/builtins.html#copy) should copy the input YAML graph to a file system graph under a folder named `greetings`. As a result, the key/value pairs in the YAML file are now individual files in a `greetings` folder.
 
-The important point here is that _all graphs look the same to pika_. It doesn't matter whether a graph is defined in a single file like YAML, or a collection of loose files in the file system. Having unpacked the `greetings.yaml` file above, we can ask pika to display the `greetings` folder we just created:
+The important point here is that _all graphs look the same to pika_. It doesn't matter whether a graph is defined in a single file like YAML, or a collection of loose files in the file system. Having unpacked the `greetings.yaml` file above, we can ask ori to display the `greetings` folder we just created:
 
 ```console
-$ pika greetings
+$ ori greetings
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
 ```
 
-It _looks_ like `greetings` is a YAML file, but it's not — it's really a folder. pika is just displaying the folder's contents in the default YAML output format. Each line of that output is actually coming from a different file.
+It _looks_ like `greetings` is a YAML file, but it's not — it's really a folder. ori is just displaying the folder's contents in the default YAML output format. Each line of that output is actually coming from a different file.
 
 The `greetings` folder and the `greetings.yaml` file both define the same graph, even though the underlying data is stored in completely different ways and accessed via different APIs.
 
 ## Process a folder tree as a JavaScript object
 
-Because the `greetings` folder created in the above example is just another graph pika can process, you can feed it to the simple JavaScript function `text(obj)` shown earlier that displayed the text values of a plain JavaScript object.
+Because the `greetings` folder created in the above example is just another graph ori can process, you can feed it to the simple JavaScript function `text(obj)` shown earlier that displayed the text values of a plain JavaScript object.
 
 ```console
-$ pika text plain greetings
+$ ori text plain greetings
 Hello, Alice.   Hello, Bob.     Hello, Carol.
 ```
 
 This connects two ideas:
 
-- A folder like `greetings` is a explorable graph pika can understand.
-- pika to convert any graph to a plain JavaScript object with the `plain` function.
+- A folder like `greetings` is a explorable graph ori can understand.
+- ori to convert any graph to a plain JavaScript object with the `plain` function.
 
 This means that you can use the `plain` function to convert a _folder_ to a plain JavaScript object too. The keys will be the file/folder names, and the values will be the file contents or folder subgraphs.
 
@@ -439,10 +439,10 @@ Another important benefit of working with explorable graphs is that you can chan
 
 ## Serve a graph
 
-You can serve any graph with the [serve](/pika/builtins.html#serve) function. For example, the sample `site.yaml` file defines a tiny graph with two web pages:
+You can serve any graph with the [serve](/ori/builtins.html#serve) function. For example, the sample `site.yaml` file defines a tiny graph with two web pages:
 
 ```console
-$ pika site.yaml
+$ ori site.yaml
 index.html: |
   <!DOCTYPE html>
   <html>
@@ -470,7 +470,7 @@ The graph looks like this:
 You can serve this tiny site directly from the file:
 
 ```console
-$ pika serve site.yaml
+$ ori serve site.yaml
 Server running at http://localhost:5000
 ```
 
@@ -483,16 +483,16 @@ Press Ctrl+C to stop the server.
 You can serve any graph. To serve the current folder:
 
 ```console
-$ pika serve .
+$ ori serve .
 Server running at http://localhost:5000
 ```
 
-This effectively lets pika work as a static file server.
+This effectively lets ori work as a static file server.
 
 As a shorthand, you can omit the period (`.`). If you don't specify a graph to serve, `serve` serves up the current folder.
 
 ```console
-$ pika serve
+$ ori serve
 Server running at http://localhost:5000
 ```
 
@@ -501,7 +501,7 @@ Server running at http://localhost:5000
 Template languages are useful for translating data into something you can present to a user. As a bare-bones template language, let's look at a function that renders HTML using a native JavaScript template literal:
 
 ```console
-$ pika template.js
+$ ori template.js
 export default (body) => `<!DOCTYPE html>
 <html>
   <head>
@@ -520,10 +520,10 @@ export default (body) => `<!DOCTYPE html>
 `;
 ```
 
-We can use pika to apply this template to data, potentially plucked out of a graph, to render that data as HTML:
+We can use ori to apply this template to data, potentially plucked out of a graph, to render that data as HTML:
 
 ```console
-$ pika template greetings.yaml/Alice
+$ ori template greetings.yaml/Alice
 <!DOCTYPE html>
 <html>
   <head>
@@ -548,22 +548,22 @@ You could save this output as an HTML file and open it in your browser, or in a 
 Earlier you saw an `uppercase` function that takes a string argument and returns an uppercase version:
 
 ```console
-$ pika uppercase greetings.yaml/Alice
+$ ori uppercase greetings.yaml/Alice
 HELLO, ALICE.
 ```
 
-You can apply that `uppercase` transformation to an entire graph with the pika's built-in `map` function:
+You can apply that `uppercase` transformation to an entire graph with the ori's built-in `map` function:
 
 ```console
-$ pika "map(greetings.yaml, uppercase)"
+$ ori "map(greetings.yaml, uppercase)"
 Alice: HELLO, ALICE.
 Bob: HELLO, BOB.
 Carol: HELLO, CAROL.
 ```
 
-It is easy to transform an entire explorable graph of one type of object into a new graph of a different type of object. You only need to identify or define a one-to-one transformation function that handles a single object, and pika can apply that as a many-to-many transformation of an entire graph.
+It is easy to transform an entire explorable graph of one type of object into a new graph of a different type of object. You only need to identify or define a one-to-one transformation function that handles a single object, and ori can apply that as a many-to-many transformation of an entire graph.
 
-The second argument to `map` is a function. (Technically, the second argument can be any explorable graph, but for the moment, we'll use a regular JavaScript function.) We want to treat that function as a first-class object, which means we _don't_ want pika to do its normal implicit function invocation here. To prevent that, you must include the parentheses by quoting the arguments to pika or otherwise escaping them.
+The second argument to `map` is a function. (Technically, the second argument can be any explorable graph, but for the moment, we'll use a regular JavaScript function.) We want to treat that function as a first-class object, which means we _don't_ want ori to do its normal implicit function invocation here. To prevent that, you must include the parentheses by quoting the arguments to ori or otherwise escaping them.
 
 The `map` example above takes the original greetings graph:
 
@@ -573,14 +573,14 @@ and creates a new graph where all the values are uppercase:
 
 ![](uppercase.svg)
 
-In this intro, we're just transforming text, but you can transform anything in bulk, including images and other binaries. If you can write a function to transform a single thing in JavaScript, you can use pika to apply that transformation to an entire graph of things.
+In this intro, we're just transforming text, but you can transform anything in bulk, including images and other binaries. If you can write a function to transform a single thing in JavaScript, you can use ori to apply that transformation to an entire graph of things.
 
 ## Traversing a transformed graph
 
 If you ask for a specific value from a `map` graph, then only that value is computed:
 
 ```console
-$ pika "map(greetings.yaml, uppercase)/Alice"
+$ ori "map(greetings.yaml, uppercase)/Alice"
 HELLO, ALICE.
 ```
 
@@ -591,7 +591,7 @@ HELLO, ALICE.
 Suppose that you have base data, like an array of people:
 
 ```console
-$ pika people.yaml
+$ ori people.yaml
 - Alice
 - Carol
 ```
@@ -599,7 +599,7 @@ $ pika people.yaml
 And some other data that associates a person's name with a greeting:
 
 ```console
-$ pika greetings.yaml
+$ ori greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
@@ -608,7 +608,7 @@ Carol: Hello, Carol.
 You can then treat both the base data and the greetings data as graphs, and pass those to `map`, to turn the list of specific people into a list of greetings:
 
 ```console
-$ pika "map(people.yaml, greetings.yaml)"
+$ ori "map(people.yaml, greetings.yaml)"
 - Hello, Alice.
 - Hello, Carol.
 ```
@@ -617,10 +617,10 @@ Above it was noted that the second argument passed to `map` can actually be any 
 
 ## Serve a transformed graph of stuff
 
-You can ask pika to serve data transformed on demand into HTML using `map` and the template we saw earlier.
+You can ask ori to serve data transformed on demand into HTML using `map` and the template we saw earlier.
 
 ```console
-$ pika "serve map(greetings.yaml, template)"
+$ ori "serve map(greetings.yaml, template)"
 Server running at http://localhost:5000
 ```
 
@@ -631,7 +631,7 @@ The served site does _not_ have an index page, but you can browse to one of the 
 You can transform a graph and save the results as files.
 
 ```console
-$ pika "copy map(greetings.yaml, template), files/html"
+$ ori "copy map(greetings.yaml, template), files/html"
 $ ls html
 Alice   Bob     Carol
 ```
@@ -639,7 +639,7 @@ Alice   Bob     Carol
 If you serve the `html` folder now, the user experience will be the same as when the HTML pages were generated dynamically by `map`:
 
 ```console
-$ pika serve html
+$ ori serve html
 Server running at http://localhost:5000
 ```
 
@@ -647,10 +647,10 @@ You can perform a `copy` operation like the one in this example in preparation f
 
 ## Inspect a live web site
 
-The web site you're reading now supports viewing its contents as an explorable graph, so you can reference it directly in pika. For example, this site includes a route [/samples/greetings/](/samples/greetings/), and you can pass that URL to pika to view the files there:
+The web site you're reading now supports viewing its contents as an explorable graph, so you can reference it directly in ori. For example, this site includes a route [/samples/greetings/](/samples/greetings/), and you can pass that URL to ori to view the files there:
 
 ```console
-$ pika https://explorablegraph.org/samples/greetings/
+$ ori https://explorablegraph.org/samples/greetings/
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
@@ -659,27 +659,27 @@ Carol: Hello, Carol.
 While that result may look like a YAML file, each of those lines is actually coming from a separate web resource.
 
 ```console
-$ pika https://explorablegraph.org/samples/greetings/Alice
+$ ori https://explorablegraph.org/samples/greetings/Alice
 Hello, Alice.
 ```
 
-pika can discover all the resources at the `/samples/greetings/` route because this server supports a simple protocol: for every route on this server, a `.keys.json` file exists that enumerates the resources at that route.
+ori can discover all the resources at the `/samples/greetings/` route because this server supports a simple protocol: for every route on this server, a `.keys.json` file exists that enumerates the resources at that route.
 
 ```console
-$ pika https://explorablegraph.org/samples/greetings/.keys.json
+$ ori https://explorablegraph.org/samples/greetings/.keys.json
 ["Alice","Bob","Carol"]
 ```
 
-When you ask to view a route, pika asks that server for its `.keys.json` file, then uses that information to traverse all the resources at that route.
+When you ask to view a route, ori asks that server for its `.keys.json` file, then uses that information to traverse all the resources at that route.
 
-Making the full contents of a site more freely available might be concerning to some people, but most web content is already available to users; it's just not conveniently inspectable. pika extends the spirit of the browser's View Source feature, which looks at a single web page at a time, to let you inspect everything at a particular web route.
+Making the full contents of a site more freely available might be concerning to some people, but most web content is already available to users; it's just not conveniently inspectable. ori extends the spirit of the browser's View Source feature, which looks at a single web page at a time, to let you inspect everything at a particular web route.
 
 ## Create a web site mirror
 
-Since a web site like explorablegraph.org is an explorable graph, and pika can serve explorable graphs, then you can easily set up a local mirror for this site:
+Since a web site like explorablegraph.org is an explorable graph, and ori can serve explorable graphs, then you can easily set up a local mirror for this site:
 
 ```console
-$ pika serve https://explorablegraph.org
+$ ori serve https://explorablegraph.org
 Server running at http://localhost:5000
 ```
 
@@ -687,21 +687,21 @@ Your local server is now mirroring the explorablegraph.org site: when you browse
 
 ## Copy a live web site to local files
 
-You can also use pika to copy an explorable web route to local files:
+You can also use ori to copy an explorable web route to local files:
 
 ```console
-$ pika copy https://explorablegraph.org/samples/greetings/, files/snapshot
+$ ori copy https://explorablegraph.org/samples/greetings/, files/snapshot
 $ ls snapshot
 Alice Bob   Carol
 ```
 
 While some people may balk at letting people freely copy web resources to their own machine, there are plenty of cases where the entire point of the site is to make information freely available.
 
-Of course, just because copying a site is possible doesn't mean it's efficient. If you regularly need to copy web resources to local files, there are faster tools for that job. But if you only do that infrequently, the general-purpose pika may suffice.
+Of course, just because copying a site is possible doesn't mean it's efficient. If you regularly need to copy web resources to local files, there are faster tools for that job. But if you only do that infrequently, the general-purpose ori may suffice.
 
 ## Finish
 
-This concludes the pika introduction. As you've seen, pika is useful for
+This concludes the ori introduction. As you've seen, ori is useful for
 
 - invoking JavaScript functions from the shell
 - parsing arguments from the command line and passing those to JavaScript functions
@@ -709,7 +709,7 @@ This concludes the pika introduction. As you've seen, pika is useful for
 - capturing function output to files
 - working with graphs defined in JSON/YAML files, the file system, or web sites
 
-If you installed pika globally at the start of this introduction, but won't use pika after this, now is a good time to uninstall it and clean up:
+If you installed ori globally at the start of this introduction, but won't use ori after this, now is a good time to uninstall it and clean up:
 
 ```console
 $ cd ..
@@ -717,6 +717,6 @@ $ rm -r samples
 $ npm uninstall -g @explorablegraph/explorable
 ```
 
-If you installed pika without the `-g` global flag, you can just delete the directory you were working in.
+If you installed ori without the `-g` global flag, you can just delete the directory you were working in.
 
-_Reviewer's note: Feel free to experiment further with pika if you'd like, but understand that it's not yet stable and will likely undergo further change. Anyone interested in using it should be in contact with [@JanMiksovsky](https://twitter.com/JanMiksovsky), and at this stage should be prepared to participate in the project at some level beyond just filing bug reports and expecting those bugs to be fixed._
+_Reviewer's note: Feel free to experiment further with ori if you'd like, but understand that it's not yet stable and will likely undergo further change. Anyone interested in using it should be in contact with [@JanMiksovsky](https://twitter.com/JanMiksovsky), and at this stage should be prepared to participate in the project at some level beyond just filing bug reports and expecting those bugs to be fixed._
