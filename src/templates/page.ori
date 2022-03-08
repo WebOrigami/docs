@@ -16,12 +16,12 @@
     <img class="origami" src="/assets/{{ js/chooseIcon(path, assets) }}">
     <header>
       <h1>{{ title }}</h1>
-      <p class="subtitle">{{ subtitle }}</p>
+{{ if(subtitle, =>`<p class="subtitle">{{ subtitle }}</p>` )}}
     </header>
 {{ templates/sideBar.ori() }}
     <main>
       <div class="markdown-body">
-        {{ bodyText }}
+        {{ @value }}
       </div>
     </main>
   </body>

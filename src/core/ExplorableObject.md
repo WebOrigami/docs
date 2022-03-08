@@ -15,10 +15,10 @@ const graph = new ExplorableObject({
 });
 ```
 
-The [pika](/pika) tool will display the contents of the resulting `ExplorableObject`.
+The [ori](/ori) tool will display the contents of the resulting `ExplorableObject`.
 
 ```console
-$ pika object
+$ ori object
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.

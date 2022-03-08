@@ -26,10 +26,10 @@ export default {
 };
 ```
 
-You can use the pika tool to load and display the above graph:
+You can use the ori tool to load and display the above graph:
 
 ```console
-$ pika direct
+$ ori direct
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
@@ -51,7 +51,7 @@ export default new ExplorableObject({
 ```
 
 ```console
-$ pika object
+$ ori object
 Alice: Hello, Alice. [from an object]
 Bob: Hello, Bob. [from an object]
 Carol: Hello, Carol. [from an object]
@@ -72,7 +72,7 @@ export default new ExplorableFunction(
 ```
 
 ```console
-$ pika function
+$ ori function
 Alice: Hello, Alice. [from a function]
 Bob: Hello, Bob. [from a function]
 Carol: Hello, Carol. [from a function]

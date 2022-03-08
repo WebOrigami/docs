@@ -404,7 +404,7 @@ Hello, Alice.
 
 The `files/greetings` argument indicates that [copy](/ori/builtins.html#copy) should copy the input YAML graph to a file system graph under a folder named `greetings`. As a result, the key/value pairs in the YAML file are now individual files in a `greetings` folder.
 
-The important point here is that _all graphs look the same to pika_. It doesn't matter whether a graph is defined in a single file like YAML, or a collection of loose files in the file system. Having unpacked the `greetings.yaml` file above, we can ask ori to display the `greetings` folder we just created:
+The important point here is that _all graphs look the same to ori_. It doesn't matter whether a graph is defined in a single file like YAML, or a collection of loose files in the file system. Having unpacked the `greetings.yaml` file above, we can ask ori to display the `greetings` folder we just created:
 
 ```console
 $ ori greetings

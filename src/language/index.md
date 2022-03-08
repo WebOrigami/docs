@@ -1,6 +1,6 @@
 ---
-title: Origami language
-subtitle: Expression language for graph paths, function calls, and basic primitive types
+title: Origami expression language
+subtitle: A small language for expressions that access or transform graphs and other data
 ---
 
 ## Usage

@@ -92,7 +92,7 @@ You can view that index page at http://localhost:5000/src/step5/. Clicking a per
 ### Defining the data as an array instead of an object
 
 ```console
-$ pika addIndex team.yaml, "'name'"
+$ ori addIndex team.yaml, "'name'"
 Alice:
   name: Alice
 Bob:

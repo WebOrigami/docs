@@ -82,7 +82,8 @@ a.current {
 }
 
 header {
-  /* grid-area: header; */
+  align-items: center;
+  display: grid;
 }
 
 main {
@@ -164,9 +165,7 @@ nav a:hover {
 img.origami {
   align-self: center;
   margin: 1rem 0;
-  max-width: 100px;
   max-height: 100px;
-  opacity: 0.5;
 }
 
 .sequence {

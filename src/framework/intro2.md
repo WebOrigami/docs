@@ -33,7 +33,7 @@ Given this pipeline, ask yourself:
 
 Most designers and developers will ultimately touch on these questions, but often don't ask them directly. Doing so can give you a better understanding of what you are trying to do, and thereby help you do whatever it is better and more easily.
 
-Egret is a mental paradigm and programming framework for doing this.
+Origami is a mental paradigm and programming framework for doing this.
 
 ## Desired final form of the About Us content
 

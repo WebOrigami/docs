@@ -14,10 +14,10 @@ const graph = new ExplorableFunction({
 });
 ```
 
-The [pika](/pika) tool will display the contents of the resulting `ExplorableFunction`.
+The [ori](/ori) tool will display the contents of the resulting `ExplorableFunction`.
 
 ```console
-$ pika function
+$ ori function
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
@@ -48,10 +48,10 @@ class ExplorableFunction {
 Unlike explorable classes like [ExplorableObject](ExplorableObject.html), an `ExplorableFunction` can often accept keys which it does not make public in its `asyncIterator`. The sample `ExplorableFunction` defined above exposes only three keys ("Alice", "Bob", "Carol"), but will actually accept any key.
 
 ```console
-$ pika keys function
+$ ori keys function
 - Alice
 - Bob
 - Carol
-$ pika function/David
+$ ori function/David
 Hello, David.
 ```

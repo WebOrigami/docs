@@ -2,7 +2,7 @@
 title: Built-In Functions
 ---
 
-These examples generally demonstrate invoking built-in functions from the command line, although the same functions can also be used in Egret formulas.
+These examples generally demonstrate invoking built-in functions from the command line, although the same functions can also be used in Origami formulas.
 
 <a name="cache"></a>
 
@@ -26,7 +26,7 @@ This composes the indicated graphs, which can be any graph [variant](/core/varia
 
 ## config([relativePath])
 
-This returns the graph for the active pika configuration that applies to the indicated directory. This directory will be the current folder, or the folder at the indicated `relativePath` if supplied.
+This returns the graph for the active ori configuration that applies to the indicated directory. This directory will be the current folder, or the folder at the indicated `relativePath` if supplied.
 
 <a name="copy"></a>
 
@@ -37,11 +37,11 @@ Traverses the `sourceGraph` and writes all values into the `targetGraph`.
 For example, to copy the values from a YAML file into individual files:
 
 ```console
-$ pika greetings.yaml
+$ ori greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
-$ pika copy greetings.yaml, files/greetings
+$ ori copy greetings.yaml, files/greetings
 $ ls greetings
 Alice   Bob     Carol
 $ cat greetings/Alice
@@ -56,7 +56,7 @@ The `targetGraph` must support the [`set`](/core/set.html) method. The only type
 
 ## defaultGraph([relativePath])
 
-Returns the default graph that will be used by pika as the scope for evaluating commands. This graph will be the current folder, or the folder at the indicated `relativePath` if supplied.
+Returns the default graph that will be used by ori as the scope for evaluating commands. This graph will be the current folder, or the folder at the indicated `relativePath` if supplied.
 
 The default graph will be an instance of [ExplorableFiles](/core/ExplorableFiles.html) transformed in various ways to facilitate commands. Among other things, if the resulting graph is asked for a key like `foo` which does not exist, the graph will make a second check to see if a module `foo.js` exists and, if so, to return the default export from that module.
 
@@ -93,13 +93,13 @@ Returns an [ExplorableFiles](/core/ExplorableFiles.html) representation of the c
 Returns any _front matter_ parsed from the start of the indicated text. The front matter data should be in JSON or YAML format and delimited before and after by three hyphens on a line by themselves.
 
 ```console
-$ pika hello.md
+$ ori hello.md
 ​---
 title: Hello
 ​---
 
 Hello, world.
-$ pika front hello.md
+$ ori front hello.md
 title: Hello
 ```
 
@@ -143,7 +143,7 @@ Returns an [ExplorableSite](/core/ExplorableSite.html) for the given HTTPS URL.
 
 The first argument is a string indicating the URL domain; the remainder are the portions of the URL path within that domain. E.g., for the URL `example.com/foo/bar`, the arguments would be `example.com`, `foo`, and `bar`.
 
-You normally won't need to call this function directly. pika will parse the URL `https://example.com/foo/bar` into the function call `https('example.com', 'foo', 'bar')` for you, so you can use the more readable URL format.
+You normally won't need to call this function directly. ori will parse the URL `https://example.com/foo/bar` into the function call `https('example.com', 'foo', 'bar')` for you, so you can use the more readable URL format.
 
 <a name="inners"></a>
 
@@ -157,14 +157,14 @@ Returns the inner nodes — the nodes with children — in the indicated `graph`
 
 Render the contents of the object in JSON format.
 
-The pika tool uses YAML as its default output format, so you can use the `json` command to reformat the output as JSON:
+The ori tool uses YAML as its default output format, so you can use the `json` command to reformat the output as JSON:
 
 ```console
-$ pika greetings.yaml
+$ ori greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
-$ pika json greetings.yaml
+$ ori json greetings.yaml
 {
   "Alice": "Hello, Alice.",
   "Bob": "Hello, Bob.",
@@ -179,11 +179,11 @@ $ pika json greetings.yaml
 Returns an array of the top-level keys in the indicated graph, which can be any graph [variant](/core/variants.html).
 
 ```console
-$ pika greetings.yaml
+$ ori greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
-$ pika keys greetings.yaml
+$ ori keys greetings.yaml
 - Alice
 - Bob
 - Carol
@@ -204,13 +204,13 @@ _This experimental function is not yet stable enough to document._
 Returns a new [MapGraph](/core/MapGraph.html) that applies the given `mapFn` to the values in the `graph`.
 
 ```console
-$ pika greetings.yaml
+$ ori greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
-$ pika uppercase.js
+$ ori uppercase.js
 export default (x) => x.toString().toUpperCase();
-$ pika "map(greetings.yaml, uppercase)"
+$ ori "map(greetings.yaml, uppercase)"
 Alice: HELLO, ALICE.
 Bob: HELLO, BOB.
 Carol: HELLO, CAROL.
@@ -220,7 +220,7 @@ If a `sourceExtension` or `targetExtension` are supplied, this returns a [MapTyp
 
 Unlike a JavaScript [Array map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), the `map` function does not do any mapping work upon invocation — it only does the work when someone requests the mapped graph's keys or values.
 
-The `mapFn` mapping function is typically a JavaScript function, but can be any graph [variant](/core/variants.html). For example, you can use a second [graph as a map](/pika/intro.html#use-a-graph-as-a-map).
+The `mapFn` mapping function is typically a JavaScript function, but can be any graph [variant](/core/variants.html). For example, you can use a second [graph as a map](/cli/intro.html#use-a-graph-as-a-map).
 
 `map` works on all levels of a graph. If you only want to transform the top-level values in a graph, see [shallowMap](#shallowMap).
 
@@ -236,7 +236,7 @@ Any front matter in the markdown will be preserved at the top of the HTML output
 
 ## meta(graph)
 
-Returns an Egret [metagraph](/framework/metagraph.html) by applying a [MetaTransform](/framework/MetaTransform.html) to the indicated graph. This interprets [formulas](/framework/formulas.html) in the graph's keys as pika expressions.
+Returns an Origami [metagraph](/framework/metagraph.html) by applying a [MetaTransform](/framework/MetaTransform.html) to the indicated graph. This interprets [formulas](/framework/formulas.html) in the graph's keys as ori expressions.
 
 <a name="nulls"></a>
 
@@ -245,11 +245,11 @@ Returns an Egret [metagraph](/framework/metagraph.html) by applying a [MetaTrans
 Returns a new graph with all values equal to null.
 
 ```console
-$ pika greetings.yaml
+$ ori greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
-$ pika nulls greetings.yaml
+$ ori nulls greetings.yaml
 ? Alice
 ? Bob
 ? Carol
@@ -272,7 +272,7 @@ Parses the indicated text as JSON or YAML. The parsed plain JavaScript object is
 Parsing a quoted argument on the command line:
 
 ```console
-$ pika parse "'[1, 2, 3]'"
+$ ori parse "'[1, 2, 3]'"
 - 1
 - 2
 - 3
@@ -299,7 +299,7 @@ A common use for `plain` is to convert a graph into a form that you can pass to 
 Starts a local web server to serve the contents of `graph`. To serve the current folder:
 
 ```console
-$ pika serve .
+$ ori serve .
 Server running at http://localhost:5000
 ```
 
@@ -326,15 +326,15 @@ Returns the output of executing the indicated shell command.
 Returns a new graph with the original `graph` keys randomly shuffled.
 
 ```console
-$ pika greetings.yaml
+$ ori greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
-$ pika shuffle greetings.yaml
+$ ori shuffle greetings.yaml
 Carol: Hello, Carol.
 Alice: Hello, Alice.
 Bob: Hello, Bob.
-$ pika shuffle greetings.yaml
+$ ori shuffle greetings.yaml
 Carol: Hello, Carol.
 Bob: Hello, Bob.
 Alice: Hello, Alice.
@@ -353,9 +353,9 @@ _This experimental function is not yet stable enough to document._
 Returns the complete contents of the standard input stream. This lets you pipe data into JavaScript functions:
 
 ```console
-$ pika uppercase.js
+$ ori uppercase.js
 export default (x) => x.toString().toUpperCase();
-$ echo This is input from the shell | pika uppercase stdin
+$ echo This is input from the shell | ori uppercase stdin
 THIS IS INPUT FROM THE SHELL
 ```
 
@@ -363,7 +363,7 @@ THIS IS INPUT FROM THE SHELL
 
 ## stdout(obj)
 
-Writes the indicated object `obj` to the standard output stream. This `stdout` function is used by pika itself to write the evaluated result of an expression to the console. If you wish to override the standard `stdout` implementation to, say, default to JSON output instead of YAML, you can do so by defining your own function named `stdout` in the pika [config file](/pika/config.html).
+Writes the indicated object `obj` to the standard output stream. This `stdout` function is used by ori itself to write the evaluated result of an expression to the console. If you wish to override the standard `stdout` implementation to, say, default to JSON output instead of YAML, you can do so by defining your own function named `stdout` in the ori [config file](/cli/config.html).
 
 <a name="svg"></a>
 
@@ -380,11 +380,11 @@ Returns a basic tabular representation of the keys and values in the indicated `
 If the graph is flat — that is, has only a single level of keys and values — the table will have two columns listing those.
 
 ```console
-$ pika greetings.yaml
+$ ori greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
-$ pika table greetings.yaml
+$ ori table greetings.yaml
 Key     Value
 Alice   Hello, Alice.
 Bob     Hello, Bob.
@@ -394,7 +394,7 @@ Carol   Hello, Carol.
 If the graph has two levels, the row headings will contain the top-level keys, and the column headings will be the second-level keys. (The first subgraph in the graph will be taken as representative of the remaining subgraphs.)
 
 ```console
-$ pika languages.json
+$ ori languages.json
 {
   "english": {
     "a": "Hello, a.",
@@ -412,7 +412,7 @@ $ pika languages.json
     "c": "Hola, c."
   }
 }
-$ pika table languages.json | column -t -s$'\t'
+$ ori table languages.json | column -t -s$'\t'
          a            b            c
 english  Hello, a.    Hello, b.    Hello, c.
 french   Bonjour, a.  Bonjour, b.  Bonjour, c.
@@ -428,11 +428,11 @@ spanish  Hola, a.     Hola, b.     Hola, c.
 Returns an array of the top-level values in the indicated graph, which can be any graph [variant](/core/variants.html).
 
 ```console
-$ pika greetings.yaml
+$ ori greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
-$ pika values greetings.yaml
+$ ori values greetings.yaml
 - Hello, Alice.
 - Hello, Bob.
 - Hello, Carol.
@@ -446,16 +446,16 @@ See also [keys](#keys).
 
 Render the contents of the object in YAML format.
 
-The pika tool uses YAML as its default output format, so you won't often need to invoke the `yaml` function yourself from the command line. One occasion to use it would be to convert a JSON file to YAML.
+The ori tool uses YAML as its default output format, so you won't often need to invoke the `yaml` function yourself from the command line. One occasion to use it would be to convert a JSON file to YAML.
 
 ```console
-$ pika letters.json
+$ ori letters.json
 {
   "a": "The letter A",
   "b": "The letter B",
   "c": "The letter C"
 }
-$ pika yaml letters.json
+$ ori yaml letters.json
 a: The letter A
 b: The letter B
 c: The letter C
