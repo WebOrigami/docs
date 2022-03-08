@@ -17,7 +17,7 @@ The graph variant types are:
 The easiest way for you to write a function that can accept any graph variant as a parameter is to first pass that parameter to [ExplorableGraph.from()](ExplorableGraph.html#from). If the parameter is any of the graph variant types listed above, `from()` will return an corresponding object that directly implements the `Explorable` interface.
 
 ```js
-function manipulateGraph(variant) {
+async function manipulateGraph(variant) {
   const graph = ExplorableGraph.from(variant);
   if (graph) {
     /* `graph` is an explorable graph */

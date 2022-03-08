@@ -42,7 +42,7 @@ $ npx ori
 You can use ori itself to copy sample files used in this introduction into a new local folder called `samples`:
 
 ```console
-$ ori copy https://explorablegraph.org/samples/ori.yaml, files/samples
+$ ori copy https://explorablegraph.org/samples/cli.yaml, files/samples
 $ cd samples
 $ ls
 double.js      letters.json   sample.txt     text.js
@@ -57,7 +57,7 @@ The new `samples` folder should show a small collection of files. (The specific 
 If you prefer, you can wrap ori function arguments in parentheses — but since command shells typically interpret parentheses, you may have to quote them:
 
 ```console
-$ ori "copy(https://explorablegraph.org/samples/ori.yaml, files/samples)"
+$ ori "copy(https://explorablegraph.org/samples/cli.yaml, files/samples)"
 ```
 
 The expression parser in ori makes parentheses implicit, so in many cases you don't have to type them. There are some cases where parentheses are necessary; you'll see an example of that later.
@@ -252,14 +252,14 @@ ori is especially good at dealing with graphs. One way to define a graph is in [
 
 ```console
 $ ori greetings.yaml
-Alice: Hello, Alice.
-Bob: Hello, Bob.
-Carol: Hello, Carol.
+{{ samples/cli.yaml/greetings.yaml }}
 ```
 
 ori can interpret this file as the following graph:
 
-![](greetings.svg)
+<div>
+{{ svg samples/cli.yaml/greetings.yaml }}
+</div>
 
 More specifically, ori is designed to work with _explorable graphs_: a graph that can tell you what's in it, and can be either synchronous or asynchronous. Many common data structures can be represented as explorable graphs.
 
@@ -307,30 +307,16 @@ You can use ori to transform a graph from one format to another. By default, ori
 
 ```console
 $ ori greetings.yaml
-Alice: Hello, Alice.
-Bob: Hello, Bob.
-Carol: Hello, Carol.
-$ ori json greetings.yaml
-{
-  "Alice": "Hello, Alice.",
-  "Bob": "Hello, Bob.",
-  "Carol": "Hello, Carol."
-}
+{{ samples/cli.yaml/greetings.yaml }}$ ori json greetings.yaml
+{{ json samples/cli.yaml/greetings.yaml }}
 ```
 
 In the other direction, you can render a JSON file as YAML with the [yaml](/ori/builtins.html#yaml) function:
 
 ```console
 $ ori letters.json
-{
-  "a": "The letter A",
-  "b": "The letter B",
-  "c": "The letter C"
-}
-$ ori yaml letters.json
-a: The letter A
-b: The letter B
-c: The letter C
+{{ samples/cli.yaml/letters.json }}$ ori yaml letters.json
+{{ yaml samples/cli.yaml/letters.json }}
 ```
 
 The `json` function isn't a specific YAML-to-JSON transformation; it can transform any graph to JSON text. Similarly, `yaml` can transform any graph to YAML text.
