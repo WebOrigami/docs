@@ -252,13 +252,13 @@ ori is especially good at dealing with graphs. One way to define a graph is in [
 
 ```console
 $ ori greetings.yaml
-{{ samples/cli.yaml/greetings.yaml }}
+{{ client/samples/cli.yaml/greetings.yaml }}
 ```
 
 ori can interpret this file as the following graph:
 
 <div>
-{{ svg samples/cli.yaml/greetings.yaml }}
+{{ svg client/samples/cli.yaml/greetings.yaml }}
 </div>
 
 More specifically, ori is designed to work with _explorable graphs_: a graph that can tell you what's in it, and can be either synchronous or asynchronous. Many common data structures can be represented as explorable graphs.
@@ -307,16 +307,16 @@ You can use ori to transform a graph from one format to another. By default, ori
 
 ```console
 $ ori greetings.yaml
-{{ samples/cli.yaml/greetings.yaml }}$ ori json greetings.yaml
-{{ json samples/cli.yaml/greetings.yaml }}
+{{ client/samples/cli.yaml/greetings.yaml }}$ ori json greetings.yaml
+{{ json client/samples/cli.yaml/greetings.yaml }}
 ```
 
 In the other direction, you can render a JSON file as YAML with the [yaml](/ori/builtins.html#yaml) function:
 
 ```console
 $ ori letters.json
-{{ samples/cli.yaml/letters.json }}$ ori yaml letters.json
-{{ yaml samples/cli.yaml/letters.json }}
+{{ client/samples/cli.yaml/letters.json }}$ ori yaml letters.json
+{{ yaml client/samples/cli.yaml/letters.json }}
 ```
 
 The `json` function isn't a specific YAML-to-JSON transformation; it can transform any graph to JSON text. Similarly, `yaml` can transform any graph to YAML text.
