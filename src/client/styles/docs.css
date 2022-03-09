@@ -149,8 +149,8 @@ blockquote {
 
 img.origami {
   align-self: center;
+  height: 100px;
   margin: 1rem 0;
-  max-height: 100px;
   max-width: 90%;
 }
 
