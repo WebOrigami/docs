@@ -1,10 +1,35 @@
+@font-face {
+  font-display: fallback;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/assets/fonts/OpenSans-Regular.ttf");
+}
+
+@font-face {
+  font-display: fallback;
+  font-family: "Open Sans";
+  font-style: italic;
+  font-weight: 400;
+  src: url("/assets/fonts/OpenSans-Italic.ttf");
+}
+
+@font-face {
+  font-display: fallback;
+  font-family: "Open Sans";
+  font-style: bold;
+  font-weight: 700;
+  src: url("/assets/fonts/OpenSans-Bold.ttf");
+}
+
 * {
   box-sizing: border-box;
 }
 
 html {
   background: #c18b2a;
-  background: url(/assets/textureGold.jpeg);
+  background-attachment: fixed;
+  background-image: url(/assets/textureGold.jpeg);
 }
 
 /*
@@ -72,7 +97,7 @@ a.current {
 .subtitle {
   font-style: italic;
   margin-bottom: 1rem;
-  margin-top: -1rem;
+  margin-top: -2rem;
 }
 
 #logo {
@@ -102,7 +127,7 @@ blockquote {
  */
 #page {
   background: #fafafa;
-  box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+  box-shadow: 0 0 20px rgb(0 0 0 / 50%);
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
