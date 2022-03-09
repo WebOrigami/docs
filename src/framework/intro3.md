@@ -63,23 +63,7 @@ To phrase this in graph terms, consider the graph of HTML pages above. The index
 
 The `step5` folder contains a template for the index page called `index.hbs`. This template expects to be passed a graph of person data — the data in the same `team.yaml` shown above. For each person in that graph, the template will create a list item linking to that person. The relevant portion of the template looks like:
 
-```handlebars
-<ul class="tileGrid">
-  {{#each this}}
-    <li class="tile">
-      <a href="team/{{@key}}">
-        <img
-          class="avatar small"
-          src="/src/assets/headshots/{{@key}}.jpg"
-          alt="{{name}}"
-        />
-        <h2 class="name">{{name}}</h2>
-        <div class="position">{{position}}</div>
-      </a>
-    </li>
-  {{/each}}
-</ul>
-```
+...template goes here
 
 You can produce the index page with a formula that applies the `index.hbs` template to the `team.yaml` data. Create a new, empty file called
 

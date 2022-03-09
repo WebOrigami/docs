@@ -7,15 +7,15 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "pika",
+      "name": "ori",
       "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/node_modules/@explorablegraph/explorable/src/cli/pika.js",
+      "program": "${workspaceFolder}/node_modules/@explorablegraph/explorable/src/cli/ori.js",
       "cwd": "${workspaceFolder}/src/js/",
       "args": ["addPaths languages.yaml"]
     },
     {
       "name": "tsdoc",
-      "program": "${workspaceFolder}/node_modules/@explorablegraph/explorable/src/cli/pika.js",
+      "program": "${workspaceFolder}/node_modules/@explorablegraph/explorable/src/cli/ori.js",
       "request": "launch",
       "skipFiles": ["<node_internals>/**"],
       "type": "pwa-node",
@@ -27,7 +27,7 @@
       "request": "launch",
       "name": "serve",
       "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/node_modules/@explorablegraph/explorable/src/cli/pika.js",
+      "program": "${workspaceFolder}/node_modules/@explorablegraph/explorable/src/cli/ori.js",
       "runtimeArgs": ["--preserve-symlinks"],
       // "cwd": "${workspaceFolder}/site",
       "args": ["serve watch virtual/site"]

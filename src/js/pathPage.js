@@ -4,5 +4,6 @@ export default function (path) {
     return undefined;
   }
   const parts = path.split("/");
-  return parts[parts.length - 1];
+  const result = parts[parts.length - 1];
+  return result;
 }
