@@ -1,5 +1,5 @@
 # Find any code examples in the markdown and test them
-tested = map(src, src/js/mdExamples, '.md'):
+tested = map(content, src/js/mdExamples, '.md'):
 
 # Inline any code examples
 inlined = map(tested, src/js/inline, '.md'):

@@ -30,7 +30,8 @@
       "program": "${workspaceFolder}/node_modules/@explorablegraph/explorable/src/cli/ori.js",
       "runtimeArgs": ["--preserve-symlinks"],
       // "cwd": "${workspaceFolder}/site",
-      "args": ["serve watch virtual/site"]
+      // "args": ["serve watch virtual/src/site"]
+      "args": ["serve virtual/src/site"]
       // "args": ["serve"]
     }
   ]

@@ -10,7 +10,7 @@
     "yaml": "2.0.0-8"
   },
   "scripts": {
-    "build": "ori copy netlify:virtual:site, files/dist",
+    "build": "ori 'copy netlify(virtual/src/site), files/dist'",
     "test": "ori 'defined(map(yamlsTests(mdYamls(docs/metagraph.md)), assert))'",
     "index": "ori 'index/indexDocs'"
   }

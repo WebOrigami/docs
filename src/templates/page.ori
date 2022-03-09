@@ -1,5 +1,5 @@
 ---
-icon = js/chooseIcon(path, assets/origami):
+icon = js/chooseIcon(path, client/assets/origami):
 ---
 <!DOCTYPE html>
 <html lang="en">
