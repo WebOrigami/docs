@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+html {
+  background: #c18b2a;
+  background: url(/assets/textureGold.jpeg);
+}
+
 /*
  * Body
  */
@@ -9,18 +14,12 @@
 body {
   counter-reset: h2;
   display: grid;
-  gap: 0.5rem;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "header"
-    "sidebar"
-    "main";
-  grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: repeat(3, auto);
-  padding: 1em;
-  max-width: 1000px;
-  margin: 0 auto;
-  --color-canvas-subtle: #f6f8fa;
+  justify-content: center;
+  margin: 0;
+  min-height: 100vh;
+  padding: 0;
+  /* --color-canvas-subtle: #f6f8fa; */
+  --color-canvas-subtle: hsl(47deg 53% 95%);
 }
 
 /*
@@ -83,11 +82,9 @@ a.current {
 
 header {
   align-items: center;
+  border-bottom: 1px solid #cfc294;
+  color: #222e3e;
   display: grid;
-}
-
-main {
-  /* grid-area: main; */
 }
 
 img {
@@ -98,6 +95,55 @@ blockquote {
   border: none;
   color: inherit;
   padding: 0.5rem 2rem;
+}
+
+/*
+ * Design elements
+ */
+#page {
+  background: #fafafa;
+  box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  max-width: 100%;
+  width: 1000px;
+  --side-nav-width: 200px;
+  --grid-gap: 0.5rem;
+  --grid-padding-horizontal: 2rem;
+  --grid-padding-vertical: 1rem;
+}
+
+#pageContent {
+  display: grid;
+  gap: var(--grid-gap);
+  grid-template-columns: var(--side-nav-width) 1fr;
+  grid-template-rows: auto 1fr;
+  padding: var(--grid-padding-vertical) var(--grid-padding-horizontal);
+}
+
+img.origami {
+  align-self: center;
+  margin: 1rem 0;
+  max-height: 100px;
+  max-width: 90%;
+}
+
+.sequence {
+  align-items: center;
+  aspect-ratio: 1;
+  background: black;
+  border-radius: 50%;
+  color: white;
+  display: inline-grid;
+  height: 2rem;
+  justify-content: center;
+  width: 2rem;
+}
+
+.two-up {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 /*
@@ -133,24 +179,42 @@ code.language-console span {
  * Navigation
  */
 
+#topNav {
+  background: #222e3e;
+  background-image: url(/assets/textureIndigo.jpeg);
+  box-shadow: 0 0 0.5rem;
+  display: grid;
+  grid-column: 1 / span 2;
+  gap: var(--grid-gap);
+  grid-template-columns: var(--side-nav-width) 1fr;
+  padding: var(--grid-padding-vertical) var(--grid-padding-horizontal);
+}
+
+#topNav a {
+  color: #eee;
+}
+
 #navBar {
   display: flex;
   gap: 1rem;
-  margin-bottom: 1rem;
 }
 
-#logo a,
+#topNav a,
 nav a {
   text-decoration: none;
 }
 
-#logo a:hover,
+#topNav a:hover,
 nav a:hover {
   text-decoration: underline;
 }
 
+#topNav a.current {
+  color: white;
+  font-weight: bold;
+}
+
 #sideBar {
-  /* grid-area: sideBar; */
   grid-column: 1; /* Baffled as to why this is necessary. */
 }
 
@@ -160,48 +224,16 @@ nav a:hover {
 }
 
 /*
- * Design
- */
-img.origami {
-  align-self: center;
-  margin: 1rem 0;
-  max-height: 100px;
-}
-
-.sequence {
-  align-items: center;
-  aspect-ratio: 1;
-  background: black;
-  border-radius: 50%;
-  color: white;
-  display: inline-grid;
-  height: 2rem;
-  justify-content: center;
-  width: 2rem;
-}
-
-.two-up {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-/*
  * Responsive queries
  */
 
 @media (min-width: 800px) {
-  body {
-    gap: 1rem;
-    /* grid-template-areas:
-      "logo header"
-      "sideBar main"; */
-    grid-template-columns: 200px minmax(0, 1fr);
-    /* grid-template-rows: auto auto; */
+  #page {
+    --grid-gap: 1rem;
   }
 
   #logo {
     display: inherit;
-    /* grid-area: logo; */
   }
 
   #navBar a[href="/"],
@@ -217,5 +249,6 @@ img.origami {
 @media (min-width: 1000px) {
   body {
     padding: 2em 4em;
+    padding: 0;
   }
 }

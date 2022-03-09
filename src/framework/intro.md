@@ -109,7 +109,7 @@ We'll come back to graph transformations, but first let's create some more inter
 In the same `hello` folder, creating a JavaScript file called `greet.js` and paste in the following:
 
 ```{{'js'}}
-{{ samples/egret.yaml/hello/greet.js }}
+{{ samples/framework.yaml/hello/greet.js }}
 ```
 
 This function generates an HTML fragment that greets a person by name if a name is supplied (or just says "Hello, world!" if no name is given).
@@ -130,7 +130,7 @@ And as before, you can view the contents of this HTML page in the command line:
 
 ```console
 $ ori app/hello.html
-{{ samples/egret.yaml/hello/hello.html }}
+{{ samples/framework.yaml/hello/hello.html }}
 ```
 
 ## Pass an argument to a function
@@ -156,13 +156,13 @@ If you want to create a greeting page for several people, you could create a for
 Create a new file called `team.yaml` and enter an array of names:
 
 ```{{'yaml'}}
-{{ samples/egret.yaml/hello/team.yaml }}
+{{ samples/framework.yaml/hello/team.yaml }}
 ```
 
 If you prefer JSON, you can go through this exercise by creating a `team.json` file instead:
 
 ```json
-{{ samples/egret.yaml/hello/team.json }}
+{{ samples/framework.yaml/hello/team.json }}
 ```
 
 Since YAML can be a little easier to read and write by hand (particularly when text needs to span multiple lines), the rest of this introduction will use YAML.
