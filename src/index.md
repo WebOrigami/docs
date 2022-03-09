@@ -1,6 +1,6 @@
 ---
 title: Origami
-subtitle: A conceptual framework and tools for creating sites, docs, data, and other content
+subtitle: A conceptual system and tools for creating sites, docs, data, and other content
 icon: bird.svg
 ---
 

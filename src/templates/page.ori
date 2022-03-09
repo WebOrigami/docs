@@ -10,6 +10,7 @@ icon = js/chooseIcon(path, assets/origami):
     <link rel="stylesheet" href="/styles/github.min.css">
     <link rel="stylesheet" href="/styles/docs.css">
     <title>{{ title }}</title>
+    <link rel="icon" href="/assets/origami/{{ icon }}" type="image/svg+xml">
   </head>
   <body{{ if numberHeadings, ` class="numberHeadings"` }}>
     <div id="page">
