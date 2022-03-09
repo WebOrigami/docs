@@ -1,10 +1,5 @@
 ## Create a virtual value with a formula
 
-```yaml
-a: Hello
-b = a: ""
-```
-
 ## Create a virtual file with a formula
 
 ## Generate a page with a formula
@@ -20,8 +15,6 @@ index.html.js
 index.html = greet('world')
 
 ## Wildcard pattern
-
-{x}.html = greet(`${x}`)
 
 ## Map markdown files to HTML files
 

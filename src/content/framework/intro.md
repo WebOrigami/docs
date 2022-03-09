@@ -71,7 +71,7 @@ You can visualize the `files` graph as a node (the folder) that points to a sing
 
 <div class="sequence">1</div>
 
-![](figures/filesGraph.svg)
+![](/figures/filesGraph.svg)
 
 If you ask ori to render the local `app` graph, it interprets any formulas and returns both real and virtual files.
 
@@ -85,7 +85,7 @@ In this case, the `app` graph includes: 1) the virtual `message` file whose cont
 
 <div class="sequence">2</div>
 
-![](figures/appGraph.svg)
+![](/figures/appGraph.svg)
 
 This virtual `app` graph was created by transforming the real `files` graph above. During this transformation, the presence of a real file with a formula for its name implied the existence of a virtual file.
 
@@ -171,7 +171,7 @@ Either way, the data file defines an array. We can visualize that array as a gra
 
 <div class="sequence">1</div>
 
-![](figures/arrayGraph.svg)
+![](/figures/arrayGraph.svg)
 
 In Origami, a graph is a first-class data type, so you can transform a graph like this with a formula. Create a new empty file called:
 
@@ -187,7 +187,7 @@ Your `greetings` formula transforms the array in `team.yaml` into a new graph of
 
 <div class="sequence">2</div>
 
-![](figures/greetingsGraph.svg)
+![](/figures/greetingsGraph.svg)
 
 The `map` function, and the graphs used by Origami generally, are _lazy_. They only do work when they need to. Unlike a JavaScript [Array map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), the `map` function here does not do any mapping work upon invocation — it only does the work when someone requests the mapped graph's keys or values. The `greetings` graph represents _potential_ work.
 
@@ -199,13 +199,13 @@ Although this graph is essentially flat — it has only level of values, graphs 
   <div>
     <div class="sequence">1</div>
     <div>
-      <img src="figures/arrayGraph.svg">
+      <img src="/figures/arrayGraph.svg">
     </div>
   </div>
   <div>
     <div class="sequence">2</div>
     <div>
-      <img src="figures/greetingsGraph.svg">
+      <img src="/figures/greetingsGraph.svg">
     </div>
   </div>
 </div>
