@@ -1,6 +1,6 @@
-import { pkt } from "@explorablegraph/explorable";
+import { orit } from "@explorablegraph/explorable";
 
 export default async function inline(buffer) {
-  const result = await pkt.call(this, buffer, null, true);
+  const result = await orit.call(this, buffer, null, true);
   return result;
 }

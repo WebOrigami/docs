@@ -3,7 +3,7 @@ title: Origami expression language
 subtitle: A small language for expressions that access or transform graphs and other data
 ---
 
-## Usage
+{{ templates/blocks.ori() }}
 
 The Origami expression language is used by
 

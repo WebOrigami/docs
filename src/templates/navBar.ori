@@ -1,3 +1,0 @@
-      <nav id="navBar">{{ map areas, =>`
-        {{ templates/linkCurrent.ori() }}` }}
-      </nav>

@@ -1,13 +1,14 @@
 # Find any code examples in the markdown and test them
-tested = map(content, src/js/mdExamples, '.md'):
+# tested = map(content, src/js/mdExamples, '.md'):
+
+# Add paths to the content
+withPaths = src/js/addPaths(content):
 
 # Inline any code examples
-inlined = map(tested, src/js/inline, '.md'):
+inlined = map(withPaths, src/js/inline, '.md'):
 
 # Convert markdown to HTML while preserving front matter
 html = map(inlined, mdHtml, '.md', '.html'):
 
-withPaths = src/js/addPaths(html):
-
 # Apply the documentation page template
-result = map(withPaths, src/templates/page.ori, '.html'):
+result = map(html, src/templates/page.ori, '.html'):

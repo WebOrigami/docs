@@ -37,6 +37,7 @@ html {
  */
 
 body {
+  color: var(--color-text);
   counter-reset: h2;
   display: grid;
   grid-template-columns: 100%;
@@ -46,6 +47,7 @@ body {
   padding: 0;
   --color-canvas-subtle: hsl(47deg 53% 95%);
   --color-rule: #cfc294;
+  --color-text: rgb(51, 51, 51);
 }
 
 /*
@@ -58,6 +60,7 @@ h1 {
 
 h2 {
   font-size: 1.8rem;
+  margin-top: 2em;
 }
 
 h3 {
@@ -131,21 +134,26 @@ td {
   vertical-align: top;
 }
 
+figure {
+  margin: 2rem 0;
+}
+
 /*
  * Design elements
  */
 #page {
-  background: #fafafa;
+  background: var(--color-page);
   box-shadow: 0 0 20px rgb(0 0 0 / 50%);
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: auto 1fr;
   margin: 1rem 0 5rem;
   max-width: 100%;
-  --side-nav-width: 0;
+  --color-page: #fafafa;
   --grid-gap: 1rem;
   --grid-padding-horizontal: 1rem;
   --grid-padding-vertical: 1rem;
+  --side-nav-width: 0;
 }
 
 #pageContent {
@@ -263,6 +271,46 @@ nav a:hover {
 }
 
 /*
+ * Architecture block diagram
+ */
+.blocks {
+  display: grid;
+  float: right;
+  font-size: smaller;
+  gap: 0.25rem;
+  grid-template-columns: auto auto;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+}
+
+.blocks a {
+  align-content: center;
+  background: var(--color-rule);
+  border: 1px solid var(--color-rule);
+  color: white;
+  display: grid;
+  justify-content: center;
+  padding: 0.25rem 0.5rem;
+  text-decoration: none;
+}
+
+.blocks a:hover {
+  filter: brightness(1.1);
+}
+
+.blocks a.current {
+  background: white;
+  color: var(--color-text);
+  font-weight: bold;
+}
+
+.blocks a[href="/language"],
+.blocks a[href="/core"],
+.blocks a[href="/pattern"] {
+  grid-column: 1 / span 2;
+}
+
+/*
  * Generated graph SVGs on page
  */
 g.graph polygon[fill="white"] {
@@ -318,7 +366,7 @@ g.node polygon[fill="none"] {
     display: none;
   }
 
-  #sidebar {
+  #sideBar {
     border-bottom: none;
     grid-column: auto;
   }
@@ -329,5 +377,13 @@ g.node polygon[fill="none"] {
 
   .subtitle {
     margin-top: -2rem;
+  }
+
+  .blocks {
+    grid-template-columns: 1fr 1fr;
+    font-size: inherit;
+  }
+  .blocks a {
+    padding: 0.5rem 1rem;
   }
 }

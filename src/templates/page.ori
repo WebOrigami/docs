@@ -1,9 +1,7 @@
 ---
-areas = (js%markCurrent)(parse(areas.yaml), currentArea):
-currentArea = (js%pathArea)(path):
-currentPage = (js%pathPage)(path):
+currentPage = js/pathPage(path):
 icon = js/chooseIcon(path, client/assets/origami):
-pages = (js%markCurrent)(parse(pages.yaml), currentPage):
+pages = js/markCurrent(parse(pages.yaml), currentPage):
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +20,11 @@ pages = (js%markCurrent)(parse(pages.yaml), currentPage):
         <div id="homeContainer">
           <a href="/">Origami</a>
         </div>
-{{ templates/navBar.ori() }}
+        <nav id="navBar">
+          <a href="/">Origami</a>
+{{ templates/areaLinks.ori() }}
+          <a href="https://github.com/ExplorableGraph/explorable">GitHub</a>
+        </nav>
       </div>
       <div id="pageContent">
         <div id="iconContainer">

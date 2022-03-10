@@ -15,7 +15,7 @@ export function AddPathsTransform(Base) {
   return class AddPaths extends Base {
     constructor(...args) {
       super(...args);
-      this.path = "/";
+      this._path = "/";
     }
 
     async *[Symbol.asyncIterator]() {
@@ -32,12 +32,12 @@ export function AddPathsTransform(Base) {
     async get(key) {
       let value = await super.get(key);
       if (value === undefined && key === "path") {
-        value = this.path;
+        value = this._path;
       } else if (typeof value === "string" || value instanceof Buffer) {
-        value = extendFrontMatter(value, this.path, key);
+        value = extendFrontMatter(value, this._path, key);
       } else if (typeof value === "object") {
         // If the value is an object, extend the object with the path.
-        value.path = extendPath(this.path, key);
+        value._path = extendPath(this._path, key);
       }
       return value;
     }
@@ -52,7 +52,7 @@ function extendFrontMatter(value, pathBase, key) {
     typeof text === "string" ? extractFrontMatter(text) : null;
   if (frontMatter) {
     const { bodyText, frontData } = frontMatter;
-    frontData.path = extendPath(pathBase, key);
+    frontData._path = extendPath(pathBase, key);
     // Hacky guess as to whether original data was JSON or YAML
     const isJson = text[4] === "{";
     const serialized = isJson
