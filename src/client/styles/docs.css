@@ -39,12 +39,13 @@ html {
 body {
   counter-reset: h2;
   display: grid;
+  grid-template-columns: 100%;
   justify-content: center;
   margin: 0;
   min-height: 100vh;
   padding: 0;
-  /* --color-canvas-subtle: #f6f8fa; */
   --color-canvas-subtle: hsl(47deg 53% 95%);
+  --color-rule: #cfc294;
 }
 
 /*
@@ -97,7 +98,7 @@ a.current {
 .subtitle {
   font-style: italic;
   margin-bottom: 1rem;
-  margin-top: -2rem;
+  margin-top: 0;
 }
 
 #logo {
@@ -107,9 +108,13 @@ a.current {
 
 header {
   align-items: center;
-  border-bottom: 1px solid #cfc294;
+  border-bottom: 1px solid var(--color-rule);
   color: #222e3e;
   display: grid;
+}
+
+header h1 {
+  margin-top: 0;
 }
 
 img {
@@ -122,6 +127,10 @@ blockquote {
   padding: 0.5rem 2rem;
 }
 
+td {
+  vertical-align: top;
+}
+
 /*
  * Design elements
  */
@@ -129,29 +138,29 @@ blockquote {
   background: #fafafa;
   box-shadow: 0 0 20px rgb(0 0 0 / 50%);
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 100%;
   grid-template-rows: auto 1fr;
+  margin: 1rem 0 5rem;
   max-width: 100%;
-  width: 1000px;
-  --side-nav-width: 200px;
-  --grid-gap: 0.5rem;
-  --grid-padding-horizontal: 2rem;
+  --side-nav-width: 0;
+  --grid-gap: 1rem;
+  --grid-padding-horizontal: 1rem;
   --grid-padding-vertical: 1rem;
 }
 
 #pageContent {
   display: grid;
   gap: var(--grid-gap);
-  grid-template-columns: var(--side-nav-width) 1fr;
-  grid-template-rows: auto 1fr;
+  grid-template-columns: 100%;
+  grid-template-rows: repeat(3, auto) 1fr;
   padding: var(--grid-padding-vertical) var(--grid-padding-horizontal);
+  --grid-padding-vertical: 2rem;
 }
 
 img.origami {
-  align-self: center;
-  height: 100px;
-  margin: 1rem 0;
-  max-width: 90%;
+  height: 100px; /* For Safari */
+  margin: 0;
+  max-height: 100px;
 }
 
 .sequence {
@@ -210,7 +219,6 @@ code.language-console span {
   box-shadow: 0 0 0.5rem;
   display: grid;
   grid-column: 1 / span 2;
-  gap: var(--grid-gap);
   grid-template-columns: var(--side-nav-width) 1fr;
   padding: var(--grid-padding-vertical) var(--grid-padding-horizontal);
 }
@@ -219,8 +227,13 @@ code.language-console span {
   color: #eee;
 }
 
+#homeContainer {
+  visibility: hidden;
+}
+
 #navBar {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 
@@ -240,6 +253,7 @@ nav a:hover {
 }
 
 #sideBar {
+  border-bottom: 1px solid var(--color-rule);
   grid-column: 1; /* Baffled as to why this is necessary. */
 }
 
@@ -264,13 +278,39 @@ g.node polygon[fill="none"] {
  * Responsive queries
  */
 
-@media (min-width: 800px) {
-  #page {
-    --grid-gap: 1rem;
+@media (min-width: 900px) {
+  body {
+    grid-template-columns: auto;
   }
 
-  #logo {
-    display: inherit;
+  #page {
+    grid-template-columns: minmax(100%, 1000px);
+    grid-template-rows: auto 1fr;
+    margin: 0;
+    --grid-gap: 1rem;
+    --grid-padding-horizontal: 2rem;
+    --side-nav-width: 200px;
+  }
+
+  #topNav {
+    gap: var(--grid-gap);
+  }
+
+  #homeContainer {
+    visibility: visible;
+  }
+
+  #pageContent {
+    grid-template-columns: var(--side-nav-width) 1fr;
+    grid-template-rows: auto 1fr;
+    --grid-padding-vertical: 2rem;
+  }
+
+  img.origami {
+    align-self: center;
+    height: 100px;
+    margin: 1rem 0;
+    max-width: 90%;
   }
 
   #navBar a[href="/"],
@@ -279,13 +319,15 @@ g.node polygon[fill="none"] {
   }
 
   #sidebar {
+    border-bottom: none;
     grid-column: auto;
   }
-}
 
-@media (min-width: 1000px) {
-  body {
-    padding: 2em 4em;
-    padding: 0;
+  header h1 {
+    margin-bottom: 0;
+  }
+
+  .subtitle {
+    margin-top: -2rem;
   }
 }

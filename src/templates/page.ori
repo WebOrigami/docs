@@ -1,5 +1,9 @@
 ---
+areas = (js%markCurrent)(parse(areas.yaml), currentArea):
+currentArea = (js%pathArea)(path):
+currentPage = (js%pathPage)(path):
 icon = js/chooseIcon(path, client/assets/origami):
+pages = (js%markCurrent)(parse(pages.yaml), currentPage):
 ---
 <!DOCTYPE html>
 <html lang="en">
