@@ -135,7 +135,18 @@ td {
 }
 
 figure {
-  margin: 2rem 0;
+  display: grid;
+  gap: 3rem;
+  margin: 3rem;
+}
+
+figcaption {
+  font-size: smaller;
+  font-style: italic;
+}
+
+svg {
+  max-width: 100%;
 }
 
 /*
@@ -169,23 +180,6 @@ img.origami {
   height: 100px; /* For Safari */
   margin: 0;
   max-height: 100px;
-}
-
-.sequence {
-  align-items: center;
-  aspect-ratio: 1;
-  background: black;
-  border-radius: 50%;
-  color: white;
-  display: inline-grid;
-  height: 2rem;
-  justify-content: center;
-  width: 2rem;
-}
-
-.two-up {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
 }
 
 /*
@@ -311,6 +305,42 @@ nav a:hover {
 }
 
 /*
+ * Two-up side-by-side figure layout
+ */
+
+.two-up {
+  display: grid;
+  gap: 2rem;
+  grid-template-areas:
+    "figure1"
+    "caption1"
+    "figure2"
+    "caption2";
+  margin: 3em 0;
+}
+
+.two-up figure:first-of-type {
+  grid-area: figure1;
+}
+.two-up figure:last-of-type {
+  grid-area: figure2;
+}
+.two-up figcaption:first-of-type {
+  grid-area: caption1;
+}
+.two-up figcaption:last-of-type {
+  grid-area: caption2;
+}
+
+.two-up figure {
+  margin: 0;
+}
+
+.two-up figcaption {
+  text-align: center;
+}
+
+/*
  * Generated graph SVGs on page
  */
 g.graph polygon[fill="white"] {
@@ -389,5 +419,11 @@ g.node polygon[fill="none"] {
   }
   .blocks a {
     padding: 0.5rem 1rem;
+  }
+
+  .two-up {
+    grid-template-areas:
+      "figure1 figure2"
+      "caption1 caption2";
   }
 }

@@ -52,7 +52,7 @@ Without needing to do anything else, point your browser at http://localhost:5000
 
 If you click on the name of that `message` file, you will navigate to a page called http://localhost:5000/hello/message that says "Hello, world!"
 
-The ori `serve` command you issued earlier is aware of Origami formulas. The server will parse file names that contain formulas with an `=` sign and interpret them.
+The ori `serve` command you issued earlier is aware of Origami formulas. The server parses file names that contain formulas with an `=` sign and interprets them.
 
 You don't have to use the Origami server: you can integrate the support for formulas into other servers like [Express](http://expressjs.com/). Later you'll also see how to dispense with a live server entirely by building static files that can be hosted anywhere.
 
@@ -73,68 +73,70 @@ The ori `files` function returns a graph of the real files in the current folder
 
 You can visualize the `files` graph as a node (the folder) that points to a single value (an empty file).
 
-<div class="sequence">1</div>
+<figure>
+  <img src="/figures/filesGraph.svg">
+  <figcaption>Source graph containing a single real, empty file</figcaption>
+</figure>
 
-![](/figures/filesGraph.svg)
+In Origami terms, this graph of real files is the _source form_, or starting point, of what will become a trivial handful of web pages.
 
-If you ask ori to render the local `app` graph, it interprets any formulas and returns both real and virtual files.
+If you ask ori to show the contents of the local `virtual` graph, the formulas in file names will be interpreted. The resulting virtual graph will include _both_ the real files and any new virtual files implied by formulas.
 
 ```console
-$ ori app
+$ ori virtual
 message: Hello, world!
 "message = 'Hello, world!'": ""
 ```
 
-In this case, the `app` graph includes: 1) the virtual `message` file whose contents are "Hello, world!", and 2) the empty real file whose file name implies the creation of the virtual file. This virtual `app` graph looks like:
+In this case, the `virtual` graph includes: 1) the virtual `message` file whose contents are "Hello, world!", and 2) the empty real file whose file name implies the creation of the virtual file. This `virtual` graph looks like:
 
-<div class="sequence">2</div>
+<figure>
+  <img src="/figures/appGraph.svg">
+  <figcaption>Result graph that includes the virtual file generated from the formula</figcaption>
+</figure>
 
-![](/figures/appGraph.svg)
-
-This virtual `app` graph was created by transforming the real `files` graph above. During this transformation, the presence of a real file with a formula for its name implied the existence of a virtual file.
+The `files` graph above is your starting point: the real files you create by transcribing the ideas and information in your head or collecting data from elsewhere. Through step-by-step transformations, you create a final virtual graph that represents the artifact you wish your audience to view or use.
 
 _Transforming graphs is the fundamental operation of the Origami framework._
 
-The `files` graph is your starting point: the real files you create by transcribing the ideas and information in your head or gathering data from elsewhere. Through a series of transformations, you create a final virtual graph that represents the artifact you wish your audience to view or use.
-
-Before moving on: since the ori tool knows how to traverse graphs, you can do things like ask ori to display a single virtual file from the `app` graph:
+Since the ori command-line interface knows how to traverse graphs, you can ask ori to display a single virtual file from the `virtual` graph on demand:
 
 ```console
-$ ori app/message
+$ ori virtual/message
 Hello, world!
 ```
 
-In the steps that follow, you will define formulas that dynamically create data and HTML pages. At any point you can view those in the browser, or use ori to view those virtual files in the command line.
+In the steps that follow, you will define Origami formulas that dynamically create data and HTML pages. At any point you can view those in the browser, or use ori to view those virtual files in the command line.
 
 We'll come back to graph transformations, but first let's create some more interesting formulas.
 
 ## Invoke a JavaScript function from a formula
 
-In the same `hello` folder, creating a JavaScript file called `greet.js` and paste in the following:
+In the same `hello` folder, create a JavaScript file called `greet.js` and paste in the following:
 
 ```{{'js'}}
-{{ samples/framework.yaml/hello/greet.js }}
+{{ client/samples/framework.yaml/hello/greet.js }}
 ```
 
-This function generates an HTML fragment that greets a person by name if a name is supplied (or just says "Hello, world!" if no name is given).
+This function generates an HTML fragment that greets a person by name if a name is supplied, or says "Hello, world!" if no name is given.
 
 You can use this `greet` formula in an Origami function to generate the contents of a virtual file.
 
-As before, create a new file and set its name to the entire formula below:
+Create a new file and set its name to the entire formula below:
 
 ```console
 hello.html = greet()
 ```
 
-This will define a virtual file called `hello.html`. The value or contents of that virtual file will be the result of invoking the function exported by the `greet.js` module. Origami follows a convention that `greet` is a reference to the whatever is exported by `greet.js`. In this case, that's a function that can be invoked.
+This will define a virtual file called `hello.html`. The value or contents of that virtual file will be the result of invoking the function exported by the `greet.js` module. Origami follows a convention that `greet` is a reference to whatever is exported by `greet.js` — in this case, a function to invoke.
 
 If you open http://localhost:5000/hello/hello.html, you'll now see "Hello, **world**!". Each time you ask for `hello.html`, the web server will evaluate the formula you defined.
 
-And as before, you can view the contents of this HTML page in the command line:
+As before, you can view the contents of this HTML page in the command line:
 
 ```console
-$ ori app/hello.html
-{{ samples/framework.yaml/hello/hello.html }}
+$ ori virtual/hello.html
+{{ client/samples/framework.yaml/hello/hello.html }}
 ```
 
 ## Pass an argument to a function
@@ -145,9 +147,9 @@ You can pass arguments to function like `greet`. In the same `hello` folder, cre
 alice.html = greet('Alice')
 ```
 
-Be sure to use single quotes, not double quotes. To encourage cross-platform compatibility with Microsoft Windows — which does not allow double quotes in file names — Origami doesn't recognize double quotes.
+Be sure to use single quotes, not double quotes. To encourage cross-platform compatibility with Microsoft Windows, which does not allow double quotes in file names, Origami doesn't recognize double quotes.
 
-You should now be able to open http://localhost:5000/hello/alice.html to see "Hello, **Alice**!"
+You should now be able to open http://localhost:5000/hello/alice.html and see "Hello, **Alice**!"
 
 Since the function the formula calls is regular JavaScript, you can use that JavaScript to create HTML by any means you like. If the function is asynchronous, Origami will `await` the result before serving it to the browser. With that, you should be able to do essentially anything you want in the JavaScript function to create any HTML result.
 
@@ -160,22 +162,23 @@ If you want to create a greeting page for several people, you could create a for
 Create a new file called `team.yaml` and enter an array of names:
 
 ```{{'yaml'}}
-{{ samples/framework.yaml/hello/team.yaml }}
+{{ client/samples/framework.yaml/hello/team.yaml }}
 ```
 
 If you prefer JSON, you can go through this exercise by creating a `team.json` file instead:
 
 ```json
-{{ samples/framework.yaml/hello/team.json }}
+{{ client/samples/framework.yaml/hello/team.json }}
 ```
 
 Since YAML can be a little easier to read and write by hand (particularly when text needs to span multiple lines), the rest of this introduction will use YAML.
 
 Either way, the data file defines an array. We can visualize that array as a graph:
 
-<div class="sequence">1</div>
-
-![](/figures/arrayGraph.svg)
+<figure>
+  <img src="/figures/arrayGraph.svg">
+  <figcaption>Graph defined by an array in a real YAML or JSON file</figcaption>
+</figure>
 
 In Origami, a graph is a first-class data type, so you can transform a graph like this with a formula. Create a new empty file called:
 
@@ -183,36 +186,37 @@ In Origami, a graph is a first-class data type, so you can transform a graph lik
 greetings = map(team.yaml, greet)
 ```
 
+The earlier formulas each defined a single virtual file like `message` or `hello.html`. The `greetings` formula here defines a virtual _graph_ of things.
+
 The [map](/cli/builtins.html#map) function is a built-in function that applies a one-to-one map function like `greet` to a graph of object. The result is a new graph of transformed objects. In this case, the `greet` function maps a string to an HTML fragment. Using `map` to apply `greet` to an array of strings will produce a graph of HTML fragments.
+
+Your `greetings` formula transforms the array in `team.yaml` into a new graph of HTML fragments.
+
+<figure>
+  <img src="/figures/greetingsGraph.svg">
+  <figcaption>Virtual graph of HTML fragments produced by transforming real data values</figcaption>
+</figure>
 
 If you open http://localhost:5000/hello/, you'll see a new entry for a virtual `greetings` folder. If you click on that `greetings` name, you'll see a list of three links labeled with the indices of the array: "0", "1", "2". Clicking on one of those indices will take you to a page like http://localhost:5001/src/step2/greetings/1, which says "Hello, **Bob**!"
 
-Your `greetings` formula transforms the array in `team.yaml` into a new graph of HTML greetings pages.
-
-<div class="sequence">2</div>
-
-![](/figures/greetingsGraph.svg)
-
-The `map` function, and the graphs used by Origami generally, are _lazy_. They only do work when they need to. Unlike a JavaScript [Array map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), the `map` function here does not do any mapping work upon invocation — it only does the work when someone requests the mapped graph's keys or values. The `greetings` graph represents _potential_ work.
-
-In this case, the HTML greeting for a person like Carol is only generated when you actually try to visit that URL.
-
-Although this graph is essentially flat — it has only level of values, graphs in Origami can be arbitrarily deep. A `map` applied to a deep graph will return a new, deep graph of transformed values.
+When you want to do work on multiple files or data values in the Origami framework, it's generally helpful to think about how you can best represent the source information as a graph, then identify the transformation you want to apply to each value in the graph. This will produce a new virtual graph of results.
 
 <div class="two-up">
-  <div>
-    <div class="sequence">1</div>
-    <div>
-      <img src="/figures/arrayGraph.svg">
-    </div>
-  </div>
-  <div>
-    <div class="sequence">2</div>
-    <div>
-      <img src="/figures/greetingsGraph.svg">
-    </div>
-  </div>
+  <figure>
+    <img src="/figures/arrayGraph.svg">
+  </figure>
+  <figure>
+    <img src="/figures/greetingsGraph.svg">
+  </figure>
+  <figcaption>Source graph of real values</figcaption>
+  <figcaption>Result graph of virtual values</figcaption>
 </div>
+
+Some notes on using the `map` function:
+
+- `map` and the other virtual graphs used by Origami are _lazy_. They only do work when they need to. Unlike a JavaScript [Array map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), the `map` function here does not do any mapping work upon invocation — it only does the work when someone requests the mapped graph's keys or values. The `greetings` graph represents _potential_ work. In this case, the HTML greeting for a person like Carol is only generated when you actually try to visit that URL.
+- Origami graphs can be arbitrarily deep. A `map` applied to a deep graph will return a new, deep graph of transformed values.
+- In the example above, `map` transforms the graph values but leaves the keys (the arrow labels) unchanged. You can also transform graph keys.
 
 ## Transform data into HTML with a template
 
