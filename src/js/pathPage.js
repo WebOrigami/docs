@@ -4,6 +4,13 @@ export default function (path) {
     return undefined;
   }
   const parts = path.split("/");
-  const result = parts[parts.length - 1];
+  let result = parts[parts.length - 1];
+
+  // HACK: convert .md page to .html page
+  // Need to do this elsewhere
+  if (result.endsWith(".md")) {
+    result = result.slice(0, -3) + ".html";
+  }
+
   return result;
 }

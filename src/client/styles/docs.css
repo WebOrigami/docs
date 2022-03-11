@@ -331,6 +331,10 @@ g.node polygon[fill="none"] {
     grid-template-columns: auto;
   }
 
+  pre {
+    white-space: pre-wrap;
+  }
+
   #page {
     grid-template-columns: minmax(100%, 1000px);
     grid-template-rows: auto 1fr;

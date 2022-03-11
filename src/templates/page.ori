@@ -1,6 +1,6 @@
 ---
-currentPage = js/pathPage(path):
-icon = js/chooseIcon(path, client/assets/origami):
+currentPage = js/pathPage(_path):
+icon = js/chooseIcon(_path, client/assets/origami):
 pages = js/markCurrent(parse(pages.yaml), currentPage):
 ---
 <!DOCTYPE html>
