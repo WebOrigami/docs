@@ -219,7 +219,7 @@ code.language-console span {
 #topNav {
   background: #222e3e;
   background-image: url(/assets/textureIndigo.jpeg);
-  box-shadow: 0 0 0.5rem;
+  box-shadow: 0px 5px 0.5rem 0px rgb(0 0 0 / 25%);
   display: grid;
   grid-column: 1 / span 2;
   grid-template-columns: var(--side-nav-width) 1fr;
@@ -390,6 +390,7 @@ g.node polygon[fill="none"] {
 
   img.origami {
     align-self: center;
+    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.25));
     height: 100px;
     margin: 1rem 0;
     max-width: 90%;
