@@ -18,7 +18,7 @@ pages = js/markCurrent(parse(pages.yaml), currentPage):
     <div id="page">
       <div id="topNav" class="pageRow">
         <div id="homeContainer">
-          <a href="/">Origami</a>
+          <a href="/">Graph Origami</a>
         </div>
         <nav id="navBar">
           <a href="/">Origami</a>
@@ -37,10 +37,8 @@ pages = js/markCurrent(parse(pages.yaml), currentPage):
 ) }}
         </header>
 {{ templates/sideBar.ori() }}
-        <main>
-          <div class="markdown-body">
-            {{ @value }}
-          </div>
+        <main class="markdown-body">
+          {{ @value }}
         </main>
       </div>
     </div>
