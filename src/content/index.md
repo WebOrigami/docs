@@ -18,7 +18,7 @@ At the highest levels, there is a [framework](/framework) for expressing the tra
 
 Graph Origami takes its name from the traditional paper folding art of origami, in which you can transform a flat square of paper into something like a heart, flower, or animal.
 
-<figure style="align-items: center; display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); justify-items: center;">
+<figure style="align-items: center; display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); justify-items: center;">
   <img src="/assets/heart/step1.svg">
   <img src="/assets/heart/step2.svg">
   <img src="/assets/heart/step3.svg">

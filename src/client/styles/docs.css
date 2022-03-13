@@ -138,7 +138,7 @@ td {
 figure {
   display: grid;
   gap: 3rem;
-  margin: 3rem;
+  margin: 3rem 0;
 }
 
 figcaption {
@@ -426,5 +426,9 @@ g.node polygon[fill="none"] {
     grid-template-areas:
       "figure1 figure2"
       "caption1 caption2";
+  }
+
+  figure {
+    margin: 3rem;
   }
 }
