@@ -16,3 +16,5 @@
   text: Templates
 - href: this.html
   text: this keyword
+- href: extensibility.html
+  text: Extensibility
