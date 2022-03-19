@@ -32,9 +32,9 @@ pages = js/markCurrent(parse(pages.yaml), currentPage):
         </div>
         <header>
           <h1>{{ title }}</h1>
-{{ if(subtitle,
-    `      <p class="subtitle">{{ subtitle }}</p>`
-) }}
+{{#if subtitle}}
+          <p class="subtitle">{{ subtitle }}</p>
+{{/if}}
         </header>
 {{ templates/sideBar.ori() }}
         <main class="markdown-body">

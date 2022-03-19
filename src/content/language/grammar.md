@@ -51,7 +51,7 @@ lambda: "=" expression
 list: expression "," list
       expression
 
-literal: everything but =(){}$&"'/`%, and whitespace
+literal: everything but =(){}$&"'/`%,# and whitespace
 
 number: (valid JavaScript signed/unsigned integer or floating point number)
 
