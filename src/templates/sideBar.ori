@@ -1,9 +1,12 @@
-{{ if pages, =`
-    <nav id="sideBar">{{ map pages, =`
+{{#if pages}}
+  <nav id="sideBar">
+    {{#map pages}}
       <li>
         {{ templates/linkCurrent.ori() }}
-      </li>`}}
-    </nav>
-`, =`
-    <div style="height: 0;"><!-- No area pages --></div>
-` }}
+      </li>
+    {{/map}}
+  </nav>
+{{/if}}
+{{#unless pages}}
+  <div style="height: 0;"><!-- Current area has no pages --></div>
+{{/unless}}

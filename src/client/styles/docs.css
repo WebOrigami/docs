@@ -147,6 +147,7 @@ figcaption {
 }
 
 svg {
+  height: inherit;
   max-width: 100%;
 }
 
@@ -429,6 +430,6 @@ g.node polygon[fill="none"] {
   }
 
   figure {
-    margin: 3rem;
+    margin: 3rem 2rem 3rem 0;
   }
 }
