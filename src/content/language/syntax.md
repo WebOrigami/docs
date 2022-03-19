@@ -19,7 +19,6 @@ The following types of expressions are supported by the Origami CLI and in Origa
 | Description                                  |              | Examples                  |
 | :------------------------------------------- | ------------ | :------------------------ |
 | String with single quotes                    | &nbsp;&nbsp; | `'hello'`                 |
-| Template literal with substitution           |              | `` `Hello, \{\{name}}` `` |
 | Function call                                |              | `greet('world')`          |
 |                                              |              | `fn('foo', 'bar')`        |
 | Function call with implicit parentheses      |              | `greet 'world'`           |
@@ -35,7 +34,9 @@ The following types of expressions are supported by the Origami CLI and in Origa
 | Bound variable reference in a formula        |              | `${x}`                    |
 | HTTP or HTTPS URL                            |              | `https://example.com`     |
 | Parentheses group                            |              | `(foo)`                   |
-| Lambda expressions (anonymous functions)     |              | `=> message`              |
+| Template literal with inline substitution    |              | `` `Hello, \{\{name}}` `` |
+| Template literal with block substitution     |              | \{\{#if x}}Yes\{\{/if}}   |
+| Lambda expressions (anonymous functions)     |              | `= message`               |
 
 ¹ You can use slashes in paths in the command-line, but Windows prevents the use of slashes in file names, and even macOS applications may not expect slashes to appear in file names. For this reason, it's recommended to use percent signs in paths that appear in file names.
 
