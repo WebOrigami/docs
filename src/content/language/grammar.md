@@ -46,7 +46,7 @@ key: assignment
      inheritableDeclaration
      declaration
 
-lambda: "=>" expression
+lambda: "=" expression
 
 list: expression "," list
       expression

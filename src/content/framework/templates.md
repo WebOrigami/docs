@@ -5,8 +5,8 @@ team.yaml:
   - name: Alice
   - name: Bob
   - name: Carol
-names = shallowMap(team.yaml, => name):
-strings = shallowMap(team.yaml, => `<a href="{{name}}.html">{{name}}</a> `):
+names = shallowMap(team.yaml, =name):
+strings = shallowMap(team.yaml, =`<a href="{{name}}.html">{{name}}</a> `):
 ---
 
 Origami templates let you write Origami expressions in the context of a text document. These expressions can then be evaluated in the context of input data to efficiently produce, for example, HTML.
@@ -61,7 +61,7 @@ $ ori team.yaml
 - name: Alice
 - name: Bob
 - name: Carol
-$ ori "shallowMap team.yaml, =>name"
+$ ori "shallowMap team.yaml, =name"
 - Alice
 - Bob
 - Carol
@@ -85,7 +85,7 @@ Because the Origami CLI and Origami templates share the same expression language
 ```console
 $ cat index.ori
 <h1>Team</h1>
-{{ shallowMap team.yaml, =>name }}
+{{ shallowMap team.yaml, =name }}
 ```
 
 When you apply the template, the people objects in `team.yaml` will be mapped to names. Then, per the above section about concatenating graph values, those names will then be concatenated and incorporate in the template's final text output.
@@ -105,8 +105,7 @@ Let's extend the above example to generate HTML links for each person. This beco
 ```console
 $ cat index.ori
 <h1>Team</h1>
-\{{ shallowMap team.yaml, =>
-`<a href="\{{name}}.html">\{{name}}</a>
+\{{ shallowMap team.yaml, =`<a href="\{{name}}.html">\{{name}}</a>
 ` }}
 ```
 

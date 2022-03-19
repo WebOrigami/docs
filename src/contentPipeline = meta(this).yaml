@@ -5,7 +5,7 @@
 withPaths = src/js/addPaths(content):
 
 # Inline any code examples
-inlined = map(withPaths, src/js/inline, '.md'):
+inlined = map(withPaths, inline, '.md'):
 
 # Convert markdown to HTML while preserving front matter
 html = map(inlined, mdHtml, '.md', '.html'):
