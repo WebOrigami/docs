@@ -2,23 +2,22 @@
 title: Scope
 subtitle: Defines what's available to expressions executed in a given context
 example: |
-  root:
-    a:
-      b: B
-    c:
-      d:
-        e:
-          f: F
-        g: G
-        message = j: ""
-      h:
-        i: I
-    j: J
+  a:
+    b: B
+  c:
+    d:
+      e:
+        f: F
+      g: G
+      message = j: ""
+    h:
+      i: I
+  j: J
 ---
 
-## Ancestor-children scope
+## Ancestor-sibling scope
 
-By default, the scope of an Origami graph is _ancestor-children scope_, defined as: all direct children of any direct ancestor, starting from the immediate parent and working upwards.
+By default, the scope of an Origami graph is _ancestor-sibling scope_, defined as: all siblings of the current graph node (including that node itself) and any of its ancestors. If a formula were a person, it would know about its siblings (and itself), its parents and their siblings, its grandparents and their siblings, etc. If we consider a formula as a file, the formula can see everything in that folder, as well as anything in any ancestor folder.
 
 Example:
 
@@ -32,9 +31,7 @@ which looks like
 {{ svg example }}
 </figure>
 
-This graph includes a formula `message = j`. Let's consider what scope will apply to that formula.
-
-Using the above definition for ancestor-children scope, we walk up the graph looking for all direct children of any direct ancestor. The scope will contain, in order:
+This graph includes a formula `message = j`. Let's consider the scope available to that formula. Using the above definition for ancestor-sibling scope, we walk up the graph looking for all siblings at each level. The scope will contain, in order:
 
 - e
 - g
@@ -44,31 +41,15 @@ Using the above definition for ancestor-children scope, we walk up the graph loo
 - a
 - c
 - j
-- root
 - _… and all Origami builtins_
 
-Some values in this example graph will _not_ be present in the scope available to this `message` formula because they are not direct children of any direct ancestor:
+Some values in this example graph will _not_ be present in the scope available to the `message` formula because they are not siblings of that formula or any ancestor.
 
 - b
 - f
 - i
 
-Given this scoping, a formula like `message = j` succeeds because `j` is in scope. A formula like `message = i` would fail, because `i` is not in scope.
-
-### Genealogical analogy
-
-It may be helpful to think about this in terms of human genealogy. If an expression were a person, it would know about
-
-- its siblings
-- its parents, aunts, and uncles
-- its grandparents, grand-aunts, and grand-uncles
-- its great-grandparents, great-grand-aunts, great-grand-uncles
-- … etc.
-
-but would _not_ know about
-
-- its nieces and nephews
-- its cousins
+Given this scoping, a formula like `message = j` works because `j` is in scope. A formula like `message = i` would fail, because `i` is not in scope.
 
 ## Scenarios
 
