@@ -38,7 +38,7 @@ pages = js/markCurrent(parse(pages.yaml), currentPage):
         </header>
 {{ templates/sideBar.ori() }}
         <main class="markdown-body">
-          {{ @value }}
+          {{ @text }}
         </main>
       </div>
     </div>

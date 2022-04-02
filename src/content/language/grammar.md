@@ -68,8 +68,10 @@ pathKey: group
          literal
 
 reference: thisReference
-           variableReference
+           referenceSubstitution
            literal
+
+referenceSubstitution: "\{\{" variableName "}}"[extension]
 
 percentCall: pathHead "%" [percentPath]
 
@@ -122,6 +124,4 @@ valueDeclaration: ["…"]declaration
 variableDeclaration: {variableName}[extension]
 
 variableName: for now, JavaScript identifiers with ASCII letters
-
-variableReference: "${" variableName "}"[extension]
 ```

@@ -99,18 +99,13 @@ a.current {
   color: inherit;
 }
 
-.subtitle {
-  font-style: italic;
-  margin-bottom: 1rem;
-  margin-top: 0;
-}
-
 #logo {
   align-self: start;
   display: none;
 }
 
 header {
+  align-content: center;
   align-items: center;
   border-bottom: 1px solid var(--color-rule);
   color: #222e3e;
@@ -118,6 +113,11 @@ header {
 }
 
 header h1 {
+  margin: 0;
+}
+
+.subtitle {
+  font-style: italic;
   margin-top: 0;
 }
 
@@ -408,11 +408,7 @@ g.node polygon[fill="none"] {
   }
 
   header h1 {
-    margin-bottom: 0;
-  }
-
-  .subtitle {
-    margin-top: -2rem;
+    margin-bottom: inherit;
   }
 
   .blocks {
