@@ -121,7 +121,7 @@ thisReference: "this"
 
 valueDeclaration: ["…"]declaration
 
-variableDeclaration: {variableName}[extension]
+variableDeclaration: "["variableName"]"[extension]
 
 variableName: for now, JavaScript identifiers with ASCII letters
 ```
