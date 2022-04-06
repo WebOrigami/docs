@@ -1,0 +1,9 @@
+actual: |
+  - Alice
+  - Bob
+  - Carol
+actual = ori 'names': null
+expected: |
+  - Alice
+  - Bob
+  - Carol

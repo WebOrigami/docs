@@ -9,13 +9,13 @@
       "request": "launch",
       "name": "ori",
       "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/node_modules/@explorablegraph/explorable/src/cli/ori.js",
+      "program": "${workspaceFolder}/node_modules/@explorablegraph/explorable/src/cli/cli.js",
       "cwd": "${workspaceFolder}/src/js/",
       "args": ["addPaths languages.yaml"]
     },
     {
       "name": "tsdoc",
-      "program": "${workspaceFolder}/node_modules/@explorablegraph/explorable/src/cli/ori.js",
+      "program": "${workspaceFolder}/node_modules/@explorablegraph/explorable/src/cli/cli.js",
       "request": "launch",
       "skipFiles": ["<node_internals>/**"],
       "type": "pwa-node",
@@ -28,7 +28,7 @@
       "name": "serve",
       // "runtimeExecutable": "node",
       "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/node_modules/@explorablegraph/explorable/src/cli/ori.js",
+      "program": "${workspaceFolder}/node_modules/@explorablegraph/explorable/src/cli/cli.js",
       "runtimeArgs": ["--preserve-symlinks"],
       // "cwd": "${workspaceFolder}/site",
       // "args": ["serve watch virtual/src/site"]

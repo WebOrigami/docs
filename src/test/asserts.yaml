@@ -1,0 +1,12 @@
+asserts:
+  0.console:
+    "0":
+      actual = ori 'names': null
+      expected: |
+        - Alice
+        - Bob
+        - Carol
+names:
+  - Alice
+  - Bob
+  - Carol
