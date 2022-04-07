@@ -1,9 +1,16 @@
-actual: |
-  - Alice
-  - Bob
-  - Carol
-actual = ori 'names': null
-expected: |
+asserts:
+  0.console:
+    "0":
+      actual: |
+        - Alice
+        - Bob
+        - Carol
+      actual = ori 'names': null
+      expected: |
+        - Alice
+        - Bob
+        - Carol
+names:
   - Alice
   - Bob
   - Carol

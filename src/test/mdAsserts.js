@@ -1,4 +1,10 @@
-import { extractFrontMatter, MapGraph } from "@explorablegraph/explorable";
+import {
+  ExplorableGraph,
+  ExplorableObject,
+  extractFrontMatter,
+  MapGraph,
+  MetaTransform,
+} from "@explorablegraph/explorable";
 import consoleAsserts from "./consoleAsserts.js";
 import mdCode from "./mdCode.js";
 
@@ -20,8 +26,13 @@ export default async function mdAsserts(markdown) {
     ".console"
   );
 
-  // Add the extracted asserts to the data.
-  data.asserts = withConsoleAsserts;
+  // Add the extracted asserts to the data. Workaround: we expand the map to a
+  // plain object so that the eventual application of the MetaTransform will be
+  // applied to this subgraph.
+  data.asserts = await ExplorableGraph.plain(withConsoleAsserts);
 
-  return data;
+  const meta = new (MetaTransform(ExplorableObject))(data);
+  meta.parent = this;
+
+  return meta;
 }

@@ -1,12 +1,3 @@
-names:
-  - Alice
-  - Bob
-  - Carol
-asserts:
-  0.console:
-    "0":
-      actual = ori 'names': null
-      expected: |
-        - Alice
-        - Bob
-        - Carol
+sub:
+  a = b:
+b: Hello
