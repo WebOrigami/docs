@@ -15,3 +15,12 @@ $ ori names
 - Bob
 - Carol
 ```
+
+Here's some more text.
+
+```console
+$ ori keys names
+- 0
+- 1
+- 2
+```
