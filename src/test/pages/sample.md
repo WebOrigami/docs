@@ -9,7 +9,15 @@ names:
 
 Here's a sample page with some code.
 
+This shouldn't assert:
+
 ```console
+$ ori blah blah blah
+```
+
+This should assert:
+
+```console assert
 $ ori names
 - Alice
 - Bob
@@ -18,7 +26,7 @@ $ ori names
 
 Here's some more text.
 
-```console
+```console assert
 $ ori keys names
 - 0
 - 1

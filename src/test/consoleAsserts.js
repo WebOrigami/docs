@@ -15,6 +15,7 @@ export default function consoleAsserts(code) {
     const { command, result } = match.groups;
     const actual = `actual = ori '${command}'`;
     return {
+      description: `ori ${command}`,
       [actual]: null,
       expected: result,
     };

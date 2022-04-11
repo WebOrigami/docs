@@ -1,18 +1,10 @@
-export const codeBlockRegex = /```(?<language>.+)\n(?<code>[\s\S]*?)```/g;
+export const codeBlockRegex =
+  /```(?<language>\S+)(?<metadata>[\S ]+)?\n(?<code>[\s\S]*?)```/g;
 
 export default function mdCode(markdownBuffer) {
   const markdown = String(markdownBuffer);
-  // const normalized = markdown.replace("\r\n", "\n");
   const normalized = markdown.replaceAll("\r", "");
   const matches = [...normalized.matchAll(codeBlockRegex)];
-
-  // const codeBlocks = {};
-  // matches.forEach((match, index) => {
-  //   const { language, code } = match.groups;
-  //   const key = `${index}.${language}`;
-  //   codeBlocks[key] = code;
-  // });
-  const codeBlocks = matches.map((match) => match.groups.code);
-
+  const codeBlocks = matches.map((match) => match.groups);
   return codeBlocks;
 }

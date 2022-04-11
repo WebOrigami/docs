@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
-    "@explorablegraph/explorable": "github:ExplorableGraph/explorable#58f30640",
+    "@explorablegraph/explorable": "github:ExplorableGraph/explorable#a36cdced",
     "@microsoft/tsdoc": "0.13.2",
     "algoliasearch": "4.11.0",
     "handlebars": "4.7.7",
@@ -11,7 +11,7 @@
   },
   "scripts": {
     "build": "ori 'copy netlify(virtual/src/site), files/dist'",
-    "test": "ori 'defined(map(yamlsTests(mdYamls(docs/metagraph.md)), assert))'",
+    "test": "ori virtual/src/test/summary",
     "index": "ori 'index/indexDocs'"
   }
 }
