@@ -11,16 +11,6 @@ export default function consoleAsserts(code) {
     interaction.match(interactionRegex)
   );
 
-  // const asserts = {};
-  // matches.forEach((match, index) => {
-  //   const key = `${index}.assert`;
-  //   const { command, result } = match.groups;
-  //   const actual = `actual = ori '${command}'`;
-  //   asserts[key] = {
-  //     [actual]: null,
-  //     expected: result,
-  //   };
-  // });
   const asserts = matches.map((match, index) => {
     const { command, result } = match.groups;
     const actual = `actual = ori '${command}'`;
