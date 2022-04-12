@@ -5,6 +5,9 @@ export default function mdCode(markdownBuffer) {
   const markdown = String(markdownBuffer);
   const normalized = markdown.replaceAll("\r", "");
   const matches = [...normalized.matchAll(codeBlockRegex)];
-  const codeBlocks = matches.map((match) => match.groups);
+  const codeBlocks = matches.map((match) => {
+    const { language, metadata, code } = match.groups;
+    return { language, metadata, code };
+  });
   return codeBlocks;
 }

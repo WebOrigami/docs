@@ -1,8 +1,8 @@
 ---
 title: Metagraphs
 formula.yaml: |
-  a: Hello
-  b = a: ""
+  name: world
+  message = `Hello, {{name}}.`:
 folder: |
   html = map(markdown, mdHtml, '.md', '.html'):
   markdown:
@@ -17,36 +17,34 @@ A _metagraph_ is a graph that describes its own transformation. The transformati
 
 ```console assert
 $ ori formula.yaml
-a: Hello
-b = a: ""
+name: world
+message = `Hello, \{\{name}}.`:
 ```
 
-This graph defines just two keys: the first key is `a` and it has the value "Hello", the second key is the text `b = a`. (In this example, the value of the second key is irrelevant; here it is an empty string.) That second key is a formula. If we're treating this example as a simple YAML file, then the formula key is just a string with no effect.
+This graph defines just two keys: the first key is `name` and it has the value "world". The second key is a text formula. In this example, the value of the second key is irrelevant; here it `null`. We can visualize the graph this way:
 
-We can visualize the graph this way:
-
-<div>
+<figure>
 {{ svg formula.yaml }}
-</div>
+</figure>
 
-But we can ask Origami to _interpret_ this formula. One way to do that is with the built-in function `meta`. This returns a metagraph.
+We can ask Origami to _interpret_ this formula by passing the graph to the built-in function `meta`. This returns a metagraph in which the formulas result in new, virtual values.
 
 ```console assert
 $ ori meta formula.yaml
-a: Hello
-b: Hello
-b = a: ""
+name: world
+message: Hello, world.
+"message = `Hello, \{\{name}}.`":
 ```
 
 The original graph has now been expanded:
 
-<div>
+<figure>
 {{ svg meta formula.yaml }}
-</div>
+</figure>
 
-When we ask for the keys of this metagraph, we get _three_ keys. Two are the keys we defined: `a` and `b = a`. The metagraph also evaluates the formula `b = a`, yielding a third, virtual key, `b`.
+When we ask for the keys of this metagraph, we get _three_ keys. Two are the keys we defined: `name` and the formula. The metagraph also evaluates that formula, yielding a third, virtual key, `message`.
 
-The value of `a` is "Hello", as defined in the original graph. The value of the virtual key `b` is _also_ "Hello", obtained by interpreting the formula `b = a`.
+The value of `name` is "world", as defined in the original graph. The value of the virtual key `message` is "Hello, world.", obtained by interpreting the formula.
 
 ## Example: Defining a virtual folder
 
@@ -68,9 +66,9 @@ markdown:
   Carol.md: Hello, **Carol**.
 ```
 
-<div>
+<figure>
 {{ svg folder }}
-</div>
+</figure>
 
 ```console assert
 $ ori meta folder
@@ -88,6 +86,6 @@ markdown:
   Carol.md: Hello, **Carol**.
 ```
 
-<div>
+<figure>
 {{ svg meta folder }}
-</div>
+</figure>
