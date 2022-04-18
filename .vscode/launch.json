@@ -29,7 +29,7 @@
       // "runtimeExecutable": "node",
       "skipFiles": ["<node_internals>/**"],
       "program": "${workspaceFolder}/node_modules/@explorablegraph/explorable/src/cli/cli.js",
-      "runtimeExecutable": "node",
+      // "runtimeExecutable": "node",
       "runtimeArgs": ["--preserve-symlinks"],
       // "cwd": "${workspaceFolder}/site",
       // "args": ["serve watch virtual/src/site"]

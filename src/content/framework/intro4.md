@@ -1,14 +1,6 @@
 ---
-title: |
-  Intro part 4:
-  Completing a site
+title: Rendering data with templates
 numberHeadings: true
 ---
 
-## Building static web pages
-
-```console
-$ ori copy app/html, files/dist
-```
-
-## Deploying
+Hi?

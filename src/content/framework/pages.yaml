@@ -1,13 +1,19 @@
 - href: index.html
   text: Overview
-- href: intro.html
-  text: "Intro: Formulas"
+- href: intro0.html
+  text: "Intro"
+- href: intro1.html
+  text: "&nbsp;&nbsp;&nbsp;&nbsp;Graphs"
 - href: intro2.html
-  text: Intro part 2
+  text: "&nbsp;&nbsp;&nbsp;&nbsp;Formulas"
 - href: intro3.html
-  text: Intro part 3
+  text: "&nbsp;&nbsp;&nbsp;&nbsp;Transformations"
 - href: intro4.html
-  text: Intro part 4
+  text: "&nbsp;&nbsp;&nbsp;&nbsp;Templates"
+- href: intro5.html
+  text: "&nbsp;&nbsp;&nbsp;&nbsp;Nested templates"
+- href: intro6.html
+  text: "&nbsp;&nbsp;&nbsp;&nbsp;Deploying"
 - href: transformation.html
   text: Transformation
 - href: metagraph.html

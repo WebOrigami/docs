@@ -21,7 +21,7 @@ name: world
 message = `Hello, \{\{name}}.`:
 ```
 
-This graph defines just two keys: the first key is `name` and it has the value "world". The second key is a text formula. In this example, the value of the second key is irrelevant; here it `null`. We can visualize the graph this way:
+This graph defines just two keys: the first key is `name` and it has the value "world". The second key is a text formula. In this example, the value of the second key is irrelevant; here it `null`, as indicated by the fact there is nothing after the final `:` colon. We can visualize the graph this way:
 
 <figure>
 {{ svg formula.yaml }}
