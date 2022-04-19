@@ -1,31 +1,20 @@
 ---
 title: Transform graphs with formulas
 numberHeadings: true
+team.yaml = client/samples/framework.yaml/intro/team.yaml:
+teamByName = mapKeys(team.yaml, 'name'):
+greetings = map(team.yaml, =client/samples/framework.yaml/intro/greet(name)):
+greetingsByName = map(teamByName, =client/samples/framework.yaml/intro/greet(name)):
 ---
 
 ## Transform a graph
 
-If you want to create a greeting page for several people, you could create a formula for each of them like the one for `alice.html` above. But you can also write formulas that transform a set of things at once.
+We've looked at how a formula can transform a single piece of data (a name, say) into some other form (a greeting). If you wanted to create a greeting page for multiple people, you could create a formula for each of them. But you can also write formulas that transform a set of things at once.
 
-Create a new file called `team.yaml` and enter an array of names:
-
-```{{'yaml'}}
-{{ client/samples/framework.yaml/hello/team.yaml }}
-```
-
-If you prefer JSON, you can go through this exercise by creating a `team.json` file instead:
-
-```json
-{{ client/samples/framework.yaml/hello/team.json }}
-```
-
-Since YAML can be a little easier to read and write by hand (particularly when text needs to span multiple lines), the rest of this introduction will use YAML.
-
-Either way, the data file defines an array. We can visualize that array as a graph:
+As a reminder, we can visualize the people in `team.yaml` as a graph:
 
 <figure>
-  <img src="/figures/arrayGraph.svg">
-  <figcaption>Graph defined by an array in a real YAML or JSON file</figcaption>
+{{ svg team.yaml }}
 </figure>
 
 In Origami, a graph is a first-class data type, so you can transform a graph like this with a formula. Create a new empty file called:
@@ -34,27 +23,22 @@ In Origami, a graph is a first-class data type, so you can transform a graph lik
 greetings = map(team.yaml, greet)
 ```
 
+... need to resolve different uses of greet ...
+
 The earlier formulas each defined a single virtual file like `message` or `hello.html`. The `greetings` formula here defines a virtual _graph_ of things.
 
-The [map](/cli/builtins.html#map) function is a built-in function that applies a one-to-one map function like `greet` to a graph of object. The result is a new graph of transformed objects. In this case, the `greet` function maps a string to an HTML fragment. Using `map` to apply `greet` to an array of strings will produce a graph of HTML fragments.
+The [map](/cli/builtins.html#map) function is a built-in function that applies a one-to-one map function like `greet` to a graph of object. The result is a new graph of transformed objects. In this case, the `greet` function maps a person to a greeting. Using `map` to apply `greet` to an array of strings will produce a graph of greetings.
 
-Your `greetings` formula transforms the array in `team.yaml` into a new graph of HTML fragments.
-
-<figure>
-  <img src="/figures/greetingsGraph.svg">
-  <figcaption>Virtual graph of HTML fragments produced by transforming real data values</figcaption>
-</figure>
-
-If you open http://localhost:5000/hello/, you'll see a new entry for a virtual `greetings` folder. If you click on that `greetings` name, you'll see a list of three links labeled with the indices of the array: "0", "1", "2". Clicking on one of those indices will take you to a page like http://localhost:5001/src/step2/greetings/1, which says "Hello, **Bob**!"
+If you view the `src` folder through the server, you'll see a new entry for a virtual `greetings` folder. If you click on that `greetings` folder, you'll see a list of three links labeled with the indices of the array: "0", "1", "2". Clicking on one of those indices will take you to a page like `src/greetings/1`, which says "Hello, Bob!"
 
 When you want to do work on multiple files or data values in the Origami framework, it's generally helpful to think about how you can best represent the source information as a graph, then identify the transformation you want to apply to each value in the graph. This will produce a new virtual graph of results.
 
 <div class="two-up">
   <figure>
-    <img src="/figures/arrayGraph.svg">
+    {{ svg team.yaml }}
   </figure>
   <figure>
-    <img src="/figures/greetingsGraph.svg">
+    {{ svg greetings }}
   </figure>
   <figcaption>Source graph of real values</figcaption>
   <figcaption>Result graph of virtual values</figcaption>
@@ -66,101 +50,58 @@ Some notes on using the `map` function:
 - Origami graphs can be arbitrarily deep. A `map` applied to a deep graph will return a new, deep graph of transformed values.
 - In the example above, `map` transforms the graph values but leaves the keys (the arrow labels) unchanged. You can also transform graph keys.
 
-## Transform data into HTML with a template
+Using transformations like this, we can begin working towards transforming our `team.yaml` data into the About Us site we want to produce.
 
-Transforming data into HTML can be done with plain JavaScript, but for many cases that's overkill.
+## Transforming a graph's keys
 
-If all you want to do is pour data into a template, a template language can be more appropriate. Origami comes with built-in support for a minimalist template language called [Handlebars](https://handlebarsjs.com) whose focused feature set complements Origami very well. We'll use Handlebars in this introduction. If you prefer a different template language, you can use it with Origami but doing so is beyond the scope of this intro.
+In the `greetings` graph shown above, the keys (labels) for the arrows are the array indices: 0, 1, 2. In our About Us site, we want the `team` route to incorporate a person's name: `Alice.html`, `Bob.html`, `Carol.html`.
 
-The `step3` folder also contains a Handlebars template called `person.hbs` designed to work with the above data schema. The primary user-visible content of that template is as follows:
-
-... template goes here ..
-
-A template is essentially a function for turning data into a text format like HTML, so Origami allows you to invoke a Handlebars template as a function. All you have to do is give that function data to transform.
-
-In the `step3` folder, create a new, empty file called
+To accomplish that, we can use another type of map called `mapKeys`, which changes a graph's keys. Create an empty file with the following formula name:
 
 ```console
-alice.html = person.hbs(alice.yaml)
+teamByName = mapKeys(team.yaml, 'name')
 ```
 
-This formula creates a virtual file called `alice.html`. The contents of that virtual file will be the HTML obtained by applying the `person.hbs` template to the data in `alice.yaml`. In this case, the primary content of the virtual `alice.html` file will be:
+... change to use lambda `=name` ...
 
-```html
-<img
-  class="avatar large"
-  src="/src/assets/headshots/alice.jpg"
-  alt="Alice Wijaya"
-/>
-<h2 class="name">Alice Wijaya</h2>
-<div class="position">Experience Designer, Jakarta</div>
-<p class="bio">
-  Alice opens the line of communication between clients, customers, and
-  businesses to get projects done. With over 15 years in both public and private
-  sectors, she has experience in management consultation, team building,
-  professional development, strategic implementation, and company collaboration.
-  She has a passion for helping people and businesses succeed, and is always
-  looking for ways to improve the world.
-</p>
-```
+This will result in a new graph using names as keys.
 
-Open http://localhost:5000/step3/alice.html in your browser to view the result. It will look approximately like this:
+<div class="two-up">
+  <figure>
+    {{ svg team.yaml }}
+  </figure>
+  <figure>
+    {{ svg teamByName }}
+  </figure>
+  <figcaption>Source graph with indices as keys</figcaption>
+  <figcaption>Transformed graph with names as keys</figcaption>
+</div>
 
-![](person.png)
+## Applying multiple transformations
 
---> graph with one key/value
---> transformed graph
-
-At this point, we're successfully transforming the data for a single person, Alice, to create a single web page for that person.
-
-## Transform an entire graph of data into HTML
-
-It's very common to want to transform an entire set of things to create a new set of things. For this sample About Us area, we want to transform a set of data about team members to create a corresponding set of HTML pages — one page for each person.
-
-In the previous `step3` folder, we had data for a single individual, Alice, stored in a file `alice.yaml`.
-
-In the `step4` folder, you'll find a consolidated data file, `team.yaml`, which contains data for 10 team members.
-
-```yaml
-alice:
-  id: alice
-  name: Alice Wijaya
-  location: Jakarta
-  position: Experience Designer
-  bio: |
-    Alice opens the line of communication between clients, customers, and
-    businesses to get projects done. With over 15 years in both public and
-    private sectors, she has experience in management consultation, team
-    building, professional development, strategic implementation, and company
-    collaboration. She has a passion for helping people and businesses succeed,
-    and is always looking for ways to improve the world.
-imani:
-  id: imani
-  name: Imani Davenhall
-  location: Los Angeles
-  position: President
-  bio:
-# ... data continues ...
-```
-
-Each block of data for an individual person has a key. The field we use for the key could be anything unique; here we'll use some identifier we've designated as safe to make publicly visible, as it will appear in URLs. At the moment, the key we're using (like `alice`) duplicates the value of the `id` field; we can remove the redundancy later.
-
-We can represent the above data set as a graph:
-
---> graph
-
-The `step4` folder also contains the same `person.hbs` Handlebars template that can transform the data for a single person into an HTML page for that person. We now want to apply that `person.hbs` template as a function to the entire set of team members.
-
-In the `step4` folder, create a new, empty file called
+We can use the `teamByName` graph to rewrite our `greeting` formula. Edit the name of the file defining the `greeting` formula so that it refers to `teamByName` instead of directly referencing `team.yaml`:
 
 ```console
-team = shallowMap(team.yaml, person.hbs)
+greeting = map(teamByName, greet)
 ```
 
-This transforms the above graph of data into a new graph of virtual HTML files:
+This lets us transform `team.yaml` in two steps: 1) transform the integer keys to name keys, 2) transform the person data values into greeting values.
 
---> graph
+<div class="three-up">
+  <figure>
+    {{ svg team.yaml }}
+  </figure>
+  <figure>
+    {{ svg teamByName }}
+  </figure>
+  <figure>
+    {{ svg greetingsByName }}
+  </figure>
+  <figcaption>Source graph</figcaption>
+  <figcaption>Transformed keys</figcaption>
+  <figcaption>Transformed values</figcaption>
+</div>
 
-You've now seen the basics of Origami: creating virtual files with formulas, invoking JavaScript from formulas, and using formulas to transform graphs.
+If you view the served site in the browser, you can inspect the intermediate `teamByName` graph as well as the final `greetings` graph. Being able to explore intermediate representations is, in fact, a very useful diagnostic property of the Origami framework. Normally such intermediate representations are only indirectly viewable by setting debugger breakpoints and inspecting variable values — which is often cumbersome for complex data structures.
 
-Next: [Begin tackling a practical example](intro2.html)
+We've now roughed in the basic structure of the `team` route for the About Us site. The next step is to show something more interesting for a person than a simple greeting.

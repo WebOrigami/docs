@@ -72,10 +72,10 @@ h3 {
   content: counter(h2) ". ";
 }
 
-.numberHeadings h3:before {
+/* .numberHeadings h3:before {
   counter-increment: h3;
   content: counter(h2) "." counter(h3) ". ";
-}
+} */
 
 .markdown-body > :first-child,
 .markdown-body > p:first-of-type {
@@ -340,6 +340,16 @@ nav a:hover {
 
 .two-up figcaption {
   text-align: center;
+}
+
+/*
+ * Three-up layout
+ */
+ .three-up {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: minmax(0, auto) minmax(0, auto) minmax(0, auto);
+  margin: 3em 0;
 }
 
 /*
