@@ -9,7 +9,7 @@ greetingsByName = map(teamByName, =client/samples/framework.yaml/intro/greet(nam
 
 ## Transform a graph
 
-We've looked at how a formula can transform a single piece of data (a name, say) into some other form (a greeting). If you wanted to create a greeting page for multiple people, you could create a formula for each of them. But you can also write formulas that transform a set of things at once.
+We've seen how a formula can transform a single piece of data (a person's name, say) into some other form (a greeting). If you wanted to create a greeting page for multiple people, you could create a formula for each of them. But you can also write formulas that transform a set of things at once.
 
 As a reminder, we can visualize the people in `team.yaml` as a graph:
 
@@ -17,7 +17,7 @@ As a reminder, we can visualize the people in `team.yaml` as a graph:
 {{ svg team.yaml }}
 </figure>
 
-In Origami, a graph is a first-class data type, so you can transform a graph like this with a formula. Create a new empty file called:
+In Origami, a graph is a first-class data type that can be passed to functions. Create a new empty file called:
 
 ```console
 greetings = map(team.yaml, greet)
@@ -25,9 +25,9 @@ greetings = map(team.yaml, greet)
 
 ... need to resolve different uses of greet ...
 
-The earlier formulas each defined a single virtual file like `message` or `hello.html`. The `greetings` formula here defines a virtual _graph_ of things.
+The earlier formulas each defined a single virtual file like `message` or `hello.html`. The `greetings` formula here defines a virtual _graph_ of things. It's essentially a virtual folder of virtual files.
 
-The [map](/cli/builtins.html#map) function is a built-in function that applies a one-to-one map function like `greet` to a graph of object. The result is a new graph of transformed objects. In this case, the `greet` function maps a person to a greeting. Using `map` to apply `greet` to an array of strings will produce a graph of greetings.
+The [map](/cli/builtins.html#map) function is a built-in function that applies a one-to-one map function like `greet` to a graph of object. The result is a new graph of transformed objects. In this case, the `greet` function maps a person to a greeting. Using `map` to apply `greet` to an graph of people produces a graph of greetings.
 
 If you view the `src` folder through the server, you'll see a new entry for a virtual `greetings` folder. If you click on that `greetings` folder, you'll see a list of three links labeled with the indices of the array: "0", "1", "2". Clicking on one of those indices will take you to a page like `src/greetings/1`, which says "Hello, Bob!"
 
@@ -48,7 +48,7 @@ Some notes on using the `map` function:
 
 - `map` and the other virtual graphs used by Origami are _lazy_. They only do work when they need to. Unlike a JavaScript [Array map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), the `map` function here does not do any mapping work upon invocation — it only does the work when someone requests the mapped graph's keys or values. The `greetings` graph represents _potential_ work. In this case, the HTML greeting for a person like Carol is only generated when you actually try to visit that URL.
 - Origami graphs can be arbitrarily deep. A `map` applied to a deep graph will return a new, deep graph of transformed values.
-- In the example above, `map` transforms the graph values but leaves the keys (the arrow labels) unchanged. You can also transform graph keys.
+- In the example above, `map` transforms the graph values but leaves the keys (the arrow labels) unchanged. Below we'll see how to transform graph keys.
 
 Using transformations like this, we can begin working towards transforming our `team.yaml` data into the About Us site we want to produce.
 
@@ -102,6 +102,8 @@ This lets us transform `team.yaml` in two steps: 1) transform the integer keys t
   <figcaption>Transformed values</figcaption>
 </div>
 
-If you view the served site in the browser, you can inspect the intermediate `teamByName` graph as well as the final `greetings` graph. Being able to explore intermediate representations is, in fact, a very useful diagnostic property of the Origami framework. Normally such intermediate representations are only indirectly viewable by setting debugger breakpoints and inspecting variable values — which is often cumbersome for complex data structures.
+If you view the served site, you can inspect the intermediate `teamByName` graph as well as the final `greetings` graph. Being able to explore intermediate representations is, in fact, an extremely useful diagnostic feature of the Origami framework. Normally such intermediate representations are only indirectly viewable by setting debugger breakpoints and inspecting variable values in a properties panel — which is often cumbersome for complex data structures.
 
 We've now roughed in the basic structure of the `team` route for the About Us site. The next step is to show something more interesting for a person than a simple greeting.
+
+Next: [Templates](intro4.html) »

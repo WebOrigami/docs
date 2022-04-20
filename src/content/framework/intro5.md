@@ -16,7 +16,7 @@ indexText = results(this):
 index.html = index.ori(intro/team.yaml):
 ---
 
-The last functional part of the About Us area we need to create is the main `index.html` page. By now it will not surprise you that we'll create that page with some more graph transformations.
+The last functional part of the About Us area we need to create is the main `index.html` page. By now it will not surprise you that we'll create that page with another graph transformation.
 
 ## Creating an index page template
 
@@ -40,9 +40,9 @@ Most template languages have some form of iteration for repeating a fragment (of
 
 ... link to example ...
 
-If you look at the sample `index.html` page, it contains a tile or card for each person on the team. In Origami, anytime you have a situation that can be described as, "For each _x_, we want a _y_", the situation can probably be handled with a graph transformation. That applies to this situation, too.
+If you look at the sample `index.html` page, it contains a tile or card for each person on the team. In Origami, anytime you have a situation that can be described as, "For each _x_, create a _y_", the situation can probably be handled with a graph transformation. That guideline applies here.
 
-Earlier we mapped the graph of people to a graph of HTML pages. Here we'll do something similar, although instead of creating a full HTML page for each person on the team, we'll create an HTML fragment for that person's tile. We'll then combine those tiles to create the index page.
+Earlier we mapped the graph of people to a graph of HTML pages. Here we'll do something similar, but instead of creating a full HTML page for each person on the team, we'll create an HTML fragment defining a tile element for that person. We'll then combine those tiles to create the index page.
 
 Update the `index.ori` template so that it contains:
 
@@ -50,9 +50,9 @@ Update the `index.ori` template so that it contains:
 {{index.ori}}
 ```
 
-The `\{\{#…}}` syntax lets us invoke the same `map` function we've been using to this point. Everything between the `\{\{#map}}` and `\{\{/map}}` will be passed as an argument to the `map` function. The fragment in between will be evaluated in the context of the item being mapped so, in this case, `\{\{name}}` will refer to the name of an individual person in `team.yaml`.
+The `\{\{#…}}` syntax invokes the same `map` function we've already been using in formulas. The fragment between the `\{\{#map}}` and `\{\{/map}}` will be passed as an additional argument to the `map` function. That fragment will be evaluated in the context of the item being mapped. In this case, `\{\{name}}` will refer to the name of an individual person in `team.yaml`.
 
-Earlier we saw how applying an Origami template was a kind of graph transformation that produced a graph of text. In the case of `index.ori`, this transformation will produce a deeper graph of text.
+Earlier we saw how applying an Origami template was a kind of graph transformation that produced a graph of text. In the case of `index.ori`, this transformation produces a multi-level graph of text.
 
 <div class="two-up">
   <figure>
@@ -67,7 +67,7 @@ Earlier we saw how applying an Origami template was a kind of graph transformati
   </figcaption>
 </div>
 
-As before, a fixed string like `<h1>About Us</h1>` is mapped directly into the graph of strings. The `#map` block in the template is a placeholder that is evaluated. It produces its own subgraph of strings: an HTML fragment like `<li>Alice</li>` for each person.
+As before, a boilerplate string like `<h1>About Us</h1>` is mapped directly into the graph of strings. The `#map` block in the template is a placeholder that is evaluated. It produces its own subgraph of strings: an HTML fragment like `<li>Alice</li>` for each person.
 
 The entire deep graph of strings is concatenated in depth-first order to produce the final result, which is served as `index.html`.
 
@@ -81,4 +81,6 @@ Now that we have a working index page, you can flesh it out with more elements. 
 {{ intro/index.ori }}
 ```
 
-This version of `index.ori` is only slightly more elaborate than the rudimentary version above, but it works the same way. The `#map` block in the middle will generate a tile for each person in `team.yaml`. The tile will make use of the same generated avatar SVGs we created with a graph transformation earlier.
+This version of `index.ori` is slightly more elaborate, but works the same way as the one above. The `#map` block in the middle will generate a tile element for each person in `team.yaml`. The tile will make use of the same generated avatar SVGs we created with a graph transformation earlier.
+
+Next: [Deploying](intro6.html) »

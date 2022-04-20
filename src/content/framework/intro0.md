@@ -2,11 +2,11 @@
 title: "Origami framework introduction"
 ---
 
-The Origami framework is designed to transform digital content that you can create directly — data, files, and other resources — into forms that can be viewed and used by your audience. It's built on a conceptual paradigm that treats development tasks as transformations of data represented in graphs.
+The Origami framework is designed to help you create digital content such as web sites, documentation, and data sets. It's built on a conceptual paradigm that treats development tasks as transformations of data represented in graphs. In a series of steps, you transform data, files, and other resources into forms that can be viewed and used by your audience.
+
+This tutorial follows a hands-on practical example of building a small website. Site creation is used as an illustrative example; you can use Origami for many other things than site development.
 
 ## Getting started
-
-This tutorial follows a hands-on practical example of building a small site. You can use Origami for many other things than website development; site creation is used as an illustrative example.
 
 You can follow along with this tutorial in one of two ways:
 
@@ -15,9 +15,9 @@ You can follow along with this tutorial in one of two ways:
 
 ## Start the web server
 
-There are a variety of ways to incorporate Origami into an existing web server or a larger project, but for this introduction, you'll use the small server included with the ori [command-line interface](/cli) that is part of Origami.
+There are a variety of ways to incorporate Origami into an existing web server or a larger project, but for this introduction, you'll use the small server included with the [ori command-line interface](/cli) that is part of Origami.
 
-If you're using StackBlitz, it should start the ori server automatically. You may see a StackBlitz message asking you to enable certain cookies in order to run the server.
+If you're using StackBlitz, it should start the ori server automatically. You may see a StackBlitz message requiring you to enable certain cookies in order to run the server.
 
 If you're running locally, open a terminal window in the project's root directory, then:
 
@@ -27,3 +27,5 @@ Server running at http://localhost:5000
 ```
 
 Either way, you should be able to point your browser at the running server and see a listing of the project files.
+
+Next: [Creating content](intro1.html) »
