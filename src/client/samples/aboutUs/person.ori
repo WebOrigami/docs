@@ -1,0 +1,27 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{{name}} - About Us</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <a class="headerLink" href="..">
+      <header>
+        <img class="icon" src="../personIcon.svg" />
+        <h1>About Us</h1>
+      </header>
+    </a>
+    <main class="person">
+      <img class="avatar large" src="../headshots/{{id}}.jpg" alt="{{name}}" />
+      <h2 class="name">{{name}}</h2>
+      <div class="position">
+        {{position}},
+        {{location}}
+      </div>
+      <p class="bio">
+        {{bio}}
+      </p>
+    </main>
+  </body>
+</html>
