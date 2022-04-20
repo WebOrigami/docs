@@ -1,10 +1,11 @@
 ---
 title: Transform graphs with formulas
 numberHeadings: true
-team.yaml = client/samples/framework.yaml/intro/team.yaml:
+intro = client/samples/frameworkIntro:
+team.yaml = intro/team.yaml:
 teamByName = mapKeys(team.yaml, =name):
-greetings = map(team.yaml, =client/samples/framework.yaml/intro/greet(name)):
-greetingsByName = map(teamByName, =client/samples/framework.yaml/intro/greet(name)):
+greetings = map(team.yaml, =intro/greet(name)):
+greetingsByName = map(teamByName, =intro/greet(name)):
 ---
 
 ## Transform a graph

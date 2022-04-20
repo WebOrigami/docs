@@ -1,6 +1,7 @@
 ---
 title: Create virtual files with formulas
 numberHeadings: true
+intro = client/samples/frameworkIntro:
 folder: |
   "message = 'Hello, world!'": ""
   team.yaml: |
@@ -108,7 +109,7 @@ We'll come back to graph transformations, but before moving on let's try somethi
 In the `src` folder, create a JavaScript file called `greet.js` and paste in the following:
 
 ```{{'js'}}
-{{ client/samples/framework.yaml/intro/greet.js }}
+{{ intro/greet.js }}
 ```
 
 You can use this `greet` formula in an Origami function to generate the contents of a virtual file.
@@ -135,7 +136,7 @@ As before, you can view the contents of this HTML page in the command line:
 
 ```console
 $ ori virtual/hello.html
-{{ client/samples/framework.yaml/intro/hello.html }}
+{{ intro/hello.html }}
 ```
 
 Since the function the formula calls is regular JavaScript, you can use that JavaScript to create HTML by any means you like. If the function is asynchronous, Origami will `await` the result before serving it to the browser. With that, you should be able to do essentially anything you want in the JavaScript function to create any HTML result.

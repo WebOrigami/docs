@@ -1,18 +1,18 @@
 ---
 title: Content creation through graph transformation
 numberHeadings: true
-intro = client/samples/framework.yaml/intro:
+intro = client/samples/frameworkIntro:
 ---
 
 As a motivating example, this introduction leads you through the following hypothetical design and development task:
 
 > _Your team needs to design and implement an "About Us" area for your organization's site. The main About Us page will need to include a list of people on the team, with links to separate pages for each team member. A team member's page should show their name and a photo._
 
-... link to example site ...
+Here's an [example About Us area](/samples/aboutUs) we can consider as a model for this task.
 
 ## Visualize the final result
 
-Let's start by considering what we want to end up with. Based on the linked example, we want a site with a topology like this:
+Let's start by considering what we want to end up with. Based on the linked example above, we want a site with a topology like this:
 
 <figure>
 {{ svg intro/site.yaml }}
@@ -24,13 +24,13 @@ Representing the site as a graph like this is not only a good way to visualize w
 
 ## Select a data representation
 
-Given our task statement, there are many ways we could represent the data we'll need. For now, let's pick the simplest possible representation that will work: a tiny data file listing the people on the team.
+Given our task statement, there are many ways we could represent the data we'll need. For now, let's pick the simplest possible representation that will work: a tiny data file listing the names of the people on the team.
 
 First, create a new folder called `src` at the root of the project.
 
-Using the StackBlitz code editor or (if running locally) you're preferred code editor, create a file called `team.yaml` in the `src` folder.
+Using the StackBlitz code editor or (if running locally) your preferred code editor, create a file called `team.yaml` in the `src` folder.
 
-Type a set of names into this `team.yaml` file using the YAML format below. You don't have to use the stock names — _this tutorial will be much more amusing to you if you type the names of your own teammates or family members!_
+Type some set of names into this `team.yaml` file using the YAML format below. _You don't have to use these stock names._ This tutorial will be **much** more entertaining if you type the names of your own teammates or family members!
 
 ```\yaml
 {{ intro/team.yaml }}

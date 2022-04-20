@@ -1,7 +1,7 @@
 ---
 title: Deploying a site
 numberHeadings: true
-intro = client/samples/framework.yaml/intro:
+intro = client/samples/frameworkIntro:
 ---
 
 ## Reviewing the structure of the site

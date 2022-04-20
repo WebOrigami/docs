@@ -307,49 +307,27 @@ nav a:hover {
 }
 
 /*
- * Two-up side-by-side figure layout
+ * Side-by-side layouts
  */
+.two-up,
+.three-up {
+  display: grid;
+  gap: 2rem;
+  justify-items: center;
+  margin: 3em 0;
+}
 
 .two-up {
-  display: grid;
-  gap: 2rem;
-  grid-template-areas:
-    "figure1"
-    "caption1"
-    "figure2"
-    "caption2";
-  margin: 3em 0;
+  grid-template-columns: minmax(0, auto) minmax(0, auto);
 }
 
-.two-up figure:first-of-type {
-  grid-area: figure1;
-}
-.two-up figure:last-of-type {
-  grid-area: figure2;
-}
-.two-up figcaption:first-of-type {
-  grid-area: caption1;
-}
-.two-up figcaption:last-of-type {
-  grid-area: caption2;
-}
-
-.two-up figure {
-  margin: 0;
-}
-
-.two-up figcaption {
-  text-align: center;
-}
-
-/*
- * Three-up layout
- */
- .three-up {
-  display: grid;
-  gap: 2rem;
+.three-up {
   grid-template-columns: minmax(0, auto) minmax(0, auto) minmax(0, auto);
-  margin: 3em 0;
+}
+
+.two-up figure,
+.three-up figure {
+  margin: 0;
 }
 
 /*
@@ -427,12 +405,6 @@ g.node polygon[fill="none"] {
   }
   .blocks a {
     padding: 0.5rem 1rem;
-  }
-
-  .two-up {
-    grid-template-areas:
-      "figure1 figure2"
-      "caption1 caption2";
   }
 
   figure {

@@ -1,7 +1,7 @@
 ---
 title: Rendering data with templates
 numberHeadings: true
-intro = client/samples/framework.yaml/intro:
+intro = client/samples/frameworkIntro:
 teamByName = intro/teamByName:
 team = intro/team:
 team2 = intro/team2:
@@ -144,9 +144,9 @@ When you view a page like `team/Alice.html`, you should now see a somewhat more 
 
 ## Bonus: Add avatars
 
-... link to example ...
+A typical About Us area like our [example](/samples/aboutUs) shows headshot photographs for each team member. If you have pictures you'd like to use, you could certainly use those here.
 
-A typical About Us area like our example shows headshot photographs for each team member. If you have pictures you'd like to use, you could certainly use those here. For the sake of this tutorial, however, we'll use programmatically generated avatars provided by a service called [DiceBear](https://avatars.dicebear.com/). Given an arbitrary string, that service will always return the same generated avatar.
+For the sake of this tutorial, however, we'll use programmatically generated avatars provided by a service called [DiceBear](https://avatars.dicebear.com/). Given an arbitrary string, that service will always return the same generated avatar.
 
 From the `assets` folder, move or copy the `avatar.js` file to the `src` folder. This file contains a function that maps an input string and returns an SVG file from the avatar service.
 

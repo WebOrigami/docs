@@ -1,7 +1,7 @@
 ---
 title: Create index pages with nested templates
 numberHeadings: true
-intro = client/samples/framework.yaml/intro:
+intro = client/samples/frameworkIntro:
 index.ori: |
   <h1>About Us</h1>
   {{#map team.yaml}}
@@ -38,9 +38,7 @@ You should now be able to visit `index.html` in the browser.
 
 Most template languages have some form of iteration for repeating a fragment (of HTML, say) for each item in an array. In Origami, such things are handled with graph transformations.
 
-... link to example ...
-
-If you look at the sample `index.html` page, it contains a tile or card for each person on the team. In Origami, anytime you have a situation that can be described as, "For each _x_, create a _y_", the situation can probably be handled with a graph transformation. That guideline applies here.
+If you look at the [example About Us index page](/samples/aboutUs), it contains a tile or card for each person on the team. In Origami, anytime you have a situation that can be described as, "For each _x_, create a _y_", the situation can probably be handled with a graph transformation. That guideline applies here.
 
 Earlier we mapped the graph of people to a graph of HTML pages. Here we'll do something similar, but instead of creating a full HTML page for each person on the team, we'll create an HTML fragment defining a tile element for that person. We'll then combine those tiles to create the index page.
 
