@@ -2,7 +2,7 @@
 title: Transform graphs with formulas
 numberHeadings: true
 team.yaml = client/samples/framework.yaml/intro/team.yaml:
-teamByName = mapKeys(team.yaml, 'name'):
+teamByName = mapKeys(team.yaml, =name):
 greetings = map(team.yaml, =client/samples/framework.yaml/intro/greet(name)):
 greetingsByName = map(teamByName, =client/samples/framework.yaml/intro/greet(name)):
 ---
@@ -59,12 +59,12 @@ In the `greetings` graph shown above, the keys (labels) for the arrows are the a
 To accomplish that, we can use another type of map called `mapKeys`, which changes a graph's keys. Create an empty file with the following formula name:
 
 ```console
-teamByName = mapKeys(team.yaml, 'name')
+teamByName = mapKeys(team.yaml, =name)
 ```
 
-... change to use lambda `=name` ...
+The `=name` part of the formula defines an unnamed function (called a "lambda") that will be evaluated in the context of the individual data values. In this case, the unnamed function will return the `name` property of a person. You could also define a separate JavaScript function to perform the same work, but in this case the function is simple enough to be inlined into the formula.
 
-This will result in a new graph using names as keys.
+This `mapKeys` formula will result in a new graph using names as keys.
 
 <div class="two-up">
   <figure>
