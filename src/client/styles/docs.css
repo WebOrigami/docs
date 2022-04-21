@@ -138,6 +138,7 @@ td {
 figure {
   display: grid;
   gap: 3rem;
+  justify-items: center;
   margin: 3rem 0;
 }
 
@@ -435,8 +436,6 @@ g.node polygon[fill="none"] {
   }
 
   figure {
-    display: grid;
-    justify-items: center;
     margin: 3rem 3rem 3rem 0;
   }
 }
