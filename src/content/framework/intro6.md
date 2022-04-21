@@ -24,7 +24,7 @@ To render the site's pages and other resources, we can take the above graph of v
 
 The Origami command-line interface has a built-in [copy](/cli/builtins.html#copy) function that can copy one graph into another. We can use that `copy` command to copy a virtual graph into a graph of real files in the file system.
 
-Issue you the following command from the project root. (If you're currently running the ori server, you can stop it with Ctrl+C.)
+In the terminal, issue the following command. (If you're currently running the ori server, you can stop it with Ctrl+C.)
 
 ```console
 $ ori copy virtual/src, files/dist

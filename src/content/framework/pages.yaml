@@ -1,7 +1,7 @@
 - href: index.html
   text: Overview
-- href: intro0.html
-  text: "Intro"
+- href: intro.html
+  text: "Introduction"
   pages:
     - href: intro1.html
       text: "Creating content"

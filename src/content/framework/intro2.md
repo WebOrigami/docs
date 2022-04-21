@@ -50,10 +50,9 @@ The Origami framework and the ori command line tool use the same formula languag
 In the terminal, press Ctrl+C to stop the running server, then:
 
 ```console
-$ cd src
-$ ls
+$ ls src
 message = 'Hello, world!'  team.yaml
-$ ori files
+$ ori files/src
 "message = 'Hello, world!'": ""
 team.yaml: |
   - name: Alice
@@ -61,19 +60,19 @@ team.yaml: |
   - name: Carol
 ```
 
-The ori `files` function returns a graph of the real files in the current folder. The `src` folder contains two real files: `team.yaml` and `message = 'Hello, world!'`. If you ask ori to display the local `files` graph, it will list (in YAML form) the contents of those two files.
+The ori `files` function returns a graph of the real files in the `src` folder. The `src` folder contains two real files: `team.yaml` and `message = 'Hello, world!'`. If you ask ori to display the local `files` graph, it will list (in YAML form) the contents of those two files.
 
-You can visualize the `files` graph like this:
+You can visualize the `files` version of the `src` folder as graph:
 
 <figure>
   {{ svg folder }}
 </figure>
 <figcaption>Source graph containing a single real, empty file</figcaption>
 
-If you ask ori to show the contents of the local `virtual` graph, it will interpret the formulas in file names. The resulting virtual graph will include _both_ the real files and any new virtual files implied by formulas.
+If you ask ori to show the contents of the `virtual` graph based on `src`, it will interpret the formulas in file names. The resulting virtual graph will include _both_ the real files and any new virtual files implied by formulas.
 
 ```console
-$ ori virtual
+$ ori virtual/src
 message: Hello, world!
 "message = 'Hello, world!'": ""
 team.yaml: |
@@ -96,7 +95,7 @@ _Transforming graphs is the fundamental operation of the Origami framework._
 Since the ori command-line interface knows how to traverse graphs, you can ask ori to display a single virtual file from the `virtual` graph on demand:
 
 ```console
-$ ori virtual/message
+$ ori virtual/src/message
 Hello, world!
 ```
 
@@ -124,20 +123,20 @@ As before, be sure to use single quotes, not double quotes. (To encourage cross-
 
 This will define a virtual file called `hello.html`. The value or contents of that virtual file will be the result of invoking the function exported by the `greet.js` module. Origami follows a convention that `greet` is a reference to whatever is exported by `greet.js` — in this case, a function to invoke.
 
-Restart the server:
+You can view the contents of this virtual HTML page in the command line:
+
+```console
+$ ori virtual/src/hello.html
+{{ intro/hello.html }}
+```
+
+You can also restart the server to view the virtual page in the served site:
 
 ```console
 $ ori serve
 ```
 
 Navigate to the `src` route, which should now show an entry for `hello.html`. If you open that page, you'll see "Hello, world!". Each time you ask for `hello.html`, the web server will evaluate the formula you defined.
-
-As before, you can view the contents of this HTML page in the command line:
-
-```console
-$ ori virtual/hello.html
-{{ intro/hello.html }}
-```
 
 Since the function the formula calls is regular JavaScript, you can use that JavaScript to create HTML by any means you like. If the function is asynchronous, Origami will `await` the result before serving it to the browser. With that, you should be able to do essentially anything you want in the JavaScript function to create any HTML result.
 
