@@ -61,7 +61,7 @@ Using transformations like this, we can begin working towards transforming our `
 
 In the `greetings` graph shown above, the keys (labels) for the arrows are the array indices: 0, 1, 2. In our About Us site, we want the `team` route to incorporate a person's name: `Alice.html`, `Bob.html`, `Carol.html`.
 
-To accomplish that, we can use another type of map called `mapKeys`, which changes a graph's keys. Create an empty file with the following formula name:
+To accomplish that, we can use another type of map called [mapKeys](/cli/builtins.html#mapKeys), which changes a graph's keys. Create an empty file with the following formula name:
 
 ```console
 teamByName = mapKeys(team.yaml, =name)

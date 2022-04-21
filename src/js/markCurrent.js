@@ -8,11 +8,8 @@ export default function markCurrent(links, currentPage) {
     return new ExplorableObject({});
   }
   const result = links.map((entry) => {
-    if (entry.href === currentPage) {
-      return Object.assign({ current: true }, entry);
-    } else {
-      return entry;
-    }
+    const current = entry.href === currentPage;
+    return Object.assign({ current }, entry);
   });
   return result;
 }

@@ -412,6 +412,10 @@ g.node polygon[fill="none"] {
     grid-column: auto;
   }
 
+  #sideBar ul {
+    padding-left: 20px;
+  }
+
   header h1 {
     margin-bottom: inherit;
   }

@@ -224,6 +224,26 @@ The `mapFn` mapping function is typically a JavaScript function, but can be any 
 
 `map` works on all levels of a graph. If you only want to transform the top-level values in a graph, see [shallowMap](#shallowMap).
 
+<a name="mapKeys"></a>
+
+## mapKeys(graph, [keyFn])
+
+Returns a new graph that replaces the original keys with mapped keys, obtained by invoking the `keyFn` function for each value in the original graph. If the `keyFn` is omitted, the value itself becomes its own key.
+
+```console
+$ ori team.yaml
+- name: Alice
+- name: Bob
+- name: Carol
+$ ori mapKeys team.yaml, =name
+Alice:
+  name: Alice
+Bob:
+  name: Bob
+Carol:
+  name: Carol
+```
+
 <a name="mdHtml"></a>
 
 ## mdHtml(markdown)

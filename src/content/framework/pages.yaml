@@ -2,18 +2,19 @@
   text: Overview
 - href: intro0.html
   text: "Intro"
-- href: intro1.html
-  text: "&nbsp;&nbsp;&nbsp;&nbsp;Creating content"
-- href: intro2.html
-  text: "&nbsp;&nbsp;&nbsp;&nbsp;Formulas"
-- href: intro3.html
-  text: "&nbsp;&nbsp;&nbsp;&nbsp;Transformations"
-- href: intro4.html
-  text: "&nbsp;&nbsp;&nbsp;&nbsp;Templates"
-- href: intro5.html
-  text: "&nbsp;&nbsp;&nbsp;&nbsp;Nested templates"
-- href: intro6.html
-  text: "&nbsp;&nbsp;&nbsp;&nbsp;Deploying"
+  pages:
+    - href: intro1.html
+      text: "Creating content"
+    - href: intro2.html
+      text: "Formulas"
+    - href: intro3.html
+      text: "Transformations"
+    - href: intro4.html
+      text: "Templates"
+    - href: intro5.html
+      text: "Nested templates"
+    - href: intro6.html
+      text: "Deploying"
 - href: transformation.html
   text: Transformation
 - href: metagraph.html
