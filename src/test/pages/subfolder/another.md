@@ -4,7 +4,7 @@ message: Hello
 
 Hello
 
-```console assert
+```console assert: true
 $ ori message
 Hello
 ```

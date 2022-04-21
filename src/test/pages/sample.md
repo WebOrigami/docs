@@ -3,6 +3,8 @@ names:
   - Alice
   - Bob
   - Carol
+folder:
+  message: Hello
 ---
 
 # Sample page
@@ -17,7 +19,7 @@ $ ori blah blah blah
 
 This should assert:
 
-```console assert
+```console assert: true
 $ ori names
 - Alice
 - Bob
@@ -26,9 +28,16 @@ $ ori names
 
 Here's some more text.
 
-```console assert
+```console assert: true
 $ ori keys names
 - 0
 - 1
 - 2
+```
+
+Assertion with context
+
+```console assert: true, path: folder
+$ ori message
+Hello
 ```

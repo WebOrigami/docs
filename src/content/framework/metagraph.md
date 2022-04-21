@@ -2,7 +2,7 @@
 title: Metagraphs
 formula.yaml: |
   name: world
-  message = `Hello, {{name}}.`:
+  message = `Hello, {{name}}.`: null
 folder: |
   html = map(markdown, mdHtml, '.md', '.html'):
   markdown:
@@ -15,13 +15,13 @@ A _metagraph_ is a graph that describes its own transformation. The transformati
 
 ## Example: Metagraph with a key that includes a formula
 
-```console assert
+```console assert: true
 $ ori formula.yaml
 name: world
-message = `Hello, \{\{name}}.`:
+message = `Hello, \{\{name}}.`: null
 ```
 
-This graph defines just two keys: the first key is `name` and it has the value "world". The second key is a text formula. In this example, the value of the second key is irrelevant; here it `null`, as indicated by the fact there is nothing after the final `:` colon. We can visualize the graph this way:
+This graph defines just two keys: the first key is `name` and it has the value "world". The second key is a text formula. In this example, the value of the second key is irrelevant; here it `null`. We can visualize the graph this way:
 
 <figure>
 {{ svg formula.yaml }}
@@ -29,11 +29,11 @@ This graph defines just two keys: the first key is `name` and it has the value "
 
 We can ask Origami to _interpret_ this formula by passing the graph to the built-in function `meta`. This returns a metagraph in which the formulas result in new, virtual values.
 
-```console assert
+```console assert: true
 $ ori meta formula.yaml
-name: world
 message: Hello, world.
-"message = `Hello, \{\{name}}.`":
+"message = `Hello, \{\{name}}.`": null
+name: world
 ```
 
 The original graph has now been expanded:
@@ -57,7 +57,7 @@ $ cat Alice.md
 Hello, **Alice**.
 ```
 
-```console assert
+```console assert: true
 $ ori folder
 html = map(markdown, mdHtml, '.md', '.html'):
 markdown:
@@ -70,7 +70,7 @@ markdown:
 {{ svg folder }}
 </figure>
 
-```console assert
+```console assert: true
 $ ori meta folder
 html:
   Alice.html: |

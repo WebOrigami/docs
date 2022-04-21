@@ -17,17 +17,19 @@ export default async function mdAsserts(markdown) {
   // Extract code blocks from the body text.
   const codeBlocks = await mdCode(bodyText);
 
-  // Find code with `console` as language and `assert` in metadata.
-  const consoleAssertCodes = codeBlocks
+  // Find code with `console` as language and `assert: true` in metadata.
+  const consoleCodeData = codeBlocks
     .filter(
       (codeBlock) =>
-        codeBlock.language === "console" &&
-        codeBlock.metadata?.includes("assert")
+        codeBlock.language === "console" && codeBlock.metadata?.assert
     )
-    .map((codes) => codes.code);
+    .map((codeBlock) => ({
+      code: codeBlock.code,
+      path: codeBlock.metadata?.path,
+    }));
 
   // Convert console asserts to regular asserts.
-  const asserts = consoleAssertCodes.flatMap(consoleAsserts);
+  const asserts = consoleCodeData.flatMap(consoleAsserts);
 
   // Add the extracted asserts to the data. Workaround: we expand the map to a
   // plain object so that the eventual application of the MetaTransform will be
