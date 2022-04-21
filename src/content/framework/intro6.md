@@ -38,7 +38,7 @@ When this completes, inspect the `dist` folder. In addition to all the source fi
 - An `index.html` page, with HTML to create a tile for each team member.
 - A `team` folder, with individual HTML pages for each team member.
 
-If you browser the `dist` route in the served site, you should see a functionally identical About Us area — only this one is backed entirely by static files.
+If you browse the `dist` route in the served site, you should see a functionally identical About Us area — only this one is backed entirely by static files.
 
 Some of the source files you created by hand or copied in, such as `styles.css`, are necessary to run the site. Others are not necessary. It's possible to filter out the files you don't need, but for now we can leave those files in the `dist` folder; deploying them would be harmless.
 

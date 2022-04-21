@@ -32,7 +32,7 @@ This will be the basis for an Origami template for our index page. To use it, cr
 index.html = index.ori()
 ```
 
-You should now be able to visit `index.html` in the browser.
+You should now be able to visit `index.html` in the served site.
 
 ## Using a nested template
 

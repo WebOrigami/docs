@@ -45,7 +45,7 @@ You don't have to use the Origami server: you can integrate the support for form
 
 ## Conceptualizing real and virtual files as graphs
 
-The Origami framework and the ori command line tool use the same formula language. In addition to viewing the result of a formula in the browser as you did above, at any time you can also view the value of a formula in the command line with the ori tool.
+The Origami framework and the ori command line tool use the same formula language. In addition to viewing the result of a formula in the served site as you did above, at any time you can also view the value of a formula in the command line with the ori tool.
 
 In the terminal, press Ctrl+C to stop the running server, then:
 

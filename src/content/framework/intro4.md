@@ -45,7 +45,7 @@ The primary content of the virtual `Alice.html` file will be:
 {{ intro/person.ori(teamByName%Alice) }}
 ```
 
-Open `Alice.html` in your browser to view the result: Hello, **Alice**.
+Open `Alice.html` in the served site to view the result: Hello, **Alice**.
 
 At this point, we're successfully transforming the data for a single person, Alice, to create a single web page for that person.
 
@@ -92,7 +92,7 @@ Create a new, empty file named
 team = map(teamByName, person.ori)
 ```
 
-If you now visit the `team` route in the web browser, you'll be able to select a person's name to see a rudimentary HTML page for that person. The people data has been mapped to HTML.
+If you now visit the `team` route in the served site, you'll be able to select a person's name to see a rudimentary HTML page for that person. The people data has been mapped to HTML.
 
 <div class="sideBySide">
   <figure>
@@ -164,7 +164,7 @@ avatars = map(teamByName, avatar, '', '.svg')
 
 You should now be able to see avatars for the people on their HTML pages.
 
-In the browser, you can navigate to the `src/avatars` folder to see a virtual folder of the generated SVGs. This virtual folder looks indistinguishable from a real folder of real SVGs. As noted earlier, an important property of building content with Origami is that intermediate results are explorable in the browser or the command line.
+In the served site, you can navigate to the `src/avatars` folder to see a virtual folder of the generated SVGs. This virtual folder looks indistinguishable from a real folder of real SVGs. As noted earlier, an important property of building content with Origami is that intermediate results are explorable in the browser or the command line.
 
 A common feature of working with Origami is that you can smoothly move between using real and virtual files. You could use these generated avatar SVGs to get started. Later, you could delete the `avatars` formula and create a real `avatars` folder containing manually curated or created SVGs or JPEG headshot photos.
 

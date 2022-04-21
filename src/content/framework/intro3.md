@@ -12,7 +12,13 @@ greetingsByName = map(teamByName, =intro/greet(name)):
 
 We've seen how a formula can transform a single piece of data (a person's name, say) into some other form (a greeting). If you wanted to create a greeting page for multiple people, you could create a formula for each of them. But you can also write formulas that transform a set of things at once.
 
-As a reminder, we can visualize the people in `team.yaml` as a graph:
+First, copy the `greet.js` file to create a new JavaScript file called `greetPerson.js`. Then update the function to take a person argument (instead of a string), then uses that person's `name` in the output:
+
+```\js
+{{ intro/greetPerson.js }}
+```
+
+Now we'll apply the `greetPerson` function to the team data. As a reminder, we can visualize the people in `team.yaml` as a graph:
 
 <figure>
 {{ svg team.yaml }}
@@ -21,18 +27,14 @@ As a reminder, we can visualize the people in `team.yaml` as a graph:
 In Origami, a graph is a first-class data type that can be passed to functions. Create a new empty file called:
 
 ```console
-greetings = map(team.yaml, greet)
+greetings = map(team.yaml, greetPerson)
 ```
-
-... need to resolve different uses of greet ...
 
 The earlier formulas each defined a single virtual file like `message` or `hello.html`. The `greetings` formula here defines a virtual _graph_ of things. It's essentially a virtual folder of virtual files.
 
-The [map](/cli/builtins.html#map) function is a built-in function that applies a one-to-one map function like `greet` to a graph of object. The result is a new graph of transformed objects. In this case, the `greet` function maps a person to a greeting. Using `map` to apply `greet` to an graph of people produces a graph of greetings.
+The [map](/cli/builtins.html#map) function is a built-in function that applies a one-to-one map function like `greet` to a graph of object. The result is a new graph of transformed objects. In this case, the `greetPerson` function maps a person to a greeting. Using `map` to apply `greetPerson` to an graph of people produces a graph of greetings.
 
 If you view the `src` folder through the server, you'll see a new entry for a virtual `greetings` folder. If you click on that `greetings` folder, you'll see a list of three links labeled with the indices of the array: "0", "1", "2". Clicking on one of those indices will take you to a page like `src/greetings/1`, which says "Hello, Bob!"
-
-When you want to do work on multiple files or data values in the Origami framework, it's generally helpful to think about how you can best represent the source information as a graph, then identify the transformation you want to apply to each value in the graph. This will produce a new virtual graph of results.
 
 <div class="sideBySide">
   <figure>
@@ -44,6 +46,8 @@ When you want to do work on multiple files or data values in the Origami framewo
   <figcaption>Source graph of real values</figcaption>
   <figcaption>Result graph of virtual values</figcaption>
 </div>
+
+When you want to do work on multiple files or data values in the Origami framework, it's generally helpful to think about how you can best represent the source information as a graph, then identify the transformation you want to apply to each value in the graph. This will produce a new virtual graph of results.
 
 Some notes on using the `map` function:
 
@@ -63,7 +67,7 @@ To accomplish that, we can use another type of map called `mapKeys`, which chang
 teamByName = mapKeys(team.yaml, =name)
 ```
 
-The `=name` part of the formula defines an unnamed function (called a "lambda") that will be evaluated in the context of the individual data values. In this case, the unnamed function will return the `name` property of a person. You could also define a separate JavaScript function to perform the same work, but in this case the function is simple enough to be inlined into the formula.
+The `=name` part of the formula defines an unnamed function (known as a "lambda") that will be evaluated in the context of the individual data values. In this case, the unnamed function will return the `name` property of a person. You could also define a separate JavaScript function to perform the same work, but in this case the function is simple enough to be inlined into the formula.
 
 This `mapKeys` formula will result in a new graph using names as keys.
 
@@ -98,9 +102,9 @@ This lets us transform `team.yaml` in two steps: 1) transform the integer keys t
   <figure>
     {{ svg greetingsByName }}
   </figure>
-  <figcaption>Source graph</figcaption>
-  <figcaption>Transformed keys</figcaption>
-  <figcaption>Transformed values</figcaption>
+  <figcaption>team.yaml: source data</figcaption>
+  <figcaption>teamByName: transformed keys</figcaption>
+  <figcaption>greetings: transformed values</figcaption>
 </div>
 
 If you view the served site, you can inspect the intermediate `teamByName` graph as well as the final `greetings` graph. Being able to explore intermediate representations is, in fact, an extremely useful diagnostic feature of the Origami framework. Normally such intermediate representations are only indirectly viewable by setting debugger breakpoints and inspecting variable values in a properties panel — which is often cumbersome for complex data structures.
