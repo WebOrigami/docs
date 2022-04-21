@@ -65,7 +65,7 @@ The first and last items in this array are boilerplate strings holding HTML; the
 
 When we apply this template to the data for a person like Alice, we transform the array graph into a new graph. Boilerplate strings in the source graph are carried over as is, while expressions in placeholders are evaluated in the context of the data. This results in a new graph of only string values.
 
-<div class="two-up">
+<div class="sideBySide">
   <figure>
     {{ svg template }}
   </figure>
@@ -94,7 +94,7 @@ team = map(teamByName, person.ori)
 
 If you now visit the `team` route in the web browser, you'll be able to select a person's name to see a rudimentary HTML page for that person. The people data has been mapped to HTML.
 
-<div class="two-up">
+<div class="sideBySide">
   <figure>
     {{ svg teamByName }}
   </figure>
@@ -119,7 +119,7 @@ team = map(teamByName, person.ori, '', '.html')
 
 The third parameter (`''`) indicates that we don't want to remove anything from the graph keys. The fourth parameter (`'.html'`) indicates that we want to add `.html` to the graph keys. The transformation now looks like:
 
-<div class="two-up">
+<div class="sideBySide">
   <figure>
     {{ svg teamByName }}
   </figure>

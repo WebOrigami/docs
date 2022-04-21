@@ -52,7 +52,7 @@ The `\{\{#…}}` syntax invokes the same `map` function we've already been using
 
 Earlier we saw how applying an Origami template was a kind of graph transformation that produced a graph of text. In the case of `index.ori`, this transformation produces a multi-level graph of text.
 
-<div class="two-up">
+<div class="sideBySide">
   <figure>
     {{ svg indexTemplate }}
   </figure>

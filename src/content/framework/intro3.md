@@ -34,7 +34,7 @@ If you view the `src` folder through the server, you'll see a new entry for a vi
 
 When you want to do work on multiple files or data values in the Origami framework, it's generally helpful to think about how you can best represent the source information as a graph, then identify the transformation you want to apply to each value in the graph. This will produce a new virtual graph of results.
 
-<div class="two-up">
+<div class="sideBySide">
   <figure>
     {{ svg team.yaml }}
   </figure>
@@ -67,7 +67,7 @@ The `=name` part of the formula defines an unnamed function (called a "lambda") 
 
 This `mapKeys` formula will result in a new graph using names as keys.
 
-<div class="two-up">
+<div class="sideBySide">
   <figure>
     {{ svg team.yaml }}
   </figure>
@@ -88,7 +88,7 @@ greeting = map(teamByName, greet)
 
 This lets us transform `team.yaml` in two steps: 1) transform the integer keys to name keys, 2) transform the person data values into greeting values.
 
-<div class="three-up">
+<div class="sideBySide">
   <figure>
     {{ svg team.yaml }}
   </figure>

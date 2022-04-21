@@ -309,24 +309,41 @@ nav a:hover {
 /*
  * Side-by-side layouts
  */
-.two-up,
-.three-up {
+.sideBySide {
   display: grid;
   gap: 2rem;
+  grid-template-areas:
+    "figure1"
+    "caption1"
+    "figure2"
+    "caption2"
+    "figure3"
+    "caption3";
   justify-items: center;
   margin: 3em 0;
 }
 
-.two-up {
-  grid-template-columns: minmax(0, auto) minmax(0, auto);
+.sideBySide figure:nth-of-type(1) {
+  grid-area: figure1;
+}
+.sideBySide figure:nth-of-type(2) {
+  grid-area: figure2;
+}
+.sideBySide figure:nth-of-type(3) {
+  grid-area: figure3;
 }
 
-.three-up {
-  grid-template-columns: minmax(0, auto) minmax(0, auto) minmax(0, auto);
+.sideBySide figcaption:nth-of-type(1) {
+  grid-area: caption1;
+}
+.sideBySide figcaption:nth-of-type(2) {
+  grid-area: caption2;
+}
+.sideBySide figcaption:nth-of-type(3) {
+  grid-area: caption3;
 }
 
-.two-up figure,
-.three-up figure {
+.sideBySide figure {
   margin: 0;
 }
 
@@ -405,6 +422,12 @@ g.node polygon[fill="none"] {
   }
   .blocks a {
     padding: 0.5rem 1rem;
+  }
+
+  .sideBySide {
+    grid-template-areas:
+      "figure1 figure2 figure3"
+      "caption1 caption2 caption3";
   }
 
   figure {

@@ -69,7 +69,7 @@ $ ori "shallowMap team.yaml, =name"
 
 We can visualize that mapping this way:
 
-<div class="two-up">
+<div class="sideBySide">
   <figure>
     {{ svg team.yaml }}
   </figure>
@@ -113,7 +113,7 @@ The `index.ori` file represents an outer template that includes an `h1` heading.
 
 We can visualize this as a graph transformation:
 
-<div class="two-up">
+<div class="sideBySide">
   <figure>
     {{ svg team.yaml }}
   </figure>

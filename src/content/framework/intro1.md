@@ -58,7 +58,7 @@ The `0`, `1`, and `2` are the indices from the array of names. If we ask the arr
 
 Since both our starting data representation and final desired site are graphs, our development task is fundamentally the _transformation of the first graph into the second graph_.
 
-<div class="two-up">
+<div class="sideBySide">
   <figure>
     {{ svg intro/team.yaml }}
   </figure>
