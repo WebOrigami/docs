@@ -21,7 +21,12 @@ export default function consoleAsserts(codeData) {
     const escapeRegex = /\\([^\\])/g;
     const expected = result.replaceAll(escapeRegex, "$1");
 
-    let actual = `actual = ori '${command}'`;
+    // Drop double quotes from command, which the shell would normally absorb.
+    let processedCommand = command.replaceAll('"', "");
+    // Escape single quotes in command.
+    processedCommand = processedCommand.replaceAll("'", "\\'");
+
+    let actual = `actual = ori '${processedCommand}'`;
     if (path) {
       actual += `, '${path}'`;
     }

@@ -1,5 +1,6 @@
 ---
 title: Built-In Functions
+files = client/samples/cli.yaml:
 ---
 
 These examples generally demonstrate invoking built-in functions from the command line, although the same functions can also be used in Origami formulas.
@@ -92,11 +93,11 @@ Returns an [ExplorableFiles](/core/ExplorableFiles.html) representation of the c
 
 Returns any _front matter_ parsed from the start of the indicated text. The front matter data should be in JSON or YAML format and delimited before and after by three hyphens on a line by themselves.
 
-```console
+```console assert: true, path: files
 $ ori hello.md
-​---
+---
 title: Hello
-​---
+---
 
 Hello, world.
 $ ori front hello.md
@@ -159,7 +160,7 @@ Render the contents of the object in JSON format.
 
 The ori tool uses YAML as its default output format, so you can use the `json` command to reformat the output as JSON:
 
-```console
+```console assert: true, path: files
 $ ori greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
@@ -178,7 +179,7 @@ $ ori json greetings.yaml
 
 Returns an array of the top-level keys in the indicated graph, which can be any graph [variant](/core/variants.html).
 
-```console
+```console assert: true, path: files
 $ ori greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
@@ -203,7 +204,7 @@ _This experimental function is not yet stable enough to document._
 
 Returns a new [MapGraph](/core/MapGraph.html) that applies the given `mapFn` to the values in the `graph`.
 
-```console
+```console assert: true, path: files
 $ ori greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
@@ -230,7 +231,7 @@ The `mapFn` mapping function is typically a JavaScript function, but can be any 
 
 Returns a new graph that replaces the original keys with mapped keys, obtained by invoking the `keyFn` function for each value in the original graph. If the `keyFn` is omitted, the value itself becomes its own key.
 
-```console
+```console assert: true, path: files
 $ ori team.yaml
 - name: Alice
 - name: Bob
@@ -264,7 +265,7 @@ Returns an Origami [metagraph](/framework/metagraph.html) by applying a [MetaTra
 
 Returns a new graph with all values equal to null.
 
-```console
+```console assert: true, path: files
 $ ori greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
@@ -291,7 +292,7 @@ Parses the indicated text as JSON or YAML. The parsed plain JavaScript object is
 
 Parsing a quoted argument on the command line:
 
-```console
+```console assert: true, path: files
 $ ori parse "'[1, 2, 3]'"
 - 1
 - 2
@@ -447,7 +448,7 @@ spanish  Hola, a.     Hola, b.     Hola, c.
 
 Returns an array of the top-level values in the indicated graph, which can be any graph [variant](/core/variants.html).
 
-```console
+```console assert: true, path: files
 $ ori greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
@@ -468,7 +469,7 @@ Render the contents of the object in YAML format.
 
 The ori tool uses YAML as its default output format, so you won't often need to invoke the `yaml` function yourself from the command line. One occasion to use it would be to convert a JSON file to YAML.
 
-```console
+```console assert: true, path: files
 $ ori letters.json
 {
   "a": "The letter A",
