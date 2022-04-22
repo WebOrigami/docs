@@ -2,15 +2,12 @@ export default function consoleAsserts(codeData) {
   const code = String(codeData.code);
   const path = codeData.path;
 
-  let interactions = code.split("\n$ ");
-  // Add back the trailing newline that was absorbed by the split, as well as
-  // add a newline to the end of the last interaction.
-  interactions.map((interaction) => interaction + "\n");
+  let interactions = code.split(/^\$ /m);
 
-  const interactionRegex = /^\$ ori (?<command>.+)\n(?<result>[\s\S]+)/;
-  const matches = interactions.map((interaction) =>
-    interaction.match(interactionRegex)
-  );
+  const interactionRegex = /^ori (?<command>.+)\n(?<result>[\s\S]+)/m;
+  const matches = interactions
+    .map((interaction) => interaction.match(interactionRegex))
+    .filter((match) => match !== null);
 
   const asserts = matches.map((match, index) => {
     const { command, result } = match.groups;

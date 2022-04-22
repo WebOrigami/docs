@@ -2,12 +2,15 @@
 title: Create virtual files with formulas
 numberHeadings: true
 intro = client/samples/frameworkIntro:
-folder: |
-  "message = 'Hello, world!'": ""
-  team.yaml: |
-    - name: Alice
-    - name: Bob
-    - name: Carol
+files = js/mock:
+virtual = js/mock:
+root:
+  src: |
+    "message = 'Hello, world!'": ""
+    team.yaml: |
+      - name: Alice
+      - name: Bob
+      - name: Carol
 ---
 
 To transform our team data into an About Us website, we'll write some formulas in a small expression language. To lay some groundwork, we'll begin with "Hello, world" exercises of basic Origami formulas.
@@ -57,7 +60,7 @@ $ ori files/src
 team.yaml: |
   - name: Alice
   - name: Bob
-  - name: Carol
+  - name: Carolx
 ```
 
 The ori `files` function returns a graph of the real files in the `src` folder. The `src` folder contains two real files: `team.yaml` and `message = 'Hello, world!'`. If you ask ori to display the local `files` graph, it will list (in YAML form) the contents of those two files.
@@ -65,14 +68,14 @@ The ori `files` function returns a graph of the real files in the `src` folder. 
 You can visualize the `files` version of the `src` folder as graph:
 
 <figure>
-  {{ svg folder }}
+  {{ svg root/src }}
 </figure>
 <figcaption>Source graph containing a single real, empty file</figcaption>
 
 If you ask ori to show the contents of the `virtual` graph based on `src`, it will interpret the formulas in file names. The resulting virtual graph will include _both_ the real files and any new virtual files implied by formulas.
 
 ```console
-$ ori virtual/src
+$ ori graphVirtual src
 message: Hello, world!
 "message = 'Hello, world!'": ""
 team.yaml: |
@@ -84,7 +87,7 @@ team.yaml: |
 In this case, the `virtual` graph now includes a virtual `message` file whose contents are "Hello, world!". This `virtual` graph looks like:
 
 <figure>
-  {{ svg graphVirtual folder }}
+  {{ svg graphVirtual root/src }}
 </figure>
 <figcaption>Result graph that includes the virtual file generated from the formula</figcaption>
 
@@ -94,7 +97,7 @@ _Transforming graphs is the fundamental operation of the Origami framework._
 
 Since the ori command-line interface knows how to traverse graphs, you can ask ori to display a single virtual file from the `virtual` graph on demand:
 
-```console
+```console assert: true, path: root
 $ ori virtual/src/message
 Hello, world!
 ```
