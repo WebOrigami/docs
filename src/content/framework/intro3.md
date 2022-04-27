@@ -8,31 +8,27 @@ greetings = map(team.yaml, =intro/greet(name)):
 greetingsByName = map(teamByName, =intro/greet(name)):
 ---
 
+We've seen how a formula can transform a single piece of data (a person's name, say) into some other form (a greeting). If you wanted to create greeting pages for multiple people, you could create a formula for each of them. But you can also write formulas that transform an entire set of things at once.
+
 ## Transform a graph
 
-We've seen how a formula can transform a single piece of data (a person's name, say) into some other form (a greeting). If you wanted to create a greeting page for multiple people, you could create a formula for each of them. But you can also write formulas that transform a set of things at once.
-
-First, copy the `greet.js` file to create a new JavaScript file called `greetPerson.js`. Then update the function to take a person argument (instead of a string), then uses that person's `name` in the output:
-
-```\js
-{{ intro/greetPerson.js }}
-```
-
-Now we'll apply the `greetPerson` function to the team data. As a reminder, we can visualize the people in `team.yaml` as a graph:
+Let's apply the `greet` function to the team names. As a reminder, we can visualize the people in `team.yaml` as a graph:
 
 <figure>
 {{ svg team.yaml }}
 </figure>
 
-In Origami, a graph is a first-class data type that can be passed to functions. Create a new empty file called:
+In Origami, a graph like this is a first-class data type that can be passed to functions. Create a new empty file called:
 
 ```console
-greetings = map(team.yaml, greetPerson)
+greetings = map(team.yaml, =greet(name))
 ```
 
 The earlier formulas each defined a single virtual file like `message` or `hello.html`. The `greetings` formula here defines a virtual _graph_ of things. It's essentially a virtual folder of virtual files.
 
-The [map](/cli/builtins.html#map) function is a built-in function that applies a one-to-one map function like `greet` to a graph of object. The result is a new graph of transformed objects. In this case, the `greetPerson` function maps a person to a greeting. Using `map` to apply `greetPerson` to an graph of people produces a graph of greetings.
+The [map](/cli/builtins.html#map) function is a built-in function that applies a one-to-one map function like `greet` to a graph of object. The result is a new graph of transformed objects.
+
+In this case, the `=greet(name)` part of the formula defines an unnamed function (in technical jargon, a lambda expression) that will be evaluated in the context of the individual data values. This particular expression will extracts a person's name and pass that to the `greet` function. Applying this `map` to the graph of people in `team.yaml` produces a new graph of greetings.
 
 If you view the `src` folder through the server, you'll see a new entry for a virtual `greetings` folder. If you click on that `greetings` folder, you'll see a list of three links labeled with the indices of the array: "0", "1", "2". Clicking on one of those indices will take you to a page like `src/greetings/1`, which says "Hello, Bob!"
 
@@ -51,15 +47,16 @@ When you want to do work on multiple files or data values in the Origami framewo
 
 Some notes on using the `map` function:
 
-- `map` and the other virtual graphs used by Origami are _lazy_. They only do work when they need to. Unlike a JavaScript [Array map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), the `map` function here does not do any mapping work upon invocation — it only does the work when someone requests the mapped graph's keys or values. The `greetings` graph represents _potential_ work. In this case, the HTML greeting for a person like Carol is only generated when you actually try to visit that URL.
+- `map` and the other virtual graphs used by Origami are _lazy_. They only do work when they need to. Unlike a JavaScript [Array map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), the `map` function here does not do any mapping work upon invocation — it only does the work when someone requests the mapped graph's keys or values. The `greetings` graph represents _potential_ work. In this case, the greeting for a person like Carol is only generated when you actually try to visit that URL.
 - The `map` function only applies the map function to the top-level values of a graph. If you want to apply the map function to the deep values of a graph, use [mapDeep](/cli/builtins.html#mapDeep) instead. `mapDeep` will return a new, deep graph of transformed values.
-- In the example above, `map` transforms the graph values but leaves the keys (the arrow labels) unchanged. Below we'll see how to transform graph keys.
 
 Using transformations like this, we can begin working towards transforming our `team.yaml` data into the About Us site we want to produce.
 
 ## Transforming a graph's keys
 
-In the `greetings` graph shown above, the keys (labels) for the arrows are the array indices: 0, 1, 2. In our About Us site, we want the `team` route to incorporate a person's name: `Alice.html`, `Bob.html`, `Carol.html`.
+In the example above, `map` transforms the graph values but leaves the keys (the arrow labels) unchanged.
+
+In the `greetings` graph shown above, the keys (labels) for the arrows are the array indices: 0, 1, 2. But in our About Us site, we want the `team` route to incorporate a person's name: `Alice.html`, `Bob.html`, `Carol.html`.
 
 To accomplish that, we can use another type of map called [mapKeys](/cli/builtins.html#mapKeys), which changes a graph's keys. Create an empty file with the following formula name:
 
@@ -67,7 +64,7 @@ To accomplish that, we can use another type of map called [mapKeys](/cli/builtin
 teamByName = mapKeys(team.yaml, =name)
 ```
 
-The `=name` part of the formula defines an unnamed function (known as a "lambda") that will be evaluated in the context of the individual data values. In this case, the unnamed function will return the `name` property of a person. You could also define a separate JavaScript function to perform the same work, but in this case the function is simple enough to be inlined into the formula.
+In this case, the `=name` expression will evaluated in the context of an individual person, and will return that person's `name` property.
 
 This `mapKeys` formula will result in a new graph using names as keys.
 
@@ -78,13 +75,13 @@ This `mapKeys` formula will result in a new graph using names as keys.
   <figure>
     {{ svg teamByName }}
   </figure>
-  <figcaption>Source graph with indices as keys</figcaption>
-  <figcaption>Transformed graph with names as keys</figcaption>
+  <figcaption>Source graph with array indices as top-level keys</figcaption>
+  <figcaption>Transformed graph with names as top-level keys</figcaption>
 </div>
 
 ## Applying multiple transformations
 
-We can use the `teamByName` graph to rewrite our `greeting` formula. Edit the name of the file defining the `greeting` formula so that it refers to `teamByName` instead of directly referencing `team.yaml`:
+We can use the `teamByName` graph to rewrite our `greeting` formula. Edit the name of the file defining the `greeting` formula so that, instead of directly referencing `team.yaml`, it refers to `teamByName`:
 
 ```console
 greeting = map(teamByName, greet)

@@ -4,9 +4,9 @@ numberHeadings: true
 intro = client/samples/frameworkIntro:
 ---
 
-As a motivating example, this introduction leads you through the following hypothetical design and development task:
+Let's say that we've been given the following design and development task:
 
-> _Your team needs to design and implement an "About Us" area for your organization's site. The main About Us page will need to include a list of people on the team, with links to separate pages for each team member. A team member's page should show their name and a photo._
+> _Our team needs to design and implement an "About Us" area for our organization's site. The main About Us page should include a list of people on the team, with links to separate pages for each team member. A team member's page should show their name and a photo._
 
 Here's an [example About Us area](/samples/aboutUs) we can consider as a model for this task.
 
@@ -26,11 +26,11 @@ Representing the site as a graph like this is not only a good way to visualize w
 
 Given our task statement, there are many ways we could represent the data we'll need. For now, let's pick the simplest possible representation that will work: a tiny data file listing the names of the people on the team.
 
-First, create a new folder called `src` at the root of the project.
+Using the code editor (either the StackBlitz code editor or your preferred local editor), create a new folder called `src` at the root of the project.
 
-Using the StackBlitz code editor or (if running locally) your preferred code editor, create a file called `team.yaml` in the `src` folder.
+Inside this new `src` folder, create a file called `team.yaml`.
 
-Type some set of names into this `team.yaml` file using the YAML format below. _You don't have to use these stock names._ This tutorial will be **much** more entertaining if you type the names of your own teammates or family members!
+Type some set of names into `team.yaml` using the YAML format below. You don't have to use these stock names — this tutorial will be **much** more entertaining if you type the names of your own teammates or family members!
 
 ```\yaml
 {{ intro/team.yaml }}
@@ -52,11 +52,11 @@ Above we envisioned the site we want to create as a graph. We can also consider 
 {{ svg intro/team.yaml }}
 </figure>
 
-The `0`, `1`, and `2` are the indices from the array of names. If we ask the array for index `0`, we'll get back the data for Alice.
+The `0`, `1`, and `2` are the indices from the array of names. If we ask the array for index `0`, we'll get back the data for Alice. This is a subgraph that currently defining a single property, `name`.
 
 ## Visualize site creation as a transformation
 
-Since both our starting data representation and final desired site are graphs, our development task is fundamentally the _transformation of the first graph into the second graph_.
+Since both our starting data representation and final desired site are graphs, our development task is fundamentally the _transformation of the starting graph into the final graph_.
 
 <div class="sideBySide">
   <figure>
@@ -69,7 +69,7 @@ Since both our starting data representation and final desired site are graphs, o
   <figcaption>…into this website graph</figcaption>
 </div>
 
-Viewed this way, we can already some intriguing correspondence between the two: for each person in the data graph, we want to generate an HTML page in the `team` route with that person's data. We'll be able to express that correspondence directly in Origami.
+Viewed this way, we can already see some intriguing correspondence between the two graphs: for each person in the data graph, we want to generate an HTML page in the `team` route with that person's data. We'll be able to express that correspondence directly in Origami.
 
 Generally speaking, creating things in Origami means thinking about the graph you've got and the graph you want, and about how to transform your starting point in steps until you have what you want. This is similar to the way the paper-folding art of origami, in which a flat square of paper is transformed in steps to create an artwork.
 
@@ -83,5 +83,7 @@ Generally speaking, creating things in Origami means thinking about the graph yo
   <img src="/assets/heart/step7.svg">
   <img src="/assets/heart/step8.svg">
 </figure>
+
+Each individual step is simple, but the cumulative result can be complex.
 
 Next: [Formulas](intro2.html) »

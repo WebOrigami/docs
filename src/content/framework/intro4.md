@@ -19,13 +19,17 @@ application:
 
 Transforming data into HTML can be done with plain JavaScript, but for many cases that's overkill.
 
-If all we want to do is pour data into a template, a template language can be more appropriate. Origami comes with built-in support for a small but expressive template language. Origami templates reuse the same expression language as Origami formulas and the ori command-line interface.
+If all we want to do is pour data into a template, a template language can be more appropriate. You can use any template system with Origami, but for this tutorial we'll use the template system built into Origami. These Origami templates reuse the same expression language as Origami formulas and the ori command-line interface.
 
 In the `src` folder, create a file called `person.ori` and type or copy/paste the following into it:
 
 ```hbs
 {{ intro/person.ori }}
 ```
+
+Like most template languages, Origami templates let you mix boilerplate text with dynamic content represented with placeholders. In Origami templates (and many other template languages), placeholders are delineated with `\{\{}}` curly braces. Here, the `\{\{name}}` placeholder indicates that we'd like to evaluate the expression `name` to produce the text that should be shown at that point. That expression will be evaluated in the context of the data for a given person.
+
+## Applying a template as a function
 
 A template is essentially a function for turning data into a text format like HTML, so Origami allows you to invoke a template as a function. All you have to do is give that function the data it should transform.
 
@@ -37,9 +41,9 @@ Alice.html = person.ori(teamByName%Alice)
 
 This formula creates a virtual file called `Alice.html`. The contents of that virtual file will be the HTML obtained by applying the `person.ori` template to the data for Alice in `team.yaml`.
 
-The `%` percent sign is used in filename formulas as an alternative to a regular `/` slash — operating systems and code editors can prevent the use of slashes in filenames. The above is equivalent to `teamByName/Alice`, and will extract Alice's data from the `teamByName` graph.
+The `%` percent sign is used in file name formulas like this as an alternative to a regular `/` slash separator — operating systems and code editors discourage or prevent the use of slashes in file names. The above is equivalent to `teamByName/Alice`, and will extract Alice's data from the `teamByName` graph.
 
-The primary content of the virtual `Alice.html` file will be:
+The content of the virtual `Alice.html` file will be:
 
 ```html
 {{ intro/person.ori(teamByName%Alice) }}
@@ -49,11 +53,9 @@ Open `Alice.html` in the served site to view the result: Hello, **Alice**.
 
 At this point, we're successfully transforming the data for a single person, Alice, to create a single web page for that person.
 
-## A template as a graph transformation
+## A template is a graph transformation
 
-Before moving on, let's look a little closer at how the Origami template system works. In Origami, the application of a template is considered to be a graph transformation.
-
-Like most template languages, you mix boilerplate text with dynamic content represented with placeholders. In Origami templates (and many other template languages), placeholders are delineated with `\{\{}}` curly braces.
+In Origami, the application of a template is considered to be a graph transformation.
 
 In the case of the above template, we can view the elements of the template as an array:
 
@@ -81,6 +83,20 @@ To get the final result of the template, Origami performs a depth-first traversa
 Treating template application as a graph transformation results in a flexible templating system that can be extended in interesting ways, as we'll see in a bit when we look at nested templates.
 
 The other point to note here is the expressions inside an Origami template's placeholders have access to same language facilities as Origami formulas used in file names or the ori command-line interface. Among other things, this means you can call your own JavaScript functions (like `greet`, earlier) inside template placeholders.
+
+## Flesh out the person template
+
+Let's make the `person.ori` template a bit more realistic. The project's `assets` folder contains a fuller `person.ori` template with some more elements:
+
+```html
+{{ intro/person2.ori }}
+```
+
+Move or copy that `person.ori` template from the `assets` folder to the `src` folder.
+
+Additionally, move or copy the `main.css` and `personIcon.svg` files referenced by the updated template.
+
+When you view `Alice.html` now, you should see a somewhat more presentable web page. The page will contain a missing image; we'll fix that in a bit.
 
 ## Transform a data graph into HTML pages
 
@@ -129,18 +145,6 @@ The third parameter (`''`) indicates that we don't want to remove anything from 
   <figcaption>Graph of people by name…</figcaption>
   <figcaption>…maps to a .html file for each person</figcaption>
 </div>
-
-## Flesh out the person template
-
-Let's make the `person.ori` template a bit more realistic. The project's `assets` folder contains a fuller `person.ori` template with some more elements:
-
-```html
-{{ intro/person2.ori }}
-```
-
-Move or copy that `person.ori` template from the `assets` folder to the `src` folder. Also move or copy the `main.css` and `personIcon.svg` files which the template references.
-
-When you view a page like `team/Alice.html`, you should now see a somewhat more presentable web page.
 
 ## Bonus: Add avatars
 
