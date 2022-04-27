@@ -52,7 +52,7 @@ When you want to do work on multiple files or data values in the Origami framewo
 Some notes on using the `map` function:
 
 - `map` and the other virtual graphs used by Origami are _lazy_. They only do work when they need to. Unlike a JavaScript [Array map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), the `map` function here does not do any mapping work upon invocation — it only does the work when someone requests the mapped graph's keys or values. The `greetings` graph represents _potential_ work. In this case, the HTML greeting for a person like Carol is only generated when you actually try to visit that URL.
-- Origami graphs can be arbitrarily deep. A `map` applied to a deep graph will return a new, deep graph of transformed values.
+- The `map` function only applies the map function to the top-level values of a graph. If you want to apply the map function to the deep values of a graph, use [mapDeep](/cli/builtins.html#mapDeep) instead. `mapDeep` will return a new, deep graph of transformed values.
 - In the example above, `map` transforms the graph values but leaves the keys (the arrow labels) unchanged. Below we'll see how to transform graph keys.
 
 Using transformations like this, we can begin working towards transforming our `team.yaml` data into the About Us site we want to produce.
