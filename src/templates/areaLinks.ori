@@ -1,5 +1,5 @@
 ---
-areas = js/markCurrent(parse(areas.yaml), currentArea):
+areas = js/markCurrent(areas.yaml, currentArea):
 currentArea = js/pathArea(path):
 ---
 {{#map areas}}

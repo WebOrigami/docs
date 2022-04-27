@@ -5,8 +5,8 @@ team.yaml:
   - name: Alice
   - name: Bob
   - name: Carol
-names = shallowMap(team.yaml, =name):
-strings = shallowMap(team.yaml, =`<a href="{{name}}.html">{{name}}</a> `):
+names = map(team.yaml, =name):
+strings = map(team.yaml, =`<a href="{{name}}.html">{{name}}</a> `):
 ---
 
 Origami templates let you write Origami expressions in the context of a text document. These expressions can then be evaluated in the context of input data to efficiently produce, for example, HTML.
@@ -61,7 +61,7 @@ $ ori team.yaml
 - name: Alice
 - name: Bob
 - name: Carol
-$ ori "shallowMap team.yaml, =name"
+$ ori "map team.yaml, =name"
 - Alice
 - Bob
 - Carol
@@ -85,7 +85,7 @@ Because the Origami CLI and Origami templates share the same expression language
 ```console
 $ cat index.ori
 <h1>Team</h1>
-{{ shallowMap team.yaml, =name }}
+{{ map team.yaml, =name }}
 ```
 
 When you apply the template, the people objects in `team.yaml` will be mapped to names. Then, per the above section about concatenating graph values, those names will then be concatenated and incorporate in the template's final text output.
@@ -96,7 +96,7 @@ $ ori index.ori
 AliceBobCarol
 ```
 
-This isn't quite usable yet, but illustrates the basic concept: any Origami expression in a template that produces a graph will have its text values concatenated. This same principle applies equally to graphs created via `map` or `shallowMap`.
+This isn't quite usable yet, but illustrates the basic concept: any Origami expression in a template that produces a graph will have its text values concatenated. This same principle applies equally to graphs created via `map` or `map`.
 
 ## Mapping graphs with nested templates
 
@@ -105,11 +105,11 @@ Let's extend the above example to generate HTML links for each person. This beco
 ```console
 $ cat index.ori
 <h1>Team</h1>
-\{{ shallowMap team.yaml, =`<a href="\{{name}}.html">\{{name}}</a>
+\{{ map team.yaml, =`<a href="\{{name}}.html">\{{name}}</a>
 ` }}
 ```
 
-The `index.ori` file represents an outer template that includes an `h1` heading. Below that, a substitution calling `shallowMap` appears, which maps the `team.yaml` graph of people to an inner, nested Origami template. The inner template incorporates an individual person's `name` into a short HTML fragment.
+The `index.ori` file represents an outer template that includes an `h1` heading. Below that, a substitution calling `map` appears, which maps the `team.yaml` graph of people to an inner, nested Origami template. The inner template incorporates an individual person's `name` into a short HTML fragment.
 
 We can visualize this as a graph transformation:
 

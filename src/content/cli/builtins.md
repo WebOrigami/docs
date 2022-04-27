@@ -200,9 +200,15 @@ _This experimental function is not yet stable enough to document._
 
 <a name="map"></a>
 
-## map(graph, mapFn, [sourceExtension], [targetExtension])
+## map(graph, mapFn)
 
-Returns a new [MapGraph](/core/MapGraph.html) that applies the given `mapFn` to the values in the `graph`.
+Like [mapDeep](#mapDeep), but only transforms the top-level values of a graph. Any values which are subgraphs will be handed to the `mapFn` mapping function as is.
+
+<a name="mapDeep"></a>
+
+## mapDeep(graph, mapFn, [sourceExtension], [targetExtension])
+
+Returns a new [MapValuesGraph](/core/MapValuesGraph.html) that applies the given `mapFn` to the deep values in the `graph`.
 
 ```console assert: true, path: files
 $ ori greetings.yaml
@@ -223,7 +229,7 @@ Unlike a JavaScript [Array map](https://developer.mozilla.org/en-US/docs/Web/Jav
 
 The `mapFn` mapping function is typically a JavaScript function, but can be any graph [variant](/core/variants.html). For example, you can use a second [graph as a map](/cli/intro.html#use-a-graph-as-a-map).
 
-`map` works on all levels of a graph. If you only want to transform the top-level values in a graph, see [shallowMap](#shallowMap).
+`map` works on all levels of a graph. If you only want to transform the top-level values in a graph, see [map](#map).
 
 <a name="mapKeys"></a>
 
@@ -327,12 +333,6 @@ Server running at http://localhost:5000
 A web route like `a/b/c` will be turned into a graph traversal operation that returns the graph value at that path.
 
 If no `graph` is supplied, `serve` uses the current graph (from the command line, that will be the current folder) transformed via the [app](#app) function into an application.
-
-<a name="shallowMap"></a>
-
-## shallowMap(graph, mapFn)
-
-Like [map](#map), but only transforms the top-level values of a graph. Any values which are subgraphs will be handed to the `mapFn` mapping function as is.
 
 <a name="shell"></a>
 

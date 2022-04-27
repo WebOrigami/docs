@@ -1,11 +1,10 @@
 ---
-title: Test
-foo:
-  - Alice
-  - Bob
-  - Carol
+areas = js/markCurrent(areas.yaml, currentArea):
+currentArea = js/pathArea(path):
+path: /framework/test.md
+title: Wah
 ---
 
-<div>
-{{ svg(foo) }}
-</div>
+{{#map areas}}
+{{ templates/linkCurrent.ori() }}
+{{/map}}
