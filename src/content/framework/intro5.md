@@ -71,7 +71,7 @@ As before, a boilerplate string like `<h1>About Us</h1>` is mapped directly into
 
 The entire deep graph of strings is concatenated in depth-first order to produce the final result, which is served as `index.html`.
 
-If you now visit `index.html` in the served site, you should see a list of names.
+If you now visit `index.html` in the served site, you should see a bulleted list of names.
 
 ## Flesh out the index page template
 

@@ -12,7 +12,7 @@ Our goal in this tutorial has been to build a basic About Us area. We started wi
   {{ svg intro/siteFull.yaml }}
 </figure>
 
-This meets the functional requirements of our goal. We could add more data to the team.yaml file, and more HTML elements to the index page template and the individual person template, but from a functional standpoint we're finished.
+This meets the functional requirements of our goal. We could add more data to the team.yaml file, add more HTML elements to the index page template and the individual person template, add real headshot photos, etc., but from a functional standpoint we're finished.
 
 We could deploy this project as it stands, running the small ori web server on a hosted machine somewhere. That might be necessary if the site contained some dynamic portions that would need to be reevaluated on each request.
 
@@ -38,7 +38,7 @@ When this completes, inspect the `dist` folder. In addition to all the source fi
 - An `index.html` page, with HTML to create a tile for each team member.
 - A `team` folder, with individual HTML pages for each team member.
 
-If you browse the `dist` route in the served site, you should see a fully functional About Us area that's identical to the one visible at the `src` route — only the `dist` version is backed entirely by static files.
+If you restart the server and browse the `dist` route in the served site, you should see a fully functional About Us area that's identical to the one visible at the `src` route — only the `dist` version is backed entirely by static files.
 
 Some of the source files you created by hand or copied in, such as `styles.css`, are necessary to run the site. Others are not necessary. It's possible to filter out the files you don't need, but for now we can leave those files in the `dist` folder; deploying them would be harmless.
 

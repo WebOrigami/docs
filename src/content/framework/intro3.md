@@ -56,7 +56,7 @@ Using transformations like this, we can begin working towards transforming our `
 
 In the example above, `map` transforms the graph values but leaves the keys (the arrow labels) unchanged.
 
-In the `greetings` graph shown above, the keys (labels) for the arrows are the array indices: 0, 1, 2. But in our About Us site, we want the `team` route to incorporate a person's name.
+In the `greetings` graph shown above, the keys (labels) for the arrows are the array indices: 0, 1, 2. But in our About Us site, we want the route for a person's page to incorporate their name.
 
 To accomplish that, we can use another type of map called [mapKeys](/cli/builtins.html#mapKeys), which changes a graph's keys. In the `src` folder, create an empty file with the following formula name:
 
@@ -84,7 +84,7 @@ This `mapKeys` formula will result in a new graph using names as keys.
 We can use the `teamByName` graph to rewrite our `greeting` formula. Edit the name of the file defining the `greeting` formula so that, instead of directly referencing `team.yaml`, it refers to `teamByName`:
 
 ```console
-greeting = map(teamByName, greet)
+greeting = map(teamByName, =greet(name))
 ```
 
 This lets us transform `team.yaml` in two steps: 1) transform the integer keys to name keys, 2) transform the person data values into greeting values.

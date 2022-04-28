@@ -200,7 +200,7 @@ _This experimental function is not yet stable enough to document._
 
 <a name="map"></a>
 
-## map(graph, mapFn)
+## map(graph, mapFn, [sourceExtension], [targetExtension])
 
 Like [mapDeep](#mapDeep), but only transforms the top-level values of a graph. Any values which are subgraphs will be handed to the `mapFn` mapping function as is.
 
