@@ -26,7 +26,7 @@ Representing the site as a graph like this is not only a good way to visualize w
 
 Given our task statement, there are many ways we could represent the data we'll need. For now, let's pick the simplest possible representation that will work: a tiny data file listing the names of the people on the team.
 
-Using the code editor (either the StackBlitz code editor or your preferred local editor), create a new folder called `src` at the root of the project.
+Using your code editor, create a new folder called `src` at the root of the project. (In StackBlitz: move your mouse over the "Files" header in the left pane, then click the New Folder icon.)
 
 Inside this new `src` folder, create a file called `team.yaml`.
 
