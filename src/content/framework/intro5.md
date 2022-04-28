@@ -81,7 +81,7 @@ Now that we have a working index page, you can flesh it out with more elements. 
 {{ intro/index.ori }}
 ```
 
-This version of `index.ori` is slightly more elaborate, but works the same way as the one above. The `#map` block in the middle will generate a tile element for each person in `teamByName`. The tile will make use of the same generated avatar SVGs we created with a graph transformation earlier.
+This version of `index.ori` is slightly more elaborate, but works the same way as the one above. The `#map` block in the middle will generate a tile element for each person in `teamByName`. The tile will make use of the same random avatar images we created with a graph transformation earlier.
 
 If you click on one of the tiles in the index page, it should take you to the `team` page for that individual.
 

@@ -42,7 +42,7 @@ If you browse the `dist` route in the served site, you should see a fully functi
 
 Some of the source files you created by hand or copied in, such as `styles.css`, are necessary to run the site. Others are not necessary. It's possible to filter out the files you don't need, but for now we can leave those files in the `dist` folder; deploying them would be harmless.
 
-At this point, you could deploy the About Us site by copying the `dist` folder to a CDN or some other network-visible location. The specific instructions for doing that will depend on where you want to deploy the files, and so is beyond the scope of this tutorial.
+At this point, you could deploy the About Us site by copying the `dist` folder to a CDN or some other network-visible location. The specific instructions for doing that will depend on where you want to deploy the files, which is beyond the scope of this tutorial.
 
 ## Take-aways
 
