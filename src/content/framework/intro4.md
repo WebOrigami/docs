@@ -152,9 +152,9 @@ The pages in the `team` route should now end in `.html`.
 
 A typical About Us area like our [example](/samples/aboutUs) shows headshot photographs for each team member. If you have pictures you'd like to use, you could certainly use those here.
 
-For the sake of this tutorial, however, we'll use programmatically generated avatars provided by a service called [DiceBear](https://avatars.dicebear.com/). Given an arbitrary string, that service will always return the same generated avatar.
+For the sake of this tutorial, however, we'll use programmatically generated avatar images provided by a service called [Lorem Picsum](https://picsum.photos). Given an arbitrary string (like a name), that service will always return the same generated image.
 
-From the `assets` folder, move or copy the `avatar.js` file to the `src` folder. This file contains a function that maps an input string and returns an SVG file from the avatar service.
+From the `assets` folder, move or copy the `avatar.js` file to the `src` folder. This file contains a function that maps an input string and returns an JPEG file from the random image service.
 
 ```\js
 {{ intro/avatar.js }}
@@ -165,14 +165,14 @@ It's not important to understand this JavaScript, only to recognize that it can 
 With that, you can then map the `teamByName` graph to create a corresponding graph of avatars. Create an empty file named:
 
 ```console
-avatars = map(teamByName, =avatar(name), '', '.svg')
+avatars = map(teamByName, =avatar(name), '', '.jpg')
 ```
 
 You should now be able to see avatars for the people on their HTML pages.
 
-In the served site, you can navigate to the `src/avatars` folder to see a virtual folder of the generated SVGs. This virtual folder looks indistinguishable from a real folder of real SVGs. As noted earlier, an important property of building content with Origami is that intermediate results are explorable in the browser or the command line.
+In the served site, you can navigate to the `src/avatars` folder to see a virtual folder of the generated JPEG images. This virtual folder looks indistinguishable from a real folder of real JPEG images. As noted earlier, an important property of building content with Origami is that intermediate results are explorable in the browser or the command line.
 
-A common feature of working with Origami is that you can smoothly move between using real and virtual files. You could use these generated avatar SVGs to get started. Later, you could delete the `avatars` formula and create a real `avatars` folder containing manually curated or created SVGs or JPEG headshot photos.
+A common feature of working with Origami is that you can smoothly move between using real and virtual files. You could use these generated avatar SVGs to get started. Later, you could delete the `avatars` formula and create a real `avatars` folder containing manually-curated images or headshot photos.
 
 With the addition of the avatars, we've completed the essential functions of the `team` route within the About Us area of the site we're designing. We could add more data fields to `team.yaml` and render those in the `person.ori` template, but from a functional standpoint, we're done with that part of the task.
 
