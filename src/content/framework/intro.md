@@ -4,13 +4,13 @@ title: "Origami framework introduction"
 
 Let's build a little website!
 
-Origami is designed to help you create digital content such as web sites, documentation, and data sets.
+Origami is designed to help you create digital content such as websites, documentation, and data sets.
 
 - It's built on a conceptual paradigm that treats development tasks as transformations of data represented in graphs.
-- In a series of steps, you transform data, files, and other resources into HTML and other forms that can be viewed and used by your audience.
+- You transform data, files, and other resources into HTML and other forms that can be viewed and used by your audience.
 - You define and orchestrate these transformations at a high level using Excel-like formulas that produce virtual folders, files, and other data.
 
-You can use Origami for many other things than site development; site creation is used here as an illustrative example.
+You can use Origami for many things; site creation is just used here as an illustrative example.
 
 ## Getting started
 
@@ -32,6 +32,6 @@ $ ori serve
 Server running at http://localhost:5000. Press Ctrl+C to stop.
 ```
 
-Either way, you should be able to point your browser at the running server and see a listing of the project files.
+Either way, you should be able to view the running server, which by default would show a listing of the project files.
 
 Next: [Creating content](intro1.html) »

@@ -11,7 +11,7 @@
       <h1>About Us</h1>
     </header>
     <ul class="tileGrid">
-      {{#map team.yaml}}
+      {{#map teamByName}}
         <li class="tile">
           <a href="team/{{name}}.html">
             <img

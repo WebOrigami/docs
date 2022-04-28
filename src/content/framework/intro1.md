@@ -46,13 +46,13 @@ If you go this route, use `team.json` wherever the tutorial uses `team.yaml`.
 
 ## Visualize the data representation
 
-Above we envisioned the site we want to create as a graph. We can also consider the starting data representation as a graph:
+Just as we envisioned the final site we want as a graph, we can also consider the starting data as a graph:
 
 <figure>
 {{ svg intro/team.yaml }}
 </figure>
 
-The `0`, `1`, and `2` are the indices from the array of names. If we ask the array for index `0`, we'll get back the data for Alice. This is a subgraph that currently defining a single property, `name`.
+The `0`, `1`, and `2` are the indices from the array of names. If we ask this graph for `0`, we'll get a node that represents the data for Alice. This is a subgraph that currently defines a single property, `name`.
 
 ## Visualize site creation as a transformation
 

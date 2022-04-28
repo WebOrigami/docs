@@ -8,11 +8,11 @@ team2 = intro/team2:
 template:
   - Hello, <strong>
   - "{{name}}"
-  - </strong>.
+  - </strong>!
 application:
   - Hello, <strong>
   - Alice
-  - </strong>.
+  - </strong>!
 ---
 
 ## Transform data into HTML with a template
@@ -21,19 +21,19 @@ Transforming data into HTML can be done with plain JavaScript, but for many case
 
 If all we want to do is pour data into a template, a template language can be more appropriate. You can use any template system with Origami, but for this tutorial we'll use the template system built into Origami. These Origami templates reuse the same expression language as Origami formulas and the ori command-line interface.
 
-In the `src` folder, create a file called `person.ori` and type or copy/paste the following into it:
+In the `src` folder, create a file called `person.ori` and type or copy/paste the following HTML:
 
 ```hbs
 {{ intro/person.ori }}
 ```
 
-Like most template languages, Origami templates let you mix boilerplate text with dynamic content represented with placeholders. In Origami templates (and many other template languages), placeholders are delineated with `\{\{}}` curly braces. Here, the `\{\{name}}` placeholder indicates that we'd like to evaluate the expression `name` to produce the text that should be shown at that point. That expression will be evaluated in the context of the data for a given person.
+Like most template languages, Origami templates let you mix boilerplate text with dynamic content represented with placeholders. In Origami templates, placeholders are delineated with `\{\{}}` curly braces. Here, the `\{\{name}}` placeholder indicates that we'd like to evaluate the expression `name` to produce the text that should be shown at that point. That expression will be evaluated in the context of the data for a given person.
 
 ## Applying a template as a function
 
 A template is essentially a function for turning data into a text format like HTML, so Origami allows you to invoke a template as a function. All you have to do is give that function the data it should transform.
 
-Create an empty file in the `src` folder called:
+Create an empty file in the `src` folder with a formula that looks like this. _For both occurrences of the name "Alice", substitute a name from your team file._
 
 ```console
 Alice.html = person.ori(teamByName%Alice)
@@ -55,7 +55,7 @@ At this point, we're successfully transforming the data for a single person, Ali
 
 ## A template is a graph transformation
 
-In Origami, the application of a template is considered to be a graph transformation.
+We can also consider the application of a template as a graph transformation.
 
 In the case of the above template, we can view the elements of the template as an array:
 
@@ -84,20 +84,6 @@ Treating template application as a graph transformation results in a flexible te
 
 The other point to note here is the expressions inside an Origami template's placeholders have access to same language facilities as Origami formulas used in file names or the ori command-line interface. Among other things, this means you can call your own JavaScript functions (like `greet`, earlier) inside template placeholders.
 
-## Flesh out the person template
-
-Let's make the `person.ori` template a bit more realistic. The project's `assets` folder contains a fuller `person.ori` template with some more elements:
-
-```html
-{{ intro/person2.ori }}
-```
-
-Move or copy that `person.ori` template from the `assets` folder to the `src` folder.
-
-Additionally, move or copy the `main.css` and `personIcon.svg` files referenced by the updated template.
-
-When you view `Alice.html` now, you should see a somewhat more presentable web page. The page will contain a missing image; we'll fix that in a bit.
-
 ## Transform a data graph into HTML pages
 
 We can use the `person.ori` template as a function that we pass to `map`. Earlier we created a `greetings` graph that mapped the team members to a graph of greetings using a JavaScript function. Let's now map the team members to HTML pages using the `person.ori` template instead.
@@ -120,6 +106,20 @@ If you now visit the `team` route in the served site, you'll be able to select a
   <figcaption>Graph of people by name…</figcaption>
   <figcaption>…maps to HTML pages for each person</figcaption>
 </div>
+
+## Flesh out the person template
+
+Let's make the `person.ori` template a bit more realistic. The project's `assets` folder contains a fuller `person.ori` template with some more elements:
+
+```html
+{{ intro/person2.ori }}
+```
+
+Move or copy that `person.ori` template from the `assets` folder to the `src` folder.
+
+Additionally, move or copy the `main.css` and `personIcon.svg` files referenced by the updated template.
+
+When you view the pages in the `team` route now, you should see a somewhat more presentable web page. The page will contain a missing image; we'll fix that in just a minute.
 
 ## Add an HTML extension
 
@@ -146,6 +146,8 @@ The third parameter (`''`) indicates that we don't want to remove anything from 
   <figcaption>…maps to a .html file for each person</figcaption>
 </div>
 
+The pages in the `team` route should now end in `.html`.
+
 ## Bonus: Add avatars
 
 A typical About Us area like our [example](/samples/aboutUs) shows headshot photographs for each team member. If you have pictures you'd like to use, you could certainly use those here.
@@ -163,7 +165,7 @@ It's not important to understand this JavaScript, only to recognize that it can 
 With that, you can then map the `teamByName` graph to create a corresponding graph of avatars. Create an empty file named:
 
 ```console
-avatars = map(teamByName, avatar, '', '.svg')
+avatars = map(teamByName, =avatar(name), '', '.svg')
 ```
 
 You should now be able to see avatars for the people on their HTML pages.

@@ -38,7 +38,7 @@ When this completes, inspect the `dist` folder. In addition to all the source fi
 - An `index.html` page, with HTML to create a tile for each team member.
 - A `team` folder, with individual HTML pages for each team member.
 
-If you browse the `dist` route in the served site, you should see a functionally identical About Us area — only this one is backed entirely by static files.
+If you browse the `dist` route in the served site, you should see a fully functional About Us area that's identical to the one visible at the `src` route — only the `dist` version is backed entirely by static files.
 
 Some of the source files you created by hand or copied in, such as `styles.css`, are necessary to run the site. Others are not necessary. It's possible to filter out the files you don't need, but for now we can leave those files in the `dist` folder; deploying them would be harmless.
 
@@ -51,7 +51,9 @@ Through this tutorial, you created a small but functionally meaningful About Us 
 - You started with a real data file that could be viewed as a graph of data.
 - You created virtual files and folders with formulas.
 - Those formulas transformed data graph in various ways to create virtual graphs of avatars, HTML fragments, or HTML pages.
-- You needed very little JavaScript code. In an Origami project, you often just need JavaScript to define the one-to-one transformations you would like to perform. The many-to-many transformations — of people to HTML pages, say — can be accomplished with formulas.
+- The final result involved no JavaScript code. In an Origami project, you often just need JavaScript to define the one-to-one transformations you would like to perform. The many-to-many transformations — of people to HTML pages, say — can be accomplished with formulas.
 - You rendered the virtual graph of the site into real files that could be deployed directly.
+
+This concludes the tutorial.
 
 Back to [Framework](index.html)

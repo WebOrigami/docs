@@ -146,6 +146,6 @@ Navigate to the `src` route, which should now show an entry for `hello.html`. If
 
 Since the function the formula calls is regular JavaScript, you can use that JavaScript to create HTML by any means you like. If the function is asynchronous, Origami will `await` the result before serving it to the browser. With that, you should be able to do essentially anything you want in the JavaScript function to create any HTML result.
 
-A function like `greet` here is essentially transforming a single piece of data from one form (a string) into a different form — HTML intended for presentation. But the function and the formula that invokes it could just as easily be transforming the data into other forms; there's nothing special about HTML here.
+A function like `greet` here is essentially transforming a bit of data from one form into another. Here `greet` is just transforming a string name to a string greeting. The function and the formula that invokes it could just as easily be transforming the data into other forms; there's nothing special about text here.
 
 Next: [Transformations](intro3.html) »
