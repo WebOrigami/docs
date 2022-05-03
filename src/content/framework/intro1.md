@@ -4,27 +4,25 @@ numberHeadings: true
 intro = client/samples/frameworkIntro:
 ---
 
-Let's say that we've been given the following design and development task:
+Let's say that you've been given the following design and development task:
 
-> _Our team needs to design and implement an "About Us" area for our organization's site. The main About Us page should include a list of people on the team, with links to separate pages for each team member. A team member's page should show their name and a photo._
+> _Your team needs you to design and implement an "About Us" area for your organization's site. The main About Us page should include a list of people on the team, with links to separate pages for each team member. A team member's page should show their name and a photo._
 
-Here's an [example About Us area](/samples/aboutUs) we can consider as a model for this task.
+Here's an [example About Us area](/samples/aboutUs) you can consider as a model for this task. There's a main `index.html` route, and a `team` route with an HTML page for each person on the team.
 
 ## Visualize the final result
 
-Let's start by considering what we want to end up with. Based on the linked example above, we want a site with a topology like this:
+There are many ways you could approach this task, but let's start by considering what you want to end up with. Based on the linked example above, you want a site with a topology like this:
 
 <figure>
 {{ svg intro/site.yaml }}
 </figure>
 
-There's a main `index.html` route, and a `team` route with an HTML page for each person on the team.
+Representing the site as a graph like this is not only a good way to visualize what you want to make. In Origami, you'll actually create a software representation of this graph that can be browsed directly.
 
-Representing the site as a graph like this is not only a good way to visualize what we want to make. In Origami, we'll actually create a software representation of this graph that can be browsed directly.
+## Select a starting data representation
 
-## Select a data representation
-
-Given our task statement, there are many ways we could represent the data we'll need. For now, let's pick the simplest possible representation that will work: a tiny data file listing the names of the people on the team.
+There are many ways you could represent the data you'll need for this site, but the simplest representation is probably a data file listing the names of the people on the team.
 
 Using your code editor, create a new folder called `src` at the root of the project. (In StackBlitz: move your mouse over the "Files" header in the left pane, then click the New Folder icon.)
 
@@ -46,13 +44,13 @@ If you go this route, use `team.json` wherever the tutorial uses `team.yaml`.
 
 ## Visualize the data representation
 
-Just as we envisioned the final site we want as a graph, we can also consider the starting data as a graph:
+Just as you can envision the final site you want as a graph, you can also consider the starting data as a graph:
 
 <figure>
 {{ svg intro/team.yaml }}
 </figure>
 
-The `0`, `1`, and `2` are the indices from the array of names. If we ask this graph for `0`, we'll get a node that represents the data for Alice. This is a subgraph that currently defines a single property, `name`.
+The `0`, `1`, and `2` are the indices from the array of names. If you ask this graph for `0`, you'll get a node that represents the data for Alice: a subgraph that currently defines a single property, `name`.
 
 ## Visualize site creation as a transformation
 
@@ -69,7 +67,7 @@ Since both our starting data representation and final desired site are graphs, o
   <figcaption>…into this website graph</figcaption>
 </div>
 
-Viewed this way, we can already see some intriguing correspondence between the two graphs: for each person in the data graph, we want to generate an HTML page in the `team` route with that person's data. We'll be able to express that correspondence directly in Origami.
+Viewed this way, you may already see some correspondence between the two graphs: for each person in the data graph, you want to generate an HTML page in the `team` route with that person's data. You'll be able to express that correspondence directly in Origami.
 
 Generally speaking, creating things in Origami means thinking about the graph you've got and the graph you want, and about how to transform your starting point in steps until you have what you want. This is similar to the way the paper-folding art of origami, in which a flat square of paper is transformed in steps to create an artwork.
 

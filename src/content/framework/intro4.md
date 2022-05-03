@@ -27,7 +27,7 @@ In the `src` folder, create a file called `person.ori` and type or copy/paste th
 {{ intro/person.ori }}
 ```
 
-Like most template languages, Origami templates let you mix boilerplate text with dynamic content represented with placeholders. In Origami templates, placeholders are delineated with `\{\{}}` curly braces. Here, the `\{\{name}}` placeholder indicates that we'd like to evaluate the expression `name` to produce the text that should be shown at that point. That expression will be evaluated in the context of the data for a given person.
+Like most template languages, Origami templates let you mix boilerplate text with dynamic content represented with placeholders. In Origami templates, placeholders are delineated with `\{\{}}` curly braces. Here, the `\{\{name}}` placeholder indicates that you'd like to evaluate the expression `name` to produce the text that should be shown at that point. That expression will be evaluated in the context of the data for a given person.
 
 ## Applying a template as a function
 
@@ -51,11 +51,11 @@ The content of the virtual `Alice.html` file will be:
 
 Open `Alice.html` in the served site to view the result: Hello, **Alice**.
 
-At this point, we're successfully transforming the data for a single person, Alice, to create a single web page for that person.
+At this point, you're successfully transforming the data for a single person, Alice, to create a single web page for that person.
 
 ## A template is a graph transformation
 
-We can also consider the application of a template as a graph transformation.
+You can also consider the application of a template as a graph transformation.
 
 In the case of the above template, we can view the elements of the template as an array:
 
@@ -65,7 +65,7 @@ In the case of the above template, we can view the elements of the template as a
 
 The first and last items in this array are boilerplate strings holding HTML; the middle element is a placeholder. As with other arrays, we can model this array as a graph.
 
-When we apply this template to the data for a person like Alice, we transform the array graph into a new graph. Boilerplate strings in the source graph are carried over as is, while expressions in placeholders are evaluated in the context of the data. This results in a new graph of only string values.
+When you apply this template to the data for a person like Alice, you transform the array graph into a new graph. Boilerplate strings in the source graph are carried over as is, while expressions in placeholders are evaluated in the context of the data. This results in a new graph of only string values.
 
 <div class="sideBySide">
   <figure>
@@ -80,13 +80,13 @@ When we apply this template to the data for a person like Alice, we transform th
 
 To get the final result of the template, Origami performs a depth-first traversal of the string graph, and returns the concatenation of all the strings. This produces the result: Hello, **Alice**.
 
-Treating template application as a graph transformation results in a flexible templating system that can be extended in interesting ways, as we'll see in a bit when we look at nested templates.
+Treating template application as a graph transformation results in a flexible templating system that can be extended in interesting ways, as you'll see in a bit with nested templates.
 
 The other point to note here is the expressions inside an Origami template's placeholders have access to same language facilities as Origami formulas used in file names or the ori command-line interface. Among other things, this means you can call your own JavaScript functions (like `greet`, earlier) inside template placeholders.
 
 ## Transform a data graph into HTML pages
 
-We can use the `person.ori` template as a function that we pass to `map`. Earlier we created a `greetings` graph that mapped the team members to a graph of greetings using a JavaScript function. Let's now map the team members to HTML pages using the `person.ori` template instead.
+You can use the `person.ori` template as a function that you pass to `map`. Earlier you created a `greetings` graph that mapped the team members to a graph of greetings using a JavaScript function. Let's now map the team members to HTML pages using the `person.ori` template instead.
 
 Create a new, empty file named
 
@@ -119,13 +119,13 @@ Move or copy that `person.ori` template from the `assets` folder to the `src` fo
 
 Additionally, move or copy the `main.css` and `personIcon.svg` files referenced by the updated template.
 
-When you view the pages in the `team` route now, you should see a somewhat more presentable web page. The page will contain a missing image; we'll fix that in just a minute.
+When you view the pages in the `team` route now, you should see a somewhat more presentable web page. The page will contain a missing image; you'll fix that in just a minute.
 
 ## Add an HTML extension
 
 We often use extensions at the end of file names or web routes to indicate the type of data they contain. Graph transformations will often want to change these extensions to reflect the fact that the type of data has changed. For this reason, functions like `map` allow you to add, change, or remove extensions.
 
-In this case, we want to map a person object with a key like `Alice` to a key like `Alice.html` to reflect the fact that that transformed graph value contains HTML.
+In this case, you want to map a person object with a key like `Alice` to a key like `Alice.html` to reflect the fact that that transformed graph value contains HTML.
 
 Edit the name of the formula file for the `team` so that it reads:
 
@@ -133,7 +133,7 @@ Edit the name of the formula file for the `team` so that it reads:
 team = map(teamByName, person.ori, '', '.html')
 ```
 
-The third parameter (`''`) indicates that we don't want to remove anything from the graph keys. The fourth parameter (`'.html'`) indicates that we want to add `.html` to the graph keys. The transformation now looks like:
+The third parameter (`''`) indicates that you don't want to _remove_ anything from the graph keys; they don't have any extension. The fourth parameter (`'.html'`) indicates that you want to _add_ `.html` to the graph keys. The transformation now looks like:
 
 <div class="sideBySide">
   <figure>
@@ -174,6 +174,6 @@ In the served site, you can navigate to the `src/avatars` folder to see a virtua
 
 A common feature of working with Origami is that you can smoothly move between using real and virtual files. You could use these generated avatar SVGs to get started. Later, you could delete the `avatars` formula and create a real `avatars` folder containing manually-curated images or headshot photos.
 
-With the addition of the avatars, we've completed the essential functions of the `team` route within the About Us area of the site we're designing. We could add more data fields to `team.yaml` and render those in the `person.ori` template, but from a functional standpoint, we're done with that part of the task.
+With the addition of the avatars, you've completed the essential functions of the `team` route within the About Us area of the site you're designing. You could add more data fields to `team.yaml` and render those in the `person.ori` template, but from a functional standpoint, you're done with that part of the task.
 
 Next: [Nested templates](intro5.html) »

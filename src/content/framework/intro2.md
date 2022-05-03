@@ -14,7 +14,7 @@ virtual:
   src = graphVirtual(files/src):
 ---
 
-To transform our team data into an About Us website, we'll write some formulas in a small expression language. To lay some groundwork, we'll begin with "Hello, world" exercises of basic Origami formulas.
+To transform your team data into an About Us website, you'll write some formulas in a small expression language. To lay some groundwork, we'll begin with "Hello, world" exercises of basic Origami formulas.
 
 ## Create a formula
 
@@ -45,7 +45,7 @@ If you click on the name of that `message` file, you will navigate to a page tha
 
 The ori web server is aware of Origami formulas. The server parses file names that contain formulas with an `=` sign and interprets them.
 
-You don't have to use the Origami server: you can integrate the support for formulas into other servers like [Express](http://expressjs.com/). Later in this tutorial we'll dispense with a live server altogether by building static files that you can host anywhere.
+You don't have to use the Origami server: you can integrate the support for formulas into other servers like [Express](http://expressjs.com/). Later in this tutorial you'll dispense with a live server altogether by building static files that you can host anywhere.
 
 ## Conceptualizing real and virtual files as graphs
 

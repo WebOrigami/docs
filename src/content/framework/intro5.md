@@ -16,7 +16,7 @@ indexText = results(this):
 index.html = index.ori(intro/team.yaml):
 ---
 
-The last functional part of the About Us area we need to create is the main `index.html` page. By now it will not surprise you that we'll create that page with another graph transformation.
+The last functional part of the About Us area you need to create is the main `index.html` page. By now it will not surprise you that you'll create that page with another graph transformation.
 
 ## Creating an index page template
 
@@ -42,7 +42,7 @@ Most template languages have some form of iteration for repeating a fragment (of
 
 If you look at the [example About Us index page](/samples/aboutUs), it contains a tile or card for each person on the team. In Origami, anytime you have a situation like this that can be described as, "For each _x_, create a _y_", the situation can probably be handled with a graph transformation.
 
-Earlier we mapped the graph of people to a graph of HTML pages. Here we'll do something similar, but instead of creating a full HTML page for each person on the team, we'll create an HTML fragment defining a tile element for that person. We'll then combine those tile fragments to create the index page.
+Earlier you mapped the graph of people to a graph of HTML pages. Here you'll do something similar, but instead of creating a full HTML page for each person on the team, you'll create an HTML fragment defining a tile element for that person. You'll then combine those tile fragments to create the index page.
 
 Update the `index.ori` template so that it contains:
 
@@ -50,9 +50,9 @@ Update the `index.ori` template so that it contains:
 {{index.ori}}
 ```
 
-The `\{\{#…}}` syntax invokes the same `map` function we've already been using in formulas. The fragment between the `\{\{#map}}` and `\{\{/map}}` will be passed as an additional argument to the `map` function. That fragment will be evaluated in the context of the item being mapped. In this case, `\{\{name}}` will refer to the name of an individual person in `team.yaml`.
+The `\{\{#…}}` syntax invokes the same `map` function you've already been using in formulas. The fragment between the `\{\{#map}}` and `\{\{/map}}` will be passed as an additional argument to the `map` function. That fragment will be evaluated in the context of the item being mapped. In this case, `\{\{name}}` will refer to the name of an individual person in `team.yaml`.
 
-Earlier we saw how applying an Origami template was a kind of graph transformation that produced a graph of text. In the case of `index.ori`, this transformation produces a multi-level graph of text.
+Earlier you saw how applying an Origami template was a kind of graph transformation that produced a graph of text. In the case of `index.ori`, this transformation produces a multi-level graph of text.
 
 <div class="sideBySide">
   <figure>
@@ -75,13 +75,13 @@ If you now visit `index.html` in the served site, you should see a bulleted list
 
 ## Flesh out the index page template
 
-Now that we have a working index page, you can flesh it out with more elements. From the `assets` folder, move or copy the `index.ori` template into the `src` folder.
+Now that you have a working index page, you can flesh it out with more elements. From the `assets` folder, move or copy the `index.ori` template into the `src` folder.
 
 ```html
 {{ intro/index.ori }}
 ```
 
-This version of `index.ori` is slightly more elaborate, but works the same way as the one above. The `#map` block in the middle will generate a tile element for each person in `teamByName`. The tile will make use of the same random avatar images we created with a graph transformation earlier.
+This version of `index.ori` is slightly more elaborate, but works the same way as the one above. The `#map` block in the middle will generate a tile element for each person in `teamByName`. The tile will make use of the same random avatar images you created with a graph transformation earlier.
 
 If you click on one of the tiles in the index page, it should take you to the `team` page for that individual.
 

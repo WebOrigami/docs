@@ -4,11 +4,11 @@ title: "Origami framework introduction"
 
 Let's build a little website!
 
-Origami is designed to help you create digital content such as websites, documentation, and data sets.
+This will give you a feel for Origami, a framework to help you create digital content such as websites, documentation, and data sets.
 
-- It's built on a conceptual paradigm that treats development tasks as transformations of data represented in graphs.
-- You transform data, files, and other resources into HTML and other forms that can be viewed and used by your audience.
-- You define and orchestrate these transformations at a high level using Excel-like formulas that produce virtual folders, files, and other data.
+- You'll use a conceptual paradigm that treats development tasks as transformations of data represented in graphs.
+- You'll define and orchestrate these transformations at a high level using Excel-like formulas.
+- The formulas will transform real data and files into virtual files containing the HTML and other content that can be viewed and used by your audience.
 
 You can use Origami for many things; site creation is just used here as an illustrative example.
 

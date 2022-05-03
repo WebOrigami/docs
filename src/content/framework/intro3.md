@@ -50,15 +50,15 @@ Some notes on the `map` function:
 - Virtual graphs produced by `map` and the other Origami functions are _lazy_. They only do work when they need to. Unlike a JavaScript [Array map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), the `map` function here doesn't do much work upon invocation — it only does the real work of transformation when someone asks the mapped graph for something. The `greetings` graph represents _potential_ work. In this case, the greeting for a person like Carol is only generated when you actually try to visit that URL.
 - `map` only applies the mapping function to the top-level values of a graph. If you want to apply the mapping function to the deep values of a graph, use [mapDeep](/cli/builtins.html#mapDeep) instead to obtain a new, deep graph of transformed values.
 
-Using transformations like this, we can begin working towards transforming our `team.yaml` data into the About Us site we want to produce.
+Using transformations like this, you can begin working towards transforming your `team.yaml` data into the About Us site you want to produce.
 
 ## Transforming a graph's keys
 
 In the example above, `map` transforms the graph values but leaves the keys (the arrow labels) unchanged.
 
-In the `greetings` graph shown above, the keys (labels) for the arrows are the array indices: 0, 1, 2. But in our About Us site, we want the route for a person's page to incorporate their name.
+In the `greetings` graph shown above, the keys (labels) for the arrows are the array indices: 0, 1, 2. But in your About Us site, you want the route for a person's page to incorporate their name.
 
-To accomplish that, we can use another type of map called [mapKeys](/cli/builtins.html#mapKeys), which changes a graph's keys. In the `src` folder, create an empty file with the following formula name:
+To accomplish that, you can use another type of map called [mapKeys](/cli/builtins.html#mapKeys), which changes a graph's keys. In the `src` folder, create an empty file with the following formula name:
 
 ```console
 teamByName = mapKeys(team.yaml, =name)
@@ -81,7 +81,7 @@ This `mapKeys` formula will result in a new graph using names as keys.
 
 ## Applying multiple transformations
 
-We can use the `teamByName` graph to rewrite our `greeting` formula. Edit the name of the file defining the `greeting` formula so that, instead of directly referencing `team.yaml`, it refers to `teamByName`:
+You can use the `teamByName` graph to rewrite our `greeting` formula. Edit the name of the file defining the `greeting` formula so that, instead of directly referencing `team.yaml`, it refers to `teamByName`:
 
 ```console
 greeting = map(teamByName, =greet(name))
@@ -106,6 +106,6 @@ This lets us transform `team.yaml` in two steps: 1) transform the integer keys t
 
 If you view the served site, you can inspect the intermediate `teamByName` graph as well as the final `greetings` graph. Being able to explore intermediate representations is, in fact, an extremely useful debugging facility of the Origami framework. Normally such intermediate representations are only indirectly viewable by setting debugger breakpoints and inspecting variable values in a properties panel — which is often cumbersome for complex data structures.
 
-We've now roughed in the basic structure of the `team` route for the About Us site. The next step is to show something more interesting for a person than a simple greeting.
+You've now roughed in the basic structure of the `team` route for the About Us site. The next step is to show something more interesting for a person than a simple greeting.
 
 Next: [Templates](intro4.html) »

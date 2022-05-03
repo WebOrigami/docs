@@ -21,7 +21,7 @@ team.yaml:
 #
 # Use the person's `id` as the key for their data
 #
-indexed.yaml = defineKey(team.yaml, 'id'):
+indexed.yaml = mapKeys(team.yaml, =id):
 
 #
 # Create the main page by mapping the indexed data to the Origami template fragment.
