@@ -18,7 +18,7 @@ index.html = index.ori(intro/team.yaml):
 
 The last part of the About Us area to create is the main `index.html` page. By now it will not surprise you that you'll create that page with another graph transformation.
 
-## Creating an index page template
+## Create an index page template
 
 To rough in the index page, create a new file called `index.ori` that contains:
 
@@ -38,7 +38,7 @@ You should now be able to visit `index.html` in the served site.
 
 Tip: While the new index page will be more presentable, it can still be useful to view the previous default index page that listed real and virtual files. If you ever want to return that listing, navigate to the hidden route at `src/.index` that includes a period. This route is provided by the Origami server as a diagnostic tool so you can browse the virtual graph you're creating.
 
-## Using a nested template
+## Use a nested template
 
 Most template languages have some form of iteration for repeating a fragment (of HTML, say) for each item in an array. In Origami, such things are handled with graph transformations.
 

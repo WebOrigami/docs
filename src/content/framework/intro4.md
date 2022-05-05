@@ -1,5 +1,5 @@
 ---
-title: Rendering data with templates
+title: Render data with templates
 numberHeadings: true
 intro = client/samples/frameworkIntro:
 teamByName = intro/teamByName:
@@ -31,7 +31,7 @@ Like most template languages, Origami templates let you mix boilerplate text wit
 
 Here, the `\{\{name}}` placeholder indicates that you'd like to evaluate the expression `name` in the context of the data for a single person to produce the text that should be shown.
 
-## Applying a template as a function
+## Apply a template as a function
 
 A template is essentially a function for turning data into a text format like HTML, so Origami allows you to invoke a template as a function.
 

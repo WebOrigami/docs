@@ -54,7 +54,7 @@ Some notes on the `map` function:
 
 Using formulas like this, you can begin transforming your `team.yaml` data into an About Us site.
 
-## Transforming a graph's keys
+## Transform a graph's keys
 
 In the example above, `map` transforms the graph values but leaves the keys (the arrow labels) unchanged.
 
@@ -81,7 +81,7 @@ This `mapKeys` formula will result in a new graph using names as keys.
   <figcaption>Transformed graph with names as top-level keys</figcaption>
 </div>
 
-## Applying multiple transformations
+## Apply multiple transformations
 
 You can use the `teamByName` graph to rewrite our `greeting` formula. Edit the name of the file defining the `greeting` formula so that, instead of directly referencing `team.yaml`, it refers to `teamByName`:
 

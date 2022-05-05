@@ -1,10 +1,10 @@
 ---
-title: Deploying a site
+title: Deploy a site as static files
 numberHeadings: true
 intro = client/samples/frameworkIntro:
 ---
 
-## Reviewing the structure of the site
+## Review the structure of the site
 
 Your goal in this tutorial has been to build a basic About Us area. You started with a simple `team.yaml` data file, then applied a series of graph transformations to create the following virtual graph:
 
@@ -18,7 +18,7 @@ You could deploy this project as it stands, running the small ori web server on 
 
 However, like many sites, this particular site is fundamentally static in nature. You can render all the pages and other necessary resources and deploy them as static files on a CDN (Content Delivery Network). That will be cheaper, faster, and more reliable.
 
-## Building static web pages
+## Build static web pages
 
 To render the site's pages and other resources, you can take the above graph of virtual files and make those files real.
 
