@@ -1,34 +1,36 @@
 ---
-title: Content creation through graph transformation
+title: Thinking in graphs
 numberHeadings: true
 intro = client/samples/frameworkIntro:
 ---
 
-Let's say that you've been given the following design and development task:
+Okay, let's build a little website!
 
-> _Your team needs you to design and implement an "About Us" area for your organization's site. The main About Us page should include a list of people on the team, with links to separate pages for each team member. A team member's page should show their name and a photo._
+Suppose your team says:
+
+> _We need an "About Us" area for our site. The main About Us page should include a list of people on the team, with links to separate pages for each person. A person's page should show their name and a photo._
 
 Here's an [example About Us area](/samples/aboutUs) you can consider as a model for this task. There's a main `index.html` route, and a `team` route with an HTML page for each person on the team.
 
 ## Visualize the final result
 
-There are many ways you could approach this task, but let's start by considering what you want to end up with. Based on the linked example above, you want a site with a topology like this:
+Let's work backward from the desired result. Based on the linked example above, you want a site organized like this:
 
 <figure>
 {{ svg intro/site.yaml }}
 </figure>
 
-Representing the site as a graph like this is not only a good way to visualize what you want to make. In Origami, you'll actually create a software representation of this graph that can be browsed directly.
+Representing the site as a graph like this is not only a good way to visualize your goal. In Origami, you'll actually create a software representation of this graph that can be browsed directly.
 
 ## Select a starting data representation
 
-There are many ways you could represent the data you'll need for this site, but the simplest representation is probably a data file listing the names of the people on the team.
+One simple way to represent the data for this site is a data file listing the names of the people on the team.
 
-Using your code editor, create a new folder called `src` at the root of the project. (In StackBlitz: move your mouse over the "Files" header in the left pane, then click the New Folder icon.)
+Using the code editor, create a new folder called `src` at the root of the project. (In StackBlitz: move your mouse over the "Files" header in the left pane, then click the New Folder icon.)
 
 Inside this new `src` folder, create a file called `team.yaml`.
 
-Type some set of names into `team.yaml` using the YAML format below. You don't have to use these stock names — this tutorial will be **much** more entertaining if you type the names of your own teammates or family members!
+Type some names into `team.yaml` using the YAML format below. You don't have to use these stock names — this tutorial will be **much** more entertaining if you type the names of your own teammates or family members!
 
 ```\yaml
 {{ intro/team.yaml }}
@@ -44,17 +46,17 @@ If you go this route, use `team.json` wherever the tutorial uses `team.yaml`.
 
 ## Visualize the data representation
 
-Just as you can envision the final site you want as a graph, you can also consider the starting data as a graph:
+Just as you can envision the final site as a graph, you can also consider the starting data as a graph:
 
 <figure>
 {{ svg intro/team.yaml }}
 </figure>
 
-The `0`, `1`, and `2` are the indices from the array of names. If you ask this graph for `0`, you'll get a node that represents the data for Alice: a subgraph that currently defines a single property, `name`.
+The `0`, `1`, and `2` are the indices from the array of names. If you ask this graph for `0`, you'll get a node that represents the data for Alice: a subgraph that currently defines a single property node for `name`.
 
 ## Visualize site creation as a transformation
 
-Since both our starting data representation and final desired site are graphs, our development task is fundamentally the _transformation of the starting graph into the final graph_.
+Since both your starting data representation and final desired site are graphs, your development task is fundamentally the _transformation of the starting graph into the final graph_.
 
 <div class="sideBySide">
   <figure>
@@ -67,9 +69,9 @@ Since both our starting data representation and final desired site are graphs, o
   <figcaption>…into this website graph</figcaption>
 </div>
 
-Viewed this way, you may already see some correspondence between the two graphs: for each person in the data graph, you want to generate an HTML page in the `team` route with that person's data. You'll be able to express that correspondence directly in Origami.
+Viewed this way, you may see some correspondence between the two graphs: for each person in the data graph, you want to generate an HTML page in the `team` route with that person's data. You'll be able to express that correspondence directly in Origami.
 
-Generally speaking, creating things in Origami means thinking about the graph you've got and the graph you want, and about how to transform your starting point in steps until you have what you want. This is similar to the way the paper-folding art of origami, in which a flat square of paper is transformed in steps to create an artwork.
+Generally speaking, creating things in Origami means thinking about the graph you've got and the graph you want, and about how to transform your starting point in steps until you have what you want. This is similar to the paper-folding art of origami, in which you can transform a flat square of paper into an artwork.
 
 <figure style="align-items: center; display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(125px, 1fr)); justify-items: center;">
   <img src="/assets/heart/step1.svg">

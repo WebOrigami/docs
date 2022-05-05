@@ -17,9 +17,9 @@ application:
 
 ## Transform data into HTML with a template
 
-Transforming data into HTML can be done with plain JavaScript, but for many cases that's overkill.
+You can transforming data into HTML with plain JavaScript, but for that task, a template language can be more appropriate.
 
-If all we want to do is pour data into a template, a template language can be more appropriate. You can use any template system with Origami, but for this tutorial we'll use the template system built into Origami. These Origami templates reuse the same expression language as Origami formulas and the ori command-line interface.
+You can use any template system with Origami, but for this tutorial you'll use the template system built into Origami. These Origami templates reuse the same expression language as Origami formulas and the ori command-line interface.
 
 In the `src` folder, create a file called `person.ori` and type or copy/paste the following HTML:
 
@@ -27,23 +27,21 @@ In the `src` folder, create a file called `person.ori` and type or copy/paste th
 {{ intro/person.ori }}
 ```
 
-Like most template languages, Origami templates let you mix boilerplate text with dynamic content represented with placeholders. In Origami templates, placeholders are delineated with `\{\{}}` curly braces. Here, the `\{\{name}}` placeholder indicates that you'd like to evaluate the expression `name` to produce the text that should be shown at that point. That expression will be evaluated in the context of the data for a given person.
+Like most template languages, Origami templates let you mix boilerplate text with dynamic content represented with placeholders. In Origami templates, placeholders are delineated with curly braces.
+
+Here, the `\{\{name}}` placeholder indicates that you'd like to evaluate the expression `name` in the context of the data for a single person to produce the text that should be shown.
 
 ## Applying a template as a function
 
-A template is essentially a function for turning data into a text format like HTML, so Origami allows you to invoke a template as a function. All you have to do is give that function the data it should transform.
+A template is essentially a function for turning data into a text format like HTML, so Origami allows you to invoke a template as a function.
 
-Create an empty file in the `src` folder with a formula that looks like this. _For both occurrences of the name "Alice", substitute a name from your team file._
+Create an empty file in the `src` folder with a formula that looks like this. If you entered more interesting names, in both places, substitute a name from your team file for "Alice".
 
 ```console
 Alice.html = person.ori(teamByName%Alice)
 ```
 
-This formula creates a virtual file called `Alice.html`. The contents of that virtual file will be the HTML obtained by applying the `person.ori` template to the data for Alice in `team.yaml`.
-
-The `%` percent sign is used in file name formulas like this as an alternative to a regular `/` slash separator — operating systems and code editors discourage or prevent the use of slashes in file names. The above is equivalent to `teamByName/Alice`, and will extract Alice's data from the `teamByName` graph.
-
-The content of the virtual `Alice.html` file will be:
+This formula creates a virtual file called `Alice.html`. The virtual file contains the HTML obtained by applying the `person.ori` template to the data for Alice in `team.yaml`:
 
 ```html
 {{ intro/person.ori(teamByName%Alice) }}
@@ -51,21 +49,23 @@ The content of the virtual `Alice.html` file will be:
 
 Open `Alice.html` in the served site to view the result: Hello, **Alice**.
 
+The `%` percent sign is used in file name formulas as an alternative to a regular `/` slash separator, since operating systems and code editors don't like slashes in file names. The above is equivalent to `teamByName/Alice`, and will extract Alice's data from the `teamByName` graph.
+
 At this point, you're successfully transforming the data for a single person, Alice, to create a single web page for that person.
 
 ## A template is a graph transformation
 
-You can also consider the application of a template as a graph transformation.
+You can consider the application of a template itself as a graph transformation.
 
-In the case of the above template, we can view the elements of the template as an array:
+In the case of the above template, you can view the elements of the template as an array:
 
 ```\yaml
 {{ yaml template }}
 ```
 
-The first and last items in this array are boilerplate strings holding HTML; the middle element is a placeholder. As with other arrays, we can model this array as a graph.
+The first and last items in this array are boilerplate strings holding HTML; the middle element is a placeholder. As with other arrays, you can model this array as a graph.
 
-When you apply this template to the data for a person like Alice, you transform the array graph into a new graph. Boilerplate strings in the source graph are carried over as is, while expressions in placeholders are evaluated in the context of the data. This results in a new graph of only string values.
+When you apply this template to the data for a person like Alice, you transform the array graph into a new graph. Boilerplate strings in the source graph are carried over as is, while expressions in placeholders are evaluated in the context of the data. This results in a new graph of strings:
 
 <div class="sideBySide">
   <figure>
@@ -82,13 +82,13 @@ To get the final result of the template, Origami performs a depth-first traversa
 
 Treating template application as a graph transformation results in a flexible templating system that can be extended in interesting ways, as you'll see in a bit with nested templates.
 
-The other point to note here is the expressions inside an Origami template's placeholders have access to same language facilities as Origami formulas used in file names or the ori command-line interface. Among other things, this means you can call your own JavaScript functions (like `greet`, earlier) inside template placeholders.
+Expressions inside an Origami template's placeholders have access to same language facilities as Origami formulas used in file names or the ori command-line interface. Among other things, this means you can call your own JavaScript functions (like `greet`, earlier) inside template placeholders.
 
 ## Transform a data graph into HTML pages
 
-You can use the `person.ori` template as a function that you pass to `map`. Earlier you created a `greetings` graph that mapped the team members to a graph of greetings using a JavaScript function. Let's now map the team members to HTML pages using the `person.ori` template instead.
+Earlier you created a `greetings` graph that mapped the team members to a graph of greetings using a JavaScript function. You can also map the team members to HTML pages using your `person.ori` template.
 
-Create a new, empty file named
+Create a new, empty file named:
 
 ```console
 team = map(teamByName, person.ori)
@@ -117,15 +117,15 @@ Let's make the `person.ori` template a bit more realistic. The project's `assets
 
 Move or copy that `person.ori` template from the `assets` folder to the `src` folder.
 
-Additionally, move or copy the `main.css` and `personIcon.svg` files referenced by the updated template.
+Also move or copy the `main.css` and `personIcon.svg` files referenced by the updated template.
 
-When you view the pages in the `team` route now, you should see a somewhat more presentable web page. The page will contain a missing image; you'll fix that in just a minute.
+When you view the pages in the `team` route now, you should see a somewhat more presentable web page. The page contains a missing image that you'll fix in just a minute.
 
 ## Add an HTML extension
 
-We often use extensions at the end of file names or web routes to indicate the type of data they contain. Graph transformations will often want to change these extensions to reflect the fact that the type of data has changed. For this reason, functions like `map` allow you to add, change, or remove extensions.
+We often use extensions at the end of file names to indicate the type of data they contain. Graph transformations will often want to change these extensions to reflect a change in the type of data. For this reason, functions like `map` allow you to add, change, or remove extensions.
 
-In this case, you want to map a person object with a key like `Alice` to a key like `Alice.html` to reflect the fact that that transformed graph value contains HTML.
+In this case, you want to map a person object with a key like `Alice` to an HTML file name like `Alice.html` to reflect the fact that that transformed graph value contains HTML.
 
 Edit the name of the formula file for the `team` so that it reads:
 
@@ -133,7 +133,7 @@ Edit the name of the formula file for the `team` so that it reads:
 team = map(teamByName, person.ori, '', '.html')
 ```
 
-The third parameter (`''`) indicates that you don't want to _remove_ anything from the graph keys; they don't have any extension. The fourth parameter (`'.html'`) indicates that you want to _add_ `.html` to the graph keys. The transformation now looks like:
+The third parameter (`''`) indicates that you don't want to _remove_ anything from the graph keys, because they don't have any extension. The fourth parameter (`'.html'`) indicates that you want to _add_ `.html` to the graph keys. The transformation now looks like:
 
 <div class="sideBySide">
   <figure>
@@ -150,9 +150,9 @@ The pages in the `team` route should now end in `.html`.
 
 ## Bonus: Add avatars
 
-A typical About Us area like our [example](/samples/aboutUs) shows headshot photographs for each team member. If you have pictures you'd like to use, you could certainly use those here.
+A typical About Us area like our [example](/samples/aboutUs) shows headshot photographs for each team member. If you have pictures you'd like to use, you could use those here.
 
-For the sake of this tutorial, however, we'll use programmatically generated avatar images provided by a service called [DiceBear Avatars](https://avatars.dicebear.com/). Given an arbitrary string (like a name), that service will always return the same generated image.
+But for the sake of simplicity, you can use programmatically generated avatar images from a service like [DiceBear Avatars](https://avatars.dicebear.com/). Given an arbitrary string (like a name), that service always returns the same generated image.
 
 From the `assets` folder, move or copy the `avatar.js` file to the `src` folder. This file contains a function that maps an input string and returns a SVG file from the random avatar service.
 
@@ -162,7 +162,7 @@ From the `assets` folder, move or copy the `avatar.js` file to the `src` folder.
 
 It's not important to understand this JavaScript, only to recognize that it can do whatever it needs to do to obtain a resource from the web.
 
-With that, you can then map the `teamByName` graph to create a corresponding graph of avatars. Create an empty file named:
+With that, you can map the `teamByName` graph to create a corresponding virtual folder of avatars. Create an empty file named:
 
 ```console
 avatars = map(teamByName, =avatar(name), '', '.svg')

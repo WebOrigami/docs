@@ -1,14 +1,14 @@
 - href: index.html
-  text: Overview
-- href: intro.html
-  text: "Introduction"
+  text: Introduction
   pages:
+    - href: intro0.html
+      text: "Tutorial setup"
     - href: intro1.html
-      text: "Creating content"
+      text: "Thinking in graphs"
     - href: intro2.html
       text: "Formulas"
     - href: intro3.html
-      text: "Transformations"
+      text: "Transform graphs"
     - href: intro4.html
       text: "Templates"
     - href: intro5.html
