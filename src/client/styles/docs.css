@@ -365,8 +365,8 @@ g.node polygon[fill="none"] {
  * Tutorial
  */
 .tutorialStep:before {
-  content: '💻';
-  opacity: 0.75;
+  content: '▶';
+  color: var(--color-rule);
 }
 
 /*
@@ -446,10 +446,5 @@ g.node polygon[fill="none"] {
 
   figure {
     margin: 3rem 3rem 3rem 0;
-  }
-
-  .tutorialStep:before {
-    position: absolute;
-    margin-left: -1.5em;
   }
 }

@@ -18,7 +18,7 @@ $ mkdir src
 
 There are a variety of ways to incorporate Origami into an existing web server or a larger project, but for this introduction, you'll use the small server included with the [ori command-line interface](/cli) that is part of Origami.
 
-<span class="tutorialStep"></span> To start the ori web server on StackBlitz:
+<span class="tutorialStep"></span> Start the web server:
 
 ```console
 $ ori serve
@@ -27,7 +27,7 @@ Server running at http://localhost:5000. Press Ctrl+C to stop.
 
 (You may see a StackBlitz message requiring you to enable certain cookies in order to run the server.)
 
-You should be able to view the running server, which at this point will just show a listing of the project files.
+<span class="tutorialStep"></span> View the running server, which at this point will just show a listing of the project files.
 
 ## Option 2: Your local coding environment
 
@@ -50,18 +50,16 @@ $ mkdir src
 
 There are a variety of ways to incorporate Origami into an existing web server or a larger project, but for this introduction, you'll use the small server included with the [ori command-line interface](/cli) that is part of Origami.
 
-When running locally, you'll need to invoke this ori tool with `npx ori`.
-
-<span class="tutorialStep"></span> Start the server:
+<span class="tutorialStep"></span> Start the web server:
 
 ```console
 $ npx ori serve
 Server running at http://localhost:5000. Press Ctrl+C to stop.
 ```
 
-_Throughout the rest of the tutorial, where you see `ori`, you should type `npx ori` instead._
+When running locally, you'll need to invoke this ori tool with `npx ori`. _Throughout the rest of the tutorial, where you see `ori`, you should type `npx ori` instead._
 
-You should be able to view the running server, which at this point will just show a listing of the project files.
+<span class="tutorialStep"></span> View the running server, which at this point will just show a listing of the project files.
 
 &nbsp;
 
