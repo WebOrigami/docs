@@ -365,7 +365,7 @@ g.node polygon[fill="none"] {
  * Tutorial
  */
 .tutorialStep:before {
-  content: '▶';
+  content: '➔';
   color: var(--color-rule);
 }
 
