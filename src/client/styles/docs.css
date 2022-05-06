@@ -365,7 +365,7 @@ g.node polygon[fill="none"] {
  * Tutorial
  */
 .tutorialStep:before {
-  content: '➔';
+  content: '➤';
   color: var(--color-rule);
 }
 
@@ -446,5 +446,10 @@ g.node polygon[fill="none"] {
 
   figure {
     margin: 3rem 3rem 3rem 0;
+  }
+
+  .tutorialStep:before {
+    margin-left: -1.5em;
+    position: absolute;
   }
 }
