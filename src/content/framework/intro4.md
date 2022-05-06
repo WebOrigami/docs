@@ -21,7 +21,7 @@ You can transforming data into HTML with plain JavaScript, but for that task, a 
 
 You can use any template system with Origami, but for this tutorial you'll use the template system built into Origami. These Origami templates reuse the same expression language as Origami formulas and the ori command-line interface.
 
-In the `src` folder, create a file called `person.ori` and type or copy/paste the following HTML:
+<span class="tutorialStep"></span> In the `src` folder, create a file called `person.ori` and type or copy/paste the following HTML:
 
 ```hbs
 {{ intro/person.ori }}
@@ -35,7 +35,7 @@ Here, the `\{\{name}}` placeholder indicates that you'd like to evaluate the exp
 
 A template is essentially a function for turning data into a text format like HTML, so Origami allows you to invoke a template as a function.
 
-Create an empty file in the `src` folder with a formula that looks like this. If you entered more interesting names, in both places, substitute a name from your team file for "Alice".
+<span class="tutorialStep"></span> Create an empty file in the `src` folder with a formula that looks like this. If you entered more interesting names, in both places, substitute a name from your team file for "Alice".
 
 ```console
 Alice.html = person.ori(teamByName%Alice)
@@ -47,7 +47,7 @@ This formula creates a virtual file called `Alice.html`. The virtual file contai
 {{ intro/person.ori(teamByName%Alice) }}
 ```
 
-Open `Alice.html` in the served site to view the result: Hello, **Alice**.
+<span class="tutorialStep"></span> Open `Alice.html` in the served site to view the result: Hello, **Alice**.
 
 The `%` percent sign is used in file name formulas as an alternative to a regular `/` slash separator, since operating systems and code editors don't like slashes in file names. The above is equivalent to `teamByName/Alice`, and will extract Alice's data from the `teamByName` graph.
 
@@ -88,13 +88,15 @@ Expressions inside an Origami template's placeholders have access to same langua
 
 Earlier you created a `greetings` graph that mapped the team members to a graph of greetings using a JavaScript function. You can also map the team members to HTML pages using your `person.ori` template.
 
-Create a new, empty file named:
+<span class="tutorialStep"></span> Create a new, empty file named:
 
 ```console
 team = map(teamByName, person.ori)
 ```
 
-If you now visit the `team` route in the served site, you'll be able to select a person's name to see a rudimentary HTML page for that person. The people data has been mapped to HTML.
+<span class="tutorialStep"></span> Visit the `team` route in the served site, and select a person's name to see a rudimentary HTML page for that person.
+
+You have transformed the people data into HTML.
 
 <div class="sideBySide">
   <figure>
@@ -115,9 +117,9 @@ Let's make the `person.ori` template a bit more realistic. The project's `assets
 {{ intro/person2.ori }}
 ```
 
-Move or copy that `person.ori` template from the `assets` folder to the `src` folder.
+<span class="tutorialStep"></span> Move or copy that `person.ori` template from the `assets` folder to the `src` folder.
 
-Also move or copy the `main.css` and `personIcon.svg` files referenced by the updated template.
+<span class="tutorialStep"></span> Also move or copy the `main.css` and `personIcon.svg` files referenced by the updated template.
 
 When you view the pages in the `team` route now, you should see a somewhat more presentable web page. The page contains a missing image that you'll fix in just a minute.
 
@@ -127,7 +129,7 @@ We often use extensions at the end of file names to indicate the type of data th
 
 In this case, you want to map a person object with a key like `Alice` to an HTML file name like `Alice.html` to reflect the fact that that transformed graph value contains HTML.
 
-Edit the name of the formula file for the `team` so that it reads:
+<span class="tutorialStep"></span> Update the name of the formula file for the `team` so that it reads:
 
 ```console
 team = map(teamByName, person.ori, '', '.html')
@@ -146,7 +148,7 @@ The third parameter (`''`) indicates that you don't want to _remove_ anything fr
   <figcaption>…maps to a .html file for each person</figcaption>
 </div>
 
-The pages in the `team` route should now end in `.html`.
+<span class="tutorialStep"></span> Observe that the pages in the `team` route now end in `.html`.
 
 ## Bonus: Add avatars
 
@@ -154,7 +156,9 @@ A typical About Us area like our [example](/samples/aboutUs) shows headshot phot
 
 But for the sake of simplicity, you can use programmatically generated avatar images from a service like [DiceBear Avatars](https://avatars.dicebear.com/). Given an arbitrary string (like a name), that service always returns the same generated image.
 
-From the `assets` folder, move or copy the `avatar.js` file to the `src` folder. This file contains a function that maps an input string and returns a SVG file from the random avatar service.
+<span class="tutorialStep"></span> From the `assets` folder, move or copy the `avatar.js` file to the `src` folder.
+
+This file contains a function that maps an input string and returns a SVG file from the random avatar service.
 
 ```\js
 {{ intro/avatar.js }}
@@ -162,7 +166,9 @@ From the `assets` folder, move or copy the `avatar.js` file to the `src` folder.
 
 It's not important to understand this JavaScript, only to recognize that it can do whatever it needs to do to obtain a resource from the web.
 
-With that, you can map the `teamByName` graph to create a corresponding virtual folder of avatars. Create an empty file named:
+With that, you can map the `teamByName` graph to create a corresponding virtual folder of avatars.
+
+<span class="tutorialStep"></span> Create a new, empty file named:
 
 ```console
 avatars = map(teamByName, =avatar(name), '', '.svg')
@@ -175,5 +181,7 @@ In the served site, you can navigate to the `src/avatars` folder to see a virtua
 A common feature of working with Origami is that you can smoothly move between using real and virtual files. You could use these generated avatar SVGs to get started. Later, you could delete the `avatars` formula and create a real `avatars` folder containing manually-curated images or headshot photos.
 
 With the addition of the avatars, you've completed the essential functions of the `team` route within the About Us area of the site you're designing. You could add more data fields to `team.yaml` and render those in the `person.ori` template, but from a functional standpoint, you're done with that part of the task.
+
+&nbsp;
 
 Next: [Nested templates](intro5.html) »

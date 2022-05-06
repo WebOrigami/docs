@@ -20,13 +20,17 @@ The last part of the About Us area to create is the main `index.html` page. By n
 
 ## Create an index page template
 
-To rough in the index page, create a new file called `index.ori` that contains:
+Let's rough in an index page.
+
+<span class="tutorialStep"></span> Create a new file called `index.ori` that contains:
 
 ```html
 <h1>About Us</h1>
 ```
 
-This will be the basis for an Origami template for your index page. To use it, create a new, empty file called
+This will be the basis for an Origami template for your index page.
+
+<span class="tutorialStep"></span> Create a new, empty file called:
 
 ```console
 index.html = index.ori()
@@ -46,7 +50,7 @@ If you look at the [example About Us index page](/samples/aboutUs), it contains 
 
 Earlier you mapped the graph of people to a graph of HTML pages. To create the index page you'll do something similar, but instead of creating a full HTML page for each person, you'll create an HTML fragment defining a tile element for that person. You'll then combine those tile fragments to create the index page.
 
-Update the `index.ori` template so that it contains:
+<span class="tutorialStep"></span> Update the `index.ori` template so that it contains:
 
 ```html
 {{index.ori}}
@@ -73,11 +77,13 @@ As before, a boilerplate string like `<h1>About Us</h1>` is kept as is. The `#ma
 
 The entire deep graph of strings is concatenated in depth-first order to produce the final result, which is served as `index.html`.
 
-If you now visit `index.html` in the served site, you should see a bulleted list of names.
+<span class="tutorialStep"></span> Visit or fresh the `src` route in the served site. You should see a bulleted list of names.
 
 ## Flesh out the index page template
 
-Now that you have a working index page, flesh it out with more elements. From the `assets` folder, move or copy the `index.ori` template into the `src` folder.
+Now that you have a working index page, flesh it out with more elements.
+
+<span class="tutorialStep"></span> From the `assets` folder, move or copy the `index.ori` template into the `src` folder.
 
 ```html
 {{ intro/index.ori }}
@@ -85,6 +91,8 @@ Now that you have a working index page, flesh it out with more elements. From th
 
 This version of `index.ori` is slightly more elaborate, but works the same way as before. The `#map` block in the middle generates a tile element for each person in `teamByName`. The tile makes use of the same random avatar images you created with a graph transformation earlier.
 
-If you click on one of the tiles in the index page, it should take you to the `team` page for that individual.
+<span class="tutorialStep"></span> Click on one of the tiles in the index page, which should take you to the `team` page for that individual.
+
+&nbsp;
 
 Next: [Deploying](intro6.html) »

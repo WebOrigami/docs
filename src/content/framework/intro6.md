@@ -24,7 +24,7 @@ To render the site's pages and other resources, you can take the above graph of 
 
 The ori command-line tool has a built-in [copy](/cli/builtins.html#copy) function that can copy one graph into another. You can use that `copy` function to copy a virtual graph into a graph of real files in the file system.
 
-In the terminal, issue the following command. (If you're currently running the ori server, stop it with Ctrl+C.)
+<span class="tutorialStep"></span> In the terminal, stop the server with Ctrl+C, and issue the following command:
 
 ```console
 $ ori copy virtual/src, files/dist
@@ -32,13 +32,13 @@ $ ori copy virtual/src, files/dist
 
 This copies the entire virtual graph represented by the `src` folder into a new filesystem folder called `dist`.
 
-When this completes, inspect the `dist` folder. In addition to all the source files you created by hand, you should now also see:
+<span class="tutorialStep"></span> Inspect the `dist` folder. In addition to all the source files you created by hand, you should now also see:
 
 - A real `avatars` folder with real SVG images for each team member.
 - A real `index.html` page with HTML to create a tile for each team member.
 - A real `team` folder with real HTML pages for each team member.
 
-If you restart the server and browse the `dist` route in the served site, you should see a fully functional About Us area that's identical to the one visible at the `src` route — only the `dist` version is backed entirely by static files.
+<span class="tutorialStep"></span> Restart the server and browse the `dist` route in the served site. You should see a fully functional About Us area that's identical to the one visible at the `src` route — only the `dist` version is backed entirely by static files.
 
 Some of the source files you created by hand or copied in, such as `styles.css`, are necessary to run the site, but the formula files aren't necessary. It's possible to filter out the files you don't need, but for now you can leave them in the `dist` folder; deploying them is harmless.
 
@@ -55,5 +55,7 @@ Through this tutorial, you created a small but functionally meaningful About Us 
 - You rendered the virtual graph of the site into real files that can be deployed directly.
 
 This concludes the tutorial.
+
+&nbsp;
 
 Back to [Framework](index.html)

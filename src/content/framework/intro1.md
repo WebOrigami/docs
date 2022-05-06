@@ -26,11 +26,9 @@ Representing the site as a graph like this is not only a good way to visualize y
 
 One simple way to represent the data for this site is a data file listing the names of the people on the team.
 
-Using the code editor, create a new folder called `src` at the root of the project. (In StackBlitz: move your mouse over the "Files" header in the left pane, then click the New Folder icon.)
+<span class="tutorialStep"></span> Inside the `src` folder, create a file called `team.yaml`.
 
-Inside this new `src` folder, create a file called `team.yaml`.
-
-Type some names into `team.yaml` using the YAML format below. You don't have to use these stock names — this tutorial will be **much** more entertaining if you type the names of your own teammates or family members!
+<span class="tutorialStep"></span> Type some names into `team.yaml` using the YAML format below. You don't have to use these stock names — this tutorial will be **much** more entertaining if you type the names of your own teammates or family members!
 
 ```\yaml
 {{ intro/team.yaml }}
@@ -85,5 +83,7 @@ Generally speaking, creating things in Origami means thinking about the graph yo
 </figure>
 
 Each individual step is simple, but the cumulative result can be complex.
+
+&nbsp;
 
 Next: [Formulas](intro2.html) »
