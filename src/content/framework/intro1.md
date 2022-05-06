@@ -10,17 +10,20 @@ Suppose your team says:
 
 > _We need an "About Us" area for our site. The main About Us page should include a list of people on the team, with links to separate pages for each person. A person's page should show their name and a photo._
 
-Here's an [example About Us area](/samples/aboutUs) you can consider as a model for this task. There's a main `index.html` route, and a `team` route with an HTML page for each person on the team.
+Here's an [example About Us area](/samples/aboutUs) you can consider as a model for this task:
+
+- There's a main `index.html` route.
+- There's a `team` route with an HTML page for each person on the team.
 
 ## Visualize the final result
 
-Let's work backward from the desired result. Based on the linked example above, you want a site organized like this:
+Let's work backward from the desired result, which we can represent as a graph like this:
 
 <figure>
 {{ svg intro/site.yaml }}
 </figure>
 
-Representing the site as a graph like this is not only a good way to visualize your goal. In Origami, you'll actually create a software representation of this graph that can be browsed directly.
+A graph is not only a good way to visualize your goal — in Origami, you'll create a software representation of this graph that you can browse.
 
 ## Select a starting data representation
 
@@ -41,8 +44,6 @@ If you're not a fan of YAML, call the file `team.json` instead and type the data
 ```
 
 If you go this route, use `team.json` wherever the tutorial uses `team.yaml`.
-
-## Visualize the data representation
 
 Just as you can envision the final site as a graph, you can also consider the starting data as a graph:
 
@@ -69,7 +70,7 @@ Since both your starting data representation and final desired site are graphs, 
 
 Viewed this way, you may see some correspondence between the two graphs: for each person in the data graph, you want to generate an HTML page in the `team` route with that person's data. You'll be able to express that correspondence directly in Origami.
 
-Generally speaking, creating things in Origami means thinking about the graph you've got and the graph you want, and about how to transform your starting point in steps until you have what you want. This is similar to the paper-folding art of origami, in which you can transform a flat square of paper into an artwork.
+Creating things in Origami means thinking about the graph you've got and the graph you want, and about how to transform the former into the latter step by step. This is similar to the paper-folding art of origami, in which you can transform a flat square of paper into an artwork.
 
 <figure style="align-items: center; display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(125px, 1fr)); justify-items: center;">
   <img src="/assets/heart/step1.svg">

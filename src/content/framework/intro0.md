@@ -25,9 +25,9 @@ $ ori serve
 Server running at http://localhost:5000. Press Ctrl+C to stop.
 ```
 
-(You may see a StackBlitz message requiring you to enable certain cookies in order to run the server.)
+StackBlitz may indicate that you need to enable certain cookies in order to run the server.
 
-<span class="tutorialStep"></span> View the running server, which at this point will just show a listing of the project files.
+<span class="tutorialStep"></span> View the served site, which at this point will just show a listing of the project files.
 
 ## Option 2: Your local coding environment
 
@@ -59,7 +59,7 @@ Server running at http://localhost:5000. Press Ctrl+C to stop.
 
 When running locally, you'll need to invoke this ori tool with `npx ori`. _Throughout the rest of the tutorial, where you see `ori`, you should type `npx ori` instead._
 
-<span class="tutorialStep"></span> View the running server, which at this point will just show a listing of the project files.
+<span class="tutorialStep"></span> View the served site, which at this point will just show a listing of the project files.
 
 &nbsp;
 
