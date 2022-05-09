@@ -6,7 +6,7 @@ intro = client/samples/cli.yaml:
 
 ## Serve a graph
 
-<span class="tutorialStep"></span> You can serve any graph with the [serve](/ori/builtins.html#serve) function. For example, the sample `site.yaml` file defines a tiny graph with two web pages:
+You can serve any graph with the [serve](/ori/builtins.html#serve) function. For example, the sample `site.yaml` file defines a tiny graph with two web pages:
 
 ```console
 $ ori site.yaml
@@ -58,7 +58,7 @@ Server running at http://localhost:5000
 
 This effectively lets ori work as a static file server.
 
-<span class="tutorialStep"></span> As a shorthand, you can omit the period (`.`). If you don't specify a graph to serve, `serve` serves up the current folder.
+As a shorthand, you can omit the period (`.`). If you don't specify a graph to serve, `serve` serves up the current folder.
 
 ```console
 $ ori serve
@@ -67,7 +67,7 @@ Server running at http://localhost:5000
 
 ## Transform data into something presentable with a template
 
-<span class="tutorialStep"></span> Template languages are useful for translating data into something you can present to a user. As a bare-bones template language, let's look at a function that renders HTML using a native JavaScript template literal:
+Template languages are useful for translating data into something you can present to a user. As a bare-bones template language, let's look at a function that renders HTML using a native JavaScript template literal:
 
 ```console
 $ ori template.js
@@ -161,7 +161,7 @@ HELLO, ALICE.
 
 ## Use a graph as a map
 
-<span class="tutorialStep"></span> Suppose that you have base data, like an array of people:
+Suppose that you have base data, like an array of people:
 
 ```console
 $ ori people.yaml
@@ -169,7 +169,7 @@ $ ori people.yaml
 - Carol
 ```
 
-<span class="tutorialStep"></span> And some other data that associates a person's name with a greeting:
+And some other data that associates a person's name with a greeting:
 
 ```console
 $ ori greetings.yaml
