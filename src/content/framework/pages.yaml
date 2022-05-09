@@ -1,19 +1,19 @@
 - href: index.html
   text: Introduction
   pages:
-    - href: intro0.html
-      text: "Tutorial setup"
     - href: intro1.html
-      text: "Thinking in graphs"
+      text: "Tutorial setup"
     - href: intro2.html
-      text: "Formulas"
+      text: "Thinking in graphs"
     - href: intro3.html
-      text: "Transform graphs"
+      text: "Formulas"
     - href: intro4.html
-      text: "Templates"
+      text: "Transform graphs"
     - href: intro5.html
-      text: "Nested templates"
+      text: "Templates"
     - href: intro6.html
+      text: "Nested templates"
+    - href: intro7.html
       text: "Deploying"
 - href: transformation.html
   text: Transformation

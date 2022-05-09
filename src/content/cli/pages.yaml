@@ -1,6 +1,13 @@
 - href: index.html
-  text: Overview
-- href: intro.html
-  text: Intro to Origami CLI
+  text: Introduction
+  pages:
+    - href: intro1.html
+      text: CLI tutorial setup
+    - href: intro2.html
+      text: Basic usage
+    - href: intro3.html
+      text: Using graphs
+    - href: intro4.html
+      text: Serving graphs
 - href: builtins.html
   text: Built-In Functions

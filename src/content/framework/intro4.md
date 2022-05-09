@@ -1,187 +1,121 @@
 ---
-title: Render data with templates
+title: Transform graphs with formulas
 numberHeadings: true
 intro = client/samples/frameworkIntro:
-teamByName = intro/teamByName:
-team = intro/team:
-team2 = intro/team2:
-template:
-  - Hello, <strong>
-  - "{{name}}"
-  - </strong>!
-application:
-  - Hello, <strong>
-  - Alice
-  - </strong>!
+team.yaml = intro/team.yaml:
+teamByName = mapKeys(team.yaml, =name):
+greetings = map(team.yaml, =intro/greet(name)):
+greetingsByName = map(teamByName, =intro/greet(name)):
 ---
 
-## Transform data into HTML with a template
+You've seen how a formula can transform a single piece of data like a single person's name into some other form like a greeting. If you wanted to create virtual greeting pages for multiple people, you could create a formula for each of them. But you can also write a formula that transforms a bunch of things at once.
 
-You can transforming data into HTML with plain JavaScript, but for that task, a template language can be more appropriate.
+## Transform a graph
 
-You can use any template system with Origami, but for this tutorial you'll use the template system built into Origami. These Origami templates reuse the same expression language as Origami formulas and the ori command-line interface.
+Let's apply the `greet` function to the entire set of people on the team. As a reminder, we can visualize the people in `team.yaml` as a graph:
 
-<span class="tutorialStep"></span> In the `src` folder, create a file called `person.ori` and type or copy/paste the following HTML:
+<figure>
+{{ svg team.yaml }}
+</figure>
 
-```hbs
-{{ intro/person.ori }}
-```
+In Origami, a graph like this is a first-class data type that can be passed to Origami expressions or JavaScript functions.
 
-Like most template languages, Origami templates let you mix boilerplate text with dynamic content represented with placeholders. In Origami templates, placeholders are delineated with curly braces.
-
-Here, the `\{\{name}}` placeholder indicates that you'd like to evaluate the expression `name` in the context of the data for a single person to produce the text that should be shown.
-
-## Apply a template as a function
-
-A template is essentially a function for turning data into a text format like HTML, so Origami allows you to invoke a template as a function.
-
-<span class="tutorialStep"></span> Create an empty file in the `src` folder with a formula that looks like this. If you entered more interesting names, in both places, substitute a name from your team file for "Alice".
+<span class="tutorialStep"></span> In the `src` folder, create a new empty file called:
 
 ```console
-Alice.html = person.ori(teamByName%Alice)
+greetings = map(team.yaml, =greet(name))
 ```
 
-This formula creates a virtual file called `Alice.html`. The virtual file contains the HTML obtained by applying the `person.ori` template to the data for Alice in `team.yaml`:
+The earlier formulas each defined a single virtual file like `message` or `hello.html`. The `greetings` formula here defines a virtual _graph_ of things — a virtual folder of virtual files.
 
-```html
-{{ intro/person.ori(teamByName%Alice) }}
-```
+The [map](/cli/builtins.html#map) function is a built-in Origami function that applies a one-to-one map function to a graph of values. The result is a new, virtual graph of transformed values.
 
-<span class="tutorialStep"></span> Open `Alice.html` in the served site to view the result: Hello, **Alice**.
+In this case, the `=greet(name)` part of the above formula defines an unnamed function (in technical jargon, a lambda expression) that's evaluated in the context of each individual person record. This extracts a person's name and passes it to the `greet` function.
 
-The `%` percent sign is used in file name formulas as an alternative to a regular `/` slash separator, since operating systems and code editors don't like slashes in file names. The above is equivalent to `teamByName/Alice`, and will extract Alice's data from the `teamByName` graph.
-
-At this point, you're successfully transforming the data for a single person, Alice, to create a single web page for that person.
-
-## A template is a graph transformation
-
-You can consider the application of a template itself as a graph transformation.
-
-In the case of the above template, you can view the elements of the template as an array:
-
-```\yaml
-{{ yaml template }}
-```
-
-The first and last items in this array are boilerplate strings holding HTML; the middle element is a placeholder. As with other arrays, you can model this array as a graph.
-
-When you apply this template to the data for a person like Alice, you transform the array graph into a new graph. Boilerplate strings in the source graph are carried over as is, while expressions in placeholders are evaluated in the context of the data. This results in a new graph of strings:
+Applying this `map` to the graph of people in `team.yaml` produces a new graph of greetings:
 
 <div class="sideBySide">
   <figure>
-    {{ svg template }}
+    {{ svg team.yaml }}
   </figure>
   <figure>
-    {{ svg application }}
+    {{ svg greetings }}
   </figure>
-  <figcaption>Graph for a person template…</figcaption>
-  <figcaption>…maps to graph of plain strings</figcaption>
+  <figcaption>Source graph of real data</figcaption>
+  <figcaption>Result graph of virtual greetings</figcaption>
 </div>
 
-To get the final result of the template, Origami performs a depth-first traversal of the string graph, and returns the concatenation of all the strings. This produces the result: Hello, **Alice**.
+If you view the `src` folder in the served site, you'll see a new entry for a virtual `greetings` folder. If you click on that `greetings` folder, you'll see a list of links labeled with the indices of the array: 0, 1, 2, (and more if you entered more names). Clicking an index will take you to a page like `src/greetings/1`, which says "Hello, Bob!"
 
-Treating template application as a graph transformation results in a flexible templating system that can be extended in interesting ways, as you'll see in a bit with nested templates.
+When you want to do work on multiple files or data values in the Origami framework, it's generally helpful to think about how you can best represent the source information as a graph, then identify the transformation you want to apply to each value in the graph. This will produce a new virtual graph of results.
 
-Expressions inside an Origami template's placeholders have access to same language facilities as Origami formulas used in file names or the ori command-line interface. Among other things, this means you can call your own JavaScript functions (like `greet`, earlier) inside template placeholders.
+Some notes on the `map` function:
 
-## Transform a data graph into HTML pages
+- Virtual graphs produced by `map` and the other Origami functions are _lazy_. They only do work when they need to. Unlike a JavaScript [Array map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), the `map` function here doesn't do much work upon invocation — it only does the real work of transformation when someone asks a mapped value. In this case, the greeting for a person like Carol is only generated when you actually try to visit that URL. The `greetings` graph represents _potential_ work.
+- `map` only applies the mapping function to the top-level values of a graph. If you want to apply the mapping function to the deep values of a graph, use [mapDeep](/cli/builtins.html#mapDeep) instead to obtain a new, deep graph of transformed values.
 
-Earlier you created a `greetings` graph that mapped the team members to a graph of greetings using a JavaScript function. You can also map the team members to HTML pages using your `person.ori` template.
+Using formulas like this, you can begin transforming your `team.yaml` data into an About Us site.
 
-<span class="tutorialStep"></span> Create a new, empty file named:
+## Transform a graph's keys
+
+In the example above, `map` transforms the graph values but leaves the keys (the arrow labels) unchanged.
+
+In the `greetings` graph shown above, the keys (labels) for the arrows are the array indices: 0, 1, 2. But in your About Us site, you want the route for a person's page to incorporate their name. To accomplish that, you can use another type of map called [mapKeys](/cli/builtins.html#mapKeys), which changes a graph's keys.
+
+<span class="tutorialStep"></span> In the `src` folder, create an empty file with the following formula name:
 
 ```console
-team = map(teamByName, person.ori)
+teamByName = mapKeys(team.yaml, =name)
 ```
 
-<span class="tutorialStep"></span> Visit the `team` route in the served site, and select a person's name to see a rudimentary HTML page for that person.
+In this case, the `=name` expression will evaluated in the context of an individual person, and will return that person's `name` property.
 
-You have transformed the people data into HTML.
+This `mapKeys` formula will result in a new graph using names as keys.
 
 <div class="sideBySide">
+  <figure>
+    {{ svg team.yaml }}
+  </figure>
+  <figure>
+    {{ svg teamByName }}
+  </figure>
+  <figcaption>Source graph with array indices as top-level keys</figcaption>
+  <figcaption>Transformed graph with names as top-level keys</figcaption>
+</div>
+
+## Apply multiple transformations
+
+You can use the `teamByName` graph to rewrite our `greeting` formula so that, instead of directly referencing `team.yaml`, it refers to `teamByName`.
+
+<span class="tutorialStep"></span> Update the name of the file defining the `greeting` formula to be:
+
+```console
+greeting = map(teamByName, =greet(name))
+```
+
+This lets us transform `team.yaml` in two steps: 1) transform the integer keys to name keys, 2) transform the person data values into greeting values.
+
+<div class="sideBySide">
+  <figure>
+    {{ svg team.yaml }}
+  </figure>
   <figure>
     {{ svg teamByName }}
   </figure>
   <figure>
-    {{ svg team }}
+    {{ svg greetingsByName }}
   </figure>
-  <figcaption>Graph of people by name…</figcaption>
-  <figcaption>…maps to HTML pages for each person</figcaption>
+  <figcaption>team.yaml: source data</figcaption>
+  <figcaption>teamByName: transformed keys</figcaption>
+  <figcaption>greetings: transformed values</figcaption>
 </div>
 
-## Flesh out the person template
+<span class="tutorialStep"></span> In the served site, inspect the intermediate `teamByName` graph as well as the final `greetings` graph.
 
-Let's make the `person.ori` template a bit more realistic. The project's `assets` folder contains a fuller `person.ori` template with some more elements:
+Being able to explore intermediate representations is a valuable debugging facility of the Origami framework. Normally you can only view such intermediate representations by setting debugger breakpoints and inspecting variable values in a properties panel, which is often cumbersome for complex data structures.
 
-```html
-{{ intro/person2.ori }}
-```
-
-<span class="tutorialStep"></span> Move or copy that `person.ori` template from the `assets` folder to the `src` folder.
-
-<span class="tutorialStep"></span> Also move or copy the `main.css` and `personIcon.svg` files referenced by the updated template.
-
-When you view the pages in the `team` route now, you should see a somewhat more presentable web page. The page contains a missing image that you'll fix in just a minute.
-
-## Add an HTML extension
-
-We often use extensions at the end of file names to indicate the type of data they contain. Graph transformations will often want to change these extensions to reflect a change in the type of data. For this reason, functions like `map` allow you to add, change, or remove extensions.
-
-In this case, you want to map a person object with a key like `Alice` to an HTML file name like `Alice.html` to reflect the fact that that transformed graph value contains HTML.
-
-<span class="tutorialStep"></span> Update the name of the formula file for the `team` so that it reads:
-
-```console
-team = map(teamByName, person.ori, '', '.html')
-```
-
-The third parameter (`''`) indicates that you don't want to _remove_ anything from the graph keys, because they don't have any extension. The fourth parameter (`'.html'`) indicates that you want to _add_ `.html` to the graph keys. The transformation now looks like:
-
-<div class="sideBySide">
-  <figure>
-    {{ svg teamByName }}
-  </figure>
-  <figure>
-    {{ svg team2 }}
-  </figure>
-  <figcaption>Graph of people by name…</figcaption>
-  <figcaption>…maps to a .html file for each person</figcaption>
-</div>
-
-<span class="tutorialStep"></span> Observe that the pages in the `team` route now end in `.html`.
-
-## Bonus: Add avatars
-
-A typical About Us area like our [example](/samples/aboutUs) shows headshot photographs for each team member. If you have pictures you'd like to use, you could use those here.
-
-But for the sake of simplicity, you can use programmatically generated avatar images from a service like [DiceBear Avatars](https://avatars.dicebear.com/). Given an arbitrary string (like a name), that service always returns the same generated image.
-
-<span class="tutorialStep"></span> From the `assets` folder, move or copy the `avatar.js` file to the `src` folder.
-
-This file contains a function that maps an input string and returns a SVG file from the random avatar service.
-
-```\js
-{{ intro/avatar.js }}
-```
-
-It's not important to understand this JavaScript, only to recognize that it can do whatever it needs to do to obtain a resource from the web.
-
-With that, you can map the `teamByName` graph to create a corresponding virtual folder of avatars.
-
-<span class="tutorialStep"></span> Create a new, empty file named:
-
-```console
-avatars = map(teamByName, =avatar(name), '', '.svg')
-```
-
-You should now be able to see avatars for the people on their HTML pages.
-
-In the served site, you can navigate to the `src/avatars` folder to see a virtual folder of the generated avatar images. As noted earlier, an important property of building content with Origami is that intermediate results are explorable in the browser or the command line. This virtual folder looks indistinguishable from a real folder of real images.
-
-A common feature of working with Origami is that you can smoothly move between using real and virtual files. You could use these generated avatar SVGs to get started. Later, you could delete the `avatars` formula and create a real `avatars` folder containing manually-curated images or headshot photos.
-
-With the addition of the avatars, you've completed the essential functions of the `team` route within the About Us area of the site you're designing. You could add more data fields to `team.yaml` and render those in the `person.ori` template, but from a functional standpoint, you're done with that part of the task.
+You've now roughed in the basic structure of the `team` route for the About Us site. The next step is to show something more interesting for a person than a simple greeting.
 
 &nbsp;
 
-Next: [Nested templates](intro5.html) »
+Next: [Templates](intro5.html) »

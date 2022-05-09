@@ -23,4 +23,4 @@ The basic idea:
 
 Follow the short intro tutorial to get a feel for building a small website in the Origami framework.
 
-Start: [Quick tutorial setup](intro0.html) »
+Start: [Quick tutorial setup](intro1.html) »
