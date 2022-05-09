@@ -56,7 +56,7 @@ The Origami framework and the ori command line tool use the same formula languag
 ```console assert: true
 $ ls src
 message = 'Hello, world!'  team.yaml
-$ ori files/src
+$ ori src
 "message = 'Hello, world!'": ""
 team.yaml: |
   - name: Alice
@@ -66,16 +66,16 @@ team.yaml: |
 
 (Reminder: if running locally, you'll need to use `npx ori` whenever invoking the ori tool.)
 
-The ori `files` function returns a graph of the two real files in the `src` folder: `team.yaml` and `message = 'Hello, world!'`. It displays the contents of this `files` graph in YAML form.
+If you ask ori to render the `src` folder, it returns a graph of the two real files in the `src` folder: `team.yaml` and `message = 'Hello, world!'`. It displays this graph in YAML form.
 
-You can visualize the `files` version of the real `src` folder as graph:
+You can also visualize this `src` folder graph:
 
 <figure>
   {{ svg files/src }}
-  <figcaption>src folder graph has two real files</figcaption>
+  <figcaption>The src folder graph has two real files</figcaption>
 </figure>
 
-If you ask ori to show the contents of the `virtual` graph based on `src`, it interprets the formulas in file names. The resulting virtual graph includes _both_ the real files and any new virtual files implied by formulas.
+If you ask ori to show the contents of a _virtual_ graph based on `src`, it interprets the formulas in file names. The resulting virtual graph includes _both_ the real files and any new virtual files implied by formulas.
 
 <span class="tutorialStep"></span> View the virtual files:
 
@@ -96,7 +96,7 @@ The `virtual` graph here includes a virtual `message` file whose contents are "H
   <figcaption>Virtual graph includes the virtual message file</figcaption>
 </figure>
 
-The `files` graph above is your starting point: the real files you create by transcribing the ideas and information in your head or collecting data from elsewhere. Through step-by-step transformations, you create a final `virtual` graph that represents the artifact you wish your audience to view or use.
+The `src` files graph above is your starting point: the real files you create by transcribing the ideas and information in your head or collecting data from elsewhere. Through step-by-step transformations, you create a final `virtual` graph that represents the artifact you wish your audience to view or use.
 
 _Transforming graphs is the fundamental operation of the Origami framework._
 
@@ -148,7 +148,7 @@ Hello, Alice!
 $ ori serve
 ```
 
-<span class="tutorialStep"></span> Navigate to the `src` route, which should now show an entry for `hello.html`. If you open that page, you'll see "Hello, Alice!".
+<span class="tutorialStep"></span> Navigate to the `src` route, which will now show an entry for `hello.html`. Open that page to see "Hello, Alice!".
 
 Each time you ask for `hello.html`, the web server evaluates the formula. Since the function is regular JavaScript, you can use that JavaScript to create HTML by any means you like. If the function is asynchronous, Origami will `await` the result before serving it to the browser. With that, you should be able to do essentially anything you want in the JavaScript function to create any HTML result.
 
