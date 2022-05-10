@@ -2,13 +2,13 @@
   <nav id="sideBar">
     {{#map pages}}
       <li>
-        {{ templates/linkCurrent.ori() }}
+        {{ templates/linkCurrent.ori(.) }}
       </li>
-      {{#if @value/pages}}
+      {{#if ./pages}}
         <ul>
-          {{#map js/markCurrent(pages, currentPage)}}
+          {{#map js/markCurrent(./pages, currentPage)}}
             <li>
-              {{ templates/linkCurrent.ori() }}
+              {{ templates/linkCurrent.ori(.) }}
             </li>
           {{/map}}
         </ul>

@@ -138,7 +138,7 @@ $ ori index.ori
 
 ## Template scope
 
+- `.`
 - `@key`
-- `@value`
 
 ## Extending the template language
