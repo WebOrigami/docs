@@ -18,7 +18,7 @@ Let's apply the `greet` function to the entire set of people on the team. As a r
 {{ svg team.yaml }}
 </figure>
 
-In Origami, a graph like this is a first-class data type that can be passed to Origami expressions or JavaScript functions.
+In Origami, a graph like this is a first-class data type that can be passed to Origami expressions or JavaScript functions. A graph can be an in-memory object, a folder tree, data in a file, dynamically-generated data, and other forms. (If you're interested, you can read more about the different [graph variants](/core/variants.html) supported by Origami.)
 
 <span class="tutorialStep"></span> In the `src` folder, create a new empty file called:
 
