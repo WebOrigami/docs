@@ -41,6 +41,8 @@ A template is essentially a function for turning data into a text format like HT
 Alice.html = person.ori(teamByName%Alice)
 ```
 
+The `%` percent sign is used in file name formulas as an alternative to a regular `/` slash separator, since operating systems and code editors don't like slashes in file names. The above is equivalent to `teamByName/Alice`, and will extract Alice's data from the `teamByName` graph.
+
 This formula creates a virtual file called `Alice.html`. The virtual file contains the HTML obtained by applying the `person.ori` template to the data for Alice in `team.yaml`:
 
 ```html
@@ -48,8 +50,6 @@ This formula creates a virtual file called `Alice.html`. The virtual file contai
 ```
 
 <span class="tutorialStep"></span> Open `Alice.html` in the served site to view the result: Hello, **Alice**.
-
-The `%` percent sign is used in file name formulas as an alternative to a regular `/` slash separator, since operating systems and code editors don't like slashes in file names. The above is equivalent to `teamByName/Alice`, and will extract Alice's data from the `teamByName` graph.
 
 At this point, you're successfully transforming the data for a single person, Alice, to create a single web page for that person.
 
