@@ -4,7 +4,7 @@ numberHeadings: true
 intro = client/samples/frameworkIntro:
 ---
 
-Now that you know how to create virtual files, let's build a little website!
+Now that you know how to create virtual files, let's use them to build a little website!
 
 Suppose your team says:
 

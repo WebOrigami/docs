@@ -96,7 +96,7 @@ Hello, world!
 
 In the steps that follow, you will define Origami formulas to dynamically create data and HTML pages. At any point you can view those in the browser, or use ori to view those virtual files in the command line.
 
-Before exploring graph transformations, let's try something else in a formula.
+This is a trivial example of a formula; let's try something more interesting.
 
 ## Invoke a JavaScript function from a formula
 
