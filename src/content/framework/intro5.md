@@ -27,7 +27,7 @@ You can use any template system with Origami, but for this tutorial you'll use t
 {{ intro/person.ori }}
 ```
 
-Like most template languages, Origami templates let you mix boilerplate text with dynamic content represented with placeholders. In Origami templates, placeholders are delineated with curly braces.
+Like most template languages, Origami templates let you mix boilerplate text with dynamic content represented with placeholders. In Origami templates, placeholders are delineated with curly braces. Inside the curly braces, you can put any expression in the Origami language, including graph paths and function calls.
 
 Here, the `\{\{name}}` placeholder indicates that you'd like to evaluate the expression `name` in the context of the data for a single person to produce the text that should be shown.
 

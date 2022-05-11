@@ -1,5 +1,5 @@
 ---
-title: "Quick tutorial setup"
+title: "Tutorial start"
 ---
 
 You can do this tutorial in two ways:
@@ -64,4 +64,4 @@ When running locally, you'll need to invoke this ori tool with `npx ori`. _Throu
 
 &nbsp;
 
-Next: [Thinking in graphs](intro2.html) »
+Next: [Formulas](intro2.html) »

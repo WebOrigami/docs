@@ -2,11 +2,11 @@
   text: Introduction
   pages:
     - href: intro1.html
-      text: "Tutorial setup"
+      text: "Start"
     - href: intro2.html
-      text: "Thinking in graphs"
-    - href: intro3.html
       text: "Formulas"
+    - href: intro3.html
+      text: "Thinking in graphs"
     - href: intro4.html
       text: "Transform graphs"
     - href: intro5.html

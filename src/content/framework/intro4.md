@@ -8,7 +8,7 @@ greetings = map(team.yaml, =intro/greet(name)):
 greetingsByName = map(teamByName, =intro/greet(name)):
 ---
 
-You've seen how a formula can transform a single piece of data like a single person's name into some other form like a greeting. If you wanted to create virtual greeting pages for multiple people, you could create a formula for each of them. But you can also write a formula that transforms a bunch of things at once.
+You've seen how a formula can transform a single piece of data like a single person's name into some other form like a greeting. If you wanted to create virtual greetings for multiple people, you could create a formula for each of them. But you can also write a formula that transforms a bunch of things at once.
 
 ## Transform a graph
 
