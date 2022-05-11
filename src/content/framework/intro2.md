@@ -100,13 +100,15 @@ This is a trivial example of a formula; let's try something more interesting.
 
 ## Invoke a JavaScript function from a formula
 
+If you don't consider yourself a JavaScript programmer, fear not, it's not necessary to build the final site or required to use Origami. We'll just use it here as just one example of how data might be transformed.
+
 <span class="tutorialStep"></span> In the `src` folder, create a JavaScript file called `greet.js` and paste in the following:
 
 ```{{'js'}}
 {{ intro/greet.js }}
 ```
 
-If you don't consider yourself a JavaScript programmer, fear not, it's not necessary to build the final site or required to use Origami. We'll just use it here as just one example of how data might be transformed.
+(If you're using StackBlitz, it may display a message saying "Project forked" to indicate that you're now working in your own copy of the tutorial project. You will likely have to restart the Origami server with `ori serve`.)
 
 You can use this `greet` formula in an Origami function to generate the contents of a virtual file.
 
