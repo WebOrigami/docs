@@ -108,7 +108,7 @@ If you don't consider yourself a JavaScript programmer, fear not, it's not neces
 {{ intro/greet.js }}
 ```
 
-(If you're using StackBlitz, it may display a message saying "Project forked" to indicate that you're now working in your own copy of the tutorial project. You will likely have to restart the Origami server with `ori serve`.)
+(If you're using StackBlitz, it may display a message saying "Project forked" to indicate that you're now working in your own copy of the tutorial project.)
 
 You can use this `greet` formula in an Origami function to generate the contents of a virtual file.
 
