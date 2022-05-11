@@ -183,4 +183,4 @@ Another important benefit of working with explorable graphs is that you can chan
 
 &nbsp;
 
-Next: [Serving graphs](intro4.html)
+Next: [Transforming data and graphs](intro4.html)

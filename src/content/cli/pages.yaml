@@ -8,6 +8,8 @@
     - href: intro3.html
       text: Using graphs
     - href: intro4.html
+      text: Transformations
+    - href: intro5.html
       text: Serving graphs
 - href: builtins.html
   text: Built-In Functions
