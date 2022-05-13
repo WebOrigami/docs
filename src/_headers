@@ -1,5 +1,0 @@
-# Ask Netlify to serve YAML files as text/yaml (which can open in the browser)
-# instead of application/x-yaml (which need to be downloaded).
-
-/*/*.yaml
-  Content-Type: "text/yaml"
