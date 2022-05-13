@@ -35,11 +35,19 @@ c: 3
 d: 4
 ```
 
-### Organizing files using addition graphs
+## Organizing files using addition graphs
 
 One use for addition graphs is to organize source files that you want available in scope, but don't want to always see when navigating a project.
 
-### Additions and metagraphs
+## Generating additions with functions
+
+You can define the `+` additions key in a formula, so you can use JavaScript and Origami built-in functions to generate things that should be dynamically added to a graph.
+
+```console
++ = myFn():
+```
+
+## Additions and metagraphs
 
 You can define an addition graph as a metagraph.
 

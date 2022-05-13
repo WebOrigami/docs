@@ -6,7 +6,7 @@ The Graph Origami system can cover a broad range of situations because it's buil
 
 1. [Graphs](graphs.html) for representing data, files, and other resources
 1. [Transformations](transformations.html) that convert, say, one type of graph to another
-1. [Expressions](expressions.html) for describing transformations
+1. [Formulas](formulas.html) for describing transformations
 1. [Scope](scope.html) for understanding what you can do or access in a given context
 
 With these basic concepts, you can quickly build a lot of interesting things.

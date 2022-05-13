@@ -1,12 +1,23 @@
 ---
 title: Wildcards
+files:
+  wildcardGreeting.yaml: |
+    "[name]": Hi.
+    Alice: Hello, Alice!
+    Bob: Hey, Bob.
+    Carol: Hi there, Carol.
+  wildcardGreeting2.yaml: |
+    "[name] = `Hi, {{name}}.`":
+    Alice: Hello, Alice!
+    Bob: Hey, Bob.
+    Carol: Hi there, Carol.
 ---
 
 A _wildcard_ key will match against string keys that fit the wildcard's pattern. You can define a wildcard on its own, or as the left-hand side of a formula containing an `=` equals sign.
 
 This graph defines two real keys for specific people names, plus a wildcard that matches any other name (or string).
 
-```console
+```console assert: true, path: files
 $ ori wildcardGreeting.yaml
 "[name]": Hi.
 Alice: Hello, Alice!
@@ -16,14 +27,14 @@ Carol: Hi there, Carol.
 
 Asking for one of the specific keys returns the corresponding value:
 
-```console
+```console assert: true, path: files
 $ ori "meta(wildcardGreeting.yaml)/Alice"
 Hello, Alice!
 ```
 
 Asking for any other name matches the wildcard, and evaluates that
 
-```console
+```console assert: true, path: files
 $ ori "meta(wildcardGreeting.yaml)/David"
 Hi.
 ```
@@ -34,16 +45,17 @@ Exercise care when defining wildcards like this without an extension, as they ca
 
 ### Bound wildcard variable
 
-The identifier inside a wildcard, such as `name` in `[name]` defines a variable that will be bound to the text that matched. That variable will be in scope for any expression on the right-hand side of a formula.
+The identifier inside a wildcard, such as `name` in the wildcard `[name]`, defines a variable that will be bound to the text that matched. That variable will be in scope for any expression on the right-hand side of a formula.
 
-We can use that to modify the above example and greet unknown people by name:
+We can use that to modify the first line of the above example and greet unknown people by name:
 
-```console
-$ ori wildcardGreeting.yaml
+```console assert: true, path: files
+$ ori wildcardGreeting2.yaml
 "[name] = `Hi, \{{name}}.`":
 Alice: Hello, Alice!
 Bob: Hey, Bob.
-$ ori "meta(wildcardGreeting.yaml)/David"
+Carol: Hi there, Carol.
+$ ori "meta(wildcardGreeting2.yaml)/David"
 Hi, David.
 ```
 
