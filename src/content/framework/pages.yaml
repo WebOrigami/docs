@@ -15,15 +15,22 @@
       text: "Nested templates"
     - href: intro7.html
       text: "Deploying"
-- href: transformation.html
-  text: Transformation
 - href: metagraph.html
   text: Metagraphs
+  pages:
+    - href: formulas.html
+      text: Formulas
+    - href: maps.html
+      text: Maps
+    - href: wildcards.html
+      text: Wildcards
+    - href: additions.html
+      text: Additions
+    - href: ghosts.html
+      text: Ghost graphs
+    - href: this.html
+      text: "<code>this</code> keyword"
 - href: templates.html
   text: Templates
-- href: shapeModifiers.html
-  text: Shape modifiers
-- href: this.html
-  text: this keyword
 - href: extensibility.html
   text: Extensibility

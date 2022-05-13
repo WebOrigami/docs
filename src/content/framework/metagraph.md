@@ -11,9 +11,23 @@ folder: |
     Carol.md: Hello, **Carol**.
 ---
 
-A _metagraph_ is a graph that describes its own transformation. The transformation is defined by formulas in keys: instead of a key being a simple string like "a", you create a key with a formula like "b = a". The metagraph will parse and evaluate this formula to define a new, virtual key called "b" that has the same value "a" has.
+The Origami framework is built on the concept of a _metagraph_: a graph that describes its own transformation.
 
-## Example: Metagraph with a key that includes a formula
+Origami lets you modify the shape of a metagraph — the keys and values it contains — by defining special types of keys inside it. These are like power-ups you can place inside a graph to change how it behaves.
+
+For example, by putting a file with a carefully-constructed name inside a folder, you create a new virtual file inside that folder. A metagraph could also be built on top of another type of [explorable graph](/pattern/interface.html), including an in-memory JavaScript object, the data in a YAML or JSON file, or a web resource.
+
+The metagraph features include:
+
+| Feature                    | Example key   | Summary                                                                                                                       |
+| :------------------------- | :------------ | :---------------------------------------------------------------------------------------------------------------------------- |
+| [Formula](formulas.html)   | `x = fn(y)`   | Defines a virtual value, like a virtual file.                                                                                 |
+| [Maps](maps.html)          | `x=map(y,fn)` | A common type of formula that transforms a graph. Use this to create virtual folders.                                         |
+| [Wildcard](wildcards.html) | `\[x\].html`  | Matches a pattern that can include an extension. Use this for routing or providing default values.                            |
+| [Addition](additions.html) | `+`           | Incorporates a subgraph's children into a parent graph. Use this for control over the physical organization of files or data. |
+| [Ghost graph](ghosts.html) | `images+`     | Adds a subgraph's children to matching subgraph(s)                                                                            |
+
+## Example: a formula that defines a virtual value
 
 ```console assert: true
 $ ori formula.yaml
@@ -45,47 +59,3 @@ The original graph has now been expanded:
 When we ask for the keys of this metagraph, we get _three_ keys. Two are the keys we defined: `name` and the formula. The metagraph also evaluates that formula, yielding a third, virtual key, `message`.
 
 The value of `name` is "world", as defined in the original graph. The value of the virtual key `message` is "Hello, world.", obtained by interpreting the formula.
-
-## Example: Defining a virtual folder
-
-```console
-$ ls
-markdown    html = map(markdown, mdHtml, '.md', '.html')
-$ ls markdown
-Alice.md    Bob.md    Carol.md
-$ cat Alice.md
-Hello, **Alice**.
-```
-
-```console assert: true
-$ ori folder
-html = map(markdown, mdHtml, '.md', '.html'):
-markdown:
-  Alice.md: Hello, **Alice**.
-  Bob.md: Hello, **Bob**.
-  Carol.md: Hello, **Carol**.
-```
-
-<figure>
-{{ svg folder }}
-</figure>
-
-```console assert: true
-$ ori meta folder
-html:
-  Alice.html: |
-    <p>Hello, <strong>Alice</strong>.</p>
-  Bob.html: |
-    <p>Hello, <strong>Bob</strong>.</p>
-  Carol.html: |
-    <p>Hello, <strong>Carol</strong>.</p>
-"html = map(markdown, mdHtml, '.md', '.html')": null
-markdown:
-  Alice.md: Hello, **Alice**.
-  Bob.md: Hello, **Bob**.
-  Carol.md: Hello, **Carol**.
-```
-
-<figure>
-{{ svg meta folder }}
-</figure>

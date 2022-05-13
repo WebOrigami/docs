@@ -1,5 +1,5 @@
 ---
-title: this keyword
+title: "<code>this</code> keyword"
 ---
 
 The Origami framework lets you put Origami formulas in the _key_ of a [metagraph](metagraph.html). For example, the formula might be used in the name of a file, or the key of a YAML or JSON file.
