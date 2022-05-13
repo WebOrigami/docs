@@ -40,7 +40,7 @@ We can use that to modify the above example and greet unknown people by name:
 
 ```console
 $ ori wildcardGreeting.yaml
-"[name] = `Hi, {{name}}.`":
+"[name] = `Hi, \{{name}}.`":
 Alice: Hello, Alice!
 Bob: Hey, Bob.
 $ ori "meta(wildcardGreeting.yaml)/David"
