@@ -21,6 +21,8 @@
   text: Metagraphs
 - href: templates.html
   text: Templates
+- href: shapeModifiers.html
+  text: Shape modifiers
 - href: this.html
   text: this keyword
 - href: extensibility.html
