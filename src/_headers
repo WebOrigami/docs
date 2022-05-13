@@ -2,4 +2,4 @@
 # instead of application/x-yaml (which need to be downloaded).
 
 /*/*.yaml
-  Content-Type: text/yaml
+  Content-Type: "text/yaml"
