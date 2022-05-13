@@ -30,9 +30,9 @@ Here's some more text.
 
 ```console assert: true
 $ ori keys names
-- 0
-- 1
-- 2
+- "0"
+- "1"
+- "2"
 ```
 
 Assertion with context

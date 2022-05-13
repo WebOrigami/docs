@@ -1,7 +1,23 @@
-a: null
-b: 1
-c:
-  d: 2
-  e: null
-f:
-  g: null
+names:
+  - Alice
+  - Bob
+  - Carol
+folder:
+  message: Hello
+asserts:
+  - description: ori names
+    actual = ori 'names': null
+    expected: |
+      - Alice
+      - Bob
+      - Carol
+  - description: ori keys names
+    actual = ori 'keys names': null
+    expected: |
+      - 0
+      - 1
+      - 2
+  - description: ori message
+    "actual = ori 'message', 'folder'": null
+    expected: |
+      Hello

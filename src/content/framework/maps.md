@@ -1,5 +1,12 @@
 ---
 title: Transforming data with maps
+files:
+  folder: |
+    html = map(markdown, mdHtml, '.md', '.html'):
+    markdown:
+      Alice.md: Hello, **Alice**.
+      Bob.md: Hello, **Bob**.
+      Carol.md: Hello, **Carol**.
 ---
 
 ## Example: Defining a virtual folder
@@ -13,7 +20,7 @@ $ cat Alice.md
 Hello, **Alice**.
 ```
 
-```console assert: true
+```console assert: true, path: files
 $ ori folder
 html = map(markdown, mdHtml, '.md', '.html'):
 markdown:
@@ -26,7 +33,7 @@ markdown:
 {{ svg folder }}
 </figure>
 
-```console assert: true
+```console assert: true, path: files
 $ ori meta folder
 html:
   Alice.html: |

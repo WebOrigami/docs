@@ -1,0 +1,33 @@
+asserts:
+  - actual: |
+      - Alice
+      - Bob
+      - Carol
+    actual = ori 'names': null
+    description: ori names
+    expected: |
+      - Alice
+      - Bob
+      - Carol
+  - actual: |
+      - "0"
+      - "1"
+      - "2"
+    actual = ori 'keys names': null
+    description: ori keys names
+    expected: |
+      - 0
+      - 1
+      - 2
+  - actual: |
+      Hello
+    "actual = ori 'message', 'folder'": null
+    description: ori message
+    expected: |
+      Hello
+folder:
+  message: Hello
+names:
+  - Alice
+  - Bob
+  - Carol

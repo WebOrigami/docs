@@ -46,7 +46,7 @@ Origami includes a framework and a command line tool that use the same formula l
 
 <span class="tutorialStep"></span> In the terminal, press Ctrl+C to stop the running server, then:
 
-```console assert: true
+```console assert: true, path: files
 $ ls src
 message = 'Hello, world!'
 $ ori src
@@ -68,7 +68,7 @@ If you ask ori to show the contents of a _virtual_ graph based on `src`, it inte
 
 <span class="tutorialStep"></span> View the virtual files:
 
-```console assert: true
+```console assert: true, path: files
 $ ori virtual/src
 message: Hello, world!
 "message = 'Hello, world!'": ""
@@ -89,7 +89,7 @@ The ori command-line interface knows how to traverse graphs, including virtual g
 
 <span class="tutorialStep"></span> Ask ori to display a single virtual file on demand:
 
-```console assert: true
+```console assert: true, path: files
 $ ori virtual/src/message
 Hello, world!
 ```
