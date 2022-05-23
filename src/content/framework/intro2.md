@@ -12,15 +12,17 @@ virtual:
 
 Origami lets you create virtual folders and files using formulas.
 
-## Create a formula
+## Create a formula in a file name
 
 <span class="tutorialStep"></span> Inside the `src` folder, create a new, empty file with the following _file name_:
 
-```console
-message = 'Hello, world!'
-```
+`message = 'Hello, world!'`
 
-The file name should be that _entire_ formula, including the `=` sign and the single quotes. Yes, it doesn't look like a normal file name, but it is a valid file name in mainstream operating systems.
+The file name should be that _entire_ formula, including the `=` sign and the single quotes.
+
+<img src="fileFormula.png" style="width: 240px">
+
+Yes, it doesn't look like a normal file name, but it is a valid file name in mainstream operating systems.
 
 The formula in the file name has meaning in the Origami framework.
 
