@@ -116,9 +116,7 @@ You can use this `greet` formula in an Origami function to generate the contents
 
 <span class="tutorialStep"></span> Create a new file and set its name to the entire formula below. (More fun: use your own name instead of "Alice".)
 
-```console
-hello.html = greet('Alice')
-```
+`hello.html = greet('Alice')`
 
 As before, be sure to use single quotes, not double quotes. For cross-platform file name compatibility, Origami doesn't recognize double quotes.
 

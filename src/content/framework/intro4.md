@@ -22,9 +22,7 @@ In Origami, a graph like this is a first-class data type that can be passed to O
 
 <span class="tutorialStep"></span> In the `src` folder, create a new empty file called:
 
-```console
-greetings = map(team.yaml, =greet(name))
-```
+`greetings = map(team.yaml, =greet(name))`
 
 The earlier formulas each defined a single virtual file like `message` or `hello.html`. The `greetings` formula here defines a virtual _graph_ of things — a virtual folder of virtual files.
 
@@ -64,9 +62,7 @@ In the `greetings` graph shown above, the keys (labels) for the arrows are the a
 
 <span class="tutorialStep"></span> In the `src` folder, create an empty file with the following formula name:
 
-```console
-teamByName = mapKeys(team.yaml, =name)
-```
+`teamByName = mapKeys(team.yaml, =name)`
 
 In this case, the `=name` expression will evaluated in the context of an individual person, and will return that person's `name` property.
 
@@ -89,9 +85,7 @@ You can use the `teamByName` graph to rewrite our `greeting` formula so that, in
 
 <span class="tutorialStep"></span> Update the name of the file defining the `greeting` formula to be:
 
-```console
-greeting = map(teamByName, =greet(name))
-```
+`greeting = map(teamByName, =greet(name))`
 
 This lets us transform `team.yaml` in two steps: 1) transform the integer keys to name keys, 2) transform the person data values into greeting values.
 

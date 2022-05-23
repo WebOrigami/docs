@@ -32,9 +32,7 @@ This will be the basis for an Origami template for your index page.
 
 <span class="tutorialStep"></span> Create a new, empty file called:
 
-```console
-index.html = index.ori()
-```
+`index.html = index.ori()`
 
 This formula specifies that, if someone asks for `index.html`, then the `index.ori` template should be invoked as a function. You don't need to pass data to that function; this particular template will ask for the data it wants.
 

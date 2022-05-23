@@ -37,9 +37,7 @@ A template is essentially a function for turning data into a text format like HT
 
 <span class="tutorialStep"></span> Create an empty file in the `src` folder with a formula that looks like this. If you entered more interesting names, in both places, substitute a name from your team file for "Alice".
 
-```console
-Alice.html = person.ori(teamByName%Alice)
-```
+`Alice.html = person.ori(teamByName%Alice)`
 
 The `%` percent sign is used in file name formulas as an alternative to a regular `/` slash separator, since operating systems and code editors don't like slashes in file names. The above is equivalent to `teamByName/Alice`, and will extract Alice's data from the `teamByName` graph.
 
@@ -90,9 +88,7 @@ Earlier you created a `greetings` graph that mapped the team members to a graph 
 
 <span class="tutorialStep"></span> Create a new, empty file named:
 
-```console
-team = map(teamByName, person.ori)
-```
+`team = map(teamByName, person.ori)`
 
 <span class="tutorialStep"></span> Visit the `team` route in the served site, and select a person's name to see a rudimentary HTML page for that person.
 
@@ -131,9 +127,7 @@ In this case, you want to map a person object with a key like `Alice` to an HTML
 
 <span class="tutorialStep"></span> Update the name of the formula file for the `team` so that it reads:
 
-```console
-team = map(teamByName, person.ori, '', '.html')
-```
+`team = map(teamByName, person.ori, '', '.html')`
 
 The third parameter (`''`) indicates that you don't want to _remove_ anything from the graph keys, because they don't have any extension. The fourth parameter (`'.html'`) indicates that you want to _add_ `.html` to the graph keys. The transformation now looks like:
 
@@ -170,9 +164,7 @@ With that, you can map the `teamByName` graph to create a corresponding virtual 
 
 <span class="tutorialStep"></span> Create a new, empty file named:
 
-```console
-avatars = map(teamByName, =avatar(name), '', '.svg')
-```
+`avatars = map(teamByName, =avatar(name), '', '.svg')`
 
 You should now be able to see avatars for the people on their HTML pages.
 
