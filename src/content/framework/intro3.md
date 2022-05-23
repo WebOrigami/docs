@@ -12,8 +12,8 @@ Suppose your team says:
 
 Here's an [example About Us area](/samples/aboutUs) you can consider as a model for this task:
 
-- There's a main `index.html` route.
-- There's a `team` route with an HTML page for each person on the team.
+- There's a main `index.html` URL.
+- There's a `team` URL with an HTML page for each person on the team.
 
 ## Visualize the final result
 
