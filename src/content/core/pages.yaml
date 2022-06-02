@@ -2,9 +2,9 @@
   text: Overview
 - href: intro.html
   text: Intro to explorable graphs
-- href: ExplorableFunction.html
-  text: ExplorableFunction
-- href: ExplorableObject.html
-  text: ExplorableObject
+- href: FunctionGraph.html
+  text: FunctionGraph
+- href: ObjectGraph.html
+  text: ObjectGraph
 - href: variants.html
   text: Graph Variants

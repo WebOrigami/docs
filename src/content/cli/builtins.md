@@ -51,7 +51,7 @@ Hello, Alice.
 
 The `files/greetings` argument indicates that `copy` should copy the input YAML graph to a file system graph under a folder named `greetings`. As a result, the key/value pairs in the YAML file are now individual files in a `greetings` folder.
 
-The `targetGraph` must support the [`set`](/core/set.html) method. The only types of graphs defined in the ExplorableGraph [core](/core) that provides such support are [ExplorableObject](/core/ExplorableObject.html) and [ExplorableFiles](/core/ExplorableFiles.html). Only the latter provides persistent effects, so `copy` is typically used to copy the values from the source graph into file system files.
+The `targetGraph` must support the [`set`](/core/set.html) method. The only types of graphs defined in the ExplorableGraph [core](/core) that provides such support are [ObjectGraph](/core/ObjectGraph.html) and [FilesGraph](/core/FilesGraph.html). Only the latter provides persistent effects, so `copy` is typically used to copy the values from the source graph into file system files.
 
 <a name="defaultGraph"></a>
 
@@ -59,7 +59,7 @@ The `targetGraph` must support the [`set`](/core/set.html) method. The only type
 
 Returns the default graph that will be used by ori as the scope for evaluating commands. This graph will be the current folder, or the folder at the indicated `relativePath` if supplied.
 
-The default graph will be an instance of [ExplorableFiles](/core/ExplorableFiles.html) transformed in various ways to facilitate commands. Among other things, if the resulting graph is asked for a key like `foo` which does not exist, the graph will make a second check to see if a module `foo.js` exists and, if so, to return the default export from that module.
+The default graph will be an instance of [FilesGraph](/core/FilesGraph.html) transformed in various ways to facilitate commands. Among other things, if the resulting graph is asked for a key like `foo` which does not exist, the graph will make a second check to see if a module `foo.js` exists and, if so, to return the default export from that module.
 
 <a name="dot"></a>
 
@@ -85,7 +85,7 @@ Returns a [Buffer](https://nodejs.org/api/buffer.html) of the web resource at `u
 
 ## files([dirname])
 
-Returns an [ExplorableFiles](/core/ExplorableFiles.html) representation of the current directory or (if `dirname` is supplied) subdirectory named `dirname` within the current directory.
+Returns an [FilesGraph](/core/FilesGraph.html) representation of the current directory or (if `dirname` is supplied) subdirectory named `dirname` within the current directory.
 
 <a name="front"></a>
 
@@ -488,7 +488,7 @@ c: The letter C
 
 ## virtual([key])
 
-Returns the current graph as an explorable application. This creates an [ExplorableFiles](/core/ExplorableFiles.html) at the current graph or folder, then wraps that with a virtual app via [graphVirtual](#graphVirtual).
+Returns the current graph as an explorable application. This creates an [FilesGraph](/core/FilesGraph.html) at the current graph or folder, then wraps that with a virtual app via [graphVirtual](#graphVirtual).
 
 If a key is supplied, this gets the indicated key from the resulting explorable application.
 

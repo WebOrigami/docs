@@ -109,7 +109,7 @@ Note that the `for await` loop implicitly invokes the graph's `Symbol.asyncItera
 Instead of directly defining a class or object that implements the `Explorable` interface, you can make use of various wrappers that will turn something into an explorable version:
 
 - [ExplorableArray](ExplorableArray.html) can wrap a JavaScript `Array` instance
-- [ExplorableFiles](ExplorableFiles.html) can wrap a file system folder
-- [ExplorableFunction](ExplorableFunctions.html) can wrap a JavaScript function and an optional domain
-- [ExplorableObject](ExplorableObject.html) can wrap a plain JavaScript object
+- [FilesGraph](FilesGraph.html) can wrap a file system folder
+- [FunctionGraph](ExplorableFunctions.html) can wrap a JavaScript function and an optional domain
+- [ObjectGraph](ObjectGraph.html) can wrap a plain JavaScript object
 - [ExplorableSite](ExplorableSite.html) can wrap a web site

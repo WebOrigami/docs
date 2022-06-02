@@ -1,7 +1,7 @@
 import {
   config,
   ExplorableGraph,
-  ExplorableObject,
+  ObjectGraph,
   MetaTransform,
   StringWithGraph,
 } from "@explorablegraph/explorable";
@@ -13,7 +13,7 @@ export default async function (variant) {
   }
   const graph = ExplorableGraph.from(variant);
   const obj = await ExplorableGraph.plain(graph);
-  const test = new (MetaTransform(ExplorableObject))(obj);
+  const test = new (MetaTransform(ObjectGraph))(obj);
   test.parent = this?.graph ?? (await config());
   const description = await test.get("description");
   const expected = await test.get("expected");

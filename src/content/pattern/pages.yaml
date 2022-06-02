@@ -1,4 +1,19 @@
-- text: Overview
+- text: Introduction
   href: index.html
+  pages:
+    - href: intro1.html
+      text: Start
+    - href: intro2.html
+      text: Object graphs
+    - href: intro3.html
+      text: Transform graphs
+    - href: intro4.html
+      text: File graphs
+    - href: intro5.html
+      text: Save output
+    - href: intro6.html
+      text: Additional tasks
+    - href: intro7.html
+      text: Use a CLI
 - text: Explorable interface
   href: interface.html

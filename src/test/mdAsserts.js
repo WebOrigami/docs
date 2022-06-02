@@ -1,5 +1,5 @@
 import {
-  ExplorableObject,
+  ObjectGraph,
   extractFrontMatter,
   MetaTransform,
 } from "@explorablegraph/explorable";
@@ -39,7 +39,7 @@ export default async function mdAsserts(markdown) {
     data.asserts[index] = assert;
   });
 
-  const meta = new (MetaTransform(ExplorableObject))(data);
+  const meta = new (MetaTransform(ObjectGraph))(data);
   meta.parent = this;
 
   return meta;
