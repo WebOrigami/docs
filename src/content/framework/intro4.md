@@ -26,6 +26,8 @@ In Origami, a graph like this is a first-class data type that can be passed to O
 
 The earlier formulas each defined a single virtual file like `message` or `hello.html`. The `greetings` formula here defines a virtual _graph_ of things — a virtual folder of virtual files.
 
+<span class="tutorialStep"></span> View the `src` folder in the served site. You will see a new entry for a virtual `greetings` folder. If you click on that `greetings` folder, you'll see a list of links labeled with the indices of the array: 0, 1, 2, (and more if you entered more names). Clicking an index will take you to a page like `src/greetings/1`, which says "Hello, Bob!"
+
 The [map](/cli/builtins.html#map) function is a built-in Origami function that applies a one-to-one map function to a graph of values. The result is a new, virtual graph of transformed values.
 
 In this case, the `=greet(name)` part of the above formula defines an unnamed function (in technical jargon, a lambda expression) that's evaluated in the context of each individual person record. This extracts a person's name and passes it to the `greet` function.
@@ -42,8 +44,6 @@ Applying this `map` to the graph of people in `team.yaml` produces a new graph o
   <figcaption>Source graph of real data</figcaption>
   <figcaption>Result graph of virtual greetings</figcaption>
 </div>
-
-If you view the `src` folder in the served site, you'll see a new entry for a virtual `greetings` folder. If you click on that `greetings` folder, you'll see a list of links labeled with the indices of the array: 0, 1, 2, (and more if you entered more names). Clicking an index will take you to a page like `src/greetings/1`, which says "Hello, Bob!"
 
 When you want to do work on multiple files or data values in the Origami framework, it's generally helpful to think about how you can best represent the source information as a graph, then identify the transformation you want to apply to each value in the graph. This will produce a new virtual graph of results.
 
@@ -75,8 +75,8 @@ This `mapKeys` formula will result in a new graph using names as keys.
   <figure>
     {{ svg teamByName }}
   </figure>
-  <figcaption>Source graph with array indices as top-level keys</figcaption>
-  <figcaption>Transformed graph with names as top-level keys</figcaption>
+  <figcaption>team.yaml: array indices as top-level keys</figcaption>
+  <figcaption>teamByName: names as top-level keys</figcaption>
 </div>
 
 ## Apply multiple transformations
@@ -85,7 +85,7 @@ You can use the `teamByName` graph to rewrite our `greeting` formula so that, in
 
 <span class="tutorialStep"></span> Update the name of the file defining the `greeting` formula to be:
 
-`greeting = map(teamByName, =greet(name))`
+`greetings = map(teamByName, =greet(name))`
 
 This lets us transform `team.yaml` in two steps: 1) transform the integer keys to name keys, 2) transform the person data values into greeting values.
 

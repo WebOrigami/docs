@@ -54,26 +54,7 @@ Earlier you mapped the graph of people to a graph of HTML pages. To create the i
 {{index.ori}}
 ```
 
-The `\{\{#…}}` syntax invokes the same `map` function you've already been using in formulas. The fragment between the `\{\{#map}}` and `\{\{/map}}` will be passed as an additional argument to the `map` function. That fragment will be evaluated in the context of the individual item being mapped.
-
-Earlier you saw how applying an Origami template is a kind of graph transformation that produces a graph of strings. In the case of `index.ori`, this transformation produces a multi-level graph of strings.
-
-<div class="sideBySide">
-  <figure>
-    {{ svg indexTemplate }}
-  </figure>
-  <figure>
-    {{ svg indexText }}
-  </figure>
-  <figcaption>Graph for an index page template…</figcaption>
-  <figcaption>
-    …maps to graph that flattens to final text
-  </figcaption>
-</div>
-
-As before, a boilerplate string like `<h1>About Us</h1>` is kept as is. The `#map` block in the template is a placeholder that is evaluated. It produces its own subgraph of strings: an HTML fragment like `<li>Alice</li>` for each person.
-
-The entire deep graph of strings is concatenated in depth-first order to produce the final result, which is served as `index.html`.
+The `\{\{#…}}` syntax invokes the same `map` function you've already been using in formulas. The fragment between the `\{\{#map}}` and `\{\{/map}}` will be passed as an additional argument to the `map` function. That fragment will be evaluated in the context of the individual item being mapped. In this case, `map` is mapping the `teamByName` graph to create a graph of text strings that are concatenated to form the final HTML result.
 
 <span class="tutorialStep"></span> Visit or fresh the `src` route in the served site. You should see a bulleted list of names.
 

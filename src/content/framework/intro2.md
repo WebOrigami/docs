@@ -137,9 +137,9 @@ $ ori serve
 
 <span class="tutorialStep"></span> Navigate to the `src` route, which will now show an entry for `hello.html`. Open that page to see "Hello, Alice!".
 
-Each time you ask for `hello.html`, the web server evaluates the formula. Since the function is regular JavaScript, you can use that JavaScript to create HTML by any means you like. If the function is asynchronous, Origami will `await` the result before serving it to the browser. With that, you should be able to do essentially anything you want in the JavaScript function to create any HTML result.
+Each time you ask for `hello.html`, the web server evaluates the corresponding formula that invokes `greet`. Since the `greet` function is regular JavaScript, you can use that JavaScript to create HTML by any means you like. If the function is asynchronous, Origami will `await` the result before serving it to the browser. With that, you should be able to do essentially anything you want in the JavaScript function to create any HTML result.
 
-A function like `greet` here transforms data from one form into another — in this case, it transforms a string name to a string greeting. The function and the formula that invokes it could just as easily transform other kinds of data; there's nothing special about text here.
+A function like `greet` here transforms data from one form into another — in this case, it transforms a string name to a string greeting. The function and the file name formula that invokes it could just as easily transform other kinds of data; there's nothing special about text here.
 
 &nbsp;
 

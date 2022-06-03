@@ -51,37 +51,6 @@ This formula creates a virtual file called `Alice.html`. The virtual file contai
 
 At this point, you're successfully transforming the data for a single person, Alice, to create a single web page for that person.
 
-## A template is a graph transformation
-
-You can consider the application of a template itself as a graph transformation.
-
-In the case of the above template, you can view the elements of the template as an array:
-
-```\yaml
-{{ yaml template }}
-```
-
-The first and last items in this array are boilerplate strings holding HTML; the middle element is a placeholder. As with other arrays, you can model this array as a graph.
-
-When you apply this template to the data for a person like Alice, you transform the array graph into a new graph. Boilerplate strings in the source graph are carried over as is, while expressions in placeholders are evaluated in the context of the data. This results in a new graph of strings:
-
-<div class="sideBySide">
-  <figure>
-    {{ svg template }}
-  </figure>
-  <figure>
-    {{ svg application }}
-  </figure>
-  <figcaption>Graph for a person template…</figcaption>
-  <figcaption>…maps to graph of plain strings</figcaption>
-</div>
-
-To get the final result of the template, Origami performs a depth-first traversal of the string graph, and returns the concatenation of all the strings. This produces the result: Hello, **Alice**.
-
-Treating template application as a graph transformation results in a flexible templating system that can be extended in interesting ways, as you'll see in a bit with nested templates.
-
-Expressions inside an Origami template's placeholders have access to same language facilities as Origami formulas used in file names or the ori command-line interface. Among other things, this means you can call your own JavaScript functions (like `greet`, earlier) inside template placeholders.
-
 ## Transform a data graph into HTML pages
 
 Earlier you created a `greetings` graph that mapped the team members to a graph of greetings using a JavaScript function. You can also map the team members to HTML pages using your `person.ori` template.
@@ -115,7 +84,7 @@ Let's make the `person.ori` template a bit more realistic. The project's `assets
 
 <span class="tutorialStep"></span> Move or copy that `person.ori` template from the `assets` folder to the `src` folder.
 
-<span class="tutorialStep"></span> Also move or copy the `main.css` and `personIcon.svg` files referenced by the updated template.
+<span class="tutorialStep"></span> Also move or copy the `styles.css` and `personIcon.svg` files referenced by the updated template.
 
 When you view the pages in the `team` route now, you should see a somewhat more presentable web page. The page contains a missing image that you'll fix in just a minute.
 

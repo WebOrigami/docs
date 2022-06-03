@@ -7,6 +7,27 @@ team.yaml:
   - name: Carol
 names = map(team.yaml, =name):
 strings = map(team.yaml, =`<a href="{{name}}.html">{{name}}</a> `):
+template:
+  - Hello, <strong>
+  - "{{name}}"
+  - </strong>!
+application:
+  - Hello, <strong>
+  - Alice
+  - </strong>!
+intro = client/samples/frameworkIntro:
+index.ori: |
+  <h1>About Us</h1>
+  {{#map teamByName}}
+    <li>{{name}}</li>
+  {{/map}}
+indexTemplate:
+  - <h1>About Us</h1>
+  - "{{#map teamByName}}<li>{{name}}</li>{{/map}}"
+indexText = results(this):
+  0: "<h1>About Us</h1>"
+  1 = map(intro/teamByName, =`<li>{{name}}</li>`):
+index.html = index.ori(intro/team.yaml):
 ---
 
 Origami templates let you write Origami expressions in the context of a text document. These expressions can then be evaluated in the context of input data to efficiently produce, for example, HTML.
@@ -32,6 +53,58 @@ Hello, Alice Andrews.
 ```
 
 The text inside the `\{{` and `}}` can be any valid expression in the Origami [language](/language).
+
+## A template is a graph transformation
+
+You can consider the application of a template itself as a graph transformation.
+
+In the case of the above template, you can view the elements of the template as an array:
+
+```\yaml
+{{ yaml template }}
+```
+
+The first and last items in this array are boilerplate strings holding HTML; the middle element is a placeholder. As with other arrays, you can model this array as a graph.
+
+When you apply this template to the data for a person like Alice, you transform the array graph into a new graph. Boilerplate strings in the source graph are carried over as is, while expressions in placeholders are evaluated in the context of the data. This results in a new graph of strings:
+
+<div class="sideBySide">
+  <figure>
+    {{ svg template }}
+  </figure>
+  <figure>
+    {{ svg application }}
+  </figure>
+  <figcaption>Graph for a person template…</figcaption>
+  <figcaption>…maps to graph of plain strings</figcaption>
+</div>
+
+To get the final result of the template, Origami performs a depth-first traversal of the string graph, and returns the concatenation of all the strings. This produces the result: Hello, **Alice**.
+
+Treating template application as a graph transformation results in a flexible templating system that can be extended in interesting ways, as you'll see in a bit with nested templates.
+
+Expressions inside an Origami template's placeholders have access to same language facilities as Origami formulas used in file names or the ori command-line interface. Among other things, this means you can call your own JavaScript functions (like `greet`, earlier) inside template placeholders.
+
+### Nested templates
+
+Above you saw how applying an Origami template is a kind of graph transformation that produces a graph of strings. In the case of `index.ori`, this transformation produces a multi-level graph of strings.
+
+<div class="sideBySide">
+  <figure>
+    {{ svg indexTemplate }}
+  </figure>
+  <figure>
+    {{ svg indexText }}
+  </figure>
+  <figcaption>Graph for an index page template…</figcaption>
+  <figcaption>
+    …maps to graph that flattens to final text
+  </figcaption>
+</div>
+
+As before, a boilerplate string like `<h1>About Us</h1>` is kept as is. The `#map` block in the template is a placeholder that is evaluated. It produces its own subgraph of strings: an HTML fragment like `<li>Alice</li>` for each person.
+
+The entire deep graph of strings is concatenated in depth-first order to produce the final result, which is served as `index.html`.
 
 ## Concatenating graph values
 
