@@ -32,7 +32,7 @@
       // "runtimeExecutable": "node",
       "runtimeArgs": ["--preserve-symlinks"],
       // "cwd": "${workspaceFolder}/site",
-      // "args": ["serve watch virtual/src/site"]
+      // "args": ["serve virtual/src"]
       "args": ["serve virtual/src/site"]
       // "args": ["serve"]
     }

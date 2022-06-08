@@ -1,0 +1,19 @@
+# Add paths to the content
+withPaths = js/addPaths(content):
+
+# Inline any code examples
+inlined = mapDeep(withPaths, inline, '.md'):
+
+# Convert markdown to HTML while preserving front matter
+html = mapDeep(inlined, mdHtml, '.md', '.html'):
+
+# Apply the documentation page template
+pages = mapDeep(html, templates/page.ori, '.html'):
+
+# Include top-line results from inline tests
+testSummary:
+  summary.yaml = test%summary.yaml:
+  results = test%results:
+
+# Compose content for final site
+site = compose(client, pages, testSummary):
