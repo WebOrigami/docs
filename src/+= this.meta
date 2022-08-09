@@ -1,8 +1,5 @@
-# Add paths to the content
-withPaths = js/addPaths(content):
-
 # Inline any code examples
-inlined = mapDeep(withPaths, inline, '.md'):
+inlined = mapDeep(content, inline, '.md'):
 
 # Convert markdown to HTML while preserving front matter
 html = mapDeep(inlined, mdHtml, '.md', '.html'):
