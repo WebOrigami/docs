@@ -1,8 +1,9 @@
-// Extract the current page from end of the path.
+// Extract the current area from end of the path.
 export default function (path) {
   if (!path) {
     return undefined;
   }
-  const parts = path.split("/", 2);
-  return parts.join("/");
+  const parts = path.split("/");
+  const area = parts[parts.length - 1];
+  return "/" + area;
 }
