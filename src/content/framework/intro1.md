@@ -10,14 +10,6 @@ This option doesn't require installing anything on your own computer.
 
 <span class="tutorialStep"></span> Open the [framework introduction on StackBlitz](https://stackblitz.com/github/ExplorableGraph/framework-intro), a hosted development environment. Open StackBlitz in a separate window so you can follow along here.
 
-<span class="tutorialStep"></span> Create a new `src` folder using the terminal:
-
-```console
-$ mkdir src
-```
-
-(Note: The default StackBlitz terminal prompt looks like `❯`, but this tutorial uses the more typical `$` as the prompt.)
-
 There are a variety of ways to incorporate Origami into an existing web server or a larger project, but for this introduction, you'll use the small server included with the [ori command-line interface](/cli) that is part of Origami.
 
 <span class="tutorialStep"></span> Start the web server:
@@ -26,6 +18,8 @@ There are a variety of ways to incorporate Origami into an existing web server o
 $ ori serve
 Server running at http://localhost:5000. Press Ctrl+C to stop.
 ```
+
+Note: The default StackBlitz terminal prompt looks like `❯`, but this tutorial uses the more typical `$` as the prompt.
 
 StackBlitz may indicate that you need to enable certain cookies in order to run the server.
 
@@ -41,12 +35,6 @@ With this option, you can use whatever code editor you prefer.
 
 ```console
 $ npm install
-```
-
-<span class="tutorialStep"></span> Create a new `src` folder:
-
-```console
-$ mkdir src
 ```
 
 There are a variety of ways to incorporate Origami into an existing web server or a larger project, but for this introduction, you'll use the small server included with the [ori command-line interface](/cli) that is part of Origami.

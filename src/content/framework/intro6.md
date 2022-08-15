@@ -30,9 +30,11 @@ Let's rough in an index page.
 
 This will be the basis for an Origami template for your index page.
 
-<span class="tutorialStep"></span> Create a new, empty file called:
+<span class="tutorialStep"></span> Add the following line to `+.yaml`:
 
-`index.html = index.ori()`
+```yaml
+index.html = index.ori():
+```
 
 This formula specifies that, if someone asks for `index.html`, then the `index.ori` template should be invoked as a function. You don't need to pass data to that function; this particular template will ask for the data it wants.
 

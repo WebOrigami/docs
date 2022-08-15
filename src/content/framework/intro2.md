@@ -5,32 +5,38 @@ intro = client/samples/frameworkIntro:
 # Mocks for the code samples below
 files:
   src: |
-    "message = 'Hello, world!'": ""
+    "+.yaml": |
+      # Origami formulas for the About Us web site.
+      message: Hello, world!
 virtual:
   src = graphVirtual(files/src):
 ---
 
 Origami lets you create virtual folders and files using formulas.
 
-## Create a formula in a file name
+## Define a virtual file in a YAML or JSON file
 
-<span class="tutorialStep"></span> Inside the `src` folder, create a new, empty file with the following _file name_:
+<span class="tutorialStep"></span> Inside the `src` folder, open the file called `+.yaml`. This file initially just contains a comment:
 
-`message = 'Hello, world!'`
+```{{'yaml'}}
+{{ intro/siteInitial.yaml }}
+```
 
-The file name should be that _entire_ formula, including the `=` sign and the single quotes.
+The name of the `+.yaml` is a signal to the Origami framework that anything inside the file should be considered a virtual member of the containing folder. Any values you define inside that file will appear as if they exist in the containing `src` folder.
 
-<img src="fileFormula.png" style="width: 240px">
+This file could also be a JSON file, but we'll use a YAML file for this tutorial because it'll be more concise. The file could be called anything that starts with a plus sign, like `+formulas.yaml`. The `+` suggests that the file's contents will be added to the container.
 
-Yes, it doesn't look like a normal file name, but it is a valid file name in mainstream operating systems.
+<span class="tutorialStep"></span> Add a line to the `+.yaml` file:
 
-The formula in the file name has meaning in the Origami framework.
+```{{'yaml'}}
+{{ intro/siteMessage.yaml }}
+```
 
-- The left-hand side of the formula defines the name of a virtual file, `message`.
-- The right-hand side is an expression that will be evaluated to determine the value or contents of that virtual file. Here the virtual `message` file will be a text string.
-- The file name itself is sufficient to define the behavior. In all the formulas needed for this tutorial, the file itself will be empty. In other situations, the file itself may contain information that can be processed by the formula.
+(If you're using StackBlitz, it may display a message saying "Project forked" to indicate that you're now working in your own copy of the tutorial project.)
 
-## View the virtual file implied by the formula
+The line you've just added defines a key called `message` with a value of "Hello, world!" Because that key/value definition is sitting in a file called `+.yaml`, the Origami framework will create a virtual key — a virtual file — in the containing `src` folder when that folder is viewed in the browser (or, later, through the command line).
+
+## View the virtual value
 
 <span class="tutorialStep"></span> Without needing to do anything else, in the browser pane/window showing your served site, navigate to the `src` folder.
 
@@ -50,20 +56,22 @@ Origami includes a framework and a command line tool that use the same formula l
 
 ```console assert: true, path: files
 $ ls src
-message = 'Hello, world!'
++.yaml
 $ ori src
-"message = 'Hello, world!'": ""
+"+.yaml": |
+  # Origami formulas for the About Us web site.
+  message: Hello, world!
 ```
 
 (Reminder: if running locally, you'll need to use `npx ori` whenever invoking the ori tool.)
 
-If you ask ori to render the `src` folder, it returns a graph of the real files in the `src` folder. It displays this graph in YAML form. At the moment, there is just an empty file called `message = 'Hello, world!'`.
+If you ask ori to render the `src` folder, it returns a graph of the real files in the `src` folder. It displays this graph in YAML form. At the moment, there is just one file called `+.yaml` that defines a key called `message`.
 
 You can also visualize this `src` folder graph:
 
 <figure>
   {{ svg files/src }}
-  <figcaption>The src folder graph has one real, empty file</figcaption>
+  <figcaption>The src folder graph has one real file</figcaption>
 </figure>
 
 If you ask ori to show the contents of a _virtual_ graph based on `src`, it interprets the formulas in file names. The resulting virtual graph includes _both_ the real files and any new virtual files implied by formulas.
@@ -72,11 +80,13 @@ If you ask ori to show the contents of a _virtual_ graph based on `src`, it inte
 
 ```console assert: true, path: files
 $ ori virtual/src
++.yaml: |
+  # Origami formulas for the About Us web site.
+  message: Hello, world!
 message: Hello, world!
-"message = 'Hello, world!'": ""
 ```
 
-The `virtual` graph here includes a virtual `message` file whose contents are "Hello, world!". This `virtual` graph looks like:
+The `virtual` graph here includes a virtual `message` file that contains "Hello, world!". This `virtual` graph looks like:
 
 <figure>
   {{ svg virtual/src }}
@@ -102,7 +112,7 @@ This is a trivial example of a formula; let's try something more interesting.
 
 ## Invoke a JavaScript function from a formula
 
-If you don't consider yourself a JavaScript programmer, fear not, it's not necessary to build the final site or required to use Origami. We'll just use it here as just one example of how data might be transformed.
+If you don't consider yourself a JavaScript programmer, don't worry, JavaScript isn't necessary to build this particular site, or required to use Origami in general. We'll just use it here as just an example of how data might be transformed with regular JavaScript.
 
 <span class="tutorialStep"></span> In the `src` folder, create a JavaScript file called `greet.js` and paste in the following:
 
@@ -110,23 +120,25 @@ If you don't consider yourself a JavaScript programmer, fear not, it's not neces
 {{ intro/greet.js }}
 ```
 
-(If you're using StackBlitz, it may display a message saying "Project forked" to indicate that you're now working in your own copy of the tutorial project.)
-
 You can use this `greet` formula in an Origami function to generate the contents of a virtual file.
 
-<span class="tutorialStep"></span> Create a new file and set its name to the entire formula below. (More fun: use your own name instead of "Alice".)
+<span class="tutorialStep"></span> Add the following line to the `+.yaml` file.
 
-`hello.html = greet('Alice')`
+```yaml
+hello.html = greet('world'):
+```
 
-As before, be sure to use single quotes, not double quotes. For cross-platform file name compatibility, Origami doesn't recognize double quotes.
+Be sure to use single quotes, not double quotes. For cross-platform compatibility reasons, Origami doesn't recognize double quotes.
 
-This formula defines a virtual file called `hello.html`. The value or contents of that virtual file will be the result of invoking the function exported by the `greet.js` module. In Origami, this reference to `greet` will be interpreted as a reference to whatever is exported by `greet.js` — in this case, invoking the above function.
+Also note the final `:` at the end of that line. You're defining a new _key_ in the YAML file that contains the whole formula. That key is everything before the colon. The value is whatever after the colon — in this case, no value is given, so the value is `null`. The virtual value we ultimately want is going to be defined by evaluating the formula.
+
+This formula defines a virtual file called `hello.html`. The value or contents of that virtual file will be the result of invoking the function exported by the `greet.js` module. In Origami, this reference to `greet` will be interpreted as a reference to whatever is exported by `greet.js` — invoking the function you defined earlier.
 
 <span class="tutorialStep"></span> View the contents of this virtual HTML page in the command line:
 
 ```console
 $ ori virtual/src/hello.html
-Hello, Alice!
+Hello, <em>world</em>!
 ```
 
 <span class="tutorialStep"></span> Restart the server to view the virtual page in the served site:
@@ -135,11 +147,11 @@ Hello, Alice!
 $ ori serve
 ```
 
-<span class="tutorialStep"></span> Navigate to the `src` route, which will now show an entry for `hello.html`. Open that page to see "Hello, Alice!".
+<span class="tutorialStep"></span> Navigate to the `src` route, which will now show an entry for `hello.html`. Open that page to see "Hello, <em>world</em>!".
 
 Each time you ask for `hello.html`, the web server evaluates the corresponding formula that invokes `greet`. Since the `greet` function is regular JavaScript, you can use that JavaScript to create HTML by any means you like. If the function is asynchronous, Origami will `await` the result before serving it to the browser. With that, you should be able to do essentially anything you want in the JavaScript function to create any HTML result.
 
-A function like `greet` here transforms data from one form into another — in this case, it transforms a string name to a string greeting. The function and the file name formula that invokes it could just as easily transform other kinds of data; there's nothing special about text here.
+A function like `greet` here transforms data from one form into another — in this case, it transforms a string name to an HTML greeting. The function and the file name formula that invokes it could just as easily transform other kinds of data; there's nothing special about text here.
 
 &nbsp;
 

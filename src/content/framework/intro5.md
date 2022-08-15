@@ -35,16 +35,16 @@ Here, the `\{\{name}}` placeholder indicates that you'd like to evaluate the exp
 
 A template is essentially a function for turning data into a text format like HTML, so Origami allows you to invoke a template as a function.
 
-<span class="tutorialStep"></span> Create an empty file in the `src` folder with a formula that looks like this. If you entered more interesting names, in both places, substitute a name from your team file for "Alice".
+<span class="tutorialStep"></span> Add the following line to `+.yaml`. (If you entered more interesting names than what's shown here, then in both places below, substitute a name from your team file for "Alice".)
 
-`Alice.html = person.ori(teamByName%Alice)`
-
-The `%` percent sign is used in file name formulas as an alternative to a regular `/` slash separator, since operating systems and code editors don't like slashes in file names. The above is equivalent to `teamByName/Alice`, and will extract Alice's data from the `teamByName` graph.
+```yaml
+Alice.html = person.ori(teamByName/Alice):
+```
 
 This formula creates a virtual file called `Alice.html`. The virtual file contains the HTML obtained by applying the `person.ori` template to the data for Alice in `team.yaml`:
 
 ```html
-{{ intro/person.ori(teamByName%Alice) }}
+{{ intro/person.ori(teamByName/Alice) }}
 ```
 
 <span class="tutorialStep"></span> Open `Alice.html` in the served site to view the result: Hello, **Alice**.
@@ -55,9 +55,11 @@ At this point, you're successfully transforming the data for a single person, Al
 
 Earlier you created a `greetings` graph that mapped the team members to a graph of greetings using a JavaScript function. You can also map the team members to HTML pages using your `person.ori` template.
 
-<span class="tutorialStep"></span> Create a new, empty file named:
+<span class="tutorialStep"></span> Add the following line to `+.yaml`:
 
-`team = map(teamByName, person.ori)`
+```yaml
+team = map(teamByName, person.ori):
+```
 
 <span class="tutorialStep"></span> Visit the `team` route in the served site, and select a person's name to see a rudimentary HTML page for that person.
 
@@ -94,11 +96,13 @@ We often use extensions at the end of file names to indicate the type of data th
 
 In this case, you want to map a person object with a key like `Alice` to an HTML file name like `Alice.html` to reflect the fact that that transformed graph value contains HTML.
 
-<span class="tutorialStep"></span> Update the name of the formula file for the `team` so that it reads:
+<span class="tutorialStep"></span> Update the line for `team` so that it reads:
 
-`team = map(teamByName, person.ori, '', '.html')`
+```yaml
+team = map(teamByName, person.ori, '', '.html'):
+```
 
-The third parameter (`''`) indicates that you don't want to _remove_ anything from the graph keys, because they don't have any extension. The fourth parameter (`'.html'`) indicates that you want to _add_ `.html` to the graph keys. The transformation now looks like:
+The empty third parameter (`''`) indicates that you don't want to _remove_ anything from the graph keys, because they don't have any extension. The fourth parameter (`'.html'`) indicates that you want to _add_ `.html` to the graph keys. The transformation now looks like:
 
 <div class="sideBySide">
   <figure>
@@ -131,9 +135,11 @@ It's not important to understand this JavaScript, only to recognize that it can 
 
 With that, you can map the `teamByName` graph to create a corresponding virtual folder of avatars.
 
-<span class="tutorialStep"></span> Create a new, empty file named:
+<span class="tutorialStep"></span> Add the following line to `+.yaml`:
 
-`avatars = map(teamByName, =avatar(name), '', '.svg')`
+```yaml
+avatars = map(teamByName, =avatar(name), '', '.svg'):
+```
 
 You should now be able to see avatars for the people on their HTML pages.
 

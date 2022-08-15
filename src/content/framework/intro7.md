@@ -40,7 +40,7 @@ This copies the entire virtual graph represented by the `src` folder into a new 
 
 <span class="tutorialStep"></span> Restart the server and browse the `dist` route in the served site. You should see a fully functional About Us area that's identical to the one visible at the `src` route — only the `dist` version is backed entirely by static files.
 
-Some of the source files you created by hand or copied in, such as `styles.css`, are necessary to run the site, but the formula files aren't necessary. It's possible to filter out the files you don't need, but for now you can leave them in the `dist` folder; deploying them is harmless.
+Some of the source files you created by hand or copied in, such as `styles.css`, are necessary to run the site, but other files like `+.yaml` aren't strictly necessary. It's possible to filter out the files you don't need, but for now you can leave them in the `dist` folder; deploying them is harmless.
 
 At this point, you could deploy the About Us site by copying the `dist` folder to a CDN or some other network-visible location. The specific instructions for doing that will depend on where you want to deploy the files, which is beyond the scope of this tutorial.
 

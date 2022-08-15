@@ -20,11 +20,13 @@ Let's apply the `greet` function to the entire set of people on the team. As a r
 
 In Origami, a graph like this is a first-class data type that can be passed to Origami expressions or JavaScript functions. A graph can be an in-memory object, a folder tree, data in a file, dynamically-generated data, and other forms. (If you're interested, you can read more about the different [graph variants](/core/variants.html) supported by Origami.)
 
-<span class="tutorialStep"></span> In the `src` folder, create a new empty file called:
+<span class="tutorialStep"></span> In the `+.yaml` file, add the following line:
 
-`greetings = map(team.yaml, =greet(name))`
+```yaml
+greetings = map(team.yaml, =greet(name)):
+```
 
-The earlier formulas each defined a single virtual file like `message` or `hello.html`. The `greetings` formula here defines a virtual _graph_ of things — a virtual folder of virtual files.
+The earlier lines each defined a single virtual file like `message` or `hello.html`. The `greetings` formula here defines a virtual _graph_ of things — a virtual folder of virtual files.
 
 <span class="tutorialStep"></span> View the `src` folder in the served site. You will see a new entry for a virtual `greetings` folder. If you click on that `greetings` folder, you'll see a list of links labeled with the indices of the array: 0, 1, 2, (and more if you entered more names). Clicking an index will take you to a page like `src/greetings/1`, which says "Hello, Bob!"
 
@@ -60,9 +62,9 @@ In the example above, `map` transforms the graph values but leaves the keys (the
 
 In the `greetings` graph shown above, the keys (labels) for the arrows are the array indices: 0, 1, 2. But in your About Us site, you want the route for a person's page to incorporate their name. To accomplish that, you can use another type of map called [mapKeys](/cli/builtins.html#mapKeys), which changes a graph's keys.
 
-<span class="tutorialStep"></span> In the `src` folder, create an empty file with the following formula name:
+<span class="tutorialStep"></span> In the `+.yaml` file, add the following line:
 
-`teamByName = mapKeys(team.yaml, =name)`
+`teamByName = mapKeys(team.yaml,=name) :`
 
 In this case, the `=name` expression will evaluated in the context of an individual person, and will return that person's `name` property.
 
@@ -81,13 +83,20 @@ This `mapKeys` formula will result in a new graph using names as keys.
 
 ## Apply multiple transformations
 
-You can use the `teamByName` graph to rewrite our `greeting` formula so that, instead of directly referencing `team.yaml`, it refers to `teamByName`.
+<span class="tutorialStep"></span> Update the `greeting` formula so that, instead of directly referencing `team.yaml`, it refers to `teamByName`:
 
-<span class="tutorialStep"></span> Update the name of the file defining the `greeting` formula to be:
+```yaml
+greetings = map(teamByName, =greet(name)):
+```
 
-`greetings = map(teamByName, =greet(name))`
+Although the order of definitions in the `+.yaml` file doesn't matter, you might find it helpful to define `teamByName` first to reflect the logical progression:
 
-This lets us transform `team.yaml` in two steps: 1) transform the integer keys to name keys, 2) transform the person data values into greeting values.
+```yaml
+teamByName = mapKeys(team.yaml, =name):
+greetings = map(teamByName, =greet(name)):
+```
+
+This shows the transformation of `team.yaml` in two steps: 1) transform the integer keys to name keys, 2) transform the person data values into greeting values.
 
 <div class="sideBySide">
   <figure>
@@ -106,7 +115,7 @@ This lets us transform `team.yaml` in two steps: 1) transform the integer keys t
 
 <span class="tutorialStep"></span> In the served site, inspect the intermediate `teamByName` graph as well as the final `greetings` graph.
 
-Being able to explore intermediate representations is a valuable debugging facility of the Origami framework. Normally you can only view such intermediate representations by setting debugger breakpoints and inspecting variable values in a properties panel, which is often cumbersome for complex data structures.
+Being able to explore intermediate structures like `teamByName` is a valuable debugging facility of the Origami framework. Normally you can only view such intermediate representations by setting debugger breakpoints and inspecting variable values in a properties panel. That is often cumbersome for complex data structures.
 
 You've now roughed in the basic structure of the `team` route for the About Us site. The next step is to show something more interesting for a person than a simple greeting.
 

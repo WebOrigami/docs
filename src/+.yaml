@@ -8,9 +8,9 @@ html = mapDeep(inlined, mdHtml, '.md', '.html'):
 pages = mapDeep(html, templates/page.ori, '.html'):
 
 # Include top-line results from inline tests
-testSummary:
-  summary.yaml = test%summary.yaml:
-  results = test%results:
+# testSummary:
+#   summary.yaml = test%summary.yaml:
+#   results = test%results:
 
 # Compose content for final site
-site = compose(client, pages, testSummary):
+site = compose(client, pages, test):
