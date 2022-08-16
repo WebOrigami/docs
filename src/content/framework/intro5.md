@@ -28,7 +28,9 @@ greetings = map(team.yaml, =greet(name)):
 
 The earlier lines each defined a single virtual file like `message` or `hello.html`. The `greetings` formula here defines a virtual _graph_ of things — a virtual folder of virtual files.
 
-<span class="tutorialStep"></span> View the `src` folder in the served site. You will see a new entry for a virtual `greetings` folder. If you click on that `greetings` folder, you'll see a list of links labeled with the indices of the array: 0, 1, 2, (and more if you entered more names). Clicking an index will take you to a page like `src/greetings/1`, which says "Hello, Bob!"
+<span class="tutorialStep"></span> View the `src` folder in the served site. (If using StackBlitz, you can refresh the pane showing the site by clicking the small Refresh icon above that pane.)
+
+You will see a new entry for a virtual `greetings` folder. If you click on that `greetings` folder, you'll see a list of links labeled with the indices of the array: 0, 1, 2, (and more if you entered more names). Clicking an index will take you to a page like `src/greetings/1`, which says "Hello, Bob!"
 
 The [map](/cli/builtins.html#map) function is a built-in Origami function that applies a one-to-one map function to a graph of values. The result is a new, virtual graph of transformed values.
 
@@ -64,7 +66,9 @@ In the `greetings` graph shown above, the keys (labels) for the arrows are the a
 
 <span class="tutorialStep"></span> In the `+.yaml` file, add the following line:
 
-`teamByName = mapKeys(team.yaml,=name) :`
+```yaml
+teamByName = mapKeys(team.yaml, =name):
+```
 
 In this case, the `=name` expression will evaluated in the context of an individual person, and will return that person's `name` property.
 

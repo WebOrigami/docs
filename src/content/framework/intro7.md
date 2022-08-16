@@ -40,7 +40,7 @@ This formula specifies that, if someone asks for `index.html`, then the `index.o
 
 You should now be able to visit `index.html` in the served site.
 
-Tip: While the new index page will be more presentable, it can still be useful to view the previous default index page that listed real and virtual files. If you ever want to return that listing, navigate to the hidden route at `src/.index` that includes a period. This route is provided by the Origami server as a diagnostic tool so you can browse the virtual graph you're creating.
+Tip: While the new index page will be more presentable, it can still be useful to view the previous default index page that listed real and virtual files. If you ever want to return that listing, navigate to the hidden route at `src/.index` (note the period). This route is provided by the Origami server as a diagnostic tool so you can browse the virtual graph you're creating.
 
 ## Use a nested template
 
@@ -56,7 +56,7 @@ Earlier you mapped the graph of people to a graph of HTML pages. To create the i
 {{index.ori}}
 ```
 
-The `\{\{#…}}` syntax invokes the same `map` function you've already been using in formulas. The fragment between the `\{\{#map}}` and `\{\{/map}}` will be passed as an additional argument to the `map` function. That fragment will be evaluated in the context of the individual item being mapped. In this case, `map` is mapping the `teamByName` graph to create a graph of text strings that are concatenated to form the final HTML result.
+The `\{\{#`…`}}` syntax invokes the same `map` function you've already been using in formulas. The fragment between the `\{\{#map}}` and `\{\{/map}}` will be passed as an additional argument to the `map` function. That fragment will be evaluated in the context of the individual item being mapped. In this case, `map` is mapping the `teamByName` graph to create a graph of text strings that are concatenated to form the final HTML result.
 
 <span class="tutorialStep"></span> Visit or fresh the `src` route in the served site. You should see a bulleted list of names.
 
