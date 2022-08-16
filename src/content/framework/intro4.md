@@ -1,124 +1,90 @@
 ---
-title: Transform graphs with formulas
+title: Thinking in graphs
 numberHeadings: true
 intro = client/samples/frameworkIntro:
-team.yaml = intro/team.yaml:
-teamByName = mapKeys(team.yaml, =name):
-greetings = map(team.yaml, =intro/greet(name)):
-greetingsByName = map(teamByName, =intro/greet(name)):
 ---
 
-You've seen how a formula can transform a single piece of data like a single person's name into some other form like a greeting. If you wanted to create virtual greetings for multiple people, you could create a formula for each of them. But you can also write a formula that transforms a bunch of things at once.
+Now that you know how to create virtual files, let's use them to build a little website!
 
-## Transform a graph
+Suppose your team says:
 
-Let's apply the `greet` function to the entire set of people on the team. As a reminder, we can visualize the people in `team.yaml` as a graph:
+> _We need an "About Us" area for our site. The main About Us page should include a list of people on the team, with links to separate pages for each person. A person's page should show their name and a photo._
+
+Here's an [example About Us area](/samples/aboutUs) you can consider as a model for this task:
+
+- There's a main `index.html` URL.
+- There's a `team` URL with an HTML page for each person on the team.
+
+## Visualize the final result
+
+Let's work backward from the desired result, which we can represent as a graph like this:
 
 <figure>
-{{ svg team.yaml }}
+{{ svg intro/site.yaml }}
 </figure>
 
-In Origami, a graph like this is a first-class data type that can be passed to Origami expressions or JavaScript functions. A graph can be an in-memory object, a folder tree, data in a file, dynamically-generated data, and other forms. (If you're interested, you can read more about the different [graph variants](/core/variants.html) supported by Origami.)
+A graph is not only a good way to visualize your goal — in Origami, you'll create a software representation of this graph that you can browse.
 
-<span class="tutorialStep"></span> In the `+.yaml` file, add the following line:
+## Select a starting data representation
 
-```yaml
-greetings = map(team.yaml, =greet(name)):
+One simple way to represent the data for this site is a data file listing the names of the people on the team.
+
+<span class="tutorialStep"></span> Inside the `src` folder, create a file called `team.yaml`.
+
+<span class="tutorialStep"></span> Type some names into `team.yaml` using the YAML format below. You don't have to use these stock names — this tutorial will be **much** more entertaining if you type the names of your own teammates or family members!
+
+```\yaml
+{{ intro/team.yaml }}
 ```
 
-The earlier lines each defined a single virtual file like `message` or `hello.html`. The `greetings` formula here defines a virtual _graph_ of things — a virtual folder of virtual files.
+If you're not a fan of YAML, call the file `team.json` instead and type the data in JSON format:
 
-<span class="tutorialStep"></span> View the `src` folder in the served site. You will see a new entry for a virtual `greetings` folder. If you click on that `greetings` folder, you'll see a list of links labeled with the indices of the array: 0, 1, 2, (and more if you entered more names). Clicking an index will take you to a page like `src/greetings/1`, which says "Hello, Bob!"
+```json
+{{ json intro/team.yaml }}
+```
 
-The [map](/cli/builtins.html#map) function is a built-in Origami function that applies a one-to-one map function to a graph of values. The result is a new, virtual graph of transformed values.
+If you go this route, use `team.json` wherever the tutorial uses `team.yaml`.
 
-In this case, the `=greet(name)` part of the above formula defines an unnamed function (in technical jargon, a lambda expression) that's evaluated in the context of each individual person record. This extracts a person's name and passes it to the `greet` function.
+Just as you can envision the final site as a graph, you can also consider the starting data as a graph:
 
-Applying this `map` to the graph of people in `team.yaml` produces a new graph of greetings:
+<figure>
+{{ svg intro/team.yaml }}
+</figure>
+
+The `0`, `1`, and `2` are the indices from the array of names. If you ask this graph for `0`, you'll get a node that represents the data for Alice: a subgraph that currently defines a single property node for `name`.
+
+## Visualize site creation as a transformation
+
+Since both your starting data representation and final desired site are graphs, your development task is fundamentally the _transformation of the starting graph into the final graph_.
 
 <div class="sideBySide">
   <figure>
-    {{ svg team.yaml }}
+    {{ svg intro/team.yaml }}
   </figure>
   <figure>
-    {{ svg greetings }}
+    {{ svg intro/site.yaml }}
   </figure>
-  <figcaption>Source graph of real data</figcaption>
-  <figcaption>Result graph of virtual greetings</figcaption>
+  <figcaption>Want to transform this data graph…</figcaption>
+  <figcaption>…into this website graph</figcaption>
 </div>
 
-When you want to do work on multiple files or data values in the Origami framework, it's generally helpful to think about how you can best represent the source information as a graph, then identify the transformation you want to apply to each value in the graph. This will produce a new virtual graph of results.
+Viewed this way, you may see some correspondence between the two graphs: for each person in the data graph, you want to generate an HTML page in the `team` route with that person's data. You'll be able to express that correspondence directly in Origami.
 
-Some notes on the `map` function:
+Creating things in Origami means thinking about the graph you've got and the graph you want, and about how to transform the former into the latter step by step. This is similar to the paper-folding art of origami, in which you can transform a flat square of paper into an artwork.
 
-- Virtual graphs produced by `map` and the other Origami functions are _lazy_. They only do work when they need to. Unlike a JavaScript [Array map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), the `map` function here doesn't do much work upon invocation — it only does the real work of transformation when someone asks a mapped value. In this case, the greeting for a person like Carol is only generated when you actually try to visit that URL. The `greetings` graph represents _potential_ work.
-- `map` only applies the mapping function to the top-level values of a graph. If you want to apply the mapping function to the deep values of a graph, use [mapDeep](/cli/builtins.html#mapDeep) instead to obtain a new, deep graph of transformed values.
+<figure style="align-items: center; display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(125px, 1fr)); justify-items: center;">
+  <img src="/assets/heart/step1.svg">
+  <img src="/assets/heart/step2.svg">
+  <img src="/assets/heart/step3.svg">
+  <img src="/assets/heart/step4.svg">
+  <img src="/assets/heart/step5.svg">
+  <img src="/assets/heart/step6.svg">
+  <img src="/assets/heart/step7.svg">
+  <img src="/assets/heart/step8.svg">
+</figure>
 
-Using formulas like this, you can begin transforming your `team.yaml` data into an About Us site.
-
-## Transform a graph's keys
-
-In the example above, `map` transforms the graph values but leaves the keys (the arrow labels) unchanged.
-
-In the `greetings` graph shown above, the keys (labels) for the arrows are the array indices: 0, 1, 2. But in your About Us site, you want the route for a person's page to incorporate their name. To accomplish that, you can use another type of map called [mapKeys](/cli/builtins.html#mapKeys), which changes a graph's keys.
-
-<span class="tutorialStep"></span> In the `+.yaml` file, add the following line:
-
-`teamByName = mapKeys(team.yaml,=name) :`
-
-In this case, the `=name` expression will evaluated in the context of an individual person, and will return that person's `name` property.
-
-This `mapKeys` formula will result in a new graph using names as keys.
-
-<div class="sideBySide">
-  <figure>
-    {{ svg team.yaml }}
-  </figure>
-  <figure>
-    {{ svg teamByName }}
-  </figure>
-  <figcaption>team.yaml: array indices as top-level keys</figcaption>
-  <figcaption>teamByName: names as top-level keys</figcaption>
-</div>
-
-## Apply multiple transformations
-
-<span class="tutorialStep"></span> Update the `greeting` formula so that, instead of directly referencing `team.yaml`, it refers to `teamByName`:
-
-```yaml
-greetings = map(teamByName, =greet(name)):
-```
-
-Although the order of definitions in the `+.yaml` file doesn't matter, you might find it helpful to define `teamByName` first to reflect the logical progression:
-
-```yaml
-teamByName = mapKeys(team.yaml, =name):
-greetings = map(teamByName, =greet(name)):
-```
-
-This shows the transformation of `team.yaml` in two steps: 1) transform the integer keys to name keys, 2) transform the person data values into greeting values.
-
-<div class="sideBySide">
-  <figure>
-    {{ svg team.yaml }}
-  </figure>
-  <figure>
-    {{ svg teamByName }}
-  </figure>
-  <figure>
-    {{ svg greetingsByName }}
-  </figure>
-  <figcaption>team.yaml: source data</figcaption>
-  <figcaption>teamByName: transformed keys</figcaption>
-  <figcaption>greetings: transformed values</figcaption>
-</div>
-
-<span class="tutorialStep"></span> In the served site, inspect the intermediate `teamByName` graph as well as the final `greetings` graph.
-
-Being able to explore intermediate structures like `teamByName` is a valuable debugging facility of the Origami framework. Normally you can only view such intermediate representations by setting debugger breakpoints and inspecting variable values in a properties panel. That is often cumbersome for complex data structures.
-
-You've now roughed in the basic structure of the `team` route for the About Us site. The next step is to show something more interesting for a person than a simple greeting.
+Each individual step is simple, but the cumulative result can be complex.
 
 &nbsp;
 
-Next: [Templates](intro5.html) »
+Next: [Transform graphs](intro5.html) »

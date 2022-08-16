@@ -1,5 +1,5 @@
 ---
-title: Create virtual files with formulas
+title: Create virtual files
 numberHeadings: true
 intro = client/samples/frameworkIntro:
 # Mocks for the code samples below
@@ -12,7 +12,7 @@ virtual:
   src = graphVirtual(files/src):
 ---
 
-Origami lets you create virtual folders and files using formulas.
+Origami lets you create virtual folders and files.
 
 ## Define a virtual file in a YAML or JSON file
 
@@ -108,51 +108,6 @@ Hello, world!
 
 In the steps that follow, you will define Origami formulas to dynamically create data and HTML pages. At any point you can view those in the browser, or use ori to view those virtual files in the command line.
 
-This is a trivial example of a formula; let's try something more interesting.
-
-## Invoke a JavaScript function from a formula
-
-If you don't consider yourself a JavaScript programmer, don't worry, JavaScript isn't necessary to build this particular site, or required to use Origami in general. We'll just use it here as just an example of how data might be transformed with regular JavaScript.
-
-<span class="tutorialStep"></span> In the `src` folder, create a JavaScript file called `greet.js` and paste in the following:
-
-```{{'js'}}
-{{ intro/greet.js }}
-```
-
-You can use this `greet` formula in an Origami function to generate the contents of a virtual file.
-
-<span class="tutorialStep"></span> Add the following line to the `+.yaml` file.
-
-```yaml
-hello.html = greet('world'):
-```
-
-Be sure to use single quotes, not double quotes. For cross-platform compatibility reasons, Origami doesn't recognize double quotes.
-
-Also note the final `:` at the end of that line. You're defining a new _key_ in the YAML file that contains the whole formula. That key is everything before the colon. The value is whatever after the colon — in this case, no value is given, so the value is `null`. The virtual value we ultimately want is going to be defined by evaluating the formula.
-
-This formula defines a virtual file called `hello.html`. The value or contents of that virtual file will be the result of invoking the function exported by the `greet.js` module. In Origami, this reference to `greet` will be interpreted as a reference to whatever is exported by `greet.js` — invoking the function you defined earlier.
-
-<span class="tutorialStep"></span> View the contents of this virtual HTML page in the command line:
-
-```console
-$ ori virtual/src/hello.html
-Hello, <em>world</em>!
-```
-
-<span class="tutorialStep"></span> Restart the server to view the virtual page in the served site:
-
-```console
-$ ori serve
-```
-
-<span class="tutorialStep"></span> Navigate to the `src` route, which will now show an entry for `hello.html`. Open that page to see "Hello, <em>world</em>!".
-
-Each time you ask for `hello.html`, the web server evaluates the corresponding formula that invokes `greet`. Since the `greet` function is regular JavaScript, you can use that JavaScript to create HTML by any means you like. If the function is asynchronous, Origami will `await` the result before serving it to the browser. With that, you should be able to do essentially anything you want in the JavaScript function to create any HTML result.
-
-A function like `greet` here transforms data from one form into another — in this case, it transforms a string name to an HTML greeting. The function and the file name formula that invokes it could just as easily transform other kinds of data; there's nothing special about text here.
-
 &nbsp;
 
-Next: [Thinking in graphs](intro3.html) »
+Next: [Formulas](intro3.html) »

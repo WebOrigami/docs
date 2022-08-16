@@ -2,19 +2,21 @@
   text: Introduction
   pages:
     - href: intro1.html
-      text: "Start"
+      text: Start
     - href: intro2.html
-      text: "Formulas"
+      text: Virtual files
     - href: intro3.html
-      text: "Thinking in graphs"
+      text: Formulas
     - href: intro4.html
-      text: "Transform graphs"
+      text: Thinking in graphs
     - href: intro5.html
-      text: "Templates"
+      text: Transform graphs
     - href: intro6.html
-      text: "Nested templates"
+      text: Templates
     - href: intro7.html
-      text: "Deploying"
+      text: Nested templates
+    - href: intro8.html
+      text: Deploying
 - href: metagraph.html
   text: Metagraphs
   pages:
