@@ -57,7 +57,7 @@ If you don't consider yourself a JavaScript programmer, don't worry, JavaScript 
 
 You can use this `greet` formula in an Origami function to generate the contents of a virtual file.
 
-<span class="tutorialStep"></span> Add the following line to the `+.yaml` file.
+<span class="tutorialStep"></span> Add the following line to the `+.yaml` file:
 
 ```yaml
 hello.html = greet('world'):
