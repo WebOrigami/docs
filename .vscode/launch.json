@@ -18,12 +18,12 @@
       "program": "${workspaceFolder}/node_modules/@explorablegraph/explorable/src/cli/cli.js",
       "request": "launch",
       "skipFiles": ["<node_internals>/**"],
-      "type": "pwa-node",
+      "type": "node",
       "cwd": "${workspaceFolder}/sandbox/tsdoc",
       "args": ["tsdoc greet.js"]
     },
     {
-      "type": "pwa-node",
+      "type": "node",
       "request": "launch",
       "name": "serve",
       // "runtimeExecutable": "node",
