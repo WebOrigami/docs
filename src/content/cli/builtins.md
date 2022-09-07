@@ -292,20 +292,20 @@ _This experimental function is not yet stable enough to document._
 
 <a name="parse"></a>
 
-## parse(text)
+## parseYaml(text)
 
 Parses the indicated text as JSON or YAML. The parsed plain JavaScript object is returned or, if the parse fails, this returns `undefined`. This can be used to parse JSON or YAML files.
 
 Parsing a quoted argument on the command line:
 
 ```console assert: true, path: files
-$ ori parse "'[1, 2, 3]'"
+$ ori parseYaml "'[1, 2, 3]'"
 - 1
 - 2
 - 3
 ```
 
-This is similar to the separate [plain](#plain) function, which can only parse JSON/YAML representing graphs. In contrast, the `parse` function can handle text representing things that aren't graphs, such as arrays, dates, and numbers.
+This is similar to the separate [plain](#plain) function, which can only parse JSON/YAML representing graphs. In contrast, the `parseYaml` function can handle text representing things that aren't graphs, such as arrays, dates, and numbers.
 
 <a name="plain"></a>
 
