@@ -12,6 +12,8 @@ argsChain: args [argsChain]
 
 assignment: ["…"]declaration "=" expression [extension]
 
+colonCall: reference ":" expression
+
 declaration: variableDeclaration
              literal
 
@@ -20,8 +22,9 @@ expression: singleQuoteString
             templateLiteral
             spaceUrl
             spacePathCall
-            protocolCall
             functionComposition
+            urlProtocolCall
+            protocolCall
             slashCall
             percentCall
             group
@@ -33,7 +36,9 @@ extension:  "."literal
 functionComposition: functionCallTarget argsChain
 
 functionCallTarget: group
+                    urlProtocolCall
                     protocolCall
+                    colonCall
                     slashCall
                     percentCall
                     getReference
@@ -78,8 +83,7 @@ percentCall: pathHead "%" [percentPath]
 percentPath: pathKey "%" percentPath
            pathKey
 
-protocolCall: pathKey ":"|"://" slashPath
-              pathKey ":"|"://" protocolCall
+protocolCall: reference "://"|":/" slashPath
 
 simpleFunctionCall: getReference parensArgs
 
@@ -90,10 +94,7 @@ slashCall: ["//"] pathHead "/" [slashPath]
 slashPath: pathKey "/" slashPath
            pathKey
 
-spaceUrl: spaceUrlProtocol whitespace spaceUrlPath
-
-spaceUrlProtocol: "https"
-                  "http"
+spaceUrl: urlProtocol whitespace spaceUrlPath
 
 spaceUrlPath: pathKey whitespace spaceUrlPath
               pathKey
@@ -118,6 +119,11 @@ templateDocumentText: everything but "\{\{"
 templateText: everything but "\{\{" and "`"
 
 thisReference: "this"
+
+urlProtocol: "https"
+             "http"
+
+urlProtocolCall: urlProtocol "://"|":/"|":" slashPath
 
 valueDeclaration: ["…"]declaration
 

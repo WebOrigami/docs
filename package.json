@@ -3,14 +3,14 @@
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
-    "@explorablegraph/explorable": "github:ExplorableGraph/explorable#defc4bc8",
+    "@explorablegraph/explorable": "github:ExplorableGraph/explorable#b1521405",
     "@microsoft/tsdoc": "0.14.1",
     "algoliasearch": "4.14.2",
     "sharp": "0.31.0",
     "yaml": "2.1.1"
   },
   "scripts": {
-    "build": "ori 'copy netlify(virtual/src/site), files/dist'",
+    "build": "ori 'copy netlify:virtual/src/site, files/dist'",
     "test": "ori virtual/src/test/summary",
     "index": "ori 'index/indexDocs'"
   }

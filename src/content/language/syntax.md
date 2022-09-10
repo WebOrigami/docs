@@ -23,6 +23,7 @@ The following types of expressions are supported by the Origami CLI and in Origa
 |                                              |              | `fn('foo', 'bar')`                 |
 | Function call with implicit parentheses      |              | `greet 'world'`                    |
 |                                              |              | `fn 'foo', 'bar'`                  |
+| Function call with colon (useful in shell)   |              | `fn:foo`                           |
 | Indirect function call                       |              | `(fn())()`                         |
 | Slash-separated function call or path¹       |              | `greet/world`                      |
 | Percent-separated function call or path¹     |              | `greet%world`                      |
@@ -32,7 +33,8 @@ The following types of expressions are supported by the Origami CLI and in Origa
 |                                              |              | `file.txt`                         |
 | Self-reference to the value defined by a key |              | `this`                             |
 | Bound variable reference in a formula        |              | `\{\{x}}`                          |
-| HTTP or HTTPS URL                            |              | `https://example.com`              |
+| HTTPS or HTTP URL                            |              | `https://example.com/index.html`   |
+| HTTPS or HTTP URL with spaces                |              | `https example.com index.html`     |
 | Parentheses group                            |              | `(foo)`                            |
 | Template literal with inline substitution    |              | `` `Hello, \{\{name}}` ``          |
 | Template literal with block substitution     |              | `` `\{\{#if cond}}Yes\{\{/if}}` `` |
