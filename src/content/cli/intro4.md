@@ -63,7 +63,7 @@ HELLO, ALICE.
 <span class="tutorialStep"></span> You can apply that `uppercase` transformation to an entire graph with the ori's built-in `map` function:
 
 ```console
-$ ori "map(greetings.yaml, uppercase)"
+$ ori map greetings.yaml, uppercase
 Alice: HELLO, ALICE.
 Bob: HELLO, BOB.
 Carol: HELLO, CAROL.
@@ -71,7 +71,7 @@ Carol: HELLO, CAROL.
 
 It is easy to transform an entire explorable graph of one type of object into a new graph of a different type of object. You only need to identify or define a one-to-one transformation function that handles a single object, and ori can apply that as a many-to-many transformation of an entire graph.
 
-The second argument to `map` is a function. (Technically, the second argument can be any explorable graph, but for the moment, we'll use a regular JavaScript function.) We want to treat that function as a first-class object, which means we _don't_ want ori to do its normal implicit function invocation here. To prevent that, you must include the parentheses by quoting the arguments to ori or otherwise escaping them.
+The second argument to `map` is a function. Technically, the second argument can be any explorable graph, but for the moment, we'll use a regular JavaScript function.
 
 The `map` example above takes the original greetings graph:
 
@@ -122,7 +122,7 @@ Carol: Hello, Carol.
 <span class="tutorialStep"></span> You can then treat both the base data and the greetings data as graphs, and pass those to `map`, to turn the list of specific people into a list of greetings:
 
 ```console
-$ ori "map(people.yaml, greetings.yaml)"
+$ ori map people.yaml, greetings.yaml
 - Hello, Alice.
 - Hello, Carol.
 ```
@@ -158,4 +158,4 @@ Alice   Bob     Carol
 
 &nbsp;
 
-Next: [Serving graphs](intro5.html)
+Next: [Serving graphs](intro5.html) »

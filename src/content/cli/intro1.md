@@ -39,7 +39,7 @@ $ npx ori
 <span class="tutorialStep"></span> You can use ori itself to copy sample files used in this introduction into a new local folder called `samples`:
 
 ```console
-$ ori copy https://explorablegraph.org/samples/cli.yaml, files/samples
+$ ori copy https://graphorigami.org/samples/cli.yaml, files/samples
 $ cd samples
 $ ls
 double.js      letters.json   sample.txt     text.js
@@ -54,7 +54,7 @@ The new `samples` folder should show a small collection of files. (The specific 
 <span class="tutorialStep"></span> If you prefer, you can wrap ori function arguments in parentheses — but since command shells typically interpret parentheses, you may have to quote them:
 
 ```console
-$ ori "copy(https://explorablegraph.org/samples/cli.yaml, files/samples)"
+$ ori "copy(https://graphorigami.org/samples/cli.yaml, files/samples)"
 ```
 
 The expression parser in ori makes parentheses implicit, so in many cases you don't have to type them. There are some cases where parentheses are necessary; you'll see an example of that later.

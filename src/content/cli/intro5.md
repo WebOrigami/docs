@@ -70,7 +70,7 @@ Server running at http://localhost:5000
 <span class="tutorialStep"></span> You can ask ori to serve data transformed on demand into HTML using `map` and the template we saw earlier.
 
 ```console
-$ ori "serve map(greetings.yaml, template)"
+$ ori "serve map greetings.yaml, template"
 Server running at http://localhost:5000
 ```
 
@@ -100,7 +100,7 @@ You can perform a `copy` operation like the one in this example in preparation f
 <span class="tutorialStep"></span> The web site you're reading now supports viewing its contents as an explorable graph, so you can reference it directly in ori. For example, this site includes a route [/samples/greetings/](/samples/greetings/), and you can pass that URL to ori to view the files there:
 
 ```console
-$ ori https://explorablegraph.org/samples/greetings/
+$ ori https://graphorigami.org/samples/greetings/
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
@@ -109,14 +109,14 @@ Carol: Hello, Carol.
 <span class="tutorialStep"></span> While that result may look like a YAML file, each of those lines is actually coming from a separate web resource.
 
 ```console
-$ ori https://explorablegraph.org/samples/greetings/Alice
+$ ori https://graphorigami.org/samples/greetings/Alice
 Hello, Alice.
 ```
 
 <span class="tutorialStep"></span> ori can discover all the resources at the `/samples/greetings/` route because this server supports a simple protocol: for every route on this server, a `.keys.json` file exists that enumerates the resources at that route.
 
 ```console
-$ ori https://explorablegraph.org/samples/greetings/.keys.json
+$ ori https://graphorigami.org/samples/greetings/.keys.json
 ["Alice","Bob","Carol"]
 ```
 
@@ -126,21 +126,21 @@ Making the full contents of a site more freely available might be concerning to 
 
 ## Create a web site mirror
 
-<span class="tutorialStep"></span> Since a web site like explorablegraph.org is an explorable graph, and ori can serve explorable graphs, then you can easily set up a local mirror for this site:
+<span class="tutorialStep"></span> Since a web site like graphorigami.org is an explorable graph, and ori can serve explorable graphs, then you can easily set up a local mirror for this site:
 
 ```console
-$ ori serve https://explorablegraph.org
+$ ori serve https://graphorigami.org
 Server running at http://localhost:5000
 ```
 
-Your local server is now mirroring the explorablegraph.org site: when you browse your local site, the local server gets the necessary resources from the original site, then re-serves them at the local address.
+Your local server is now mirroring the graphorigami.org site: when you browse your local site, the local server gets the necessary resources from the original site, then re-serves them at the local address.
 
 ## Copy a live web site to local files
 
 <span class="tutorialStep"></span> You can also use ori to copy an explorable web route to local files:
 
 ```console
-$ ori copy https://explorablegraph.org/samples/greetings/, files/snapshot
+$ ori copy https://graphorigami.org/samples/greetings/, files/snapshot
 $ ls snapshot
 Alice Bob   Carol
 ```

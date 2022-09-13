@@ -82,6 +82,15 @@ Hello, Alice.
 
 In this path syntax, the first path segment (`greet`) will be looked up in the current scope. All subsequent path segments (like `Alice`) are used as is. Otherwise, both ways of passing arguments behave the same.
 
+This means you can also explicitly invoke a function like `greet` by adding a trailing slash:
+
+```console
+$ ori greet/
+Hello, world.
+```
+
+The trailing slash isn't strictly necessary here — since the result of the top-level expression is a function, ori will execute it anyway. But if you want to invoke a function and pass its result to another function, the trailing slash syntax can be a useful alternative to quoting parenthesis.
+
 ori lets you call a JavaScript function like `greet` from the shell without needing to write JavaScript code to parse command line arguments.
 
 ## Aside: Loading functions as ES modules
@@ -121,9 +130,11 @@ HI
 $ ori greet uppercase/there
 Hello, THERE.
 $ ori uppercase greet
+(NAME = "WORLD") => `HELLO, ${NAME}. `
+$ ori uppercase greet/
 HELLO, WORLD.
-$ ori double greet
-Hello, world. Hello, world.
+$ ori double greet/everybody
+Hello, everybody. Hello, everybody.
 $ ori double greet uppercase/there
 Hello, THERE. Hello, THERE.
 ```
@@ -137,13 +148,17 @@ $ ori "uppercase('hi')"
 HI
 $ ori "greet(uppercase('there'))"
 Hello, THERE.
+$ ori "uppercase(greet)"
+(NAME = "WORLD") => `HELLO, ${NAME}. `
 $ ori "uppercase(greet())"
 HELLO, WORLD.
-$ ori "double(greet())"
-Hello, world. Hello, world.
+$ ori "double(greet('everybody'))"
+Hello, everybody. Hello, everybody.
 $ ori "double(greet(uppercase('there')))"
 Hello, THERE. Hello, THERE.
 ```
+
+Observe that `ori greet` is the same as `ori greet()`, because if the result of the top-level expression is a function, ori invokes it. However, functions inside an expression are treated as first-class objects. This is why `ori uppercase greet` performs the dubious work of uppercasing the `greet` function definition. To invoke `greet` and pass its result to `uppercase` without using parenthesis, the correct form is `ori uppercase greet/` (with a trailing slash).
 
 ori lets you use the shell as a basic JavaScript console, so you can invoke and compose functions in any combination without having to write permanent code. This can be useful when you're experimenting, testing, or need to do one-off operations from the shell.
 
@@ -169,7 +184,7 @@ In this example, ori ends up passing a file buffer to the `uppercase` function. 
 <span class="tutorialStep"></span> You can pipe data into JavaScript functions with the built-in `stdin` function:
 
 ```console
-$ echo This is input from the shell | ori uppercase stdin
+$ echo This is input from the shell | ori uppercase stdin/
 THIS IS INPUT FROM THE SHELL
 ```
 
@@ -189,4 +204,4 @@ THIS IS A TEXT FILE.
 
 &nbsp;
 
-Next: [Using graphs with the ori CLI](intro3.html)
+Next: [Using graphs with the ori CLI](intro3.html) »

@@ -121,13 +121,13 @@ This will render the complete contents of the current folder, including subfolde
 <span class="tutorialStep"></span> You can capture that result to package up the current folder as a YAML file.
 
 ```console
-$ ori . > package.yaml
+$ ori . > files.yaml
 ```
 
 <span class="tutorialStep"></span> Or package the folder as JSON:
 
 ```console
-$ ori json . > package.json
+$ ori json . > files.json
 ```
 
 ## Unpack files into the file system
@@ -183,4 +183,4 @@ Another important benefit of working with explorable graphs is that you can chan
 
 &nbsp;
 
-Next: [Transforming data and graphs](intro4.html)
+Next: [Transforming data and graphs](intro4.html) »

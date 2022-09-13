@@ -4,16 +4,16 @@
     - href: intro1.html
       text: Start
     - href: intro2.html
-      text: Object graphs
+      text: Data as graphs
     - href: intro3.html
-      text: Transform graphs
+      text: Object graphs
     - href: intro4.html
-      text: File graphs
+      text: Transform a graph
     - href: intro5.html
-      text: Save output
+      text: File graphs
     - href: intro6.html
-      text: Additional tasks
+      text: Copy a graph
     - href: intro7.html
-      text: Use a CLI
+      text: Deep graphs
 - text: Explorable interface
   href: interface.html

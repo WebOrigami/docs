@@ -1,3 +1,4 @@
 ---
-title: Use a CLI
+title: Additional tasks
+numberHeadings: true
 ---

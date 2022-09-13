@@ -46,7 +46,22 @@ See also Origami [formulas](/framework/formulas.html), which define additional s
 
 ### Implicit vs explicit parentheses
 
-Origami generally permits use of implicit parentheses for function calls to make it easier for you to invoke functions from a command-line shell, as shells often interpret parentheses.
+Origami expressions generally permit use of implicit parentheses for function calls to make it easier for you to invoke functions from a command-line shell, as shells often interpret parentheses.
+
+For example, if you have a file `sample.txt`, you can pass it to a function `uppercase` with or without parenthesis:
+
+```console
+$ ori sample.txt
+This is a text file.
+$ ori uppercase.js
+export default (x) => x.toString().toUpperCase();
+$ ori "uppercase(sample.txt)"
+THIS IS A TEXT FILE.
+$ ori uppercase sample.txt
+THIS IS A TEXT FILE.
+```
+
+Additionally, when the ori CLI evaluates an Origami expression, if the top-level result is a function, then ori will implicitly invoke it:
 
 ```console
 $ ori greet.js
@@ -58,8 +73,3 @@ Hello, world.
 ```
 
 Here, both the `greet()` and `greet` forms are equivalent.
-
-The last function in a command is a special case, and treated differently depending on the environment in which the expression is being evaluated:
-
-- If an expression is invoked from the command line, and the expression ends with an identifier (like `greet` above), and the value of that identifier is function, the function will be invoked. This allows the easy invocation of functions from the command line. If you want to pass a function as a first-class object to a receiving function ([map](#map), say), use explicit parentheses for the receiving function.
-- If the expression appears in an Origami [formula](/framework/Formula.html), a final function name in an expression will _not_ be invoked. This difference in behavior allows a formula to return a function as a first-class object. If you want to invoke a final function in a formula, use explicit parentheses.
