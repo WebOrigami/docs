@@ -68,10 +68,22 @@ We can now verify that our transform is working as expected.
 
 ```console
 $ ori transform object
-{{ yaml intro/round2complete/transform(intro/round2complete/object) }}
+{{ yaml intro/round2complete/transform intro/round2complete/object }}
 ```
 
 This graph of HTML has the desired shape, keys, and values as the diagram shown earlier.
+
+## Browse the transformed graph
+
+```console
+$ ori serve transform object
+Server running at http://localhost:5001. Press Ctrl+C to stop.
+```
+
+```console
+$ ori serve defaultPages transform object
+Server running at http://localhost:5001. Press Ctrl+C to stop.
+```
 
 &nbsp;
 

@@ -12,8 +12,8 @@
     - href: intro5.html
       text: File graphs
     - href: intro6.html
-      text: Copy a graph
+      text: Serve a graph
     - href: intro7.html
-      text: Deep graphs
+      text: Copy a graph
 - text: Explorable interface
   href: interface.html

@@ -51,6 +51,10 @@ Some notes:
 
 - All of the functions in the `Explorable` interface are marked with the [async](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) keyword, indicating that they are asynchronous functions. In practice, the functions may return immediately, but they have the potential, at least, to do work that will require a bit of time: retrieving data from the file system, accessing data from a network, or performing long calculations.
 
+- An Explorable graph's `get` method is expected to return `undefined` if the key is not present in the graph.
+
+- The `asyncIterator` does _not_ have to return all supported keys! There may be keys that `get` can handle that the `asyncIterator` will not include. This is actually a useful property in a number of situations.
+
 ## Apply the Explorable interface to the object
 
 <span class="tutorialStep"></span> Wrap the in-memory object with the Explorable interface:
