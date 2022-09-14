@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
-    "@explorablegraph/explorable": "github:ExplorableGraph/explorable#89b6f104",
+    "@explorablegraph/explorable": "github:ExplorableGraph/explorable#64d645b8",
     "@microsoft/tsdoc": "0.14.1",
     "algoliasearch": "4.14.2",
     "marked": "4.1.0",
