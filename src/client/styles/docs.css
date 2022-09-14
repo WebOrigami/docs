@@ -312,6 +312,7 @@ nav a:hover {
  * Side-by-side layouts
  */
 .sideBySide {
+  align-items: center;
   display: grid;
   gap: 2rem;
   grid-template-areas:
