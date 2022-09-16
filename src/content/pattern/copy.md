@@ -1,4 +1,4 @@
 ---
-title: Saving output
+title: Copy a graph
 numberHeadings: true
 ---

@@ -63,16 +63,10 @@ Some notes:
 {{ intro/round2complete/object.js }}
 ```
 
-## Display the graph in the console
+## Test the object graph
 
-```{{'js'}}
-{{ intro/round1/display.js }}
-```
-
-```{'yaml'}
-{{ intro/data/data.yaml }}
-```
+TODO
 
 &nbsp;
 
-Next: [Transform the graph](intro4.html) »
+Next: [Display a graph](display.html) »

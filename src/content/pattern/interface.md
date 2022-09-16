@@ -1,115 +1,88 @@
 ---
-title: The Explorable interface
+title: Data as graphs
+intro = client/samples/patternIntro:
 ---
 
-The `Explorable` interface is a simple and flexible way to represent a wide variety of data types as graphs.
+Let's use the explorable graph pattern to tackle a small, common development task:
 
-## Explorable graphs
+> _Our team writes site content in markdown format since that's friendlier than raw HTML. We need to convert a folder of markdown files to HTML pages so we can deploy them on our site._
 
-Specifically, the graphs handled by the `Explorable` are said to be _explorable_ graphs, which means:
+<span class="tutorialStep"></span> View the files in `src/data/folder`, which contains some trivial markdown files. For example, `Alice.md`, contains:
 
-- You can ask a node in the graph for its _keys_.
-- With a key, you can ask a node to give you the corresponding _value_ associated with that key.
-- The value may be another node in the graph, or the value may be any other type of JavaScript data.
-- The set of keys you get back may not be complete. That is, the node may have keys that it can handle that it chooses _not_ to return in the set of keys it will give you.
-- The node may (or may not) allow you set the value associated with a given key.
-- All these node operations — obtaining its keys, getting the value for a given key, and optionally setting the value for a given key — may be asynchronous.
-
-A useful way to think about an explorable graph is that it is a "lazy dictionary". Such a construct is sufficiently flexible to encompass many types of data.
-
-## Explorable interface definition
-
-JavaScript does not have a first-class representation of interfaces, but a graph node supporting the `Explorable` interface looks like this:
-
-```js
-const graph = {
-  // Iterate over this graph node's keys.
-  async *[Symbol.asyncIterator]() { ... }
-
-  // Get the value of a given key.
-  async get(key) { ... }
-
-  // Optional: set the value of a given key.
-  async set(key, value) { ... }
-}
+```{{'md'}}
+{{ intro/data/folder/Alice.md }}
 ```
 
-Some notes on the JavaScript shown above:
+We want to end up with a corresponding collection of HTML pages, such as `Alice.html`:
 
-- The [Symbol.asyncIterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/asyncIterator) reference is what is called a "well-known symbol" in JavaScript: a symbol that has special meaning to the JavaScript engine. In this case, the symbol lets you easily iterate over a graph node's set of keys asynchronously using a [for await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of) loop.
-
-- The asterisk (`*`) before the `Symbol.asyncIterator` indicates that the function is a [generator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator): a function that can be repeatedly invoked to return the next result in a sequence. The sequence can be potentially infinite in length.
-
-- All of the functions in the `Explorable` interface are marked with the [async](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) keyword, indicating that they are asynchronous functions. In practice, the functions may return immediately, but they have the potential, at least, to do work that will require a bit of time: retrieving data from the file system, accessing data from a network, or performing long calculations.
-
-In a strongly-typed language like TypeScript, the interface looks like:
-
-```ts
-interface Explorable {
-  [Symbol.asyncIterator](): AsyncIterableIterator<any>;
-  get(key: any): Promise<any>;
-  set?(key: any, value: any): Promise<void>;
-}
+```{{'html'}}
+{{ mdHtml intro/data/folder/Alice.md }}
 ```
 
-## Representing a simple graph
+## Wait — why files?
 
-Suppose we want to represent the small graph used in the [introduction](/cli/) to the ori command-line tool:
+The problem statement presumed that the markdown content was stored as a file system folder, which is certainly plausible given a file system's advantages:
+
+- Files are easy to edit, copy, and share in a wide variety of applications
+- Web projects often use source code management systems like GitHub that are based on files
+
+But it's worth noting that we could have made other choices. Since the content is currently quite small, we could put everything into a single YAML (or JSON) file:
+
+```{{'yaml'}}
+{{ intro/data/data.yaml }}
+```
+
+This approach has its own advantages:
+
+- Keeping the data together may make it easier to create, edit, and manage
+- If consistency between the keys and values is important, a single file makes it easier to review
+- Reading a single file will be faster than traversing a folder of multiple files
+
+Or we could load the data directly as an in-memory JavaScript object:
+
+```{{'js'}}
+{{ intro/data/data.js }}
+```
+
+This has the same advantages as the YAML/JSON approach, plus:
+
+- No need to read and parse the contents, as the platform will take care of loading it for us
+- Blazing fast
+
+There are many other data representations that might be appropriate for this situation. We might, for example, choose to store and retrieve the data from:
+
+- A network file server
+- A web-based storage service like Google Drive
+- A Content Management System (CMS)
+- a proprietary database
+
+Each of these approaches has their own advantages over loose files. So why be so fast to pick files as the answer?
+
+## Switching costs
+
+One problem with all of the data representations mentioned above is that they have significant switching costs.
+
+First, the specific data representation you pick will entail use of specific APIs. If you want to store the markdown in files, then you're going to use a file system API such as Node's [fs](https://nodejs.org/api/fs.html) API. If you ever decide to change your data representation, you must rewrite all the code that reads and writes data.
+
+Second, and more insidiously, the system used to store your data often influences how you reference data. If you are working with markdown _files_, then your code may end up passing around file paths that refer to markdown files. If you are working with in-memory JavaScript objects, then the same type of code will likely end up passing around JavaScript object references.
+
+That means your entire code base may end up being influenced by how and where your data is stored — even code that has nothing to do with reading or writing data.
+
+This leads to overspecialized code. In the context of this markdown-to-HTML task, you may end up writing code that specifically transforms a _folder_ of markdown _files_. Anyone (perhaps your future self) who wants to transform a collection of markdown documents stored in some other way may be unable to use your code without substantial modification.
+
+## Data as graphs
+
+Regardless of how we are storing the markdown content, it's possible to conceptualize the content as a graph:
 
 <figure>
-{{ svg client/samples/cli.yaml/greetings.yaml }}
+  {{ svg intro/data/folder }}
+  <figcaption>The markdown documents as a graph</figcaption>
 </figure>
 
-The small circle on the left is a graph node with three keys ("Alice", "Bob", "Carol") that correspond to three values ("Hello, Alice", etc.). This can be represented in the `Explorable` interface as:
+We can write code to treat _any_ of the relevant data representations for this problem as a graph. That is, we can create an adapter or wrapper that lets us work with the data as a graph. Our core operation can then work on graphs.
 
-```js
-const graph = {
-  // Iterate over this graph node's keys.
-  async *[Symbol.asyncIterator]() {
-    yield* ["Alice", "Bob", "Carol"];
-  },
+We can start with the simplest possible data representation and, if that suffices, we're done. If we later need to change our representation, we can write a new adapter that lets us treat that as a graph. Our core code should continue to work without modification. In this way, we productively reduce our switching costs.
 
-  // Get the value of a given key.
-  async get(key) {
-    return `Hello, ${key}.`;
-  },
-};
-```
+&nbsp;
 
-The [yield\*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/yield*) keyword is a kind of `return` statement used in a JavaScript generator to produce a sequence of values from an object — here, from an array. The first time you call this `Symbol.asyncIterator`, it will yield the key "Alice", then pause and hand control back to your invoking code. The next time you call the iterator, it will yield the key "Bob". The third time it will yield "Carol" and also indicate that the graph has no more keys it wants to share.
-
-## Traversing an explorable graph
-
-If we wish to display the keys and values in the above graph, we can write:
-
-```js
-// Display a graph.
-// Loop over the graph's keys using a `for await` loop, which will invoke the
-// graph's `Symbol.asyncIterator` to produce a sequence of keys.
-for await (const key of graph) {
-  // For a given key, get the value associated with it.
-  const value = await graph.get(key);
-  // Display the key and value.
-  console.log(`${key}: ${value}`);
-}
-```
-
-This produces the output:
-
-```console
-Alice: Hello, Alice.
-Bob: Hello, Bob.
-Carol: Hello, Carol.
-```
-
-Note that the `for await` loop implicitly invokes the graph's `Symbol.asyncIterator`. That specific symbol lets JavaScript know which function the `for await` loop should iterate over.
-
-## Wrappers
-
-Instead of directly defining a class or object that implements the `Explorable` interface, you can make use of various wrappers that will turn something into an explorable version:
-
-- [ExplorableArray](ExplorableArray.html) can wrap a JavaScript `Array` instance
-- [FilesGraph](FilesGraph.html) can wrap a file system folder
-- [FunctionGraph](ExplorableFunctions.html) can wrap a JavaScript function and an optional domain
-- [ObjectGraph](ObjectGraph.html) can wrap a plain JavaScript object
-- [ExplorableSite](ExplorableSite.html) can wrap a web site
+Next: [Object graphs](intro3.html) »

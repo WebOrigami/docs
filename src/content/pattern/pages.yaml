@@ -1,19 +1,32 @@
 - text: Introduction
   href: index.html
-  pages:
-    - href: intro1.html
-      text: Start
-    - href: intro2.html
-      text: Data as graphs
-    - href: intro3.html
-      text: Object graphs
-    - href: intro4.html
-      text: Transform a graph
-    - href: intro5.html
-      text: File graphs
-    - href: intro6.html
-      text: Serve a graph
-    - href: intro7.html
-      text: Copy a graph
-- text: Explorable interface
-  href: interface.html
+- href: start.html
+  text: Start
+- href: data-representations.html
+  text: Data representations
+- href: explorable.html
+  text: Explorable interface
+- href: objectGraph.html
+  text: Object graphs
+- href: display.html
+  text: Display a graph
+- href: transform.html
+  text: Transform a graph
+- href: filesGraph.html
+  text: File graphs
+- href: deep.html
+  text: Deep graphs
+- href: serve.html
+  text: Serve a graph
+- href: copy.html
+  text: Copy a graph
+- href: functionGraph.html
+  text: Function graphs
+- href: operations.html
+  text: Graph operations
+- href: reduce.html
+  text: Reduce a graph
+- href: tools.html
+  text: Tools
+- href: library.html
+  text: Library
