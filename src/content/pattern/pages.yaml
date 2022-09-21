@@ -2,31 +2,33 @@
   href: index.html
 - href: start.html
   text: Start
-- href: data-representations.html
+- href: representations.html
   text: Data representations
-- href: explorable.html
+- href: interface.html
   text: Explorable interface
-- href: objectGraph.html
-  text: Object graphs
 - href: display.html
   text: Display a graph
 - href: transform.html
   text: Transform a graph
 - href: filesGraph.html
   text: File graphs
+- href: functionGraph.html
+  text: Function graphs
+- href: classes.html
+  text: Classes
 - href: deep.html
   text: Deep graphs
 - href: serve.html
   text: Serve a graph
+- href: indexPages.html
+  text: Index pages
 - href: copy.html
   text: Copy a graph
-- href: functionGraph.html
-  text: Function graphs
 - href: operations.html
   text: Graph operations
 - href: reduce.html
   text: Reduce a graph
-- href: tools.html
-  text: Tools
+- href: cli.html
+  text: Graph CLI
 - href: library.html
   text: Library

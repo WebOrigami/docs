@@ -1,8 +1,7 @@
 ---
 title: Serve a graph
-numberHeadings: true
-intro = client/samples/patternIntro:
-functions = js/codeFunctions(intro/test/serve.js):
+deep = node_modules/@explorablegraph/pattern-intro/src/deep:
+functions = js/codeFunctions(deep/serve.js):
 ---
 
 Displaying our trivial site in the console is fine for debugging, but now that our site is in graph form, we can do much more interesting things with it.
