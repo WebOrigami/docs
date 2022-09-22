@@ -26,8 +26,6 @@
   text: Copy a graph
 - href: operations.html
   text: Graph operations
-- href: reduce.html
-  text: Reduce a graph
 - href: cli.html
   text: Graph CLI
 - href: library.html

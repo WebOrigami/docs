@@ -13,7 +13,7 @@ export default function codeFunctions(code) {
 class CodeFunctionsGraph extends ObjectGraph {
   constructor(code) {
     const functionRegex =
-      /\/\/[\s\S]+?\n(async )?function (?<name>.+)\([\s\S]+?\n\}\n/g;
+      /(\/\/.+)?\n(async )?function (?<name>.+)\([\s\S]+?\n\}\n/g;
     const matches = [...code.matchAll(functionRegex)];
     const functions = {};
     functions["@prologue"] = code.slice(0, matches[0].index).trim();

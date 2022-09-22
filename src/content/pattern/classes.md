@@ -3,11 +3,13 @@ title: Graph classes
 classes = node_modules/@explorablegraph/pattern-intro/src/classes:
 ---
 
-We now have explorable wrappers for a specific object, a specific folder, and a specific function. Before moving on, let's generalize that code to create classes to wrap any object, folder, or function.
+We now have explorable wrappers for a _specific_ object, folder, or function. Before moving on, let's generalize that code to create classes to wrap _any_ object, folder, or function.
 
-These classes are basically the code we had before, and simply use a constructor that accepts the thing we want to wrap.
+These classes package up our existing code, adding a constructor to accept the thing we want to wrap. Any code that we've written to work with explorable graphs, like our `json` utility, will already accept instances of these classes, as they support the necessary Explorable interface methods.
 
-Any code that we've written to work with explorable graphs, like our `json` utility, will already accept instances of these classes.
+These classes do _not_ inherit from some shared base class. Doing so is possible but would be awkward, as these classes have substantially different constructor parameters.
+
+By defining an explorable graph as an interface instead of a base class, we retain more flexibility that using a class hierarchy.
 
 ## Object graph class
 
