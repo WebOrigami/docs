@@ -24,6 +24,8 @@
   text: Index pages
 - href: copy.html
   text: Copy a graph
+- href: combine.html
+  text: Combine graphs
 - href: operations.html
   text: Graph operations
 - href: cli.html

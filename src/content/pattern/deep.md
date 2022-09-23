@@ -12,13 +12,15 @@ With this step, you can think of an explorable graph as a _tree of promises_. If
 
 ## Deep object graphs
 
-We rewrite the `get` implementation in `ObjectGraph.js`, adding a simplistic check to see whether the value we're passing back is a plain JavaScript object. If so, the value is a sub-object that we'll wrap in its own `ObjectGraph` before returning it.
+We rewrite the `get` implementation in `ObjectGraph.js`, adding a simplistic check to see whether the value we're passing back is a plain JavaScript object. If it is a plain object, but is not already explorable, we'll wrap in its own `ObjectGraph` before returning it.
 
 ```{{'js'}}
 // deep/ObjectGraph.js
 
 {{ deep/ObjectGraph.js }}
 ```
+
+Note that instead of creating new instances with `new ObjectGraph`, we use `new this.constructor`. The former could work in this tutorial, but the latter is more future-proof because it supports subclassing. If you ever were to subclass `ObjectGraph`, you'd want that subclass to spawn new instances of that subclass, not `ObjectGraph`.
 
 This lets us create a deep tree:
 
