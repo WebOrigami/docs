@@ -89,3 +89,7 @@ Visually this looks like:
 </figure>
 
 So now we have a way of transforming an arbitrarily deep folder of markdown content into a corresponding deep tree of HTML content. We're now ready to do some interesting things with this content.
+
+&nbsp;
+
+Next: [Serve a graph](serve.html) »

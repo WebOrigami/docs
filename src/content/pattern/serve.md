@@ -80,4 +80,6 @@ The graph only generates the HTML when you ask for it by browsing to a page like
 
 This server is already pretty interesting! We've got a simple site, but can flexibly change the representation of the data. Having done relatively little work, we can let our team author content in markdown. Unlike many markdown-to-HTML solutions, the translation is happening at runtime, so an author can immediately view the result of markdown changes by refreshing the corresponding page.
 
-This server can be good enough for development, and we could easily deploy it in this state. But since this HTML content is currently all static, it would be nice to render the HTML content as `.html` files we can deploy directly. Let's do that next.
+&nbsp;
+
+Next: [Index pages](indexPages.html) »

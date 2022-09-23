@@ -15,7 +15,7 @@ You can use this software design pattern in many contexts, including:
 - command-line tools
 - dev toolchains
 
-At this level, _there is no code library or framework_, but the pattern itself helps you:
+At this level, _there is no code library or framework_. The pattern itself helps you:
 
 - Apply a higher level of mathematical rigor to your development tasks
 - Focus on the logical representation of the data instead of its physical storage and location
@@ -30,4 +30,4 @@ Follow the short intro tutorial to see how to represent and transform data using
 
 &nbsp;
 
-[Start the tutorial](intro1.html) »
+Next: [Start the tutorial](start.html) »

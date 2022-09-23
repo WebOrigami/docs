@@ -40,9 +40,9 @@ This copies the entire virtual graph represented by the `src` folder into a new 
 
 <span class="tutorialStep"></span> Restart the server and browse the `dist` route in the served site. You should see a fully functional About Us area that's identical to the one visible at the `src` route — only the `dist` version is backed entirely by static files.
 
-Some of the source files you created by hand or copied in, such as `styles.css`, are necessary to run the site, but other files like `+.yaml` aren't strictly necessary. It's possible to filter out the files you don't need, but for now you can leave them in the `dist` folder; deploying them is harmless.
+Some of the source files you created by hand or copied in, such as `styles.css`, are necessary to run the site, but other files like `index.ori` aren't necessary to deploy — they've already done their work. It's possible to filter out the files you don't need, but for now you can leave them in the `dist` folder; deploying them is harmless.
 
-At this point, you could deploy the About Us site by copying the `dist` folder to a CDN or some other network-visible location. The specific instructions for doing that will depend on where you want to deploy the files, which is beyond the scope of this tutorial.
+At this point, you could deploy the About Us site by copying the `dist` folder to a CDN or some other network-visible location. That step is beyond the scope of this tutorial, and the specifics will depend on where you want to deploy the files.
 
 ## Conclusion
 
@@ -52,7 +52,7 @@ Through this tutorial, you created a small but functionally meaningful About Us 
 - You created virtual files and folders with formulas.
 - Those formulas transform the data graph in various ways to create a virtual graphs of avatars, HTML fragments, or HTML pages.
 - The final result involves no JavaScript code. In an Origami project, you often just need JavaScript to define the one-to-one transformations you would like to perform. The many-to-many transformations — of people to HTML pages, say — can be accomplished with formulas.
-- You rendered the virtual graph of the site into real files that can be deployed directly.
+- You rendered the virtual graph of the site into real files that can you can deploy.
 
 This concludes the tutorial.
 

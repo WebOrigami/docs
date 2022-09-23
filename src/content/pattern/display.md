@@ -44,3 +44,7 @@ We can now use this `json.js` utility to display the `object.js` graph we create
 $ node json object.js
 {{ json flat/object }}
 ```
+
+&nbsp;
+
+Next: [Transform a graph](transform.html) »

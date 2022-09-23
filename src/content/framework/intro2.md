@@ -74,19 +74,16 @@ You can visualize the real files in the `src` folder as a graph:
   <figcaption>The src folder graph has one real file</figcaption>
 </figure>
 
-If you ask ori to show the contents of a _virtual_ graph based on `src`, the resulting virtual graph includes _both_ the real files and any virtual files you've defined.
+If you ask ori to show the contents of a _virtual_ graph based on `src`, the resulting virtual graph includes the real files and any virtual files you've defined. The virtual graph omits special files like `+.yaml`.
 
 <span class="tutorialStep"></span> View the virtual files:
 
 ```console assert: true, path: files
 $ ori virtual/src
-+.yaml: |
-  # Origami formulas for the About Us web site.
-  message: Hello, world!
-message: Hello, world!
+{{ yaml virtual/src }}
 ```
 
-The `virtual` graph here includes a virtual `message` file that contains "Hello, world!"
+The `virtual` graph has a virtual `message` file that contains "Hello, world!"
 
 <figure>
   {{ svg virtual/src }}

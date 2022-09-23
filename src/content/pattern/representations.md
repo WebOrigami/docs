@@ -120,3 +120,7 @@ Regardless of how we are storing the markdown content, it's possible to conceptu
 We can write code to treat _any_ of the relevant data representations for this problem as a graph. That is, we can create an adapter or wrapper that lets us work with the data as a graph. Our core operation can then work on graphs.
 
 We can start with the simplest possible data representation and, if that suffices, we're done. If we later need to change our representation, we can write a new adapter that lets us treat that as a graph. Our core code should continue to work without modification. In this way, we productively reduce our switching costs.
+
+&nbsp;
+
+Next: [The Explorable interface](interface.html) »

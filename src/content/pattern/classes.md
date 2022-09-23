@@ -34,3 +34,7 @@ By defining an explorable graph as an interface instead of a base class, we reta
 
 {{ classes/FunctionGraph.js }}
 ```
+
+&nbsp;
+
+Next: [Deep graphs](deep.html) »

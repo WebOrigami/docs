@@ -58,3 +58,7 @@ $ node build
 $ ls dist
 Alice.html Bob.html   Carol.html David.html Eve.html   Frank.html Grace.html index.html more
 ```
+
+&nbsp;
+
+Next: [Graph operations](operations.html) »

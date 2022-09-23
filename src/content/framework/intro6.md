@@ -17,7 +17,7 @@ application:
 
 ## Transform data into HTML with a template
 
-You can transforming data into HTML with plain JavaScript, but for that task, a template language can be more appropriate.
+You can transform data into HTML with plain JavaScript, but a template language can be more appropriate for that task.
 
 You can use any template system with Origami, but for this tutorial you'll use the template system built into Origami. These Origami templates reuse the same expression language as Origami formulas and the ori command-line interface.
 
@@ -143,9 +143,11 @@ avatars = map(teamByName, =avatar(name), '', '.svg'):
 
 You should now be able to see avatars for the people on their HTML pages.
 
-In the served site, you can navigate to the `src/avatars` folder to see a virtual folder of the generated avatar images. As noted earlier, an important property of building content with Origami is that intermediate results are explorable in the browser or the command line. This virtual folder looks indistinguishable from a real folder of real images.
+<span class="tutorialStep"></span> In the served site, navigate to the `src/avatars` folder to see a virtual folder of the generated avatar images.
 
-A common feature of working with Origami is that you can smoothly move between using real and virtual files. You could use these generated avatar SVGs to get started. Later, you could delete the `avatars` formula and create a real `avatars` folder containing manually-curated images or headshot photos.
+This virtual `src/avatars` folder looks indistinguishable from a real folder of real images. As noted earlier, an important property of building content with Origami is that intermediate results are explorable in the browser (or from the command line).
+
+Another common feature of working with Origami is that you can smoothly move between using real and virtual files. You could use these generated avatar SVGs to get started. Later, you could delete the `avatars` formula and create a real `avatars` folder containing manually-curated images or headshot photos.
 
 With the addition of the avatars, you've completed the essential functions of the `team` route within the About Us area of the site you're designing. You could add more data fields to `team.yaml` and render those in the `person.ori` template, but from a functional standpoint, you're done with that part of the task.
 

@@ -152,3 +152,7 @@ Starting up http-server, serving dist
 You can browse to the static server and confirm that the static results are the same as what you can see running the dynamically-generated graph.
 
 We've now solved our original problem: we've created a system in which our team can write content for our web site using markdown, and end up with HTML pages we can deploy.
+
+&nbsp;
+
+Next: [Combine graphs](combine.html) »

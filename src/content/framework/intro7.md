@@ -53,7 +53,7 @@ Earlier you mapped the graph of people to a graph of HTML pages. To create the i
 <span class="tutorialStep"></span> Update the `index.ori` template so that it contains:
 
 ```html
-{{index.ori}}
+{{ index.ori }}
 ```
 
 The `\{\{#`…`}}` syntax invokes the same `map` function you've already been using in formulas. The fragment between the `\{\{#map}}` and `\{\{/map}}` will be passed as an additional argument to the `map` function. That fragment will be evaluated in the context of the individual item being mapped. In this case, `map` is mapping the `teamByName` graph to create a graph of text strings that are concatenated to form the final HTML result.

@@ -121,4 +121,4 @@ The transform function can accept any graph of markdown content, so we can switc
 
 &nbsp;
 
-Next: [Copy a graph](intro6.html)
+Next: [Function graphs](functionGraph.html)
