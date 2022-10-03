@@ -76,7 +76,7 @@ This particular function happens to be synchronous. If the function were asynchr
 
 To summarize some of the pros and cons of these three approaches:
 
-|          | &nbsp; | Object                      | &nbsp; | Files                  | &nbsp; | Function                |
+|          | &emsp; | Object                      | &emsp; | Files                  | &emsp; | Function                |
 | -------- | ------ | :-------------------------- | ------ | :--------------------- | ------ | :---------------------- |
 | **Pros** |        | Fast                        |        | Many editing tools     |        | Create infinite results |
 |          |        | Easy to code against        |        | Editable by anyone     |        | Create complex results  |

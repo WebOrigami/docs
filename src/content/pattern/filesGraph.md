@@ -11,10 +11,10 @@ Which approach is best for our particular team authors might vary, but as an exa
 
 Before starting, let's quickly look at both objects and files through the lens of the Explorable interface. In both cases, we have standard ways of getting keys — in the case of folders and files, the keys are folder and file names. And in both cases, we have a way of getting the value or content associated with a given key.
 
-| Explorable interface method &nbsp;&nbsp;&nbsp; | Object implementation &nbsp;&nbsp; | File implementation   |
-| :--------------------------------------------- | :--------------------------------- | :-------------------- |
-| `asyncIterator`                                | `Object.keys(obj)`                 | `fs.readdir(dirname)` |
-| `get(key)`                                     | `obj[key]`                         | `fs.readFile(key)`    |
+| Explorable interface method &emsp; | Object implementation &emsp; | File implementation   |
+| :--------------------------------- | :--------------------------- | :-------------------- |
+| `asyncIterator`                    | `Object.keys(obj)`           | `fs.readdir(dirname)` |
+| `get(key)`                         | `obj[key]`                   | `fs.readFile(key)`    |
 
 If we're using the Node `fs` API, we have our choice of synchronous or asynchronous methods, but there are performance benefits to be gained by using the asynchronous API.
 

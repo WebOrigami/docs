@@ -16,29 +16,29 @@ The Origami syntax is designed to be relatively easy to type and read in several
 
 The following types of expressions are supported by the Origami CLI and in Origami formulas:
 
-| Description                                  |              | Examples                           |
-| :------------------------------------------- | ------------ | :--------------------------------- |
-| String with single quotes                    | &nbsp;&nbsp; | `'hello'`                          |
-| Function call                                |              | `greet('world')`                   |
-|                                              |              | `fn('foo', 'bar')`                 |
-| Function call with implicit parentheses      |              | `greet 'world'`                    |
-|                                              |              | `fn 'foo', 'bar'`                  |
-| Function call with colon (useful in shell)   |              | `fn:foo`                           |
-| Indirect function call                       |              | `(fn())()`                         |
-| Slash-separated function call or path¹       |              | `greet/world`                      |
-| Percent-separated function call or path¹     |              | `greet%world`                      |
-| Integers                                     |              | `42`                               |
-| Floating-point numbers                       |              | `3.14`                             |
-| Literal reference to a key in scope          |              | `foo`                              |
-|                                              |              | `file.txt`                         |
-| Self-reference to the value defined by a key |              | `this`                             |
-| Bound variable reference in a formula        |              | `\{\{x}}`                          |
-| HTTPS or HTTP URL                            |              | `https://example.com/index.html`   |
-| HTTPS or HTTP URL with spaces                |              | `https example.com index.html`     |
-| Parentheses group                            |              | `(foo)`                            |
-| Template literal with inline substitution    |              | `` `Hello, \{\{name}}` ``          |
-| Template literal with block substitution     |              | `` `\{\{#if cond}}Yes\{\{/if}}` `` |
-| Lambda expressions (anonymous functions)     |              | `=message`                         |
+| Description                                  |        | Examples                           |
+| :------------------------------------------- | ------ | :--------------------------------- |
+| String with single quotes                    | &emsp; | `'hello'`                          |
+| Function call                                |        | `greet('world')`                   |
+|                                              |        | `fn('foo', 'bar')`                 |
+| Function call with implicit parentheses      |        | `greet 'world'`                    |
+|                                              |        | `fn 'foo', 'bar'`                  |
+| Function call with colon (useful in shell)   |        | `fn:foo`                           |
+| Indirect function call                       |        | `(fn())()`                         |
+| Slash-separated function call or path¹       |        | `greet/world`                      |
+| Percent-separated function call or path¹     |        | `greet%world`                      |
+| Integers                                     |        | `42`                               |
+| Floating-point numbers                       |        | `3.14`                             |
+| Literal reference to a key in scope          |        | `foo`                              |
+|                                              |        | `file.txt`                         |
+| Self-reference to the value defined by a key |        | `this`                             |
+| Bound variable reference in a formula        |        | `\{\{x}}`                          |
+| HTTPS or HTTP URL                            |        | `https://example.com/index.html`   |
+| HTTPS or HTTP URL with spaces                |        | `https example.com index.html`     |
+| Parentheses group                            |        | `(foo)`                            |
+| Template literal with inline substitution    |        | `` `Hello, \{\{name}}` ``          |
+| Template literal with block substitution     |        | `` `\{\{#if cond}}Yes\{\{/if}}` `` |
+| Lambda expressions (anonymous functions)     |        | `=message`                         |
 
 ¹ You can use slashes in paths in the command-line, but Windows prevents the use of slashes in file names, and even macOS applications may not expect slashes to appear in file names. For this reason, it's recommended to use percent signs in paths that appear in file names.
 
