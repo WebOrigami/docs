@@ -1,4 +1,4 @@
-import { ObjectGraph } from "@explorablegraph/explorable";
+import { ObjectGraph } from "@graphorigami/origami";
 
 /**
  * Given JavaScript source code, returns a graph of the source code for the

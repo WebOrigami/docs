@@ -1,4 +1,4 @@
-import { FilesGraph } from "@explorablegraph/explorable";
+import { FilesGraph } from "@graphorigami/origami";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 

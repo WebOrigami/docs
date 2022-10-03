@@ -1,3 +1,3 @@
-import { builtins } from "@explorablegraph/explorable";
+import { builtins } from "@graphorigami/origami";
 
 export default builtins;

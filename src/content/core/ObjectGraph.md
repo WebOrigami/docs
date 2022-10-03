@@ -5,7 +5,7 @@ title: ObjectGraph
 `ObjectGraph` is a class that can wrap a plain JavaScript object to create an explorable object.
 
 ```js
-import { ObjectGraph } from "@explorablegraph/explorable";
+import { ObjectGraph } from "@graphorigami/origami";
 
 // Wrap an object to create an explorable graph.
 const graph = new ObjectGraph({

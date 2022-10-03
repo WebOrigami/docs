@@ -1,4 +1,4 @@
-import { ExplorableGraph } from "@explorablegraph/explorable";
+import { ExplorableGraph } from "@graphorigami/origami";
 
 export default async function defineds(variant) {
   variant = variant ?? (await this.get("@defaultGraph"));

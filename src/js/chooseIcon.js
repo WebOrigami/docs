@@ -1,4 +1,4 @@
-import { ExplorableGraph } from "@explorablegraph/explorable";
+import { ExplorableGraph } from "@graphorigami/origami";
 
 // Pick an icon for a page that is quasi-random but stable across visits.
 export default async function chooseIcon(page, icons) {

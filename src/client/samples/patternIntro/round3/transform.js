@@ -1,4 +1,4 @@
-import { MapExtensionsGraph } from "@explorablegraph/explorable";
+import { MapExtensionsGraph } from "@graphorigami/origami";
 import { marked } from "marked";
 
 export default function transformMarkdownToHtml(graph) {

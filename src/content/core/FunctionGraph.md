@@ -5,7 +5,7 @@ title: FunctionGraph
 `FunctionGraph` is a class that can wrap a JavaScript function and an optional domain for that function to create an graph that implements the [Explorable](Explorable.html) interface.
 
 ```js
-import { FunctionGraph } from "@explorablegraph/explorable";
+import { FunctionGraph } from "@graphorigami/origami";
 
 // Wrap an object to create an explorable graph.
 const graph = new FunctionGraph({

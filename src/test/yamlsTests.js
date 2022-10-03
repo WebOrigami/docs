@@ -1,4 +1,4 @@
-import { ExplorableGraph } from "@explorablegraph/explorable";
+import { ExplorableGraph } from "@graphorigami/origami";
 import YAML from "yaml";
 
 export default async function yamlsTests(variant) {

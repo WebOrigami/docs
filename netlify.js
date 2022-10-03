@@ -1,4 +1,4 @@
-import { ExplorableGraph } from "@explorablegraph/explorable";
+import { ExplorableGraph } from "@graphorigami/origami";
 
 /**
  * Expose index.html and keys.json (no initial dot) for Netlify.

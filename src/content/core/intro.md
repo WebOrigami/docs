@@ -40,7 +40,7 @@ Carol: Hello, Carol.
 ```js
 // object.js
 
-import { ObjectGraph } from "@explorablegraph/explorable";
+import { ObjectGraph } from "@graphorigami/origami";
 
 // Create an explorable in-memory object.
 export default new ObjectGraph({
@@ -62,7 +62,7 @@ Carol: Hello, Carol. [from an object]
 ```js
 // function.js
 
-import { FunctionGraph } from "@explorablegraph/explorable";
+import { FunctionGraph } from "@graphorigami/origami";
 
 // Create an explorable function with a domain.
 export default new FunctionGraph(

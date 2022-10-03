@@ -4,7 +4,7 @@ import {
   ObjectGraph,
   MetaTransform,
   StringWithGraph,
-} from "@explorablegraph/explorable";
+} from "@graphorigami/origami";
 import assert from "assert/strict";
 
 export default async function (variant) {

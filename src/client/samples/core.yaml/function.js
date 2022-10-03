@@ -1,6 +1,6 @@
 // function.js
 
-import { FunctionGraph } from "@explorablegraph/explorable";
+import { FunctionGraph } from "@graphorigami/origami";
 
 // Create an explorable function with a domain.
 export default new FunctionGraph(

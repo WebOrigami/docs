@@ -1,4 +1,4 @@
-import { DefaultPages } from "@explorablegraph/explorable";
+import { DefaultPages } from "@graphorigami/origami";
 import Greetings from "./Greetings.js";
 
 export default new DefaultPages({

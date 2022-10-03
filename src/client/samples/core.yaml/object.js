@@ -1,6 +1,6 @@
 // object.js
 
-import { ObjectGraph } from "@explorablegraph/explorable";
+import { ObjectGraph } from "@graphorigami/origami";
 
 // Create an explorable in-memory object.
 export default new ObjectGraph({

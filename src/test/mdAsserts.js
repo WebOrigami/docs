@@ -2,7 +2,7 @@ import {
   ObjectGraph,
   extractFrontMatter,
   MetaTransform,
-} from "@explorablegraph/explorable";
+} from "@graphorigami/origami";
 import consoleAsserts from "./consoleAsserts.js";
 import mdCode from "./mdCode.js";
 

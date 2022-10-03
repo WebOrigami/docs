@@ -1,4 +1,4 @@
-import { ObjectGraph } from "@explorablegraph/explorable";
+import { ObjectGraph } from "@graphorigami/origami";
 
 export default new ObjectGraph({
   "Alice.md": "Hello, **Alice**.",

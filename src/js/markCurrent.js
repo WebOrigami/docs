@@ -1,7 +1,7 @@
 // Given a set of links, add an annotation to the link whose href is the current
 // page.
 
-import { ExplorableGraph, ObjectGraph } from "@explorablegraph/explorable";
+import { ExplorableGraph, ObjectGraph } from "@graphorigami/origami";
 
 export default async function markCurrent(variant, currentPage) {
   if (!variant) {
