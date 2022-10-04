@@ -28,7 +28,5 @@
   text: Combine graphs
 - href: operations.html
   text: Graph operations
-- href: cli.html
-  text: Graph CLI
-- href: library.html
-  text: Library
+- href: sharing.html
+  text: Sharing tools

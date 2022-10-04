@@ -29,7 +29,7 @@ StackBlitz may indicate that you need to enable certain cookies in order to run 
 
 With this option, you can use whatever code editor you prefer.
 
-<span class="tutorialStep"></span> Clone the [ExplorableGraph/framework-intro](https://github.com/GraphOrigami/framework-intro) repository to your own machine.
+<span class="tutorialStep"></span> Clone the [GraphOrigami/framework-intro](https://github.com/GraphOrigami/framework-intro) repository to your own machine.
 
 <span class="tutorialStep"></span> Open a terminal window in the project's root directory, then:
 

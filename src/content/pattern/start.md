@@ -16,7 +16,7 @@ Note: The default StackBlitz terminal prompt looks like `❯`, but this tutorial
 
 With this option, you can use whatever code editor you prefer.
 
-<span class="tutorialStep"></span> Clone the [ExplorableGraph/pattern-intro](https://github.com/GraphOrigami/pattern-intro) repository to your own machine.
+<span class="tutorialStep"></span> Clone the [GraphOrigami/pattern-intro](https://github.com/GraphOrigami/pattern-intro) repository to your own machine.
 
 <span class="tutorialStep"></span> Open a terminal window in the project's root directory, then:
 

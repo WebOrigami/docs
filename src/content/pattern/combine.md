@@ -17,7 +17,13 @@ Our `ObjectGraph` class turns out to be a useful tool to combine the three graph
 {{ combine/site.js }}
 ```
 
-We apply our `indexPages` transform to give the overall graph an index page.
+We apply our `indexPages` transform to give the overall graph an index page. Having done that, we can drop the use of `indexPages` in the individual graphs. For example, the object-backed graph in `htmlObject.js` no longer needs to define index pages:
+
+```{{'js'}}
+// combine/htmlObject.js
+
+{{ combine/htmlObject.js }}
+```
 
 Our combined graph is quite large:
 
