@@ -1,6 +1,6 @@
 ---
 title: Function graphs
-flat = node_modules/@graphorigami/pattern-intro/src/flat:
+flat = node_modules/pattern-intro/src/flat:
 ---
 
 Having already created explorable implementations of our object and folder representations, it should be fairly quick work to create an explorable implementation of our function representation.
@@ -8,7 +8,7 @@ Having already created explorable implementations of our object and folder repre
 ## Wrap the function with the Explorable interface
 
 ```{{'js'}}
-// flat/fn.js
+/* src/flat/fn.js */
 
 {{ flat/fn.js }}
 ```
@@ -17,7 +17,7 @@ Because the Explorable interface supports asynchronous functions by default, we 
 
 ## Verify the explorable function
 
-<span class="tutorialStep"></span> Run the unit tests for the function-based explorable graph, which are the same as the object and folder graphs.
+<span class="tutorialStep"></span> From inside the `src/flat` directory, run the unit tests for the function-based explorable graph. These are the same tests as for the object and folder graphs.
 
 ```console
 $ node fn.test.js

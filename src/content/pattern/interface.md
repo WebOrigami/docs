@@ -1,6 +1,6 @@
 ---
 title: The Explorable graph interface
-flat = node_modules/@graphorigami/pattern-intro/src/flat:
+flat = node_modules/pattern-intro/src/flat:
 ---
 
 The last section noted that, in the context of our markdown-to-HTML problem, it's possible to conceptualize the markdown content as a graph:
@@ -49,7 +49,7 @@ Some notes:
 Of the three data markdown representations we looked at previously, the in-memory JavaScript object was perhaps the simplest, so let's first look at applying the Explorable interface to a JavaScript object:
 
 ```{{'js'}}
-// flat/object.js
+/* src/flat/object.js */
 
 {{ flat/object.js }}
 ```
@@ -61,12 +61,12 @@ This module exports an explorable graph wrapper around the object. For now, this
 The first thing we can do with this explorable object is programmatically verify it implements the Explorable interface.
 
 ```{{'js'}}
-// flat/object.test.js
+/* src/flat/object.test.js */
 
 {{ flat/object.test.js }}
 ```
 
-<span class="tutorialStep"></span> Run these tests show that all test pass:
+<span class="tutorialStep"></span> From inside the `src/flat` directory, run these tests to see that all test pass:
 
 ```console
 $ node object.test.js

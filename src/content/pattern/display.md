@@ -1,6 +1,6 @@
 ---
 title: Display a graph
-flat = node_modules/@graphorigami/pattern-intro/src/flat:
+flat = node_modules/pattern-intro/src/flat:
 functions = js/codeFunctions(flat/json.js):
 ---
 
@@ -25,7 +25,7 @@ Note: We could make this function more efficient if we didn't `await` the result
 We could write a tool to statically import a specific graph we want to display, but our goal is a utility that can quickly display any graph. So let's have the tool parse a command line argument specifying the file name of a JavaScript module.
 
 ```{{'js'}}
-// flat/json.js
+/* src/flat/json.js */
 
 {{ functions/@prologue }}
 
@@ -38,7 +38,7 @@ The tool dynamically imports the indicated JavaScript file and gets its default 
 
 ## Display the graph in the console
 
-<span class="tutorialStep"></span> Use this `json` utility to display the `object.js` graph we created in the previous step.
+<span class="tutorialStep"></span> Use this `json` utility from inside the `src/flat` directory to display the `object.js` graph we created in the previous step.
 
 ```console
 $ node json object.js

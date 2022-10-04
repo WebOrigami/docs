@@ -1,6 +1,6 @@
 ---
 title: Data representations
-approaches = node_modules/@graphorigami/pattern-intro/src/approaches:
+approaches = node_modules/pattern-intro/src/approaches:
 ---
 
 Let's use the explorable graph pattern to tackle a small, common development task:
@@ -26,16 +26,16 @@ We will make use of a markdown-to-HTML translator, but beyond that are going to 
 Before tackling the translation of markdown to HTML, let's first solve a simpler problem: dump out the contents of the markdown files to the console.
 
 ```{{'js'}}
-// approaches/folder.js
+/* src/approaches/files.js */
 
-{{ approaches/folder.js }}
+{{ approaches/files.js }}
 ```
 
 Here we use the promise-based flavor of Node's [fs](https://nodejs.org/api/fs.html) API, as it avoids blocking the main thread and makes it easy to work with the results.
 
 We use the `fs.readFile` API to get a list of the file names that we can loop over. For each file name, we load the file and display it.
 
-When we run this in the console, we see the contents of the three markdown files:
+When we run this in the console in the `src/approaches` directory, we see the contents of the three markdown files:
 
 ```console
 $ node folder
@@ -53,7 +53,7 @@ But we could make other choices to represent our data. Let's look at two alterna
 If the set of markdown files is really so trivial, we could decide to load the data directly as an in-memory JavaScript object:
 
 ```{{'js'}}
-// approaches/object.js
+/* src/approaches/object.js */
 
 {{ approaches/object.js }}
 ```
@@ -65,7 +65,7 @@ This approach has its own advantages. For one thing, the code is lot simpler. Be
 The particular markdown content here is so rigidly formulaic, we could write a JavaScript function to generate the markdown on demand:
 
 ```{{'js'}}
-// approaches/fn.js
+/* src/approaches/fn.js */
 
 {{ approaches/fn.js }}
 ```

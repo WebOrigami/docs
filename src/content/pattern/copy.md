@@ -1,6 +1,6 @@
 ---
 title: Copy a graph
-set = node_modules/@graphorigami/pattern-intro/src/set:
+set = node_modules/pattern-intro/src/set:
 ---
 
 A key benefit of building a site as a graph is that we can seamlessly move between browsing that graph and rendering that graph as static content.
@@ -26,7 +26,7 @@ Let's extend our Explorable interface with an optional method `set(key, value)`.
 This is straightforward for our object-based graph:
 
 ```js
-// In set/ObjectGraph.js
+// Inside src/set/ObjectGraph.js
   async set(key, value) {
     if (value === undefined) {
       delete this.obj[key];
@@ -39,7 +39,7 @@ This is straightforward for our object-based graph:
 And a fair bit of work for our file system-based graph:
 
 ```js
-// In set/FilesGraph.js
+// Inside src/set/FilesGraph.js
 
   async set(key, value) {
     // Where are we going to write this value?
@@ -98,7 +98,7 @@ A graph doesn't have to support the `set` method. In our code, the virtual graph
 We can now introduce a new helper function, `setDeep(target, source)`, which handles the general case of writing values from the `source` graph into the `target` graph.
 
 ```{{'js'}}
-// set/setDeep.js
+/* src/set/setDeep.js */
 
 {{ set/setDeep.js }}
 ```
@@ -108,20 +108,20 @@ We can now introduce a new helper function, `setDeep(target, source)`, which han
 We're now ready to build the static for our site by copying the virtual graph of HTML pages into a real file system folder. All we need to do is wrap a folder called `dist` in a `FilesGraph`:
 
 ```{{'js'}}
-// set/distFolder.js
+/* src/set/distFiles.js */
 
-{{ set/distFolder.js }}
+{{ set/distFiles.js }}
 ```
 
-And then copy the virtual graph defined in `htmlFolder.js` into that real `dist` folder:
+And then copy the virtual graph defined in `htmlFiles.js` into that real `dist` folder:
 
 ```{{'js'}}
-// set/build.js
+/* src/set/build.js */
 
 {{ set/build.js }}
 ```
 
-<span class="tutorialStep"></span> Use this new `build` tool to copy the virtual graph into files.
+<span class="tutorialStep"></span> Use this new `build` tool from inside the `src/set` directory to copy the virtual graph into files.
 
 ```console
 $ ls dist
@@ -134,7 +134,7 @@ Alice.html Bob.html   Carol.html index.html more
 <span class="tutorialStep"></span> Inspect the individual files in the `dist` folder to confirm their contents — or use our `json` utility to dump the entire `dist` folder to the console.
 
 ```console
-$ node json distFolder.js
+$ node json distFiles.js
 {{ json set/htmlObject }}
 ```
 

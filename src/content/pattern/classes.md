@@ -1,6 +1,6 @@
 ---
 title: Graph classes
-classes = node_modules/@graphorigami/pattern-intro/src/classes:
+classes = node_modules/pattern-intro/src/classes:
 ---
 
 We now have explorable wrappers for a _specific_ object, folder, or function. Before moving on, let's generalize that code to create classes to wrap _any_ object, folder, or function.
@@ -14,15 +14,15 @@ By defining an explorable graph as an interface instead of a base class, we reta
 ## Object graph class
 
 ```{{'js'}}
-// classes/ObjectGraph.js
+/* src/classes/ObjectGraph.js */
 
 {{ classes/ObjectGraph.js }}
 ```
 
-## Folder graph class
+## Files graph class
 
 ```{{'js'}}
-// classes/FilesGraph.js
+/* src/classes/FilesGraph.js */
 
 {{ classes/FilesGraph.js }}
 ```
@@ -30,7 +30,7 @@ By defining an explorable graph as an interface instead of a base class, we reta
 ## Function graph class
 
 ```{{'js'}}
-// classes/FunctionGraph.js
+/* src/classes/FunctionGraph.js */
 
 {{ classes/FunctionGraph.js }}
 ```

@@ -1,6 +1,6 @@
 ---
 title: Serve a graph
-deep = node_modules/@graphorigami/pattern-intro/src/deep:
+deep = node_modules/pattern-intro/src/deep:
 functions = js/codeFunctions(deep/serve.js):
 ---
 
@@ -42,7 +42,7 @@ This converts a request's URL into an array of keys, then returns what it finds 
 
 ## Serve the graph
 
-Finally, we start the server at a default port. We can use the graph of transformed HTML defined in `htmlObject.js` or `htmlFolder.js` as the graph to traverse.
+Finally, we start the server at a default port. We can use the graph of transformed HTML defined in `htmlObject.js` or `htmlFiles.js` as the graph to traverse.
 
 ```{{'js'}}
 {{ functions/@prologue }}
@@ -53,7 +53,7 @@ Finally, we start the server at a default port. We can use the graph of transfor
 
 ## Trying our server
 
-<span class="tutorialStep"></span> Start the server:
+<span class="tutorialStep"></span> From inside the `src/deep` directory, start the server:
 
 ```console
 $ node serve

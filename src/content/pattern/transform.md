@@ -1,6 +1,6 @@
 ---
 title: Transform a graph
-flat = node_modules/@graphorigami/pattern-intro/src/flat:
+flat = node_modules/pattern-intro/src/flat:
 ---
 
 In the last step, we defined an in-memory JavaScript object to hold the set of markdown content we want to convert to HTML. We wrapped the object in the Explorable graph interface so that other code can access that content as an abstract graph, without the need to know specifically how and where that content is stored.
@@ -29,7 +29,7 @@ The markdown graph is "real", in the sense that it is directly stored in some fa
 The transformation will be a function that accepts an explorable graph of markdown and returns a new graph of HTML.
 
 ```js
-// flat/transform.js
+/* src/flat/transform.js */
 
 import { marked } from "marked";
 
@@ -88,12 +88,12 @@ If the markdown graph returns a value, we cast that value to a string. In the ob
 We can now verify that our transform is working as expected by adapting the same tests we used to verify our object graph. The only changes are to: 1) expect `.html` keys instead of `.md` keys, and 2) expect HTML content instead of markdown content.
 
 ```{{'js'}}
-// flat/transform.test.js
+/* src/flat/transform.test.js */
 
 {{ flat/transform.test.js }}
 ```
 
-<span class="tutorialStep"></span> Run the transform tests:
+<span class="tutorialStep"></span> From inside the `src/flat` directory, run the transform tests:
 
 ```console
 $ node transform.test.js
@@ -108,7 +108,7 @@ $ node transform.test.js
 We can bake the transform and the object together to create a final HTML graph.
 
 ```{{'js'}}
-// flat/htmlObject.js
+/* src/flat/htmlObject.js */
 
 {{ flat/htmlObject.js }}
 ```

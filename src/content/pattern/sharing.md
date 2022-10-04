@@ -52,6 +52,8 @@ Those things can be accomplished in very little JavaScript code. (Using the even
 
 The general lesson of working with explorable graphs is that many common development tasks can be viewed as the definition or transformation of graphs. Viewed at the proper level of abstraction, most of those tasks are, in fact, general problems that can be solved with shared code. Using such shared code lets you focus most of your time on solving the problems that are unique to your chosen domain.
 
+This concludes the explorable graph pattern tutorial.
+
 &nbsp;
 
 [Back to index](/pattern)

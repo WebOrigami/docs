@@ -1,6 +1,6 @@
 ---
 title: Combine graphs
-combine = node_modules/@graphorigami/pattern-intro/src/combine:
+combine = node_modules/pattern-intro/src/combine:
 ---
 
 Now that we have a basic site working in graph form, we can manipulate that graph to suit our needs without needing to adjust our server and build infrastructure. For example, we can readily combine graphs to create larger graphs.
@@ -9,10 +9,10 @@ In the course of this tutorial, we've created three parallel graph implementatio
 
 ## Using ObjectGraph to combine graphs
 
-Our `ObjectGraph` class turns out to be a useful tool to combine the three graphs of HTML pages from `htmlFolder.js`, `htmlFn.js`, and `htmlObject.js`. We take the exports from those three files, then use them as values in an object. The keys of that object will name the graph's branches — `files`, `function`, and `object` — letting us route requests into the appropriate branch with those names.
+Our `ObjectGraph` class turns out to be a useful tool to combine the three graphs of HTML pages from `htmlFiles.js`, `htmlFn.js`, and `htmlObject.js`. We take the exports from those three files, then use them as values in an object. The keys of that object will name the graph's branches — `files`, `function`, and `object` — letting us route requests into the appropriate branch with those names.
 
 ```{{'js'}}
-// combine/site.js
+/* src/combine/site.js */
 
 {{ combine/site.js }}
 ```
@@ -20,10 +20,12 @@ Our `ObjectGraph` class turns out to be a useful tool to combine the three graph
 We apply our `indexPages` transform to give the overall graph an index page. Having done that, we can drop the use of `indexPages` in the individual graphs. For example, the object-backed graph in `htmlObject.js` no longer needs to define index pages:
 
 ```{{'js'}}
-// combine/htmlObject.js
+/* src/combine/htmlObject.js */
 
 {{ combine/htmlObject.js }}
 ```
+
+To contrast the values coming from each branch of this graph, we can update the object, files, and function graphs so that they each define different names.
 
 Our combined graph is quite large:
 
@@ -38,13 +40,13 @@ Each of the three main branches of this tree is defined in a different way, with
 We can serve this larger graph by updated the top-level import in `serve.js`:
 
 ```js
-// In combine/serve.js
+/* Inside src/combine/serve.js */
 
 import siteGraph from "./site.js";
 …
 ```
 
-<span class="tutorialStep"></span> Run the updated server.
+<span class="tutorialStep"></span> Run the updated server from inside the `src/combine` directory.
 
 ```console
 $ node serve
@@ -54,7 +56,7 @@ Server running at http://localhost:5000. Press Ctrl+C to stop.
 And we can update `build.js` to build the larger graph:
 
 ```{{'js'}}
-// combine/build.js
+/* src/combine/build.js */
 
 {{ combine/build.js }}
 ```
@@ -64,7 +66,7 @@ And we can update `build.js` to build the larger graph:
 ```console
 $ node build
 $ ls dist
-Alice.html Bob.html   Carol.html David.html Eve.html   Frank.html Grace.html index.html more
+files      function   index.html object
 ```
 
 &nbsp;

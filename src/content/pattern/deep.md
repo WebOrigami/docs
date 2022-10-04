@@ -1,6 +1,6 @@
 ---
 title: Deep graphs
-deep = node_modules/@graphorigami/pattern-intro/src/deep:
+deep = node_modules/pattern-intro/src/deep:
 functions = js/codeFunctions(deep/json.js):
 ---
 
@@ -15,7 +15,7 @@ With this step, you can think of an explorable graph as a _tree of promises_. If
 We rewrite the `get` implementation in `ObjectGraph.js`, adding a simplistic check to see whether the value we're passing back is a plain JavaScript object. If it is a plain object, but is not already explorable, we'll wrap in its own `ObjectGraph` before returning it.
 
 ```{{'js'}}
-// deep/ObjectGraph.js
+/* src/deep/ObjectGraph.js */
 
 {{ deep/ObjectGraph.js }}
 ```
@@ -25,7 +25,7 @@ Note that instead of creating new instances with `new ObjectGraph`, we use `new 
 This lets us create a deep tree:
 
 ```{{'js'}}
-// deep/object.js
+/* src/deep/object.js */
 
 {{ deep/object.js }}
 ```
@@ -41,28 +41,34 @@ which represents the graph
 We do something very similar in `FilesGraph.js`. Here we check to see whether the requested key corresponds to a subdirectory and, if so, wrap that in its own `FilesGraph` before returning it.
 
 ```{{'js'}}
-// deep/FilesGraph.js
+/* src/deep/FilesGraph.js */
 
 {{ deep/FilesGraph.js }}
 ```
 
 This lets us support arbitrarily deep subfolders.
 
+## Deep function graphs
+
+By itself, the `FunctionGraph` class doesn't need to be updated to support deep function-backed graphs. Instead, the function that's being wrapped would need to be updated.
+
+For this tutorial, we'll leave the sample function in `fn.js` alone, but if we wanted it to define a deep graph, for certain keys it could return values that are explorable graphs — instances of `FunctionGraph` values, or any other kind of explorable graph.
+
 ## Converting a deep graph to a plain object
 
 Finally, we need to update our `json` utility. That code has a function called `plain` that resolves an explorable graph to a plain JavaScript object. To handle deep graphs, we make the same `isExplorable` check that the transform above does to decide whether to recurse into an explorable value.
 
 ```{{'js'}}
-// In deep/json.js
+/* Inside src/deep/json.js */
 
 {{ functions/plain }}
 ```
 
-Now we can display a deep `ObjectGraph` or `FilesGraph` instance in the console.
+<span class="tutorialStep"></span> Display a deep `ObjectGraph` or `FilesGraph` instance from inside the `src/deep` directory.
 
 ```console
-$ node json folder.js
-{{ json deep/folder }}
+$ node json files.js
+{{ json deep/files }}
 ```
 
 ## Deep transforms
@@ -70,7 +76,7 @@ $ node json folder.js
 Our transformation that converts markdown to HTML needs to be updated too. After its `get` implementation receives a value from the inner graph, it checks to see whether that value is itself explorable. If it is, the function applies itself to that explorable value before returning it.
 
 ```{{'js'}}
-// deep/transform.js
+/* src/deep/transform.js */
 
 {{ deep/transform.js }}
 ```
@@ -78,14 +84,14 @@ Our transformation that converts markdown to HTML needs to be updated too. After
 <span class="tutorialStep"></span> Display the result of this transformation applied to the deep object or folder graph.
 
 ```console
-$ node json htmlFolder.js
-{{ json deep/transform deep/folder }}
+$ node json htmlFiles.js
+{{ json deep/transform deep/files }}
 ```
 
 Visually this looks like:
 
 <figure>
-{{ svg deep/transform deep/folder }}
+{{ svg deep/transform deep/files }}
 </figure>
 
 So now we have a way of transforming an arbitrarily deep folder of markdown content into a corresponding deep tree of HTML content. We're now ready to do some interesting things with this content.

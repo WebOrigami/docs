@@ -1,6 +1,6 @@
 ---
 title: Higher-level graph operations
-merge = node_modules/@graphorigami/pattern-intro/src/merge:
+merge = node_modules/pattern-intro/src/merge:
 ---
 
 One extremely useful aspect of graph-based development is that we can define higher-level operations on graphs that solve general problems.
@@ -41,7 +41,7 @@ The `asyncIterator` will yield all the keys in all of the supplied graphs. We ca
   }
 ```
 
-The `get` method look in each of the graphs in turn, return the first value it finds that's not `undefined`.
+The `get` method look in each of the graphs in turn, returning the first value it finds that's not `undefined`.
 
 ```js
   async get(key) {
@@ -75,20 +75,22 @@ We also take care to handle the case where multiple graphs define explorable val
 We can update our site to use this new higher-level `MergeGraph` operation.
 
 ```{{'js'}}
-// merge/site.js
+/* src/merge/site.js */
 
 {{ merge/site.js }}
 ```
 
 We apply our `indexPages` transform to give the merged graph index pages.
 
-Our combined graph is quite large:
+The site is now the deep merge of all three graphs:
 
 <figure>
 {{ svg merge/site }}
 </figure>
 
-<span class="tutorialStep"></span> Run the updated server.
+If you compare this to the previous step, where we treated each of the component graphs as separate branches, you can see that the merged graph is flatter.
+
+<span class="tutorialStep"></span> From inside the `src/merge` directory, run the updated server.
 
 ```console
 $ node serve
@@ -100,7 +102,8 @@ Server running at http://localhost:5000. Press Ctrl+C to stop.
 ```console
 $ node build
 $ ls dist
-Alice.html Bob.html   Carol.html David.html Eve.html   Frank.html Grace.html index.html more
+Alice.html    Carol.html    Grace.html    Kelly.html    Michelle.html more
+Bob.html      Frank.html    Henry.html    Larry.html    index.html
 ```
 
 ## Other higher-level operations

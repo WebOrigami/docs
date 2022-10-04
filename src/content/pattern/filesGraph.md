@@ -1,6 +1,6 @@
 ---
 title: File graphs
-flat = node_modules/@graphorigami/pattern-intro/src/flat:
+flat = node_modules/pattern-intro/src/flat:
 ---
 
 We now have a working markdown-to-HTML system. Depending on our needs, we might be done. But the markdown content is stored in a JavaScript object defined in a JavaScript file. As discussed earlier, there are a number of other data representations and storage systems we could choose.
@@ -75,17 +75,17 @@ This `get` method includes some error handling. The Explorable interface expects
 We can test this folder graph, once again copying-and-pasting the tests use for the explorable object implementation:
 
 ```{{'js'}}
-// flat/folder.test.js
+/* src/flat/folder.test.js */
 
 {{ flat/folder.test.js }}
 ```
 
 ## Display the folder
 
-<span class="tutorialStep"></span> Use our `json` utility to render the folder as JSON:
+<span class="tutorialStep"></span> Use our `json` utility from inside the `src/flat` folder to render the folder as JSON:
 
 ```console
-$ node json folder.js
+$ node json files.js
 {{ json flat/folder }}
 ```
 
@@ -105,16 +105,16 @@ The critical bit here is that the `json` utility required no modification to wor
 Since our folder is now available to us in graph form, we can convert its markdown content to HTML using the transform we already wrote. We can start with the same graph+transform module we created in `htmlObject.js`, and just change where the graph is coming from.
 
 ```{{'js'}}
-// flat/htmlFolder.js
+/* src/flat/htmlFiles.js */
 
-{{ flat/htmlFolder.js }}
+{{ flat/htmlFiles.js }}
 ```
 
 <span class="tutorialStep"></span> View the HTML translation of the markdown files in the `markdown` folder.
 
 ```console
-$ node json htmlFolder.js
-{{ json flat/transform flat/htmlFolder }}
+$ node json htmlFiles.js
+{{ json flat/transform flat/htmlFiles }}
 ```
 
 The transform function can accept any graph of markdown content, so we can switch between our object and folder graph implementations at will. If we wanted to read the markdown content from a CMS, we could create a graph implementation backed by the CMS, then directly apply the unmodified transform function to that graph.

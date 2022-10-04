@@ -22,9 +22,8 @@ At this level, _there is no code library or framework_. The pattern itself helps
 - Change how and where data is stored while leaving the rest of your project intact
 - Use a consistent model for manipulating one thing or an entire batch of things
 - Reuse code between projects
-- Leverage the related Graph Origami tools for common operations
 
-This explorable graph pattern is the bedrock foundation for the entire Graph Origami project. People using the higher-level parts of Graph Origami, such as the [framework](/framework) or [command-line interface](/cli), will find it useful to understand this pattern at this foundational level.
+This explorable graph pattern is the bedrock foundation for the entire Graph Origami project. People using the higher-level parts of Graph Origami, such as the [framework](/framework) or [command-line interface](/cli), will find it useful to understand this foundational pattern.
 
 You can follow the tutorial to see how to represent and transform data using the explorable graph pattern. The tutorial uses JavaScript and Node.js, but you can apply the pattern in other languages that support asynchronous [futures or promises](https://en.wikipedia.org/wiki/Futures_and_promises).
 

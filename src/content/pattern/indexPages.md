@@ -1,6 +1,6 @@
 ---
 title: Index pages
-index = node_modules/@graphorigami/pattern-intro/src/index:
+index = node_modules/pattern-intro/src/index:
 functions = js/codeFunctions(index/indexPages.js):
 htmlObject = index/transform(index/object):
 ---
@@ -34,7 +34,7 @@ Then invoking `indexPage` on this branch will return:
 Using the default `indexPage` function above, let's now create a graph transform. This will accept any explorable graph, and return a new graph with an `index.html` key.
 
 ```{{'js'}}
-// index/indexPages.js
+/* src/index/indexPages.js */
 
 {{ functions/@prologue }}
 {{ functions/@epilogue }}
@@ -51,14 +51,14 @@ If we use this to transform the `more` branch of the HTML graph, we'll get:
 We can apply this `indexPages` transform on top of our object, file, and function-based HTML graphs. The file-based graph now looks like:
 
 ```{{'js'}}
-// index/htmlFolder.js
+/* src/index/htmlFiles.js */
 
-{{ index/htmlFolder.js }}
+{{ index/htmlFiles.js }}
 ```
 
 These transforms are just functions, so we can transform a graph all we want. In this case, the order of function calls matters: when `indexPages` transform is iterating through the keys of a graph, we want it to see keys that end in `.html` so that it create links to the HTML pages. If we applied the `indexPages` transform first, it would create links to the `.md` files.
 
-<span class="tutorialStep"></span> Serve the HTML graph again.
+<span class="tutorialStep"></span> From inside the `src/index` directory, serve the HTML graph again.
 
 ```console
 $ node serve
