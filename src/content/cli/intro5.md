@@ -165,7 +165,7 @@ This concludes the ori introduction. As you've seen, ori is useful for
 ```console
 $ cd ..
 $ rm -r samples
-$ npm uninstall -g @explorablegraph/explorable
+$ npm uninstall -g @graphorigami/origami
 ```
 
 If you installed ori without the `-g` global flag, you can just delete the directory you were working in.

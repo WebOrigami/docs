@@ -1,6 +1,6 @@
 ---
 title: Function graphs
-flat = node_modules/@explorablegraph/pattern-intro/src/flat:
+flat = node_modules/@graphorigami/pattern-intro/src/flat:
 ---
 
 Having already created explorable implementations of our object and folder representations, it should be fairly quick work to create an explorable implementation of our function representation.

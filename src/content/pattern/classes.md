@@ -1,6 +1,6 @@
 ---
 title: Graph classes
-classes = node_modules/@explorablegraph/pattern-intro/src/classes:
+classes = node_modules/@graphorigami/pattern-intro/src/classes:
 ---
 
 We now have explorable wrappers for a _specific_ object, folder, or function. Before moving on, let's generalize that code to create classes to wrap _any_ object, folder, or function.

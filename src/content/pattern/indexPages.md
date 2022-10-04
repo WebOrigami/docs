@@ -1,6 +1,6 @@
 ---
 title: Index pages
-index = node_modules/@explorablegraph/pattern-intro/src/index:
+index = node_modules/@graphorigami/pattern-intro/src/index:
 functions = js/codeFunctions(index/indexPages.js):
 htmlObject = index/transform(index/object):
 ---

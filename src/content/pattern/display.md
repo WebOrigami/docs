@@ -1,6 +1,6 @@
 ---
 title: Display a graph
-flat = node_modules/@explorablegraph/pattern-intro/src/flat:
+flat = node_modules/@graphorigami/pattern-intro/src/flat:
 functions = js/codeFunctions(flat/json.js):
 ---
 

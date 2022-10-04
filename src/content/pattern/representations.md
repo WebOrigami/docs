@@ -1,6 +1,6 @@
 ---
 title: Data representations
-approaches = node_modules/@explorablegraph/pattern-intro/src/approaches:
+approaches = node_modules/@graphorigami/pattern-intro/src/approaches:
 ---
 
 Let's use the explorable graph pattern to tackle a small, common development task:

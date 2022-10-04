@@ -1,6 +1,6 @@
 ---
 title: Transform a graph
-flat = node_modules/@explorablegraph/pattern-intro/src/flat:
+flat = node_modules/@graphorigami/pattern-intro/src/flat:
 ---
 
 In the last step, we defined an in-memory JavaScript object to hold the set of markdown content we want to convert to HTML. We wrapped the object in the Explorable graph interface so that other code can access that content as an abstract graph, without the need to know specifically how and where that content is stored.

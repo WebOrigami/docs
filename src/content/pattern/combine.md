@@ -1,6 +1,6 @@
 ---
 title: Combine graphs
-combine = node_modules/@explorablegraph/pattern-intro/src/combine:
+combine = node_modules/@graphorigami/pattern-intro/src/combine:
 ---
 
 Now that we have a basic site working in graph form, we can manipulate that graph to suit our needs without needing to adjust our server and build infrastructure. For example, we can readily combine graphs to create larger graphs.

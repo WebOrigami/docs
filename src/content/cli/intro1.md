@@ -14,7 +14,7 @@ You can install the Origami CLI globally or locally.
 <span class="tutorialStep"></span> **Global installation:** Installing ori globally will make it easier to invoke it in the rest of this tutorial:
 
 ```console
-$ npm install -g @explorablegraph/explorable
+$ npm install -g @graphorigami/origami
 ```
 
 _Reviewer's note: during development of ori, it's part of a larger repository of Explorable Graph work. Eventually, it will be published on its own._
@@ -30,7 +30,7 @@ This should display the list of [built-in functions](/ori/builtins.html) include
 <span class="tutorialStep"></span> **Local installation:** As an alternative to global installation, run `npm install` without the `-g` global flag inside a new directory. Because ori won't be available everywhere, wherever the instructions below refer to ori, use Node's [npx](https://docs.npmjs.com/cli/v7/commands/npx) command to invoke ori:
 
 ```console
-$ npm install @explorablegraph/explorable
+$ npm install @graphorigami/origami
 $ npx ori
 ```
 

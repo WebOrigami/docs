@@ -1,6 +1,6 @@
 ---
 title: File graphs
-flat = node_modules/@explorablegraph/pattern-intro/src/flat:
+flat = node_modules/@graphorigami/pattern-intro/src/flat:
 ---
 
 We now have a working markdown-to-HTML system. Depending on our needs, we might be done. But the markdown content is stored in a JavaScript object defined in a JavaScript file. As discussed earlier, there are a number of other data representations and storage systems we could choose.

@@ -1,6 +1,6 @@
 ---
 title: Copy a graph
-set = node_modules/@explorablegraph/pattern-intro/src/set:
+set = node_modules/@graphorigami/pattern-intro/src/set:
 ---
 
 A key benefit of building a site as a graph is that we can seamlessly move between browsing that graph and rendering that graph as static content.

@@ -1,6 +1,6 @@
 ---
 title: The Explorable graph interface
-flat = node_modules/@explorablegraph/pattern-intro/src/flat:
+flat = node_modules/@graphorigami/pattern-intro/src/flat:
 ---
 
 The last section noted that, in the context of our markdown-to-HTML problem, it's possible to conceptualize the markdown content as a graph:

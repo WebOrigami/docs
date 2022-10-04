@@ -1,6 +1,6 @@
 ---
 title: Deep graphs
-deep = node_modules/@explorablegraph/pattern-intro/src/deep:
+deep = node_modules/@graphorigami/pattern-intro/src/deep:
 functions = js/codeFunctions(deep/json.js):
 ---
 
