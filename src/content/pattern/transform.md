@@ -93,6 +93,8 @@ We can now verify that our transform is working as expected by adapting the same
 {{ flat/transform.test.js }}
 ```
 
+<span class="tutorialStep"></span> Run the transform tests:
+
 ```console
 $ node transform.test.js
 …
@@ -111,7 +113,7 @@ We can bake the transform and the object together to create a final HTML graph.
 {{ flat/htmlObject.js }}
 ```
 
-And use the same `json` utility we wrote earlier to dump this graph to the console.
+<span class="tutorialStep"></span> Use the same `json` utility we wrote earlier to dump this transformed graph to the console.
 
 ```console
 $ node json htmlObject.js

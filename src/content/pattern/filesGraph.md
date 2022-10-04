@@ -82,7 +82,7 @@ We can test this folder graph, once again copying-and-pasting the tests use for 
 
 ## Display the folder
 
-We can use our `json` utility to render the folder as JSON:
+<span class="tutorialStep"></span> Use our `json` utility to render the folder as JSON:
 
 ```console
 $ node json folder.js
@@ -91,7 +91,7 @@ $ node json folder.js
 
 Each of those values are content from a separate file!
 
-We can verify that this is exact same output as the object implementation:
+<span class="tutorialStep"></span> Verify that this is exact same output as the object implementation:
 
 ```console
 $ node json object.js
@@ -110,10 +110,10 @@ Since our folder is now available to us in graph form, we can convert its markdo
 {{ flat/htmlFolder.js }}
 ```
 
-This outputs the HTML translation of the markdown files in the `markdown` folder.
+<span class="tutorialStep"></span> View the HTML translation of the markdown files in the `markdown` folder.
 
 ```console
-$ node json htmlFolder
+$ node json htmlFolder.js
 {{ json flat/transform flat/htmlFolder }}
 ```
 

@@ -24,7 +24,7 @@ Bob: Hello, Bob.
 Carol: Hello, Carol.
 ```
 
-The core interface methods of the `ObjectGraph` [implementation](https://github.com/ExplorableGraph/explorable/blob/main/src/core/ObjectGraph.js) are:
+The core interface methods of the `ObjectGraph` [implementation](https://github.com/GraphOrigami/explorable/blob/main/src/core/ObjectGraph.js) are:
 
 ```js
 // Rough implementation

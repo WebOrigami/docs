@@ -23,7 +23,7 @@ Bob: Hello, Bob.
 Carol: Hello, Carol.
 ```
 
-A rough implementation of the core interface methods in the `FunctionGraph` [implementation](https://github.com/ExplorableGraph/explorable/blob/main/src/core/FunctionGraph.js) are:
+A rough implementation of the core interface methods in the `FunctionGraph` [implementation](https://github.com/GraphOrigami/explorable/blob/main/src/core/FunctionGraph.js) are:
 
 ```js
 // Rough implementation

@@ -53,14 +53,16 @@ Finally, we start the server at a default port. We can use the graph of transfor
 
 ## Trying our server
 
-We can now start our server:
+<span class="tutorialStep"></span> Start the server:
 
 ```console
 $ node serve
 Server running at http://localhost:5000. Press Ctrl+C to stop.
 ```
 
-Then browse to that local server. The site root won't find an index page, so will return Not Found. But if you browse to a page like http://localhost:5000/Alice.html or http://localhost:5000/more/David.html, you'll a simple HTML page.
+Note: If you're running the tutorial on StackBlitz, the site may indicate that you need to enable certain cookies in order to run the server.
+
+<span class="tutorialStep"></span> Browse to that local server. The site root won't find an index page, so will return Not Found. But if you browse to a page like http://localhost:5000/Alice.html or http://localhost:5000/more/David.html, you'll a simple HTML page.
 
 If you want, you can define an index page at `markdown/index.md`, and then immediately browse it at the site's root. But we'll also add default index pages in a minute.
 

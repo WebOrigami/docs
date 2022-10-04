@@ -58,14 +58,14 @@ We can apply this `indexPages` transform on top of our object, file, and functio
 
 These transforms are just functions, so we can transform a graph all we want. In this case, the order of function calls matters: when `indexPages` transform is iterating through the keys of a graph, we want it to see keys that end in `.html` so that it create links to the HTML pages. If we applied the `indexPages` transform first, it would create links to the `.md` files.
 
-If you serve the HTML graph again…
+<span class="tutorialStep"></span> Serve the HTML graph again.
 
 ```console
 $ node serve
 Server running at http://localhost:5000. Press Ctrl+C to stop.
 ```
 
-… you'll now see index pages at each level of the hierarchy.
+You'll now see index pages at each level of the hierarchy.
 
 This server can be good enough for development, and we could easily deploy it in this state. But since this HTML content is currently all static, it would be nice to render the HTML content as `.html` files we can deploy directly.
 

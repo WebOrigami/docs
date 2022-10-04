@@ -58,11 +58,11 @@ If the set of markdown files is really so trivial, we could decide to load the d
 {{ approaches/object.js }}
 ```
 
-This approach has its own advantages. For one thing, the code is lot simpler. Being synchronous and working directly against memory, it will be much faster. Keeping the data together may make it easier to create, edit, and manage. On the downside, working directly in a JavaScript file is something only someone with some development experience would feel comfortable doing.
+This approach has its own advantages. For one thing, the code is lot simpler. Being synchronous and working directly against memory, it will also be much faster. In some cases, keeping the data together might make it easier to create, edit, and manage the data overall. On the downside, working directly in a JavaScript file is something only someone with development experience would feel comfortable doing.
 
 ## Markdown from a function
 
-If our markdown content is really this formulaic, we can write a JavaScript function to generate the markdown on demand:
+The particular markdown content here is so rigidly formulaic, we could write a JavaScript function to generate the markdown on demand:
 
 ```{{'js'}}
 // approaches/fn.js
@@ -107,6 +107,8 @@ Second, and more insidiously, the system used to store your data influences how 
 That means your entire code base may end up being influenced by how and where your data is stored — even code that doesn't directly read or write data.
 
 This leads to overspecialized code. In the context of this markdown-to-HTML task, you may end up writing code that specifically transforms a _folder_ of markdown _files_. Anyone (perhaps your future self) who wants to transform a collection of markdown documents stored in some other way may be unable to use your code without substantial modification.
+
+You often encounter this overspecialization in tools. In searching for a tool that can transform markdown to HTML, you may find a tool that expects the content to be files. If your project isn't storing markdown in separate files, then you may find yourself forced to save data in temporary files just to be able to use that tool.
 
 ## Data as graphs
 

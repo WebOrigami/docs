@@ -80,7 +80,7 @@ $ ori greet/Alice
 Hello, Alice.
 ```
 
-In this path syntax, the first path segment (`greet`) will be looked up in the current scope. All subsequent path segments (like `Alice`) are used as is. Otherwise, both ways of passing arguments behave the same.
+In this path syntax, the first path segment (`greet`) will be looked up in the current scope. All subsequent path segments (like `Alice`) are treated as plain text. Otherwise, both ways of passing arguments behave the same.
 
 This means you can also explicitly invoke a function like `greet` by adding a trailing slash:
 

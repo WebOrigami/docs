@@ -121,6 +121,8 @@ And then copy the virtual graph defined in `htmlFolder.js` into that real `dist`
 {{ set/build.js }}
 ```
 
+<span class="tutorialStep"></span> Use this new `build` tool to copy the virtual graph into files.
+
 ```console
 $ ls dist
 ls: dist: No such file or directory
@@ -129,7 +131,7 @@ $ ls dist
 Alice.html Bob.html   Carol.html index.html more
 ```
 
-We could inspect the individual files in the `dist` folder to confirm their contents — but we can also use our `json` utility to dump the entire `dist` folder to the console.
+<span class="tutorialStep"></span> Inspect the individual files in the `dist` folder to confirm their contents — or use our `json` utility to dump the entire `dist` folder to the console.
 
 ```console
 $ node json distFolder.js
@@ -142,7 +144,7 @@ We can see that we've generated HTML pages for all the markdown content, and als
 
 You could now deploy the HTML files in the `dist` folder anywhere, such as a CDN (Content Delivery Network).
 
-As a quick test, you can serve the `dist` folder in any static server, such as [http-server](https://github.com/http-party/http-server).
+<span class="tutorialStep"></span> As a quick test, serve the `dist` folder with any static server, such as [http-server](https://github.com/http-party/http-server).
 
 ```console
 $ npx http-server dist

@@ -17,8 +17,6 @@ You can install the Origami CLI globally or locally.
 $ npm install -g @graphorigami/origami
 ```
 
-_Reviewer's note: during development of ori, it's part of a larger repository of Explorable Graph work. Eventually, it will be published on its own._
-
 <span class="tutorialStep"></span> To confirm the installation, invoke ori with no arguments.
 
 ```console
@@ -50,14 +48,6 @@ greetings.yaml people.yaml    template.js
 Note the comma after the URL — ori is invoking a function called [copy](/ori/builtins.html#copy) that takes two arguments which must be separated with a comma.
 
 The new `samples` folder should show a small collection of files. (The specific files may differ slightly from what's shown above.) ori treated the indicated file as a graph — more on graphs later. The `copy` function read values out of that graph and wrote them into the destination graph: a file system (`files`) folder called `samples`.
-
-<span class="tutorialStep"></span> If you prefer, you can wrap ori function arguments in parentheses — but since command shells typically interpret parentheses, you may have to quote them:
-
-```console
-$ ori "copy(https://graphorigami.org/samples/cli.yaml, files/samples)"
-```
-
-The expression parser in ori makes parentheses implicit, so in many cases you don't have to type them. There are some cases where parentheses are necessary; you'll see an example of that later.
 
 &nbsp;
 

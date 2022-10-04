@@ -4,7 +4,7 @@
   "type": "module",
   "dependencies": {
     "@graphorigami/origami": "github:GraphOrigami/origami#cacce61a",
-    "@graphorigami/pattern-intro": "github:GraphOrigami/pattern-intro#831f529a",
+    "@graphorigami/pattern-intro": "github:GraphOrigami/pattern-intro#f291a701",
     "@microsoft/tsdoc": "0.14.1",
     "algoliasearch": "4.14.2",
     "marked": "4.1.0",

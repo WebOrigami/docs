@@ -54,7 +54,7 @@ Of the three data markdown representations we looked at previously, the in-memor
 {{ flat/object.js }}
 ```
 
-This module exports an "explorable" wrapper around the object. For now, this wrapper can only handle a flat object — later we handle a hierarchical object.
+This module exports an explorable graph wrapper around the object. For now, this wrapper can only handle a flat object — later we handle a hierarchical object.
 
 ## Test the object graph
 
@@ -66,7 +66,7 @@ The first thing we can do with this explorable object is programmatically verify
 {{ flat/object.test.js }}
 ```
 
-Running these tests show that all test pass:
+<span class="tutorialStep"></span> Run these tests show that all test pass:
 
 ```console
 $ node object.test.js

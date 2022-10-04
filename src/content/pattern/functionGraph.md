@@ -17,7 +17,7 @@ Because the Explorable interface supports asynchronous functions by default, we 
 
 ## Verify the explorable function
 
-The unit tests are the same for the function as for the object and folder.
+<span class="tutorialStep"></span> Run the unit tests for the function-based explorable graph, which are the same as the object and folder graphs.
 
 ```console
 $ node fn.test.js
@@ -27,12 +27,14 @@ $ node fn.test.js
 # fail 0
 ```
 
-And we can use our `json` utility to display this function-based graph:
+<span class="tutorialStep"></span> Use our `json` utility to display this function-based graph:
 
 ```console
 $ node json fn.js
 {{ json flat/fn }}
 ```
+
+You can think of an explorable function as a function that can provide a sample output set. Here the core function can handle more keys
 
 We have now implemented three different ways to construct an explorable graph. In a bit, we'll see how they can be used together to create interesting combinations and be used for practical purposes. Before doing that, however, let's make our code a little more general-purpose and flexible.
 

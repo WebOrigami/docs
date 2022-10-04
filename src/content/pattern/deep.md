@@ -75,7 +75,7 @@ Our transformation that converts markdown to HTML needs to be updated too. After
 {{ deep/transform.js }}
 ```
 
-We can display the result of this transformation applied to the deep object or folder graph.
+<span class="tutorialStep"></span> Display the result of this transformation applied to the deep object or folder graph.
 
 ```console
 $ node json htmlFolder.js

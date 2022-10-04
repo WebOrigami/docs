@@ -38,7 +38,7 @@ The tool dynamically imports the indicated JavaScript file and gets its default 
 
 ## Display the graph in the console
 
-We can now use this `json.js` utility to display the `object.js` graph we created in the previous step.
+<span class="tutorialStep"></span> Use this `json` utility to display the `object.js` graph we created in the previous step.
 
 ```console
 $ node json object.js

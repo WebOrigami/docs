@@ -38,6 +38,8 @@ import siteGraph from "./site.js";
 …
 ```
 
+<span class="tutorialStep"></span> Run the updated server.
+
 ```console
 $ node serve
 Server running at http://localhost:5000. Press Ctrl+C to stop.
@@ -51,7 +53,7 @@ And we can update `build.js` to build the larger graph:
 {{ combine/build.js }}
 ```
 
-We can run this new build process and verify that it generates the complete set of pages for the full, combined graph.
+<span class="tutorialStep"></span> Run the updated `build` tool and verify it generates the complete set of pages for the full, combined graph.
 
 ```console
 $ node build
