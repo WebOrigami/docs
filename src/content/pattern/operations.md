@@ -5,15 +5,17 @@ merge = node_modules/pattern-intro/src/merge:
 
 One extremely useful aspect of graph-based development is that we can define higher-level operations on graphs that solve general problems.
 
-In the previous step, we combined several graphs backed by different data representations into a single graph, producing a single tree with several branches.
+In the previous step, we combined several graphs backed by different data representations into a single tree with several branches.
 
 In some cases, it's useful to _merge_ two or more graphs together to create a single graph. Let's solve that general problem by creating a higher-level graph that merges multiple graphs together.
 
 ## MergeGraph class
 
-We'll start creating a `MergeGraph` class by defining a constructor that accepts multiple graphs.
+We'll start creating a `MergeGraph` class whose constructor accepts multiple graphs.
 
 ```js
+/* src/merge/MergeGraph.js */
+
 export default class MergeGraph {
   constructor(...graphs) {
     this.graphs = graphs;
@@ -41,7 +43,7 @@ The `asyncIterator` will yield all the keys in all of the supplied graphs. We ca
   }
 ```
 
-The `get` method look in each of the graphs in turn, returning the first value it finds that's not `undefined`.
+The `get` method looks in each of the graphs in turn, returning the first defined value from any of the graphs.
 
 ```js
   async get(key) {
@@ -62,9 +64,11 @@ The `get` method look in each of the graphs in turn, returning the first value i
       }
     }
 
-    if (explorableValues.length > 0) {
-      return new this.constructor(...explorableValues);
-    }
+    return explorableValues.length === 0
+      ? undefined
+      : explorableValues.length === 1
+      ? explorableValues[0]
+      : new this.constructor(...explorableValues);
   }
 ```
 
@@ -72,12 +76,12 @@ We also take care to handle the case where multiple graphs define explorable val
 
 ## Use MergeGraph to define the site
 
-We can update our site to use this new higher-level `MergeGraph` operation.
+We can update our site graph to use this new higher-level `MergeGraph` operation.
 
 ```{{'js'}}
-/* src/merge/site.js */
+/* src/merge/siteGraph.js */
 
-{{ merge/site.js }}
+{{ merge/siteGraph.js }}
 ```
 
 We apply our `indexPages` transform to give the merged graph index pages.
@@ -85,7 +89,7 @@ We apply our `indexPages` transform to give the merged graph index pages.
 The site is now the deep merge of all three graphs:
 
 <figure>
-{{ svg merge/site }}
+{{ svg merge/siteGraph }}
 </figure>
 
 If you compare this to the previous step, where we treated each of the component graphs as separate branches, you can see that the merged graph is flatter.
@@ -93,9 +97,12 @@ If you compare this to the previous step, where we treated each of the component
 <span class="tutorialStep"></span> From inside the `src/merge` directory, run the updated server.
 
 ```console
+$ cd ../merge
 $ node serve
 Server running at http://localhost:5000. Press Ctrl+C to stop.
 ```
+
+<span class="tutorialStep"></span> Browse the merged site. Some of the pages are defined by an object, some by files, and some by a function.
 
 <span class="tutorialStep"></span> You can also build the site.
 
@@ -110,7 +117,7 @@ Bob.html      Frank.html    Henry.html    Larry.html    index.html
 
 You can define a range of useful higher-level graph operations to handle situations commonly encountered in website development and other contexts, such as:
 
-- A cache operation that accepts two graphs: a source graph that produces values, and a read-write graph to store values which have already been produced. The latter is consulted first. If no value for a given key has been produced yet, the source graph is consulted, and the resulting value stored for later use.
+- A cache operation that accepts two graphs: a source graph that produces values, and a read-write graph to cache values which have already been produced. The latter is consulted first. If no value for a given key has been produced yet, the source graph is consulted, and the resulting value cached for later use.
 - A filter operation that accepts two graphs: a source graph that produces values, and a graph that defines a filter which should be used to decide whether or not to return a value from the source graph.
 - A sort operation that wraps a source graph, with an `asyncIterator` that yields the source graph's keys in a particular sort order.
 - A shuffle operation that wraps a source graph, with an `asyncIterator` that yields the source graph's keys in a random order.

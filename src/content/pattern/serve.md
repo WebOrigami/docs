@@ -55,7 +55,7 @@ Finally, we start the server at a default port.
 
 ```
 
-To add a layer of flexibility, we'll serve the graph define in a new file called `siteGraph.js`. We can then define this file to export the graph of transformed HTML defined in `htmlObject.js`, `htmlFiles.js`, or `htmlFn.js` as the graph to serve.
+To add a layer of flexibility, we'll serve the graph defined in a new file called `siteGraph.js`. This file exports whichever graph of transformed HTML we'd like to use, as defined in `htmlObject.js`, `htmlFiles.js`, or `htmlFn.js`. To use the files-backed graph:
 
 ```{{'js'}}
 /* src/deep/siteGraph.js */
@@ -68,18 +68,25 @@ To add a layer of flexibility, we'll serve the graph define in a new file called
 <span class="tutorialStep"></span> From inside the `src/deep` directory, start the server:
 
 ```console
-$ cd ../deep
 $ node serve
 Server running at http://localhost:5000. Press Ctrl+C to stop.
 ```
 
 Note: If you're running the tutorial on StackBlitz, the site may indicate that you need to enable certain cookies in order to run the server.
 
-<span class="tutorialStep"></span> Browse to that local server. The site root won't find an index page, so the serve will initially return Not Found. But if you browse to a page like http://localhost:5000/Alice.html, you'll see a simple HTML page.
+<span class="tutorialStep"></span> Browse to that local server. The site root won't find an index page, so the serve will initially return Not Found. But if you browse to a page like `Alice.html`, you'll see a simple HTML page.
 
 > Hello, **Alice**.
 
 If you want, you can define an index page at `markdown/index.md`, and then immediately browse it at the site's root. But we'll also add default index pages in a minute.
+
+We defined the markdown-to-HTML transform such that, if it's asked for a key that doesn't end in `.html`, it will ask the inner graph for the corresponding value and return that value as is. One ramification of that is that, if we can ask the server for a markdown file, it will obtain that from the inner markdown graph.
+
+<span class="tutorialStep"></span> Browse to `Alice.md` to see the original markdown content.
+
+```
+Hello, **Alice**.
+```
 
 ## Explorable graphs are lazy
 
@@ -93,23 +100,17 @@ The graph only generates the HTML when you ask for it by browsing to a page like
 1. The transform converts the markdown content to HTML.
 1. The listener responds with the HTML content.
 
-We defined the markdown-to-HTML transform such that, if it's asked for a key that doesn't end in `.html`, it will ask the inner graph for the corresponding value and return that value as is. One ramification of that is that, if we can ask the server for a markdown file, it will obtain that from the inner markdown graph.
-
-<span class="tutorialStep"></span> Navigate to `Alice.md` to see the original markdown content.
-
-```
-Hello, **Alice**.
-```
-
 ## Flexible
 
 This server is already pretty interesting! We've got a simple site, but can flexibly change the representation of the data. Having done relatively little work, we can let our team write content in markdown. Unlike many markdown-to-HTML solutions, the translation is happening at runtime, so an author can immediately view the result of markdown changes by refreshing the corresponding page.
 
 Each of our underlying object, file, or function-based graphs has its advantages. For example, we can serve our function-based graph to browse HTML pages which are generated on demand.
 
-<span class="tutorialStep"></span> Edit `siteGraph.js` to export the function-based graph in `htmlFn.js`.
+<span class="tutorialStep"></span> Edit `src/deep/siteGraph.js` to export the function-based graph from `htmlFn.js` instead of `htmlFiles.js`.
 
-<span class="tutorialStep"></span> Serve the new graph with `node serve`.
+If you're using StackBlitz, and this is the first file you've edited, you may see a "Project forked" message.
+
+<span class="tutorialStep"></span> Restart the server with `node serve`.
 
 <span class="tutorialStep"></span> Observe that, this time, an index page _is_ shown — albeit a pretty strange one that says
 
@@ -117,7 +118,7 @@ Each of our underlying object, file, or function-based graphs has its advantages
 
 The served graph is responding to `index.html` by asking the function-based markdown graph for `index.md`, and the underlying function is dutifully generating a markdown file for that "name".
 
-<span class="tutorialStep"></span> Navigate to an HTML page for own name, say, `Sara.html` to view
+<span class="tutorialStep"></span> Browse to an HTML page for own name, say, `Sara.html` to view the generated page.
 
 > Hello, **Sara**.
 

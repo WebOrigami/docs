@@ -11,10 +11,12 @@ In the course of this tutorial, we've created three parallel graph implementatio
 
 Our `ObjectGraph` class turns out to be a useful tool to combine the three graphs of HTML pages from `htmlFiles.js`, `htmlFn.js`, and `htmlObject.js`. We take the exports from those three files, then use them as values in an object. The keys of that object will name the graph's branches — `files`, `function`, and `object` — letting us route requests into the appropriate branch with those names.
 
-```{{'js'}}
-/* src/combine/site.js */
+We can define this combination by updating `siteGraph.js`:
 
-{{ combine/site.js }}
+```{{'js'}}
+/* src/combine/siteGraph.js */
+
+{{ combine/siteGraph.js }}
 ```
 
 We apply our `indexPages` transform to give the overall graph an index page. Having done that, we can drop the use of `indexPages` in the individual graphs. For example, the object-backed graph in `htmlObject.js` no longer needs to define index pages:
@@ -30,21 +32,12 @@ To contrast the values coming from each branch of this graph, we can update the 
 Our combined graph is quite large:
 
 <figure>
-{{ svg combine/site }}
+{{ svg combine/siteGraph }}
 </figure>
 
 Each of the three main branches of this tree is defined in a different way, with different pros and cons. When constructing a real site, this flexibility lets us pick the most appropriate implementation for any part of the site. And when our needs inevitably change, we can switch those implementations around without needing to change any of our surrounding infrastructure.
 
 ## Serving and building
-
-We can serve this larger graph by updated the top-level import in `serve.js`:
-
-```js
-/* Inside src/combine/serve.js */
-
-import siteGraph from "./site.js";
-…
-```
 
 <span class="tutorialStep"></span> Run the updated server from inside the `src/combine` directory.
 
@@ -53,21 +46,21 @@ $ node serve
 Server running at http://localhost:5000. Press Ctrl+C to stop.
 ```
 
-And we can update `build.js` to build the larger graph:
+<span class="tutorialStep"></span> Browse the combined site.
 
-```{{'js'}}
-/* src/combine/build.js */
+Node that the `function` route can handle arbitrary requests. E.g., if you browse to `function/Sara.html`, you'll see a page for Sara.
 
-{{ combine/build.js }}
-```
-
-<span class="tutorialStep"></span> Run the updated `build` tool and verify it generates the complete set of pages for the full, combined graph.
+<span class="tutorialStep"></span> Stop the server and run the build process to generate the pages for the full, combined graph.
 
 ```console
 $ node build
 $ ls dist
 files      function   index.html object
 ```
+
+The build process is copying the virtual graph into real files. Among other things, this will create files for all the values in the `asyncIterator` provided by the dynamic `function` route. But now that the files are static, the pages provided by that `function` route are essentially frozen.
+
+If it's necessary that your site handle dynamic requests, then you would have to serve the live site graph (not static files). It would also be possible to blend approaches: use a build process to generate static files for those things that can be statically generated, and use a live server for the remaining portion.
 
 &nbsp;
 

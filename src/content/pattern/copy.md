@@ -152,6 +152,8 @@ $ npx http-server dist
 Starting up http-server, serving dist
 ```
 
+(You could also temporarily hack `serve.js` to serve the graph defined by `distFiles.js` instead of `siteGraph.js`. Everything here's a graph, any you can serve any of those graphs the same way.)
+
 <span class="tutorialStep"></span> Browse to the static server and confirm that the static results are the same as what you can see running the dynamically-generated graph.
 
 The results will look identical, but a key difference is that no real work is necessary to display the HTML files served from the `dist` folder.

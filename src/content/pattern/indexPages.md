@@ -73,7 +73,7 @@ $ node serve
 Server running at http://localhost:5000. Press Ctrl+C to stop.
 ```
 
-You'll now see index pages at each level of the hierarchy.
+<span class="tutorialStep"></span> Browse the site to see index pages at each level of the hierarchy.
 
 This server can be good enough for development, and we could easily deploy it in this state. But since this HTML content is currently all static, it would be nice to render the HTML content as `.html` files we can deploy directly.
 
