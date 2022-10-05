@@ -7,7 +7,7 @@
     "@microsoft/tsdoc": "0.14.1",
     "algoliasearch": "4.14.2",
     "marked": "4.1.0",
-    "pattern-intro": "github:GraphOrigami/pattern-intro#ed92b069",
+    "pattern-intro": "github:GraphOrigami/pattern-intro#da4c9ecb",
     "sharp": "0.31.0",
     "yaml": "2.1.1"
   },
