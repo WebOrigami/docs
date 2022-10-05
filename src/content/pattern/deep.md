@@ -6,9 +6,7 @@ functions = js/codeFunctions(deep/json.js):
 
 Until now, the "graphs" we've been working with are flat lists. Now that we've cleanly isolated our graph wrappers into classes, let's extend the `ObjectGraph` and `FilesGraph` classes to support arbitrarily deep trees.
 
-TODO: Need diagram
-
-With this step, you can think of an explorable graph as a _tree of promises_. If you have a deep `FilesGraph` (below), you are essentially holding a tree of a promises for all the files in the corresponding file system hierarchy.
+As mentioned earlier, you can think of an explorable graph as a tree of promises. If you have a deep `FilesGraph` (below), you are essentially holding a tree of a promises for all the files in the corresponding file system hierarchy.
 
 ## Deep object graphs
 
@@ -20,7 +18,7 @@ We rewrite the `get` implementation in `ObjectGraph.js`, adding a simplistic che
 {{ deep/ObjectGraph.js }}
 ```
 
-Note that instead of creating new instances with `new ObjectGraph`, we use `new this.constructor`. The former could work in this tutorial, but the latter is more future-proof because it supports subclassing. If you ever were to subclass `ObjectGraph`, you'd want that subclass to spawn new instances of that subclass, not `ObjectGraph`.
+Note that instead of creating new instances with `new ObjectGraph`, we use `new this.constructor`. The former could work in this tutorial, but the latter is more future-proof because it supports subclassing. If you ever were to subclass `ObjectGraph`, you'd want that subclass to spawn new instances of the same subclass, not `ObjectGraph`.
 
 This lets us create a deep tree:
 
@@ -30,7 +28,7 @@ This lets us create a deep tree:
 {{ deep/object.js }}
 ```
 
-which represents the graph
+which represents the deep graph
 
 <figure>
   {{ svg deep/object }}
@@ -52,7 +50,7 @@ This lets us support arbitrarily deep subfolders.
 
 By itself, the `FunctionGraph` class doesn't need to be updated to support deep function-backed graphs. Instead, the function that's being wrapped would need to be updated.
 
-For this tutorial, we'll leave the sample function in `fn.js` alone, but if we wanted it to define a deep graph, for certain keys it could return values that are explorable graphs — instances of `FunctionGraph` values, or any other kind of explorable graph.
+For this tutorial, we'll leave the sample function in `fn.js` alone, but if we wanted it to define a deep graph, for certain keys it could return values that are explorable graphs of any type.
 
 ## Converting a deep graph to a plain object
 
@@ -64,9 +62,10 @@ Finally, we need to update our `json` utility. That code has a function called `
 {{ functions/plain }}
 ```
 
-<span class="tutorialStep"></span> Display a deep `ObjectGraph` or `FilesGraph` instance from inside the `src/deep` directory.
+<span class="tutorialStep"></span> From inside the `src/deep` directory, display a deep `ObjectGraph` or `FilesGraph` instance from inside the `src/deep` directory.
 
 ```console
+$ cd ../deep
 $ node json files.js
 {{ json deep/files }}
 ```

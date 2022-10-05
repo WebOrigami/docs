@@ -4,7 +4,9 @@ flat = node_modules/pattern-intro/src/flat:
 functions = js/codeFunctions(flat/json.js):
 ---
 
-Now that we've applied the Explorable interface to an object to create an explorable graph, let's write a simple tool that will display the contents of an explorable graph in the console. To stay as close to the platform as possible, we'll render the graph in JSON format. JSON isn't particularly friendly, but does support deep structures.
+Now that we've applied the Explorable interface to an object to create an explorable graph, let's write a simple tool that will display the contents of that explorable graph in the console.
+
+To stay as close to the platform as possible, we'll render the graph in JSON format. JSON isn't particularly friendly to write or read, but it's built into the platform and supports hierarchical structures.
 
 ## Convert an explorable graph to a plain object
 
@@ -22,7 +24,7 @@ Note: We could make this function more efficient if we didn't `await` the result
 
 ## Dynamically import a JavaScript module
 
-We could write a tool to statically import a specific graph we want to display, but our goal is a utility that can quickly display any graph. So let's have the tool parse a command line argument specifying the file name of a JavaScript module.
+We could write a tool to statically import a specific graph we want to display, but our goal is a utility that can quickly display any graph. So let's have the tool parse a command line argument specifying the file name of a JavaScript module that exports a graph.
 
 ```{{'js'}}
 /* src/flat/json.js */

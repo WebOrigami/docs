@@ -32,9 +32,9 @@ const graph = {
 }
 ```
 
-Some notes:
+Notes:
 
-- The [Symbol.asyncIterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/asyncIterator) reference is what is called a "well-known symbol" in JavaScript: a symbol that has special meaning to the JavaScript engine. In this case, the symbol lets you easily iterate over a graph node's set of keys asynchronously using a [for await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of) loop.
+- The [Symbol.asyncIterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/asyncIterator) reference is what is called a "well-known symbol" in JavaScript: a symbol that has special meaning to the JavaScript engine. In this case, using this symbol will let you conveniently iterate over the keys for a given graph node using a [for await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of) loop.
 
 - The asterisk (`*`) before the `Symbol.asyncIterator` indicates that the function is a [generator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator): a function that can be repeatedly invoked to return the next result in a sequence. The sequence can be potentially infinite in length.
 
@@ -42,11 +42,11 @@ Some notes:
 
 - An Explorable graph's `get` method is expected to return `undefined` if the key is not present in the graph.
 
-- The `asyncIterator` does _not_ have to return all supported keys! There may be keys that `get` can handle that the `asyncIterator` will not include. This is useful in a number of situations.
+- The `asyncIterator` does _not_ have to return all the keys supported by `get`! There may be keys that `get` can handle that the `asyncIterator` will not include. This turns out to be useful in a number of situations.
 
 ## Apply the Explorable interface to the object
 
-Of the three data markdown representations we looked at previously, the in-memory JavaScript object was perhaps the simplest, so let's first look at applying the Explorable interface to a JavaScript object:
+Of the three data representations we looked at previously, the in-memory JavaScript object was perhaps the simplest, so let's first look at applying the Explorable interface to a JavaScript object:
 
 ```{{'js'}}
 /* src/flat/object.js */
@@ -54,7 +54,7 @@ Of the three data markdown representations we looked at previously, the in-memor
 {{ flat/object.js }}
 ```
 
-This module exports an explorable graph wrapper around the object. For now, this wrapper can only handle a flat object — later we handle a hierarchical object.
+This module exports an explorable graph that wraps the JavaScript object containing the markdown data. For now, this wrapper can only handle a flat object — later we will extend this to handle hierarchical objects.
 
 ## Test the object graph
 
@@ -69,6 +69,7 @@ The first thing we can do with this explorable object is programmatically verify
 <span class="tutorialStep"></span> From inside the `src/flat` directory, run these tests to see that all test pass:
 
 ```console
+$ cd ../flat
 $ node object.test.js
 …
 # tests 3

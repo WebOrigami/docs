@@ -3,7 +3,7 @@ title: File graphs
 flat = node_modules/pattern-intro/src/flat:
 ---
 
-We now have a working markdown-to-HTML system. Depending on our needs, we might be done. But the markdown content is stored in a JavaScript object defined in a JavaScript file. As discussed earlier, there are a number of other data representations and storage systems we could choose.
+We now have a working markdown-to-HTML system. Depending on our needs, we might be done. At this point, the markdown content is stored in a JavaScript object defined in a single JavaScript file. As discussed earlier, there are a number of other data representations and storage systems we could choose.
 
 Which approach is best for our particular team authors might vary, but as an example let's look at how we can transition our system to read markdown from file system folders because that's relatively simple. The graph approach we're taking is flexible, so we could change our mind again later.
 
@@ -25,6 +25,8 @@ To start on our file-backed graph implementation, we'll need to get a path to th
 Our goal is to then return an object implementing the Explorable interface for that folder.
 
 ```js
+/* src/flat/files.js */
+
 import * as fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -68,37 +70,47 @@ To implement the `get` method in the Explorable interface, we'll use the `fs.rea
   },
 ```
 
-This `get` method includes some error handling. The Explorable interface expects the `get` method to return `undefined` for an unsupported key, but the `fs.readFile` API will throw an exception if a file does not exist with the indicated name. To create a well-behaved file graph, we catch exceptions and, if the exception is specifically an `ENOENT` (file not found) exception, we return undefined.
+This `get` method includes some error handling. The Explorable interface expects the `get` method to return `undefined` for an unsupported key, but the `fs.readFile` API will throw an exception if a file does not exist with the indicated name. To create a well-behaved explorable graph, we catch exceptions and, if the exception is specifically an `ENOENT` (file not found) exception, we return undefined.
 
-## Test the folder graph
+## Test the files graph
 
-We can test this folder graph, once again copying-and-pasting the tests use for the explorable object implementation:
+We can test this files graph, once again copying-and-pasting the tests used for the explorable object implementation:
 
 ```{{'js'}}
-/* src/flat/folder.test.js */
+/* src/flat/files.test.js */
 
-{{ flat/folder.test.js }}
+{{ flat/files.test.js }}
 ```
 
-## Display the folder
+<span class="tutorialStep"></span> Run these tests to see that all test pass:
+
+```console
+$ node files.test.js
+…
+# tests 3
+# pass 3
+# fail 0
+```
+
+## Display the files
 
 <span class="tutorialStep"></span> Use our `json` utility from inside the `src/flat` folder to render the folder as JSON:
 
 ```console
 $ node json files.js
-{{ json flat/folder }}
+{{ json flat/files }}
 ```
 
-Each of those values are content from a separate file!
+Each of those values is content from a separate file!
 
-<span class="tutorialStep"></span> Verify that this is exact same output as the object implementation:
+<span class="tutorialStep"></span> Observe that this is the exact same output as the object implementation:
 
 ```console
 $ node json object.js
 {{ json flat/object }}
 ```
 
-The critical bit here is that the `json` utility required no modification to work with the new folder implementation. We wrote the `json` utility to work with explorable graphs, and the folder is just another explorable graph.
+The critical bit here is that the `json` utility required no modification to work with the new files-based graph. We wrote the `json` utility to work with explorable graphs, and the folder is just another explorable graph.
 
 ## Transform the folder
 
@@ -118,6 +130,8 @@ $ node json htmlFiles.js
 ```
 
 The transform function can accept any graph of markdown content, so we can switch between our object and folder graph implementations at will. If we wanted to read the markdown content from a CMS, we could create a graph implementation backed by the CMS, then directly apply the unmodified transform function to that graph.
+
+Both our JSON utility and markdown-to-HTML transformation are completely independent of the underlying data representation and storage location.
 
 &nbsp;
 

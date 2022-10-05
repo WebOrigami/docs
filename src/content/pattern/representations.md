@@ -35,16 +35,17 @@ Here we use the promise-based flavor of Node's [fs](https://nodejs.org/api/fs.ht
 
 We use the `fs.readFile` API to get a list of the file names that we can loop over. For each file name, we load the file and display it.
 
-When we run this in the console in the `src/approaches` directory, we see the contents of the three markdown files:
+<span class="tutorialStep"></span> In the terminal window, cd to the `src/approaches` directory, then execute `files.js` to see the contents of the three markdown files:
 
 ```console
-$ node folder
+$ cd src/approaches
+$ node files.js
 {{ yaml approaches/markdown }}
 ```
 
 ## Wait — why files?
 
-The problem statement presumed that the markdown content was stored as a file system folder, which is certainly plausible given a file system's advantages. Files are easy to edit, copy, and share in a wide variety of applications — including applications that a general audience can use.
+The problem statement presumed that the markdown content was stored as a file system folder, which is certainly plausible given a file system's advantages. Files are easy to edit, copy, and share in a wide variety of applications — including applications that a general audience could use.
 
 But we could make other choices to represent our data. Let's look at two alternatives.
 
@@ -58,7 +59,14 @@ If the set of markdown files is really so trivial, we could decide to load the d
 {{ approaches/object.js }}
 ```
 
-This approach has its own advantages. For one thing, the code is lot simpler. Being synchronous and working directly against memory, it will also be much faster. In some cases, keeping the data together might make it easier to create, edit, and manage the data overall. On the downside, working directly in a JavaScript file is something only someone with development experience would feel comfortable doing.
+<span class="tutorialStep"></span> Verify that `object.js` produces the same output:
+
+```console
+$ node object.js
+{{ yaml approaches/markdown }}
+```
+
+This object-based approach has its own advantages. For one thing, the code is lot simpler. Being synchronous and working directly against memory, it will also be much faster. In some cases, keeping the data in a single file might also make it easier to create, edit, and manage the data as a collection. On the downside, working directly in a JavaScript file is something only someone with development experience would feel comfortable doing.
 
 ## Markdown from a function
 
@@ -70,29 +78,36 @@ The particular markdown content here is so rigidly formulaic, we could write a J
 {{ approaches/fn.js }}
 ```
 
-This particular function happens to be synchronous. If the function were asynchronous, we would switch the `for` loop to a `for await` loop, and `await` the function result.
+This particular function `fn` happens to be synchronous. If the function were asynchronous, we would switch the `for` loop to a `for await` loop, and `await` the function result.
+
+<span class="tutorialStep"></span> You can verify that `object.js` produces the same output:
+
+```console
+$ node fn.js
+{{ yaml approaches/markdown }}
+```
 
 ## Pros and cons
 
-To summarize some of the pros and cons of these three approaches:
+In the constraints of our sample data, all three approaches produce the same output, but they each offer different pros and cons:
 
-|          | &emsp; | Object                      | &emsp; | Files                  | &emsp; | Function                |
-| -------- | ------ | :-------------------------- | ------ | :--------------------- | ------ | :---------------------- |
-| **Pros** |        | Fast                        |        | Many editing tools     |        | Create infinite results |
-|          |        | Easy to code against        |        | Editable by anyone     |        | Create complex results  |
-|          |        | Easy for developers to skim |        | Arbitrarily large data |        | Incorporate other data  |
-|          |        |                             |        |                        |        |                         |
-| **Cons** |        | Unwieldy for large data     |        | Slower access          |        | Requires coding         |
-|          |        | Need code editor            |        | Harder to code against |        | Need code editor        |
-|          |        |                             |        |                        |        | Coding skills required  |
+|          | &emsp; | Object                      | &emsp; | Files                  | &emsp; | Function                    |
+| -------- | ------ | :-------------------------- | ------ | :--------------------- | ------ | :-------------------------- |
+| **Pros** |        | Fast                        |        | Many editing tools     |        | Create infinite results     |
+|          |        | Easy to code against        |        | Editable by anyone     |        | Create complex results      |
+|          |        | Easy for developers to skim |        | Arbitrarily large data |        | Incorporate other data      |
+|          |        |                             |        |                        |        |                             |
+| **Cons** |        | Unwieldy for large data     |        | Slower access          |        | Coding skills required      |
+|          |        | Need code editor            |        | Harder to code against |        | Need code editor            |
+|          |        | Restart after updating data |        |                        |        | Restart after updating data |
 
 There are many other data representations that might be appropriate for this situation. We might, for example, choose to store and retrieve the data from:
 
-- JSON or YAML file
-- network file server
-- web-based storage service like Google Drive
-- Content Management System (CMS)
-- proprietary database
+- a JSON or YAML file
+- a network file server
+- a web-based storage service like Google Drive
+- a Content Management System (CMS)
+- a proprietary database
 
 Each of these approaches has their own advantages over loose files. So why be so fast to pick files as the answer?
 
@@ -102,13 +117,13 @@ One problem with all of the data representations mentioned above is that they ha
 
 First, the specific data representation you pick will entail use of specific APIs and coding patterns. Although all three code examples above are doing the same thing — looping over a set of data values and displaying them — the loop code is slightly different in each case. If you ever change from one data representation to another, you must change such loops throughout your codebase.
 
-Second, and more insidiously, the system used to store your data influences how you reference data. If you are working with markdown files, your code will tend to pass around strings which are file paths that refer to markdown files. If you are working with in-memory JavaScript objects, then the same type of code will tend to pass around JavaScript object references.
+Second, and more insidiously, the system used to store your data influences how your code refers to data. If you are working with markdown files, your code will tend to pass around strings which are file paths that refer to markdown files. If you are working with in-memory JavaScript objects, then the same type of code will tend to pass around JavaScript object references.
 
-That means your entire code base may end up being influenced by how and where your data is stored — even code that doesn't directly read or write data.
+That means your entire code base may end up being influenced by how and where your data is stored — including code that doesn't directly read or write data.
 
 This leads to overspecialized code. In the context of this markdown-to-HTML task, you may end up writing code that specifically transforms a _folder_ of markdown _files_. Anyone (perhaps your future self) who wants to transform a collection of markdown documents stored in some other way may be unable to use your code without substantial modification.
 
-You often encounter this overspecialization in tools. In searching for a tool that can transform markdown to HTML, you may find a tool that expects the content to be files. If your project isn't storing markdown in separate files, then you may find yourself forced to save data in temporary files just to be able to use that tool.
+You often encounter this overspecialization in tools. In searching for a tool that can transform markdown to HTML, you may find a tool that expects the content to be files — but if your project isn't storing markdown in separate files, then you may find yourself forced to save data in temporary files just to be able to use that tool.
 
 ## Data as graphs
 

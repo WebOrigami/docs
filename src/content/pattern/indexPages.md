@@ -5,9 +5,14 @@ functions = js/codeFunctions(index/indexPages.js):
 htmlObject = index/transform(index/object):
 ---
 
-Right now, the experience of browsing our graph of generated HTML is a little unsatisfying because there are no index pages — we have to know what routes are there.
+Right now, the experience of browsing our graph of generated HTML is a little unsatisfying because there are no index pages — we have to know what pages exist and manually enter a valid URL.
 
-We can fix that by adding another graph transform. Wrapping a graph with this transform will: 1) add "index.html" as one of the inner graph's keys if it's not already defined, and 2) define a default value for "index.html" if one isn't already defined. The default value will be an HTML page listing the graph's other keys as links.
+We can fix that by adding another graph transform. Wrapping a graph with this transform will:
+
+1. add "index.html" as one of the inner graph's keys if it's not already defined
+2. define a default value for "index.html" if one isn't already defined
+
+The default value will be an HTML page listing the graph's other keys as links.
 
 ## Generate a single index page
 
@@ -48,7 +53,7 @@ If we use this to transform the `more` branch of the HTML graph, we'll get:
 
 ## Incorporate the index page transform
 
-We can apply this `indexPages` transform on top of our object, file, and function-based HTML graphs. The file-based graph now looks like:
+We can apply this `indexPages` transform on top of our object, file, and function-based HTML graphs. For example, the file-based graph now looks like:
 
 ```{{'js'}}
 /* src/index/htmlFiles.js */
@@ -56,11 +61,14 @@ We can apply this `indexPages` transform on top of our object, file, and functio
 {{ index/htmlFiles.js }}
 ```
 
-These transforms are just functions, so we can transform a graph all we want. In this case, the order of function calls matters: when `indexPages` transform is iterating through the keys of a graph, we want it to see keys that end in `.html` so that it create links to the HTML pages. If we applied the `indexPages` transform first, it would create links to the `.md` files.
+These transforms are just functions, so we can apply as many graph transforms as we want.
+
+In this case, the order of function calls matters: when the `indexPages` transform is iterating through the keys of a graph, we want it to see keys that end in `.html` so that it create links to the HTML pages. If we applied the `indexPages` transform first, it would create links to the `.md` files.
 
 <span class="tutorialStep"></span> From inside the `src/index` directory, serve the HTML graph again.
 
 ```console
+$ cd../index
 $ node serve
 Server running at http://localhost:5000. Press Ctrl+C to stop.
 ```
