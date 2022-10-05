@@ -131,6 +131,17 @@ blockquote {
   padding: 0.5rem 2rem;
 }
 
+table {
+  /* Try to prevent tables from overflowing page width on mobile */
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+tr {
+  vertical-align: top;
+}
+
 td {
   vertical-align: top;
 }
