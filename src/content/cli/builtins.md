@@ -17,12 +17,6 @@ _This experimental function is not yet stable enough to document._
 
 _This experimental function is not yet stable enough to document._
 
-<a name="compose"></a>
-
-## compose(...graphs)
-
-This composes the indicated graphs, which can be any graph [variant](/core/variants.html), using [Compose](/core/Compose.html).
-
 <a name="config"></a>
 
 ## config([relativePath])
@@ -258,6 +252,12 @@ Carol:
 Formats the indicated [markdown](https://github.github.com/gfm/) (GitHub-flavored) to HTML.
 
 Any front matter in the markdown will be preserved at the top of the HTML output.
+
+<a name="merge"></a>
+
+## merge(...graphs)
+
+This merges the indicated graphs, which can be any graph [variant](/core/variants.html), using [MergeGraph](/core/MergeGraph.html).
 
 <a name="meta"></a>
 

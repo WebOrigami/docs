@@ -12,5 +12,5 @@ pages = mapDeep(html, templates/page.ori, '.html'):
 #   summary.yaml = test%summary.yaml:
 #   results = test%results:
 
-# Compose content for final site
-site = compose(client, pages, test):
+# Merge content for final site
+site = merge(client, pages, test):
