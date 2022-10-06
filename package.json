@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
-    "@graphorigami/origami": "github:GraphOrigami/origami#cacce61a",
+    "@graphorigami/origami": "github:GraphOrigami/origami#18ec4ee6",
     "@microsoft/tsdoc": "0.14.1",
     "algoliasearch": "4.14.2",
     "marked": "4.1.0",
