@@ -59,7 +59,7 @@ If the set of markdown files is really so trivial, we could decide to load the d
 {{ approaches/object.js }}
 ```
 
-<span class="tutorialStep"></span> Verify that `object.js` produces the same output:
+<span class="tutorialStep"></span> Verify that this object approach produces the same output:
 
 ```console
 $ node object.js
@@ -80,7 +80,7 @@ The particular markdown content here is so rigidly formulaic, we could write a J
 
 This particular function `fn` happens to be synchronous. If the function were asynchronous, we would switch the `for` loop to a `for await` loop, and `await` the function result.
 
-<span class="tutorialStep"></span> You can verify that `object.js` produces the same output:
+<span class="tutorialStep"></span> You can verify that the function approach produces the same output:
 
 ```console
 $ node fn.js
@@ -89,7 +89,7 @@ $ node fn.js
 
 ## Pros and cons
 
-In the constraints of our sample data, all three approaches produce the same output, but they each offer different pros and cons:
+In the constraints of our sample data, all three approaches produce the same output, but they offer different pros and cons:
 
 |          | &emsp; | Object                      | &emsp; | Files                  | &emsp; | Function                    |
 | -------- | ------ | :-------------------------- | ------ | :--------------------- | ------ | :-------------------------- |
