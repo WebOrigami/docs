@@ -18,6 +18,8 @@ Before starting, let's quickly look at both objects and files through the lens o
 
 If we're using the Node `fs` API, we have our choice of synchronous or asynchronous methods, but there are performance benefits to be gained by using the asynchronous API.
 
+It's worth noting how much of the `fs` API is _not_ necessary for our task at hand. The full API has a wide range of features for comparatively obscure tasks like changing a file's modified date, renaming a file, or creating a symbolic link. Those features are necessary for some applications — but it's reasonable to imagine that the vast majority of users of the `fs` API are using just the `readdir` and `readFile` methods shown above.
+
 ## Rough in the file graph
 
 To start on our file-backed graph implementation, we'll need to get a path to the directory that will be the root of the graph. In this case, we use some Node APIs to get the directory of a folder relative to the folder containing the JavaScript module we're writing.

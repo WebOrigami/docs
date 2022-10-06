@@ -39,6 +39,17 @@ ori includes richer implementations of all the general-purpose tools shown in th
 
 In addition to these commands, ori includes a number of other general-purpose commands for working with explorable graphs.
 
+## Pick a representation that works, change it later if necessary
+
+The explorable pattern in general, and the Graph Origami core library in particular, make it fairly easy to start on a development problem. You can pick a data representation that's good enough to get started, knowing that you have the flexibility to change that representation later.
+
+When working with explorable graphs, it's often useful to deliberately start with a simplified graph and change it later. For example:
+
+- You might write a quick function-based graph that generates a handful of sample objects your initial code can operate on.
+- As your code begins to function, you may need to provide a wider range of sample input than a function can easily express. At that point, you could swap in an object-based graph of sample data.
+- As your project continues to mature, you may need to incorporate data at larger scales, swapping in a graph of sample files.
+- Eventually, when your code is working against your sample data, you might swap in another graph that obtains the data from some official data source like a database or other network resource. You might retain any of the earlier function, object, or files-based graphs for testing purposes.
+
 ## Focus on your domain-specific problems
 
 This tutorial set out to tackle a simple problem: converting a tree of markdown content into a corresponding tree of HTML content. If you were to solve the same problem using the Graph Origami core library and the ori tool, you would have to very little code.
