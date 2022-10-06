@@ -11,7 +11,7 @@ With that in place, we can now write code to transform the graph of markdown int
 
 In our markdown-to-HTML transformation, we will create a virtual graph of HTML content based on the real graph of markdown content. The graphs will have the same shape, but the keys and values will both differ.
 
-<div class="sideBySide" style="grid-template-columns: 1fr 1.4fr;">
+<div class="sideBySide split2to3">
   <figure>
     {{ svg flat/object }}
   </figure>

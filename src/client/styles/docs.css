@@ -456,6 +456,10 @@ g.node polygon[fill="none"] {
       "caption1 caption2 caption3";
   }
 
+  .split2to3 {
+    grid-template-columns: 2fr 3fr;
+  }
+
   figure {
     margin: 3rem 3rem 3rem 0;
   }
