@@ -84,6 +84,8 @@ We can test this files graph, once again copying-and-pasting the tests used for 
 
 <span class="tutorialStep"></span> Run these tests to see that all test pass:
 
+_Note: If you're using StackBlitz, skip this step — it doesn't yet support the test runner used here._
+
 ```console
 $ node files.test.js
 …

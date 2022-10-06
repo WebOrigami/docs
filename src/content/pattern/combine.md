@@ -42,6 +42,7 @@ Each of the three main branches of this tree is defined in a different way, with
 <span class="tutorialStep"></span> Run the updated server from inside the `src/combine` directory.
 
 ```console
+$ cd ../combine
 $ node serve
 Server running at http://localhost:5000. Press Ctrl+C to stop.
 ```

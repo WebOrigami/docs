@@ -5,7 +5,9 @@ flat = node_modules/pattern-intro/src/flat:
 
 Having already created explorable implementations of our object and folder representations, it should be fairly quick work to create an explorable implementation of our function representation.
 
-## Wrap the function with the Explorable interface
+## Wrap a function with the Explorable interface
+
+To create an explorable function-based graph, we'll need two things: 1) a function that can produce a value for a given key, and 2) an array of keys defining a representative domain over which the function is valid.
 
 ```{{'js'}}
 /* src/flat/fn.js */
@@ -17,9 +19,13 @@ Because the Explorable interface supports asynchronous functions by default, we 
 
 The earlier object-based and files-based explorable graphs are "real" in that the data is stored persistently in the real world. But the explorable function-based graph above is virtual from the start — the complete data is not stored persistently, and is only available when code is running.
 
+As noted in the original definition of the Explorable interface, an explorable graph's `asyncIterator` is _not_ required to yield all of the keys the graph can handle. The `asyncIterator` for the explorable function above yields three representative keys, but the `get` method will actually accept any key ending in `.md`.
+
 ## Verify the explorable function
 
 <span class="tutorialStep"></span> From inside the `src/flat` directory, run the unit tests for the function-based explorable graph. These are the same tests as for the object and folder graphs.
+
+_Note: If you're using StackBlitz, skip this step — it doesn't yet support the test runner used here._
 
 ```console
 $ node fn.test.js

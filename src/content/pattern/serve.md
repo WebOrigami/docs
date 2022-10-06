@@ -74,11 +74,13 @@ Server running at http://localhost:5000. Press Ctrl+C to stop.
 
 Note: If you're running the tutorial on StackBlitz, the site may indicate that you need to enable certain cookies in order to run the server.
 
-<span class="tutorialStep"></span> Browse to that local server. The site root won't find an index page, so the serve will initially return Not Found. But if you browse to a page like `Alice.html`, you'll see a simple HTML page.
-
-> Hello, **Alice**.
+<span class="tutorialStep"></span> Browse to that local server. The site root won't find an index page, so the serve will initially return Not Found.
 
 If you want, you can define an index page at `markdown/index.md`, and then immediately browse it at the site's root. But we'll also add default index pages in a minute.
+
+<span class="tutorialStep"></span> Browse to a page like `Alice.html` to see the expected HTML page:
+
+> Hello, **Alice**.
 
 We defined the markdown-to-HTML transform such that, if it's asked for a key that doesn't end in `.html`, it will ask the inner graph for the corresponding value and return that value as is. One ramification of that is that, if we can ask the server for a markdown file, it will obtain that from the inner markdown graph.
 

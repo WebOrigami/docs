@@ -102,7 +102,9 @@ $ node serve
 Server running at http://localhost:5000. Press Ctrl+C to stop.
 ```
 
-<span class="tutorialStep"></span> Browse the merged site. Some of the pages are defined by an object, some by files, and some by a function.
+<span class="tutorialStep"></span> Browse the merged site.
+
+Some of the pages are defined by an object, some by files, and some by a function. In fact, that function will handle any requests for `.html` pages that aren't otherwise defined — if you browse to a page not defined by the object- or files-based graphs, the function graph will provide a default value. For example, browsing to `Sara.html` returns a default page for Sara.
 
 <span class="tutorialStep"></span> You can also build the site.
 

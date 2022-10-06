@@ -5,9 +5,9 @@ set = node_modules/pattern-intro/src/set:
 
 A key benefit of building a site as a graph is that we can seamlessly move between browsing that graph and rendering that graph as static content.
 
-## Build process
+## Build pipeline
 
-When working with graphs, the "build" process can be conceptually simple:
+When working with graphs, the "build" pipeline can be conceptually simple:
 
 <figure>
   Real markdown files → Virtual HTML files → Real HTML files
@@ -161,6 +161,16 @@ The results will look identical, but a key difference is that no real work is ne
 In this tutorial, the markdown-to-HTML translation happens almost instantly, but in real projects, the data or transformations could easily take some time. Viewing an individual page might require non-trivial work, resulting in a perceptible delay before the page appears. Building the pages into static files performs all the work at once, so your users can browse the resulting static files as fast as the web can deliver them.
 
 We've now solved our original problem: we've created a system in which our team can write content for our web site using markdown, and end up with HTML pages we can deploy.
+
+## A general approach for building things
+
+In this tutorial, we're using real markdown files to create virtual HTML files and then save those as real HTML files. But this type of build pipeline doesn't really have anything to do with the web specifically — HTML pages are just a convenient and common example of content that can be created this way.
+
+You could apply this same explorable graph pattern in build pipelines for many other kinds of artifacts: data sets, PDF documents, application binaries, etc. The pattern can benefit any situation in which you are transforming graphs of values.
+
+- In some cases, the source information will be an obvious graph. In others, you might start with a single block of content (a document, say) and parse that to construct a virtual graph. Or you might wrap a data set to interpret it as an explorable graph.
+- You can then apply multiple transforms to that source graph to create additional virtual graphs, each one step closer to your desired result.
+- Finally, you can save the last virtual graph in some persistent form. That might be a hierarchical set of files as in the example above, or you might reduce the graph in some fashion to a single result, perhaps a single file.
 
 &nbsp;
 
