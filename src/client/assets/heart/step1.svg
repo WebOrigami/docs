@@ -1,1 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1260.47 1260.47"><defs><style>.cls-1{fill:#fff;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="cls-1" x="186.76" y="186.76" width="886.96" height="886.96" transform="translate(-261.05 630.24) rotate(-45)"/><path d="M630.24,1260.47a3.06,3.06,0,0,1-2.17-.89L.9,632.4a3.05,3.05,0,0,1,0-4.33L628.07.9a3.05,3.05,0,0,1,4.33,0l627.17,627.17a3.05,3.05,0,0,1,0,4.33L632.4,1259.58A3.06,3.06,0,0,1,630.24,1260.47ZM7.4,630.24l622.84,622.84,622.84-622.84L630.24,7.4Z"/></g></g></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.5.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1260.5 1260.5" style="enable-background:new 0 0 1260.5 1260.5;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{stroke:#000000;stroke-miterlimit:10;}
+</style>
+<g id="Layer_2_00000036956906293562271740000002970514514547339430_">
+	<g id="Layer_1-2">
+		
+			<rect x="186.8" y="186.8" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -261.0528 630.2428)" class="st0" width="887" height="887"/>
+		<path class="st1" d="M630.2,1260.5c-0.8,0-1.6-0.3-2.2-0.9L0.9,632.4c-1.2-1.2-1.2-3.1,0-4.3c0,0,0,0,0,0L628.1,0.9
+			c1.2-1.2,3.1-1.2,4.3,0c0,0,0,0,0,0l627.2,627.2c1.2,1.2,1.2,3.1,0,4.3c0,0,0,0,0,0l-627.2,627.2
+			C631.8,1260.2,631,1260.5,630.2,1260.5z M7.4,630.2l622.8,622.8l622.8-622.8L630.2,7.4L7.4,630.2z"/>
+	</g>
+</g>
+</svg>
