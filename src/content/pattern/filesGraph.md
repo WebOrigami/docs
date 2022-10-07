@@ -105,7 +105,7 @@ $ node json files.js
 {{ json flat/files }}
 ```
 
-Each of those values is content from a separate file!
+That's a single chunk of data now — but the keys of that object came from a directory listing, and each of those values is content from a separate file!
 
 <span class="tutorialStep"></span> Observe that this is the exact same output as the object implementation:
 
