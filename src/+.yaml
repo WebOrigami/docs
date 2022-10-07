@@ -13,4 +13,5 @@ pages = mapDeep(html, templates/page.ori, '.html'):
 #   results = test%results:
 
 # Merge content for final site
-site = merge(client, pages, test):
+site = merge(client, pages, test, meta(this)):
+  _redirects = src/_redirects:
