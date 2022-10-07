@@ -24,8 +24,6 @@ With this option, you can use whatever code editor you prefer.
 $ npm install
 ```
 
-When running locally, you'll need to invoke this ori tool with `npx ori`. _Throughout the rest of the tutorial, where you see `ori`, you should type `npx ori` instead._
-
 &nbsp;
 
 Next: [Data representations](representations.html) »
