@@ -1,0 +1,10 @@
+<h2>{{./name}} class</h2>
+<p>
+  {{mdHtml ./description}}
+</p>
+{{#if ./constructor}}
+  {{ @template/scope/function.ori(./constructor) }}
+{{/if}}
+{{#map ./members}}
+  {{ @template/scope/function.ori(.) }}
+{{/map}}

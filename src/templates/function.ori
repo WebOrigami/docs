@@ -1,0 +1,23 @@
+<h3>
+  {{if ./static, 'static ' }}
+  {{if ./async, 'async '}}
+  {{if ./generator, '*'}}{{./name}}({{ @template/scope/parameters.ori(./parameters) }})
+  {{if ./constructor, 'constructor'}}
+</h3>
+<ul>
+{{#map ./parameters}}
+  <li>{{./name}}: {{ @template/scope/typeList.ori(./types) }}
+    {{#if ./description}}
+      &ndash; {{./description}}
+    {{/if}}
+  </li>  
+{{/map}}
+</ul>
+{{#unless ./constructor}}
+<p>
+  Returns: {{ @template/scope/typeList.ori(./returnTypes) }}
+</p>
+{{/unless}}
+<p>
+  {{mdHtml ./description}}
+</p>

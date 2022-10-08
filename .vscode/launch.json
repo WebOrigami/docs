@@ -7,34 +7,11 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "ori",
-      "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/node_modules/@graphorigami/origami/src/cli/cli.js",
-      "cwd": "${workspaceFolder}/src/js/",
-      "args": ["addPaths languages.yaml"]
-    },
-    {
-      "name": "tsdoc",
-      "program": "${workspaceFolder}/node_modules/@graphorigami/origami/src/cli/cli.js",
-      "request": "launch",
-      "skipFiles": ["<node_internals>/**"],
-      "type": "node",
-      "cwd": "${workspaceFolder}/sandbox/tsdoc",
-      "args": ["tsdoc greet.js"]
-    },
-    {
-      "type": "node",
-      "request": "launch",
       "name": "serve",
-      // "runtimeExecutable": "node",
       "skipFiles": ["<node_internals>/**"],
       "program": "${workspaceFolder}/node_modules/@graphorigami/origami/src/cli/cli.js",
-      // "runtimeExecutable": "node",
       "runtimeArgs": ["--preserve-symlinks"],
-      // "cwd": "${workspaceFolder}/site",
-      // "args": ["serve virtual/src"]
-      "args": ["serve virtual/src/site"]
-      // "args": ["serve"]
+      "args": ["serve virtual/src/develop"]
     }
   ]
 }

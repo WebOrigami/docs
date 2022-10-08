@@ -100,7 +100,7 @@ You can perform a `copy` operation like the one in this example in preparation f
 <span class="tutorialStep"></span> The web site you're reading now supports viewing its contents as an explorable graph, so you can reference it directly in ori. For example, this site includes a route [/samples/greetings/](/samples/greetings/), and you can pass that URL to ori to view the files there:
 
 ```console
-$ ori https://graphorigami.org/samples/greetings/
+$ ori site://graphorigami.org/samples/greetings/
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
@@ -129,7 +129,7 @@ Making the full contents of a site more freely available might be concerning to 
 <span class="tutorialStep"></span> Since a web site like graphorigami.org is an explorable graph, and ori can serve explorable graphs, then you can easily set up a local mirror for this site:
 
 ```console
-$ ori serve https://graphorigami.org
+$ ori serve site://graphorigami.org
 Server running at http://localhost:5000
 ```
 
@@ -140,7 +140,7 @@ Your local server is now mirroring the graphorigami.org site: when you browse yo
 <span class="tutorialStep"></span> You can also use ori to copy an explorable web route to local files:
 
 ```console
-$ ori copy https://graphorigami.org/samples/greetings/, files/snapshot
+$ ori copy site://graphorigami.org/samples/greetings/, files/snapshot
 $ ls snapshot
 Alice Bob   Carol
 ```

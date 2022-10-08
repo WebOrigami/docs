@@ -4,9 +4,15 @@
   text: Intro to explorable graphs
 - text: Explorable interface
   href: interface.html
-- href: FunctionGraph.html
-  text: FunctionGraph
-- href: ObjectGraph.html
-  text: ObjectGraph
 - href: variants.html
   text: Graph Variants
+- text: API
+  pages:
+    - href: FilesGraph.html
+      text: FilesGraph
+    - href: FunctionGraph.html
+      text: FunctionGraph
+    - href: ObjectGraph.html
+      text: ObjectGraph
+    - href: SiteGraph.html
+      text: SiteGraph

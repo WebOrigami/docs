@@ -1,8 +1,9 @@
 ---
 title: FunctionGraph
+subtitle: Wraps a function and a domain as an explorable graph
 ---
 
-`FunctionGraph` is a class that can wrap a JavaScript function and an optional domain for that function to create an graph that implements the [Explorable](Explorable.html) interface.
+## Usage
 
 ```js
 import { FunctionGraph } from "@graphorigami/origami";
@@ -55,3 +56,5 @@ $ ori keys function
 $ ori function/David
 Hello, David.
 ```
+
+{{ templates/class.ori(api/FunctionGraph.yaml/exports/0) }}

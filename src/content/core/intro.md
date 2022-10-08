@@ -3,7 +3,7 @@ title: Hands-on intro to explorable graphs
 numberHeadings: true
 ---
 
-_This introduction is still in draft form._
+_DRAFT_
 
 ## Defining an explorable graph directly
 

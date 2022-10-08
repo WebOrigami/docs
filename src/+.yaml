@@ -7,11 +7,16 @@ html = mapDeep(inlined, mdHtml, '.md', '.html'):
 # Apply the documentation page template
 pages = mapDeep(html, templates/page.ori, '.html'):
 
-# Include top-line results from inline tests
-# testSummary:
-#   summary.yaml = test%summary.yaml:
-#   results = test%results:
+# Give docs access to the API documentation based on the Origami source code
+source = node_modules/@graphorigami/origami/src:
+api = js/jsApi(source/core):
 
-# Merge content for final site
-site = merge(client, pages, test, meta(this)):
+# Development site
+develop = merge(client, pages, test, meta(this)):
+  _redirects = src/_redirects:
+  origamiApi = api:
+  origamiSource = source:
+
+# Production site
+production = merge(client, pages, meta(this)):
   _redirects = src/_redirects:

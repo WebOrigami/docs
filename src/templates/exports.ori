@@ -1,0 +1,8 @@
+{{#map ./exports}}
+  {{#if js/equals(./kind, 'class')}}
+    {{ @template/scope/class.ori(.) }}
+  {{/if}}
+  {{#if js/equals(./kind, 'function')}}
+    {{ @template/scope/function.ori(.) }}
+  {{/if}}
+{{/map}}
