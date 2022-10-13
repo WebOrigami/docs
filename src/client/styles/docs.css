@@ -365,7 +365,7 @@ nav a:hover {
  * Generated graph SVGs on page
  */
 g.graph polygon[fill="white"] {
-  fill: transparent;
+  /* fill: transparent; */
 }
 
 g.node ellipse[fill="none"],
