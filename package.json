@@ -13,7 +13,7 @@
   },
   "scripts": {
     "build": "ori 'copy netlify:virtual/src/production, files/dist'",
-    "test": "ori virtual/src/test/summary",
-    "index": "ori 'index/indexDocs'"
+    "serve": "ori serve virtual/src/develop",
+    "test": "ori virtual/src/test/summary"
   }
 }

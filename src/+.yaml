@@ -1,22 +1,53 @@
-# Inline any code examples
+# This file defines the top-level virtual values in the graph used to create the
+# Graph Origami documentation. When the `src` folder is viewed as a virtual
+# graph, all of the formulas defined here will be treated as if they are members
+# of the `src` folder.
+
+# The first set of formulas define a pipeline for the documentation content,
+# which is authored as a tree of markdown files in the `content` folder. That
+# real `content` folder is treated as a graph that is used as the basis for a
+# graph pipeline: a sequence of graph transforms. Each step defines another
+# virtual graph, culminating in a final graph of HTML pages that can be browsed
+# or rendered as static pages.
+
+# Step 1: Take the markdown files in the `content` folder and inline any Graph
+# Origami expressions contained in curly braces. This produces a new graph
+# called `inlined`.
 inlined = mapDeep(content, inline, '.md'):
 
-# Convert markdown to HTML while preserving front matter
+# Step 2: Convert the markdown (including inlined content) to HTML while
+# preserving the front matter at the top of each document. As the content is now
+# HTML, we change the file extension from `.md` to `.html`. The result is a
+# graph of HTML content; each value represents the main body of a given page.
 html = mapDeep(inlined, mdHtml, '.md', '.html'):
 
-# Apply the documentation page template
+# Step 3: Apply the documentation page template. This injects the HTML content
+# from the previous step into the site's main page template, which adds headers
+# and navigation chrome. This step concludes the main documentation pipeline.
 pages = mapDeep(html, templates/page.ori, '.html'):
 
-# Give docs access to the API documentation based on the Origami source code
+# The following formulas are used by specific pages that want to inline API
+# documentation for specific classes in the Graph Origami core library. The
+# first formula defines a shorthand `source` that refers to the Graph Origami
+# source in the Node modules tree. The second formula creates a virtual graph of
+# API documentation objects for the core library. That formula uses a custom
+# transform called `jsApi`, based on the Microsoft TypeScript compiler, which
+# parses JavaScript source to extract type information and comments.
 source = node_modules/@graphorigami/origami/src:
 api = js/jsApi(source/core):
 
-# Development site
+# The `develop` virtual graph exposes the routes useful at development time. It
+# merges the `client` folder (resources like styles) with the final HTML `pages`
+# graph from the documentation pipeline. It also exposes testing pages so that
+# the results of the test suite can be viewed in the browser, as well as the
+# source code and API documentation objects so that those can be inspected too.
 develop = merge(client, pages, test, meta(this)):
-  _redirects = src/_redirects:
   origamiApi = api:
   origamiSource = source:
 
-# Production site
+# The `production` virtual graph defines the final graph which is built into
+# static pages. This includes the `client` and `pages` graphs, as well as a
+# `redirects` file used by Netlify. This `production` graph is copied by the
+# `build` script in `package.json` to create the `dist` folder.
 production = merge(client, pages, meta(this)):
   _redirects = src/_redirects:
