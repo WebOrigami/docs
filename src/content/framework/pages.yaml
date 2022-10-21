@@ -3,8 +3,10 @@
   pages:
     - href: intro1.html
       text: Start
+    - href: intro1b.html
+      text: Process
     - href: intro2.html
-      text: Virtual files
+      text: Virtual content
     - href: intro3.html
       text: Formulas
     - href: intro4.html

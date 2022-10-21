@@ -2,13 +2,19 @@
 title: "Tutorial start"
 ---
 
-You can do this tutorial in two ways:
+You can do this tutorial in three ways:
 
-## Option 1: Web-hosted coding environment
+## Option 1: Web-hosted Glitch editor
 
-This option doesn't require installing anything on your own computer.
+Glitch is a code editor intended for a general audience, including hobbyists and content creators whose primary profession is _not_ software programming.
 
-<span class="tutorialStep"></span> Open the [framework introduction on StackBlitz](https://stackblitz.com/github/GraphOrigami/framework-intro), a hosted development environment. Open StackBlitz in a separate window so you can follow along here.
+<span class="tutorialStep"></span> Open the **[link goes here]** project and click the **Remix** button.
+
+## Option 2: Web-hosted StackBlitz coding environment
+
+StackBlitz is intended for people who are comfortable in a full programming environment. It uses a web-based version of VS Code, a popular editor for professional software developers.
+
+<span class="tutorialStep"></span> Open the [framework introduction on StackBlitz](https://stackblitz.com/github/GraphOrigami/framework-intro) in a separate window so you can follow along here.
 
 There are a variety of ways to incorporate Origami into an existing web server or a larger project, but for this introduction, you'll use the small server included with the [ori command-line interface](/cli) that is part of Origami.
 
@@ -25,9 +31,9 @@ StackBlitz may indicate that you need to enable certain cookies in order to run 
 
 <span class="tutorialStep"></span> View the served site, which at this point will just show a listing of the project files.
 
-## Option 2: Your local coding environment
+## Option 3: Your local coding environment
 
-With this option, you can use whatever code editor you prefer.
+Select this option if you're a programmer and prefer to use your own code editor.
 
 <span class="tutorialStep"></span> Clone the [GraphOrigami/framework-intro](https://github.com/GraphOrigami/framework-intro) repository to your own machine.
 
