@@ -16,31 +16,27 @@ You can use the Graph Origami framework to make digital content like:
 
 ## Concepts
 
-Most tools (for creating web sites, say) achieve power through complexity that's hidden from you, and achieve flexibility through configuration that is to difficult to understand and get right.
+Most tools for creating content like web sites achieve power through complexity that's hidden from you, and permit flexibility through configuration that is to difficult to understand.
 
-Graph Origami achieves a high degree of power and flexibility in a very different way. It promotes a basic process model for creating things that is grounded on a small number of interlocking, fundamental **concepts**.
+The Graph Origami framework gives you a high degree of power and flexibility in a very different way — by providing a foundation of interlocking, fundamental concepts:
 
-1. Pick whatever initial representation for your content is most convenient for you to write or create. An important part of this step is thinking about your data, files, and other resources as **graphs**.
-1. Identify how you can **transform** that content into the result you want to share.
-1. Orchestrate those transformations using Excel-like **formulas**.
-1. A consistent definition of **scope** determines the functions and data your formulas can use.
-1. Formulas process your real data and files into **virtual content** you can directly browse and review.
-1. You can **serve** that virtual content, or **copy** it to static files and publish those.
+1. **The transformational model of content creation** helps you identify three things: what you want to end up with, the simplest thing you can start with, and a way to transform the starting form into the final result.
+1. **Graphs** are a convenient way think about your data, files, and other resources.
+1. **Explorable graphs** let you move freely between different data representations.
+1. **Virtual content** embodies your intermediate results and your final result.
+1. **Metagraphs** are graphs that define their own transformation.
+1. **Formulas** transform your real data and files into virtual content you can browse.
+1. **Scope** determines the code and data your formulas can reference.
+1. **Templates** turn graphs of data into text.
+1. **Transforms** change a graph from one form to another, processing content in bulk.
+1. **Graph tools** let you directly serve virtual content or copy it to static files for publishing.
 
 Applying these concepts lets you create impressive results with much less work than other systems.
 
-The implementation of these concepts isn't hidden. If you're the type of person who wants to understand things all the way down, you can explore the [programming pattern](/pattern), [core library](/core), and [language](language) that support the high-level framework.
+The implementation of these concepts isn't hidden. If you're the type of person who wants to understand things all the way down, you can explore the [programming pattern](/pattern), the [core library](/core), and the [language](language) that support the high-level framework.
 
-## Example
-
-Among other things, Graph Origami can be used to make web sites. Suppose you work with some other people, and one day one of you says:
-
-> _We need an "About Us" area for our site! The main About Us page should list of people on our team, with links to separate pages for each person. A person's page should show their name and a photo._
-
-Perhaps you want to model your About Us area on this [sample About Us area](/samples/aboutUs).
-
-Follow the intro tutorial to build this About Us area in the Graph Origami framework. The tutorial assumes you know some basic HTML and CSS.
+Follow the tutorial to build a simple website in the Graph Origami framework. The tutorial explains each of the above concepts in turn.
 
 &nbsp;
 
-[Start the tutorial](intro1.html) »
+[Start the tutorial](intro0.html) »

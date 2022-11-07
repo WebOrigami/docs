@@ -1,61 +1,72 @@
 ---
-title: "Tutorial start"
+title: Creating digital content through transformation
 ---
 
-You can do this tutorial in three ways:
+Creating digital content generally requires you to create one thing, then turn it into another.
 
-## Option 1: Web-hosted Glitch editor
+If you want to create something very, very simple for someone else, you may be able to just create the thing (a document, an email, a picture) by hand and give it to them.
 
-Glitch is a code editor intended for a general audience, including hobbyists and content creators whose primary profession is _not_ software programming.
+<figure>
+  <img src="/assets/illustrations/artifact.svg">
+</figure>
 
-<span class="tutorialStep"></span> Open the **[link goes here]** project and click the **Remix** button.
+**[update diagram]**
 
-## Option 2: Web-hosted StackBlitz coding environment
+But many kinds of digital artifacts require multiple steps to create, and those steps may be too complex, repetitive, or error-prone to perform by hand.
 
-StackBlitz is intended for people who are comfortable in a full programming environment. It uses a web-based version of VS Code, a popular editor for professional software developers.
+The About Us area you want to build, for example, will need to include a certain amount of repetition:
 
-<span class="tutorialStep"></span> Open the [framework introduction on StackBlitz](https://stackblitz.com/github/GraphOrigami/framework-intro) in a separate window so you can follow along here.
+- The main page show each person in the list the same way.
+- The individual pages for each person should have the same structure.
 
-There are a variety of ways to incorporate Origami into an existing web server or a larger project, but for this introduction, you'll use the small server included with the [ori command-line interface](/cli) that is part of Origami.
+In this particular example, the site is simple enough that you _could_ build it by hand. Most sites are more complex than this. And even this simple site would be hard to maintain: if you want to change the way a person is presented, you'll have to make that change in multiple places.
 
-<span class="tutorialStep"></span> Start the web server:
+Given that, it will be more convenient and powerful to write your content in an initial form, then use software to transform that into the result you want to share.
 
-```console
-$ ori serve
-Server running at http://localhost:5000. Press Ctrl+C to stop.
+Let's call the thing you create directly the _source form_ of what you want to make.
+
+<figure>
+  <img src="/assets/illustrations/sourceAndResult.svg">
+</figure>
+
+**[update diagram]**
+
+You might create the source form by typing stuff out of your head, or by gathering bits of stuff from the web. This source form represents, in some way or another, everything necessary to build the thing you want. For a coding project, this source form is what you would check into a source control system.
+
+You then use a series of computer-assisted _transformations_ to produce the _result form_, which is what you can share. The result form typically is a lower-level representation of your idea, such as a final set of HTML pages that your audience can view directly in their browser. This result form is the last form of the idea that's in your hands — after you publish it, it may get transformed further (by a content distribution network, say), but for your purposes, it's the end product.
+
+Like a square of paper that becomes an origami artwork, the source form embodies everything needed to create the result form. That enables you to _repeat_ the transformation process on demand. Whenever you change the source form, you can reliably recreate the result form.
+
+## Initial form of the content
+
+If your goal is to build this About Us area, then what's the most convenient initial form of the content you will create by hand?
+
+There are lots of ways you can define content in software:
+
+- Content files like text or images
+- Data files
+- JavaScript or other code
+- Databases
+- Web services
+
+What's the best form for this particular About Us example?
+
+**[diagram focusing on source form]**
+
+Your site needs to show a bit of information about each person on your team. The most convenient form for that amount of data might be a YAML file:
+
+```
+*** data goes here ***
 ```
 
-Note: The default StackBlitz terminal prompt looks like `❯`, but this tutorial uses the more typical `$` as the prompt.
+You could use a JSON file or other formats to store that data, but most formats won't as easy to write by hand.
 
-StackBlitz may indicate that you need to enable certain cookies in order to run the server.
+<span class="tutorialStep"></span> Update the names in `team.yaml` to use your name and the names of your family members or friends. This will make this tutorial _much_ more fun to go through!
 
-<span class="tutorialStep"></span> View the served site, which at this point will just show a listing of the project files.
+(If you're using StackBlitz, it may display a message saying "Project forked" to indicate that you're now working in your own copy of the tutorial project. You may need to restart the Origami server with `ori serve`.)
 
-## Option 3: Your local coding environment
-
-Select this option if you're a programmer and prefer to use your own code editor.
-
-<span class="tutorialStep"></span> Clone the [GraphOrigami/framework-intro](https://github.com/GraphOrigami/framework-intro) repository to your own machine.
-
-<span class="tutorialStep"></span> Open a terminal window in the project's root directory, then:
-
-```console
-$ npm install
-```
-
-There are a variety of ways to incorporate Origami into an existing web server or a larger project, but for this introduction, you'll use the small server included with the [ori command-line interface](/cli) that is part of Origami.
-
-<span class="tutorialStep"></span> Start the web server:
-
-```console
-$ npx ori serve
-Server running at http://localhost:5000. Press Ctrl+C to stop.
-```
-
-When running locally, you'll need to invoke this ori tool with `npx ori`. _Throughout the rest of the tutorial, where you see `ori`, you should type `npx ori` instead._
-
-<span class="tutorialStep"></span> View the served site, which at this point will just show a listing of the project files.
+The photos can be kept in the `src/photos` folder.
 
 &nbsp;
 
-Next: [Virtual files](intro2.html) »
+Next: [Graphs](intro2.html) »

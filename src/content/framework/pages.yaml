@@ -1,24 +1,28 @@
 - href: index.html
   text: Introduction
+- href: intro0.html
+  text: Tutorial
   pages:
     - href: intro1.html
-      text: Start
-    - href: intro1b.html
-      text: Process
+      text: Model
     - href: intro2.html
-      text: Virtual content
+      text: Graphs
     - href: intro3.html
-      text: Formulas
+      text: Explorable graphs
     - href: intro4.html
-      text: Thinking in graphs
+      text: Virtual content
     - href: intro5.html
-      text: Transform graphs
+      text: Metagraphs
     - href: intro6.html
-      text: Templates
+      text: Formulas
     - href: intro7.html
-      text: Nested templates
+      text: Scope
     - href: intro8.html
-      text: Deploying
+      text: Templates
+    - href: intro9.html
+      text: Transforms
+    - href: intro10.html
+      text: Graph tools
 - href: metagraph.html
   text: Metagraphs
   pages:
