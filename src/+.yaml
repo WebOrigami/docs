@@ -26,6 +26,10 @@ html = mapDeep(inlined, mdHtml, '.md', '.html'):
 # and navigation chrome. This step concludes the main documentation pipeline.
 pages = mapDeep(html, templates/page.ori, '.html'):
 
+# Expose the packages referenced in the documentation.
+framework-intro = node_modules/@graphorigami/framework-intro/src:
+pattern-intro = node_modules/@graphorigami/pattern-intro/src:
+
 # The following formulas are used by specific pages that want to inline API
 # documentation for specific classes in the Graph Origami core library. The
 # first formula defines a shorthand `source` that refers to the Graph Origami

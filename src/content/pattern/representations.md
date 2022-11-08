@@ -1,6 +1,5 @@
 ---
 title: Data representations
-approaches = node_modules/pattern-intro/src/approaches:
 ---
 
 Let's use the explorable graph pattern to tackle a small, common development task:
@@ -10,13 +9,13 @@ Let's use the explorable graph pattern to tackle a small, common development tas
 <span class="tutorialStep"></span> View the files in the `src/approaches/markdown` folder, which contains some trivial markdown files. For example, `Alice.md`, contains:
 
 ```{{'md'}}
-{{ approaches/markdown/Alice.md }}
+{{ pattern-intro/approaches/markdown/Alice.md }}
 ```
 
 We want to end up with a corresponding collection of HTML pages, such as `Alice.html`:
 
 ```{{'html'}}
-{{ mdHtml approaches/markdown/Alice.md }}
+{{ mdHtml pattern-intro/approaches/markdown/Alice.md }}
 ```
 
 We will make use of a markdown-to-HTML translator, but beyond that are going to solve this problem without depending on a framework or other code. We'll essentially write everything from scratch.
@@ -28,7 +27,7 @@ Before tackling the translation of markdown to HTML, let's first solve a simpler
 ```{{'js'}}
 /* src/approaches/files.js */
 
-{{ approaches/files.js }}
+{{ pattern-intro/approaches/files.js }}
 ```
 
 Here we use the promise-based flavor of Node's [fs](https://nodejs.org/api/fs.html) API, as it avoids blocking the main thread and makes it easy to work with the results.
@@ -40,7 +39,7 @@ We use the `fs.readFile` API to get a list of the file names that we can loop ov
 ```console
 $ cd src/approaches
 $ node files.js
-{{ yaml approaches/markdown }}
+{{ yaml pattern-intro/approaches/markdown }}
 ```
 
 ## Wait — why files?
@@ -56,14 +55,14 @@ If the set of markdown files is really so trivial, we could decide to load the d
 ```{{'js'}}
 /* src/approaches/object.js */
 
-{{ approaches/object.js }}
+{{ pattern-intro/approaches/object.js }}
 ```
 
 <span class="tutorialStep"></span> Verify that this object approach produces the same output:
 
 ```console
 $ node object.js
-{{ yaml approaches/markdown }}
+{{ yaml pattern-intro/approaches/markdown }}
 ```
 
 This object-based approach has its own advantages. For one thing, the code is lot simpler. Being synchronous and working directly against memory, it will also be much faster. In some cases, keeping the data in a single file might also make it easier to create, edit, and manage the data as a collection. On the downside, working directly in a JavaScript file is something only someone with development experience would feel comfortable doing.
@@ -75,7 +74,7 @@ The particular markdown content here is so rigidly formulaic, we could write a J
 ```{{'js'}}
 /* src/approaches/fn.js */
 
-{{ approaches/fn.js }}
+{{ pattern-intro/approaches/fn.js }}
 ```
 
 This particular function `fn` happens to be synchronous. If the function were asynchronous, we would switch the `for` loop to a `for await` loop, and `await` the function result.
@@ -84,7 +83,7 @@ This particular function `fn` happens to be synchronous. If the function were as
 
 ```console
 $ node fn.js
-{{ yaml approaches/markdown }}
+{{ yaml pattern-intro/approaches/markdown }}
 ```
 
 ## Pros and cons
@@ -130,7 +129,7 @@ You often encounter this overspecialization in tools. In searching for a tool th
 Regardless of how we are storing the markdown content, it's possible to conceptualize the content as a graph:
 
 <figure>
-  {{ svg approaches/markdown }}
+  {{ svg pattern-intro/approaches/markdown }}
   <figcaption>The markdown documents as a graph</figcaption>
 </figure>
 

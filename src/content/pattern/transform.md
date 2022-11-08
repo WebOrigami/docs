@@ -1,6 +1,5 @@
 ---
 title: Transform a graph
-flat = node_modules/pattern-intro/src/flat:
 ---
 
 In the last step, we defined an in-memory JavaScript object to hold the set of markdown content we want to convert to HTML. We wrapped the object in the Explorable graph interface so that other code can access that content as an abstract graph, without the need to know specifically how and where that content is stored.
@@ -13,10 +12,10 @@ In our markdown-to-HTML transformation, we will create a virtual graph of HTML c
 
 <div class="sideBySide split2to3">
   <figure>
-    {{ svg flat/object }}
+    {{ svg pattern-intro/flat/object }}
   </figure>
   <figure>
-    {{ svg flat/htmlObject }}
+    {{ svg pattern-intro/flat/htmlObject }}
   </figure>
   <figcaption>Real markdown graph</figcaption>
   <figcaption>Virtual HTML graph</figcaption>
@@ -94,7 +93,7 @@ We can now verify that our transform is working as expected by adapting the same
 ```{{'js'}}
 /* src/flat/transform.test.js */
 
-{{ flat/transform.test.js }}
+{{ pattern-intro/flat/transform.test.js }}
 ```
 
 <span class="tutorialStep"></span> From inside the `src/flat` directory, run the transform tests:
@@ -116,7 +115,7 @@ We can bake the transform and the object together to create a final HTML graph.
 ```{{'js'}}
 /* src/flat/htmlObject.js */
 
-{{ flat/htmlObject.js }}
+{{ pattern-intro/flat/htmlObject.js }}
 ```
 
 You can think of this `transform` function as a function that takes a graph of markdown and returns a virtual graph of HTML. But keep in mind that the virtual graph is actually asynchronous. The `transform` function does not do any substantive work when it is called above.
@@ -127,7 +126,7 @@ One way to think about this virtual HTML graph is that it represents a _tree of 
 
 ```console
 $ node json htmlObject.js
-{{ json flat/transform flat/htmlObject }}
+{{ json pattern-intro/flat/transform pattern-intro/flat/htmlObject }}
 ```
 
 The `json` utility traverses the virtual HTML graph, causing it to do its work of transforming markdown to HTML as the utility builds an in-memory object it ultimately displays as JSON. You can see that the displayed JSON has the desired shape, keys, and values as the virtual HTML graph in the diagram at the top of this page.

@@ -1,7 +1,6 @@
 ---
 title: Display a graph
-flat = node_modules/pattern-intro/src/flat:
-functions = js/codeFunctions(flat/json.js):
+functions = js/codeFunctions(pattern-intro/flat/json.js):
 ---
 
 Now that we've applied the Explorable interface to an object to create an explorable graph, let's write a simple tool that will display the contents of that explorable graph in the console.
@@ -44,7 +43,7 @@ The tool dynamically imports the indicated JavaScript file and gets its default 
 
 ```console
 $ node json object.js
-{{ json flat/object }}
+{{ json pattern-intro/flat/object }}
 ```
 
 &nbsp;

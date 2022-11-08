@@ -1,7 +1,6 @@
 ---
 title: Deep graphs
-deep = node_modules/pattern-intro/src/deep:
-functions = js/codeFunctions(deep/json.js):
+functions = js/codeFunctions(pattern-intro/deep/json.js):
 ---
 
 Until now, the "graphs" we've been working with are flat lists. Now that we've cleanly isolated our graph wrappers into classes, let's extend the `ObjectGraph` and `FilesGraph` classes to support arbitrarily deep trees.
@@ -15,7 +14,7 @@ We rewrite the `get` implementation in `ObjectGraph.js`, adding a simplistic che
 ```{{'js'}}
 /* src/deep/ObjectGraph.js */
 
-{{ deep/ObjectGraph.js }}
+{{ pattern-intro/deep/ObjectGraph.js }}
 ```
 
 Note that instead of creating new instances with `new ObjectGraph`, we use `new this.constructor`. The former could work in this tutorial, but the latter is more future-proof because it supports subclassing. If you ever were to subclass `ObjectGraph`, you'd want that subclass to spawn new instances of the same subclass, not `ObjectGraph`.
@@ -25,13 +24,13 @@ This lets us create a deep tree:
 ```{{'js'}}
 /* src/deep/object.js */
 
-{{ deep/object.js }}
+{{ pattern-intro/deep/object.js }}
 ```
 
 which represents the deep graph
 
 <figure>
-  {{ svg deep/object }}
+  {{ svg pattern-intro/deep/object }}
 </figure>
 
 ## Deep file graphs
@@ -41,7 +40,7 @@ We do something very similar in `FilesGraph.js`. Here we check to see whether th
 ```{{'js'}}
 /* src/deep/FilesGraph.js */
 
-{{ deep/FilesGraph.js }}
+{{ pattern-intro/deep/FilesGraph.js }}
 ```
 
 This lets us support arbitrarily deep subfolders.
@@ -67,7 +66,7 @@ Finally, we need to update our `json` utility. That code has a function called `
 ```console
 $ cd ../deep
 $ node json files.js
-{{ json deep/files }}
+{{ json pattern-intro/deep/files }}
 ```
 
 ## Deep transforms
@@ -77,20 +76,20 @@ Our transformation that converts markdown to HTML needs to be updated too. After
 ```{{'js'}}
 /* src/deep/transform.js */
 
-{{ deep/transform.js }}
+{{ pattern-intro/deep/transform.js }}
 ```
 
 <span class="tutorialStep"></span> Display the result of this transformation applied to the deep object or folder graph.
 
 ```console
 $ node json htmlFiles.js
-{{ json deep/transform deep/files }}
+{{ json pattern-intro/deep/transform pattern-intro/deep/files }}
 ```
 
 Visually this looks like:
 
 <figure>
-{{ svg deep/transform deep/files }}
+{{ svg pattern-intro/deep/transform pattern-intro/deep/files }}
 </figure>
 
 So now we have a way of transforming an arbitrarily deep folder of markdown content into a corresponding deep tree of HTML content. We're now ready to do some interesting things with this content.

@@ -8,20 +8,18 @@
     - href: intro2.html
       text: Graphs
     - href: intro3.html
-      text: Explorable graphs
-    - href: intro4.html
       text: Virtual content
-    - href: intro5.html
+    - href: intro4.html
       text: Metagraphs
-    - href: intro6.html
+    - href: intro5.html
       text: Formulas
-    - href: intro7.html
+    - href: intro6.html
       text: Scope
-    - href: intro8.html
+    - href: intro7.html
       text: Templates
-    - href: intro9.html
+    - href: intro8.html
       text: Transforms
-    - href: intro10.html
+    - href: intro9.html
       text: Graph tools
 - href: metagraph.html
   text: Metagraphs

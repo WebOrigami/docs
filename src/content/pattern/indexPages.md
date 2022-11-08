@@ -1,8 +1,7 @@
 ---
 title: Index pages
-index = node_modules/pattern-intro/src/index:
-functions = js/codeFunctions(index/indexPages.js):
-htmlObject = index/transform(index/object):
+functions = js/codeFunctions(pattern-intro/index/indexPages.js):
+htmlObject = pattern-intro/index/transform(pattern-intro/index/object):
 ---
 
 Right now, the experience of browsing our graph of generated HTML is a little unsatisfying because there are no index pages — we have to know what pages exist and manually enter a valid URL.
@@ -31,7 +30,7 @@ If the little `more` branch of our HTML graph looks like this:
 Then invoking `indexPage` on this branch will return:
 
 ```{{'html'}}
-{{ ((index/indexPages)(htmlObject/more))/index.html }}
+{{ ((pattern-intro/index/indexPages)(htmlObject/more))/index.html }}
 ```
 
 ## Transform a graph by adding index pages
@@ -48,7 +47,7 @@ Using the default `indexPage` function above, let's now create a graph transform
 If we use this to transform the `more` branch of the HTML graph, we'll get:
 
 <figure>
-{{ svg index/indexPages(htmlObject/more) }}
+{{ svg pattern-intro/index/indexPages(htmlObject/more) }}
 </figure>
 
 ## Incorporate the index page transform
@@ -58,7 +57,7 @@ We can apply this `indexPages` transform on top of our object, file, and functio
 ```{{'js'}}
 /* src/index/htmlFiles.js */
 
-{{ index/htmlFiles.js }}
+{{ pattern-intro/index/htmlFiles.js }}
 ```
 
 These transforms are just functions, so we can apply as many graph transforms as we want.

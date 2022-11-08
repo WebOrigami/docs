@@ -1,5 +1,5 @@
 ---
-title: Transforms change a graph from one form to another
+title: Graph tools to deploy content
 numberHeadings: true
 intro = client/samples/frameworkIntro:
 ---
@@ -58,4 +58,4 @@ This concludes the tutorial.
 
 &nbsp;
 
-Next: [Graph tools](intro10.html) »
+Back to [Framework](/framework/)

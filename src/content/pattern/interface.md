@@ -1,12 +1,11 @@
 ---
 title: The Explorable graph interface
-flat = node_modules/pattern-intro/src/flat:
 ---
 
 The last section noted that, in the context of our markdown-to-HTML problem, it's possible to conceptualize the markdown content as a graph:
 
 <figure>
-  {{ svg flat/markdown }}
+  {{ svg pattern-intro/flat/markdown }}
   <figcaption>The markdown documents as a graph</figcaption>
 </figure>
 
@@ -51,7 +50,7 @@ Of the three data representations we looked at previously, the in-memory JavaScr
 ```{{'js'}}
 /* src/flat/object.js */
 
-{{ flat/object.js }}
+{{ pattern-intro/flat/object.js }}
 ```
 
 This module exports an explorable graph that wraps the JavaScript object containing the markdown data. For now, this wrapper can only handle a flat object — later we will extend this to handle hierarchical objects.
@@ -63,7 +62,7 @@ The first thing we can do with this explorable object is programmatically verify
 ```{{'js'}}
 /* src/flat/object.test.js */
 
-{{ flat/object.test.js }}
+{{ pattern-intro/flat/object.test.js }}
 ```
 
 <span class="tutorialStep"></span> From inside the `src/flat` directory, run these tests to see that all test pass:

@@ -1,6 +1,5 @@
 ---
 title: File graphs
-flat = node_modules/pattern-intro/src/flat:
 ---
 
 We now have a working markdown-to-HTML system. Depending on our needs, we might be done. At this point, the markdown content is stored in a JavaScript object defined in a single JavaScript file. As discussed earlier, there are a number of other data representations and storage systems we could choose.
@@ -81,7 +80,7 @@ We can test this files graph, once again copying-and-pasting the tests used for 
 ```{{'js'}}
 /* src/flat/files.test.js */
 
-{{ flat/files.test.js }}
+{{ pattern-intro/flat/files.test.js }}
 ```
 
 <span class="tutorialStep"></span> Run these tests to see that all test pass:
@@ -102,7 +101,7 @@ $ node files.test.js
 
 ```console
 $ node json files.js
-{{ json flat/files }}
+{{ json pattern-intro/flat/files }}
 ```
 
 That's a single chunk of data now — but the keys of that object came from a directory listing, and each of those values is content from a separate file!
@@ -111,7 +110,7 @@ That's a single chunk of data now — but the keys of that object came from a d
 
 ```console
 $ node json object.js
-{{ json flat/object }}
+{{ json pattern-intro/flat/object }}
 ```
 
 The critical bit here is that the `json` utility required no modification to work with the new files-based graph. We wrote the `json` utility to work with explorable graphs, and the folder is just another explorable graph.
@@ -123,14 +122,14 @@ Since our folder is now available to us in graph form, we can convert its markdo
 ```{{'js'}}
 /* src/flat/htmlFiles.js */
 
-{{ flat/htmlFiles.js }}
+{{ pattern-intro/flat/htmlFiles.js }}
 ```
 
 <span class="tutorialStep"></span> View the HTML translation of the markdown files in the `markdown` folder.
 
 ```console
 $ node json htmlFiles.js
-{{ json flat/transform flat/htmlFiles }}
+{{ json pattern-intro/flat/transform pattern-intro/flat/htmlFiles }}
 ```
 
 The transform function can accept any graph of markdown content, so we can switch between our object and folder graph implementations at will. If we wanted to read the markdown content from a CMS, we could create a graph implementation backed by the CMS, then directly apply the unmodified transform function to that graph.

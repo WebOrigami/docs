@@ -1,7 +1,6 @@
 ---
 title: Serve a graph
-deep = node_modules/pattern-intro/src/deep:
-functions = js/codeFunctions(deep/serve.js):
+functions = js/codeFunctions(pattern-intro/deep/serve.js):
 ---
 
 Displaying a graph in the console is fine for playing around or debugging, but we can do much more interesting things with a graph — like serve it to a web browser.
@@ -60,7 +59,7 @@ To add a layer of flexibility, we'll serve the graph defined in a new file calle
 ```{{'js'}}
 /* src/deep/siteGraph.js */
 
-{{ deep/siteGraph.js }}
+{{ pattern-intro/deep/siteGraph.js }}
 ```
 
 ## Trying our server

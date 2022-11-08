@@ -2,17 +2,17 @@
 title: "Graph Origami framework tutorial"
 ---
 
+As an example of creating things in Graph Origami, in this tutorial you'll create a simple website. The tutorial assumes you know some basic HTML and CSS.
+
 ## Goal
 
-Among other things, Graph Origami can be used to make web sites. Suppose one day one of your teammates says:
+Suppose one day one of your teammates says:
 
 > _We need an "About Us" area for our site! The main About Us page should list of people on our team, with links to separate pages for each person. A person's page should show their name and a photo._
 
-Perhaps you want to model your About Us area on this [sample About Us area](/samples/aboutUs).
+Using this [sample About Us area](/samples/aboutUs) as a model, this tutorial walks you through achieving this goal.
 
-The rest of this tutorial walks you building this site in Graph Origami. The tutorial assumes you know some basic HTML and CSS.
-
-You can do this tutorial in three ways:
+You can do the tutorial in three ways:
 
 ## Option 1: Web-hosted Glitch editor
 
@@ -68,4 +68,4 @@ When running locally, you'll need to invoke this ori tool with `npx ori`. _Throu
 
 &nbsp;
 
-Next: [Transformational model](intro1.html) »
+Next: [Content creation as transformation](intro1.html) »

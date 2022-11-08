@@ -1,6 +1,5 @@
 ---
 title: Function graphs
-flat = node_modules/pattern-intro/src/flat:
 ---
 
 Having already created explorable implementations of our object and folder representations, it should be fairly quick work to create an explorable implementation of our function representation.
@@ -12,7 +11,7 @@ To create an explorable function-based graph, we'll need two things: 1) a functi
 ```{{'js'}}
 /* src/flat/fn.js */
 
-{{ flat/fn.js }}
+{{ pattern-intro/flat/fn.js }}
 ```
 
 Because the Explorable interface supports asynchronous functions by default, we could just as easily have the core `fn` function here be an `async` function that, for example, retrieved a resource from a server.
@@ -39,7 +38,7 @@ $ node fn.test.js
 
 ```console
 $ node json fn.js
-{{ json flat/fn }}
+{{ json pattern-intro/flat/fn }}
 ```
 
 You can think of an explorable function as a function that can provide a sample output set. Here the core `fn` function can actually handle more keys that the graph exposes in its `asyncIterator`, which we can take advantage of later.
@@ -49,14 +48,14 @@ We can apply our markdown-to-HTML transformation to this virtual graph to create
 ```{{'js'}}
 /* src/flat/htmlFn.js */
 
-{{ flat/htmlFn.js }}
+{{ pattern-intro/flat/htmlFn.js }}
 ```
 
 <span class="tutorialStep"></span> View the HTML translation of the markdown files in the virtual graph implied by the function.
 
 ```console
 $ node json htmlFn.js
-{{ json flat/transform flat/htmlFn }}
+{{ json pattern-intro/flat/transform pattern-intro/flat/htmlFn }}
 ```
 
 We have now implemented three different ways to construct an explorable graph. In a bit, we'll see how they can be used together to create interesting combinations and be used for practical purposes. Before doing that, however, let's make our code a little more general-purpose and flexible.

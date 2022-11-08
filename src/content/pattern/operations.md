@@ -1,6 +1,5 @@
 ---
 title: Higher-level graph operations
-merge = node_modules/pattern-intro/src/merge:
 ---
 
 One extremely useful aspect of graph-based development is that we can define higher-level operations on graphs that solve general problems.
@@ -81,7 +80,7 @@ We can update our site graph to use this new higher-level `MergeGraph` operation
 ```{{'js'}}
 /* src/merge/siteGraph.js */
 
-{{ merge/siteGraph.js }}
+{{ pattern-intro/merge/siteGraph.js }}
 ```
 
 We apply our `indexPages` transform to give the merged graph index pages.
@@ -89,7 +88,7 @@ We apply our `indexPages` transform to give the merged graph index pages.
 The site is now the deep merge of all three graphs:
 
 <figure>
-{{ svg merge/siteGraph }}
+{{ svg pattern-intro/merge/siteGraph }}
 </figure>
 
 If you compare this to the previous step, where we treated each of the component graphs as separate branches, you can see that the merged graph is flatter.

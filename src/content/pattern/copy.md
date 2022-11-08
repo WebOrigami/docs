@@ -1,6 +1,5 @@
 ---
 title: Copy a graph
-set = node_modules/pattern-intro/src/set:
 ---
 
 A key benefit of building a site as a graph is that we can seamlessly move between browsing that graph and rendering that graph as static content.
@@ -100,7 +99,7 @@ We can now introduce a new helper function, `setDeep(target, source)`, which han
 ```{{'js'}}
 /* src/set/setDeep.js */
 
-{{ set/setDeep.js }}
+{{ pattern-intro/set/setDeep.js }}
 ```
 
 ## Build real files from virtual content
@@ -110,7 +109,7 @@ We're now ready to build real static files for our site by copying the virtual g
 ```{{'js'}}
 /* src/set/distFiles.js */
 
-{{ set/distFiles.js }}
+{{ pattern-intro/set/distFiles.js }}
 ```
 
 And then create a `build.js` utility that copies the virtual graph defined in `siteGraph.js` into that real `dist` folder:
@@ -118,7 +117,7 @@ And then create a `build.js` utility that copies the virtual graph defined in `s
 ```{{'js'}}
 /* src/set/build.js */
 
-{{ set/build.js }}
+{{ pattern-intro/set/build.js }}
 ```
 
 <span class="tutorialStep"></span> Use this new `build` tool from inside the `src/set` directory to copy the virtual graph into files. The `set` method for `FilesGraph` takes care to create the target directory (`dist`), so it's fine if that directory doesn't exist when we start.
@@ -136,7 +135,7 @@ Alice.html Bob.html   Carol.html index.html more
 
 ```console
 $ node json distFiles.js
-{{ json set/htmlObject }}
+{{ json pattern-intro/set/htmlObject }}
 ```
 
 We can see that we've generated HTML pages for all the markdown content, and also see that each level of this tree has an `index.html` page.
