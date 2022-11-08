@@ -80,7 +80,11 @@ You could use a JSON file or other formats to store that data, but most formats 
 
 (If you're using StackBlitz, it may display a message saying "Project forked" to indicate that you're now working in your own copy of the tutorial project. You may need to restart the Origami server with `ori serve`.)
 
-The photos can be kept in the `src/photos` folder.
+\*\*\* The photos can be kept in the `src/photos` folder.
+
+<figure>
+{{ svg framework-intro/public }}
+</figure>
 
 &nbsp;
 
