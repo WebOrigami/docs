@@ -21,7 +21,7 @@ Most tools for creating content like web sites achieve power through complexity 
 The Graph Origami framework gives you a high degree of power and flexibility in a very different way — a foundation of interlocking, fundamental concepts:
 
 1. A **content creation as transformation** model helps you identify: what you want to end up with, what you can start with, and how to transform the starting form into the final result.
-1. **Graphs** are a convenient way think about your data, files, and other resources.
+1. **Explorable graphs** are a convenient way think about data, files, and other resources.
 1. **Virtual content** represents your intermediate results and your final result.
 1. **Metagraphs** are graphs that define their own transformation.
 1. **Formulas** transform your real data and files into virtual content you can browse.

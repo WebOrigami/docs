@@ -52,7 +52,7 @@ Graph Origami takes its name from the paper-folding art of origami, in which you
 
 Each individual step is simple, but the cumulative result can be complex. You can approach the creation of digital content the same way.
 
-## Source form of the site
+## Source form of the About Us site
 
 If your goal is to build this About Us area, then what's the most convenient source form of the content you will create by hand?
 
@@ -64,11 +64,9 @@ There are lots of ways you can define content in software:
 - Databases
 - Web services
 
-What's the best form for this particular About Us example?
+What's the best source form for this particular About Us example? The tutorial project includes a `src` folder containing the various resources that make up the source form.
 
-**[diagram focusing on source form]**
-
-Your site needs to show a bit of information about each person on your team. The most convenient form for that amount of data might be a YAML file:
+For starters, your site needs to show a bit of information about each person on your team. A convenient form for that amount of data might be a YAML file:
 
 ```{{'yaml'}}
 {{ framework-intro/team.yaml }}
@@ -76,15 +74,17 @@ Your site needs to show a bit of information about each person on your team. The
 
 You could use a JSON file or other formats to store that data, but most formats won't as easy to write by hand.
 
-<span class="tutorialStep"></span> Update the names in `team.yaml` to use your name and the names of your family members or friends. This will make this tutorial _much_ more fun to go through!
+<span class="tutorialStep"></span> Update the names in `team.yaml` to use your name and the names of family members or friends. _That will make this tutorial much more fun._
 
 (If you're using StackBlitz, it may display a message saying "Project forked" to indicate that you're now working in your own copy of the tutorial project. You may need to restart the Origami server with `ori serve`.)
 
-\*\*\* The photos can be kept in the `src/photos` folder.
+Other resources in your site's source form include:
 
-<figure>
-{{ svg framework-intro/public }}
-</figure>
+- A collection of headshot photos. This tutorial provides some stock images to use in place of real headshots. To simplify organization, the photos have been grouped into a `src/photos` folder.
+- A CSS stylesheet, `styles.css`, embodying the visual aesthetics of the site.
+- An SVG image, `personIcon.svg`, showing an icon of a person.
+
+This `src` folder contains most of the raw materials necessary to build the About Us site. The work ahead is to transform this material into the final result form that visitors can browse.
 
 &nbsp;
 

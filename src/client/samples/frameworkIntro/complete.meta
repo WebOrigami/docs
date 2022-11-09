@@ -1,0 +1,8 @@
+title: Our Amazing Team
+teamByName = mapKeys(framework-intro/team.yaml, =name):
+public:
+  index.html = `<h1>{{ title }}</h1>`:
+  personIcon.svg = node_modules/@graphorigami/framework-intro/src/personIcon.svg:
+  photos = map(teamByName, `[binary data]`, '', '.jpeg'):
+  styles.css = node_modules/@graphorigami/framework-intro/src/styles.css:
+  team = map(teamByName, =`<h1>{{ name }}</h1>`):
