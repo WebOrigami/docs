@@ -97,4 +97,4 @@ Creating things in Graph Origami means thinking about the graph you've got and t
 
 &nbsp;
 
-Next: [Virtual content](intro3.html) »
+Next: [Metagraphs and virtual content](intro3.html) »

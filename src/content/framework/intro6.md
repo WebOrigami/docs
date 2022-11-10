@@ -1,156 +1,79 @@
 ---
-title: Scope determines what formulas can reference
+title: Templates turn graphs into text
 numberHeadings: true
 intro = client/samples/frameworkIntro:
-teamByName = intro/teamByName:
-team = intro/team:
-team2 = intro/team2:
-template:
-  - Hello, <strong>
-  - "{{name}}"
-  - </strong>!
-application:
-  - Hello, <strong>
-  - Alice
-  - </strong>!
+index.ori: |
+  <h1>About Us</h1>
+  {{#map teamByName}}
+    <li>{{name}}</li>
+  {{/map}}
+indexTemplate:
+  - <h1>About Us</h1>
+  - "{{#map teamByName}}<li>{{name}}</li>{{/map}}"
+indexText = results(this):
+  0: "<h1>About Us</h1>"
+  1 = map(intro/teamByName, =`<li>{{name}}</li>`):
+index.html = index.ori(intro/team.yaml):
 ---
 
-## Transform data into HTML with a template
+The last part of the About Us area to create is the main `index.html` page. By now it will not surprise you that you'll create that page with another graph transformation.
 
-You can transform data into HTML with plain JavaScript, but a template language can be more appropriate for that task.
+## Create an index page template
 
-You can use any template system with Origami, but for this tutorial you'll use the template system built into Origami. These Origami templates reuse the same expression language as Origami formulas and the ori command-line interface.
+Let's rough in an index page.
 
-<span class="tutorialStep"></span> In the `src` folder, create a file called `person.ori` and type or copy/paste the following HTML:
-
-```hbs
-{{ intro/person.ori }}
-```
-
-Like most template languages, Origami templates let you mix boilerplate text with dynamic content represented with placeholders. In Origami templates, placeholders are delineated with curly braces. Inside the curly braces, you can put any expression in the Origami language, including graph paths and function calls.
-
-Here, the `\{\{name}}` placeholder indicates that you'd like to evaluate the expression `name` in the context of the data for a single person to produce the text that should be shown.
-
-## Apply a template as a function
-
-A template is essentially a function for turning data into a text format like HTML, so Origami allows you to invoke a template as a function.
-
-<span class="tutorialStep"></span> Add the following line to `+.yaml`. (If you entered more interesting names than what's shown here, then in both places below, substitute a name from your team file for "Alice".)
-
-```yaml
-Alice.html = person.ori(teamByName/Alice):
-```
-
-This formula creates a virtual file called `Alice.html`. The virtual file contains the HTML obtained by applying the `person.ori` template to the data for Alice in `team.yaml`:
+<span class="tutorialStep"></span> Create a new file called `index.ori` that contains:
 
 ```html
-{{ intro/person.ori(teamByName/Alice) }}
+<h1>About Us</h1>
 ```
 
-<span class="tutorialStep"></span> Open `Alice.html` in the served site to view the result: Hello, **Alice**.
-
-At this point, you're successfully transforming the data for a single person, Alice, to create a single web page for that person.
-
-## Transform a data graph into HTML pages
-
-Earlier you created a `greetings` graph that mapped the team members to a graph of greetings using a JavaScript function. You can also map the team members to HTML pages using your `person.ori` template.
+This will be the basis for an Origami template for your index page.
 
 <span class="tutorialStep"></span> Add the following line to `+.yaml`:
 
 ```yaml
-team = map(teamByName, person.ori):
+index.html = index.ori():
 ```
 
-<span class="tutorialStep"></span> Visit the `team` route in the served site, and select a person's name to see a rudimentary HTML page for that person.
+This formula specifies that, if someone asks for `index.html`, then the `index.ori` template should be invoked as a function. You don't need to pass data to that function; this particular template will ask for the data it wants.
 
-You have transformed the people data into HTML.
+You should now be able to visit `index.html` in the served site.
 
-<div class="sideBySide">
-  <figure>
-    {{ svg teamByName }}
-  </figure>
-  <figure>
-    {{ svg team }}
-  </figure>
-  <figcaption>Graph of people by name…</figcaption>
-  <figcaption>…maps to HTML pages for each person</figcaption>
-</div>
+Tip: While the new index page will be more presentable, it can still be useful to view the previous default index page that listed real and virtual files. If you ever want to return that listing, navigate to the hidden route at `src/.index` (note the period). This route is provided by the Origami server as a diagnostic tool so you can browse the virtual graph you're creating.
 
-## Flesh out the person template
+## Use a nested template
 
-Let's make the `person.ori` template a bit more realistic. The project's `assets` folder contains a fuller `person.ori` template with some more elements:
+Most template languages have some form of iteration for repeating a fragment (of HTML, say) for each item in an array. In Origami, such things are handled with graph transformations.
+
+If you look at the [example About Us index page](/samples/aboutUs), it contains a tile or card for each person on the team. In Origami, anytime you have a situation that can be described as, "For each X, create a Y", the situation can be handled with a graph transformation.
+
+Earlier you mapped the graph of people to a graph of HTML pages. To create the index page you'll do something similar, but instead of creating a full HTML page for each person, you'll create an HTML fragment defining a tile element for that person. You'll then combine those tile fragments to create the index page.
+
+<span class="tutorialStep"></span> Update the `index.ori` template so that it contains:
 
 ```html
-{{ intro/person2.ori }}
+{{ index.ori }}
 ```
 
-<span class="tutorialStep"></span> Move or copy that `person.ori` template from the `assets` folder to the `src` folder.
+The `\{\{#`…`}}` syntax invokes the same `map` function you've already been using in formulas. The fragment between the `\{\{#map}}` and `\{\{/map}}` will be passed as an additional argument to the `map` function. That fragment will be evaluated in the context of the individual item being mapped. In this case, `map` is mapping the `teamByName` graph to create a graph of text strings that are concatenated to form the final HTML result.
 
-<span class="tutorialStep"></span> Also move or copy the `styles.css` and `personIcon.svg` files referenced by the updated template.
+<span class="tutorialStep"></span> Visit or fresh the `src` route in the served site. You should see a bulleted list of names.
 
-When you view the pages in the `team` route now, you should see a somewhat more presentable web page. The page contains a missing image that you'll fix in just a minute.
+## Flesh out the index page template
 
-## Add an HTML extension
+Now that you have a working index page, flesh it out with more elements.
 
-We often use extensions at the end of file names to indicate the type of data they contain. Graph transformations will often want to change these extensions to reflect a change in the type of data. For this reason, functions like `map` allow you to add, change, or remove extensions.
+<span class="tutorialStep"></span> From the `assets` folder, move or copy the `index.ori` template into the `src` folder.
 
-In this case, you want to map a person object with a key like `Alice` to an HTML file name like `Alice.html` to reflect the fact that that transformed graph value contains HTML.
-
-<span class="tutorialStep"></span> Update the line for `team` so that it reads:
-
-```yaml
-team = map(teamByName, person.ori, '', '.html'):
+```html
+{{ intro/index.ori }}
 ```
 
-The empty third parameter (`''`) indicates that you don't want to _remove_ anything from the graph keys, because they don't have any extension. The fourth parameter (`'.html'`) indicates that you want to _add_ `.html` to the graph keys. The transformation now looks like:
+This version of `index.ori` is slightly more elaborate, but works the same way as before. The `#map` block in the middle generates a tile element for each person in `teamByName`. The tile makes use of the same random avatar images you created with a graph transformation earlier.
 
-<div class="sideBySide">
-  <figure>
-    {{ svg teamByName }}
-  </figure>
-  <figure>
-    {{ svg team2 }}
-  </figure>
-  <figcaption>Graph of people by name…</figcaption>
-  <figcaption>…maps to a .html file for each person</figcaption>
-</div>
-
-<span class="tutorialStep"></span> Observe that the pages in the `team` route now end in `.html`.
-
-## Bonus: Add avatars
-
-A typical About Us area like our [example](/samples/aboutUs) shows headshot photographs for each team member. If you have pictures you'd like to use, you could use those here.
-
-But for the sake of simplicity, you can use programmatically generated avatar images from a service like [DiceBear Avatars](https://avatars.dicebear.com/). Given an arbitrary string (like a name), that service always returns the same generated image.
-
-<span class="tutorialStep"></span> From the `assets` folder, move or copy the `avatar.js` file to the `src` folder.
-
-This file contains a function that maps an input string and returns a SVG file from the random avatar service.
-
-```\js
-{{ intro/avatar.js }}
-```
-
-It's not important to understand this JavaScript, only to recognize that it can do whatever it needs to do to obtain a resource from the web.
-
-With that, you can map the `teamByName` graph to create a corresponding virtual folder of avatars.
-
-<span class="tutorialStep"></span> Add the following line to `+.yaml`:
-
-```yaml
-avatars = map(teamByName, =avatar(name), '', '.svg'):
-```
-
-You should now be able to see avatars for the people on their HTML pages.
-
-<span class="tutorialStep"></span> In the served site, navigate to the `src/avatars` folder to see a virtual folder of the generated avatar images.
-
-This virtual `src/avatars` folder looks indistinguishable from a real folder of real images. As noted earlier, an important property of building content with Origami is that intermediate results are explorable in the browser (or from the command line).
-
-Another common feature of working with Origami is that you can smoothly move between using real and virtual files. You could use these generated avatar SVGs to get started. Later, you could delete the `avatars` formula and create a real `avatars` folder containing manually-curated images or headshot photos.
-
-With the addition of the avatars, you've completed the essential functions of the `team` route within the About Us area of the site you're designing. You could add more data fields to `team.yaml` and render those in the `person.ori` template, but from a functional standpoint, you're done with that part of the task.
+<span class="tutorialStep"></span> Click on one of the tiles in the index page, which should take you to the `team` page for that individual.
 
 &nbsp;
 
-Next: [Templates](intro7.html) »
+Next: [Transforms](intro7.html) »

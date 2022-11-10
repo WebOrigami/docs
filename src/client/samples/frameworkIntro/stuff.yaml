@@ -1,0 +1,8 @@
+personIcon.svg: …
+photos:
+  Alice.jpeg: "[binary data]"
+  Bob.jpeg: "[binary data]"
+  Carol.jpeg: "[binary data]"
+stuff.yaml: |
+  title: Our Amazing Team
+styles.css: …
