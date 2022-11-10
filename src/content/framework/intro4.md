@@ -1,11 +1,5 @@
 ---
 title: Define virtual content with formulas
-numberHeadings: true
-intro = client/samples/frameworkIntro:
-team.yaml = intro/team.yaml:
-teamByName = mapKeys(team.yaml, =name):
-greetings = map(team.yaml, =intro/greet(name)):
-greetingsByName = map(teamByName, =intro/greet(name)):
 ---
 
 In the last step, you created a trivial virtual value — a virtual "file" — called `title` that contained a bit of static text. What's more interesting is that you can define virtual values with _formulas_ that will be evaluated to produce a result.
@@ -16,18 +10,18 @@ In the last step, you created a trivial virtual value — a virtual "file" — c
 
 ```yaml
 title: Our Amazing Team
-hello.html = `Hello, \{\{title}}!`:
+hello.html = 'Hello, world!':
 ```
 
-Note the colon (`:`) at the end of that new line.
+Be sure to use single quotes. Graph Origami doesn't support double quotes. There's a very good but strange reason for that, and when the reason is revealed in a few pages, it will probably surprise you and make you laugh. But for now, just remember to use single quotes.
 
-Graph Origami lets you define virtual values by defining formulas in the _key_ of a key/value pair. In YAML files, a colon is used to separate a key from a value. To define a virtual value, you put the whole formula in the key — before the colon. The value is whatever after the colon. In this case, no value is given, so the real value of the key/value pair is `null`. The virtual value will be defined by evaluating the formula.
+Also note the colon (`:`) at the end of that new line. Graph Origami lets you define virtual values by defining formulas in the _key_ of a key/value pair. In YAML files, a colon is used to separate a key from a value. To define a virtual value, you put the whole formula in the key — before the colon. The value is whatever after the colon. In this case, no value is given, so the real value of the key/value pair is `null`. The virtual value will be defined by evaluating the formula.
 
 <span class="tutorialStep"></span> Navigate to (or refresh) `/src/public` to see a new, virtual `hello.html` file.
 
-<span class="tutorialStep"></span> Open `hello.html`. You should see, "Hello, Our Amazing Team!"
+<span class="tutorialStep"></span> Open `hello.html`. You should see, "Hello, world!"
 
-Graph Origami supports a small [Origami expression language](/language). One of the things it can do is insert data into a template string, like inserting the value of `title` into a little greeting.
+Graph Origami supports a small [Origami expression language](/language), and one of its most basic expression forms is a simple quoted string. At this point, the above formula for `hello.html` isn't doing anything more interesting than the definition for `title` above it. But now that we've established how you can write formulas, you can do more interesting things.
 
 ## Invoke a JavaScript function from a formula
 
@@ -48,7 +42,7 @@ title: Our Amazing Team
 hello.html = greet('world'):
 ```
 
-And again note the final colon. Also, be sure to use single quotes. Graph Origami doesn't support double quotes. There's a very good reason for that, and the reason will probably surprise you and make you laugh. But for now, just remember to use single quotes.
+Again, note the single quotes and the final colon.
 
 This formula defines a virtual file called `hello.html`. The value or contents of that virtual file will be the result of evaluating the expression `greet('world')`. In this case, the reference to `greet` will obtain the function exported by `greet.js`, then invoke that function.
 
@@ -59,6 +53,10 @@ Each time you ask for `hello.html`, the web server evaluates the corresponding f
 Since the `greet` function is regular JavaScript, you can use that JavaScript to create HTML by any means you like. If the function is asynchronous, Origami will `await` the result before serving it to the browser. With that, you should be able to do essentially anything you want in the JavaScript function to create any HTML result.
 
 A function like `greet` here transforms data from one form into another — in this case, it transforms a string name to an HTML greeting. The function could just as easily transform other kinds of data; there's nothing special about text here.
+
+Graph Origami includes a number of [built-in functions](/cli/builtins.html), but it's very easy to add your own: just create a JavaScript file with the name of the function (like `greet`) you will use in expressions.
+
+One question this gives rise to: how _exactly_ is Graph Origami deciding what data and functions can be referenced in formulas?
 
 &nbsp;
 
