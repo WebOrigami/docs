@@ -64,6 +64,8 @@ You can also explore data files with graph tools like the `.svg` tool you used a
 {{ svg framework-intro/team.yaml/0 }}
 </figure>
 
+If you're interested in reading more about the technical definition of explorable graphs, see the [pattern](/pattern) section of this site. For now, one key technical point to mention is that explorable graphs are _asynchronous_ by nature, so they can encompass a wide variety of structures from in-memory objects to network resources. If you are a programmer and are familiar with the concept of a [promise](https://en.wikipedia.org/wiki/Futures_and_promises), you can think of an explorable graph like the one above as a _tree of promises_.
+
 ## Visualize the final result as a graph
 
 Since you can think of any structures as a graph, you can also visualize the final result of your About Us site as a graph.
@@ -80,7 +82,7 @@ As discussed at the outset, we want an index page listing our team members, plus
 
 If you can treat the `src` folder (the source form of your project) and the final site (the result form) as graphs, then your creation task is fundamentally the _transformation of the source graph into the result graph_.
 
-<div class="sideBySide">
+<div class="sideBySide fullWidth">
   <figure>
     {{ svg expand framework-intro }}
   </figure>

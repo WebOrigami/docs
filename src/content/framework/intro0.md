@@ -4,6 +4,8 @@ title: "Graph Origami framework tutorial"
 
 As an example of creating things in Graph Origami, in this tutorial you'll create a simple website. The tutorial assumes you know some basic HTML and CSS.
 
+This tutorial does its best to explain _how_ the framework works, illustrating the underlying concepts so that you can imagine for yourself how to apply those concepts to your own projects. If you're more interested in just seeing things work, you can focus on the interactive steps marked with the ➤ symbol.
+
 ## Goal
 
 Suppose one day one of your teammates says:
