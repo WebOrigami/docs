@@ -10,6 +10,15 @@
             <li>
               {{ templates/linkCurrent.ori(.) }}
             </li>
+            {{#if ./pages}}
+              <ul>
+                {{#map js/markCurrent(./pages, currentPage)}}
+                  <li>
+                    {{ templates/linkCurrent.ori(.) }}
+                  </li>
+                {{/map}}
+              </ul>
+            {{/if}}
           {{/map}}
         </ul>
       {{/if}}

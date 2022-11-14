@@ -17,6 +17,13 @@
       text: Templates
     - href: intro7.html
       text: Transforms
+      pages:
+        - href: intro7a.html
+          text: Page fragments
+        - href: intro7b.html
+          text: Images
+        - href: intro7c.html
+          text: Full pages
     - href: intro8.html
       text: Graph tools
 - href: metagraph.html

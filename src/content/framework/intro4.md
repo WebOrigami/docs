@@ -30,7 +30,7 @@ If you don't consider yourself a JavaScript programmer, don't worry, JavaScript 
 <span class="tutorialStep"></span> In your code editor, take a peek at the JavaScript file `/src/greet.js`:
 
 ```{{'js'}}
-{{ framework-intro/greet.js }}
+{{ framework-intro/src/greet.js }}
 ```
 
 This `greet` function just inserts a name into a greeting. You can use this `greet` function in an Origami expression to generate the contents of a virtual file.

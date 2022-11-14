@@ -1,5 +1,15 @@
 ---
 title: Metagraphs and virtual content
+
+# Add a stuff.yaml file
+step1 = merge(framework-intro/src/public, this):
+  stuff.yaml: |
+    title: Our Amazing Team
+
+# Treat stuff.yaml as additions
+step2 = merge(framework-intro/src/public, this):
+  title: Our Amazing Team
+
 realFolder: |
   +stuff.yaml: |
     title: Our Amazing Team
@@ -17,14 +27,14 @@ You can use this `stuff.yaml` file to define data and other things useful for co
 
 <span class="tutorialStep"></span> Enter the following line in `stuff.yaml`:
 
-```yaml
-title: Our Amazing Team
+```{{'yaml'}}
+{{ step1/stuff.yaml }}
 ```
 
 <span class="tutorialStep"></span> Navigate to `/src/public/.svg` to view the `public` folder as a visual graph.
 
 <figure>
-{{ svg client/samples/frameworkIntro/stuff.yaml }}
+{{ svg step1 }}
 </figure>
 
 There's nothing special going on yet. The `stuff.yaml` file is just a text file with some data.
@@ -36,7 +46,7 @@ Now you're going to do a magic trick to turn the data in `stuff.yaml` into virtu
 <span class="tutorialStep"></span> Refresh the browser preview to view the new `public` folder as a graph:
 
 <figure>
-{{ svg client/samples/frameworkIntro/stuffAdditions.yaml }}
+{{ svg step2 }}
 </figure>
 
 <span class="tutorialStep"></span> Navigate to the `/src/public` folder (or, in the graph, click the leftmost little circle). In addition to files like `styles.css`, you'll see the virtual `title` file. From inside the browser, there's no difference between real files and data and virtual files and data.

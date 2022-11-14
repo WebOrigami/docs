@@ -1,5 +1,11 @@
 ---
 title: Scope determines what formulas can reference
+step1:
+  greet.js = framework-intro/src/greet.js:
+  public = merge(framework-intro/src/public, this):
+    title: Our Amazing Team
+    hello.html = framework-intro/src/greet('world'):
+  team.yaml = framework-intro/src/team.yaml:
 jsScopeExample:
   Math:
     pow: (function)
@@ -86,7 +92,7 @@ Let's consider what your formula for `hello.html` has access to. First, let's id
 For space reasons, let's just visualize the portion of the scope graph defined by the `src` folder and below:
 
 <figure class="fullWidth">
-{{ svg framework-intro }}
+{{ svg step1 }}
 </figure>
 
 So when the formula for `hello.html` in `+stuff.yaml` references `greet`, Graph Origami walks up this scope graph looking for it. In this case, it finds `greet.js` and interprets that as something that defines a function called `greet`, so the search ends there.
@@ -104,7 +110,9 @@ hello.html = greet(title):
 
 As with block scoping in programming languages, the search only goes "up" the graph. If you want to go back deeper into the graph, you have to make an explicit reference.
 
-In this scope, `team.yaml` is in scope, but the specific keys inside that data graph like `0` or `name` are not. But you can reference a specific team member's name by first referencing `team.yaml`, and then providing a path that goes inside that graph.
+For the formulas in `+stuff.yaml`, the `photos` folder is in scope, but the individual image files inside that folder or not, and would need to be referenced with a path like `photos/beach.jpg`.
+
+Similarly, `team.yaml` is in scope, but the specific keys inside that data graph like `0` or `name` are not. You can reference a specific team member's name by first referencing `team.yaml`, and then providing a path that goes inside that graph.
 
 <span class="tutorialStep"></span> Update the definition for `hello.html` to reference `team.yaml/0/name`.
 

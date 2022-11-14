@@ -27,7 +27,7 @@ html = mapDeep(inlined, mdHtml, '.md', '.html'):
 pages = mapDeep(html, templates/page.ori, '.html'):
 
 # Expose the packages referenced in the documentation.
-framework-intro = node_modules/@graphorigami/framework-intro/src:
+framework-intro = node_modules/@graphorigami/framework-intro:
 pattern-intro = node_modules/@graphorigami/pattern-intro/src:
 
 # The following formulas are used by specific pages that want to inline API
