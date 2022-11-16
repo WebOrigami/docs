@@ -31,7 +31,7 @@ You can use this `stuff.yaml` file to define data and other things useful for co
 {{ step1/stuff.yaml }}
 ```
 
-<span class="tutorialStep"></span> Navigate to `/src/public/.svg` to view the `public` folder as a visual graph.
+<span class="tutorialStep"></span> Refresh or view the `.svg` page to see the updated visual graph for the `public` folder that includes `stuff.yaml`:
 
 <figure>
 {{ svg step1 }}
@@ -39,17 +39,15 @@ You can use this `stuff.yaml` file to define data and other things useful for co
 
 There's nothing special going on yet. The `stuff.yaml` file is just a text file with some data.
 
-Now you're going to do a magic trick to turn the data in `stuff.yaml` into virtual content of the public folder. To perform this trick, just rename the `stuff.yaml` file.
+Now you're going to do a magic trick to turn the data in `stuff.yaml` into virtual content in the `public` folder.
 
-<span class="tutorialStep"></span> Rename `stuff.yaml` to `+stuff.yaml`. The `+` at the beginning is a signal to Graph Origami that the data _inside_ that data file should be treated as if it were _outside_ the data file — as if they were elements of the containing `public` folder. The `+stuff.yaml` is called an `additions file`.
+<span class="tutorialStep"></span> Rename `stuff.yaml` to `+stuff.yaml`. The `+` at the beginning is a signal to Graph Origami that the data _inside_ that data file should be treated as if it were _outside_ the data file — as if those data were elements of the containing `public` folder. The `+stuff.yaml` are called _graph additions_.
 
-<span class="tutorialStep"></span> Refresh the browser preview to view the new `public` folder as a graph:
+<span class="tutorialStep"></span> Refresh/view the browser preview to see the updated `public` folder:
 
 <figure>
 {{ svg step2 }}
 </figure>
-
-<span class="tutorialStep"></span> Navigate to the `/src/public` folder (or, in the graph, click the leftmost little circle). In addition to files like `styles.css`, you'll see the virtual `title` file. From inside the browser, there's no difference between real files and data and virtual files and data.
 
 ## Metagraphs as transformation
 

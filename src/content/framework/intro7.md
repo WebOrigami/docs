@@ -3,13 +3,13 @@ title: Transforms change a graph from one form to another
 greetings = map(framework-intro/src/team.yaml, =framework-intro/src/greet(name)):
 ---
 
-A graph _transform_ is a function that takes a graph as input and returns a new graph as output. Transforms let you think at a high level about how to process material in bulk.
+A graph _transform_ is a function that takes a graph as input and returns a new graph as output. Transforms let you think at a high level about processing material in bulk.
 
 ## A map applies a one-to-one function to an entire graph's values
 
-A basic type of a transform is a _map_. A map applies a one-to-one function to all the values in a graph, giving you a new graph with the same structure as the old one — all of the same keys — but with new values. The map turns the one-to-one function into a many-to-many function.
+A common type of a transform is a _map_, which applies a one-to-one function to all the values in a graph. A map gives you a new graph with the same structure as the old one — all of the same keys, but with new values. The map turns the one-to-one function into a many-to-many function.
 
-Consider a one-to-one function like the earlier `greet()`, which takes a person's name and returns a greeting using that person's name. You can apply this one-to-one `greet` to all of the team members by using a map.
+Consider a one-to-one function like the earlier `greet`, which takes a person's name and returns a greeting using that person's name. You can apply this one-to-one `greet` to all your team members by using a map.
 
 Let's apply that `greet` function to the entire set of people on the team. As a reminder, we can visualize the people in `team.yaml` as a graph:
 
@@ -17,7 +17,7 @@ Let's apply that `greet` function to the entire set of people on the team. As a 
 {{ svg framework-intro/src/team.yaml }}
 </figure>
 
-In Origami, a graph like this is a first-class data type that can be passed to Origami expressions or JavaScript functions. A graph can be an in-memory object, a folder tree, data in a file, dynamically-generated data, and other forms. (If you're interested, you can read more about the different [graph variants](/core/variants.html) supported by Origami.)
+In Origami, a graph like this is a first-class data type that can be passed to Origami expressions or JavaScript functions.
 
 <span class="tutorialStep"></span> Add a new `greetings` formula to the end of `+stuff.yaml`:
 
@@ -27,9 +27,9 @@ index.html = index.ori():
 greetings = map(team.yaml, =greet(name)):
 ```
 
-The earlier formulas each defined a single virtual file like `title` or `hello.html`. The new `greetings` formula here defines a virtual _graph_ of things — a virtual folder of virtual files. The new graph will have the same keys `team.yaml`, but the values will be determined by evaluating the sub-expression `=greet(name)`.
+The earlier formula for `index.html` defined a single virtual file. The new `greetings` formula here defines a virtual _graph_ of things: a virtual folder of virtual files. The new graph will have the same integer keys as `team.yaml`, but the values will be determined by evaluating the sub-expression `=greet(name)`.
 
-<span class="tutorialStep"></span> View the `src` folder in the served site. (If using StackBlitz, you can refresh the pane showing the site by clicking the small Refresh icon above that pane.)
+<span class="tutorialStep"></span> View the `.svg` page in the served site.
 
 You will see a new entry for a virtual `greetings` folder. If you click on that `greetings` folder, you'll see a list of links labeled with the indices of the array: 0, 1, 2, (and more if you entered more names). Clicking an index will take you to a page like `src/greetings/1`, which says "Hello, Bob!"
 
@@ -54,7 +54,7 @@ When you want to do work on multiple files or data values in the Origami framewo
 
 Some notes on the `map` function:
 
-- Virtual graphs produced by `map` and the other Origami functions are _lazy_. They only do work when they need to. Unlike a JavaScript [Array map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), the `map` function here doesn't do much work upon invocation — it only does the real work of transformation when someone asks a mapped value. In this case, the greeting for a person like Carol is only generated when you actually try to visit that URL. The `greetings` graph represents _potential_ work.
+- Virtual graphs produced by `map` and the other Origami functions are _lazy_. They only do work when they need to. Unlike a JavaScript [Array map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), the `map` function here doesn't do much work upon invocation — it only does the real work of transformation when someone asks a mapped value. In this case, the greeting for a person like Carol is only generated when you actually try to visit that virtual page. The `greetings` graph represents _potential_ work.
 - `map` only applies the mapping function to the top-level values of a graph. If you want to apply the mapping function to the deep values of a graph, use [mapDeep](/cli/builtins.html#mapDeep) instead to obtain a new, deep graph of transformed values.
 
 Using maps, you can begin transforming your `team.yaml` data into an About Us site.
@@ -66,7 +66,7 @@ Using maps, you can begin transforming your `team.yaml` data into an About Us si
 \{\{ greetings }}
 ```
 
-This inserts the `greetings` values into the final HTML. We're moving step closer to turning the team data into a useful list of team members.
+This inserts the `greetings` values into the final HTML. The text is somewhat smashed together, but you've moved one step closer to turning the team data into a useful list of team members.
 
 &nbsp;
 

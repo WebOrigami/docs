@@ -7,8 +7,8 @@ Many features in the core library and many of the ori [built-in functions](/cli/
 The graph variant types are:
 
 1. JavaScript objects that directly implement the members of the [Explorable](explorable.html) interface.
-1. `string` objects that can be parsed as JSON or YAML. This includes documents with JSON or YAML front matter.
-1. `Buffer` objects containing text that can be parsed as JSON or YAML.
+1. `string` objects that can be parsed as JSON or YAML, including text with JSON or YAML front matter.
+1. `Buffer` objects containing text that can be parsed as JSON or YAML, including text with JSON or YAML front matter.
 1. JavaScript functions
 1. JavaScript arrays
 1. Plain JavaScript objects created with [object literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#object_literals) syntax, `new Object()`, or `Object.create(null)`.

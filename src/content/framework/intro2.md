@@ -1,56 +1,53 @@
 ---
 title: Explorable graphs represent data, files, and other resources
-complete = client/samples/frameworkIntro/complete.meta:
 ---
 
 When creating digital content through transformation, it's often helpful to identify the high-level structure of the source form, intermediate forms, and result form. In many cases, the content will have a hierarchical or tree-like structure.
 
-A _graph_ is a great way to conceptualize and visualize such hierarchical structures. Mathematically speaking, a graph is a set of objects in which certain pairs of the objects are related in some way. Colloquially speaking, a graph is the sort of boxes-with-arrows diagram often used to depict the structure of organizations, processes, and websites.
+A _graph_ is a great way to conceptualize and visualize such hierarchical structures. Mathematically speaking, a graph is a set of objects in which certain pairs of the objects are related in some way. Colloquially speaking, a graph is the sort of boxes-with-arrows diagram you often see depicting the structure of organizations, processes, and websites.
 
 ## Visualize the source folder as a graph
 
 The `src` folder for this project contains the source form of your site. File system folders are hierarchical, so you think of that folder as a graph. Graph Origami includes tools that let you visualize structures like the `src` folder as a graph in your browser.
 
-<span class="tutorialStep"></span> Add `.svg` to the URL you're previewing so that it ends with `/src/.svg`. If you're using Glitch or StackBlitz, do this in the fake address bar inside the Glitch or StackBlitz page. If you're running locally, do this in your browser's real address bar.
+<span class="tutorialStep"></span> Navigate to a virtual file called `.svg`. If you're using Glitch or StackBlitz, do this in the fake address bar above the preview window. Glitch tries hard to prevent you from navigating to a page that starts with a period, so you'll need to either the type the `svg` part and then add a `.` at the beginning, or cut-and-paste the text `.svg` into the address bar. If you're running locally, do this in your browser's real address bar.
 
-You'll see the `src` folder visually represented as a graph:
+You'll see the `public` folder visually represented as a graph:
 
 <figure>
-{{ svg framework-intro }}
+{{ svg framework-intro/src/public }}
 </figure>
 
-The little circles represent folders, like `src`, `photos`, and `public`. The boxes represent _values_ — in this case, files in those folders. The arrow labels, or _keys_, are the way the graph identifies what's what. In the case of a folder, the keys are the file names.
+The little circles represent folders, like the `public` folder itself (on the left) and the `images` folder (in the middle). The boxes represent _values_ — in this case, the contents of files. The arrow labels, or _keys_, are the way the graph identifies what's what. In the case of a folder, the keys are the file names.
+
+The `public` graph shown above in sitting inside a larger graph for the entire project.
 
 ## Visualize the team data as a graph
 
 The `team.yaml` data also has a hierarchical structure: it's an array of people, each of which have some properties.
 
-<span class="tutorialStep"></span> Navigate to the `team.yaml` file in the browser. If the browser's still showing the graph above, click the box for `team.yaml` to navigate to it. Or type in the address bar to navigate to `/src/team.yaml` file.
-
-You'll see the contents of the file itself:
-
 ```\yaml
-{{ framework-intro/team.yaml }}
+{{ framework-intro/src/team.yaml }}
 ```
 
-<span class="tutorialStep"></span> Now view the `team.yaml` data in graph form by adding `.svg` to the address bar. You'll see the team data represented visually:
+We can visually represent the data as a graph:
 
 <figure>
-{{ svg framework-intro/team.yaml }}
+{{ svg framework-intro/src/team.yaml }}
 </figure>
 
-The `0`, `1`, and `2` are the indices from the array of names. If you ask this graph for `0`, you'll get a node that represents the data for Alice: a subgraph that currently defines a single property node for `name`.
+In this graph, the top-level keys are integers (0, 1, 2), which are the indices of the array of names. The second-level keys are strings: `name`, `image`, etc.
+
+Like the `public` folder, the graph of data in `team.yaml` in also sitting inside the larger project graph. It turns out to be useful to treat all these graphs the same way.
 
 ## Explorable graphs
 
 Graph Origami is designed to work with a very flexible type of graph called an _explorable graph_. An explorable graph is any structure that can do two things:
 
-1. An explorable graph can tell you the keys it has — the labels on the arrows leading to the values. In the case of the `src` folder, the keys are file names (`photos`, etc.); for the team data, the keys are the object keys (`name`, `location`, etc.).
+1. An explorable graph can tell you the keys it has — the labels on the arrows leading to the values. In the case of the `public` folder, the keys are file names (`images`, etc.); for the team data, the keys are the object keys (`name`, `location`, etc.).
 1. You can ask an explorable graph for the value that goes with a given key. If you ask the graph for `src` folder for the `public` key, it will give you back the `public` folder as a graph. If you ask the team data graph for the `0` key, it will give you back the data for the first team member.
 
-Graph Origami _treats all graphs exactly the same way_. Whatever you can do to a graph of files you can do to a graph of data, and vice versa.
-
-For example, while many web servers let you browse through files, Graph Origami lets you also browse into data files.
+Graph Origami _treats all graphs exactly the same way_. Whatever you can do to a graph of files you can do to a graph of data, and vice versa. For example, while many web servers let you browse through files, Graph Origami lets you also browse into data files.
 
 <span class="tutorialStep"></span> In the address bar, navigate to `/src/team.yaml` to see the team data. Now add a trailing slash to that address, so that it reads `/src/team.yaml/`.
 
@@ -61,8 +58,10 @@ You can also explore data files with graph tools like the `.svg` tool you used a
 <span class="tutorialStep"></span> Navigate to `/src/team.yaml/0/.svg` to view the graph of the data for just the first team member.
 
 <figure>
-{{ svg framework-intro/team.yaml/0 }}
+{{ svg framework-intro/src/team.yaml/0 }}
 </figure>
+
+A graph can be an in-memory object, a folder tree, data in a file, dynamically-generated data, and other forms. (You can read more about the different [graph variants](/core/variants.html) supported by Origami.)
 
 If you're interested in reading more about the technical definition of explorable graphs, see the [pattern](/pattern) section of this site. For now, one key technical point to mention is that explorable graphs are _asynchronous_ by nature, so they can encompass a wide variety of structures from in-memory objects to network resources. If you are a programmer and are familiar with the concept of a [promise](https://en.wikipedia.org/wiki/Futures_and_promises), you can think of an explorable graph like the one above as a _tree of promises_.
 
@@ -82,18 +81,13 @@ As discussed at the outset, we want an index page listing our team members, plus
 
 If you can treat the `src` folder (the source form of your project) and the final site (the result form) as graphs, then your creation task is fundamentally the _transformation of the source graph into the result graph_.
 
-<div class="sideBySide fullWidth">
-  <figure>
-    {{ svg expand framework-intro }}
-  </figure>
-  <figure>
-  {{ svg client/samples/frameworkIntro/complete.meta/public }}
-  </figure>
-  <figcaption>Want to transform this source graph…</figcaption>
-  <figcaption>…into this result graph</figcaption>
-</div>
+Viewed this way, you may see some correspondences between the source graph and result graph:
 
-Viewed this way, you may see some correspondence between the two graphs: for each person in the team data, you want to generate an HTML page in the `team` route with that person's data. You'll be able to express that correspondence directly in Origami.
+- For each person in the team data, you want to generate an HTML page in the `team` route with that person's data.
+- For each person, you also want to have a link on the main `index.html` page.
+- For each full-size photo in the `images` folder, you want to have a corresponding thumbnail photo.
+
+You'll be able to express that correspondences directly in Origami.
 
 Creating things in Graph Origami means thinking about the graph you've got and the graph you want, and about how to transform the former into the latter step by step.
 

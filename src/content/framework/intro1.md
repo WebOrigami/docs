@@ -14,7 +14,9 @@ But many kinds of digital artifacts are too complex, repetitive, or error-prone 
 
 ## Complex content requires multiple steps
 
-Looking at the [sample About Us area](/samples/aboutUs) you want to build for your team, for example, you can see a certain amount of repetition:
+Looking at the
+<a href="/samples/aboutUs" target="_blank">sample About Us area</a>
+you want to build for your team, for example, you can see a certain amount of repetition:
 
 - The main page shows each person in the list the same way.
 - The individual pages for each person each have the same structure.
@@ -23,7 +25,7 @@ This extremely basic About Us site happens to be simple enough that you _could_ 
 
 Given that, it will be more convenient and reliable to use software to automate things that are automatable, like calculations or repetition. You will write your content in an initial form, then use software to transform that into the result you want to share.
 
-Let's call the thing you create directly the _source form_.
+Let's call the thing you create directly the _source form_ and the final result the _result form_.
 
 <figure>
   <img src="/assets/illustrations/sourceAndResult.svg">
@@ -31,9 +33,11 @@ Let's call the thing you create directly the _source form_.
 
 **[update diagram]**
 
-You might create the source form by typing stuff out of your head, or by gathering bits of stuff from the web. This source form represents, in some way or another, everything necessary to grow the thing you want. For a coding project, this source form is what you would check into a source control system.
+You might create the source form by typing stuff out of your head, or by gathering bits of stuff from the web. This source form represents, in some way or another, everything necessary to grow the thing you want. For a coding project, like this website project, this source form are the files you would check into a source control system. If you're currently looking at the tutorial project in code editor right now, you're looking at the source form.
 
-You then use a series of computer-assisted _transformations_ to produce the _result form_, which is what you can share. The result form is typically a immediately consumable representation of your idea, such as a final set of HTML pages that your audience can view directly in their browser. This result form is the last form of the idea that's in your hands — after you publish it, it may get transformed further (by a content distribution network, say), but for your purposes, it's the end product.
+You will use a series of computer-assisted _transformations_ to produce the result form, which is what you can share. The result form is typically a immediately consumable representation of your idea, such as a final set of HTML pages that your audience can view directly in their browser. In some cases, the source form will go through multiple transformations, taking on a series of intermediate forms before turning into the result form.
+
+This result form is the last form of the idea that's in your hands — after you publish it, it may get transformed further (by a content distribution network, say), but for your purposes, it's the end product.
 
 Like a square of paper that becomes an origami artwork, the source form embodies everything needed to create the result form. That enables you to _repeat_ the transformation process on demand. Whenever you change the source form, you can reliably recreate the result form.
 
@@ -66,26 +70,30 @@ There are lots of ways you can define content in software:
 
 What's the best source form for this particular About Us example? The tutorial project includes a `src` folder containing the various resources that make up the source form.
 
-For starters, your site needs to show a bit of information about each person on your team. A convenient form for that amount of data might be a YAML file:
+For starters, your site needs to show a bit of information about each person on your team. A convenient form for that amount of data might be a YAML file, like the data in `src/team.yaml`:
 
 ```{{'yaml'}}
-{{ framework-intro/team.yaml }}
+{{ framework-intro/src/team.yaml }}
 ```
 
-You could use a JSON file or other formats to store that data, but most formats won't as easy to write by hand.
+You could use a JSON file or other formats to store that data, but this tutorial will use YAML, as it's easier to read and edit by hand.
+
+It's obvious that the sample data above is too boring.
 
 <span class="tutorialStep"></span> Update the names in `team.yaml` to use your name and the names of family members or friends. _That will make this tutorial much more fun._
 
 (If you're using StackBlitz, it may display a message saying "Project forked" to indicate that you're now working in your own copy of the tutorial project. You may need to restart the Origami server with `ori serve`.)
 
-Other resources in your site's source form include:
+The `src` folder contains a subfolder called `public` with some resources necessary for the final site to work:
 
-- A collection of headshot photos. This tutorial provides some stock images to use in place of real headshots. To simplify organization, the photos have been grouped into a `src/photos` folder.
+- An `images` folder containing some stock images to use as the full-size team member photos. In a real About Us site, you'd have real headshots for person.
 - A CSS stylesheet, `styles.css`, embodying the visual aesthetics of the site.
 - An SVG image, `personIcon.svg`, showing an icon of a person.
+
+Lastly, the `src` folder also contains a little JavaScript file, `greet.js`, that will be used to show how Graph Origami can work with JavaScript code.
 
 This `src` folder contains most of the raw materials necessary to build the About Us site. The work ahead is to transform this material into the final result form that visitors can browse.
 
 &nbsp;
 
-Next: [Graphs](intro2.html) »
+Next: [Explorable graphs](intro2.html) »

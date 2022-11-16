@@ -1,8 +1,13 @@
 title: Our Amazing Team
-teamByName = mapKeys(framework-intro/team.yaml, =name):
+teamByName = mapKeys(framework-intro/src/team.yaml, =name):
 public:
-  index.html = `<h1>{{ title }}</h1>`:
-  personIcon.svg = node_modules/@graphorigami/framework-intro/src/personIcon.svg:
-  photos = map(teamByName, `[binary data]`, '', '.jpeg'):
-  styles.css = node_modules/@graphorigami/framework-intro/src/styles.css:
+  index.html: |
+    <h1>Our Amazing Team</h1>
+    <li>Alice</li>
+    <li>Bob</li>
+    <li>Carol</li>
+  personIcon.svg = framework-intro/src/public/personIcon.svg:
+  images = framework-intro/src/public/images:
+  styles.css = framework-intro/src/public/styles.css:
   team = map(teamByName, =`<h1>{{ name }}</h1>`):
+  thumbnails = images:

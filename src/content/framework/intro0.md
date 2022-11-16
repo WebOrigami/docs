@@ -2,17 +2,19 @@
 title: "Graph Origami framework tutorial"
 ---
 
-As an example of creating things in Graph Origami, in this tutorial you'll create a simple website. The tutorial assumes you know some basic HTML and CSS.
+As an example of creating things in Graph Origami, in this tutorial you'll make a simple website. The tutorial assumes you know some HTML and CSS.
 
-This tutorial does its best to explain _how_ the framework works, illustrating the underlying concepts so that you can imagine for yourself how to apply those concepts to your own projects. If you're more interested in just seeing things work, you can focus on the interactive steps marked with the ➤ symbol.
+This tutorial does its best to explain _how_ the framework works, illustrating the underlying concepts so you can apply those concepts to your own projects. If you're more interested in seeing things work, just focus on the interactive steps marked with the ➤ symbol.
 
-## Goal
+## Goal: A little About Us site
 
 Suppose one day one of your teammates says:
 
-> _We need an "About Us" area for our site! The main About Us page should list of people on our team, with links to separate pages for each person. A person's page should show their name and a photo._
+> _We need an "About Us" area for our site!<br><br>The main About Us page should list of people on our team, with thumbnail photos and links to separate pages for each person. A person's page should show their name and a full-size photo._
 
-Using this [sample About Us area](/samples/aboutUs) as a model, this tutorial walks you through achieving this goal.
+<span class="tutorialStep"></span> Open the
+<a href="/samples/aboutUs" target="_blank">sample About Us area</a>
+and click on a few pages. The tutorial will use this sample as a model for the site you'll build.
 
 You can do the tutorial in three ways:
 
@@ -20,7 +22,11 @@ You can do the tutorial in three ways:
 
 Glitch is a code editor intended for a general audience, including hobbyists and content creators whose primary profession is _not_ software programming.
 
-<span class="tutorialStep"></span> Open the **[link goes here]** project and click the **Remix** button.
+<span class="tutorialStep"></span> Open the
+<a href="https://glitch.com/edit/#!/origami-framework-intro" target="_blank">tutorial project on Glitch</a>
+and click the <strong>Remix</strong> button (or Remix to Edit) to create your own copy of the project to work on.
+
+In the Glitch window, you will see a list of files on the left, the currently-open file in the middle, and a preview window on the right. The preview window will initially show a list of the files in the `src/public` folder.
 
 ## Option 2: Web-hosted StackBlitz coding environment
 

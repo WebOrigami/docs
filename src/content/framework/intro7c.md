@@ -7,16 +7,16 @@ team2 = map(teamByName, framework-intro/assets/person.ori, '', '.html'):
 
 ## Transform a graph's keys
 
-The last thing we need to build for the About Us site is a virtual `team` folder that will hold pages for each user. To lay the groundwork for that, we're going to transform the graph of team data in `team.yaml`. Specifically, we're going to change the _keys_ of that graph.
+The last thing you need to build for the About Us site is a virtual `team` folder that will hold pages for each user. To lay the groundwork for that, you're first going to transform the graph of team data in `team.yaml`. Specifically, you're going to change the _keys_ of that graph.
 
-The reason for this is that, as we've seen the keys of the graph of team data in `team.yaml` are integers, like `team.yaml/0` for the first person. But in our final website graph, we'd like the keys of the pages in the `team` area to include the person's name, like `/public/team/Alice.html`.
+The reason for this is that, as we've seen the keys of the graph of team data in `team.yaml` are integers, like `team.yaml/0` for the first person. But in your final website graph, you'd like the keys of the pages in the `team` area to include the person's name, like `/public/team/Alice.html`.
 
 <span class="tutorialStep"></span> In the `+stuff.yaml` file, add the new line at the bottom:
 
 ```yaml
 title: Our Amazing Team
 index.html = index.ori():
-thumbnails = map(photos, =image/resize(@value, width=400)):
+thumbnails = map(images, =image/resize(@value, width=400)):
 teamByName = mapKeys(team.yaml, =name):
 ```
 
@@ -35,7 +35,7 @@ The `mapKeys` function is like `map`, but instead of changing a graph's values, 
 
 ## Transform a data graph into HTML pages
 
-Earlier you created an `index.html` page by invoking an Origami template. You also created a `greetings` graph that mapped the team members to a graph of greetings using a JavaScript function. Now you'll combine those ideas: map the graph of team members a graph of HTML pages using an Origami template.
+Earlier you created an `index.html` page by invoking an Origami template. You also created a `greetings` graph that mapped the team members to a graph of greetings using a JavaScript function. Now you'll combine those ideas: map the graph of team members to a graph of HTML pages using an Origami template.
 
 <span class="tutorialStep"></span> In the `src` folder, create a file called `person.ori` and type or copy/paste the following HTML:
 
@@ -50,7 +50,7 @@ Applying this template to one of the people records in `team.yaml` will produce 
 ```yaml
 title: Our Amazing Team
 index.html = index.ori():
-thumbnails = map(photos, =image/resize(@value, width=400)):
+thumbnails = map(images, =image/resize(@value, width=400)):
 teamByName = mapKeys(team.yaml, =name):
 team = map(teamByName, person.ori):
 ```
@@ -76,7 +76,7 @@ Let's make the `person.ori` template a bit more realistic. The project's `assets
 {{ framework-intro/assets/person.ori }}
 ```
 
-<span class="tutorialStep"></span> Move or copy that `person.ori` template from the `assets` folder to the `src` folder.
+<span class="tutorialStep"></span> Move or copy the contents of that `person.ori` template from the `assets` folder to the `person.ori` template in the `src` folder.
 
 ## Add an HTML extension
 

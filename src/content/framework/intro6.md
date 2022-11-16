@@ -10,11 +10,11 @@ application:
   - <h1>
 ---
 
-Until now we've mostly been creating trivial virtual content, but now let's start creating the top-level index page for the About Us site. For this, we'll use an HTML template system.
+Until now we've mostly been creating trivial virtual content, but now let's begin working on a real top-level index page for the About Us site. For this, we'll use an HTML template system.
 
 Many JavaScript template engines exist that let you turn data into text output like HTML. Because Graph Origami formulas can call JavaScript, you can call any of those systems from formulas.
 
-You also have the option of using the template system built into Graph Origami. That system combines the ideas you've already seen — explorable graphs, formulas, scope — to produce an extremely powerful and concise template language.
+You also have the option of using the template system built into Graph Origami. That system combines the ideas you've already seen — graphs, formulas, scope — to produce an extremely powerful and concise template language.
 
 ## Create an index page template
 
@@ -30,23 +30,24 @@ Let's begin producing an index page by creating a template file for it.
 
 Now you'll need to tell Graph Origami to use this template to create the index page. You can do this by invoking the template as a function.
 
-<span class="tutorialStep"></span> Add a new line to `+stuff.yaml`:
+<span class="tutorialStep"></span> In `+stuff.yaml`, update the formula for `index.html`:
 
 ```yaml
 title: Our Amazing Team
-hello.html = greet(team.yaml/0/name):
 index.html = index.ori():
 ```
 
-The new formula specifies that, if someone asks for `index.html`, then the `index.ori` template should be invoked as a function. This particular template will ask for the data it wants, so you don't need to supply any argument to it.
+The new formula specifies that, if someone asks for `index.html`, then the `index.ori` template should be invoked as a function. This particular template will ask for the data it wants, so you don't need to supply any function arguments.
 
-You should now be able to visit `index.html` in the served site.
+<span class="tutorialStep"></span> Navigate to `index.html` to see the heading "<strong>About Us</strong>".
 
-Tip: While the new index page will be more presentable, it can still be useful to view the previous default index page that listed real and virtual files. If you ever want to return that listing, navigate to the hidden route at `src/.index` (note the period). This virtual route is provided by the Origami server as a diagnostic tool so you can browse the virtual graph you're creating.
+\*\*\* Move paragraph below
+
+Tip: While the new index page will be more presentable, it can still be useful to view the previous default index page that listed real and virtual files. If you ever want to return that listing, navigate to the hidden route at `.index` (note the period). This virtual route is provided by the Origami server as a diagnostic tool so you can browse the virtual graph you're creating.
 
 ## Use Origami expressions in template placeholders
 
-Let's begin using some data in this template.
+Now that you've created a template for the index page, you can have it show some data.
 
 <span class="tutorialStep"></span> Update `index.ori` to:
 
@@ -54,9 +55,9 @@ Let's begin using some data in this template.
 <h1>\{\{ title }}</h1>
 ```
 
-The double curly braces `{{…}}` demarcate a placeholder in the template that will be populated with dynamic content at the time the template function is invoked. The content inside those curly braces can be any Origami expression — the exact same expressions supported in metagraph additions like `+stuff.yaml`.
+The double curly braces `{{…}}` create a placeholder in the template that will be populated with dynamic content at the time the template function is invoked. The content inside those curly braces can be any Origami expression — the exact same expressions you can use in formulas in `+stuff.yaml`.
 
-<span class="tutorialStep"></span> Navigate to `public` or `public/index.html` in the browser to see an index page, with the site title as a heading.
+<span class="tutorialStep"></span> Refresh `index.html` to see the site title as a heading.
 
 ## Template expressions use graph scope
 
@@ -82,13 +83,13 @@ All of the following Origami expressions can be used in an Origami template:
 \{\{ https://example.com }}
 ```
 
-We haven't seen the last example before now, but an https/http URL is also a valid Origami expression. This will cause the page to take a moment to render as the contents of the URL are fetched, but then the contents of that page are incorporated into the template at that point.
+We haven't seen the last example before now, but an https/http URL is also a valid Origami expression. This will cause the page to take a moment to render as the contents of the URL are fetched, but then the contents of that page are incorporated into the template at that point. This will have the side effect of changing the page styles — it's not confining the page to a frame, but injecting the complete HTML for that page into your site's index page. That specific case isn't useful, but is shown here just to make the point that you can inject anything into a template result, including resources from elsewhere.
 
 ## Template are functions that transform graphs
 
 One thing that makes Origami templates special is they are just another example of a graph. You can consider the application of a template itself as a graph transformation.
 
-You can consider the template like `<h1>\{\{title}}</h1>` as an array:
+Image that a template like `<h1>\{\{title}}</h1>` is an array:
 
 ```\yaml
 {{ yaml template }}
@@ -113,7 +114,7 @@ When you invoke this template as a function, you transform the array graph into 
   <figcaption>…maps to graph of plain strings</figcaption>
 </div>
 
-To get the final result of the template, Origami performs a depth-first traversal of the string graph, and returns the concatenation of all the values at the periphery of the graph (the "leaf nodes"). This produces the result:
+Origami collects all the text at the periphery of the graph to produce the template's result:
 
 ```
 <h1>Our Amazing Team</h1>
@@ -123,7 +124,7 @@ Treating template application as a graph transformation results in a flexible te
 
 ## Expressions that return graphs
 
-The logical extension of the above section is that any template expression that results in a graph will have that graph's values concatenated into the final result.
+Any template expression that results in a graph will have that graph's values concatenated into the final result.
 
 <span class="tutorialStep"></span> Update `index.ori` to:
 
@@ -136,10 +137,10 @@ The `team.yaml` file is a text file in YAML format, so if you include `team.yaml
 
 ```html
 <h1>Our Amazing Team</h1>
-{{ graph(framework-intro/team.yaml) }}
+{{ graph(framework-intro/src/team.yaml) }}
 ```
 
-Here, all the data values in `team.yaml` are concatenated and incorporated into the final text. That itself isn't particularly useful — yet — but is a step towards what we actually want: to display a list of the team members on this index page.
+Here, all the data values in `team.yaml` are concatenated and incorporated into the final text. That's more data than we want to show, but it's a small step towards what we actually want: to display a list of the team members on this index page.
 
 To do that, we'll want the template to transform that graph of team data into a more interesting graph of HTML.
 
