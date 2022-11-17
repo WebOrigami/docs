@@ -151,16 +151,16 @@ You can use this `greet` formula in an Origami function to generate the contents
 <span class="tutorialStep"></span> Add the following line to the `+.yaml` file:
 
 ```yaml
-hello.html = greet('world'):
+index.html = greet('world'):
 ```
 
 Be sure to use single quotes, not double quotes. And again note the final colon — everything to the left of that colon is a YAML key.
 
-This formula defines a virtual file called `hello.html`. The value or contents of that virtual file will be the result of evaluating the expression `greet('world')`. In this case, the reference to `greet` will obtain the function exported by `greet.js`, then invoke that function.
+This formula defines a virtual file called `index.html`. The value or contents of that virtual file will be the result of evaluating the expression `greet('world')`. In this case, the reference to `greet` will obtain the function exported by `greet.js`, then invoke that function.
 
-<span class="tutorialStep"></span> Navigate to the `src` route, which will now show an entry for `hello.html`. Open that page to see "Hello, <em>world</em>!".
+<span class="tutorialStep"></span> Navigate to the `src` route, which will now show an entry for `index.html`. Open that page to see "Hello, <em>world</em>!".
 
-Each time you ask for `hello.html`, the web server evaluates the corresponding formula that invokes `greet`. (If you're running this tutorial locally, you can verify this by setting a breakpoint within the greet function, then visiting `hello.html`.)
+Each time you ask for `index.html`, the web server evaluates the corresponding formula that invokes `greet`. (If you're running this tutorial locally, you can verify this by setting a breakpoint within the greet function, then visiting `index.html`.)
 
 Since the `greet` function is regular JavaScript, you can use that JavaScript to create HTML by any means you like. If the function is asynchronous, Origami will `await` the result before serving it to the browser. With that, you should be able to do essentially anything you want in the JavaScript function to create any HTML result.
 
@@ -184,7 +184,7 @@ In Origami, a graph like this is a first-class data type that can be passed to O
 greetings = map(team.yaml, =greet(name)):
 ```
 
-The earlier lines each defined a single virtual file like `message` or `hello.html`. The `greetings` formula here defines a virtual _graph_ of things — a virtual folder of virtual files.
+The earlier lines each defined a single virtual file like `message` or `index.html`. The `greetings` formula here defines a virtual _graph_ of things — a virtual folder of virtual files.
 
 <span class="tutorialStep"></span> View the `src` folder in the served site. (If using StackBlitz, you can refresh the pane showing the site by clicking the small Refresh icon above that pane.)
 

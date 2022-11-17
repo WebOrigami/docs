@@ -1,5 +1,5 @@
 ---
-title: Metagraphs and virtual content
+title: Metagraphs
 
 # Add a stuff.yaml file
 step1 = merge(framework-intro/src/public, this):
@@ -73,7 +73,7 @@ Since `+stuff.yaml` is sitting inside the folder it transforms, we can call the 
 
 ## Transforming the public folder into the final site
 
-The rest of this tutorial will continue to transform the `public` folder into the final About Us site. The `public` folder will be what your users eventually see and interact with. The containing `src` folder will contain additional source material (like the `team.yaml` data file) that will be used as fodder to create the final result, but only the contents of the virtual `public` folder will be part of the final site.
+The rest of this tutorial will continue to transform the `public` folder into the final About Us site. The `public` folder will contain both real files and virtual files, and will be what your users eventually see and interact with. The containing `src` folder will contain additional source material (like the `team.yaml` data file) that will be used as fodder to create the final result, but only files (both real and virtual) in the `public` folder will be part of the final site.
 
 &nbsp;
 

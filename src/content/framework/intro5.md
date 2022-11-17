@@ -4,7 +4,7 @@ step1:
   greet.js = framework-intro/src/greet.js:
   public = merge(framework-intro/src/public, this):
     title: Our Amazing Team
-    hello.html = framework-intro/src/greet('world'):
+    index.html = framework-intro/src/greet('world'):
   team.yaml = framework-intro/src/team.yaml:
 jsScopeExample:
   Math:
@@ -80,7 +80,7 @@ The pervasiveness of block scoping in programming suggests that it is very effec
 
 Graph Origami uses block scoping as inspiration, applying the same idea to graphs.
 
-Let's consider what your formula for `hello.html` has access to. First, let's identify the graphs in which that formula exists, from innermost to outermost:
+Let's consider what your formula for `index.html` has access to. First, let's identify the graphs in which that formula exists, from innermost to outermost:
 
 1. A graph defined by the `public` folder, including the additions in `+stuff.yaml`
 1. A graph defined by the `src` folder
@@ -93,18 +93,18 @@ For space reasons, let's just visualize the portion of the scope graph defined b
 {{ svg step1 }}
 </figure>
 
-So when the formula for `hello.html` in `+stuff.yaml` references `greet`, Graph Origami walks up this scope graph looking for it. In this case, it finds `greet.js` and interprets that as something that defines a function called `greet`, so the search ends there.
+So when the formula for `index.html` in `+stuff.yaml` references `greet`, Graph Origami walks up this scope graph looking for it. In this case, it finds `greet.js` and interprets that as something that defines a function called `greet`, so the search ends there.
 
 That formula can also reference other things in scope.
 
-<span class="tutorialStep"></span> Update the definition for `hello.html` to reference the `title`.
+<span class="tutorialStep"></span> Update the definition for `index.html` to reference the `title`.
 
 ```yaml
 title: Our Amazing Team
-hello.html = greet(title):
+index.html = greet(title):
 ```
 
-<span class="tutorialStep"></span> Navigate to `hello.html` to see "Hello, <strong>Our Amazing Team</strong>."
+<span class="tutorialStep"></span> Navigate to `index.html` to see "Hello, <strong>Our Amazing Team</strong>."
 
 As with block scoping in programming languages, the search only goes "up" the graph. If you want to go back deeper into the graph, you have to make an explicit reference.
 
@@ -112,14 +112,14 @@ For the formulas in `+stuff.yaml`, the `photos` folder is in scope, but the indi
 
 Similarly, `team.yaml` is in scope, but the specific keys inside that data graph like `0` or `name` are not. You can reference a specific team member's name by first referencing `team.yaml`, and then providing a path that goes inside that graph.
 
-<span class="tutorialStep"></span> Update the definition for `hello.html` to reference `team.yaml/0/name`.
+<span class="tutorialStep"></span> Update the definition for `index.html` to reference `team.yaml/0/name`.
 
 ```yaml
 title: Our Amazing Team
-hello.html = greet(team.yaml/0/name):
+index.html = greet(team.yaml/0/name):
 ```
 
-The `hello.html` page now greets the first team member: "Hello, <strong>Alice</strong>."
+The `index.html` page now greets the first team member: "Hello, <strong>Alice</strong>."
 
 Creating HTML in JavaScript functions like `greet` is certainly a common and powerful technique, but in many cases it can be overkill. Often all that's needed is a way to define the boilerplate structure of the final file (content like "Hello"), leaving placeholders for the data we want to add (like a person's name). This leads us to a discussion of templates.
 
