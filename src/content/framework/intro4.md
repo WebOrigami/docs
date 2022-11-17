@@ -1,72 +1,80 @@
 ---
-title: Define virtual content with formulas
+title: Metagraphs
+
+# Add a public.yaml file
+step1 = merge(framework-intro/src/public, this):
+  public.yaml: |
+    title: Our Amazing Team
+
+# Treat public.yaml as additions
+step2 = merge(framework-intro/src/public, this):
+  title: Our Amazing Team
+
+realFolder: |
+  +public.yaml: |
+    title: Our Amazing Team
+virtualFolder:
+  title: Our Amazing Team
 ---
 
-In the last step, you created a trivial virtual file called `title` that contained a bit of text. What's more interesting is that you can define virtual files with _formulas_ that will be evaluated to produce a result.
+In Graph Origami, a _metagraph_ is any graph that defines itself. This takes the form of a graph with special keys which, when interpreted, create new virtual content for that graph.
 
-## Define a simple formula
+## Create a file that defines virtual values
 
-<span class="tutorialStep"></span> Add a new line to the `+stuff.yaml` file so that it reads:
+<span class="tutorialStep"></span> Start by creating a new file in the `/src/public` folder called `public.yaml`. It doesn't matter what you call this file, as long as it has a `.yaml` extension (`.yml` works too). Even calling it `+.yaml` will work.
 
-```yaml
-title: Our Amazing Team
-index.html = 'Hello, world!':
+You can use this `public.yaml` file to define data and other things useful for construction of the site. For example, if all of the pages on the site should show the same title, you can define that title once and use it in multiple places.
+
+<span class="tutorialStep"></span> Enter the following line in `public.yaml`:
+
+```{{'yaml'}}
+{{ step1/public.yaml }}
 ```
 
-Be sure to use single quotes. Graph Origami doesn't support double quotes. There's a very good but strange reason for that, and when the reason is revealed in a few pages, it will probably surprise you and make you laugh. But for now, just remember to use single quotes.
+<span class="tutorialStep"></span> Refresh or view the `.svg` page to see the updated visual graph for the `public` folder that includes `public.yaml`:
 
-Also note the colon (`:`) at the end of that new line. Graph Origami lets you define virtual values by defining formulas in the _key_ of a key/value pair. In YAML files, a colon is used to separate a key from a value, so at the moment, here are two key/value pairs in `stuff.yaml`:
+<figure>
+{{ svg step1 }}
+</figure>
 
-| Key                          |        | Value            |
-| :--------------------------- | ------ | :--------------- |
-| title                        |        | Our Amazing Team |
-| index.html = 'Hello, world!' | &nbsp; | (null)           |
+There's nothing special going on yet. The `public.yaml` file is just a text file with some data.
 
-To define a virtual value, you put the whole formula in the key — before the colon.
+Now you're going to do a magic trick to turn the data in `public.yaml` into virtual content in the `public` folder.
 
-In this above formula, no value is given, so the real value of the key/value pair is `null`. That real value won't be used; the virtual value will be defined by evaluating the formula.
+<span class="tutorialStep"></span> Rename `public.yaml` to `+public.yaml`. The `+` at the beginning is a signal to Graph Origami that the data _inside_ that data file should be treated as if it were _outside_ the data file — as if those data were elements of the containing `public` folder. The `+public.yaml` are called _graph additions_.
 
-<span class="tutorialStep"></span> Navigate to (or refresh) `.svg` to see a new, virtual `index.html` file.
+<span class="tutorialStep"></span> Refresh/view the browser preview to see the updated `public` folder:
 
-<span class="tutorialStep"></span> Click the box for `index.html` to open that page. You should see, "Hello, world!" Use the Back button or keyboard shortcut to go back to the `.svg` page.
+<figure>
+{{ svg step2 }}
+</figure>
 
-Graph Origami supports a small [Origami expression language](/language), and one of its most basic expression forms is a simple quoted string. At this point, the above formula for `index.html` isn't doing anything more interesting than the definition for `title` above it. But now that we've established how you can write formulas, you can do more interesting things.
+If you compare the above graphs, you'll see that in the second graph:
 
-## Invoke a JavaScript function from a formula
+- The `public` folder now appears to contain a virtual file called `title` that contains the text "Our Amazing Team".
+- The `+public.yaml` additions file no longer appears. Graph Origami is interpreting the contents of that file as virtual elements, so it hides the file itself.
 
-If you don't consider yourself a JavaScript programmer, don't worry, JavaScript isn't necessary to build this particular site, or required to use Origami in general. We'll just use it here as just an example of how data might be transformed with regular JavaScript.
+## Metagraphs as transformation
 
-<span class="tutorialStep"></span> In your code editor, take a peek at the JavaScript file `src/greet.js`:
+The `+public.yaml` file you created transforms the real `public` folder into a slightly different, virtual `public` folder. We'll look at other graph transformations later, but an additions file like `+public.yaml` is one of the simplest and most concise ways to define a graph transformation. Visually, the transformation looks like this:
 
-```{{'js'}}
-{{ framework-intro/src/greet.js }}
-```
+<div class="sideBySide">
+  <figure>
+    {{ svg realFolder }}
+  </figure>
+  <figure>
+    {{ svg virtualFolder }}
+  </figure>
+  <figcaption>Before: Real files</figcaption>
+  <figcaption>After: Virtual files</figcaption>
+</div>
 
-This `greet` function returns a greeting in HTML format that incorporates a person's name. You can use this `greet` function in an Origami expression to generate the contents of a virtual file.
+Since `+public.yaml` is sitting inside the folder it transforms, we can call the `public` folder a metagraph: a graph that defines its own transformations.
 
-<span class="tutorialStep"></span> In `+stuff.yaml`, update the definition for `index.html` to call the `greet` function:
+## Transforming the public folder into the final site
 
-```yaml
-title: Our Amazing Team
-index.html = greet('world'):
-```
-
-Again, note the single quotes and the final colon.
-
-The contents of the virtual file `index.html` will now be the result of evaluating the expression `greet('world')`. In this case, the reference to `greet` will obtain the function exported by `greet.js`, then invoke that function.
-
-<span class="tutorialStep"></span> Navigate to `index.html` to see "Hello, <strong>world</strong>!".
-
-Each time you ask for `index.html`, the web server evaluates the corresponding formula that invokes `greet`. (If you're running this tutorial locally, you can verify this by setting a breakpoint within the `greet` function, then visiting `index.html`.)
-
-Since the `greet` function is regular JavaScript, you can use that JavaScript to create HTML by any means you like. If the function is asynchronous, Origami will `await` the result before serving it to the browser. With that, you should be able to do essentially anything you want in the JavaScript function to create any HTML result.
-
-A function like `greet` here transforms data from one form into another — in this case, it transforms a string name to an HTML greeting. The function could just as easily transform other kinds of data; there's nothing special about text here.
-
-Graph Origami includes a number of [built-in functions](/cli/builtins.html), but it's very easy to add your own: just create a JavaScript file with the name of the function (like `greet`) you will use in expressions.
-
-This gives rise to a question: how _exactly_ is Graph Origami deciding what data and functions can be referenced in formulas?
+The rest of this tutorial will continue to transform the `public` folder into the final About Us site. The `public` folder will contain both real files and virtual files, and will be what your users eventually see and interact with. The containing `src` folder will contain additional source material (like the `team.yaml` data file) that will be used as fodder to create the final result, but only files (both real and virtual) in the `public` folder will be part of the final site.
 
 &nbsp;
 
-Next: [Scope](intro5.html) »
+Next: [Formulas](intro5.html) »

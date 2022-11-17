@@ -68,10 +68,10 @@ So let's consider the best source form for this particular About Us example.
 
 The tutorial project includes a `src` folder containing some of the resources that will make up the source form. For starters, your site needs to show a bit of information about each person on your team. A convenient form for that amount of data might be a YAML file.
 
-<span class="tutorialStep"></span> Open the team data file in `src/team.yaml`:
+<span class="tutorialStep"></span> Open the team data file in `src/public/team.yaml`:
 
 ```{{'yaml'}}
-{{ framework-intro/src/team.yaml }}
+{{ framework-intro/src/public/team.yaml }}
 ```
 
 You could use a JSON file or other formats to store this data, but this tutorial will use YAML because it's easier to read and edit by hand.
@@ -82,7 +82,7 @@ Looking at the above data, it's obvious that it's too boring.
 
 (If you're using StackBlitz, it may display a message saying "Project forked" to indicate that you're now working in your own copy of the tutorial project. You may need to restart the Origami server with `ori serve`.)
 
-The `src` folder contains a subfolder called `public` with some other resources necessary for the final site to work:
+The `src/public` folder contains some other resources necessary for the final site to work:
 
 - An `images` folder containing stock images to use as the full-size team member photos. In a real About Us site, you'd have real headshots for person.
 - A CSS stylesheet, `styles.css`, embodying the site's visual aesthetics.

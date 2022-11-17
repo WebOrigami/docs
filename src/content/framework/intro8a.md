@@ -45,4 +45,4 @@ The images aren't working yet. The above template is looking for thumbnail image
 
 &nbsp;
 
-Next: [Transform images with a map](intro7b.html) »
+Next: [Transform images with a map](intro8b.html) »

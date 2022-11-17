@@ -153,6 +153,11 @@ figure {
   margin: 3rem 0;
 }
 
+.constrain {
+  max-height: 50vmax;
+  max-width: 50vmax;
+}
+
 figcaption {
   font-size: smaller;
   font-style: italic;
@@ -160,9 +165,9 @@ figcaption {
 
 svg {
   height: inherit;
+  max-height: 100%;
   max-width: 100%;
 }
-
 
 /*
  * Design elements

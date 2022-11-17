@@ -7,26 +7,26 @@
       text: Model
     - href: intro2.html
       text: Explorable graphs
-    - href: intro2b.html
-      text: Virtual content
     - href: intro3.html
-      text: Metagraphs
+      text: Virtual content
     - href: intro4.html
-      text: Formulas
+      text: Metagraphs
     - href: intro5.html
-      text: Scope
+      text: Formulas
     - href: intro6.html
-      text: Templates
+      text: Scope
     - href: intro7.html
+      text: Templates
+    - href: intro8.html
       text: Transforms
       pages:
-        - href: intro7a.html
+        - href: intro8a.html
           text: Page fragments
-        - href: intro7b.html
+        - href: intro8b.html
           text: Images
-        - href: intro7c.html
+        - href: intro8c.html
           text: Full pages
-    - href: intro8.html
+    - href: intro9.html
       text: Graph tools
 - href: metagraph.html
   text: Metagraphs

@@ -8,10 +8,9 @@ step1 = merge(framework-intro/src/public, this):
 
 Until now, the graph transformations we've looked at deal with graphs of text, but graphs can contain values of any type. We want to have a `thumbnails` folder that's based on the `images` folder, but scales the images to a smaller size.
 
-<span class="tutorialStep"></span> Add a new formula to `+stuff.yaml`:
+<span class="tutorialStep"></span> Add a new formula to `+public.yaml`:
 
 ```yaml
-title: Our Amazing Team
 index.html = index.ori():
 thumbnails = map(images, =image/resize(@value, width=400)):
 ```
@@ -47,4 +46,4 @@ As mentioned earlier, explorable graphs are lazy. When you write a formula to de
 
 &nbsp;
 
-Next: [Map data to full HTML pages](intro7c.html) »
+Next: [Map data to full HTML pages](intro8c.html) »

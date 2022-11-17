@@ -1,73 +1,144 @@
 ---
-title: Transforms change a graph from one form to another
-greetings = map(framework-intro/src/team.yaml, =framework-intro/src/greet(name)):
+title: Templates turn graphs into text
+template:
+  - <h1>
+  - \{\{ title }}
+  - </h1>
+application:
+  - <h1>
+  - Our Amazing Team
+  - <h1>
 ---
 
-A graph _transform_ is a function that takes a graph as input and returns a new graph as output. Transforms let you think at a high level about processing material in bulk.
+Until now we've mostly been creating trivial virtual content, but now let's begin working on a real top-level index page for the About Us site. For this, we'll use an HTML template system.
 
-## A map applies a one-to-one function to an entire graph's values
+Many JavaScript template engines exist that let you turn data into text output like HTML. Because Graph Origami formulas can call JavaScript, you can call any of those systems from formulas.
 
-A common type of a transform is a _map_, which applies a one-to-one function to all the values in a graph. A map gives you a new graph with the same structure as the old one — all of the same keys, but with new values. The map turns the one-to-one function into a many-to-many function.
+You also have the option of using the template system built into Graph Origami. That system combines the ideas you've already seen — graphs, formulas, scope — to produce an extremely powerful and concise template language.
 
-Consider a one-to-one function like the earlier `greet`, which takes a person's name and returns a greeting using that person's name. You can apply this one-to-one `greet` to all your team members by using a map.
+## Create an index page template
 
-Let's apply that `greet` function to the entire set of people on the team. As a reminder, we can visualize the people in `team.yaml` as a graph:
+Let's begin producing an index page by creating a template file for it.
 
-<figure>
-{{ svg framework-intro/src/team.yaml }}
-</figure>
+<span class="tutorialStep"></span> In the `src` folder, create a new file called `index.ori`. The `.ori` extension indicates an Origami template. Enter the following text into the file:
 
-In Origami, a graph like this is a first-class data type that can be passed to Origami expressions or JavaScript functions.
-
-<span class="tutorialStep"></span> Add a new `greetings` formula to the end of `+stuff.yaml`:
-
-```yaml
-title: Our Amazing Team
-index.html = index.ori():
-greetings = map(team.yaml, =greet(name)):
+```html
+<h1>About Us</h1>
 ```
 
-The earlier formula for `index.html` defined a single virtual file. The new `greetings` formula here defines a virtual _graph_ of things: a virtual folder of virtual files. The new graph will have the same integer keys as `team.yaml`, but the values will be determined by evaluating the sub-expression `=greet(name)`.
+## Templates are functions
 
-<span class="tutorialStep"></span> View the `.svg` page in the served site.
+Now you'll need to tell Graph Origami to use this template to create the index page. You can do this by invoking the template as a function.
 
-You will see a new entry for a virtual `greetings` folder. If you click on that `greetings` folder, you'll see a list of links labeled with the indices of the array: 0, 1, 2, (and more if you entered more names). Clicking an index will take you to a page like `src/greetings/1`, which says "Hello, Bob!"
+<span class="tutorialStep"></span> In `+public.yaml`, update the formula for `index.html`:
 
-The [map](/cli/builtins.html#map) function is a built-in Origami function that applies a one-to-one map function to a graph of values. The result is a new, virtual graph of transformed values.
+```yaml
+index.html = index.ori():
+```
 
-In this case, the `=greet(name)` part of the above formula defines an unnamed function (in technical jargon, a lambda expression). The `map()` function extends the current scope with the data in the value being transforms — in this case, the data for individual person is added to the scope, so keys like `name` and `bio` are available. In this case, the `name` is passed to `greet`.
+The new formula specifies that, if someone asks for `index.html`, then the `index.ori` template should be invoked as a function. This particular template will ask for the data it wants, so you don't need to supply any function arguments.
 
-Applying this `map` to the graph of people in `team.yaml` produces a new graph of greetings:
+<span class="tutorialStep"></span> Navigate to `index.html` to see the heading "<strong>About Us</strong>".
 
-<div class="sideBySide fullWidth">
-  <figure>
-    {{ svg framework-intro/src/team.yaml }}
-  </figure>
-  <figure>
-    {{ svg greetings }}
-  </figure>
-  <figcaption>Source graph of real data</figcaption>
-  <figcaption>Result graph of virtual greetings</figcaption>
-</div>
+## Use Origami expressions in template placeholders
 
-When you want to do work on multiple files or data values in the Origami framework, it's generally helpful to think about how you can best represent the source information as a graph, then identify the transformation you want to apply to each value in the graph. This will produce a new virtual graph of results.
+Now that you've created a template for the index page, you can have it show some data.
 
-Some notes on the `map` function:
-
-- Virtual graphs produced by `map` and the other Origami functions are _lazy_. They only do work when they need to. Unlike a JavaScript [Array map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), the `map` function here doesn't do much work upon invocation — it only does the real work of transformation when someone asks a mapped value. In this case, the greeting for a person like Carol is only generated when you actually try to visit that virtual page. The `greetings` graph represents _potential_ work.
-- `map` only applies the mapping function to the top-level values of a graph. If you want to apply the mapping function to the deep values of a graph, use [mapDeep](/cli/builtins.html#mapDeep) instead to obtain a new, deep graph of transformed values.
-
-Using maps, you can begin transforming your `team.yaml` data into an About Us site.
-
-<span class="tutorialStep"></span> Update the `index.ori` template to:
+<span class="tutorialStep"></span> Update `index.ori` to:
 
 ```
 <h1>\{\{ title }}</h1>
-\{\{ greetings }}
 ```
 
-This inserts the `greetings` values into the final HTML. The text is somewhat smashed together, but you've moved one step closer to turning the team data into a useful list of team members.
+The double curly braces `{{…}}` create a placeholder in the template that will be populated with dynamic content at the time the template function is invoked. The content inside those curly braces can be any Origami expression — the exact same expressions you can use in formulas in `+public.yaml`.
+
+<span class="tutorialStep"></span> Refresh `index.html` to see the site title as a heading.
+
+## Template expressions use graph scope
+
+Origami templates used the same graph scope system discussed earlier. When you invoke an Origami template as a function in a formula like `index.html = index.ori()`, the template uses the same scope that was available to that formula. In this case, it means that the `title` is in scope, and will resolve to whatever value you've defined for it in `+private.yaml`, like "Our Amazing Team".
+
+This means that anything your template can "see" in scope can be pulled into the template with an expression.
+
+<span class="tutorialStep"></span> As an example, update `index.ori` to:
+
+```
+<h1>\{\{ title }}</h1>
+<pre>\{\{ README.md }}</pre>
+```
+
+This pulls in the contents of the project's `README.md` file, which is in scope, into the final HTML. In this case, the Origami expression is acting like an "include" directive in other programming languages. That's helpful, but the facility is extremely general, as you can pull in anything that can be described with an Origami expression.
+
+All of the following Origami expressions can be used in an Origami template:
+
+```
+\{\{ greet('world') }}
+\{\{ greet(team.yaml/0/name) }}
+\{\{ team.yaml }}
+\{\{ https://example.com }}
+```
+
+We haven't seen the last example before now, but an https/http URL is also a valid Origami expression. This will cause the page to take a moment to render as the contents of the URL are fetched, but then the contents of that page are incorporated into the template at that point. This will have the side effect of changing the page styles — it's not confining the page to a frame, but injecting the complete HTML for that page into your site's index page. That specific case isn't useful, but is shown here just to make the point that you can inject anything into a template result, including resources from elsewhere.
+
+## Template are functions that transform graphs
+
+One thing that makes Origami templates special is they are just another example of a graph. You can consider the application of a template itself as a graph transformation.
+
+Image that a template like `<h1>\{\{title}}</h1>` is an array:
+
+```\yaml
+{{ yaml template }}
+```
+
+The first and last items in this array are boilerplate strings holding HTML; the middle element is a placeholder containing an Origami expression. As with other arrays, you can visualize this array as a graph:
+
+<figure>
+{{ svg template }}
+</figure>
+
+When you invoke this template as a function, you transform the array graph into a new graph. Boilerplate strings in the source graph are carried over as is, while expressions in placeholders are evaluated in the current scope. This results in a new graph of strings:
+
+<div class="sideBySide">
+  <figure>
+    {{ svg template }}
+  </figure>
+  <figure>
+    {{ svg application }}
+  </figure>
+  <figcaption>Graph for a template…</figcaption>
+  <figcaption>…maps to graph of plain strings</figcaption>
+</div>
+
+Origami collects all the text at the periphery of the graph to produce the template's result:
+
+```
+<h1>Our Amazing Team</h1>
+```
+
+Treating template application as a graph transformation results in a flexible templating system that can be extended in interesting ways.
+
+## Expressions that return graphs
+
+Any template expression that results in a graph will have that graph's values concatenated into the final result.
+
+<span class="tutorialStep"></span> Update `index.ori` to:
+
+```
+<h1>\{\{ title }}</h1>
+\{\{ graph(team.yaml) }}
+```
+
+The `team.yaml` file is a text file in YAML format, so if you include `team.yaml` directly, the contents of that text file are inserted into the final text. The `graph()` function instructs Graph Origami to explicitly treat that YAML data as a graph.
+
+```html
+<h1>Our Amazing Team</h1>
+{{ graph(framework-intro/src/team.yaml) }}
+```
+
+Here, all the data values in `team.yaml` are concatenated and incorporated into the final text. That's more data than we want to show, but it's a small step towards what we actually want: to display a list of the team members on this index page.
+
+To do that, we'll want the template to transform that graph of team data into a more interesting graph of HTML.
 
 &nbsp;
 
-Next: [Map data to HTML fragments](intro7a.html) »
+Next: [Transforms](intro8.html) »

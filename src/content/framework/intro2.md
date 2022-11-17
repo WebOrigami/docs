@@ -27,14 +27,16 @@ The `public` graph shown above in sitting inside a larger graph for the entire p
 The `team.yaml` data also has a hierarchical structure: it's an array of people, each of which have some properties.
 
 ```\yaml
-{{ framework-intro/src/team.yaml }}
+{{ framework-intro/src/public/team.yaml }}
 ```
 
-We can visually represent the data as a graph:
+We can visually represent the data as a graph.
 
-<figure>
-{{ svg framework-intro/src/team.yaml }}
+<figure class="constrain">
+{{ svg client/samples/frameworkIntro/focusedTeam.yaml }}
 </figure>
+
+(For brevity, in this and other diagrams showing `team.yaml`, we'll just show a couple of the data properties for each person.)
 
 In this graph, the top-level keys are integers (0, 1, 2), which are the indices of the array of names. The second-level keys are strings: `name`, `image`, etc.
 
@@ -58,7 +60,7 @@ You can also explore data files with graph tools like the `.svg` tool you used a
 <span class="tutorialStep"></span> Navigate to `/src/team.yaml/0/.svg` to view the graph of the data for just the first team member.
 
 <figure>
-{{ svg framework-intro/src/team.yaml/0 }}
+{{ svg framework-intro/src/public/team.yaml/0 }}
 </figure>
 
 A graph can be an in-memory object, a folder tree, data in a file, dynamically-generated data, and other forms. (You can read more about the different [graph variants](/core/variants.html) supported by Origami.)

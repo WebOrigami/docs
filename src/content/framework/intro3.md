@@ -1,80 +1,50 @@
 ---
-title: Metagraphs
-
-# Add a stuff.yaml file
-step1 = merge(framework-intro/src/public, this):
-  stuff.yaml: |
-    title: Our Amazing Team
-
-# Treat stuff.yaml as additions
-step2 = merge(framework-intro/src/public, this):
-  title: Our Amazing Team
-
-realFolder: |
-  +stuff.yaml: |
-    title: Our Amazing Team
-virtualFolder:
-  title: Our Amazing Team
+title: Virtual content
 ---
 
-In Graph Origami, a _metagraph_ is any graph that defines itself. This takes the form of a graph with special keys which, when interpreted, create new virtual content for that graph.
+It's helpful to distinguish between:
 
-## Create a file that defines virtual values
+- **Real content.** For our purposes, "real" means _persistent_: data, files, and other resources stored on a computer somewhere and which exist even if your code is not running.
+- **Virtual content.** These are data, files, and other resources that are only accessible while your code is running.
 
-<span class="tutorialStep"></span> Start by creating a new file in the `/src/public` folder called `stuff.yaml`. It doesn't matter what you call this file, as long as it has a `.yaml` extension (`.yml` works too). Even calling it `+.yaml` will work.
+In Graph Origami you can work with real content and virtual content the same way. For example, you can define a virtual HTML file that looks just and acts like a "real" HTML file, but will disappear when your code stops running.
 
-You can use this `stuff.yaml` file to define data and other things useful for construction of the site. For example, if all of the pages on the site should show the same title, you can define that title once and use it in multiple places.
+As you work towards creating your site, some of the site's resources will be real, like the CSS stylesheet stored in `src/public/styles.css`. Other content will be virtual. For example, you'll create a virtual `index.html` file that shows a list of your team members.
 
-<span class="tutorialStep"></span> Enter the following line in `stuff.yaml`:
+At the end of the process, you'll use graph tools to turn those virtual files into real files that can be deployed.
 
-```{{'yaml'}}
-{{ step1/stuff.yaml }}
-```
+## Virtual files for development
 
-<span class="tutorialStep"></span> Refresh or view the `.svg` page to see the updated visual graph for the `public` folder that includes `stuff.yaml`:
+As a quick example of virtual content, look at the browser preview of your site. You should see a simple page with the heading "public" and a list of links to the existing real files in the `public` folder.
 
-<figure>
-{{ svg step1 }}
-</figure>
+That page you're looking at is a virtual `index.html` page. It doesn't exist in any persistent form; it only exists while the Graph Origami server is running. Graph Origami provides that default `index.html` page as a convenience so that you can browse through your site while you're still developing it. After you define your own `index.html` page for the site, your page will be used instead.
 
-There's nothing special going on yet. The `stuff.yaml` file is just a text file with some data.
+Graph Origami provides some other virtual, default pages for development purposes.
 
-Now you're going to do a magic trick to turn the data in `stuff.yaml` into virtual content in the `public` folder.
+<span class="tutorialStep"></span> In the address bar for the site preview, type `.svg` and press Enter. (If you're using Glitch: for some reasons Glitch tries to prevent you from typing a page whose name begins with a period. Either cut-and-paste that `.svg` text, or type "svg" and then insert a "." at the beginning.)
 
-<span class="tutorialStep"></span> Rename `stuff.yaml` to `+stuff.yaml`. The `+` at the beginning is a signal to Graph Origami that the data _inside_ that data file should be treated as if it were _outside_ the data file — as if those data were elements of the containing `public` folder. The `+stuff.yaml` are called _graph additions_.
-
-<span class="tutorialStep"></span> Refresh/view the browser preview to see the updated `public` folder:
+You should see the contents of the `public` folder represented as a visual graph, using the same type of diagram shown here in the Graph Origami tutorial.
 
 <figure>
-{{ svg step2 }}
+{{ svg framework-intro/src/public }}
 </figure>
 
-## Metagraphs as transformation
+The graph diagram in your browser is interactive. (The one above is not.)
 
-If you compare the above graphs, you'll see that in the second graph:
+<span class="tutorialStep"></span> Click on one of the boxes in the diagram. These represent project files. Then press Back or otherwise navigate back to the diagram. Click on one of the little circles in the diagram, which here represent the `public` and `public/images` folders, then navigate back to the diagram.
 
-- The `public` folder now appears to contain a virtual file called `title` that contains the text "Our Amazing Team".
-- The `+stuff.yaml` additions file no longer appears. Graph Origami is interpreting the contents of that file as virtual elements, so it hides the file itself.
+This `.svg` page is another example of a virtual page provided by Graph Origami to help you explore your site as you're working on it. You can use that as a visual map of what you're building, and return to it whenever you want to see the overall state of the site.
 
-The `+stuff.yaml` file you created transforms the real `public` folder into a slightly different, virtual `public` folder. We'll look at other graph transformations later, but an additions file like `+stuff.yaml` is one of the simplest and most concise ways to define a graph transformation. Visually, the transformation looks like this:
+Along the same lines, Graph Origami provides a hidden `.index` page for a graph. This offers the same basic file list as the default `index.html` — it exists so that you can use `.index` even in folders that define an `index.html` page.
 
-<div class="sideBySide">
-  <figure>
-    {{ svg realFolder }}
-  </figure>
-  <figure>
-    {{ svg virtualFolder }}
-  </figure>
-  <figcaption>Before: Real files</figcaption>
-  <figcaption>After: Virtual files</figcaption>
-</div>
+## Explorable graphs don't have to expose everything
 
-Since `+stuff.yaml` is sitting inside the folder it transforms, we can call the `public` folder a metagraph: a graph that defines its own transformations.
+The previous page explained that an explorable graph can tell you what's inside of it. An important nuance is that such a graph doesn't have to tell you _everything_ that's inside it.
 
-## Transforming the public folder into the final site
+In this case, the Graph Origami server is silently adding some virtual files to the graph of the `public` folder as development tools. These virtual files, like `.svg` or the default `index.html`, are generally hidden in the visual map (like the one shown by `.svg`) and lists of files (like the one in the default `index.html`).
 
-The rest of this tutorial will continue to transform the `public` folder into the final About Us site. The `public` folder will contain both real files and virtual files, and will be what your users eventually see and interact with. The containing `src` folder will contain additional source material (like the `team.yaml` data file) that will be used as fodder to create the final result, but only files (both real and virtual) in the `public` folder will be part of the final site.
+Now it's time to define some virtual files yourself.
 
 &nbsp;
 
-Next: [Formulas](intro4.html) »
+Next: [Metagraphs](intro4.html) »
