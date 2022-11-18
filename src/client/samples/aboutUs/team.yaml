@@ -1,7 +1,6 @@
-- id: Alice
-  name: Alice Wijaya
+- name: Alice
+  image: Alice.jpg
   location: Jakarta
-  position: Experience Designer
   bio: |
     Alice opens the line of communication between clients, customers, and
     businesses to get projects done. With over 15 years in both public and
@@ -9,10 +8,9 @@
     building, professional development, strategic implementation, and company
     collaboration. She has a passion for helping people and businesses succeed,
     and is always looking for ways to improve the world.
-- id: Bob
-  name: Bob Cardenas
+- name: Bob
+  image: Bob.jpg
   location: Lima
-  position: Administrator
   bio: |
     Bob is an Administrative Assistant with eight years of experience working
     alongside the executive team of a Fortune 500 company. He specializes in
@@ -22,20 +20,18 @@
     powerful force in the workplace and uses his positive attitude and tireless
     energy to encourage others to work hard and succeed. In his free time, Luis
     likes to hike and kayak.
-- id: Carol
-  name: Carol Davenhall
+- name: Carol
+  image: Carol.jpg
   location: Los Angeles
-  position: President
   bio: |
     After working as a manager for numerous startups over the years, I decided
     to take the plunge and start a business of my own. I love the challenges I
     face as a entrepreneur, and it didn't take long for me to discover that this
     was my calling. I feel that I have the ability to create a business that is
     both profitable and sustainable.
-- id: Ines
-  name: Ines Silva
+- name: Ines
+  image: Ines.jpg
   location: Lisbon
-  position: Editor
   bio: |
     Ines Silva received her B.S. in Behavioral Science in 2017. It was during
     university that she developed her passion for writing and translating. She
@@ -46,10 +42,9 @@
     including the National Council of the American Chamber of Commerce, the
     National Association of Manufacturers, and the National Association of
     Manufacturers of America.
-- id: Jenny
-  name: Jenny Nguyen
+- name: Jenny
+  image: Jenny.jpg
   location: Hanoi
-  position: Visual Designer
   bio: |
     Having been an art student for 11 years, I constantly explore various
     disciplines to broaden my own artistic pursuits, integrating a fine art
@@ -57,10 +52,9 @@
     interest and exploration are my Vietnamese culture, human-centered design,
     and branding. I begin projects by thoroughly researching and then developing
     my ideas through creative thinking.
-- id: Maria
-  name: Maria Navarro
+- name: Maria
+  image: Maria.jpg
   location: Manila
-  position: Customer Outreach
   bio: |
     Maria draws from her own experiences when helping customers grow and manage
     their businesses. She has worked in the hospitality industry for over 15
@@ -68,10 +62,9 @@
     She has also worked as a consultant for several companies, including the
     International Institute of Architects and the Global Institute of Interior
     Design.
-- id: Rakesh
-  name: Rakesh Patel
+- name: Rakesh
+  image: Rakesh.jpg
   location: Delhi
-  position: Business Development
   bio: |
     A calculated risk-taker with deep tech industry knowledge, Rakesh has
     championed cloud services to his enterprise and consumer customers; his
@@ -81,29 +74,26 @@
     Microsoft’s commercial Cloud Services, including Office 365, Windows Intune,
     CRM Online, Azure and hybrid cloud—programs that are fueling the
     industry-wide transition in both the public and private cloud.
-- id: Sabastian
-  name: Sebastian Fuentes
+- name: Sebastian
+  image: Sabastian.jpg
   location: Santiago
-  position: Researcher
   bio: |
     Sebastian joined our team as a researcher in 2019. He is happiest when he is
     learning new things and solving problems. He works tirelessly to help people
     learn and share their knowledge. After hours, he is most likely found in a
     library or a coffee shop.
-- id: Seojun
-  name: Seo-jun Kim
+- name: Seo
+  image: Seojun.jpg
   location: Seoul
-  position: Developer
   bio: |
     I'm a full-stack web application developer and software developer based in
     South Korea. I have a Bachelor of Science in Computer Science from
     Northeastern University and have 10+ years experience in the field. I
     volunteer as a programming instructor at local schools, fulfilling my
     passion to teach and help people learn to code.
-- id: Tomas
-  name: Tomas Svoboda
+- name: Tomas
+  image: Tomas.jpg
   location: Prague
-  position: Engineering Architect
   bio: |
     An industry expert with more than 20 years of successful experience in full
     life cycle Recruiting and Business Development, Tomas has a proven ability

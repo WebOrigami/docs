@@ -110,7 +110,7 @@ header {
   width: 500px;
 }
 
-.position {
+.location {
   color: #4987ae;
   font-size: 13px;
   font-weight: 400;
@@ -127,7 +127,7 @@ header {
 }
 
 .name,
-.position {
+.location {
   text-align: center;
 }
 
