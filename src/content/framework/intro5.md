@@ -4,7 +4,7 @@ title: Define virtual content with formulas
 
 In the last step, you created a trivial virtual file called `title` that contained a bit of text. What's more interesting is that you can define virtual files with _formulas_ that will be evaluated to produce a result.
 
-## Define a simple formula
+## Define a formula
 
 <span class="tutorialStep"></span> Add a new line to the `+public.yaml` file so that it reads:
 
@@ -15,12 +15,14 @@ index.html = 'Hello, world!':
 
 Be sure to use single quotes. Graph Origami doesn't support double quotes. There's a very good but strange reason for that, and when the reason is revealed in a few pages, it will probably surprise you and make you laugh. But for now, just remember to use single quotes.
 
-Also note the colon (`:`) at the end of that new line. Graph Origami lets you define virtual values by defining formulas in the _key_ of a key/value pair. In YAML files, a colon is used to separate a key from a value, so at the moment, here are two key/value pairs in `public.yaml`:
+Also note the colon (`:`) at the end of that new line. Graph Origami lets you define virtual values by defining formulas in the _key_ of a key/value pair. In YAML files, a colon is used to separate a key from a value, so that colon is part of the YAML file format, not part of the formula.
 
-| Key                          |        | Value            |
-| :--------------------------- | ------ | :--------------- |
-| title                        |        | Our Amazing Team |
-| index.html = 'Hello, world!' | &nbsp; | (null)           |
+For clarity, there are two key/value pairs in `public.yaml`:
+
+| Key                          |              | Value            |
+| :--------------------------- | ------------ | :--------------- |
+| title                        |              | Our Amazing Team |
+| index.html = 'Hello, world!' | &nbsp;&nbsp; | (null)           |
 
 To define a virtual value, you put the whole formula in the key — before the colon.
 

@@ -1,5 +1,5 @@
 title: Our Amazing Team
-teamByName = mapKeys(framework-intro/src/team.yaml, =name):
+teamByName = mapKeys(framework-intro/src/public/team.yaml, =name):
 public:
   index.html: |
     <h1>Our Amazing Team</h1>

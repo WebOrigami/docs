@@ -25,7 +25,18 @@ The `\{\{#`…`}}` syntax, with its `#` symbol, is a way of passing a template f
 
 The `map` function takes at least two arguments. Above, the first argument is the `team.yaml` graph. The second argument is the fragment between the `\{\{#map}}` and `\{\{/map}}`. Everything between those markers will be passed as an argument to `map`. As with `greetings`, Graph Origami will evaluate that fragment in the scope of the individual person data being mapped.
 
-<span class="tutorialStep"></span> Visit or refresh the index page to see a bulleted list of names. Getting closer…
+The result is:
+
+```html
+<h1>Our Amazing Team</h1>
+{{#map framework-intro/src/public/team.yaml}}
+<li>{{ name }}</li>
+{{/map}}
+```
+
+<span class="tutorialStep"></span> Visit or refresh the index page to see a bulleted list of names.
+
+Getting closer…
 
 ## Flesh out the index page template
 

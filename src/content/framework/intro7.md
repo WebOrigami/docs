@@ -10,7 +10,7 @@ application:
   - <h1>
 ---
 
-Until now we've mostly been creating trivial virtual content, but now let's begin working on a real top-level index page for the About Us site. For this, we'll use an HTML template system.
+Until now you've mostly been creating trivial demonstration content, but now let's begin working on a real top-level index page for the About Us site. For this, you'll use an HTML template system.
 
 Many JavaScript template engines exist that let you turn data into text output like HTML. Because Graph Origami formulas can call JavaScript, you can call any of those systems from formulas.
 
@@ -132,12 +132,12 @@ The `team.yaml` file is a text file in YAML format, so if you include `team.yaml
 
 ```html
 <h1>Our Amazing Team</h1>
-{{ graph(framework-intro/src/team.yaml) }}
+{{ graph(framework-intro/src/public/team.yaml) }}
 ```
 
-Here, all the data values in `team.yaml` are concatenated and incorporated into the final text. That's more data than we want to show, but it's a small step towards what we actually want: to display a list of the team members on this index page.
+Here, all the data values in `team.yaml` are concatenated and incorporated into the final text. That's much more data than you want to show, but it's a small step towards what you actually want: to display a list of the team members on this index page.
 
-To do that, we'll want the template to transform that graph of team data into a more interesting graph of HTML.
+To do that, you'll want the template to transform that graph of team data into a more interesting graph of HTML.
 
 &nbsp;
 

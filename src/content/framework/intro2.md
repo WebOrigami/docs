@@ -8,7 +8,7 @@ A _graph_ is a great way to conceptualize and visualize such hierarchical struct
 
 ## Visualize the source folder as a graph
 
-The `src` folder for this project contains the source form of your site. File system folders are hierarchical, so you think of that folder as a graph. Graph Origami includes tools that let you visualize structures like the `src` folder as a graph in your browser.
+The `src` folder for this project contains the source form of your site. File system folders are hierarchical, so you can think of that folder as a graph. Graph Origami includes tools that let you visualize structures like the `src` folder as a graph in your browser.
 
 <span class="tutorialStep"></span> Navigate to a virtual file called `.svg`. If you're using Glitch or StackBlitz, do this in the fake address bar above the preview window. Glitch tries hard to prevent you from navigating to a page that starts with a period, so you'll need to either the type the `svg` part and then add a `.` at the beginning, or cut-and-paste the text `.svg` into the address bar. If you're running locally, do this in your browser's real address bar.
 
@@ -30,13 +30,13 @@ The `team.yaml` data also has a hierarchical structure: it's an array of people,
 {{ framework-intro/src/public/team.yaml }}
 ```
 
-We can visually represent the data as a graph.
+We can visually represent this data as a graph.
 
 <figure class="constrain">
 {{ svg client/samples/frameworkIntro/focusedTeam.yaml }}
 </figure>
 
-(For brevity, in this and other diagrams showing `team.yaml`, we'll just show a couple of the data properties for each person.)
+(For brevity, in this and other diagrams showing team data, we'll just show the `name` and `image` properties for each person.)
 
 In this graph, the top-level keys are integers (0, 1, 2), which are the indices of the array of names. The second-level keys are strings: `name`, `image`, etc.
 
@@ -51,13 +51,13 @@ Graph Origami is designed to work with a very flexible type of graph called an _
 
 Graph Origami _treats all graphs exactly the same way_. Whatever you can do to a graph of files you can do to a graph of data, and vice versa. For example, while many web servers let you browse through files, Graph Origami lets you also browse into data files.
 
-<span class="tutorialStep"></span> In the address bar, navigate to `/src/team.yaml` to see the team data. Now add a trailing slash to that address, so that it reads `/src/team.yaml/`.
+<span class="tutorialStep"></span> In the address bar, navigate to `team.yaml` to see the team data. Now add a trailing slash to that address, so that it ends in `team.yaml/`.
 
-The browser will show an index page for the top level of the team data. You can browse into the data for the team members. For example, `/src/team.yaml/0/name` will show the name of the first team member.
+The browser will show an index page for the top level of the team data. You can browse into the data for the team members. For example, `team.yaml/0/name` will show the name of the first team member.
 
 You can also explore data files with graph tools like the `.svg` tool you used above.
 
-<span class="tutorialStep"></span> Navigate to `/src/team.yaml/0/.svg` to view the graph of the data for just the first team member.
+<span class="tutorialStep"></span> Navigate to `team.yaml/0/.svg` to view the graph of the data for just the first team member.
 
 <figure>
 {{ svg framework-intro/src/public/team.yaml/0 }}
@@ -77,7 +77,7 @@ Let's work backward from the desired result form of the site. It might look like
 {{ svg client/samples/frameworkIntro/complete.meta/public }}
 </figure>
 
-As discussed at the outset, we want an index page listing our team members, plus a page for each individual member, plus the other resources the site needs.
+As discussed at the outset, we want an index page listing our team members, plus a page for each individual member, full-size photos, thumbnail-size photos, and some resources for the site's visual design.
 
 ## Visualize site creation as a transformation
 

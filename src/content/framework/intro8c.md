@@ -31,6 +31,8 @@ The `mapKeys` function is like `map`, but instead of changing a graph's values, 
   <figcaption>teamByName: names as top-level keys</figcaption>
 </div>
 
+Where `team.yaml` has top-level keys of `0`, `1`, `2`, the virtual `teamByName` graph has top-level keys of `Alice`, `Bob`, `Carol`.
+
 ## Transform a data graph into HTML pages
 
 Earlier you created an `index.html` page by invoking an Origami template. You also created a `greetings` graph that mapped the team members to a graph of greetings using a JavaScript function. Now you'll combine those ideas: map the graph of team members to a graph of HTML pages using an Origami template.
@@ -47,7 +49,7 @@ Applying this template to one of the people records in `team.yaml` will produce 
 
 ```yaml
 index.html = index.ori():
-thumbnails = map(images, =image/resize(@value, width=400)):
+thumbnails = map(images, =image/resize(@value, width=200)):
 team = map(teamByName, person.ori):
 ```
 
@@ -66,13 +68,15 @@ team = map(teamByName, person.ori):
 
 ## Flesh out the person template
 
-Let's make the `person.ori` template a bit more realistic. The project's `assets` folder contains a fuller `person.ori` template with some more elements:
+Let's make the `person.ori` template a bit more realistic.
+
+<span class="tutorialStep"></span> Move or copy the contents of that `person.ori` template from the `assets` folder to the `person.ori` template in the `src` folder.
 
 ```html
 {{ framework-intro/assets/person.ori }}
 ```
 
-<span class="tutorialStep"></span> Move or copy the contents of that `person.ori` template from the `assets` folder to the `person.ori` template in the `src` folder.
+This template has more elements, but works exactly the same way as the one you wrote by hand above.
 
 ## Add an HTML extension
 
@@ -103,7 +107,9 @@ The transformation now looks like:
   <figcaption>…maps to a .html file for each person</figcaption>
 </div>
 
-With that, you've built the desired `team` route in the site, and have completed the real work of building the site.
+With that, you've completed the work to build the site. As long as the Graph Origami server is running, the virtual `public` graph matches the one in the sample About Us site we've been using as a model.
+
+The site meets our functional requirements, but it's not yet as simple as it could be. Given the static nature of this site, you can use Graph Origami tools to remove the server from the picture.
 
 &nbsp;
 

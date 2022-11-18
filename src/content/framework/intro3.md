@@ -31,6 +31,8 @@ You should see the contents of the `public` folder represented as a visual graph
 
 The graph diagram in your browser is interactive. (The one above is not.)
 
+(Glitch users: if your window isn't large enough to see a useful portion of the diagram in the Glitch preview pane, you can open the preview into its own window by clicking the `⋮` above the preview, then selecting **Open in new window**.)
+
 <span class="tutorialStep"></span> Click on one of the boxes in the diagram. These represent project files. Then press Back or otherwise navigate back to the diagram. Click on one of the little circles in the diagram, which here represent the `public` and `public/images` folders, then navigate back to the diagram.
 
 This `.svg` page is another example of a virtual page provided by Graph Origami to help you explore your site as you're working on it. You can use that as a visual map of what you're building, and return to it whenever you want to see the overall state of the site.

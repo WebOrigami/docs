@@ -65,11 +65,18 @@ Using maps, you can begin transforming your `team.yaml` data into an About Us si
 \{\{ greetings }}
 ```
 
-This inserts the `greetings` values into the final HTML. The text is somewhat smashed together, but you've moved one step closer to turning the team data into a useful list of team members.
+This inserts the `greetings` values into the final HTML.
+
+```html
+<h1>\{\{ title }}</h1>
+{{ greetings }}
+```
+
+This index page is still not what you want, but you've 'moved one step closer to turning the team data into a useful list of team members.
 
 ## Clean up
 
-We're going to replace the `greetings` graph with something more useful, so you can remove it from your site.
+In the next step, you're going to replace the `greetings` graph with something more useful, so you can remove it from your site.
 
 <span class="tutorialStep"></span> Update `+public.yaml` to remove the `greetings` formula, leaving just:
 

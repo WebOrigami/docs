@@ -1,9 +1,11 @@
 ---
 title: Transform images with a map
-step1 = merge(framework-intro/src/public, this):
-  title: Our Amazing Team
+step1:
+  images = framework-intro/src/public/images:
   index.html = framework-intro/assets/index.ori():
-  thumbnails = map(framework-intro/src/public/images, =image/resize(@value, width=400)):
+  personIcon.svg = framework-intro/src/public/personIcon.svg:
+  styles.css = framework-intro/src/public/styles.css:
+  thumbnails = images:
 ---
 
 Until now, the graph transformations we've looked at deal with graphs of text, but graphs can contain values of any type. We want to have a `thumbnails` folder that's based on the `images` folder, but scales the images to a smaller size.
@@ -12,7 +14,7 @@ Until now, the graph transformations we've looked at deal with graphs of text, b
 
 ```yaml
 index.html = index.ori():
-thumbnails = map(images, =image/resize(@value, width=400)):
+thumbnails = map(images, =image/resize(@value, width=200)):
 ```
 
 The `thumbnails` formula is long, so let's break it down.
@@ -20,7 +22,7 @@ The `thumbnails` formula is long, so let's break it down.
 - This formula transforms the graph of files in the `images` folder.
 - For each image in the `images` folder, the formula invokes the built-in `image/resize` function.
 - Behind the scenes, the `map()` function extends the scope with a `@value` entry that provides access to the value being mapped — that is, the original image data.
-- The extended scope will be passed to `image/resize`, along with an instruction to resize the image value to 400 pixels in width.
+- The extended scope will be passed to `image/resize`, along with an instruction to resize the image value to 200 pixels in width.
 
 <span class="tutorialStep"></span> Navigate to `.svg` to see the current state of the site as a graph. In addition to the real `images` folder, you can now see a virtual `thumbnails` folder. Click the little dot representing that virtual folder to browse into it.
 
@@ -38,11 +40,13 @@ As mentioned earlier, explorable graphs are lazy. When you write a formula to de
 1. The formula for `thumbnails` invokes the `map()` function, which doesn't do any real work yet, but returns an explorable graph representing a virtual folder of potential, not-yet-created thumbnails.
 1. The server asks the virtual `thumbnails` folder for `image1.jpg`.
 1. The `map()` function asks the real `images` folder for the real, full-size `image1.jpg` data.
-1. The `map()` function takes the image data it receives and invokes the expression `=image/resize(@value, width=400)`.
+1. The `map()` function takes the image data it receives and invokes the expression `=image/resize(@value, width=200)`.
 1. The built-in `image/resize` function consumes the original, full-size image and returns the data for a smaller thumbnail image.
 1. The server responds to the browser with the thumbnail image, which you see in your browser.
 
 <span class="tutorialStep"></span> Navigate to the team index page, now complete with thumbnail images.
+
+Note: on "retina" displays with high pixel densities, the thumbnails will look blurry. You can double the resolution of the thumbnails by doubling the thumbnail width to `width=400`. It's beyond the scope of this tutorial, but you could use the techniques described here to create [responsive images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images), with multiple formulas formatting or scaling images to target displays with specific pixel densities.
 
 &nbsp;
 

@@ -8,8 +8,11 @@ step1:
     team.yaml = framework-intro/src/public/team.yaml:
 step2:
   greet.js = framework-intro/src/greet.js:
-  public = merge(framework-intro/src/public, this):
-    index.html = framework-intro/src/greet('world'):
+  public:
+    images = framework-intro/src/public/images:
+    index.html = framework-intro/src/greet(team.yaml/0/name):
+    personIcon.svg = framework-intro/src/public/personIcon.svg:
+    styles.css = framework-intro/src/public/styles.css:
   team.yaml = framework-intro/src/public/team.yaml:
   title: Our Amazing Team
 jsScopeExample:
@@ -127,7 +130,7 @@ index.html = greet(team.yaml/0/name):
 
 The `index.html` page now greets the first team member: "Hello, <strong>Alice</strong>."
 
-Creating HTML in JavaScript functions like `greet` is certainly a common and powerful technique, but in many cases it can be overkill. Often all that's needed is a way to define the boilerplate structure of the final file (content like "Hello"), leaving placeholders for the data we want to add (like a person's name). This leads us to a discussion of templates.
+Creating HTML in JavaScript functions like `greet` is certainly a common and powerful technique, but in many cases it can be overkill. Often all that's needed is a way to define the boilerplate structure of the final file (content like "Hello"), leaving placeholders for the data you want to add (like a person's name). This leads us to a discussion of templates.
 
 ## Controlling what's public
 
@@ -162,6 +165,8 @@ Along the same lines, you can make the team data in `team.yaml` private.
 <figure>
 {{ svg step2/public }}
 </figure>
+
+With this change, the `title` and `team.yaml` are no longer in the `public` folder — but they are still in scope, so they're still available in formulas like the one for `index.html`. That lets you focus the `public` folder on just those things which must be visible in the final site.
 
 Graph scope lets use the file system structure of any project as a way to configure what's available where.
 

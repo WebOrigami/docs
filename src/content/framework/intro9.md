@@ -74,15 +74,23 @@ In addition to copies of the real files in the `src/public` folder, the `build` 
 
 The `build` folder contains a fully functional About Us area that's identical to the one visible at the `src` route — only the `build` version is backed entirely by static files.
 
-## Conclusion
+## Recap
 
-Through this tutorial, you created a small but functionally meaningful About Us site.
+In this tutorial you created a small About Us site that demonstrates the core concepts of the Graph Origami framework:
 
-- You started with a real data file that you can think of as a graph of data.
-- You created virtual files and folders with formulas.
-- Those formulas transform the data graph in various ways to create a virtual graphs of avatars, HTML fragments, or HTML pages.
-- The final result involves no JavaScript code. In an Origami project, you often just need JavaScript to define the one-to-one transformations you would like to perform. The many-to-many transformations — of people to HTML pages, say — can be accomplished with formulas.
-- You rendered the virtual graph of the site into real files that can you can deploy.
+1. The overarching **creation-as-transformation** model offered a way of thinking about the final result form of the site, the initial source form of the material you had to work with, and the transformations that would be necessary to turn the source form into the result form.
+1. **Explorable graphs** provided a convenient way to represent the data about team members, the structure of the project's files, and the structure of the final site.
+1. **Virtual content** let you browse files and content that only exist while code is running.
+1. **Metagraphs** let you define folders like `public` that define their own transformations.
+1. **Formulas** let you concisely transform real data and files into browseable virtual content.
+1. **Scope** determined the code (`greet`) and data (`title`) your formulas could reference.
+1. **Templates** turned your data and graphs into text like the site's `index.html` page and individual team member pages.
+1. **Transforms** changed graphs from one form to another, processing content in bulk: like images into thumbnails, or team data into HTML fragments or pages.
+1. **Graph tools** let you (automatically or manually) copy your virtual site into real static files that can be published.
+
+The final definition of the site is quite compact: a handful of formulas in `+public.yaml` and `+private.yaml` orchestrate the transformations, and the templates `index.ori` and `person.ori` transform data into HTML. Although a sample `greet` function was used for demonstration, the construction of the actual site didn't require writing JavaScript code.
+
+To the extent you had to configure things, you did so by positioning them in the project's hierarchical scope. Throughout the process, you could both think about the structure of the site at a high level, as well as directly visualize that structure in an interactive graph diagram that showed the live state of the site.
 
 This concludes the tutorial.
 
