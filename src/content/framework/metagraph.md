@@ -2,7 +2,7 @@
 title: Metagraphs
 formula.yaml: |
   name: world
-  message = `Hello, {{name}}.`: null
+  message = `Hello, {{ name }}.`: null
 folder: |
   html = map(markdown, mdHtml, extension='md→html'):
   markdown:
@@ -32,7 +32,7 @@ The metagraph features include:
 ```console assert: true
 $ ori formula.yaml
 name: world
-message = `Hello, \{\{name}}.`: null
+message = `Hello, \{\{ name }}.`: null
 ```
 
 This graph defines just two keys: the first key is `name` and it has the value "world". The second key is a text formula. In this example, the value of the second key is irrelevant; here it `null`. We can visualize the graph this way:
@@ -46,7 +46,7 @@ We can ask Origami to _interpret_ this formula by passing the graph to the built
 ```console assert: true
 $ ori meta formula.yaml
 message: Hello, world.
-"message = `Hello, \{\{name}}.`": null
+"message = `Hello, \{\{ name }}.`": null
 name: world
 ```
 

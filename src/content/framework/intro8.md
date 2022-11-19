@@ -72,7 +72,7 @@ This inserts the `greetings` values into the final HTML.
 {{ greetings }}
 ```
 
-This index page is still not what you want, but you've 'moved one step closer to turning the team data into a useful list of team members.
+This index page is still not what you want, but you've moved one step closer to turning the team data into a useful list of team members.
 
 ## Clean up
 

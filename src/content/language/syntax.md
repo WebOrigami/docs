@@ -31,6 +31,7 @@ The following types of expressions are supported by the Origami CLI and in Origa
 | Floating-point numbers                       |        | `3.14`                             |
 | Literal reference to a key in scope          |        | `foo`                              |
 |                                              |        | `file.txt`                         |
+| Object literals                              |        | `a=1 b=2 c=3`                      |
 | Self-reference to the value defined by a key |        | `this`                             |
 | Bound variable reference in a formula        |        | `\{\{x}}`                          |
 | HTTPS or HTTP URL                            |        | `https://example.com/index.html`   |

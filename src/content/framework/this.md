@@ -39,7 +39,7 @@ Let's first look at an example of a formula that references inputs from other gr
 
 ```yaml
 index.html = index.ori(index.yaml): ""
-index.ori: Hello, \{{name}}.
+index.ori: Hello, \{{ name }}.
 index.yaml:
   name: Alice
 ```
@@ -56,7 +56,7 @@ Note that the value associated with the `index.html` formula key is the empty st
 Since the template above is so trivial, we can inline it: define it as the value behind the formula key. If this were a file, we would put the template in the file with the formula name.
 
 ```yaml
-index.html = this(index.yaml).ori: Hello, \{{name}}.
+index.html = this(index.yaml).ori: Hello, \{{ name }}.
 index.yaml:
   name: Alice
 ```

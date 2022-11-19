@@ -16,7 +16,7 @@ Above you mapped the graph of people to a graph of greetings. To create the real
 
 ```
 <h1>\{\{ title }}</h1>
-\{\{#map team.yaml}}
+\{\{#map team.yaml }}
 <li>\{\{ name }}</li>
 \{\{/map}}
 ```
@@ -29,9 +29,9 @@ The result is:
 
 ```html
 <h1>Our Amazing Team</h1>
-{{#map framework-intro/src/public/team.yaml}}
-<li>{{ name }}</li>
-{{/map}}
+\{\{#map framework-intro/src/public/team.yaml }}
+<li>\{\{ name }}</li>
+\{\{/map}}
 ```
 
 <span class="tutorialStep"></span> Visit or refresh the index page to see a bulleted list of names.
