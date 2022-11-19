@@ -4,7 +4,7 @@ formula.yaml: |
   name: world
   message = `Hello, {{name}}.`: null
 folder: |
-  html = map(markdown, mdHtml, '.md', '.html'):
+  html = map(markdown, mdHtml, extension='md→html'):
   markdown:
     Alice.md: Hello, **Alice**.
     Bob.md: Hello, **Bob**.

@@ -194,13 +194,13 @@ _This experimental function is not yet stable enough to document._
 
 <a name="map"></a>
 
-## map(graph, mapFn, [sourceExtension], [targetExtension])
+## map(graph, mapFn, [options])
 
 Like [mapDeep](#mapDeep), but only transforms the top-level values of a graph. Any values which are subgraphs will be handed to the `mapFn` mapping function as is.
 
 <a name="mapDeep"></a>
 
-## mapDeep(graph, mapFn, [sourceExtension], [targetExtension])
+## mapDeep(graph, mapFn, [options])
 
 Returns a new [MapValuesGraph](/core/MapValuesGraph.html) that applies the given `mapFn` to the deep values in the `graph`.
 

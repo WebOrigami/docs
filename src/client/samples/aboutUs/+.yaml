@@ -1,5 +1,5 @@
 index.html = index.ori():
-team = map(teamByName, person.ori, '', '.html'):
+team = map(teamByName, person.ori, extension='→html'):
 teamByName = mapKeys(team.yaml, =name):
 thumbnails = map(images, =image/resize(@value, width=400)):
 title: Our Amazing Team

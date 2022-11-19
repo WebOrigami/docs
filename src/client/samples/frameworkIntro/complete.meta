@@ -9,5 +9,5 @@ public:
   personIcon.svg = framework-intro/src/public/personIcon.svg:
   images = framework-intro/src/public/images:
   styles.css = framework-intro/src/public/styles.css:
-  team = map(teamByName, =`<h1>{{ name }}</h1>`):
+  team = map(teamByName, =`<h1>{{ name }}</h1>`, extension='→html'):
   thumbnails = images:

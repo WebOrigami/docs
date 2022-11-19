@@ -2,7 +2,7 @@
 title: Transforming data with maps
 files:
   folder: |
-    html = map(markdown, mdHtml, '.md', '.html'):
+    html = map(markdown, mdHtml, extension='md→html'):
     markdown:
       Alice.md: Hello, **Alice**.
       Bob.md: Hello, **Bob**.
@@ -13,7 +13,7 @@ files:
 
 ```console
 $ ls
-markdown    html = map(markdown, mdHtml, '.md', '.html')
+markdown    html = map(markdown, mdHtml, extension='md->html')
 $ ls markdown
 Alice.md    Bob.md    Carol.md
 $ cat Alice.md
@@ -22,7 +22,7 @@ Hello, **Alice**.
 
 ```console assert: true, path: files
 $ ori folder
-html = map(markdown, mdHtml, '.md', '.html'):
+html = map(markdown, mdHtml, extension='md->html'):
 markdown:
   Alice.md: Hello, **Alice**.
   Bob.md: Hello, **Bob**.
@@ -42,7 +42,7 @@ html:
     <p>Hello, <strong>Bob</strong>.</p>
   Carol.html: |
     <p>Hello, <strong>Carol</strong>.</p>
-"html = map(markdown, mdHtml, '.md', '.html')": null
+"html = map(markdown, mdHtml, extension='md->html')": null
 markdown:
   Alice.md: Hello, **Alice**.
   Bob.md: Hello, **Bob**.

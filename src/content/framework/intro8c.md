@@ -2,7 +2,7 @@
 title: Map data to full HTML pages
 teamByName = mapKeys(client/samples/frameworkIntro/focusedTeam.yaml, =name):
 team1 = map(teamByName, =`<h1>{{ name }}</h1>`):
-team2 = map(teamByName, framework-intro/assets/person.ori, '', '.html'):
+team2 = map(teamByName, framework-intro/assets/person.ori, extension='→html'):
 ---
 
 ## Transform a graph's keys
@@ -87,10 +87,10 @@ In this case, you want to map a person object with a key like `Alice` to an HTML
 <span class="tutorialStep"></span> Update the `team` formula in `+public.yaml` so that it reads:
 
 ```yaml
-team = map(teamByName, person.ori, '', '.html'):
+team = map(teamByName, person.ori, extension='->html'):
 ```
 
-The empty third parameter (`''`) indicates that you don't want to _remove_ anything from the graph keys, because they don't have any extension. The fourth parameter (`'.html'`) indicates that you want to _add_ `.html` to the graph keys.
+The third parameter indicates how the transform should affect extensions. In this case: the original key won't have any extension (like `Alice`), and you want to _add_ the `.html` extension to the transformed key (`Alice.html`).
 
 <span class="tutorialStep"></span> Observe that the pages in the `team` route now end in `.html`.
 
