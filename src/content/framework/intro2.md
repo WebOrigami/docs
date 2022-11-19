@@ -6,11 +6,11 @@ When creating digital content through transformation, it's often helpful to iden
 
 A _graph_ is a great way to conceptualize and visualize such hierarchical structures. Mathematically speaking, a graph is a set of objects in which certain pairs of the objects are related in some way. Colloquially speaking, a graph is the sort of boxes-with-arrows diagram you often see depicting the structure of organizations, processes, and websites.
 
-## Visualize the source folder as a graph
+## Visualize a folder as a graph
 
-The `src` folder for this project contains the source form of your site. File system folders are hierarchical, so you can think of that folder as a graph. Graph Origami includes tools that let you visualize structures like the `src` folder as a graph in your browser.
+The `src` folder for this project contains the source form of your site. Inside the `src` folder, the `public` folder contains the material that will become your public-facing About Us site. That type of hierarchical structure lends itself well to representation as a graph. Graph Origami includes tools that let you visualize graphs such as folders in your browser.
 
-<span class="tutorialStep"></span> Navigate to a virtual file called `.svg`. If you're using Glitch or StackBlitz, do this in the fake address bar above the preview window. Glitch tries hard to prevent you from navigating to a page that starts with a period, so you'll need to either the type the `svg` part and then add a `.` at the beginning, or cut-and-paste the text `.svg` into the address bar. If you're running locally, do this in your browser's real address bar.
+<span class="tutorialStep"></span> Navigate to a virtual file called `.svg`. Glitch and StackBlitz users: do this in the fake address bar above the preview window. Glitch tries hard to prevent you from navigating to a page that starts with a period, so you'll need to either the type the `svg` part and then add a `.` at the beginning, or cut-and-paste the text `.svg` into the address bar. If you're running locally, do this in your browser's real address bar.
 
 You'll see the `public` folder visually represented as a graph:
 
