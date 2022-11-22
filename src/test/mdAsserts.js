@@ -1,10 +1,32 @@
 import {
-  ObjectGraph,
   extractFrontMatter,
   MetaTransform,
+  ObjectGraph,
 } from "@graphorigami/origami";
 import consoleAsserts from "./consoleAsserts.js";
 import mdCode from "./mdCode.js";
+
+// TODO: The following path traversal code was cut from ori.js as being too
+// specific. Incorporate this into the mdAsserts function.
+
+// // If a path was provided, traverse that before evaluating the code.
+// //
+// // REVIEW: This path-traversing feature of ori exists to support asserts,
+// // which often need to traverse a graph before evaluating an assertion. That
+// // feels too specific to support in this otherwise general-purpose function.
+// // The use of slash-separated paths also feels too specific.
+// if (path) {
+//   const keys = path.split("/");
+//   const [first, ...rest] = keys;
+//   let graph = await scope.get(first);
+//   if (!graph) {
+//     return undefined;
+//   }
+//   graph = transformObject(InheritScopeTransform, graph);
+//   graph.parent = scope;
+//   graph = await ExplorableGraph.traverse(graph, ...rest);
+//   scope = getScope(graph);
+// }
 
 export default async function mdAsserts(markdown) {
   markdown = String(markdown);
