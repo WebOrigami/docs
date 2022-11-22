@@ -25,7 +25,7 @@ pages = js/markCurrent(pages.yaml, @key):
         <nav id="navBar">
           <a href="/">Origami</a>
 {{ templates/areaLinks.ori() }}
-          <a href="https://github.com/GraphOrigami/explorable">GitHub</a>
+          <a href="https://github.com/GraphOrigami/origami">GitHub</a>
         </nav>
       </div>
       <div id="pageContent">
