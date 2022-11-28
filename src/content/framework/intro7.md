@@ -30,9 +30,13 @@ Let's begin producing an index page by creating a template file for it.
 
 Now you'll need to tell Graph Origami to use this template to create the index page. You can do this by invoking the template as a function.
 
-<span class="tutorialStep"></span> In `+public.yaml`, update the formula for `index.html`:
+<span class="tutorialStep"></span> In `+stuff.yaml`, update the formula for `index.html` and its comment:
 
 ```yaml
+# Site title (hidden)
+(title): Our Amazing Team
+
+# Index page obtained by invoking the index .ori template
 index.html = index.ori():
 ```
 
@@ -50,13 +54,13 @@ Now that you've created a template for the index page, you can have it show some
 <h1>\{\{ title }}</h1>
 ```
 
-The double curly braces `{{…}}` create a placeholder in the template that will be populated with dynamic content at the time the template function is invoked. The content inside those curly braces can be any Origami expression — the exact same expressions you can use in formulas in `+public.yaml`.
+The double curly braces `{{…}}` create a placeholder in the template that will be populated with dynamic content at the time the template function is invoked. The content inside those curly braces can be any Origami expression — the exact same expressions you can use in formulas in `+stuff.yaml`.
 
 <span class="tutorialStep"></span> Refresh `index.html` to see the site title as a heading.
 
 ## Template expressions use graph scope
 
-Origami templates used the same graph scope system discussed earlier. When you invoke an Origami template as a function in a formula like `index.html = index.ori()`, the template uses the same scope that was available to that formula. In this case, it means that the `title` is in scope, and will resolve to whatever value you've defined for it in `+private.yaml`, like "Our Amazing Team".
+Origami templates used the same graph scope system discussed earlier. When you invoke an Origami template as a function in a formula like `index.html = index.ori()`, the template uses the same scope that was available to that formula. In this case, it means that the `title` is in scope, and will resolve to whatever value you've defined for it in `+stuff.yaml`, like "Our Amazing Team".
 
 This means that anything your template can "see" in scope can be pulled into the template with an expression.
 
@@ -69,7 +73,7 @@ This means that anything your template can "see" in scope can be pulled into the
 
 This pulls in the contents of the project's `README.md` file, which is in scope, into the final HTML. In this case, the Origami expression is acting like an "include" directive in other programming languages. That's helpful, but the facility is extremely general, as you can pull in anything that can be described with an Origami expression.
 
-All of the following Origami expressions can be used in an Origami template:
+Examples of Origami expressions you can use in an Origami template:
 
 ```
 \{\{ greet('world') }}
@@ -84,7 +88,7 @@ We haven't seen the last example before now, but an https/http URL is also a val
 
 One thing that makes Origami templates special is they are just another example of a graph. You can consider the application of a template itself as a graph transformation.
 
-Image that a template like `<h1>\{\{title}}</h1>` is an array:
+Imagine that a template like `<h1>\{\{title}}</h1>` is an array:
 
 ```\yaml
 {{ yaml template }}

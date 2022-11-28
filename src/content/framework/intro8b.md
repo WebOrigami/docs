@@ -10,10 +10,16 @@ step1:
 
 Until now, the graph transformations we've looked at deal with graphs of text, but graphs can contain values of any type. We want to have a `thumbnails` folder that's based on the `images` folder, but scales the images to a smaller size.
 
-<span class="tutorialStep"></span> Add a new formula to `+public.yaml`:
+<span class="tutorialStep"></span> Add a new formula to `+stuff.yaml`:
 
 ```yaml
+# Site title (hidden)
+(title): Our Amazing Team
+
+# Index page obtained by invoking the index .ori template
 index.html = index.ori():
+
+# Thumbnails for all the images, at 200 pixels width
 thumbnails = map(images, =image/resize(@value, width=200)):
 ```
 
@@ -24,23 +30,25 @@ The `thumbnails` formula is long, so let's break it down.
 - Behind the scenes, the `map()` function extends the scope with a `@value` entry that provides access to the value being mapped — that is, the original image data.
 - The extended scope will be passed to `image/resize`, along with an instruction to resize the image value to 200 pixels in width.
 
-<span class="tutorialStep"></span> Navigate to `.svg` to see the current state of the site as a graph. In addition to the real `images` folder, you can now see a virtual `thumbnails` folder. Click the little dot representing that virtual folder to browse into it.
+<span class="tutorialStep"></span> Navigate to `.svg` to see the current state of the site as a graph. In addition to the real `images` folder, you can now see a virtual `thumbnails` folder. In that browser preview, click the little dot representing that virtual folder to browse into it.
 
 <figure>
 {{ svg step1 }}
 </figure>
 
-You will see a listing of the virtual image files in the `thumbnails` folder. _These images do not exist._ Or rather they don't exist in persistent form; they are only created when you ask for them.
+You will see a listing of virtual image files in the `thumbnails` folder. _Those images do not exist._ Or rather they don't exist in persistent form; they are only created when you ask for them. They are potential images.
 
 <span class="tutorialStep"></span> Open one of the virtual thumbnail images to see one of the original images at a smaller size.
 
-As mentioned earlier, explorable graphs are lazy. When you write a formula to define a virtual `thumbnails` folder, no real work happens. When someone asks the server for a thumbnail like `/thumbnails/image1.jpg`, these things happen:
+As mentioned earlier, explorable graphs are lazy. When you write a formula to define a virtual `thumbnails` folder, no real work happens. When someone asks the server for a thumbnail like `/thumbnails/image1.jpg`, however, things kick into action:
 
 1. The server asks the `src/public` folder for the `thumbnails` subfolder.
+1. The `public` folder sees that it doesn't have a real subfolder called `thumbnails`, but _does_ have a formula for `thumbnails`, so it evaluates that formula.
 1. The formula for `thumbnails` invokes the `map()` function, which doesn't do any real work yet, but returns an explorable graph representing a virtual folder of potential, not-yet-created thumbnails.
-1. The server asks the virtual `thumbnails` folder for `image1.jpg`.
-1. The `map()` function asks the real `images` folder for the real, full-size `image1.jpg` data.
-1. The `map()` function takes the image data it receives and invokes the expression `=image/resize(@value, width=200)`.
+1. This virtual `thumbnails` folder is handed back to the server so that it can traverse further into the graph.
+1. The server asks the virtual `thumbnails` graph for `image1.jpg`.
+1. The virtual `thumbnails` graph created by `map()` asks the real `images` folder for the real, full-size `image1.jpg` data.
+1. The virtual `thumbnails` graph takes the image data it receives and invokes the expression `=image/resize(@value, width=200)`.
 1. The built-in `image/resize` function consumes the original, full-size image and returns the data for a smaller thumbnail image.
 1. The server responds to the browser with the thumbnail image, which you see in your browser.
 

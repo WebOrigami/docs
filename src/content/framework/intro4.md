@@ -11,7 +11,7 @@ step2 = merge(framework-intro/src/public, this):
   title: Our Amazing Team
 
 realFolder: |
-  +public.yaml: |
+  +stuff.yaml: |
     title: Our Amazing Team
 virtualFolder:
   title: Our Amazing Team
@@ -41,7 +41,7 @@ There's nothing special going on yet. The `public.yaml` file is just a text file
 
 Now you're going to do a magic trick to turn the data in `public.yaml` into virtual content in the `public` folder.
 
-<span class="tutorialStep"></span> Rename `public.yaml` to `+public.yaml`. The `+` at the beginning is a signal to Graph Origami that the data _inside_ that data file should be treated as if it were _outside_ the data file — as if those data were elements of the containing `public` folder. The `+public.yaml` are called _graph additions_.
+<span class="tutorialStep"></span> Rename `public.yaml` to `+stuff.yaml`. The `+` at the beginning is a signal to Graph Origami that the data _inside_ that data file should be treated as if it were _outside_ the data file — as if those data were elements of the containing `public` folder. The `+stuff.yaml` are called _graph additions_.
 
 <span class="tutorialStep"></span> Refresh/view the browser preview to see the updated `public` folder:
 
@@ -52,11 +52,11 @@ Now you're going to do a magic trick to turn the data in `public.yaml` into virt
 If you compare the above graphs, you'll see that in the second graph:
 
 - The `public` folder now appears to contain a virtual file called `title` that contains the text "Our Amazing Team".
-- The `+public.yaml` additions file no longer appears. Graph Origami is interpreting the contents of that file as virtual elements, so it hides the file itself.
+- The `+stuff.yaml` additions file no longer appears. Graph Origami is interpreting the contents of that file as virtual elements, so it hides the file itself.
 
 ## Metagraphs as transformation
 
-The `+public.yaml` file you created transforms the real `public` folder into a slightly different, virtual `public` folder. We'll look at other graph transformations later, but an additions file like `+public.yaml` is one of the simplest and most concise ways to define a graph transformation. Visually, the transformation looks like this:
+The `+stuff.yaml` file you created transforms the real `public` folder into a slightly different, virtual `public` folder. We'll look at other graph transformations later, but an additions file like `+stuff.yaml` is one of the simplest and most concise ways to define a graph transformation. Visually, the transformation looks like this:
 
 <div class="sideBySide">
   <figure>
@@ -69,11 +69,22 @@ The `+public.yaml` file you created transforms the real `public` folder into a s
   <figcaption>After: Virtual files</figcaption>
 </div>
 
-Since `+public.yaml` is sitting inside the folder it transforms, we can call the `public` folder a metagraph: a graph that defines its own transformations.
+Since `+stuff.yaml` is sitting inside the folder it transforms, we can call the `public` folder a metagraph: a graph that defines its own transformations.
+
+## Adding comments
+
+Right now the one line in `+stuff.yaml` is fairly self-explanatory, but you'll be adding more entries. To help document your work as you go, you can add a comment prefixed with a `#` character. (This is standard YAML syntax.)
+
+<span class="tutorialStep"></span> Optional: update `+stuff.yaml` with a comment:
+
+```yaml
+# Site title
+title: Our Amazing Team
+```
 
 ## Transforming the public folder into the final site
 
-The rest of this tutorial will continue to transform the `public` folder into the final About Us site. The `public` folder will contain both real files and virtual files, and will be what your users eventually see and interact with. The containing `src` folder will contain additional source material (like the `team.yaml` data file) that will be used as fodder to create the final result, but only files (both real and virtual) in the `public` folder will be part of the final site.
+The rest of this tutorial will continue to transform the `public` folder into the final About Us site. The `public` folder will contain both real files and virtual files, and will be what your users eventually see and interact with. The containing `src` folder will contain additional source material that will be used as fodder to create the final result, but only files (both real and virtual) in the `public` folder will be part of the final site.
 
 &nbsp;
 

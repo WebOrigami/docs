@@ -28,6 +28,8 @@
           text: Full pages
     - href: intro9.html
       text: Graph tools
+    - href: intro10.html
+      text: Observations
 - href: metagraph.html
   text: Metagraphs
   pages:

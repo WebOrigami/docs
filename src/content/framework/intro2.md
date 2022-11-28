@@ -46,7 +46,7 @@ Like the `public` folder, the graph of data in `team.yaml` in also sitting insid
 
 Graph Origami is designed to work with a very flexible type of graph called an _explorable graph_. An explorable graph is any structure that can do two things:
 
-1. An explorable graph can tell you the keys it has — the labels on the arrows leading to the values. In the case of the `public` folder, the keys are file names (`images`, etc.); for the team data, the keys are the object keys (`name`, `location`, etc.).
+1. An explorable graph can tell you the keys it wants to make public — the labels on the arrows leading to the values. In the case of the `public` folder, the keys are file names (`images`, etc.); for the team data, the keys are the object keys (`name`, `location`, etc.).
 1. You can ask an explorable graph for the value that goes with a given key. If you ask the graph for `src` folder for the `public` key, it will give you back the `public` folder as a graph. If you ask the team data graph for the `0` key, it will give you back the data for the first team member.
 
 Graph Origami _treats all graphs exactly the same way_. Whatever you can do to a graph of files you can do to a graph of data, and vice versa. For example, while many web servers let you browse through files, Graph Origami lets you also browse into data files.

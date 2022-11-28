@@ -36,7 +36,7 @@ The result is:
 
 <span class="tutorialStep"></span> Visit or refresh the index page to see a bulleted list of names.
 
-Getting closer…
+So now you have a way of picking out just the data you want from the team data and formatting it any way you'd like.
 
 ## Flesh out the index page template
 

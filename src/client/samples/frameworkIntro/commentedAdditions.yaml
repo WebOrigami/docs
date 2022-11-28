@@ -1,0 +1,14 @@
+# Site title (hidden)
+(title): Our Amazing Team
+
+# Index page obtained by invoking the index .ori template
+index.html = index.ori():
+
+# Thumbnails for all the images, at 200 pixels width
+thumbnails = map(images, =image/resize(@value, width=200)):
+
+# A graph of the team data by name (hidden)
+(teamByName) = mapKeys(team.yaml, =name):
+
+# HTML pages for each team member via the person.ori template
+team = map(teamByName, person.ori, extension='→html'):

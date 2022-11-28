@@ -11,14 +11,23 @@ The last thing you need to build for the About Us site is a virtual `team` folde
 
 The reason for this is that, as we've seen the keys of the graph of team data in `team.yaml` are integers, like `team.yaml/0` for the first person. But in your final website graph, you'd like the keys of the pages in the `team` area to include the person's name, like `/public/team/Alice.html`.
 
-<span class="tutorialStep"></span> In the `+internal.yaml` file, add the new line at the bottom:
+<span class="tutorialStep"></span> In the `+stuff.yaml` file, add the new formula at the bottom:
 
 ```yaml
-title: Our Amazing Team
-teamByName = mapKeys(team.yaml, =name):
+# Site title (hidden)
+(title): Our Amazing Team
+
+# Index page obtained by invoking the index .ori template
+index.html = index.ori():
+
+# Thumbnails for all the images, at 200 pixels width
+thumbnails = map(images, =image/resize(@value, width=200)):
+
+# A graph of the team data by name (hidden)
+(teamByName) = mapKeys(team.yaml, =name):
 ```
 
-The `mapKeys` function is like `map`, but instead of changing a graph's values, it changes the graph's keys:
+This new formula defines a hidden graph called `teamByName`. The `mapKeys` function is like `map`, but instead of changing a graph's values, it changes the graph's keys:
 
 <div class="sideBySide">
   <figure class="constrain">
@@ -45,11 +54,22 @@ Earlier you created an `index.html` page by invoking an Origami template. You al
 
 Applying this template to one of the people records in `team.yaml` will produce an HTML page showing information about that person. You can apply that template to all of the team members at once using a map.
 
-<span class="tutorialStep"></span> In the `+public.yaml` file, add the new line at the bottom:
+<span class="tutorialStep"></span> In the `+stuff.yaml` file, add a new formula for `team` at the bottom:
 
 ```yaml
+# Site title (hidden)
+(title): Our Amazing Team
+
+# Index page obtained by invoking the index .ori template
 index.html = index.ori():
+
+# Thumbnails for all the images, at 200 pixels width
 thumbnails = map(images, =image/resize(@value, width=200)):
+
+# A graph of the team data by name (hidden)
+(teamByName) = mapKeys(team.yaml, =name):
+
+# HTML pages for each team member via the person.ori template
 team = map(teamByName, person.ori):
 ```
 
@@ -84,7 +104,7 @@ We often use extensions at the end of file names to indicate the type of data th
 
 In this case, you want to map a person object with a key like `Alice` to an HTML file name like `Alice.html` to reflect the fact that that transformed graph value contains HTML.
 
-<span class="tutorialStep"></span> Update the `team` formula in `+public.yaml` so that it reads:
+<span class="tutorialStep"></span> Update the `team` formula in `+stuff.yaml` so that it reads:
 
 ```yaml
 team = map(teamByName, person.ori, extension='->html'):

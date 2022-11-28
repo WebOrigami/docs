@@ -10,7 +10,7 @@ This tutorial does its best to explain _how_ the framework works, illustrating t
 
 Suppose one day one of your teammates says:
 
-> _We need an "About Us" area for our site!<br><br>The main About Us page should list of people on our team, with thumbnail photos and links to separate pages for each person. A person's page should show their name and a full-size photo._
+> _We need an "About Us" area for our site!<br><br>The main About Us page should list the people on our team, with thumbnail photos and links to separate pages for each person. A person's page should show their name and a full-size photo._
 
 <span class="tutorialStep"></span> Open the
 <a href="/samples/aboutUs" target="_blank">sample About Us area</a>

@@ -19,10 +19,16 @@ Let's apply that `greet` function to the entire set of people on the team. As a 
 
 In Origami, a graph like this is a first-class data type that can be passed to Origami expressions or JavaScript functions.
 
-<span class="tutorialStep"></span> Add a new `greetings` formula to the end of `+public.yaml`:
+<span class="tutorialStep"></span> Add a new `greetings` formula to the end of `+stuff.yaml`:
 
 ```yaml
+# Site title (hidden)
+(title): Our Amazing Team
+
+# Index page obtained by invoking the index .ori template
 index.html = index.ori():
+
+# Graph of greetings for each team member by name
 greetings = map(team.yaml, =greet(name)):
 ```
 
@@ -78,9 +84,13 @@ This index page is still not what you want, but you've moved one step closer to 
 
 In the next step, you're going to replace the `greetings` graph with something more useful, so you can remove it from your site.
 
-<span class="tutorialStep"></span> Update `+public.yaml` to remove the `greetings` formula, leaving just:
+<span class="tutorialStep"></span> Update `+stuff.yaml` to remove the `greetings` formula, leaving just:
 
 ```yaml
+# Site title (hidden)
+(title): Our Amazing Team
+
+# Index page obtained by invoking the index .ori template
 index.html = index.ori():
 ```
 

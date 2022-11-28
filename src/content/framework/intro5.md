@@ -6,16 +6,19 @@ In the last step, you created a trivial virtual file called `title` that contain
 
 ## Define a formula
 
-<span class="tutorialStep"></span> Add a new line to the `+public.yaml` file so that it reads:
+<span class="tutorialStep"></span> Add a new entry to the `+stuff.yaml` file:
 
 ```yaml
+# Site title
 title: Our Amazing Team
+
+# Index page
 index.html = 'Hello, world!':
 ```
 
-Be sure to use single quotes. Graph Origami doesn't support double quotes. There's a very good but strange reason for that, and when the reason is revealed in a moment, it will probably surprise you and make you laugh. But for now, just remember to use single quotes.
+Be sure to use single quotes in the last line. Graph Origami doesn't support double quotes. There's a very good but strange reason for that, and when the reason is revealed in a moment, it will probably surprise you and make you laugh. But for now, just remember to use single quotes.
 
-Also note the colon (`:`) at the end of that new line. Graph Origami lets you define virtual values by defining formulas in the _key_ of a key/value pair. In YAML files, a colon is used to separate a key from a value, so that colon is part of the YAML file format, not part of the formula.
+Also note the colon (`:`) at the end of that line. Graph Origami lets you define virtual values by defining formulas in the _key_ of a key/value pair. In YAML files, a colon is used to separate a key from a value, so that colon is part of the YAML file format, not part of the formula.
 
 For clarity, there are two key/value pairs in `public.yaml`:
 
@@ -48,10 +51,13 @@ If you don't consider yourself a JavaScript programmer, don't worry, JavaScript 
 
 This `greet` function returns a greeting in HTML format that incorporates a person's name. You can use this `greet` function in an Origami expression to generate the contents of a virtual file.
 
-<span class="tutorialStep"></span> In `+public.yaml`, update the definition for `index.html` to call the `greet` function:
+<span class="tutorialStep"></span> In `+stuff.yaml`, update the definition for `index.html` to call the `greet` function:
 
 ```yaml
+# Site title
 title: Our Amazing Team
+
+# Index page
 index.html = greet('world'):
 ```
 
@@ -69,9 +75,11 @@ A function like `greet` here transforms data from one form into another — in t
 
 Graph Origami includes a number of [built-in functions](/cli/builtins.html), but it's very easy to add your own: just create a JavaScript file with the name of the function (like `greet`) you will use in expressions.
 
+Note: the Graph Origami server reflects changes to files like `+stuff.yaml` with a simple browser refresh. However, since JavaScript files like `greet.js` can only be loaded once, if you edit a JavaScript file, you will have to restart the Graph Origami server to see the edit's effects. In Glitch, the server automatically restarts, but if you're running on StackBlitz or your own environment you will have to restart the server manually: hit Ctrl+C, then issue the command `npm run start`.
+
 ## Any key can be a formula
 
-Above you created formulas in a YAML file called `+public.yaml` by putting formulas in the key of a key/value pair. That same formula ability applies to other graphs as well — including, it turns out, file system graphs.
+Above you created formulas in a YAML file called `+stuff.yaml` by putting formulas in the key of a key/value pair. That same formula ability applies to other graphs as well — including, it turns out, file system graphs.
 
 In the case of the file system, the keys are file names (including folder names). This means that… you can put formulas in file names?
 
@@ -91,11 +99,11 @@ Because that is completely crazy, here's an image showing roughly what your code
 
 <span class="tutorialStep"></span> Browse to `what.html` to see: Hello, <strong>what</strong>!
 
-This support for formulas in file names is the aforementioned reason why Graph Origami only supports single quotes in formulas: Microsoft Windows can't handle double quotes in file names, so for cross-platform compatibility for formula file names, Graph Origami only supports single quotes.
+This support for formulas in file names is the aforementioned reason why Graph Origami only supports single quotes in formulas: Microsoft Windows can't handle double quotes in file names, so for cross-platform compatibility, Graph Origami only supports single quotes.
 
 The main point here is Graph Origami can treat any kind of graph as a metagraph. Putting a formula in a file name may seem strange, but it's an option available to you, and it does have its advantages.
 
-In this case, a visible `what.html` formula in the file system can serve as a useful indication that virtual content is going to appear at that point. On the other hand, when you put formulas in YAML files, you can add comments (put a `#` before them) and you can put formulas in an order that makes sense to you.
+In this case, a visible `what.html` formula in the file system can serve as a useful indication that virtual content is going to appear at that point. On the other hand, when you put formulas in YAML files, you can add comments and you can put formulas in an order that makes sense to you. You're free to define formulas both ways in the same project.
 
 <span class="tutorialStep"></span> Because you won't be needing this file going forward, delete it.
 
