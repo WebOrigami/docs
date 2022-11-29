@@ -25,7 +25,7 @@ team = map(teamByName, person.ori):
 
 This one file provides an extremely high-level overview of how the whole site is built.
 
-In fact, it serves as the core of the transformation in the creation-as-transformation process with which we began this tutorial:
+In fact, it serves as the core of the transformation in the creation-as-transformation model with which we began this tutorial:
 
 <figure>
   <img src="/assets/illustrations/transformation.svg">
@@ -33,13 +33,17 @@ In fact, it serves as the core of the transformation in the creation-as-transfor
 
 Other aspects of the transformation include the `index.ori` and `person.ori` templates and the `image/resize` function. But it's these formulas that are orchestrating the overall transformation of the real files and data into the graph of the final site.
 
-The `+stuff.yaml` file is extremely information dense; you would be hard pressed to find _general-purpose_ tools that allow you to define a comparable transformation with less code.
+The `+stuff.yaml` file is extremely information dense; you would be hard pressed to find _general-purpose_ tools that let you define a comparable transformation in substantively less code.
 
-By "general-purpose", we can observe that, aside from the presence of the `image/resize` function, nothing here is specific to generating websites. You could use the same elements — formulas, `map`, expressions that search a scope, templates that convert graphs to text — to generate many other types of digital content.
+By "general-purpose", we can observe that, aside from the presence of the `image/resize` function, nothing here is specific to generating websites. You can use the same exact concepts — formulas, `map`, expressions that search a scope, templates that convert graphs to text — to generate many other types of digital content.
 
-Although a sample `greet` function was used for demonstration, the construction of the final site didn't require you to write any JavaScript code.
+Although a sample `greet` function was used for demonstration, the construction of the final site didn't require you to write any JavaScript code. Graph Origami gives you easy access to JavaScript if you need it, but you create many interesting things without writing JavaScript.
 
-## Concepts
+In order to keep this tutorial clear, this particular About Us site is of course trivial. It _looks_ trivial, for one thing, but that's mostly a matter of the small amount of sample data in `team.yaml` and the basic visual aesthetic defined in the page templates and `styles.css`. You could easily expand this example into a more interesting site by adding more data, more complex styling, and more transformations. And you could also build substantially more complex things using the same concepts.
+
+Beyond that, it's important to recognize that, when viewed through the lens of transformation, _most static sites are just not that complex_. They may present more information, and have a larger or more intricate navigational structure. But at their core, many site projects are fundamentally taking a set of data (or files) and just saying, in different ways, "For each thing of type X, create a corresponding page (or page fragment, or resource) of type Y." Those sorts of transformations are precisely the sorts of things Graph Origami lets you concisely express.
+
+## Core concepts
 
 This tutorial promised to introduce the core concepts of the Graph Origami framework, so let's review those concepts in the context of what you've achieved:
 
