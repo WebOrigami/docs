@@ -19,13 +19,13 @@ Let's apply that `greet` function to the entire set of people on the team. As a 
 
 In Origami, a graph like this is a first-class data type that can be passed to Origami expressions or JavaScript functions.
 
-<span class="tutorialStep"></span> Add a new `greetings` formula to the end of `+stuff.yaml`:
+<span class="tutorialStep"></span> Add a new `greetings` formula to the end of `+.yaml`:
 
 ```yaml
 # Site title (hidden)
 (title): Our Amazing Team
 
-# Index page obtained by invoking the index .ori template
+# Index page obtained by invoking the index.ori template
 index.html = index.ori():
 
 # Graph of greetings for each team member by name
@@ -34,13 +34,13 @@ greetings = map(team.yaml, =greet(name)):
 
 The earlier formula for `index.html` defined a single virtual file. The new `greetings` formula here defines a virtual _graph_ of things: a virtual folder of virtual files. The new graph will have the same integer keys as `team.yaml`, but the values will be determined by evaluating the sub-expression `=greet(name)`.
 
-<span class="tutorialStep"></span> View the `.svg` page in the served site.
+<span class="tutorialStep"></span> View or refresh the `.svg` page.
 
-You will see a new entry for a virtual `greetings` folder. If you click on that `greetings` folder, you'll see a list of links labeled with the indices of the array: 0, 1, 2, (and more if you entered more names). Clicking an index will take you to a page like `src/greetings/1`, which says "Hello, Bob!"
+You will see a new entry for a virtual `greetings` folder. If you click on the circle for that `greetings` folder, you'll see a list of links labeled with the indices of the array: 0, 1, 2, (and more if you entered more names). Clicking an index will take you to a page like `src/greetings/0`, which says "Hello, **Alice**!"
 
-The [map](/cli/builtins.html#map) function is a built-in Origami function that applies a one-to-one map function to a graph of values. The result is a new, virtual graph of transformed values.
+The [map](/cli/builtins.html#map) function is a built-in Origami function that applies a one-to-one function to a graph. In this case, the `=greet(name)` part of the above formula defines an unnamed function (in technical jargon, a lambda expression).
 
-In this case, the `=greet(name)` part of the above formula defines an unnamed function (in technical jargon, a lambda expression). The `map()` function extends the current scope with the data in the value being transforms — in this case, the data for individual person is added to the scope, so keys like `name` and `bio` are available. In this case, the `name` is passed to `greet`.
+The `map()` function extends the current scope with the data in the value being transforms — in this case, the data for individual person is added to the scope. In this case, that means that keys like `name` and `bio` are available to that unnamed function `=greet(name)`. Here it will pass a team member's name to `greet`.
 
 Applying this `map` to the graph of people in `team.yaml` produces a new graph of greetings:
 
@@ -78,19 +78,21 @@ This inserts the `greetings` values into the final HTML.
 {{ greetings }}
 ```
 
+<span class="tutorialStep"></span> Navigate to `index.html` to see the updated index page.
+
 This index page is still not what you want, but you've moved one step closer to turning the team data into a useful list of team members.
 
 ## Clean up
 
 In the next step, you're going to replace the `greetings` graph with something more useful, so you can remove it from your site.
 
-<span class="tutorialStep"></span> Update `+stuff.yaml` to remove the `greetings` formula, leaving just:
+<span class="tutorialStep"></span> Update `+.yaml` to remove the `greetings` formula, leaving it once again as:
 
 ```yaml
 # Site title (hidden)
 (title): Our Amazing Team
 
-# Index page obtained by invoking the index .ori template
+# Index page obtained by invoking the index.ori template
 index.html = index.ori():
 ```
 

@@ -50,7 +50,7 @@ Your site will have a URL like https://origami-framework-intro.glitch.me/. You c
 
 ## Building static files if you're using StackBlitz or your own local environment
 
-The ori command-line tool has a built-in [copy](/cli/builtins.html#copy) function that can copy one graph into another. You can use that `copy` function to copy a virtual graph into a graph of real files in the file system.
+The Graph Origami command-line interface has a built-in [copy](/cli/builtins.html#copy) function that can copy one graph into another. You can use that `copy` function to copy a virtual graph into a graph of real files in the file system.
 
 <span class="tutorialStep"></span> In the terminal, stop the server with Ctrl+C, and issue the following command:
 

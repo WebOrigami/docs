@@ -1,7 +1,7 @@
 # Site title (hidden)
 (title): Our Amazing Team
 
-# Index page obtained by invoking the index .ori template
+# Index page obtained by invoking the index.ori template
 index.html = index.ori():
 
 # Thumbnails for all the images, at 200 pixels width

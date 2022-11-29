@@ -1,49 +1,51 @@
 ---
 title: Metagraphs
 
-# Add a public.yaml file
+# Add a stuff.yaml file
 step1 = merge(framework-intro/src/public, this):
-  public.yaml: |
+  stuff.yaml: |
     title: Our Amazing Team
 
-# Treat public.yaml as additions
+# Treat stuff.yaml as additions
 step2 = merge(framework-intro/src/public, this):
   title: Our Amazing Team
 
 realFolder: |
-  +stuff.yaml: |
+  stuff.yaml: |
     title: Our Amazing Team
 virtualFolder:
   title: Our Amazing Team
 ---
 
-In Graph Origami, a _metagraph_ is any graph that defines itself. This takes the form of a graph with special keys which, when interpreted, create new virtual content for that graph.
+In Graph Origami, a _metagraph_ is a graph whose contents define the graph's own transformation. This takes the form of a graph with special keys which, when interpreted, create new virtual content for that graph.
 
 ## Create a file that defines virtual values
 
-<span class="tutorialStep"></span> Start by creating a new file in the `/src/public` folder called `public.yaml`. It doesn't matter what you call this file, as long as it has a `.yaml` extension (`.yml` works too). Even calling it `+.yaml` will work.
+<span class="tutorialStep"></span> In the `/src/public` folder, create a new file called `stuff.yaml`. It doesn't matter what you call this file, as long as it has a `.yaml` extension (`.yml` works too).
 
-You can use this `public.yaml` file to define data and other things useful for construction of the site. For example, if all of the pages on the site should show the same title, you can define that title once and use it in multiple places.
-
-<span class="tutorialStep"></span> Enter the following line in `public.yaml`:
+<span class="tutorialStep"></span> Enter the following line in `stuff.yaml`:
 
 ```{{'yaml'}}
-{{ step1/public.yaml }}
+{{ step1/stuff.yaml }}
 ```
 
-<span class="tutorialStep"></span> Refresh or view the `.svg` page to see the updated visual graph for the `public` folder that includes `public.yaml`:
+<span class="tutorialStep"></span> Navigate to `.svg` to see the updated visual graph for the `public` folder that includes `stuff.yaml`:
 
 <figure>
 {{ svg step1 }}
 </figure>
 
-There's nothing special going on yet. The `public.yaml` file is just a text file with some data.
+There's nothing special going on yet. The `stuff.yaml` file is just a text file with some data.
 
-Now you're going to do a magic trick to turn the data in `public.yaml` into virtual content in the `public` folder.
+Now you're going to do a magic trick to turn the data in `stuff.yaml` into virtual content in the `public` folder.
 
-<span class="tutorialStep"></span> Rename `public.yaml` to `+stuff.yaml`. The `+` at the beginning is a signal to Graph Origami that the data _inside_ that data file should be treated as if it were _outside_ the data file — as if those data were elements of the containing `public` folder. The `+stuff.yaml` are called _graph additions_.
+<span class="tutorialStep"></span> Rename `stuff.yaml` to `+.yaml`.
 
-<span class="tutorialStep"></span> Refresh/view the browser preview to see the updated `public` folder:
+Files like `+.yaml` are called _graph additions_. The `+` at the beginning is a signal to Graph Origami that the data _inside_ that data file should be treated as if it were _outside_ the data file — as if those data were virtual files in the containing `public` folder.
+
+The name of a graph additions file needs to start with a `+`, but beyond that you can name the file what you want: `+stuff.yaml`, `+additions.yaml`, etc.
+
+<span class="tutorialStep"></span> Refresh/view the `.svg` preview to see the updated `public` folder:
 
 <figure>
 {{ svg step2 }}
@@ -52,11 +54,13 @@ Now you're going to do a magic trick to turn the data in `public.yaml` into virt
 If you compare the above graphs, you'll see that in the second graph:
 
 - The `public` folder now appears to contain a virtual file called `title` that contains the text "Our Amazing Team".
-- The `+stuff.yaml` additions file no longer appears. Graph Origami is interpreting the contents of that file as virtual elements, so it hides the file itself.
+- The `+.yaml` additions file no longer appears. Graph Origami is interpreting the contents of that file as virtual elements, so it hides the file itself. (It's still there — you can browse to `+.yaml` to see it.)
 
 ## Metagraphs as transformation
 
-The `+stuff.yaml` file you created transforms the real `public` folder into a slightly different, virtual `public` folder. We'll look at other graph transformations later, but an additions file like `+stuff.yaml` is one of the simplest and most concise ways to define a graph transformation. Visually, the transformation looks like this:
+The `+.yaml` file you created transforms the real `public` folder into a slightly different, virtual `public` folder. We'll look at other graph transformations later, but an additions file like `+.yaml` is one of the simplest and most concise ways to define a graph transformation.
+
+Visually, the transformation looks like this:
 
 <div class="sideBySide">
   <figure>
@@ -69,13 +73,13 @@ The `+stuff.yaml` file you created transforms the real `public` folder into a sl
   <figcaption>After: Virtual files</figcaption>
 </div>
 
-Since `+stuff.yaml` is sitting inside the folder it transforms, we can call the `public` folder a metagraph: a graph that defines its own transformations.
+Since `+.yaml` is sitting inside the folder it transforms, we can call the `public` folder a metagraph: a graph that defines its own transformations.
 
 ## Adding comments
 
-Right now the one line in `+stuff.yaml` is fairly self-explanatory, but you'll be adding more entries. To help document your work as you go, you can add a comment prefixed with a `#` character. (This is standard YAML syntax.)
+Right now the one line in `+.yaml` is fairly self-explanatory, but you'll be adding more entries. To help document your work as you go, you can add a comment prefixed with a `#` character. (This is standard YAML syntax.)
 
-<span class="tutorialStep"></span> Optional: update `+stuff.yaml` with a comment:
+<span class="tutorialStep"></span> Optional: update `+.yaml` with a comment:
 
 ```yaml
 # Site title
@@ -84,7 +88,9 @@ title: Our Amazing Team
 
 ## Transforming the public folder into the final site
 
-The rest of this tutorial will continue to transform the `public` folder into the final About Us site. The `public` folder will contain both real files and virtual files, and will be what your users eventually see and interact with. The containing `src` folder will contain additional source material that will be used as fodder to create the final result, but only files (both real and virtual) in the `public` folder will be part of the final site.
+The rest of this tutorial will continue to transform the real `public` folder into an increasingly fleshed-out virtual folder. In the creation-as-transformation model discussed at the start, the transformed, virtual version of the `public` folder will be the result form of your About Us site.
+
+The `public` folder will contain both real files and virtual files, and will be what your users eventually see and interact with. The containing `src` folder will contain additional source material that will be used as fodder to create the final result, but only files (both real and virtual) in the `public` folder will be part of the final site.
 
 &nbsp;
 

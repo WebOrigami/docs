@@ -10,15 +10,15 @@ application:
   - <h1>
 ---
 
-Until now you've mostly been creating trivial demonstration content, but now let's begin working on a real top-level index page for the About Us site. For this, you'll use an HTML template system.
+Until now you've mostly been creating trivial demonstration content, but now let's begin working on a real top-level index page for your About Us site. For this, you'll use an HTML template system.
 
 Many JavaScript template engines exist that let you turn data into text output like HTML. Because Graph Origami formulas can call JavaScript, you can call any of those systems from formulas.
 
-You also have the option of using the template system built into Graph Origami. That system combines the ideas you've already seen — graphs, formulas, scope — to produce an extremely powerful and concise template language.
+You also have the option of using the template system built into Graph Origami. That system combines the ideas you've already seen — graphs, formulas, scope — to produce a small but powerful template language.
 
 ## Create an index page template
 
-Let's begin producing an index page by creating a template file for it.
+Let's create a template to use for your `index.html` page. This template file itself won't be part of the final site, so you can put it in the `src` folder, where it will be in scope but not visible to users.
 
 <span class="tutorialStep"></span> In the `src` folder, create a new file called `index.ori`. The `.ori` extension indicates an Origami template. Enter the following text into the file:
 
@@ -30,13 +30,13 @@ Let's begin producing an index page by creating a template file for it.
 
 Now you'll need to tell Graph Origami to use this template to create the index page. You can do this by invoking the template as a function.
 
-<span class="tutorialStep"></span> In `+stuff.yaml`, update the formula for `index.html` and its comment:
+<span class="tutorialStep"></span> In `+.yaml`, update the formula for `index.html` and its comment:
 
 ```yaml
 # Site title (hidden)
 (title): Our Amazing Team
 
-# Index page obtained by invoking the index .ori template
+# Index page obtained by invoking the index.ori template
 index.html = index.ori():
 ```
 
@@ -54,24 +54,24 @@ Now that you've created a template for the index page, you can have it show some
 <h1>\{\{ title }}</h1>
 ```
 
-The double curly braces `{{…}}` create a placeholder in the template that will be populated with dynamic content at the time the template function is invoked. The content inside those curly braces can be any Origami expression — the exact same expressions you can use in formulas in `+stuff.yaml`.
+The double curly braces `{{…}}` create a placeholder in the template that will be populated with dynamic content at the time the template function is invoked. The content inside those curly braces can be any Origami expression — the same expressions you can use in formulas in `+.yaml`.
 
 <span class="tutorialStep"></span> Refresh `index.html` to see the site title as a heading.
 
 ## Template expressions use graph scope
 
-Origami templates used the same graph scope system discussed earlier. When you invoke an Origami template as a function in a formula like `index.html = index.ori()`, the template uses the same scope that was available to that formula. In this case, it means that the `title` is in scope, and will resolve to whatever value you've defined for it in `+stuff.yaml`, like "Our Amazing Team".
+Origami templates used the same graph scope system discussed earlier. When you invoke an Origami template as a function in an expression like `index.ori()`, the template uses the same scope that was available to that formula. In this case, it means that, inside the template, the `title` is in scope, and will resolve to the value you've defined for it in `+.yaml`.
 
-This means that anything your template can "see" in scope can be pulled into the template with an expression.
+This means you can pull anything your template can "see" in scope into the template's output.
 
-<span class="tutorialStep"></span> As an example, update `index.ori` to:
+<span class="tutorialStep"></span> As a demonstration, update `index.ori` to:
 
 ```
 <h1>\{\{ title }}</h1>
 <pre>\{\{ README.md }}</pre>
 ```
 
-This pulls in the contents of the project's `README.md` file, which is in scope, into the final HTML. In this case, the Origami expression is acting like an "include" directive in other programming languages. That's helpful, but the facility is extremely general, as you can pull in anything that can be described with an Origami expression.
+This pulls in the contents of the project's `README.md` file, which is in scope, into the final HTML. The Origami expression is acting like an "include" directive in other programming languages. Here, pulling unprocessed markdown content into an HTML page is not particularly interesting, but just shows that you can pull in anything that can be described with an Origami expression.
 
 Examples of Origami expressions you can use in an Origami template:
 
@@ -82,7 +82,9 @@ Examples of Origami expressions you can use in an Origami template:
 \{\{ https://example.com }}
 ```
 
-We haven't seen the last example before now, but an https/http URL is also a valid Origami expression. This will cause the page to take a moment to render as the contents of the URL are fetched, but then the contents of that page are incorporated into the template at that point. This will have the side effect of changing the page styles — it's not confining the page to a frame, but injecting the complete HTML for that page into your site's index page. That specific case isn't useful, but is shown here just to make the point that you can inject anything into a template result, including resources from elsewhere.
+As shown in the last example, an https/http URL is also a valid Origami expression. This will cause the page to take a moment to render as the contents of the URL are fetched, but then the contents of that page are incorporated into the template at that point. This will have the side effect of changing the page styles — it's not confining the page to a frame, but injecting the complete HTML for that page into your site's index page.
+
+Again, these specific examples just make the point that you can inject anything into a template result, including resources from elsewhere.
 
 ## Template are functions that transform graphs
 
@@ -90,8 +92,10 @@ One thing that makes Origami templates special is they are just another example 
 
 Imagine that a template like `<h1>\{\{title}}</h1>` is an array:
 
-```\yaml
-{{ yaml template }}
+```yaml
+- <h1>
+- \{\{ title }}
+- </h1>
 ```
 
 The first and last items in this array are boilerplate strings holding HTML; the middle element is a placeholder containing an Origami expression. As with other arrays, you can visualize this array as a graph:
@@ -113,7 +117,7 @@ When you invoke this template as a function, you transform the array graph into 
   <figcaption>…maps to graph of plain strings</figcaption>
 </div>
 
-Origami collects all the text at the periphery of the graph to produce the template's result:
+Origami collects the "leaf nodes" — all the text at the periphery of the graph — to produce the template's result:
 
 ```
 <h1>Our Amazing Team</h1>
@@ -141,7 +145,7 @@ The `team.yaml` file is a text file in YAML format, so if you include `team.yaml
 
 Here, all the data values in `team.yaml` are concatenated and incorporated into the final text. That's much more data than you want to show, but it's a small step towards what you actually want: to display a list of the team members on this index page.
 
-To do that, you'll want the template to transform that graph of team data into a more interesting graph of HTML.
+To do that, you'll want the template to transform that graph of team data into a more selective and interesting graph of HTML.
 
 &nbsp;
 

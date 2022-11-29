@@ -9,15 +9,15 @@ team2 = map(teamByName, framework-intro/assets/person.ori, extension='→html'):
 
 The last thing you need to build for the About Us site is a virtual `team` folder that will hold pages for each user. To lay the groundwork for that, you're first going to transform the graph of team data in `team.yaml`. Specifically, you're going to change the _keys_ of that graph.
 
-The reason for this is that, as we've seen the keys of the graph of team data in `team.yaml` are integers, like `team.yaml/0` for the first person. But in your final website graph, you'd like the keys of the pages in the `team` area to include the person's name, like `/public/team/Alice.html`.
+The reason for this is that, as you've seen, the top-level keys in `team.yaml` are integers, like `0` for the first person. But in your final website graph, you'd like the keys of the pages in the `team` area to include the person's name, like `Alice.html`.
 
-<span class="tutorialStep"></span> In the `+stuff.yaml` file, add the new formula at the bottom:
+<span class="tutorialStep"></span> In the `+.yaml` file, add a new formula for `teamByName` at the bottom:
 
 ```yaml
 # Site title (hidden)
 (title): Our Amazing Team
 
-# Index page obtained by invoking the index .ori template
+# Index page obtained by invoking the index.ori template
 index.html = index.ori():
 
 # Thumbnails for all the images, at 200 pixels width
@@ -44,7 +44,7 @@ Where `team.yaml` has top-level keys of `0`, `1`, `2`, the virtual `teamByName` 
 
 ## Transform a data graph into HTML pages
 
-Earlier you created an `index.html` page by invoking an Origami template. You also created a `greetings` graph that mapped the team members to a graph of greetings using a JavaScript function. Now you'll combine those ideas: map the graph of team members to a graph of HTML pages using an Origami template.
+Earlier you created a single `index.html` page by invoking an Origami template as a function. You also created a `greetings` graph that mapped the team members to a graph of greetings using a JavaScript function. Now you'll combine those ideas: map the graph of team members to a graph of HTML pages using an Origami template.
 
 <span class="tutorialStep"></span> In the `src` folder, create a file called `person.ori` and type or copy/paste the following HTML:
 
@@ -54,13 +54,13 @@ Earlier you created an `index.html` page by invoking an Origami template. You al
 
 Applying this template to one of the people records in `team.yaml` will produce an HTML page showing information about that person. You can apply that template to all of the team members at once using a map.
 
-<span class="tutorialStep"></span> In the `+stuff.yaml` file, add a new formula for `team` at the bottom:
+<span class="tutorialStep"></span> In the `+.yaml` file, add a new formula for `team` at the bottom:
 
 ```yaml
 # Site title (hidden)
 (title): Our Amazing Team
 
-# Index page obtained by invoking the index .ori template
+# Index page obtained by invoking the index.ori template
 index.html = index.ori():
 
 # Thumbnails for all the images, at 200 pixels width
@@ -73,7 +73,7 @@ thumbnails = map(images, =image/resize(@value, width=200)):
 team = map(teamByName, person.ori):
 ```
 
-<span class="tutorialStep"></span> Visit the `team` route in the served site, and select a person's name to see a rudimentary HTML page for that person.
+<span class="tutorialStep"></span> Navigate to `team` in the browser preview, and select a person's name to see a page with that person's name as a heading, like **Alice**.
 
 <div class="sideBySide">
   <figure class="constrain">
@@ -104,7 +104,7 @@ We often use extensions at the end of file names to indicate the type of data th
 
 In this case, you want to map a person object with a key like `Alice` to an HTML file name like `Alice.html` to reflect the fact that that transformed graph value contains HTML.
 
-<span class="tutorialStep"></span> Update the `team` formula in `+stuff.yaml` so that it reads:
+<span class="tutorialStep"></span> Update the `team` formula in `+.yaml` so that it reads:
 
 ```yaml
 team = map(teamByName, person.ori, extension='->html'):
@@ -127,9 +127,9 @@ The transformation now looks like:
   <figcaption>…maps to a .html file for each person</figcaption>
 </div>
 
-With that, you've completed the work to build the site. As long as the Graph Origami server is running, the virtual `public` graph matches the one in the sample About Us site we've been using as a model.
+With that, you've completed the work to build the site — all of your original functional requirements have been met. As long as the Graph Origami server is running, the virtual `public` graph matches the one in the sample About Us site you've been using as a model.
 
-The site meets our functional requirements, but it's not yet as simple as it could be. Given the static nature of this site, you can use Graph Origami tools to remove the server from the picture.
+While this site meets the functional requirements, it's not yet as simple as it could be. Given the static nature of this site, you can completely remove the Graph Origami server from the picture.
 
 &nbsp;
 

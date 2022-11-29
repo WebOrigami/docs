@@ -2,15 +2,15 @@
 title: "Graph Origami framework tutorial"
 ---
 
-As an example of creating things in Graph Origami, in this tutorial you'll make a simple website. The tutorial assumes you know some HTML and CSS.
+In this tutorial you'll create a simple website using the Graph Origami framework. The tutorial assumes you know some HTML and CSS.
 
-This tutorial does its best to explain _how_ the framework works, illustrating the underlying concepts so you can apply those concepts to your own projects. If you're more interested in seeing things work, just focus on the interactive steps marked with the ➤ symbol.
+This tutorial does its best to explain _how_ the framework works, illustrating the underlying concepts so you can apply those concepts to your own projects. If you're more interested in just seeing things work, focus on the interactive steps marked with the ➤ symbol.
 
 ## Goal: A little About Us site
 
-Suppose one day one of your teammates says:
+One day one of your teammates says:
 
-> _We need an "About Us" area for our site!<br><br>The main About Us page should list the people on our team, with thumbnail photos and links to separate pages for each person. A person's page should show their name and a full-size photo._
+> _We need an "About Us" area for our site! The main page should list the people on our team, with thumbnail photos and links to separate pages for each person. A person's page should show their name and a full-size photo._
 
 <span class="tutorialStep"></span> Open the
 <a href="/samples/aboutUs" target="_blank">sample About Us area</a>
@@ -20,7 +20,7 @@ You can do the tutorial in three ways:
 
 ## Option 1: Web-hosted Glitch editor
 
-Glitch is a code editor intended for a general audience, including hobbyists and content creators whose primary profession is _not_ software programming.
+Glitch is a code editor intended for a general audience, including hobbyists and content creators whose primary profession isn't software programming.
 
 <span class="tutorialStep"></span> Open the
 <a href="https://glitch.com/edit/#!/origami-framework-intro" target="_blank">tutorial project on Glitch</a>
