@@ -183,7 +183,18 @@ The `title` is just hidden; it's still there, it's still in scope, and it's stil
 
 Hidden keys are a good way to define data or intermediate for internal use, or to define intermediate results — things which you won't need to include when you deploy the final site. In the case of this `title` data, you're soon going to use that data in multiple virtual files. Those virtual files will be part of the final site, but the `title` on its own won't need to be, so it can be hidden.
 
+## Freedom to organize your source files
+
 By considering the structure of your project to determine scope, and by deciding which keys are visible or hidden, you can shape the virtual `public` graph into the desired structure of your final site.
+
+One ramification of this is that Graph Origami gives you considerable freedom to organize your source files how you wish. In this particular tutorial project, the source files are organized into a top-level `src` folder that contains a `public` subfolder. The virtual form of that `public` folder is going to slowly evolve into your final site.
+
+This particular structure works well in a Graph Origami because it capitalizes on how graph scope works: your formulas defined inside the `public` folder have access to all the private information they need in `src`. It's beyond the scope of this tutorial, but other arrangements are possible:
+
+- You could have `src` and `public` as peer folders, and define a formula inside `src` that points at `public`.
+- You could throw everything into the `src` folder, and then define `public` with a formula that filters out the stuff you don't want to make public.
+
+All that matters in Graph Origami is the virtual shape of the graph you're building — not the physical shape of the real project files. And Graph Origami gives you the tools to assemble and prune that virtual graph however you want.
 
 &nbsp;
 

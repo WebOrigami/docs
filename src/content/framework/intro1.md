@@ -30,11 +30,11 @@ Let's call the thing you create directly the _source form_ and the final result 
   <img src="/assets/illustrations/transformation.svg">
 </figure>
 
-You might create the source form by typing stuff out of your head, or by gathering bits of stuff from the web. This source form represents, in some way or another, the seed of everything necessary to grow the thing you want. For a coding project like this About Us site, the source form is the files you would check into a source control system. If you're currently looking at the tutorial project in code editor right now, you're looking at the source form.
+You might create the source form by typing stuff out of your head, or by gathering bits of stuff from the web. For a website project like this About Us site, the source form is text, data, and images. This source form represents, in some way or another, the seed of everything necessary to grow the site you want.
 
-You will define a series of computer-assisted _transformations_ to produce the result form: an immediately consumable representation of your idea, such as a final set of HTML pages that your audience can view directly in their browser. In some cases, you will need to put the source form through multiple transformations, in which the content takes on a series of intermediate forms before achieving its result form.
+You will define a series of computer-assisted _transformations_ to produce the result form: an immediately consumable representation of your idea, in this tutorial a final set of HTML pages that your audience can view directly in their browser. In some cases, you will need to put the source form through multiple transformations, in which the content takes on a series of intermediate forms before achieving its result form.
 
-This result form is the last form of the idea that's in your hands — after you publish it, it may get transformed further by various network services, but for your purposes it's the end product.
+This result form is the last form of the idea that's in your hands — after you publish it, it may get transformed further by various network services. And the files you give your users are themselves processed by the user's browser to further transform the content into the pixels a user can finally perceive on their screen. But for your part in the process, the result form is the end product.
 
 Graph Origami takes its name from the paper-folding art of origami, in which you can take a flat square of paper (the source form) and apply a series of folds (the transformations) to produce an artwork (the result form).
 
@@ -55,19 +55,9 @@ You can approach the creation of digital content the same way. Like the square o
 
 ## Source form of the About Us site
 
-If your goal is to build this About Us site, what's the most convenient source form of the content you will create by hand?
+If your goal is to build this About Us site, what's the most convenient source form of the content you must create or gather by hand?
 
-There are lots of ways you can define content in software:
-
-- Content files like text or images
-- Data files
-- JavaScript or other code
-- Databases
-- Web services
-
-So let's consider the best source form for this particular About Us example.
-
-The tutorial project includes a `src/public` folder containing some of the resources that will make up the source form. For starters, your site needs to show a bit of information about each person on your team. A convenient form for that amount of data might be a YAML file.
+The tutorial project includes a `src/public` folder containing the resources that will make up the source form. For starters, your site needs to show a bit of information about each person on your team. A convenient form for that amount of data is a YAML file. You could also use a JSON file or another format for this data, but this tutorial uses YAML because it's easier to read.
 
 <span class="tutorialStep"></span> Open the team data file in `src/public/team.yaml`:
 
@@ -75,9 +65,7 @@ The tutorial project includes a `src/public` folder containing some of the resou
 {{ framework-intro/src/public/team.yaml }}
 ```
 
-You could use a JSON file or other formats to store this data, but this tutorial will use YAML because it's easier to read and edit by hand.
-
-Looking at the above data, it's obvious that it's too boring.
+Looking at the above data, one thing is clear: this data is too boring.
 
 <span class="tutorialStep"></span> Update the names in `team.yaml` to use your name and the names of family members or friends. _That will make this tutorial much more fun._
 
@@ -89,9 +77,11 @@ The `src/public` folder contains some other resources:
 - A CSS stylesheet, `styles.css`, embodying the site's visual aesthetics.
 - An SVG image, `personIcon.svg`, showing an icon of a person.
 
-Lastly, the `src` folder also contains a little JavaScript file, `greet.js`, that will be used to show how Graph Origami can work with JavaScript code.
+This `src/public` folder contains most of the raw materials necessary to build the About Us site. In the subsequent steps of this tutorial, you'll add more files to `src/public` and the top-level `src` folder to define the transformation that will produce the site as a result.
 
-This `src` folder contains most of the raw materials necessary to build the About Us site. Your work ahead is to define transformations of this material into the final result form that visitors can browse.
+For now, the `src` folder contains a little JavaScript file, `greet.js`, that will be used to show how Graph Origami can work with JavaScript code.
+
+Your work ahead is to define the transformation of this source form into the final result form that visitors can browse.
 
 &nbsp;
 
