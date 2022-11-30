@@ -53,7 +53,7 @@ function sumOfSquares(n) {
   for (const i = 1; i <= n; i++) {
     const squared = Math.pow(i, power);
     const newTotal = total + squared; // What variables can be referenced here?
-    total += newTotal;
+    total = newTotal;
   }
   return total;
 }
