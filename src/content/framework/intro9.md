@@ -48,7 +48,7 @@ Again, Glitch will normally update the `build` folder automatically. So when you
 
 Your site will have a URL like https://origami-framework-intro.glitch.me/. You can find your site's URL by clicking **Share** button in the upper right, then look for **Live site**. Your site is now ready for visitors.
 
-## Building static files if you're using StackBlitz or your own local environment
+## Building static files if you're using GitHub Codespaces or your own local environment
 
 The Graph Origami command-line interface has a built-in [copy](/cli/builtins.html#copy) function that can copy one graph into another. You can use that `copy` function to copy a virtual graph into a graph of real files in the file system.
 

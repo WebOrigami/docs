@@ -28,24 +28,29 @@ and click the <strong>Remix</strong> button (or Remix to Edit) to create your ow
 
 In the Glitch window, you will see a list of files on the left, the currently-open file in the middle, and a preview window on the right. The preview window will initially show a list of the files in the `src/public` folder.
 
-## Option 2: Web-hosted StackBlitz coding environment
+## Option 2: Web-hosted GitHub Codespaces coding environment
 
-StackBlitz is intended for people who are comfortable in a full programming environment. It uses a web-based version of VS Code, a popular editor for professional software developers.
+GitHub Codespaces is intended for people who are comfortable in a full programming environment. It uses a web-based version of VS Code, a popular editor for professional software developers. Codespaces is a fee-based service, but free GitHub accounts include a monthly amount of free use of Codespaces.
 
-<span class="tutorialStep"></span> Open the [framework introduction on StackBlitz](https://stackblitz.com/github/GraphOrigami/framework-intro) in a separate window so you can follow along here.
+<span class="tutorialStep"></span> Open the
+<a href="https://github.com/GraphOrigami/framework-intro" target="_blank">framework introduction on GitHub</a>.
 
-There are a variety of ways to incorporate Origami into an existing web server or a larger project, but for this introduction, you'll use the small server included with the [ori command-line interface](/cli) that is part of Origami.
+<span class="tutorialStep"></span> Create your own copy of the project by clicking the **Fork** button near the top.
+
+<span class="tutorialStep"></span> In your newly-created copy of the framework intro project, click the **Code** button, then the **Codespaces** tab, then click the button **Create codespace on main**.
+
+There are a variety of ways to incorporate Origami into an existing web server or a larger project, but for this introduction, you'll use the small server included with Graph Origami.
 
 <span class="tutorialStep"></span> Start the web server:
 
 ```console
-$ ori serve
+$ npm run start
 Server running at http://localhost:5000. Press Ctrl+C to stop.
 ```
 
-Note: The default StackBlitz terminal prompt looks like `❯`, but this tutorial uses the more typical `$` as the prompt.
+A popup should appear indicating that you can open the running site in your browser.
 
-StackBlitz may indicate that you need to enable certain cookies in order to run the server.
+<span class="tutorialStep"></span> In the popup, click the **Open in Browser** button.
 
 <span class="tutorialStep"></span> View the served site, which at this point will just show a listing of the project files.
 
@@ -53,7 +58,9 @@ StackBlitz may indicate that you need to enable certain cookies in order to run 
 
 Select this option if you're a programmer and prefer to use your own code editor.
 
-<span class="tutorialStep"></span> Clone the [GraphOrigami/framework-intro](https://github.com/GraphOrigami/framework-intro) repository to your own machine.
+<span class="tutorialStep"></span> Clone the
+<a href="https://github.com/GraphOrigami/framework-intro" target="_blank">GraphOrigami/framework-intro</a>
+repository to your own machine.
 
 <span class="tutorialStep"></span> Open a terminal window in the project's root directory, then:
 
@@ -61,16 +68,14 @@ Select this option if you're a programmer and prefer to use your own code editor
 $ npm install
 ```
 
-There are a variety of ways to incorporate Origami into an existing web server or a larger project, but for this introduction, you'll use the small server included with the [ori command-line interface](/cli) that is part of Origami.
+There are a variety of ways to incorporate Origami into an existing web server or a larger project, but for this introduction, you'll use the small server included with Graph Origami.
 
 <span class="tutorialStep"></span> Start the web server:
 
 ```console
-$ npx ori serve
+$ npm run start
 Server running at http://localhost:5000. Press Ctrl+C to stop.
 ```
-
-When running locally, you'll need to invoke this ori tool with `npx ori`. _Throughout the rest of the tutorial, where you see `ori`, you should type `npx ori` instead._
 
 <span class="tutorialStep"></span> View the served site, which at this point will just show a listing of the project files.
 

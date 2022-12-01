@@ -75,7 +75,7 @@ A function like `greet` here transforms data from one form into another — in t
 
 Graph Origami includes a number of [built-in functions](/cli/builtins.html), but it's very easy to add your own: just create a JavaScript file with the name of the function (like `greet`) that you want to use in formulas.
 
-Note: the Graph Origami server reflects changes to files like `+.yaml` when you refresh the page. However, since JavaScript files like `greet.js` can only be loaded once, if you edit a JavaScript file, you will have to restart the Graph Origami server to see the edit's effects. In Glitch, the server automatically restarts, but if you're running on StackBlitz or your own environment you will have to restart the server manually: hit Ctrl+C, then issue the command `npm start`.
+Note: the Graph Origami server reflects changes to files like `+.yaml` when you refresh the page. However, since JavaScript files like `greet.js` can only be loaded once, if you edit a JavaScript file, you will have to restart the Graph Origami server to see the edit's effects. In Glitch, the server automatically restarts, but if you're running on GitHub Codespaces or your own environment you will have to restart the server manually: hit Ctrl+C, then issue the command `npm start`.
 
 ## Any key can be a formula
 

@@ -21,13 +21,11 @@ As a quick example of virtual content, let's use the browser to view a list of f
 
 This should show the simple page you saw at the start, with the heading "public" and a list of links to the existing real files in the `public` folder.
 
-That page is a virtual `index.html` file. It doesn't exist in any persistent form; it only exists while the Graph Origami server is running.
+There's no `index.html` file in your project's `src/public` folder. Instead, Graph Origami provides a default, virtual `index.html` file as a convenience so that you can browse through your site while you're still developing it. That virtual `index.html` page doesn't exist in real form; it only exists while the Graph Origami server is running.
 
-There's no `index.html` file in your project's `src/public` folder. Instead, Graph Origami provides a default `index.html` file as a convenience so that you can browse through your site while you're still developing it. After you define your own `index.html` file for the site, your page will be used instead.
+In a little while you will define your own `index.html` file for the site, and your own page will be used instead of the default page. From that point on, you can still get access to a basic list of files for any folder by navigating to `.index`, another default, virtual page that will work even if a folder has an `index.html` page.
 
-After you define an `index.html` page, you can still get access to a basic list of files for any folder by navigating to `.index`, an alternative name that will work even if a folder has an `index.html` page.
-
-The `.svg` pages you explored in the previous step are another example of a virtual, default page provided by Graph Origami for development purposes.
+The `.svg` pages you explored in the previous step are another example of default, virtual pages provided by Graph Origami for development purposes.
 
 ## Explorable graphs don't have to expose everything
 

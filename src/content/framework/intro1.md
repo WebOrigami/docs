@@ -69,8 +69,6 @@ Looking at the above data, one thing is clear: this data is too boring.
 
 <span class="tutorialStep"></span> Update the names in `team.yaml` to use your name and the names of family members or friends. _That will make this tutorial much more fun._
 
-(If you're using StackBlitz, it may display a message saying "Project forked" to indicate that you're now working in your own copy of the tutorial project. You may need to restart the Origami server with `npm start`.)
-
 The `src/public` folder contains some other resources:
 
 - An `images` folder containing stock images to use as the full-size team member photos. In a real About Us site, you'd have real headshots for person.
