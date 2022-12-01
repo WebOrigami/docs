@@ -67,4 +67,4 @@ This concludes the explorable graph pattern tutorial.
 
 &nbsp;
 
-[Back to index](/pattern)
+[Back to top of area](/pattern)

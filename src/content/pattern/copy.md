@@ -157,6 +157,8 @@ Starting up http-server, serving dist
 
 The results will look identical, but a key difference is that no real work is necessary to display the HTML files served from the `dist` folder.
 
+<span class="tutorialStep"></span> Before moving on, in the terminal window, stop the server by pressing Ctrl+C.
+
 In this tutorial, the markdown-to-HTML translation happens almost instantly, but in real projects, the data or transformations could easily take some time. Viewing an individual page might require non-trivial work, resulting in a perceptible delay before the page appears. Building the pages into static files performs all the work at once, so your users can browse the resulting static files as fast as the web can deliver them.
 
 We've now solved our original problem: we've created a system in which our team can write content for our web site using markdown, and end up with HTML pages we can deploy.

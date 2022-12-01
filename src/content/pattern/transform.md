@@ -98,8 +98,6 @@ We can now verify that our transform is working as expected by adapting the same
 
 <span class="tutorialStep"></span> From inside the `src/flat` directory, run the transform tests:
 
-_Note: If you're using StackBlitz, skip this step — it doesn't yet support the test runner used here._
-
 ```console
 $ node transform.test.js
 …

@@ -24,8 +24,6 @@ As noted in the original definition of the Explorable interface, an explorable g
 
 <span class="tutorialStep"></span> From inside the `src/flat` directory, run the unit tests for the function-based explorable graph. These are the same tests as for the object and folder graphs.
 
-_Note: If you're using StackBlitz, skip this step — it doesn't yet support the test runner used here._
-
 ```console
 $ node fn.test.js
 …

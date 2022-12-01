@@ -9,7 +9,7 @@ As mentioned earlier, you can think of an explorable graph as a tree of promises
 
 ## Deep object graphs
 
-We rewrite the `get` implementation in `ObjectGraph.js`, adding a simplistic check to see whether the value we're passing back is a plain JavaScript object. If it is a plain object, but is not already explorable, we'll wrap in its own `ObjectGraph` before returning it.
+We rewrite the `get` implementation in `ObjectGraph.js`, adding a simplistic check to see whether the value we're passing back is a plain JavaScript object. If it is a plain object, but is not already explorable, we'll wrap it in its own `ObjectGraph` before returning it.
 
 ```{{'js'}}
 /* src/deep/ObjectGraph.js */

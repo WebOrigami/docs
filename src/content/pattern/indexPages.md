@@ -76,6 +76,8 @@ Server running at http://localhost:5000. Press Ctrl+C to stop.
 
 This server can be good enough for development, and we could easily deploy it in this state. But since this HTML content is currently all static, it would be nice to render the HTML content as `.html` files we can deploy directly.
 
+<span class="tutorialStep"></span> Before moving on, in the terminal window, stop the server by pressing Ctrl+C.
+
 &nbsp;
 
 Next: [Copy a graph](copy.html) »
