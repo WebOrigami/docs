@@ -123,7 +123,7 @@ Origami collects the "leaf nodes" — all the text at the periphery of the graph
 <h1>Our Amazing Team</h1>
 ```
 
-In the parlance of computer science, Graph Origami templates are a type of _map-reduce_ operation that maps a template plus data to a graph of text, then reduces that to a single block of text as the final result.
+In the parlance of computer science, applying a Graph Origami template is a type of _map-reduce_ operation that maps a template graph, in the context of a data graph, to a graph of text, then reduces that to a single block of text as the final result.
 
 Treating template application as a graph transformation results in a flexible templating system that can be extended in interesting ways.
 

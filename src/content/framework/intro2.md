@@ -10,7 +10,7 @@ A _graph_ is an appropriate way to conceptualize and visualize such hierarchical
 
 The `src/public` folder contains the material that will become your public-facing About Us site. The hierarchical structure of file system folders lends itself well to representation as a graph. Graph Origami includes tools that let you visualize graphs such as folders in your browser.
 
-<span class="tutorialStep"></span> Navigate to a virtual file called `.svg`. Glitch and StackBlitz users: do this in the fake address bar above the preview window. Glitch tries hard to prevent you from navigating to a page that starts with a period, so you'll need to either the type the `svg` part and then add a `.` at the beginning, or cut-and-paste the text `.svg` into the address bar. If you're running locally, do this in your browser's real address bar.
+<span class="tutorialStep"></span> In the browser preview (previously showing the contents of the `public` folder), navigate to a virtual file called `.svg`. Glitch and StackBlitz users: do this in the fake address bar above the preview window. Glitch tries hard to prevent you from navigating to a page that starts with a period, so you'll need to either the type the `svg` part and then add a `.` at the beginning, or cut-and-paste the text `.svg` into the address bar. If you're running locally, do this in your browser's real address bar.
 
 You'll see the `public` folder visually represented as a graph:
 
@@ -91,7 +91,7 @@ Viewed this way, you may see some correspondences between the source graph and r
 
 - For each person in the team data, you want to generate an HTML page in the `team` route with that person's data.
 - For each person, you also want to have a link on the main `index.html` page.
-- For each full-size photo in the `images` folder, you want to have a corresponding thumbnail photo.
+- For each full-size photo in the `images` folder, you want to have a corresponding thumbnail photo in the `thumbnails` folder.
 
 You'll be able to express these correspondences directly in Graph Origami.
 

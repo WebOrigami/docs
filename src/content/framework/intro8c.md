@@ -90,7 +90,7 @@ team = map(teamByName, person.ori):
 
 Let's make the `person.ori` template a bit more realistic.
 
-<span class="tutorialStep"></span> Move or copy the contents of that `person.ori` template from the `assets` folder to the `person.ori` template in the `src` folder.
+<span class="tutorialStep"></span> Copy and paste the following into the `person.ori` template. (You can also find this in `/assets/person.ori`.)
 
 ```html
 {{ framework-intro/assets/person.ori }}
@@ -112,7 +112,7 @@ team = map(teamByName, person.ori, extension='->html'):
 
 The third parameter indicates how the transform should affect extensions. In this case: the original key won't have any extension (like `Alice`), and you want to _add_ the `.html` extension to the transformed key (`Alice.html`).
 
-<span class="tutorialStep"></span> Observe that the pages in the `team` route now end in `.html`.
+<span class="tutorialStep"></span> Navigate to the `.svg` page, and observe that the pages in the `team` route now end in `.html`.
 
 The transformation now looks like:
 

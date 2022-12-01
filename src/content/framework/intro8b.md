@@ -54,7 +54,7 @@ As mentioned earlier, explorable graphs are lazy. When you wrote the formula to 
 1. The built-in `image/resize` function consumes the original, full-size image and returns the data for a smaller thumbnail image.
 1. The server responds to the browser with the thumbnail image, which you see in your browser.
 
-<span class="tutorialStep"></span> Navigate to the team index page, now complete with thumbnail images.
+<span class="tutorialStep"></span> Navigate to `index.html`, now complete with thumbnail images.
 
 Note: on "retina" displays with high pixel densities, the thumbnails will look blurry. You can double the resolution of the thumbnails by doubling the thumbnail width to `width=400`. It's beyond the scope of this tutorial, but you could use the techniques described here to create [responsive images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images), with multiple formulas formatting or scaling images to target displays with specific pixel densities.
 

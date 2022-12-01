@@ -17,9 +17,9 @@ At the end of the process, you'll use graph tools to turn those virtual files in
 
 As a quick example of virtual content, let's use the browser to view a list of files.
 
-<span class="tutorialStep"></span> In the browser preview, navigate to `/index.html`.
+<span class="tutorialStep"></span> In the browser preview, navigate to `index.html`.
 
-You should see a simple page with the heading "public" and a list of links to the existing real files in the `public` folder.
+This should show the simple page you saw at the start, with the heading "public" and a list of links to the existing real files in the `public` folder.
 
 That page is a virtual `index.html` file. It doesn't exist in any persistent form; it only exists while the Graph Origami server is running.
 

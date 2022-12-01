@@ -35,7 +35,7 @@ Other aspects of the transformation include the `index.ori` and `person.ori` tem
 
 The `+.yaml` file is extremely information dense; it would be hard to find _general-purpose_ tools that let you create a website using comparable transformations in substantively less code.
 
-By "general-purpose", we can observe that, aside from the presence of the `image/resize` function, nothing here is specific to generating websites. You can use the same exact concepts — formulas, `map`, expressions that search a scope, templates that convert graphs to text — to generate many other types of digital content.
+By "general-purpose", we can observe that, aside from the presence of the `image/resize` function, nothing here is specific to generating websites. You can use the same exact concepts — formulas, `map`, expressions that search a scope, templates that convert graphs to text — to generate many other types of digital content. In the same way that a spreadsheet isn't limited to only creating invoices or financial models, Graph Origami isn't limited to only creating websites.
 
 Although a sample `greet` function was used for demonstration, the construction of the final site didn't require you to write any JavaScript code. Graph Origami gives you easy access to JavaScript if you need it, but you create many interesting things without writing JavaScript.
 

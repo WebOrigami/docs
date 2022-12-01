@@ -48,7 +48,7 @@ Now you have a way of picking out just the data you want from the team data and 
 
 The next step is to flesh out the index page template with more elements.
 
-<span class="tutorialStep"></span> From the `assets` folder, move or copy the contents of the `index.ori` template there into the `index.ori` template you've been working on in the `src` folder.
+<span class="tutorialStep"></span> Copy and paste the following into the `index.ori` template. (You can also find this in `/assets/index.ori`.)
 
 ```html
 {{ framework-intro/assets/index.ori }}
@@ -58,7 +58,7 @@ This version of `index.ori` is slightly more elaborate, but works just like the 
 
 <span class="tutorialStep"></span> Refresh the preview to see a fuller implementation of the team index page.
 
-The images aren't working yet. The above template is looking for thumbnail images in a folder called `thumbnails`, but that folder doesn't exist — yet. You could create the thumbnails by hand, but that'd be work, and you already have the large images to work from. So you can have Graph Origami create a virtual `thumbnails` folder for you.
+The thumbnail images aren't working yet. The above template is looking for thumbnail images in a folder called `thumbnails`, but that folder doesn't exist — yet. You could create the thumbnails by hand, but that'd be work, and you already have the large images to work from. So you can have Graph Origami create a virtual `thumbnails` folder for you.
 
 &nbsp;
 

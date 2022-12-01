@@ -29,7 +29,7 @@ In Graph Origami, a _metagraph_ is a graph whose contents define the graph's own
 {{ step1/stuff.yaml }}
 ```
 
-<span class="tutorialStep"></span> Navigate to `.svg` to see the updated visual graph for the `public` folder that includes `stuff.yaml`:
+<span class="tutorialStep"></span> In the browser preview, navigate to `.svg` to see the updated visual graph for the `public` folder that now includes `stuff.yaml`:
 
 <figure>
 {{ svg step1 }}

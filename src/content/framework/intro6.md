@@ -143,7 +143,7 @@ A convenient place to hide internal data like `team.yaml` is in the `src` folder
 
 <span class="tutorialStep"></span> Move the `team.yaml` file from `src/public` up to `src`. (If using Glitch: click the `⋮` button next to the file name, select _Rename_, then edit the name to be `src/team.yaml`.)
 
-<span class="tutorialStep"></span> Refresh the browser preview `.svg` to review the new structure of the `src/public` folder.
+<span class="tutorialStep"></span> Refresh the browser preview for `.svg` to see the updated publicly-visible structure of the `src/public` folder.
 
 With this change, the `team.yaml` data is no longer in the `public` folder — but it is still in scope, so it's still available in formulas like the one for `index.html`. That lets you focus the `public` folder on just those things which must be visible in the final site.
 
@@ -169,7 +169,7 @@ In a Graph Origami metagraph, you can define a hidden key by surrounding its nam
 index.html = greet(team.yaml/0/name):
 ```
 
-<span class="tutorialStep"></span> Refresh the browser preview for the `.svg` to review the new structure of the `src/public` folder.
+<span class="tutorialStep"></span> Refresh the browser preview for `.svg` to review the new publicly-visible structure of the `src/public` folder.
 
 Now `title` is hidden from view in the `public` folder:
 
