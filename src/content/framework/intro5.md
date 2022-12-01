@@ -67,7 +67,7 @@ The contents of the virtual file `index.html` will now be the result of evaluati
 
 <span class="tutorialStep"></span> Navigate to `index.html` to see "Hello, <strong>world</strong>!".
 
-Each time you ask for `index.html`, Graph Origami evaluates the corresponding formula that invokes `greet`. (If you're running this tutorial locally, you can verify this by setting a breakpoint within the `greet` function, then visiting `index.html`.)
+Each time you ask for `index.html`, Graph Origami evaluates the corresponding formula that invokes `greet`.
 
 Since the `greet` function is regular JavaScript, you can use that JavaScript to create HTML by any means you like. If the function is asynchronous, Graph Origami will `await` the result before serving it to the browser. With that, you should be able to do essentially anything you want in the JavaScript function to create any HTML result.
 

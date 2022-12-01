@@ -56,7 +56,7 @@ A popup should appear indicating that you can open the running site in your brow
 
 ## Option 3: Your local coding environment
 
-Select this option if you're a programmer and prefer to use your own code editor.
+Select this option if you're a programmer and prefer to use your own code editor. You will need to have [Node.js](https://nodejs.org/en/) installed.
 
 <span class="tutorialStep"></span> Clone the
 <a href="https://github.com/GraphOrigami/framework-intro" target="_blank">GraphOrigami/framework-intro</a>
