@@ -14,6 +14,8 @@ Use the Graph Origami framework to make digital content:
 - command-line tools
 - dev toolchains
 
+Working in Graph Origami can feel like making a spreadsheet: you define things with formulas that yield small answers that build towards the thing you're trying to create. Like a spreadsheet, Graph Origami is excellent for quick experiments or independent projects, but it's also just as suitable for real work.
+
 ## Concepts
 
 Most tools for creating content like websites achieve power through complexity that's hidden from you, and offer flexibility through configuration that's to difficult to understand.

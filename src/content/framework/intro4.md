@@ -92,6 +92,8 @@ The rest of this tutorial will continue to transform the real `public` folder in
 
 The `public` folder will contain both real files and virtual files, and will be what your users eventually see and interact with. The containing `src` folder will contain additional source material that will be used as fodder to create the final result, but only files (both real and virtual) in the `public` folder will be part of the final site.
 
+Side note if you've built websites in code and are familiar with the concept of a "router": you can think of the virtual `public` graph you're building as a router. After all, what a router is really doing is defining a virtual graph, usually in a rather procedural, code-heavy way. In Graph Origami, you build a virtual graph that _is_ the router. To route a request, the server traverses the graph, following each part of the path in the HTTP/HTTPS request as the next key to follow in the graph. Eventually, if the traversal arrives at a resource (HTML, an image, etc.), the server returns that resource to the client as the response.
+
 &nbsp;
 
 Next: [Formulas](intro5.html) »
