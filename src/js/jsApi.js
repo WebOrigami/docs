@@ -84,8 +84,7 @@ class DocsGraph {
       };
     };
     const options = {
-      innerExtension: ".js",
-      outerExtension: ".yaml",
+      extension: "js→yaml",
     };
     this.graph = new MapExtensionsGraph(variant, mapFn, options);
     this.program = program;
