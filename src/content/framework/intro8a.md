@@ -23,7 +23,7 @@ In the last step you mapped the graph of people to a graph of greetings. To crea
 </ul>
 ```
 
-The `\{\{#`…`}}` syntax, with its `#` symbol, is a way of passing a template fragment to a function — here, the same `map` function you used earlier in the `greetings` formula. The `map` function is just a JavaScript function, and it's easy enough to write your own JavaScript functions so that they can accept template fragments too (although that's beyond the scope of this tutorial).
+The `\{\{#`…`}}` syntax, with its `#` symbol, is a way of passing a template fragment to any function — here, the same `map` function you used earlier in the `greetings` formula. The `map` function is just a JavaScript function, and it's easy enough to write your own JavaScript functions so that they can accept template fragments with this syntax too (although that's beyond the scope of this tutorial).
 
 The `map` function takes at least two arguments. Above, the first argument is the `team.yaml` graph. The second argument is all the text between the `\{\{#map}}` and `\{\{/map}}` markers.
 
