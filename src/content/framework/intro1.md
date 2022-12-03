@@ -2,7 +2,7 @@
 title: Creating digital content through transformation
 ---
 
-If you want to create a very, very simple digital content for someone else, you may be able to just create the thing directly — a document, an email, a picture — and share it with them.
+If you want to create a very, very simple digital artifact for someone else — an email, a document, a picture — you may be able to just create the thing directly and share it with them.
 
 <figure>
   <img src="/assets/illustrations/artifact.svg">
