@@ -23,7 +23,6 @@ The metagraph features include:
 | :------------------------- | :------------ | :---------------------------------------------------------------------------------------------------------------------------- |
 | [Formula](formulas.html)   | `x = fn(y)`   | Defines a virtual value, like a virtual file.                                                                                 |
 | [Maps](maps.html)          | `x=map(y,fn)` | A common type of formula that transforms a graph. Use this to create virtual folders.                                         |
-| [Wildcard](wildcards.html) | `\[x\].html`  | Matches a pattern that can include an extension. Use this for routing or providing default values.                            |
 | [Addition](additions.html) | `+`           | Incorporates a subgraph's children into a parent graph. Use this for control over the physical organization of files or data. |
 | [Ghost graph](ghosts.html) | `images+`     | Adds a subgraph's children to matching subgraph(s)                                                                            |
 

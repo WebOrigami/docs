@@ -14,8 +14,7 @@ assignment: ["…"]declaration "=" expression [extension]
 
 colonCall: reference ":" expression
 
-declaration: variableDeclaration
-             literal
+declaration: literal
 
 expression: singleQuoteString
             lambda
@@ -73,10 +72,7 @@ pathKey: group
          literal
 
 reference: thisReference
-           referenceSubstitution
            literal
-
-referenceSubstitution: "\{\{" variableName "}}"[extension]
 
 percentCall: pathHead "%" [percentPath]
 
@@ -126,8 +122,4 @@ urlProtocol: "https"
 urlProtocolCall: urlProtocol "://"|":/"|":" slashPath
 
 valueDeclaration: ["…"]declaration
-
-variableDeclaration: "["variableName"]"[extension]
-
-variableName: for now, JavaScript identifiers with ASCII letters
 ```
