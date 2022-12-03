@@ -20,7 +20,7 @@ thumbnails = map(images, =image/resize(@value, width=200)):
 (teamByName) = mapKeys(team.yaml, =name):
 
 # HTML pages for each team member via the person.ori template
-team = map(teamByName, person.ori):
+team = map(teamByName, person.ori, extension='->html'):
 ```
 
 This one file provides an extremely high-level overview of how the whole site is built.
