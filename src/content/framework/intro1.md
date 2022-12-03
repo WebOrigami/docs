@@ -65,9 +65,9 @@ The tutorial project includes a `src/public` folder containing the resources tha
 {{ framework-intro/src/public/team.yaml }}
 ```
 
-Looking at the above data, one thing is clear: this data is too boring.
+One thing is clear: this data is too boring.
 
-<span class="tutorialStep"></span> Update the names in `team.yaml` to use your name and the names of family members or friends. _That will make this tutorial much more fun._
+<span class="tutorialStep"></span> Update the names in `team.yaml` to use your name and the names of family members or friends. _That will make this tutorial much more fun to complete._
 
 The `src/public` folder contains some other resources:
 
