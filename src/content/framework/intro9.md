@@ -1,5 +1,17 @@
 ---
 title: Graph tools to deploy content
+teamByName = mapKeys(framework-intro/src/public/team.yaml, =name):
+complete:
+  index.html: |
+    <h1>Our Amazing Team</h1>
+    <li>Alice</li>
+    <li>Bob</li>
+    <li>Carol</li>
+  personIcon.svg = framework-intro/src/public/personIcon.svg:
+  images = framework-intro/src/public/images:
+  styles.css = framework-intro/src/public/styles.css:
+  team = map(teamByName, =`<h1>{{ name }}</h1>`, extension='→html'):
+  thumbnails = images:
 ---
 
 ## Review the structure of the site
@@ -7,7 +19,7 @@ title: Graph tools to deploy content
 Your goal in this tutorial has been to build a basic About Us area. You started with a simple `team.yaml` data file and a handful of resources like styles, then applied a series of graph transformations to create the following virtual graph:
 
 <figure>
-{{ svg client/samples/frameworkIntro/complete.meta/public }}
+{{ svg complete }}
 </figure>
 
 The site is now complete. You could deploy this project as it stands, running the small Graph Origami server on a hosted machine somewhere. That might be appropriate if the site contained dynamic portions that would need to be reevaluated on each request.

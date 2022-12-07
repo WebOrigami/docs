@@ -1,5 +1,17 @@
 ---
 title: Explorable graphs represent data, files, and other resources
+teamByName = mapKeys(framework-intro/src/public/team.yaml, =name):
+complete:
+  index.html: |
+    <h1>Our Amazing Team</h1>
+    <li>Alice</li>
+    <li>Bob</li>
+    <li>Carol</li>
+  personIcon.svg = framework-intro/src/public/personIcon.svg:
+  images = framework-intro/src/public/images:
+  styles.css = framework-intro/src/public/styles.css:
+  team = map(teamByName, =`<h1>{{ name }}</h1>`, extension='→html'):
+  thumbnails = images:
 ---
 
 When creating digital content through transformation, it's often helpful to identify the high-level structure of the source form, intermediate forms, and result form. In many cases, the content will have a hierarchical or tree-like structure.
@@ -78,7 +90,7 @@ Since you can think of any structures as a graph, you can also visualize the fin
 Let's work backward from the desired result form of the site. It might look like this:
 
 <figure>
-{{ svg client/samples/frameworkIntro/complete.meta/public }}
+{{ svg complete }}
 </figure>
 
 As discussed at the outset, we want an index page listing our team members, plus a page for each individual member, full-size photos, thumbnail-size photos, and some resources for the site's visual design.
