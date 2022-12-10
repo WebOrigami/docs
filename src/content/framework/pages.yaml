@@ -1,7 +1,9 @@
 - href: index.html
   text: Introduction
-- href: intro0.html
+- href: recipe.html
   text: Tutorial
+- href: intro0.html
+  text: Tutorial (Original)
   pages:
     - href: intro1.html
       text: Model

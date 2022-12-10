@@ -10,7 +10,7 @@ step2:
   greet.js = framework-intro/src/greet.js:
   public:
     images = framework-intro/src/public/images:
-    index.html = framework-intro/src/greet(team.yaml/0/name):
+    index.html = framework-intro/src/greet(framework-intro/src/public/team.yaml/0/name):
     personIcon.svg = framework-intro/src/public/personIcon.svg:
     styles.css = framework-intro/src/public/styles.css:
     (team.yaml) = framework-intro/src/public/team.yaml:
