@@ -4,6 +4,7 @@ class ClipboardCopy extends HTMLElement {
     this.shadowRoot.innerHTML = `
       <style>
         :host {
+          display: block;
           position: relative;
           --icon-size: 1.2em;
         }
@@ -19,8 +20,7 @@ class ClipboardCopy extends HTMLElement {
           font-size: smaller;
           font-weight: inherit;
           gap: 0.2em;
-          grid-template-columns: var(--icon-size) auto;
-          grid-template-rows: var(--icon-size);
+          justify-items: center;
           padding: 0.3em 0.5em;
           position: absolute;
           right: 0;
@@ -33,40 +33,45 @@ class ClipboardCopy extends HTMLElement {
           filter: initial;
         }
 
-        #clipboard,
-        #checkmark {
+        #stateNormal,
+        #stateCopied {
           display: inline-block;
           text-align: center;
+          white-space: nowrap;
         }
 
-        #checkmark {
-          display: none;
+        #stateNormal {
+          position: absolute;
+        }
+
+        #stateCopied {
+          visibility: hidden;
+        }
+
+        :host(.copied) #stateNormal {
+          visibility: hidden;
+        }
+        :host(.copied) #stateCopied {
+          visibility: visible;
         }
       </style>
       <div id="container">
         <button id="buttonCopy" title="Copy to clipboard">
-          <div id="icon">
-            <span id="checkmark">✓</span>
-            <span id="clipboard">📋</span>
-          </div>
-          <span>Copy</span>
+          <div id="stateCopied">✓ Copied</div>
+          <div id="stateNormal">📋 Copy</div>
         </button>
       </div>
       <slot></slot>
     `;
 
     this.buttonCopy = this.shadowRoot.getElementById("buttonCopy");
-    this.clipboard = this.shadowRoot.getElementById("clipboard");
-    this.checkmark = this.shadowRoot.getElementById("checkmark");
 
     this.buttonCopy.addEventListener("pointerdown", () => {
       const text = this.textContent.trim() + "\n";
       navigator.clipboard.writeText(text);
-      this.clipboard.style.display = "none";
-      this.checkmark.style.display = "inline-block";
+      this.classList.toggle("copied", true);
       setTimeout(() => {
-        this.clipboard.style.display = "inline-block";
-        this.checkmark.style.display = "none";
+        this.classList.toggle("copied", false);
       }, 2000);
     });
 
