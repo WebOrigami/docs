@@ -1,10 +1,10 @@
 ---
 title: Transform images with a map
 step1:
-  images = framework-intro/src/public/images:
+  images = framework-intro/src/static/images:
   index.html = framework-intro/assets/index.ori():
-  personIcon.svg = framework-intro/src/public/personIcon.svg:
-  styles.css = framework-intro/src/public/styles.css:
+  personIcon.svg = framework-intro/src/static/personIcon.svg:
+  styles.css = framework-intro/src/static/styles.css:
   thumbnails = images:
 ---
 

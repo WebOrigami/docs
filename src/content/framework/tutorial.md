@@ -105,7 +105,7 @@ You can use slash-separated paths to extract information out of a folder or a da
 <span class="tutorialStep"></span> Open the team data file in `src/team.yaml`:
 
 ```{{'yaml'}}
-{{ framework-intro/src/public/team.yaml }}
+{{ framework-intro/src/team.yaml }}
 ```
 
 This defines an array of person records — but this data is too boring!

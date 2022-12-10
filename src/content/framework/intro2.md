@@ -1,15 +1,15 @@
 ---
 title: Explorable graphs represent data, files, and other resources
-teamByName = mapKeys(framework-intro/src/public/team.yaml, =name):
+teamByName = mapKeys(framework-intro/src/team.yaml, =name):
 complete:
   index.html: |
     <h1>Our Amazing Team</h1>
     <li>Alice</li>
     <li>Bob</li>
     <li>Carol</li>
-  personIcon.svg = framework-intro/src/public/personIcon.svg:
-  images = framework-intro/src/public/images:
-  styles.css = framework-intro/src/public/styles.css:
+  personIcon.svg = framework-intro/src/static/personIcon.svg:
+  images = framework-intro/src/static/images:
+  styles.css = framework-intro/src/static/styles.css:
   team = map(teamByName, =`<h1>{{ name }}</h1>`, extension='→html'):
   thumbnails = images:
 ---
@@ -27,7 +27,7 @@ The `src/public` folder contains the material that will become your public-facin
 You'll see the `public` folder visually represented as a graph:
 
 <figure>
-{{ svg framework-intro/src/public }}
+{{ svg framework-intro/src/static }}
 </figure>
 
 The little circles represent folders, like the `public` folder itself (on the left) and the `images` folder (in the middle). The boxes represent _values_ — in this case, the contents of files. The arrow labels, or _keys_, are the way the graph identifies what's what. In the case of a folder, the keys are the file names.
@@ -43,7 +43,7 @@ The `public` folder graph in sitting inside a larger graph for the entire projec
 The `team.yaml` data also has a hierarchical structure: it's an array of people, each of which have some properties.
 
 ```\yaml
-{{ framework-intro/src/public/team.yaml }}
+{{ framework-intro/src/team.yaml }}
 ```
 
 We can visually represent this data as a graph.
@@ -76,7 +76,7 @@ You can also explore data files with graph tools like the `.svg` tool you used a
 <span class="tutorialStep"></span> Navigate to `team.yaml/.svg` to view the graph of the team data, or navigate to `team.yaml/0/.svg` to view the graph of the data for just the first team member.
 
 <figure>
-{{ svg framework-intro/src/public/team.yaml/0 }}
+{{ svg framework-intro/src/team.yaml/0 }}
 </figure>
 
 An explorable graph can be an in-memory object, a folder tree, data in a file, dynamically-generated data, or other structured content. (You can read more about the different [graph variants](/core/variants.html) supported by Origami.)

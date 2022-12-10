@@ -2,12 +2,12 @@
 title: Metagraphs
 
 # Add a stuff.yaml file
-step1 = merge(framework-intro/src/public, this):
+step1 = merge(framework-intro/src/static, this):
   stuff.yaml: |
     title: Our Amazing Team
 
 # Treat stuff.yaml as additions
-step2 = merge(framework-intro/src/public, this):
+step2 = merge(framework-intro/src/static, this):
   title: Our Amazing Team
 
 realFolder: |

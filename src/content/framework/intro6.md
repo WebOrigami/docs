@@ -2,18 +2,18 @@
 title: Scope determines what formulas can reference
 step1:
   greet.js = framework-intro/src/greet.js:
-  public = merge(framework-intro/src/public, this):
+  public = merge(framework-intro/src/static, this):
     title: Our Amazing Team
     index.html = framework-intro/src/greet('world'):
-    team.yaml = framework-intro/src/public/team.yaml:
+    team.yaml = framework-intro/src/team.yaml:
 step2:
   greet.js = framework-intro/src/greet.js:
   public:
-    images = framework-intro/src/public/images:
-    index.html = framework-intro/src/greet(framework-intro/src/public/team.yaml/0/name):
-    personIcon.svg = framework-intro/src/public/personIcon.svg:
-    styles.css = framework-intro/src/public/styles.css:
-    (team.yaml) = framework-intro/src/public/team.yaml:
+    images = framework-intro/src/static/images:
+    index.html = framework-intro/src/greet(framework-intro/src/team.yaml/0/name):
+    personIcon.svg = framework-intro/src/static/personIcon.svg:
+    styles.css = framework-intro/src/static/styles.css:
+    (team.yaml) = framework-intro/src/team.yaml:
 jsScopeExample: |
   Math:
     pow: "[function]"

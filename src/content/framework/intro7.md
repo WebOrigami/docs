@@ -142,7 +142,7 @@ The `team.yaml` file is a text file in YAML format, so if you include `team.yaml
 
 ```html
 <h1>Our Amazing Team</h1>
-{{ graph(framework-intro/src/public/team.yaml) }}
+{{ graph(framework-intro/src/team.yaml) }}
 ```
 
 Here, all the data values in `team.yaml` are concatenated and incorporated into the final text. That's much more data than you want to show, but it's a small step towards what you actually want: to display a list of the team members on this index page.

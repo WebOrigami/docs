@@ -1,6 +1,6 @@
 ---
 title: Transforms change a graph from one form to another
-greetings = map(framework-intro/src/public/team.yaml, =framework-intro/src/greet(name)):
+greetings = map(framework-intro/src/team.yaml, =framework-intro/src/greet(name)):
 ---
 
 A graph _transform_ is a function that takes a graph as input and returns a new graph as output. Transforms let you think at a high level about processing material in bulk.

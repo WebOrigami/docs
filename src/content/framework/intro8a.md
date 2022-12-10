@@ -34,7 +34,7 @@ Graph Origami will evaluate this unnamed template function in the scope of the i
 ```html
 <h1>Our Amazing Team</h1>
 <ul>
-  {{#map framework-intro/src/public/team.yaml }}
+  {{#map framework-intro/src/team.yaml }}
   <li>{{ name }}</li>
   {{/map}}
 </ul>

@@ -1,15 +1,15 @@
 ---
 title: Graph tools to deploy content
-teamByName = mapKeys(framework-intro/src/public/team.yaml, =name):
+teamByName = mapKeys(framework-intro/src/team.yaml, =name):
 complete:
   index.html: |
     <h1>Our Amazing Team</h1>
     <li>Alice</li>
     <li>Bob</li>
     <li>Carol</li>
-  personIcon.svg = framework-intro/src/public/personIcon.svg:
-  images = framework-intro/src/public/images:
-  styles.css = framework-intro/src/public/styles.css:
+  personIcon.svg = framework-intro/src/static/personIcon.svg:
+  images = framework-intro/src/static/images:
+  styles.css = framework-intro/src/static/styles.css:
   team = map(teamByName, =`<h1>{{ name }}</h1>`, extension='→html'):
   thumbnails = images:
 ---
