@@ -184,7 +184,7 @@ The `names` formula says: for each entry in `team.yaml`, evaluate the expression
 
 The virtual `names` folder contains entries for three virtual files called `0`, `1`, and `2`. These files contain the corresponding name from an entry in `team.yaml`.
 
-<span class="tutorialStep"></span> Click the Back button to return to the index page.
+<span class="tutorialStep"></span> In the Glitch preview address bar, clear the address to return to the index page.
 
 <span class="tutorialStep"></span> Update `index.ori` to:
 
@@ -273,6 +273,8 @@ The images aren't working: they reference a `thumbnails` folder that doesn't exi
 
 In the `index.ori` template, you're using a `map()` function to turn data in `team.yaml` into HTML text. You can also use a `map()` to convert a folder of real images into a virtual folder of modified images. In this case, you'll create a virtual folder of thumbnails.
 
+<span class="tutorialStep"></span> View the images in the `src/static/images` folder. Each person in `team.yaml` identifies one of these sample images as a profile photo.
+
 <span class="tutorialStep"></span> Update `site.vfiles` to:
 
 <clipboard-copy>
@@ -280,20 +282,24 @@ In the `index.ori` template, you're using a `map()` function to turn data in `te
 ```yaml
 public:
   index.html = index.ori():
-  thumbnails = map(static/images, =image/resize(@value, width=400)):
+  thumbnails = map(static/images, =image/resize(@value, width=200)):
 
 title: Our Amazing Team
 ```
 
 </clipboard-copy>
 
-<span class="tutorialStep"></span> In the fake address bar above the Glitch preview, enter: `thumbnails`
+With this, the index page can now load thumbnail images from the virtual `thumbnails` folder.
+
+<span class="tutorialStep"></span> In the Glitch preview address bar, enter: `thumbnails`
 
 The virtual `names` folder contains a set of thumbnail images. _These images do not exist._ Or rather they don't exist in persistent form; they are potential images that are only created when you ask for them.
 
 <span class="tutorialStep"></span> Open one of the virtual thumbnail images to see one of the original images at a smaller size.
 
-<span class="tutorialStep"></span> Navigate Back to the index page.
+Note: on "retina" displays with high pixel densities, the thumbnails will look blurry. You can double the resolution of the thumbnails by doubling the thumbnail width to `width=400`. It's beyond the scope of this tutorial, but you could use the techniques described here to create [responsive images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images), with multiple formulas formatting or scaling images to target displays with specific pixel densities.
+
+<span class="tutorialStep"></span> Clear the address bar above the Glitch preview to return to the index page.
 
 ## Index the team data by person name
 
@@ -308,7 +314,7 @@ The reason for this is that, as you've seen, the top-level "file" names in `team
 ```yaml
 public:
   index.html = index.ori():
-  thumbnails = map(static/images, =image/resize(@value, width=400)):
+  thumbnails = map(static/images, =image/resize(@value, width=200)):
 
 title: Our Amazing Team
 teamByName = mapKeys(team.yaml, =name):
@@ -337,7 +343,7 @@ You'll use this `teamByName` folder in the next step.
 ```yaml
 public:
   index.html = index.ori():
-  thumbnails = map(static/images, =image/resize(@value, width=400)):
+  thumbnails = map(static/images, =image/resize(@value, width=200)):
   team = map(teamByName, person.ori):
 
 title: Our Amazing Team
@@ -348,7 +354,7 @@ The `team` folder takes all the team members from `teamByName` and creates an HT
 
 </clipboard-copy>
 
-<span class="tutorialStep"></span> In the fake address bar above the Glitch preview, enter: `team`
+<span class="tutorialStep"></span> In the Glitch preview address bar, enter: `team`
 
 This will list the files in the virtual `team` folder.
 
@@ -356,7 +362,7 @@ This will list the files in the virtual `team` folder.
 
 The preview will show a heading with a person's name like: **Alice**
 
-<span class="tutorialStep"></span> Navigate Back to the index page.
+<span class="tutorialStep"></span> Clear the Glitch preview address to return to the index page.
 
 ## Add an HTML extension
 
@@ -369,7 +375,7 @@ We often use extensions at the end of file names to indicate the type of data th
 ```yaml
 public:
   index.html = index.ori():
-  thumbnails = map(static/images, =image/resize(@value, width=400)):
+  thumbnails = map(static/images, =image/resize(@value, width=200)):
   team = map(teamByName, person.ori, extension='->html'):
 
 title: Our Amazing Team
