@@ -1,0 +1,7 @@
+public = mix(static, this):
+  index.html = index.ori():
+  team = map(teamByName, person.ori, extension='→html'):
+  thumbnails = map(images, =image/resize(@value, width=400)):
+
+teamByName = mapKeys(team.yaml, =name):
+title: Our Amazing Team

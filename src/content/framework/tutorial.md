@@ -10,7 +10,7 @@ One day one of your teammates says:
 > _We need an "About Us" area for our site! The main page should list the people on our team, with thumbnail photos and links to separate pages for each person. A person's page should show their name and a full-size photo._
 
 <span class="tutorialStep"></span> Open the
-<a href="/samples/aboutUs" target="_blank">sample About Us area</a>
+<a href="/samples/aboutUs/site.vfiles/public/" target="_blank">sample About Us area</a>
 and click on a few pages. The tutorial will use this sample as a model for the site you'll build.
 
 ## Start
