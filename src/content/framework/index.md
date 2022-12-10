@@ -40,4 +40,4 @@ Follow the tutorial to build a simple website in Graph Origami and explore each 
 
 &nbsp;
 
-[Start the tutorial](intro0.html) »
+[Start the tutorial](tutorial.html) »
