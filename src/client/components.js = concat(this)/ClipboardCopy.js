@@ -24,6 +24,7 @@ class ClipboardCopy extends HTMLElement {
           padding: 0.3em 0.5em;
           position: absolute;
           right: 0;
+          user-select: none;
         }
 
         #buttonCopy:hover {
@@ -65,9 +66,10 @@ class ClipboardCopy extends HTMLElement {
     `;
 
     this.buttonCopy = this.shadowRoot.getElementById("buttonCopy");
+    this.defaultSlot = this.shadowRoot.querySelector("slot");
 
     this.buttonCopy.addEventListener("pointerdown", () => {
-      const text = this.textContent.trim() + "\n";
+      const text = this.getText(this.defaultSlot) + "\n";
       navigator.clipboard.writeText(text);
       this.classList.toggle("copied", true);
       setTimeout(() => {
@@ -79,6 +81,13 @@ class ClipboardCopy extends HTMLElement {
     if (!navigator.clipboard) {
       this.buttonCopy.style.display = "none";
     }
+  }
+
+  getText(slot) {
+    const nodes = slot.assignedNodes({ flatten: true });
+    let text = nodes.map((node) => node.textContent).join("");
+    text = text.trim();
+    return text;
   }
 }
 
