@@ -11,7 +11,7 @@ For this phase, you'll create the general skeleton for the About Us area of your
 
 ## Creating the team data file
 
-In the `prototype` folder, create a new file called `team.yaml` and paste in the following
+In the `prototype` folder, create a new file called `teamData.yaml` and paste in the following
 
 ```yaml
 - id: alice
@@ -61,14 +61,14 @@ Our site's About Us area now has pages for each team member. The next step will 
 
 To phrase this in graph terms, consider the graph of HTML pages above. The index page will capture the information in the left, circular node. We want to give the index a link corresponding to each of the arrows leading from that node to the pages for team members.
 
-The `step5` folder contains a template for the index page called `index.hbs`. This template expects to be passed a graph of person data — the data in the same `team.yaml` shown above. For each person in that graph, the template will create a list item linking to that person. The relevant portion of the template looks like:
+The `step5` folder contains a template for the index page called `index.hbs`. This template expects to be passed a graph of person data — the data in the same `teamData.yaml` shown above. For each person in that graph, the template will create a list item linking to that person. The relevant portion of the template looks like:
 
 ...template goes here
 
-You can produce the index page with a formula that applies the `index.hbs` template to the `team.yaml` data. Create a new, empty file called
+You can produce the index page with a formula that applies the `index.hbs` template to the `teamData.yaml` data. Create a new, empty file called
 
 ```console
-index.html = index.hbs(team.yaml)
+index.html = index.hbs(teamData.yaml)
 ```
 
 You can view that index page at http://localhost:5000/src/step5/. Clicking a person on that page will navigate you to their individual page.
@@ -76,7 +76,7 @@ You can view that index page at http://localhost:5000/src/step5/. Clicking a per
 ### Defining the data as an array instead of an object
 
 ```console
-$ ori addIndex team.yaml, "'name'"
+$ ori addIndex teamData.yaml, "'name'"
 Alice:
   name: Alice
 Bob:

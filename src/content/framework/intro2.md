@@ -1,6 +1,6 @@
 ---
 title: Explorable graphs represent data, files, and other resources
-teamByName = mapKeys(framework-intro/src/team.yaml, =name):
+teamByName = mapKeys(framework-intro/src/teamData.yaml, =name):
 complete:
   index.html: |
     <h1>Our Amazing Team</h1>
@@ -40,23 +40,23 @@ The `public` folder graph in sitting inside a larger graph for the entire projec
 
 ## Visualize the team data as a graph
 
-The `team.yaml` data also has a hierarchical structure: it's an array of people, each of which have some properties.
+The `teamData.yaml` data also has a hierarchical structure: it's an array of people, each of which have some properties.
 
 ```\yaml
-{{ framework-intro/src/team.yaml }}
+{{ framework-intro/src/teamData.yaml }}
 ```
 
 We can visually represent this data as a graph.
 
 <figure class="constrain">
-{{ svg client/samples/frameworkIntro/focusedTeam.yaml }}
+{{ svg client/samples/frameworkIntro/focusedteamData.yaml }}
 </figure>
 
 (For brevity, in this and other diagrams showing team data, we'll just show the `name` and `image` properties for each person.)
 
 In this graph, the top-level keys are integers (0, 1, 2), which are the indices of the array of names. The second-level keys are strings: `name`, `image`, etc.
 
-Like the `public` folder, the graph of data in `team.yaml` in also sitting inside the larger project graph. It turns out to be useful to treat all these graphs the same way.
+Like the `public` folder, the graph of data in `teamData.yaml` in also sitting inside the larger project graph. It turns out to be useful to treat all these graphs the same way.
 
 ## Explorable graphs
 
@@ -67,16 +67,16 @@ Graph Origami is designed to work with a very flexible type of graph called an _
 
 Graph Origami _treats all explorable graphs exactly the same way_. Whatever you can do to a graph of files you can also do to a graph of data, and vice versa. For example, while many web servers let you browse through folders of files, Graph Origami lets you also browse inside data files.
 
-<span class="tutorialStep"></span> In the address bar, navigate to `team.yaml` to see the team data. Now add a trailing slash to that address, so that it ends in `team.yaml/`.
+<span class="tutorialStep"></span> In the address bar, navigate to `teamData.yaml` to see the team data. Now add a trailing slash to that address, so that it ends in `teamData.yaml/`.
 
-The browser will show an index page for the top level of the team data. You can browse into the data for the team members. For example, `team.yaml/0/name` will show the name of the first team member.
+The browser will show an index page for the top level of the team data. You can browse into the data for the team members. For example, `teamData.yaml/0/name` will show the name of the first team member.
 
 You can also explore data files with graph tools like the `.svg` tool you used above.
 
-<span class="tutorialStep"></span> Navigate to `team.yaml/.svg` to view the graph of the team data, or navigate to `team.yaml/0/.svg` to view the graph of the data for just the first team member.
+<span class="tutorialStep"></span> Navigate to `teamData.yaml/.svg` to view the graph of the team data, or navigate to `teamData.yaml/0/.svg` to view the graph of the data for just the first team member.
 
 <figure>
-{{ svg framework-intro/src/team.yaml/0 }}
+{{ svg framework-intro/src/teamData.yaml/0 }}
 </figure>
 
 An explorable graph can be an in-memory object, a folder tree, data in a file, dynamically-generated data, or other structured content. (You can read more about the different [graph variants](/core/variants.html) supported by Origami.)

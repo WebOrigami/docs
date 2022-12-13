@@ -1,12 +1,12 @@
 ---
 title: Origami templates
 subtitle: Map graphs and object data to text
-team.yaml:
+teamData.yaml:
   - name: Alice
   - name: Bob
   - name: Carol
-names = map(team.yaml, =name):
-strings = map(team.yaml, =`<a href="{{name}}.html">{{name}}</a> `):
+names = map(teamData.yaml, =name):
+strings = map(teamData.yaml, =`<a href="{{name}}.html">{{name}}</a> `):
 template:
   - Hello, <strong>
   - "{{name}}"
@@ -27,7 +27,7 @@ indexTemplate:
 indexText = results(this):
   0: "<h1>About Us</h1>"
   1 = map(intro/teamByName, =`<li>{{name}}</li>`):
-index.html = index.ori(intro/team.yaml):
+index.html = index.ori(intro/teamData.yaml):
 ---
 
 Origami templates let you write Origami expressions in the context of a text document. These expressions can then be evaluated in the context of input data to efficiently produce, for example, HTML.
@@ -130,11 +130,11 @@ Most template languages include some way to iterate over arrays or objects. In O
 If you have a small array of people objects, you can map that to a graph of names using the Origami command line interface:
 
 ```console
-$ ori team.yaml
+$ ori teamData.yaml
 - name: Alice
 - name: Bob
 - name: Carol
-$ ori "map team.yaml, =name"
+$ ori "map teamData.yaml, =name"
 - Alice
 - Bob
 - Carol
@@ -144,7 +144,7 @@ We can visualize that mapping this way:
 
 <div class="sideBySide">
   <figure>
-    {{ svg team.yaml }}
+    {{ svg teamData.yaml }}
   </figure>
   <figure>
     {{ svg names }}
@@ -158,10 +158,10 @@ Because the Origami CLI and Origami templates share the same expression language
 ```console
 $ cat index.ori
 <h1>Team</h1>
-{{ map team.yaml, =name }}
+{{ map teamData.yaml, =name }}
 ```
 
-When you apply the template, the people objects in `team.yaml` will be mapped to names. Then, per the above section about concatenating graph values, those names will then be concatenated and incorporate in the template's final text output.
+When you apply the template, the people objects in `teamData.yaml` will be mapped to names. Then, per the above section about concatenating graph values, those names will then be concatenated and incorporate in the template's final text output.
 
 ```console
 $ ori index.ori
@@ -178,17 +178,17 @@ Let's extend the above example to generate HTML links for each person. This beco
 ```console
 $ cat index.ori
 <h1>Team</h1>
-\{{ map team.yaml, =`<a href="\{{name}}.html">\{{name}}</a>
+\{{ map teamData.yaml, =`<a href="\{{name}}.html">\{{name}}</a>
 ` }}
 ```
 
-The `index.ori` file represents an outer template that includes an `h1` heading. Below that, a substitution calling `map` appears, which maps the `team.yaml` graph of people to an inner, nested Origami template. The inner template incorporates an individual person's `name` into a short HTML fragment.
+The `index.ori` file represents an outer template that includes an `h1` heading. Below that, a substitution calling `map` appears, which maps the `teamData.yaml` graph of people to an inner, nested Origami template. The inner template incorporates an individual person's `name` into a short HTML fragment.
 
 We can visualize this as a graph transformation:
 
 <div class="sideBySide">
   <figure>
-    {{ svg team.yaml }}
+    {{ svg teamData.yaml }}
   </figure>
   <figure>
     {{ svg strings }}

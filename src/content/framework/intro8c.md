@@ -1,15 +1,15 @@
 ---
 title: Map data to full HTML pages
-teamByName = mapKeys(client/samples/frameworkIntro/focusedTeam.yaml, =name):
+teamByName = mapKeys(client/samples/frameworkIntro/focusedteamData.yaml, =name):
 team1 = map(teamByName, =`<h1>{{ name }}</h1>`):
 team2 = map(teamByName, framework-intro/assets/person.ori, extension='→html'):
 ---
 
 ## Transform a graph's keys
 
-The last thing you need to build for the About Us site is a virtual `team` folder that will hold pages for each user. To lay the groundwork for that, you're first going to transform the graph of team data in `team.yaml`. Specifically, you're going to change the _keys_ of that graph.
+The last thing you need to build for the About Us site is a virtual `team` folder that will hold pages for each user. To lay the groundwork for that, you're first going to transform the graph of team data in `teamData.yaml`. Specifically, you're going to change the _keys_ of that graph.
 
-The reason for this is that, as you've seen, the top-level keys in `team.yaml` are integers, like `0` for the first person. But in your final website graph, you'd like the keys of the pages in the `team` area to include the person's name, like `Alice.html`.
+The reason for this is that, as you've seen, the top-level keys in `teamData.yaml` are integers, like `0` for the first person. But in your final website graph, you'd like the keys of the pages in the `team` area to include the person's name, like `Alice.html`.
 
 <span class="tutorialStep"></span> In the `+.yaml` file, add a new formula for `teamByName` at the bottom:
 
@@ -24,23 +24,23 @@ index.html = index.ori():
 thumbnails = map(images, =image/resize(@value, width=200)):
 
 # A graph of the team data by name (hidden)
-(teamByName) = mapKeys(team.yaml, =name):
+(teamByName) = mapKeys(teamData.yaml, =name):
 ```
 
 This new formula defines a hidden graph called `teamByName`. The `mapKeys` function is like `map`, but instead of changing a graph's values, it changes the graph's keys:
 
 <div class="sideBySide">
   <figure class="constrain">
-    {{ svg client/samples/frameworkIntro/focusedTeam.yaml }}
+    {{ svg client/samples/frameworkIntro/focusedteamData.yaml }}
   </figure>
   <figure class="constrain">
     {{ svg teamByName }}
   </figure>
-  <figcaption>team.yaml: array indices as top-level keys</figcaption>
+  <figcaption>teamData.yaml: array indices as top-level keys</figcaption>
   <figcaption>teamByName: names as top-level keys</figcaption>
 </div>
 
-Where `team.yaml` has top-level keys of `0`, `1`, `2`, the virtual `teamByName` graph has top-level keys of `Alice`, `Bob`, `Carol`.
+Where `teamData.yaml` has top-level keys of `0`, `1`, `2`, the virtual `teamByName` graph has top-level keys of `Alice`, `Bob`, `Carol`.
 
 ## Transform a data graph into HTML pages
 
@@ -52,7 +52,7 @@ Earlier you created a single `index.html` page by invoking an Origami template a
 <h1>\{\{ name }}</h1>
 ```
 
-Applying this template to one of the people records in `team.yaml` will produce an HTML page showing information about that person. You can apply that template to all of the team members at once using a map.
+Applying this template to one of the people records in `teamData.yaml` will produce an HTML page showing information about that person. You can apply that template to all of the team members at once using a map.
 
 <span class="tutorialStep"></span> In the `+.yaml` file, add a new formula for `team` at the bottom:
 
@@ -67,7 +67,7 @@ index.html = index.ori():
 thumbnails = map(images, =image/resize(@value, width=200)):
 
 # A graph of the team data by name (hidden)
-(teamByName) = mapKeys(team.yaml, =name):
+(teamByName) = mapKeys(teamData.yaml, =name):
 
 # HTML pages for each team member via the person.ori template
 team = map(teamByName, person.ori):

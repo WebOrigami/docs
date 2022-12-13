@@ -1,6 +1,6 @@
 ---
 title: Graph tools to deploy content
-teamByName = mapKeys(framework-intro/src/team.yaml, =name):
+teamByName = mapKeys(framework-intro/src/teamData.yaml, =name):
 complete:
   index.html: |
     <h1>Our Amazing Team</h1>
@@ -16,7 +16,7 @@ complete:
 
 ## Review the structure of the site
 
-Your goal in this tutorial has been to build a basic About Us area. You started with a simple `team.yaml` data file and a handful of resources like styles, then applied a series of graph transformations to create the following virtual graph:
+Your goal in this tutorial has been to build a basic About Us area. You started with a simple `teamData.yaml` data file and a handful of resources like styles, then applied a series of graph transformations to create the following virtual graph:
 
 <figure>
 {{ svg complete }}

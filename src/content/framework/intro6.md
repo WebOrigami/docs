@@ -5,15 +5,15 @@ step1:
   public = merge(framework-intro/src/static, this):
     title: Our Amazing Team
     index.html = framework-intro/src/greet('world'):
-    team.yaml = framework-intro/src/team.yaml:
+    teamData.yaml = framework-intro/src/teamData.yaml:
 step2:
   greet.js = framework-intro/src/greet.js:
   public:
     images = framework-intro/src/static/images:
-    index.html = framework-intro/src/greet(framework-intro/src/team.yaml/0/name):
+    index.html = framework-intro/src/greet(framework-intro/src/teamData.yaml/0/name):
     personIcon.svg = framework-intro/src/static/personIcon.svg:
     styles.css = framework-intro/src/static/styles.css:
-    (team.yaml) = framework-intro/src/team.yaml:
+    (teamData.yaml) = framework-intro/src/teamData.yaml:
 jsScopeExample: |
   Math:
     pow: "[function]"
@@ -121,31 +121,31 @@ As with block scoping in programming languages, in graph scoping the search only
 
 For the formulas in `+.yaml`, the `photos` folder is in scope, but the individual image files inside that folder or not, and would need to be referenced with a path like `photos/beach.jpg`.
 
-Similarly, `team.yaml` is in scope, but the specific keys inside that data graph like `0` or `name` are not. You can reference a specific team member's name by first referencing `team.yaml`, and then providing a path that goes inside that graph.
+Similarly, `teamData.yaml` is in scope, but the specific keys inside that data graph like `0` or `name` are not. You can reference a specific team member's name by first referencing `teamData.yaml`, and then providing a path that goes inside that graph.
 
-<span class="tutorialStep"></span> Update the definition for `index.html` to reference `team.yaml/0/name`.
+<span class="tutorialStep"></span> Update the definition for `index.html` to reference `teamData.yaml/0/name`.
 
 ```yaml
 # Site title
 title: Our Amazing Team
 
 # Index page
-index.html = greet(team.yaml/0/name):
+index.html = greet(teamData.yaml/0/name):
 ```
 
 The `index.html` page now greets the first team member: "Hello, <strong>Alice</strong>."
 
 ## Project structure can determine what's public
 
-In the final site, you want virtual files like `index.html` to be visible, but you don't need to expose internal data files like `team.yaml`. You can take advantage of graph scope to hide such internal details.
+In the final site, you want virtual files like `index.html` to be visible, but you don't need to expose internal data files like `teamData.yaml`. You can take advantage of graph scope to hide such internal details.
 
-A convenient place to hide internal data like `team.yaml` is in the `src` folder. Everything in that folder is available to the formulas inside the `public` folder, but nothing at the `src` folder level is going to be visible to your site visitors.
+A convenient place to hide internal data like `teamData.yaml` is in the `src` folder. Everything in that folder is available to the formulas inside the `public` folder, but nothing at the `src` folder level is going to be visible to your site visitors.
 
-<span class="tutorialStep"></span> Move the `team.yaml` file from `src/public` up to `src`. (If using Glitch: click the `⋮` button next to the file name, select _Rename_, then edit the name to be `src/team.yaml`.)
+<span class="tutorialStep"></span> Move the `teamData.yaml` file from `src/public` up to `src`. (If using Glitch: click the `⋮` button next to the file name, select _Rename_, then edit the name to be `src/teamData.yaml`.)
 
 <span class="tutorialStep"></span> Refresh the browser preview for `.svg` to see the updated publicly-visible structure of the `src/public` folder.
 
-With this change, the `team.yaml` data is no longer in the `public` folder — but it is still in scope, so it's still available in formulas like the one for `index.html`. That lets you focus the `public` folder on just those things which must be visible in the final site.
+With this change, the `teamData.yaml` data is no longer in the `public` folder — but it is still in scope, so it's still available in formulas like the one for `index.html`. That lets you focus the `public` folder on just those things which must be visible in the final site.
 
 In short, graph scope lets you use the file system structure of your project as one way to configure what's available where.
 
@@ -166,7 +166,7 @@ In a Graph Origami metagraph, you can define a hidden key by surrounding its nam
 (title): Our Amazing Team
 
 # Index page
-index.html = greet(team.yaml/0/name):
+index.html = greet(teamData.yaml/0/name):
 ```
 
 <span class="tutorialStep"></span> Refresh the browser preview for `.svg` to review the new publicly-visible structure of the `src/public` folder.

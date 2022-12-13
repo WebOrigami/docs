@@ -77,8 +77,8 @@ Examples of Origami expressions you can use in an Origami template:
 
 ```
 \{\{ greet('world') }}
-\{\{ greet(team.yaml/0/name) }}
-\{\{ team.yaml }}
+\{\{ greet(teamData.yaml/0/name) }}
+\{\{ teamData.yaml }}
 \{\{ https://example.com }}
 ```
 
@@ -135,17 +135,17 @@ Any template expression that results in a graph will have that graph's values co
 
 ```
 <h1>\{\{ title }}</h1>
-\{\{ graph(team.yaml) }}
+\{\{ graph(teamData.yaml) }}
 ```
 
-The `team.yaml` file is a text file in YAML format, so if you include `team.yaml` directly, the contents of that text file are inserted into the final text. The `graph()` function instructs Graph Origami to explicitly treat that YAML data as a graph.
+The `teamData.yaml` file is a text file in YAML format, so if you include `teamData.yaml` directly, the contents of that text file are inserted into the final text. The `graph()` function instructs Graph Origami to explicitly treat that YAML data as a graph.
 
 ```html
 <h1>Our Amazing Team</h1>
-{{ graph(framework-intro/src/team.yaml) }}
+{{ graph(framework-intro/src/teamData.yaml) }}
 ```
 
-Here, all the data values in `team.yaml` are concatenated and incorporated into the final text. That's much more data than you want to show, but it's a small step towards what you actually want: to display a list of the team members on this index page.
+Here, all the data values in `teamData.yaml` are concatenated and incorporated into the final text. That's much more data than you want to show, but it's a small step towards what you actually want: to display a list of the team members on this index page.
 
 To do that, you'll want the template to transform that graph of team data into a more selective and interesting graph of HTML.
 

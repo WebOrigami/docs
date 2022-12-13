@@ -1,6 +1,6 @@
 ---
 title: Transforms change a graph from one form to another
-greetings = map(framework-intro/src/team.yaml, =framework-intro/src/greet(name)):
+greetings = map(framework-intro/src/teamData.yaml, =framework-intro/src/greet(name)):
 ---
 
 A graph _transform_ is a function that takes a graph as input and returns a new graph as output. Transforms let you think at a high level about processing material in bulk.
@@ -11,10 +11,10 @@ A common type of a transform is a _map_, which applies a one-to-one function to 
 
 Consider a one-to-one function like the earlier `greet`, which takes a person's name and returns a greeting using that person's name. You can apply this one-to-one `greet` to all your team members by using a map.
 
-Let's apply that `greet` function to the entire set of people on the team. As a reminder, we can visualize the people in `team.yaml` as a graph:
+Let's apply that `greet` function to the entire set of people on the team. As a reminder, we can visualize the people in `teamData.yaml` as a graph:
 
 <figure class="constrain">
-{{ svg client/samples/frameworkIntro/focusedTeam.yaml }}
+{{ svg client/samples/frameworkIntro/focusedteamData.yaml }}
 </figure>
 
 In Origami, a graph like this is a first-class data type that can be passed to Origami expressions or JavaScript functions.
@@ -29,10 +29,10 @@ In Origami, a graph like this is a first-class data type that can be passed to O
 index.html = index.ori():
 
 # Graph of greetings for each team member by name
-greetings = map(team.yaml, =greet(name)):
+greetings = map(teamData.yaml, =greet(name)):
 ```
 
-The earlier formula for `index.html` defined a single virtual file. The new `greetings` formula here defines a virtual _graph_ of things: a virtual folder of virtual files. The new graph will have the same integer keys as `team.yaml`, but the values will be determined by evaluating the sub-expression `=greet(name)`.
+The earlier formula for `index.html` defined a single virtual file. The new `greetings` formula here defines a virtual _graph_ of things: a virtual folder of virtual files. The new graph will have the same integer keys as `teamData.yaml`, but the values will be determined by evaluating the sub-expression `=greet(name)`.
 
 <span class="tutorialStep"></span> View or refresh the `.svg` page.
 
@@ -42,11 +42,11 @@ The [map](/cli/builtins.html#map) function is a built-in Origami function that a
 
 The `map()` function extends the current scope with the data in the value being transforms — in this case, the data for individual person is added to the scope. In this case, that means that keys like `name` and `bio` are available to that unnamed function `=greet(name)`. Here it will pass a team member's name to `greet`.
 
-Applying this `map` to the graph of people in `team.yaml` produces a new graph of greetings:
+Applying this `map` to the graph of people in `teamData.yaml` produces a new graph of greetings:
 
 <div class="sideBySide fullWidth">
   <figure class="constrain">
-    {{ svg client/samples/frameworkIntro/focusedTeam.yaml }}
+    {{ svg client/samples/frameworkIntro/focusedteamData.yaml }}
   </figure>
   <figure>
     {{ svg greetings }}
@@ -62,7 +62,7 @@ Some notes on the `map` function:
 - Virtual graphs produced by `map` and the other Origami functions are _lazy_. They only do work when they need to. Unlike a JavaScript [Array map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), the `map` function here doesn't do much work upon invocation — it only does the real work of transformation when someone asks a mapped value. In this case, the greeting for a person like Carol is only generated when you actually try to visit that virtual page. The `greetings` graph represents _potential_ work.
 - `map` only applies the mapping function to the top-level values of a graph. If you want to apply the mapping function to the deep values of a graph, use [mapDeep](/cli/builtins.html#mapDeep) instead to obtain a new, deep graph of transformed values.
 
-Using maps, you can begin transforming your `team.yaml` data into an About Us site.
+Using maps, you can begin transforming your `teamData.yaml` data into an About Us site.
 
 <span class="tutorialStep"></span> Update the `index.ori` template to:
 

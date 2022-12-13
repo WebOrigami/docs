@@ -17,7 +17,7 @@ In the last step you mapped the graph of people to a graph of greetings. To crea
 ```
 <h1>\{\{ title }}</h1>
 <ul>
-  \{\{#map team.yaml }}
+  \{\{#map teamData.yaml }}
   <li>\{\{ name }}</li>
   \{\{/map}}
 </ul>
@@ -25,7 +25,7 @@ In the last step you mapped the graph of people to a graph of greetings. To crea
 
 The `\{\{#`…`}}` syntax, with its `#` symbol, is a way of passing a template fragment to any function — here, the same `map` function you used earlier in the `greetings` formula. The `map` function is just a JavaScript function, and it's easy enough to write your own JavaScript functions so that they can accept template fragments with this syntax too (although that's beyond the scope of this tutorial).
 
-The `map` function takes at least two arguments. Above, the first argument is the `team.yaml` graph. The second argument is all the text between the `\{\{#map}}` and `\{\{/map}}` markers.
+The `map` function takes at least two arguments. Above, the first argument is the `teamData.yaml` graph. The second argument is all the text between the `\{\{#map}}` and `\{\{/map}}` markers.
 
 In this case, the second argument to `map()` will be `<li>\{\{name}}</li>`. That looks like it's just text, but it's actually a little template function. Just like `index.ori` is a template that can be called like a function, this little template for a list item can also be called like a function.
 
@@ -34,7 +34,7 @@ Graph Origami will evaluate this unnamed template function in the scope of the i
 ```html
 <h1>Our Amazing Team</h1>
 <ul>
-  {{#map framework-intro/src/team.yaml }}
+  {{#map framework-intro/src/teamData.yaml }}
   <li>{{ name }}</li>
   {{/map}}
 </ul>
@@ -54,7 +54,7 @@ The next step is to flesh out the index page template with more elements.
 {{ framework-intro/assets/index.ori }}
 ```
 
-This version of `index.ori` is slightly more elaborate, but works just like the earlier bullet list version. The `#map` block in the middle generates a tile element for each person in `team.yaml`. Each tile includes the person's name, location, and an image.
+This version of `index.ori` is slightly more elaborate, but works just like the earlier bullet list version. The `#map` block in the middle generates a tile element for each person in `teamData.yaml`. Each tile includes the person's name, location, and an image.
 
 <span class="tutorialStep"></span> Refresh the preview to see a fuller implementation of the team index page.
 

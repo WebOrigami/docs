@@ -59,15 +59,15 @@ If your goal is to build this About Us site, what's the most convenient source f
 
 The tutorial project includes a `src/public` folder containing the resources that will make up the source form. For starters, your site needs to show a bit of information about each person on your team. A convenient form for that amount of data is a YAML file. You could also use a JSON file or another format for this data, but this tutorial uses YAML because it's easier to read.
 
-<span class="tutorialStep"></span> Open the team data file in `src/public/team.yaml`:
+<span class="tutorialStep"></span> Open the team data file in `src/public/teamData.yaml`:
 
 ```{{'yaml'}}
-{{ framework-intro/src/team.yaml }}
+{{ framework-intro/src/teamData.yaml }}
 ```
 
 One thing is clear: this data is too boring.
 
-<span class="tutorialStep"></span> Update the names in `team.yaml` to use your name and the names of family members or friends. _That will make this tutorial much more fun to complete._
+<span class="tutorialStep"></span> Update the names in `teamData.yaml` to use your name and the names of family members or friends. _That will make this tutorial much more fun to complete._
 
 The `src/public` folder contains some other resources:
 

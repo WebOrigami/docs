@@ -102,15 +102,15 @@ The preview now shows: Hello, **Our Amazing Team**!
 
 You can use slash-separated paths to extract information out of a folder or a data file.
 
-<span class="tutorialStep"></span> Open the team data file in `src/team.yaml`:
+<span class="tutorialStep"></span> Open the team data file in `src/teamData.yaml`:
 
 ```{{'yaml'}}
-{{ framework-intro/src/team.yaml }}
+{{ framework-intro/src/teamData.yaml }}
 ```
 
 This defines an array of person records — but this data is too boring!
 
-<span class="tutorialStep"></span> Update the names in `team.yaml` to use your name and the names of family or friends.
+<span class="tutorialStep"></span> Update the names in `teamData.yaml` to use your name and the names of family or friends.
 
 <span class="tutorialStep"></span> Update `site.vfiles` to:
 
@@ -118,14 +118,14 @@ This defines an array of person records — but this data is too boring!
 
 ```yaml
 public:
-  index.html = greet(team.yaml/0/name):
+  index.html = greet(teamData.yaml/0/name):
 
 title: Our Amazing Team
 ```
 
 </clipboard-copy>
 
-This gets the name of the first team member (the one with index `0`) defined in `team.yaml`.
+This gets the name of the first team member (the one with index `0`) defined in `teamData.yaml`.
 
 The preview shows something like: Hello, **Alice**!
 
@@ -171,18 +171,18 @@ You can write a formula that, on demand, will create a virtual folders of things
 ```yaml
 public:
   index.html = index.ori():
-  names = map(team.yaml, =name):
+  names = map(teamData.yaml, =name):
 
 title: Our Amazing Team
 ```
 
 </clipboard-copy>
 
-The `names` formula says: for each entry in `team.yaml`, evaluate the expression `=name`. That expression will return the person's name. This type of formula is called a _map_: it creates a new virtual folder with the same structure as the original folder or data (here, team.yaml), but with the original contents mapped to new values.
+The `names` formula says: for each entry in `teamData.yaml`, evaluate the expression `=name`. That expression will return the person's name. This type of formula is called a _map_: it creates a new virtual folder with the same structure as the original folder or data (here, teamData.yaml), but with the original contents mapped to new values.
 
 <span class="tutorialStep"></span> In the fake address bar above the Glitch preview, enter: `names`
 
-The virtual `names` folder contains entries for three virtual files called `0`, `1`, and `2`. These files contain the corresponding name from an entry in `team.yaml`.
+The virtual `names` folder contains entries for three virtual files called `0`, `1`, and `2`. These files contain the corresponding name from an entry in `teamData.yaml`.
 
 <span class="tutorialStep"></span> In the Glitch preview address bar, clear the address to return to the index page.
 
@@ -210,7 +210,7 @@ Now the preview shows the names of your team members — although the names are
 ```yaml
 public:
   index.html = index.ori():
-  names = map(team.yaml, =`<li>\{\{ name }}</li>`):
+  names = map(teamData.yaml, =`<li>\{\{ name }}</li>`):
 
 title: Our Amazing Team
 ```
@@ -232,7 +232,7 @@ Since the virtual `names` folder is only used in `index.ori`, you can move it in
 ```{{'html'}}
 <h1>\{\{ title }}</h1>
 <ul>
-\{\{ map(team.yaml, =`<li>\{\{ name }}</li>`) }}
+\{\{ map(teamData.yaml, =`<li>\{\{ name }}</li>`) }}
 </ul>
 ```
 
@@ -267,20 +267,45 @@ title: Our Amazing Team
 
 This is functionally the same as the earlier template; it just has more elements.
 
-The images aren't working: they reference a `thumbnails` folder that doesn't exist yet.
+The styling is incomplete on this page because it can't see the styles and other resources in `styles.css` yet. The page is also trying to reference thumbnail images in a `thumbnails` folder that doesn't yet exist. Let's fix those problems in turn.
 
-## Create a virtual folder of thumbnails
+## Merge real and virtual folders
 
-In the `index.ori` template, you're using a `map()` function to turn data in `team.yaml` into HTML text. You can also use a `map()` to convert a folder of real images into a virtual folder of modified images. In this case, you'll create a virtual folder of thumbnails.
-
-<span class="tutorialStep"></span> View the images in the `src/static/images` folder. Each person in `team.yaml` identifies one of these sample images as a profile photo.
+You've created a virtual `public` folder that contains a virtual `index.html` file. Separately, your project has a real `static` file that contains resources necessary for the site to work, including a stylesheet and images. You can merge those folders together.
 
 <span class="tutorialStep"></span> Update `site.vfiles` to:
 
 <clipboard-copy>
 
 ```yaml
-public:
+public = merge(static, virtual):
+
+virtual:
+  index.html = index.ori():
+
+title: Our Amazing Team
+```
+
+This redefines the `public` folder to be the result of merging the real files in the `static` folder with a new folder called `virtual`. That `virtual` folder will hold all the virtual files that should become part of the public site.
+
+The preview now looks better, with appropriate styling and a little person icon. The thumbnail images still need to be fixed.
+
+</clipboard-copy>
+
+## Create a virtual folder of thumbnails
+
+In the `index.ori` template, you're using a `map()` function to turn data in `teamData.yaml` into HTML text. You can also use a `map()` to convert a folder of real images into a virtual folder of modified images. In this case, you'll create a virtual folder of thumbnails.
+
+<span class="tutorialStep"></span> View the images in the `src/static/images` folder. Each person in `teamData.yaml` identifies one of these sample images as a profile photo.
+
+<span class="tutorialStep"></span> Update `site.vfiles` to:
+
+<clipboard-copy>
+
+```yaml
+public = merge(static, virtual):
+
+virtual:
   index.html = index.ori():
   thumbnails = map(static/images, =image/resize(@value, width=200)):
 
@@ -303,21 +328,23 @@ Note: on "retina" displays with high pixel densities, the thumbnails will look b
 
 ## Index the team data by person name
 
-The last part of your site you need to make is a virtual folder containing an HTML for each team member. To lay the groundwork for that, you're first going to create an intermediate folder with the same data as `team.yaml`, but where the files are named after the people on the team.
+The last part of your site you need to make is a virtual folder containing an HTML for each team member. To lay the groundwork for that, you're first going to create an intermediate folder with the same data as `teamData.yaml`, but where the files are named after the people on the team.
 
-The reason for this is that, as you've seen, the top-level "file" names in `team.yaml` are integers, like `0` for the first person. But in your final website graph, you'd like the keys of the pages in the `team` area to include the person's name, like `Alice.html`.
+The reason for this is that, as you've seen, the top-level "file" names in `teamData.yaml` are integers, like `0` for the first person. But in your final website graph, you'd like the keys of the pages in the `team` area to include the person's name, like `Alice.html`.
 
 <span class="tutorialStep"></span> Add a new formula to the bottom of `site.vfiles`:
 
 <clipboard-copy>
 
 ```yaml
-public:
+public = merge(static, virtual):
+
+virtual:
   index.html = index.ori():
   thumbnails = map(static/images, =image/resize(@value, width=200)):
 
 title: Our Amazing Team
-teamByName = mapKeys(team.yaml, =name):
+teamByName = mapKeys(teamData.yaml, =name):
 ```
 
 </clipboard-copy>
@@ -341,13 +368,15 @@ You'll use this `teamByName` folder in the next step.
 <clipboard-copy>
 
 ```yaml
-public:
+public = merge(static, virtual):
+
+virtual:
   index.html = index.ori():
   thumbnails = map(static/images, =image/resize(@value, width=200)):
   team = map(teamByName, person.ori):
 
 title: Our Amazing Team
-teamByName = mapKeys(team.yaml, =name):
+teamByName = mapKeys(teamData.yaml, =name):
 ```
 
 The `team` folder takes all the team members from `teamByName` and creates an HTML page for them.
@@ -373,13 +402,15 @@ We often use extensions at the end of file names to indicate the type of data th
 <clipboard-copy>
 
 ```yaml
-public:
+public = merge(static, virtual):
+
+virtual:
   index.html = index.ori():
   thumbnails = map(static/images, =image/resize(@value, width=200)):
   team = map(teamByName, person.ori, extension='->html'):
 
 title: Our Amazing Team
-teamByName = mapKeys(team.yaml, =name):
+teamByName = mapKeys(teamData.yaml, =name):
 ```
 
 </clipboard-copy>
@@ -404,7 +435,29 @@ The last step is to fill out the template for a person.
 
 <span class="tutorialStep"></span> Refresh or visit the page for a team member to see their information and a full-size photo.
 
-The site is now complete. You could add more data to `team.yaml`, or enhance the templates for the index page or people pages, but form a functional standpoint, you've achieved your goal.
+## Consolidate the public folder definition
+
+Before wrapping up, we can make one refinement to make the definition of the `public` folder more concise. That formula relies on a separate `virtual` folder definition that isn't used anywhere else. You can fold that `virtual` definition into the defintion of `public`.
+
+<span class="tutorialStep"></span> Update `site.vfiles`:
+
+<clipboard-copy>
+
+```yaml
+public = merge(static, this):
+  index.html = index.ori():
+  thumbnails = map(static/images, =image/resize(@value, width=200)):
+  team = map(teamByName, person.ori, extension='->html'):
+
+title: Our Amazing Team
+teamByName = mapKeys(teamData.yaml, =name):
+```
+
+</clipboard-copy>
+
+The `this` keyword in `merge(static, this)` refers to everything indented on the following lines. The formula can now be read as: "The `public` folder is the result of merge the `static` folder with the following virtual files…"
+
+The site is now complete. You could add more data to `teamData.yaml`, or enhance the templates for the index page or people pages, but form a functional standpoint, you've achieved your goal.
 
 ## Building static files
 
