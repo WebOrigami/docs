@@ -103,9 +103,9 @@ word: beep
 doubled = repeat(2, word):
 ```
 
-So `doubled` will be `beepbeep`.
+This calls a built-in `repeat` function. Here, the value of `doubled` will be "beepbeep".
 
-<span class="tutorialStep"></span> **Try it:** Define a top-level file called `title` to hold the name of your site, say, "Our Amazing Team". Then update the formula for `index.html` to pass the title to `greet`, so that the preview shows: Hello, **Our Amazing Team**!
+<span class="tutorialStep"></span> **Try it:** In `site.vfiles`, define a top-level virtual file called `title` to hold the name of your site, say, "Our Amazing Team". Then update the formula for `index.html` to pass the title to `greet`, so that the preview shows: Hello, **Our Amazing Team**!
 
 <reveal-solution>
 
@@ -122,21 +122,27 @@ By putting `title` at the top level, the formulas inside `public` can reference 
 
 ## Formulas can extract data
 
-You can use slash-separated paths to extract information out of a folder or a data file.
-
 <span class="tutorialStep"></span> Open the team data file in `src/teamData.yaml`:
 
 ```{{'yaml'}}
 {{ framework-intro/src/teamData.yaml }}
 ```
 
-This defines an array of person records — but this data is too boring!
+This defines an array of person records in YAML but _this data is too boring!_
 
 <span class="tutorialStep"></span> Update the names in `teamData.yaml` to use your name and the names of family or friends.
 
-<span class="tutorialStep"></span> Update `site.vfiles` to:
+You can use slash-separated paths to extract information out of a folder or a data file like this team data file.
 
-<clipboard-copy>
+**Example:** The following defines a file whose value in the sample data will be "Venice". (Array indexes start with zero, so this gets the `location` from the third team member.)
+
+```yaml
+carolLocation = teamData.yaml/2/location:
+```
+
+<span class="tutorialStep"></span> **Try it:** Update your formula for `index.html` to pass the `name` of the first team member to `greet`. The preview should show something like: Hello, **Alice**!
+
+<reveal-solution>
 
 ```yaml
 public:
@@ -145,31 +151,43 @@ public:
 title: Our Amazing Team
 ```
 
-</clipboard-copy>
-
-This gets the name of the first team member (the one with index `0`) defined in `teamData.yaml`.
-
-The preview shows something like: Hello, **Alice**!
+</reveal-solution>
 
 ## Define a template that creates text
 
 Instead of creating HTML directly in JavaScript, you can use any JavaScript-based template system. For this tutorial, you'll use the template system built into Graph Origami.
 
-<span class="tutorialStep"></span> In the src folder, create a new file called `index.ori` and paste this into it:
+**Example:** Graph Origami templates, like many template systems, let you insert data into boilerplate text using placeholders marked with curly braces `\{\{` … `}}`:
 
-<clipboard-copy>
+```html
+<p>\{\{ name }}</p>
+```
+
+Inside the curly braces, you can do the same things as in formulas: call JavaScript function, reference real and virtual files, extract specific data with slash-separated paths, etc.
+
+<span class="tutorialStep"></span> **Try it:** In the src folder, create a new file called `index.ori`. This will become the template file for your index page. Inside this file, enter HTML that will put your site's `title` inside an `h1` tag.
+
+<reveal-solution>
 
 ```html
 <h1>\{\{ title }}</h1>
 ```
 
-</clipboard-copy>
+</reveal-solution>
 
-Inside the curly braces `\{\{` … `}}` you can do the same things as in formulas: call JavaScript function, reference real and virtual files, extract specific data, etc.
+## Invoke a template as a function
 
-<span class="tutorialStep"></span> Update `site.vfiles` to:
+**Example:** You invoke a Graph Origami template as a function like `greet`. If you have a template `product.ori`, you can invoke it with:
 
-<clipboard-copy>
+```yaml
+product.html = product.ori():
+```
+
+You don't need to include the `.js` extension to invoke a JavaScript function, but you _do_ need to include the `.ori` extension to invoke a template as a function.
+
+<span class="tutorialStep"></span> **Try it:** In `site.vfiles`, update your `index.html` formula to invoke your `index.ori` template as a function.
+
+<reveal-solution>
 
 ```yaml
 public:
@@ -178,17 +196,76 @@ public:
 title: Our Amazing Team
 ```
 
-</clipboard-copy>
+</reveal-solution>
 
-Now when you view the site's main page, the `index.ori` template will be invoked as a function that returns HTML with a header. The preview shows: **Our Amazing Team**
+Now when you view the site's main page, the `index.ori` template will be invoked to obtain the HTML. The preview shows a header: **Our Amazing Team**
+
+## Create a virtual folder of thumbnails
+
+In your site's index page, you eventually will want to show a small thumbnail image for each team member.
+
+<span class="tutorialStep"></span> View the images in the `src/static/images` folder. Each person in `teamData.yaml` identifies one of these sample images as a profile photo.
+
+Instead of using an image-editing app to create a real folder of thumbnail images, you can create a virtual folder of thumbnail images.
+
+You can do this kind of transformation in Graph Origami with a _map_. A map is a virtual folder based on something else (a real folder, a virtual folder, or a data set like that in teamData.yaml). The result will have the same structure as the original, but the values will be different.
+
+**Example:** If you had virtual folder called `names`, you could create a virtual folder of greetings based on `names`:
+
+```yaml
+names:
+  - Alice
+  - Bob
+  - Carol
+
+greetings = map(names, greet):
+```
+
+The file `src/thumbnail.js` contains a small JavaScript function which, given the binary data for an image, will invoke an image-editing library to generate a new image at a smaller size.
+
+<span class="tutorialStep"></span> **Try it:** In `site.vfiles`, update the `public` folder to contain a new virtual subfolder called `thumbnails`. Use a `map` function to map the real `images` folder using the `thumbnail` function. Because the `images` folder is tucked inside the `static` folder, you'll need to refer to it as `static/images`.
+
+<reveal-solution>
+
+```yaml
+public:
+  index.html = index.ori():
+  thumbnails = map(static/images, thumbnail):
+
+title: Our Amazing Team
+```
+
+</reveal-solution>
+
+With that, you can browse your virtual folder of thumbnails.
+
+<span class="tutorialStep"></span> In the Glitch preview address bar, enter: `thumbnails`
+
+The virtual `thumbnails` folder contains a set of thumbnail images. _These images do not exist._ Or rather they don't exist in persistent form; they are potential images that are only created when you ask for them.
+
+<span class="tutorialStep"></span> Open one of the virtual thumbnail images to see one of the original images at a smaller size.
+
+Note: for "retina" displays with high pixel densities, you could double the resolution of the thumbnails by editing `thumbnail.js` and changing the `width` option from `200` pixels to `400`. It's beyond the scope of this tutorial, but you could use the techniques described here to create [responsive images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images), with multiple formulas creating images to target displays with specific pixel densities.
+
+<span class="tutorialStep"></span> Clear the address bar above the Glitch preview to return to the index page.
 
 ## Create a virtual folder with a `map`
 
-You can write a formula that, on demand, will create a virtual folders of things.
+You can also use a `map` to create a virtual folder based on data, not just files.
 
-<span class="tutorialStep"></span> Update `site.vfiles` to:
+**Example:** The following formula uses the team data as the basis for a new virtual folder called `locations`. This will contain a virtual file for each person in teamData.yaml.
 
-<clipboard-copy>
+```yaml
+locations = map(teamData.yaml, =location):
+```
+
+The `location` formula says: for each entry in `teamData.yaml`, evaluate the expression `=location`. That expression defines an unnamed function. This function will be evaluated in the context of a team member, so it will return the person's location.
+
+The result of the above will be a new virtual folder called `locations` with the same keys (names) as `teamData.yaml`. Since the top level of `teamData.yaml` is an array, the keys will be integers.
+
+<span class="tutorialStep"></span> **Try it:** Add a new virtual folder inside `public` called `names`. Define this `names` folder with a `map` like the one above. Map the team members to their names.
+
+<reveal-solution>
 
 ```yaml
 public:
@@ -198,9 +275,7 @@ public:
 title: Our Amazing Team
 ```
 
-</clipboard-copy>
-
-The `names` formula says: for each entry in `teamData.yaml`, evaluate the expression `=name`. That expression will return the person's name. This type of formula is called a _map_: it creates a new virtual folder with the same structure as the original folder or data (here, teamData.yaml), but with the original contents mapped to new values.
+</reveal-solution>
 
 <span class="tutorialStep"></span> In the fake address bar above the Glitch preview, enter: `names`
 
@@ -208,48 +283,69 @@ The virtual `names` folder contains entries for three virtual files called `0`, 
 
 <span class="tutorialStep"></span> In the Glitch preview address bar, clear the address to return to the index page.
 
-<span class="tutorialStep"></span> Update `index.ori` to:
+## Incorporate a virtual folder into a template
 
-<clipboard-copy>
+If you have a folder that contains text, you can reference that folder inside a template. Graph Origami will take all the values (file contents) and inline them into the result.
+
+**Example:** If you had a folder called `fragments` that contained HTML fragments, you could inline them all into a template with:
+
+```html
+\{\{ fragments }}
+```
+
+<span class="tutorialStep"></span> **Try it:** At the bottom of the `index.ori` template, include the virtual `names` folder into the template.
+
+<reveal-solution>
 
 ```{{'html'}}
 <h1>\{\{ title }}</h1>
-<ul>
 \{\{ names }}
-</ul>
 ```
 
-</clipboard-copy>
+</reveal-solution>
 
-Now the preview shows the names of your team members — although the names are crammed together without spacing.
+Now the preview shows the names of your team members — although the names are crammed together without spacing. We'll fix that in a moment.
 
-## Use a template in a formula
+## Create a map inside a template
 
-<span class="tutorialStep"></span> Update the `names` formula in `site.vfiles` to:
+If you're only going to use a virtual folder like `names` in one place like `index.ori`, you can move it inline.
 
-<clipboard-copy>
+<span class="tutorialStep"></span> **Try it:** In the `index.ori` template, inside the `\{\{ names }}` placeholder, replace `names` with a call to the `map` function directly. Use the same arguments to `map` as you used when defining `names`.
 
-```yaml
-public:
-  index.html = index.ori():
-  names = map(teamData.yaml, =`<li>\{\{ name }}</li>`):
+<reveal-solution>
 
-title: Our Amazing Team
+```{{'html'}}
+<h1>\{\{ title }}</h1>
+\{\{ map(teamData.yaml, =name) }}
 ```
 
-</clipboard-copy>
+</reveal-solution>
 
-For each team member, the `map()` will evaluate its second argument, which here is a small template surrounded with backticks (``). The template will insert a name like "Alice" into an HTML fragment: `<li>Alice</li>`.
+This produces the same result as before, but without relying on a separate definition of `names` elsewhere.
 
-The preview now shows a bulleted list of names.
+<span class="tutorialStep"></span> In `site.vfiles`, remove the `names` formula, since you no longer need it.
 
 ## Use a nested template
 
-Since the virtual `names` folder is only used in `index.ori`, you can move it inline.
+The names are all crammed together on the index page because the `map` is producing a set of names, with no surrounding text. Instead of making a call like `=name` to get just the name, you can use a nested template to format the name.
 
-<span class="tutorialStep"></span> Update `index.ori` to:
+**Example:** Instead of writing this in a template:
 
-<clipboard-copy>
+```{{'html'}}
+\{\{ map(teamData.yaml, =location) }}
+```
+
+You can write something like the following to format the locations however you want: to add whitespace or, here, to put each location into a separate paragraph.
+
+```{{'html'}}
+\{\{ map(teamData.yaml, =`<p>\{\{ location }}</p>`) }}
+```
+
+The second argument to `map()` here is a smaller template instead the larger template. The smaller template is surrounded by backtick (`) characters.
+
+<span class="tutorialStep"></span> Update `index.ori` to make each name a separate bullet item — that is, surround the each name with a `<li>` and `</li>` tags. To complete the list, put the placeholder that calls `map` inside `<ul>` and `</ul>` tags.
+
+<reveal-solution>
 
 ```{{'html'}}
 <h1>\{\{ title }}</h1>
@@ -258,26 +354,15 @@ Since the virtual `names` folder is only used in `index.ori`, you can move it in
 </ul>
 ```
 
-</clipboard-copy>
+</reveal-solution>
 
-The second argument to `map()` here is a smaller template instead the larger `index.ori` template.
-
-<span class="tutorialStep"></span> In `site.vfiles`, remove the `names` formula, since you no longer need it.
-
-<clipboard-copy>
-
-```yaml
-public:
-  index.html = index.ori():
-
-title: Our Amazing Team
-```
-
-</clipboard-copy>
+The preview now shows a bulleted list of names.
 
 ## A nested template can span multiple lines
 
-<span class="tutorialStep"></span> Update `index.ori` to:
+The text inside a backtick-delimited template can span multiple lines, so it can be as complex as you want.
+
+<span class="tutorialStep"></span> To fill out the index page template, paste the following into `index.ori`:
 
 <clipboard-copy>
 
@@ -289,15 +374,23 @@ title: Our Amazing Team
 
 This is functionally the same as the earlier template; it just has more elements.
 
-The styling is incomplete on this page because it can't see the styles and other resources in `styles.css` yet. The page is also trying to reference thumbnail images in a `thumbnails` folder that doesn't yet exist. Let's fix those problems in turn.
+The index page preview now shows a tile for each team member that includes their name and location. It also shows a thumbnail image pulled from the virtual `thumbnails` folder you created earlier.
 
 ## Merge real and virtual folders
 
-You've created a virtual `public` folder that contains a virtual `index.html` file. Separately, your project has a real `static` file that contains resources necessary for the site to work, including a stylesheet and images. You can merge those folders together.
+In addition to `map`, Graph Origami lets you perform other types of operations on real and virtual folders. One thing you can do is merge together two or more folders together to create into a single virtual folder.
 
-<span class="tutorialStep"></span> Update `site.vfiles` to:
+**Example:** If you have three folders `folder1`, `folder2`, and `folder3`, you can merge the contents of all three folders in a new virtual folder called `everything`:
 
-<clipboard-copy>
+```yaml
+everything = merge(folder1, folder2, folder3):
+```
+
+Up to this point, you've created a virtual `public` folder that contains a virtual `index.html` file. Separately, your project has a real `static` file that contains resources necessary for the site to work, including a stylesheet and images. You can merge those folders together.
+
+<span class="tutorialStep"></span> **Try it:** In `site.vfiles`, rename your existing `public` folder to `virtual` to reflect the fact it contains virtual files. Then add a new formula for a `public` folder that is the result of merging the real `static` folder and the `virtual` folder.
+
+<reveal-solution>
 
 ```yaml
 public = merge(static, virtual):
@@ -307,56 +400,24 @@ virtual:
 
 title: Our Amazing Team
 ```
+
+</reveal-solution>
 
 This redefines the `public` folder to be the result of merging the real files in the `static` folder with a new folder called `virtual`. That `virtual` folder will hold all the virtual files that should become part of the public site.
 
-The preview now looks better, with appropriate styling and a little person icon. The thumbnail images still need to be fixed.
+The order in which you define `public` and `virtual` here doesn't matter — you can define either one first and things will still work.
 
-</clipboard-copy>
-
-## Create a virtual folder of thumbnails
-
-In the `index.ori` template, you're using a `map()` function to turn data in `teamData.yaml` into HTML text. You can also use a `map()` to convert a folder of real images into a virtual folder of modified images. In this case, you'll create a virtual folder of thumbnails.
-
-<span class="tutorialStep"></span> View the images in the `src/static/images` folder. Each person in `teamData.yaml` identifies one of these sample images as a profile photo.
-
-<span class="tutorialStep"></span> Update `site.vfiles` to:
-
-<clipboard-copy>
-
-```yaml
-public = merge(static, virtual):
-
-virtual:
-  index.html = index.ori():
-  thumbnails = map(static/images, =image/resize(@value, width=200)):
-
-title: Our Amazing Team
-```
-
-</clipboard-copy>
-
-With this, the index page can now load thumbnail images from the virtual `thumbnails` folder.
-
-<span class="tutorialStep"></span> In the Glitch preview address bar, enter: `thumbnails`
-
-The virtual `names` folder contains a set of thumbnail images. _These images do not exist._ Or rather they don't exist in persistent form; they are potential images that are only created when you ask for them.
-
-<span class="tutorialStep"></span> Open one of the virtual thumbnail images to see one of the original images at a smaller size.
-
-Note: on "retina" displays with high pixel densities, the thumbnails will look blurry. You can double the resolution of the thumbnails by doubling the thumbnail width to `width=400`. It's beyond the scope of this tutorial, but you could use the techniques described here to create [responsive images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images), with multiple formulas formatting or scaling images to target displays with specific pixel densities.
-
-<span class="tutorialStep"></span> Clear the address bar above the Glitch preview to return to the index page.
+The preview now looks finished, with appropriate styling and a little person icon.
 
 ## Index the team data by person name
 
-The last part of your site you need to make is a virtual folder containing an HTML for each team member. To lay the groundwork for that, you're first going to create an intermediate folder with the same data as `teamData.yaml`, but where the files are named after the people on the team.
+The last part of your site you need to make is a virtual folder containing an HTML page for each team member. To lay the groundwork for that, you're first going to create an intermediate folder with the same data as `teamData.yaml`, but where the files are named after the people on the team.
 
 The reason for this is that, as you've seen, the top-level "file" names in `teamData.yaml` are integers, like `0` for the first person. But in your final website graph, you'd like the keys of the pages in the `team` area to include the person's name, like `Alice.html`.
 
 <span class="tutorialStep"></span> Add a new formula to the bottom of `site.vfiles`:
 
-<clipboard-copy>
+<reveal-solution>
 
 ```yaml
 public = merge(static, virtual):
@@ -369,7 +430,7 @@ title: Our Amazing Team
 teamByName = mapKeys(teamData.yaml, =name):
 ```
 
-</clipboard-copy>
+</reveal-solution>
 
 You'll use this `teamByName` folder in the next step.
 
@@ -377,17 +438,17 @@ You'll use this `teamByName` folder in the next step.
 
 <span class="tutorialStep"></span> In the src folder, create a new file called `person.ori` and paste this into it:
 
-<clipboard-copy>
+<reveal-solution>
 
 ```html
 <h1>\{\{ name }}</h1>
 ```
 
-</clipboard-copy>
+</reveal-solution>
 
 <span class="tutorialStep"></span> Add a new `team` formula to the `public` section of `site.vfiles`:
 
-<clipboard-copy>
+<reveal-solution>
 
 ```yaml
 public = merge(static, virtual):
@@ -403,7 +464,7 @@ teamByName = mapKeys(teamData.yaml, =name):
 
 The `team` folder takes all the team members from `teamByName` and creates an HTML page for them.
 
-</clipboard-copy>
+</reveal-solution>
 
 <span class="tutorialStep"></span> In the Glitch preview address bar, enter: `team`
 
@@ -421,7 +482,7 @@ We often use extensions at the end of file names to indicate the type of data th
 
 <span class="tutorialStep"></span> Update the `team` formula in `site.vfiles`:
 
-<clipboard-copy>
+<reveal-solution>
 
 ```yaml
 public = merge(static, virtual):
@@ -435,7 +496,7 @@ title: Our Amazing Team
 teamByName = mapKeys(teamData.yaml, =name):
 ```
 
-</clipboard-copy>
+</reveal-solution>
 
 <span class="tutorialStep"></span> In the preview of the index page, click the entry for a team member.
 
@@ -463,7 +524,7 @@ Before wrapping up, we can make one refinement to make the definition of the `pu
 
 <span class="tutorialStep"></span> Update `site.vfiles`:
 
-<clipboard-copy>
+<reveal-solution>
 
 ```yaml
 public = merge(static, this):
@@ -475,7 +536,7 @@ title: Our Amazing Team
 teamByName = mapKeys(teamData.yaml, =name):
 ```
 
-</clipboard-copy>
+</reveal-solution>
 
 The `this` keyword in `merge(static, this)` refers to everything indented on the following lines. The formula can now be read as: "The `public` folder is the result of merge the `static` folder with the following virtual files…"
 
