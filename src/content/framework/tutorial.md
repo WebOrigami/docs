@@ -26,28 +26,40 @@ In the Glitch window, you will see a list of files on the left, the currently-op
 
 In Graph Origami, you can build things from a combination of real files that are permanently stored, and virtual files that are created on demand according to your instructions.
 
-<span class="tutorialStep"></span> In the `src` folder, open the file called `site.vfiles`.
+One way you can define virtual files is in a file with a `.vfiles` extension that contains information in YAML format. In that format, you enter key/value pairs separated with a colon, like `name: Alice`. You define hierarchy with indentation.
 
-This is where you’re going to define virtual files that will complete the About Us site.
+**Example:** The following defines a virtual folder called `test` containing two virtual files, `short.txt` and `long.txt`. There is an additional top-level file called `another`. (Not every file needs an extension.)
 
-<span class="tutorialStep"></span> Copy/paste the following into `site.vfiles`:
+```yaml
+test:
+  short.txt: This is a short text file.
+  long.txt: |
+    This is a longer file whose content spans multiple lines. All lines indented
+    like this will be treated as part of the file.
 
-<clipboard-copy>
+another: This is a file at the top-level.
+```
+
+Each key — the name of the virtual folder or file — is followed by a colon. Everything after the colon becomes the content. For virtual folders, indent virtual files beneath it. For virtual files, you can enter text after the colon. You can use a `|` character to indicate the beginning of multi-line text.
+
+Now you’re going to start defining virtual files to bring your About Us site to life.
+
+<span class="tutorialStep"></span> **Try it:** In the `src` folder, open `site.vfiles`. Following the example above, edit the file to define a virtual folder called `public`. Give it a single virtual file called `index.html` with the content: Hello, world!
+
+Try doing this on your own, then check your solution.
+
+<reveal-solution>
 
 ```yaml
 public:
   index.html: Hello, world!
 ```
 
-</clipboard-copy>
+</reveal-solution>
 
-The first line defines a virtual folder called `public`. The name "public" is not special; you could configure Graph Origami to serve a different real or virtual folder as the site.
+The Glitch preview window should now show: Hello, world!
 
-Anything indented with two spaces beneath the first line becomes a virtual file in the `public` folder.
-
-The second line defines a virtual file called `index.html`. Everything after the colon on that line becomes the text content of that virtual file.
-
-The Glitch preview window updates to show: Hello, world!
+This tutorial project just happens to be configured to serve the contents of the virtual `public` folder, but the name "public" itself isn't special. You could configure the project to serve a different real or virtual folder.
 
 ## Formulas can call JavaScript
 
@@ -55,33 +67,47 @@ You can define virtual files with formulas that call JavaScript.
 
 <span class="tutorialStep"></span> View the file `src/greet.js`.
 
-This defines a function called `greet` which, given a person’s name, returns a greeting in HTML.
+This defines a function called `greet` which, given a person’s name, returns a greeting in HTML. The person's name will be set in bold.
 
-<span class="tutorialStep"></span> Update `site.vfiles` to:
+**Example:** The following code defines a virtual file called `message` whose contents will be: Hello, **Alice**!
 
-<clipboard-copy>
+```yaml
+message = greet('Alice'):
+```
+
+A formula goes in the _key_ half of a definition — the part before the colon. In this tutorial, the formulas won't have anything after the colon; the value part will be empty.
+
+Text arguments in formulas require single quotes.
+
+<span class="tutorialStep"></span> **Try it:** Update your definition of `index.html` to call the `greet` function so that the page says: Hello, **world**!
+
+<reveal-solution>
 
 ```{{'yaml'}}
 public:
   index.html = greet('world'):
 ```
 
-</clipboard-copy>
+</reveal-solution>
 
-This formula defines the contents of index.html as the result of calling the greet function.
-Formulas end with a colon. Text arguments in formulas require single quotes.
-
-When you write `greet` in a formula like this, Graph Origami searches the current [scope](/language/scope.html) for a real or virtual file called `greet`. If it doesn't find one, it will try searching for "greet.js". In this case, it finds `greet.js`, and assumes the file's top-level export is the function you want to call.
-
-The preview window now shows: Hello, **world**!
+When you call `greet` in a formula like this, Graph Origami searches the current [scope](/language/scope.html) for a real or virtual file called `greet`. If it doesn't find one, it will try searching for "greet.js". In this case, it finds `greet.js`, and assumes the file's top-level export is the function you want to call.
 
 ## Formulas can reference real or virtual files
 
 You can pass a real or virtual file to a function by name.
 
-<span class="tutorialStep"></span> Update `site.vfiles` to:
+**Example:** The following defines a file `doubled` whose contents will be the contents of `word` repeated twice.
 
-<clipboard-copy>
+```yaml
+word: beep
+doubled = repeat(2, word):
+```
+
+So `doubled` will be `beepbeep`.
+
+<span class="tutorialStep"></span> **Try it:** Define a top-level file called `title` to hold the name of your site, say, "Our Amazing Team". Then update the formula for `index.html` to pass the title to `greet`, so that the preview shows: Hello, **Our Amazing Team**!
+
+<reveal-solution>
 
 ```yaml
 public:
@@ -90,13 +116,9 @@ public:
 title: Our Amazing Team
 ```
 
-</clipboard-copy>
+</reveal-solution>
 
-This defines a new virtual file called `title` that your formulas can reference, but isn’t accessible through the site because it is not in the virtual `public` folder.
-
-The formula passes the contents of the virtual `title` file to the `greet()` function.
-
-The preview now shows: Hello, **Our Amazing Team**!
+By putting `title` at the top level, the formulas inside `public` can reference it, but `title` won't be directly accessible through the site.
 
 ## Formulas can extract data
 

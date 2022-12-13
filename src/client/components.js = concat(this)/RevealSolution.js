@@ -1,4 +1,4 @@
-class RevealAnswer extends HTMLElement {
+class RevealSolution extends HTMLElement {
   connectedCallback() {
     this.attachShadow({ mode: "open" });
     this.shadowRoot.innerHTML = `
@@ -42,6 +42,7 @@ class RevealAnswer extends HTMLElement {
 
         :host(:not(.show)) #answer {
           filter: blur(10px);
+          opacity: 0.5;
         }
 
         :host(.show) #buttonContainer {
@@ -65,4 +66,4 @@ class RevealAnswer extends HTMLElement {
   }
 }
 
-customElements.define("reveal-answer", RevealAnswer);
+customElements.define("reveal-solution", RevealSolution);
