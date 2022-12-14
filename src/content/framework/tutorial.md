@@ -55,7 +55,7 @@ test:
 another: This is a file at the top-level.
 ```
 
-Each key — the name of the virtual folder or file — is followed by a colon. Everything after the colon becomes the content. For virtual folders, indent virtual files beneath it. For virtual files, you can enter text after the colon. You can use a `|` character to indicate the beginning of multi-line text.
+Each key — the name of the virtual folder or file — is followed by a colon. Everything after the colon becomes the content. For virtual folders, indent virtual files beneath it. For virtual files, enter text after the colon. You can use a `|` character to indicate the beginning of multi-line text.
 
 Now you’re going to start defining virtual files to bring your About Us site to life.
 
@@ -142,7 +142,7 @@ word: beep
 doubled = repeat(2, word):
 ```
 
-This calls a built-in `repeat` function. Here, the value of `doubled` will be "beepbeep".
+This calls a built-in `repeat` function. The value of `doubled` will be "beepbeep".
 
 <span class="tutorialStep"></span> **Try it:** In `site.vfiles`, define a top-level virtual file called `title` to hold the name of your site, say, "Our Amazing Team". Then update the formula for `index.html` to pass the title to `greet`, so that the preview shows: Hello, **Our Amazing Team**!
 
@@ -213,6 +213,8 @@ Inside the curly braces, you can do the same things as in formulas: call JavaScr
 ```
 
 </reveal-solution>
+
+This template won't affect anything until you tell Graph Origami where to use it.
 
 ## Invoke a template as a function
 
@@ -331,7 +333,7 @@ names:
 greetings = map(names, greet):
 ```
 
-You can use a `map` to transform images too. The file `src/thumbnail.js` contains a small JavaScript function which, given the binary data for an image, will invoke an image-editing library to generate a new image at a smaller size.
+You can use a `map` to transform images too. The file `src/thumbnail.js` contains a small JavaScript function which, given the binary data for an image, invokes an image-editing library to generate a new image at a smaller size.
 
 <span class="tutorialStep"></span> **Try it:** In `site.vfiles`, update the `public` folder to contain a new virtual subfolder called `thumbnails`. Use a `map` function to map the real `images` folder using the `thumbnail` function.
 
@@ -360,9 +362,9 @@ thumbnails = fakeImages:
 
 The virtual `thumbnails` folder contains a set of thumbnail images _that do not exist._ They are potential images that are only created when you ask for them.
 
-<span class="tutorialStep"></span> In the preview graph, click a box for a real image to preview it.
+<span class="tutorialStep"></span> In the preview graph, click a box for a real image like `images/van.jpg` to preview it.
 
-<span class="tutorialStep"></span> Navigate back and click a box for the corresponding thumbnail image to see the same image at a smaller size.
+<span class="tutorialStep"></span> Navigate back and click a box for the corresponding thumbnail image like `thumbnails/van.jpg` to see the same image at a smaller size.
 
 <span class="tutorialStep"></span> Navigate back to the preview graph.
 
@@ -376,7 +378,7 @@ You can also use a `map` to create a virtual folder based on data, not just file
 locations = map(teamData.yaml, =location):
 ```
 
-The `location` formula says: for each entry in `teamData.yaml`, evaluate the expression `=location`. That expression defines an unnamed function. This function will be evaluated in the context of a team member, so it will return the person's location.
+The `locations` formula says: for each entry in `teamData.yaml`, evaluate the expression `=location`. The expression defines an unnamed function. The function will be evaluated in the context of a team member, so it will return the person's location.
 
 The result of the above will be a new virtual folder called `locations` with the same keys (names) as `teamData.yaml`. Since the top level of `teamData.yaml` is an array, the keys will be integers.
 
@@ -461,7 +463,7 @@ The names are all crammed together on the index page because the `map` is produc
 \{\{ map(teamData.yaml, =location) }}
 ```
 
-You could improve that by formatting the locations to add whitespace or, below, to put each location into a separate paragraph.
+You could improve that by formatting the locations. The code below puts each location into a separate paragraph.
 
 ```{{'html'}}
 \{\{ map(teamData.yaml, =`<p>\{\{ location }}</p>`) }}
@@ -488,7 +490,7 @@ The preview now shows a bulleted list of names.
 
 The text inside a backtick-delimited template can span multiple lines, so it can be as complex as you want.
 
-<span class="tutorialStep"></span> To fill out the index page template, paste the following into `index.ori`:
+<span class="tutorialStep"></span> To fill out the index page template, replace the contents of `index.ori` with:
 
 <clipboard-copy>
 
@@ -508,9 +510,9 @@ The last phase of building your site involves creating a `team` area for each pe
 
 To lay the groundwork for that, you're first going to create an intermediate folder with the same data as `teamData.yaml`, but where the files are named after the people on the team.
 
-The reason for this is that, as you've seen, the top-level "file" names in `teamData.yaml` are integers, like `0` for the first person. But in your final website graph, you'd like the keys of the pages in the `team` area to include the person's name, like `Alice.html`.
+As you've seen, the top-level "file" names in `teamData.yaml` are integers, like `0` for the first person. But in your final website graph, you'd like the keys of the pages in the `team` area to include the person's name, like `Alice.html`.
 
-For this, Graph Origami provides a `mapKeys()` function that works like `map()`, but instead of mapping the values (file contents), it maps the keys (file names).
+For this, Graph Origami provides a `mapKeys()` function that works like `map()`. Instead of mapping the values (file contents), it maps the keys (file names).
 
 **Example:**
 
@@ -610,7 +612,7 @@ The preview will show a heading with a person's name like: **Alice**
 
 We often use extensions at the end of file names to indicate the type of data they contain. Virtual folders created with functions like `map()` will often change the type of data, so as a convenience those functions allow you to add, change, or remove extensions.
 
-For this reason, `map()` supports an optional `extension` parameter. This takes a string that, among other things, can describe how an extension should change.
+The `map()` function supportss via an optional `extension` parameter. This takes a string that can describe how an extension should change.
 
 **Example:** The following are two examples of the `extension` parameter.
 
@@ -638,15 +640,23 @@ teamByName = mapKeys(teamData.yaml, =name):
 
 </reveal-solution>
 
+<span class="tutorialStep"></span> In the preview address bar, enter: `team`
+
+This lists the files in the virtual `team` folder.
+
+<span class="tutorialStep"></span> The files in this folder now have names that end in `.html`. Click a name like `Alice.html` to open that page.
+
+<span class="tutorialStep"></span> Clear the preview address to return to the index page.
+
 <span class="tutorialStep"></span> In the preview of the index page, click the entry for a team member.
 
-This will open a page at a URL that includes the `.html` extension, like `team/Alice.html`.
+The index page links now navigate to the corresponding HTML pages in the team area.
 
 ## Fill out the person template
 
 The last step is to fill out the template for a person.
 
-<span class="tutorialStep"></span> Update `person.ori` to:
+<span class="tutorialStep"></span> replace the contents of `person.ori` with:
 
 <clipboard-copy>
 
@@ -715,6 +725,8 @@ Because these static files are all in native web formats, your static site can b
 Your site will have a URL like `https://<something>.glitch.me`.
 
 <span class="tutorialStep"></span> Open a new browser tab and navigate to that URL to see how your site will look to visitors.
+
+As long as you're working on your site, the Graph Origami server will be used to serve the content. Some time after you close the Glitch window, Glitch will rebuild the static files and, from that point on, serve the static files directly.
 
 ## Learn more
 
