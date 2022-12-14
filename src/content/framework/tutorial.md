@@ -92,7 +92,7 @@ index.html: Hello, world!
 ` }}
 </figure>
 
-The little circle represents the `public` folder, and the boxes represent the `index.html` file.
+The little circle represents the `public` folder, and the box represents the `index.html` file.
 
 If your window isn't large enough to see a useful portion of the diagram in the Glitch preview pane, you can open the preview into its own window by clicking the `⋮` button above the preview, then selecting **Open in new window**.
 
