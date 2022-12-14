@@ -3,7 +3,7 @@
 - href: tutorial.html
   text: Tutorial
 - href: intro0.html
-  text: Tutorial (Original)
+  text: Concepts
   pages:
     - href: intro1.html
       text: Model
@@ -21,13 +21,6 @@
       text: Templates
     - href: intro8.html
       text: Transforms
-      pages:
-        - href: intro8a.html
-          text: Page fragments
-        - href: intro8b.html
-          text: Images
-        - href: intro8c.html
-          text: Full pages
     - href: intro9.html
       text: Graph tools
     - href: intro10.html
@@ -41,8 +34,6 @@
       text: Maps
     - href: additions.html
       text: Additions
-    - href: ghosts.html
-      text: Ghost graphs
     - href: this.html
       text: "<code>this</code> keyword"
 - href: templates.html
