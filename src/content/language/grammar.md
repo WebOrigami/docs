@@ -97,12 +97,7 @@ spaceUrlPath: pathKey whitespace spaceUrlPath
 
 spacePathCall: "."|".." [spaceUrlPath]
 
-substitution: substitutionInline
-              substitutionBlock
-
-substitutionBlock: "\{\{#" functionCallTarget [implicitParensArgs] "}}" templateDocument "\{\{/" [text] "}}"
-
-substitutionInline: "\{\{" expression "}}"
+substitution: "\{\{" expression "}}"
 
 template: templateText [substitution template]
 
