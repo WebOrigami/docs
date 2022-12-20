@@ -82,7 +82,7 @@ As you build a collection of virtual folders and files, it's helpful to be able 
 
 <span class="tutorialStep"></span> In the fake address bar above the Glitch preview, copy/paste this address: `.svg`
 
-(Glitch has a quirk that prevents you from typing an address that starts with a period, so if you want to type an address like `.svg`, type `svg` first and then insert a `.` at the beginning.)
+(Glitch has a quirk that prevents you from typing an address that starts with a period, so if you want to type that address, type `svg` first and then insert a `.` at the beginning.)
 
 You'll see your `public` folder visually represented as a graph:
 
@@ -122,7 +122,7 @@ Text arguments in formulas require single quotes.
 
 <reveal-solution>
 
-```{{'yaml'}}
+```yaml
 public:
   index.html = greet('world'):
 ```
@@ -425,7 +425,7 @@ If you have a folder that contains text, you can reference that folder inside a 
 
 <reveal-solution>
 
-```{{'html'}}
+```html
 <h1>\{\{ title }}</h1>
 \{\{ names }}
 ```
@@ -442,7 +442,7 @@ If you're only going to use a virtual folder like `names` in one place like `ind
 
 <reveal-solution>
 
-```{{'html'}}
+```html
 <h1>\{\{ title }}</h1>
 \{\{ map(teamData.yaml, =name) }}
 ```
@@ -459,13 +459,14 @@ The names are all crammed together on the index page because the `map` is produc
 
 **Example:** This template will cram all the locations together:
 
-```{{'html'}}
+```html
 \{\{ map(teamData.yaml, =location) }}
 ```
 
 You could improve that by formatting the locations. The code below puts each location into a separate paragraph.
 
 ```{{'html'}}
+
 \{\{ map(teamData.yaml, =`<p>\{\{ location }}</p>`) }}
 ```
 
@@ -476,6 +477,7 @@ The second argument to `map()` here is a smaller template instead the larger tem
 <reveal-solution>
 
 ```{{'html'}}
+
 <h1>\{\{ title }}</h1>
 <ul>
 \{\{ map(teamData.yaml, =`<li>\{\{ name }}</li>`) }}
@@ -494,9 +496,10 @@ The text inside a backtick-delimited template can span multiple lines, so it can
 
 <clipboard-copy>
 
-```html
+\`\`\`html
 {{ framework-intro/assets/index.ori }}
-```
+
+````
 
 </clipboard-copy>
 
@@ -526,7 +529,7 @@ countries:
     abbreviation: CN
 
 countriesByAbbreviation = mapKeys(countries, =abbreviation):
-```
+````
 
 This operation looks like:
 
@@ -614,7 +617,7 @@ We often use extensions at the end of file names to indicate the type of data th
 
 The `map()` function supportss via an optional `extension` parameter. This takes a string that can describe how an extension should change.
 
-**Example:** The following are two examples of the `extension` parameter.
+**Example:** The following are two examples of the `extension` parameter. (Note that YAML files allow comments that start with a `#` character.)
 
 ```yaml
 # Add a .txt extension to the mapped file names
@@ -631,7 +634,7 @@ htmlFiles = map(mdFiles, mdHtml, extension='md->html'):
 ```yaml
 public = merge(static, this):
   index.html = index.ori():
-  thumbnails = map(static/images, thumbnail):
+  thumbnails = map(images, thumbnail):
   team = map(teamByName, person.ori, extension='->html'):
 
 title: Our Amazing Team
@@ -656,12 +659,13 @@ The index page links now navigate to the corresponding HTML pages in the team ar
 
 The last step is to fill out the template for a person.
 
-<span class="tutorialStep"></span> replace the contents of `person.ori` with:
+<span class="tutorialStep"></span> Replace the contents of `person.ori` with:
 
 <clipboard-copy>
 
-```html
+```{{'html'}}
 {{ framework-intro/assets/person.ori }}
+
 ```
 
 </clipboard-copy>
@@ -683,6 +687,43 @@ thumbnails = fakeImages:
 </figure>
 
 From a functional standpoint, you've achieved your goal. The site is now complete.
+
+## Comments
+
+Stepping back, consider that you've created this site with some templates and a rather concise `site.vfiles`:
+
+```yaml
+public = merge(static, this):
+  index.html = index.ori():
+  thumbnails = map(images, thumbnail):
+  team = map(teamByName, person.ori, extension='->html'):
+
+title: Our Amazing Team
+teamByName = mapKeys(teamData.yaml, =name):
+```
+
+Each of the lines defining the virtual `public` folder and its subfolders creates some important area of the site.
+
+In a real project, it can be worth adding comments to remind you what each line does, like:
+
+```yaml
+# The public folder is the static folder plus some virtual subfolders.
+public = merge(static, this):
+  # Generate the index page from the index.ori template.
+  index.html = index.ori():
+
+  # Generate the thumbnails by reducing the full-size images.
+  thumbnails = map(images, thumbnail):
+
+  # Generate a page in the team area for each team member.
+  team = map(teamByName, person.ori, extension='->html'):
+
+# Define the title here so both page templates can use it.
+title: Our Amazing Team
+
+# Index the team members by name.
+teamByName = mapKeys(teamData.yaml, =name):
+```
 
 ## Building static files
 
