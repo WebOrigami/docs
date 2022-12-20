@@ -2,6 +2,6 @@
 areas = js/markCurrent(areas.yaml, currentArea):
 currentArea = js/pathArea(@path):
 ---
-{{#map areas}}
+{{map areas, =`
   {{ templates/linkCurrent.ori() }}
-{{/map}}
+`}}

@@ -5,19 +5,19 @@
   {{if ./constructor, 'constructor'}}
 </h3>
 <ul>
-{{#map ./parameters}}
+{{map ./parameters, =`
   <li>{{./name}}: {{ @template/scope/typeList.ori(./types) }}
-    {{#if ./description}}
+    {{if ./description, =`
       &ndash; {{./description}}
-    {{/if}}
+    `}}
   </li>  
-{{/map}}
+`}}
 </ul>
-{{#unless ./constructor}}
+{{unless ./constructor, =`
 <p>
   Returns: {{ @template/scope/typeList.ori(./returnTypes) }}
 </p>
-{{/unless}}
+`}}
 <p>
   {{mdHtml ./description}}
 </p>

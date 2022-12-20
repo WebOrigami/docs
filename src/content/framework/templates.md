@@ -18,12 +18,12 @@ application:
 intro = client/samples/frameworkIntro:
 index.ori: |
   <h1>About Us</h1>
-  {{#map teamByName}}
+  {{map teamByName, =`
     <li>{{name}}</li>
-  {{/map}}
+  `}}
 indexTemplate:
   - <h1>About Us</h1>
-  - "{{#map teamByName}}<li>{{name}}</li>{{/map}}"
+  - "{{map teamByName, =`<li>{{name}}</li>` }}"
 indexText = results(this):
   0: "<h1>About Us</h1>"
   1 = map(intro/teamByName, =`<li>{{name}}</li>`):
