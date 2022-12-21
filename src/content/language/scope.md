@@ -1,39 +1,27 @@
 ---
 title: Scope
-subtitle: Defines what's available to expressions executed in a given context
-example: |
-  a:
-    b: B
-  c:
-    d:
-      e:
-        f: F
-      g: G
-      message = j: ""
-    h:
-      i: I
-  j: J
-step1:
-  greet.js = framework-intro/src/greet.js:
-  public = merge(framework-intro/src/static, this):
-    title: Our Amazing Team
-    index.html = framework-intro/src/greet('world'):
-    teamData.yaml = framework-intro/src/teamData.yaml:
-step2:
-  greet.js = framework-intro/src/greet.js:
-  public:
-    images = framework-intro/src/static/images:
-    index.html = framework-intro/src/greet(framework-intro/src/teamData.yaml/0/name):
-    personIcon.svg = framework-intro/src/static/personIcon.svg:
-    styles.css = framework-intro/src/static/styles.css:
-    (teamData.yaml) = framework-intro/src/teamData.yaml:
+subtitle: How references in Origami expressions are resolved
+projectExample: |
+  package.json: '{ name: "Sample }'
+  ReadMe.md: About this project
+  src:
+    assets:
+      image1.jpg: "[binary data]"
+    greet.js: export default function greet() …
+    site.vfiles:
+      index.html = greet(name):
+      name: Alice
+site.vfiles: |
+  index.html = greet(name):
+  name: Alice
 jsScopeExample: |
   Math:
     pow: "[function]"
   "[module]":
     power: 2
-    sumOfSquares: "[function]"
+    sumSquares: "[function]"
     "[function body]":
+      n: 3
       total: "0"
       "[for]":
         i: 1
@@ -42,82 +30,36 @@ jsScopeExample: |
           newTotal: "[What can this see?]"
 ---
 
-## Scope basics
+## What is scope?
 
-An Origami expression contains references — to named functions, files, data keys, etc. — that must be resolved in order to evaluate the expression. For example, in the expression
+Most Origami expressions will contain references to named functions, files, data keys, etc., which must be resolved in order to evaluate the expression. For example, consider the framework formula:
 
+```yaml
+message = greet():
 ```
-message = myFunction()
+
+Or the Origami CLI command:
+
+```console
+$ ori greet
 ```
 
-where does Origami look for the `myFunction` function in order to invoke it? The answer is that every Origami expression is evaluated in the context of a _scope_.
+In these examples, where does Origami look for the definition of `greet` function? And if `greet` is defined in multiple places, which definition will be used? Graph Origami answers these questions by defining a _scope_ that is used to evaluate any expression.
 
-A scope is essentially an ordered list of key/value pairs. When Origami needs to resolve a reference like `myFunction`, it consults the scope. The first appearance of the key `myFunction` that has a defined value (i.e., not the JavaScript `undefined` value) will be used. Keys may appear multiple times in a scope, but only the first defined value will be used.
+A scope is essentially an ordered list of key/value pairs. When Origami needs to resolve a reference like `greet`, it consults the scope. The first appearance of the key `greet` that has a defined value (i.e., not the JavaScript `undefined` value) will be used. Keys may appear multiple times in a scope, but only the first defined value will be used.
 
 Given the graph-focused nature of Origami, it's natural that the scope is expressed as an explorable graph.
 
-The Origami CLI and framework can both provide a default scope that should meet most of your needs. If you encounter a situation where the default scope is inadequate, you can construct a scope graph yourself to tightly control how references in Origami expressions are resolved.
-
-## Ancestor-sibling scope
-
-By default, the scope of an Origami graph is _ancestor-sibling scope_: all siblings of the current graph node (including that node itself) and its ancestors.
-
-Example:
-
-```{{'yaml'}}
-{{ yaml example }}
-```
-
-which looks like
-
-<figure>
-{{ svg example }}
-</figure>
-
-This graph includes a formula `message = j`. Let's consider the scope available to that formula so that we can understand how Origami will resolve the `j` reference.
-
-Using the above definition for ancestor-sibling scope, we start at the point where the `message = j` formula appears. We then look for all siblings at each level as we walk up the graph.
-
-The scope will then contain, in order:
-
-- e
-- g
-- message = j
-- d
-- h
-- a
-- c
-- j
-- _… and all Origami builtins_
-
-Some values in this example graph will _not_ be present in the scope available to the `message` formula because they are not siblings of that formula or any ancestor.
-
-- b
-- f
-- i
-
-Given this scoping, a formula like `message = j` works because `j` is in scope. A formula like `message = i` would fail, because `i` is not in scope.
-
-## Scope in the Origami Framework
-
-If we consider a formula as a file, the formula can see everything in that folder, as well as anything in any ancestor folder.
-
-## Scope in the Origami CLI
-
-- Graphs created with the `virtual` or `meta` builtins will have the graph of Origami [builtins](/cli/builtins.html) as an ancestor, so all builtins will be in scope as well.
-
-## Scope in an Origami Template
-
-## Custom scope
-
-An important question to settle early is: when Graph Origami evaluates a formula like `greet('world')`, how does it resolve the reference to `greet`? Or, as a programmer might ask: in a formula expression, what is in _scope_?
+## Implicit and explicit scoping
 
 Most frameworks provide for some sort of extensibility — the ability to add custom functions like `greet` so that you can define new features beyond those built into the framework. Frameworks generally provide extensibility in one of two ways:
 
-- Implicit scoping: the framework has some set of rules for automatically deciding what a name refers to. This can be easy to start with, but can quickly become problematic as you fight with the framework's built-in rules. This is particularly problematic if the framework's rules are not precisely defined somewhere, and so are essentially magic.
+- Implicit scoping: the framework has a set of rules for automatically deciding what a name refers to. This can be easy to start with, but can quickly become problematic as you fight with the framework's built-in rules. This is particularly problematic if the framework's rules are not precisely defined somewhere, and so are essentially magic.
 - Explicit scoping: you must write code or create configuration files that define what specific names should refer to. This approach gives you more control, but is harder to get started with, and can be tedious.
 
-Graph Origami supports both approaches. The explicit definition of scope is beyond the scope of this tutorial, but in any event that option is rarely needed. Instead, the implicit definition of scope is quite flexible while also precisely defined, giving you control over how scope works.
+Graph Origami supports both approaches. The Origami CLI and Origami framework both provide a default scope that should meet most needs. Its definition is fairly simple and quite flexible, so it hopefully avoids the problems with implicit scoping in other frameworks.
+
+If you encounter a situation where the default scope is inadequate, you can construct an explicit scope yourself to tightly control how references in Origami expressions are resolved. You construct the scope with graphs and, given that there are many ways to define graphs in Graph Origami, this hopefully avoids the problems with explicit scoping in other frameworks.
 
 ## Comparison with block scope in programming languages
 
@@ -129,7 +71,7 @@ Let's consider how block scoping works in a sample of JavaScript code:
 const power = 2;
 
 // Return the sum of the squares from 1 to n.
-function sumOfSquares(n) {
+function sumSquares(n) {
   let total = 0;
   for (const i = 1; i <= n; i++) {
     const squared = Math.pow(i, power);
@@ -146,14 +88,13 @@ The answer in JavaScript and many other programming languages is that the defini
 
 1. Variables defined inside the same `for` block, like: `squared`
 1. Variables defined by the `for` loop itself: `i`
-1. Variables defined inside the `function` block: `total`
-1. Variables defined as function parameters: `n`
-1. Variables defined at the module's top level: `sumOfSquares` and `power`
+1. Variables defined inside the `function`: `n` and `total`
+1. Variables defined at the module's top level: `sumSquares` and `power`
 1. Global objects, like `Math`
 
 When you write a statement like `newTotal = total + squared`, the language interpreter evaluates the references `total` and `squared` by searching through the blocks of the current scope in the above order, from innermost to outermost block. (In programming languages like JavaScript, variables only become available in scope if they are encountered _before_ the current line, but for the purposes of this analogy, we can set that refinement aside.)
 
-We can visualize that scope as a graph. The first time through the loop, the scope looks like:
+We can visualize that scope as a graph. If we invoke `sumSquares(3)`, the first time through the loop, the scope looks like:
 
 <figure class="fullWidth">
 {{ svg jsScopeExample }}
@@ -161,122 +102,55 @@ We can visualize that scope as a graph. The first time through the loop, the sco
 
 Visualized this way, looking up something in the current scope is a matter of walking metaphorically "up" the tree (here, that means moving to the left). The line for `newTotal` references `squared`, which is sitting right there in the same neighborhood of the graph; the reference to `total` requires walking up the tree a few levels to find that variable.
 
-The search always goes "up" the tree and never goes back deeper into the tree. So the definition for `squared` can see the global math object `Math` but _not_ the `pow` function inside it. The definition for `squared` must reference the `pow` function as `Math.pow`: it lets the automatic search of scope go up to find `Math`, then explicitly goes deeper into the `Math` object to find the `pow` function.
+The search always goes "up" the tree and never goes back deeper into the tree. So the definition for `sumSquares` can see the global math object `Math` but _not_ the `pow` function inside it. The definition for `sumSquares` must reference the `pow` function as `Math.pow`: it lets the automatic search of scope go up to find `Math`, then explicitly goes deeper into the `Math` object to find the `pow` function.
 
 The pervasiveness of block scoping in programming suggests that it is very effective. It is both automatic and precisely defined, so it's not too hard to learn. Given some code to read, programmers generally can correctly predict what is or isn't in scope.
 
 ## Scope in Graph Origami is based on graphs
 
-Graph Origami applies block scoping to explorable graphs to define a _graph scope_.
+Graph Origami applies the principle of block scoping to explorable graphs to define a _graph scope_.
 
-Let's consider what your formula for `index.html` has access to. First, let's identify the graphs in which that formula exists, from innermost to outermost:
+Suppose we have a project with a file system hierarchy like:
 
-1. A graph defined by the `public` folder, including the additions in `+.yaml`
-1. A graph defined by the `src` folder
-1. A graph defined by the project's top-level folder
-1. A graph defined by Graph Origami containing its global built-in functions
+```
+package.json
+ReadMe.md
+src/
+  assets/
+    image1.jpg
+  greet.js
+  site.vfiles
+```
 
-For space reasons, let's just visualize the first two steps: the portion of the scope graph defined by the `public` folder and the `src` folder:
+And suppose that the file `site.vfiles` defines a graph in YAML format:
+
+```{{'yaml'}}
+{{ site.vfiles }}
+
+```
+
+To determine how this `greet()` reference in `site.vfiles` will be resolved, let's model the whole project as a graph, including the graph inside `site.vfiles`:
 
 <figure class="fullWidth">
-{{ svg step1 }}
+{{ svg projectExample }}
 </figure>
 
-When the formula for `index.html` in `+.yaml` references `greet`, Graph Origami walks up this scope graph looking for it. In this case, it finds `greet.js` and interprets that as something that defines a function called `greet`, so the search ends there.
+When Graph Origami evaluates the formula for `index.html`, it will evaluate the expression `greet(name)`. To resolve those references, it walks up the tree, considering the following graph nodes in term:
 
-That formula can also reference other things in scope.
+1. The graph defined by `site.vfiles`: defines `name` and `index.html = greet('name')`. The latter implicitly defines a virtual file called `index.html`.
+1. The graph defined by the `src` folder: defines `assets`, `greet.js`, and `site.vfiles`. The `greet.js` file is text, but implicitly defines a virtual value called, `greet`, which is the actual exported JavaScript function.
+1. The graph defined by the project's top-level folder: defines `package.json`, `ReadMe.md`, and `src`.
+1. The graph defined by Graph Origami's built-in functions.
 
-<span class="tutorialStep"></span> Update the definition for `index.html` to reference the `title`.
+When looking for `greet`, Graph Origami doesn't find that key in the first graph (the contents of `site.vfiles`), so it moves up a level to the `src` folder. There it _does_ find `greet`, so the search ends.
 
-```yaml
-# Site title
-title: Our Amazing Team
+As with block scoping in programming languages, in graph scoping the search only goes "up" the graph. If you want to go back deeper into the graph, you must make an explicit reference using paths:
 
-# Index page
-index.html = greet(title):
-```
-
-<span class="tutorialStep"></span> Navigate to `index.html` to see "Hello, <strong>Our Amazing Team</strong>."
-
-As with block scoping in programming languages, in graph scoping the search only goes "up" the graph. If you want to go back deeper into the graph, you have to make an explicit reference.
-
-For the formulas in `+.yaml`, the `photos` folder is in scope, but the individual image files inside that folder or not, and would need to be referenced with a path like `photos/beach.jpg`.
-
-Similarly, `teamData.yaml` is in scope, but the specific keys inside that data graph like `0` or `name` are not. You can reference a specific team member's name by first referencing `teamData.yaml`, and then providing a path that goes inside that graph.
-
-<span class="tutorialStep"></span> Update the definition for `index.html` to reference `teamData.yaml/0/name`.
-
-```yaml
-# Site title
-title: Our Amazing Team
-
-# Index page
-index.html = greet(teamData.yaml/0/name):
-```
-
-The `index.html` page now greets the first team member: "Hello, <strong>Alice</strong>."
+- If a formula in `site.vfiles` wants to reference the image `image1.jpg`, it will have to do that as `assets/image1.jpg`, because `assets` is in scope but `image1.jpg` isn't.
+- A formula in `site.vfiles` can obtain its own project name via `package.json/name`, because `package.json` is in scope.
 
 ## Project structure can determine what's public
 
-In the final site, you want virtual files like `index.html` to be visible, but you don't need to expose internal data files like `teamData.yaml`. You can take advantage of graph scope to hide such internal details.
+Graph scope lets you use the file system structure of your project as one way to configure what's available to your own code as well as what's available to end users.
 
-A convenient place to hide internal data like `teamData.yaml` is in the `src` folder. Everything in that folder is available to the formulas inside the `public` folder, but nothing at the `src` folder level is going to be visible to your site visitors.
-
-<span class="tutorialStep"></span> Move the `teamData.yaml` file from `src/public` up to `src`. (If using Glitch: click the `⋮` button next to the file name, select _Rename_, then edit the name to be `src/teamData.yaml`.)
-
-<span class="tutorialStep"></span> Refresh the browser preview for `.svg` to see the updated publicly-visible structure of the `src/public` folder.
-
-With this change, the `teamData.yaml` data is no longer in the `public` folder — but it is still in scope, so it's still available in formulas like the one for `index.html`. That lets you focus the `public` folder on just those things which must be visible in the final site.
-
-In short, graph scope lets you use the file system structure of your project as one way to configure what's available where.
-
-## Hiding specific keys
-
-In addition to project structure, there are other techniques to control what's publicly exposed in a graph. Another technique capitalizes on a ramification of how explorable graphs are defined.
-
-As noted earlier, an explorable graph can support more keys than it makes public. This fact gives explorable graphs a great deal of flexibility, but for the moment we can focus on the fact that you can define a graph that has hidden keys.
-
-This is similar to the way operating systems support hidden files: for example, files whose names begin with a `.` dot are normally excluded from directory listings.
-
-In a Graph Origami metagraph, you can define a hidden key by surrounding its name with parentheses.
-
-<span class="tutorialStep"></span> In `+.yaml`, add parentheses around the `title` key and update its comment:
-
-```yaml
-# Site title (hidden)
-(title): Our Amazing Team
-
-# Index page
-index.html = greet(teamData.yaml/0/name):
-```
-
-<span class="tutorialStep"></span> Refresh the browser preview for `.svg` to review the new publicly-visible structure of the `src/public` folder.
-
-Now `title` is hidden from view in the `public` folder:
-
-<figure>
-{{ svg step2/public }}
-</figure>
-
-The `title` is just hidden; it's still there, it's still in scope, and it's still accessible if you know to ask for it.
-
-<span class="tutorialStep"></span> Confirm that you can still inspect the title by navigating to `title`.
-
-Hidden keys are a good way to define data or intermediate for internal use, or to define intermediate results — things which you won't need to include when you deploy the final site. In the case of this `title` data, you're soon going to use that data in multiple virtual files. Those virtual files will be part of the final site, but the `title` on its own won't need to be, so it can be hidden.
-
-## Freedom to organize your source files
-
-By considering the structure of your project to determine scope, and by deciding which keys are visible or hidden, you can shape the virtual `public` graph into the desired structure of your final site.
-
-One ramification of this is that Graph Origami gives you considerable freedom to organize your source files how you wish. In this particular tutorial project, the source files are organized into a top-level `src` folder that contains a `public` subfolder. The virtual form of that `public` folder is going to slowly evolve into your final site.
-
-This particular structure works well in a Graph Origami because it capitalizes on how graph scope works: your formulas defined inside the `public` folder have access to all the private information they need in `src`. It's beyond the scope of this tutorial, but other arrangements are possible:
-
-- You could have `src` and `public` as peer folders, and define a formula inside `src` that points at `public`.
-- You could throw everything into the `src` folder, and then define `public` with a formula that filters out the stuff you don't want to make public.
-
-All that matters in Graph Origami is the virtual shape of the graph you're building — not the physical shape of the real project files. And Graph Origami gives you the tools to assemble and prune that virtual graph however you want.
-
-&nbsp;
-
-Next: [Templates](intro7.html) »
+You can take advantage of graph scope to hide internal details. If the little project defined above publishes the virtual contents of `site.vfiles`, a user will be able to browse to `index.html` — but will not be able to see `greet.js` or `ReadMe.md`.

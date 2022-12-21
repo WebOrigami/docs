@@ -466,7 +466,6 @@ The names are all crammed together on the index page because the `map` is produc
 You could improve that by formatting the locations. The code below puts each location into a separate paragraph.
 
 ```{{'html'}}
-
 \{\{ map(teamData.yaml, =`<p>\{\{ location }}</p>`) }}
 ```
 
@@ -477,7 +476,6 @@ The second argument to `map()` here is a smaller template instead the larger tem
 <reveal-solution>
 
 ```{{'html'}}
-
 <h1>\{\{ title }}</h1>
 <ul>
 \{\{ map(teamData.yaml, =`<li>\{\{ name }}</li>`) }}
@@ -496,10 +494,9 @@ The text inside a backtick-delimited template can span multiple lines, so it can
 
 <clipboard-copy>
 
-\`\`\`html
+```html
 {{ framework-intro/assets/index.ori }}
-
-````
+```
 
 </clipboard-copy>
 
@@ -529,7 +526,7 @@ countries:
     abbreviation: CN
 
 countriesByAbbreviation = mapKeys(countries, =abbreviation):
-````
+```
 
 This operation looks like:
 
@@ -663,9 +660,8 @@ The last step is to fill out the template for a person.
 
 <clipboard-copy>
 
-```{{'html'}}
+```html
 {{ framework-intro/assets/person.ori }}
-
 ```
 
 </clipboard-copy>
@@ -706,6 +702,8 @@ Each of the lines defining the virtual `public` folder and its subfolders create
 
 In a real project, it can be worth adding comments to remind you what each line does, like:
 
+<clipboard-copy>
+
 ```yaml
 # The public folder is the static folder plus some virtual subfolders.
 public = merge(static, this):
@@ -724,6 +722,8 @@ title: Our Amazing Team
 # Index the team members by name.
 teamByName = mapKeys(teamData.yaml, =name):
 ```
+
+</clipboard-copy>
 
 ## Building static files
 
