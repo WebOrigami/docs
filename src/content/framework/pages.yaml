@@ -2,41 +2,21 @@
   text: Introduction
 - href: tutorial.html
   text: Tutorial
-- href: intro0.html
-  text: Concepts
-  pages:
-    - href: intro1.html
-      text: Model
-    - href: intro2.html
-      text: Explorable graphs
-    - href: intro3.html
-      text: Virtual content
-    - href: intro4.html
-      text: Metagraphs
-    - href: intro5.html
-      text: Formulas
-    - href: intro6.html
-      text: Scope
-    - href: intro7.html
-      text: Templates
-    - href: intro8.html
-      text: Transforms
-    - href: intro9.html
-      text: Graph tools
-    - href: intro10.html
-      text: Observations
-- href: metagraph.html
+- href: model.html
+  text: Model
+- href: graphs.html
+  text: Explorable graphs
+- href: virtual.html
+  text: Virtual content
+- # href: metagraph.html
   text: Metagraphs
-  pages:
-    - href: formulas.html
-      text: Formulas
-    - href: maps.html
-      text: Maps
-    - href: additions.html
-      text: Additions
-    - href: this.html
-      text: "<code>this</code> keyword"
-- href: templates.html
+- # href: formulas.html
+  text: Formulas
+- # href: maps.html
+  text: Maps
+- # href: this.html
+  text: "<code>this</code> keyword"
+- # href: templates.html
   text: Templates
-- href: extensibility.html
+- # href: extensibility.html
   text: Extensibility

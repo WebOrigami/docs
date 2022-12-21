@@ -17,15 +17,6 @@ Origami lets you modify the shape of a metagraph — the keys and values it cont
 
 For example, by putting a file with a carefully-constructed name inside a folder, you create a new virtual file inside that folder. A metagraph could also be built on top of another type of [explorable graph](/pattern/interface.html), including an in-memory JavaScript object, the data in a YAML or JSON file, or a web resource.
 
-The metagraph features include:
-
-| Feature                    | Example key   | Summary                                                                                                                       |
-| :------------------------- | :------------ | :---------------------------------------------------------------------------------------------------------------------------- |
-| [Formula](formulas.html)   | `x = fn(y)`   | Defines a virtual value, like a virtual file.                                                                                 |
-| [Maps](maps.html)          | `x=map(y,fn)` | A common type of formula that transforms a graph. Use this to create virtual folders.                                         |
-| [Addition](additions.html) | `+`           | Incorporates a subgraph's children into a parent graph. Use this for control over the physical organization of files or data. |
-| [Ghost graph](ghosts.html) | `images+`     | Adds a subgraph's children to matching subgraph(s)                                                                            |
-
 ## Example: a formula that defines a virtual value
 
 ```console assert: true

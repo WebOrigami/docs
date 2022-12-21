@@ -284,6 +284,10 @@ nav a:hover {
   margin-bottom: 0.5rem;
 }
 
+#sideBar .noLink {
+  color: gray;
+}
+
 /*
  * Architecture block diagram
  */

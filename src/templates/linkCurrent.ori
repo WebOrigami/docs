@@ -1,1 +1,5 @@
-<a href="{{href}}"{{ if current, ` class="current"` }}>{{text}}</a>
+{{if href, =`
+<a href="{{ href }}"{{if current, ` class="current"` }}>{{ text }}</a>
+`, =`
+<span class="noLink">{{ text }}</span>
+`}}
