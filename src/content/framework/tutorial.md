@@ -57,7 +57,7 @@ another: This is a file at the top-level.
 
 Each key — the name of the virtual folder or file — is followed by a colon. Everything after the colon becomes the content. For virtual folders, indent virtual files beneath it. For virtual files, enter text after the colon. You can use a `|` character to indicate the beginning of multi-line text.
 
-Now you’re going to start defining virtual files to bring your About Us site to life.
+Now you're going to start defining virtual files to bring your About Us site to life.
 
 <span class="tutorialStep"></span> **Try it:** In the `src` folder, open `site.vfiles`. Following the example above, edit the file to define a virtual folder called `public`. Give it a single virtual file called `index.html` with the content: Hello, world!
 
@@ -106,7 +106,7 @@ You can define virtual files with formulas that call JavaScript.
 
 <span class="tutorialStep"></span> View the file `src/greet.js`.
 
-This defines a function called `greet` which, given a person’s name, returns a greeting in HTML. The person's name will be set in bold.
+This defines a function called `greet` which, given a person's name, returns a greeting in HTML. The person's name will be set in bold.
 
 **Example:** The following code defines a virtual file called `message` whose contents will be: Hello, **Alice**!
 
