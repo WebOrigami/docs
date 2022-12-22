@@ -2,11 +2,11 @@
   text: Introduction
 - href: tutorial.html
   text: Tutorial
-- href: model.html
+- # href: model.html
   text: Model
-- href: graphs.html
+- # href: graphs.html
   text: Explorable graphs
-- href: virtual.html
+- # href: virtual.html
   text: Virtual content
 - # href: metagraph.html
   text: Metagraphs
