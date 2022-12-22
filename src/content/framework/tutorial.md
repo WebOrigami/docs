@@ -72,7 +72,7 @@ public:
 
 </reveal-solution>
 
-The Glitch preview window should now show: Hello, world!
+The Glitch preview window should refresh after a moment to show: Hello, world!
 
 This tutorial project just happens to be configured to serve the contents of the virtual `public` folder, but the name "public" itself isn't special. You could configure the project to serve a different real or virtual folder.
 
@@ -204,7 +204,7 @@ Instead of creating HTML directly in JavaScript, you can use any JavaScript-base
 
 Inside the curly braces, you can do the same things as in formulas: call JavaScript function, reference real and virtual files, extract specific data with slash-separated paths, etc.
 
-<span class="tutorialStep"></span> **Try it:** In the src folder, create a new file called `index.ori`. This will become the template file for your index page. Inside the template, enter HTML and a `\{\{` … `}}` placeholder to put your site's `title` inside an `h1` tag.
+<span class="tutorialStep"></span> **Try it:** In the src folder, create a new file called `index.ori`. This will become the template file for your index page. Inside the template, enter an `h1` tag to create a heading, and inside the heading put a `\{\{` … `}}` placeholder that will display your site's title.
 
 <reveal-solution>
 
@@ -224,7 +224,7 @@ This template won't affect anything until you tell Graph Origami where to use it
 product.html = product.ori():
 ```
 
-When invoking a JavaScript functio, you don't need to include the `.js` extension — but you _do_ need to include the `.ori` extension to invoke a template as a function.
+When invoking a JavaScript function, you don't need to include the `.js` extension — but you _do_ need to include the `.ori` extension to invoke a template as a function.
 
 <span class="tutorialStep"></span> **Try it:** In `site.vfiles`, update your `index.html` formula to invoke your `index.ori` template as a function.
 
@@ -251,7 +251,12 @@ In addition to processing individual items like a text string, Graph Origami let
 everything = merge(folder1, folder2, folder3):
 ```
 
-At this point, you've created a virtual `public` folder that contains a virtual `index.html` file. Separately, your project has a real `static` file that contains resources necessary for the site to work, including a stylesheet and images. You can merge those folders together.
+At this point, your project has two folders of interest:
+
+1. You've created a virtual `public` folder that contains a virtual `index.html` file.
+2. Your project also has a real `static` file that contains resources necessary for the site to work, including a stylesheet and images.
+
+You can merge those folders together.
 
 <span class="tutorialStep"></span> **Try it:** In `site.vfiles`, rename your existing `public` folder to `virtual` to reflect the fact it contains virtual files. Then add a new formula for a `public` folder that is the result of merging the real `static` folder and the `virtual` folder.
 
@@ -297,7 +302,7 @@ a.html = greet('world'):
 b.html = greet(this): world
 ```
 
-<span class="tutorialStep"></span> Use the `this` keyword to make your definition of the `public` folder more concise and eliminate the need for a separate `virtual` folder.
+<span class="tutorialStep"></span> In `site.vfiles`, eliminate the need for a separate `virtual` folder. Move the formula for `index.html` to be under the `public` definition, and use the `this` keyword instead of `virtual` in the `merge()` function.
 
 <reveal-solution>
 
@@ -512,7 +517,7 @@ To lay the groundwork for that, you're first going to create an intermediate fol
 
 As you've seen, the top-level "file" names in `teamData.yaml` are integers, like `0` for the first person. But in your final website graph, you'd like the keys of the pages in the `team` area to include the person's name, like `Alice.html`.
 
-For this, Graph Origami provides a `mapKeys()` function that works like `map()`. Instead of mapping the values (file contents), it maps the keys (file names).
+For this, Graph Origami provides a `mapKeys()` function that works like `map()`. Instead of mapping the values (the file contents), it maps the keys (the file names).
 
 **Example:**
 
@@ -537,8 +542,8 @@ This operation looks like:
   <figure>
     {{ svg countriesByAbbreviation }}
   </figure>
-  <figcaption>countries has integer keys</figcaption>
-  <figcaption>countriesByAbbreviation</figcaption>
+  <figcaption>Countries with integer keys</figcaption>
+  <figcaption>Countries with abbreviation keys</figcaption>
 </div>
 
 <span class="tutorialStep"></span> **Try it:** In `site.vfiles`, define a new top-level virtual folder called `teamByName` that maps the keys of `teamData.yaml` to the team member's names.
@@ -606,8 +611,6 @@ This lists the files in the virtual `team` folder.
 
 The preview will show a heading with a person's name like: **Alice**
 
-<span class="tutorialStep"></span> Clear the preview address to return to the index page.
-
 ## Add an HTML extension
 
 We often use extensions at the end of file names to indicate the type of data they contain. Virtual folders created with functions like `map()` will often change the type of data, so as a convenience those functions allow you to add, change, or remove extensions.
@@ -640,17 +643,19 @@ teamByName = mapKeys(teamData.yaml, =name):
 
 </reveal-solution>
 
-<span class="tutorialStep"></span> In the preview address bar, enter: `team`
+<span class="tutorialStep"></span> In the preview address bar, ensure you're still viewing the address: `/team`
 
-This lists the files in the virtual `team` folder.
+You can see that the files in the `team` folder now have names that end in `.html`.
 
-<span class="tutorialStep"></span> The files in this folder now have names that end in `.html`. Click a name like `Alice.html` to open that page.
+<span class="tutorialStep"></span> Click a name like `Alice.html` to open that page.
+
+The page for a team member like Alice uses the `person.ori` template you created earlier. It shows a heading with their name.
 
 <span class="tutorialStep"></span> Clear the preview address to return to the index page.
 
 <span class="tutorialStep"></span> In the preview of the index page, click the entry for a team member.
 
-The index page links now navigate to the corresponding HTML pages in the team area.
+<span class="tutorialStep"></span> Click the tile for a team member to navigate to the corresponding page for that person.
 
 ## Fill out the person template
 
@@ -666,7 +671,7 @@ The last step is to fill out the template for a person.
 
 </clipboard-copy>
 
-<span class="tutorialStep"></span> Refresh or visit the page for a team member to see their information and a full-size photo.
+<span class="tutorialStep"></span> Visit the page for a team member to see their information and a full-size photo.
 
 ## View the graph of the completed site
 
@@ -729,7 +734,7 @@ teamByName = mapKeys(teamData.yaml, =name):
 
 You have been viewing your About Us site using the small Graph Origami server which is running in the background. But since this particular site is fundamentally static in nature, Glitch can automatically render all the pages and other necessary resources as static files. This lets Glitch serve the site faster and more cheaply — static sites on Glitch are free.
 
-Glitch will build the static files automatically, but if you can manually trigger the build process to see it in action.
+Glitch will build the static files automatically, but you can manually trigger the build process to see it in action.
 
 <span class="tutorialStep"></span> Click the **Terminal** button in the toolbar at the bottom of the Glitch window.
 
@@ -767,7 +772,7 @@ Your site will have a URL like `https://<something>.glitch.me`.
 
 <span class="tutorialStep"></span> Open a new browser tab and navigate to that URL to see how your site will look to visitors.
 
-As long as you're working on your site, the Graph Origami server will be used to serve the content. Some time after you close the Glitch window, Glitch will rebuild the static files and, from that point on, serve the static files directly.
+As long as you're working on your site, the Graph Origami server will be used to serve the content. At some point after you close the Glitch window, Glitch will rebuild the static files and stop the live server. From that point on, Glitch will serve the static files directly.
 
 ## Learn more
 
