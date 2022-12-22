@@ -1,4 +1,4 @@
-public = mix(static, this):
+public = merge(static, this):
   index.html = index.ori():
   team = map(teamByName, person.ori, extension='→html'):
   thumbnails = map(images, =image/resize(@value, width=400)):
