@@ -52,7 +52,7 @@ test:
     This is a longer file whose content spans multiple lines. All lines indented
     like this will be treated as part of the file.
 
-another: This is a file at the top-level.
+another: This is a file at the top level.
 ```
 
 Each key — the name of the virtual folder or file — is followed by a colon. Everything after the colon becomes the content. For virtual folders, indent virtual files beneath it. For virtual files, enter text after the colon. You can use a `|` character to indicate the beginning of multi-line text.
