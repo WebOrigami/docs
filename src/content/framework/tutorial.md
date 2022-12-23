@@ -59,7 +59,7 @@ Each key — the name of the virtual folder or file — is followed by a colon. 
 
 Now you're going to start defining virtual files to bring your About Us site to life.
 
-<span class="tutorialStep"></span> **Try it:** In the `src` folder, open `site.vfiles`. Following the example above, edit the file to define a virtual folder called `public`. Give it a single virtual file called `index.html` with the content: Hello, world!
+<span class="tutorialStep"></span> **Try it:** In the `src` folder, open `site.vfiles`. Following the example above, edit the file to define a virtual folder called `public`. Inside `public`, define a single virtual file called `index.html` with the content: Hello, world!
 
 Try doing this on your own, then check your solution.
 
@@ -315,7 +315,7 @@ title: Our Amazing Team
 
 </reveal-solution>
 
-The `this` keyword refers to everything indented on the following lines. The formula can now be read as: "To create `public` folder, merge the `static` folder with this set of files that follows".
+The `this` keyword refers to everything indented on the following lines. The formula can now be read as: "To create the `public` folder, merge the `static` folder with this set of files that follows."
 
 ## Create a virtual folder of thumbnails
 
@@ -545,6 +545,8 @@ This operation looks like:
   <figcaption>Countries with integer keys</figcaption>
   <figcaption>Countries with abbreviation keys</figcaption>
 </div>
+
+In the original `countries` definition, you could get the name of Australia with `countries/0/name`. With the mapped keys, you can get the name of Australia with `countriesByAbbreviation/AU/name`.
 
 <span class="tutorialStep"></span> **Try it:** In `site.vfiles`, define a new top-level virtual folder called `teamByName` that maps the keys of `teamData.yaml` to the team member's names.
 
