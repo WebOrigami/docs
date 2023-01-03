@@ -5,11 +5,29 @@ files = client/samples/cli.yaml:
 
 These examples generally demonstrate invoking built-in functions from the command line, although the same functions can also be used in Origami formulas.
 
+<a name="@"></a>
+
+## @
+
+The built-in called `@` is a graph of the complete set of built-in functions. This allows you to disambiguate between a local file or function and a built-in of the same name.
+
+For example, if your project contains a folder called `map`, then using `map` in a local formula will reference the local folder instead of the `map()` built-in. To reference the built-in `map`, you can write `@/map`.
+
+<a name="basename"></a>
+
+## basename(path, [extension])
+
+Returns the last file name in a path. If an `extension` is provided, it is removed from the file name.
+
+Example: `basename('/src/index.html', '.html')` returns `index`.
+
 <a name="cache"></a>
 
-## cache(cache, graph, filter)
+## cache(graph, [cache], [filter])
 
-_This experimental function is not yet stable enough to document._
+Caches values from `graph`. If a `cache` is provided, the cached values will be stored in that graph; if no `cache` is provided, the values will be stored in an in-memory graph.
+
+If a `filter` is provided, only keys matching the filter will have their values cached.
 
 <a name="clean"></a>
 
@@ -17,11 +35,9 @@ _This experimental function is not yet stable enough to document._
 
 _This experimental function is not yet stable enough to document._
 
-<a name="config"></a>
+<a name="concat"></a>
 
-## config([relativePath])
-
-This returns the graph for the active ori configuration that applies to the indicated directory. This directory will be the current folder, or the folder at the indicated `relativePath` if supplied.
+## concat(...objs)
 
 <a name="copy"></a>
 
@@ -49,11 +65,11 @@ The `targetGraph` must support the [`set`](/core/set.html) method. The only type
 
 <a name="defaultGraph"></a>
 
-## defaultGraph([relativePath])
+## defaultGraph()
 
-Returns the default graph that will be used by ori as the scope for evaluating commands. This graph will be the current folder, or the folder at the indicated `relativePath` if supplied.
+Returns the default graph that will be used by ori as the scope for evaluating commands. This will be an instance of [FilesGraph](/core/FilesGraph.html) for the current folder.
 
-The default graph will be an instance of [FilesGraph](/core/FilesGraph.html) transformed in various ways to facilitate commands. Among other things, if the resulting graph is asked for a key like `foo` which does not exist, the graph will make a second check to see if a module `foo.js` exists and, if so, to return the default export from that module.
+The graph will transformed in various ways to facilitate commands. Among other things, if the resulting graph is asked for a key like `foo` which does not exist, the graph will make a second check to see if a module `foo.js` exists and, if so, to return the default export from that module.
 
 <a name="dot"></a>
 
@@ -492,6 +508,4 @@ Returns the current graph as an explorable application. This creates an [FilesGr
 
 If a key is supplied, this gets the indicated key from the resulting explorable application.
 
-## watch()
-
-_This experimental function is not yet stable enough to document._
+## watch([graph], [expression])
