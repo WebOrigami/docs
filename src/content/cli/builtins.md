@@ -48,7 +48,7 @@ Traverses the `sourceGraph` and writes all values into the `targetGraph`.
 For example, to copy the values from a YAML file into individual files:
 
 ```console
-$ ori greetings.yaml
+$ cat greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
@@ -63,6 +63,12 @@ The `files/greetings` argument indicates that `copy` should copy the input YAML 
 
 The `targetGraph` must support the [`set`](/core/set.html) method. The only types of graphs defined in the ExplorableGraph [core](/core) that provides such support are [ObjectGraph](/core/ObjectGraph.html) and [FilesGraph](/core/FilesGraph.html). Only the latter provides persistent effects, so `copy` is typically used to copy the values from the source graph into file system files.
 
+<a name="dataflow"></a>
+
+## dataflow(graph)
+
+This returns an analysis of the data flow in the given graph. For a visual depiction of the data flow, use [flowSvg()](#flowSvg).
+
 <a name="defaultGraph"></a>
 
 ## defaultGraph()
@@ -71,13 +77,35 @@ Returns the default graph that will be used by ori as the scope for evaluating c
 
 The graph will transformed in various ways to facilitate commands. Among other things, if the resulting graph is asked for a key like `foo` which does not exist, the graph will make a second check to see if a module `foo.js` exists and, if so, to return the default export from that module.
 
+<a name="defaultPages"></a>
+
+## defaultPages(graph)
+
+Adds a default `index.html` and some diagnostic pages to the graph:
+
+| Key        | Value                                                                                                                                                                                    |
+| :--------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| .dataflow  | A visual dataflow for the current graph via [dataflow()](#dataflow) and [flowSvg()](#flowSvg)                                                                                            |
+| .index     | A default index page that lets you view the content of a graph that also defines an `index.html` page.                                                                                   |
+| .keys.json | The keys of the current graph in JSON format; intended to support programmatic explorability of a deployed site via [SiteGraph](https://graphorigami.org/core/sitegraph#keysjson-files). |
+| .scope     | A page that lets you explore the scope of the current graph                                                                                                                              |
+| .svg       | A visual rendering of the current graph via [svg()](#svg)                                                                                                                                |
+| .yaml      | A YAML rendering of the current graph via [yaml()](#yaml)                                                                                                                                |
+| index.html | A default index page for the current graph                                                                                                                                               |
+
 <a name="dot"></a>
 
 ## dot(graph)
 
 Returns a text representation of the indicated graph in the [DOT](https://graphviz.org/documentation/) graph description language. Various tools exist to render such a DOT representation into various graph formats such as PNG or SVG.
 
-If you want a basic visual representation of a graph, use the [svg](#svg) function instead. Use the `dot` function only if you want to use other DOT tools to render a graph.
+If you want a basic visual representation of a graph, use the [svg()](#svg) function instead. Use the `dot` function only if you want to use other DOT tools to render a graph.
+
+<a name="expand"></a>
+
+## expand(graph)
+
+Expands graph [variant](/core/variants.html) values (e.g., YAML/JSON text) into graphs.
 
 <a name="feedRss"></a>
 
@@ -96,6 +124,24 @@ Returns a [Buffer](https://nodejs.org/api/buffer.html) of the web resource at `u
 ## files([dirname])
 
 Returns an [FilesGraph](/core/FilesGraph.html) representation of the current directory or (if `dirname` is supplied) subdirectory named `dirname` within the current directory.
+
+<a name="filter"></a>
+
+## filter(graph, filter)
+
+Both arguments can be any graph [variant](/core/variants.html). This returns the values in the `graph` argument whose keys appear in the `filter` argument. This includes keys that appear in `filter` but not in `graph`, as long as the `graph` has a defined value for that key.
+
+<a name="first"></a>
+
+## first(graph)
+
+Returns the first value in `graph`.
+
+<a name="flowSvg"></a>
+
+## flowSvg(graph)
+
+Renders the dataflow output of [dataflow()](#dataflow) as an SVG image.
 
 <a name="front"></a>
 
@@ -127,12 +173,6 @@ Converts any graph [variant](/core/variants.html) into an explorable graph.
 ## graphVirtual(graph)
 
 Wraps any graph [variant](/core/variants.html) as a virtual application using the Origami [framework](/framework). This will include the same [MetaTransform](/framework/MetaTransform.html) used by the [meta](#meta) function, as well as adding default pages like `index.html` via [DefaultPages](/framework/DefaultPages.html).
-
-<a name="hbs"></a>
-
-## hbs(template, input)
-
-Returns the result of interpreting the `template` text as a [Handlebars](https://handlebarsjs.com/) template and applying that to the `input` data.
 
 <a name="help"></a>
 
