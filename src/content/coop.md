@@ -1,4 +1,6 @@
-# Developer co-operative
+---
+title: Developer co-operative
+---
 
 The Graph Origami project is a **developer co-operative**.
 

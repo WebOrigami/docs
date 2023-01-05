@@ -12,8 +12,8 @@
     "yaml": "2.1.1"
   },
   "scripts": {
-    "build": "ori 'copy netlify:virtual/src/site.meta/production, files/dist'",
-    "serve": "ori serve virtual/src/site.meta/develop",
+    "build": "ori 'copy netlify:virtual/src/site.vfiles/production, files/dist'",
+    "serve": "ori serve virtual/src/site.vfiles/develop",
     "test": "ori virtual/src/test/summary"
   }
 }

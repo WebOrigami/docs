@@ -24,7 +24,7 @@ index.ori: |
 indexTemplate:
   - <h1>About Us</h1>
   - "{{map teamByName, =`<li>{{name}}</li>` }}"
-indexText = results(this):
+indexText:
   0: "<h1>About Us</h1>"
   1 = map(intro/teamByName, =`<li>{{name}}</li>`):
 index.html = index.ori(intro/teamData.yaml):
