@@ -88,7 +88,7 @@ Suppose you have a focused function that does something with a flat, plain objec
 ```console
 $ ori text.js
 export default function text(obj) {
-  return Object.values(obj).join("\t");
+  return Object.values(obj).join("\\\t");
 }
 ```
 

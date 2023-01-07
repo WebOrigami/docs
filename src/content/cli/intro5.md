@@ -170,7 +170,7 @@ $ npm uninstall -g @graphorigami/origami
 
 If you installed ori without the `-g` global flag, you can just delete the directory you were working in.
 
-_Reviewer's note: Feel free to experiment further with ori if you'd like, but understand that it's not yet stable and will likely undergo further change. Anyone interested in using it should be in contact with [@JanMiksovsky](https://twitter.com/JanMiksovsky), and at this stage should be prepared to participate in the project at some level beyond just filing bug reports and expecting those bugs to be fixed._
+_Reviewer's note: Feel free to experiment further with ori if you'd like, but understand that it's a research project and will undergo further change. Anyone interested in using it should be in contact with [@JanMiksovsky](https://fosstodon.org/@JanMiksovsky), and at this stage should be prepared to participate in the project at some level beyond just filing bug reports and expecting those bugs to be fixed._
 
 &nbsp;
 
