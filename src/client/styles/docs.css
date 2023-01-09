@@ -95,10 +95,6 @@ h3 {
   margin: 16px 0 0 0;
 }
 
-a.current {
-  color: inherit;
-}
-
 #logo {
   align-self: start;
   display: none;
@@ -269,7 +265,7 @@ nav a:hover {
   text-decoration: underline;
 }
 
-#topNav a.current {
+#topNav [aria-current] {
   color: white;
   font-weight: bold;
 }
@@ -284,8 +280,12 @@ nav a:hover {
   margin-bottom: 0.5rem;
 }
 
+#sideBar [aria-current] {
+  color: inherit;
+}
+
 #sideBar .noLink {
-  color: gray;
+  color: #bbb;
 }
 
 /*
@@ -316,7 +316,7 @@ nav a:hover {
   filter: brightness(1.1);
 }
 
-.blocks a.current {
+.blocks [aria-current] {
   background: white;
   color: var(--color-text);
   font-weight: bold;
