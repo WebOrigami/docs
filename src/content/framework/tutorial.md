@@ -18,7 +18,7 @@ teamByName = mapKeys(framework-intro/src/teamData.yaml, =name):
 
 <script src="/components.js"></script>
 
-One day one of your teammates says:
+One day your team decides:
 
 > _We need an "About Us" area for our site! The main page should list the people on our team, with thumbnail photos and links to separate pages for each person. A person's page should show their name and a full-size photo._
 
@@ -57,11 +57,17 @@ test:
 another: This is a file at the top level.
 ```
 
-Each key — the name of the virtual folder or file — is followed by a colon and a space. Everything after the colon and space becomes the content. For virtual folders, indent virtual files beneath it. For virtual files, enter text after the colon. You can use a `|` character to indicate the beginning of multi-line text.
+Each key — the name of the virtual folder or file — is followed by a colon. Everything after the colon and space becomes the content.
 
-Now you're going to start defining virtual files to bring your About Us site to life.
+- For virtual folders, indent virtual files beneath it.
+- For virtual files, enter text after the colon and a space character.<br>❌ `key:value` <br>✅ `key: value`
+- You can use a `|` character to indicate the beginning of multi-line text.
 
-<span class="tutorialStep"></span> **Try it:** In the `src` folder, open `site.vfiles`, which defines a virtual folder called `public`. That virtual folder contains a single virtual file called `index.html` that currently has no content. Following the examples above, edit the definition of `index.html` to give it some content: Hello, world! (Be sure to include a space after the colon.)
+<span class="tutorialStep"></span> In the `src` folder, open `site.vfiles`, which defines a virtual folder called `public`.
+
+That virtual folder contains a single virtual file called `index.html` that currently has no content. Now you're going to start defining virtual files to bring your About Us site to life.
+
+<span class="tutorialStep"></span> **Try it:** Following the examples above, edit the definition of `index.html` to give it some content, like Hello, world! Be sure to include a space after the colon.
 
 Try doing this on your own, then check your solution.
 
@@ -302,8 +308,8 @@ But in some situations, it can be convenient and concise to put data in that val
 **Example:** The two invocations `greet` below both produce: Hello, **world**.
 
 ```yaml
-a.html = greet('world'):
-b.html = greet(this): world
+message1 = greet('world'):
+message2 = greet(this): world
 ```
 
 <span class="tutorialStep"></span> Switch to the Glitch window. Edit `site.vfiles` to eliminate the need for a separate `virtual` folder. Move the formula for `index.html` to be under the `public` definition, and use the `this` keyword instead of `virtual` in the `merge()` function.
@@ -319,7 +325,7 @@ title: Our Amazing Team
 
 </reveal-solution>
 
-The `this` keyword refers to everything indented on the following lines. The formula can now be read as: "To create the `public` folder, merge the `static` folder with this set of files that follows."
+The `this` keyword refers to everything indented on the following lines. The formula can now be read as: "To create the `public` folder, merge the `static` folder with the set of files indented beneath here."
 
 <span class="tutorialStep"></span> Switch the graph diagram window. Refresh it to confirm that, although the site definition has changed, the site structure has remained the same.
 
@@ -475,7 +481,7 @@ Now the preview shows the names of your team members — although the names are
 
 If you're only going to use a virtual folder like `names` in one place like `index.ori`, you can move it inline.
 
-<span class="tutorialStep"></span> **Try it:** In the `index.ori` template, inside the `\{\{ names }}` placeholder, replace `names` with a call to the `map` function directly. Use the same arguments to `map` as you used when defining `names` in `site.vfiles`. Tip: When invoking a function in a template, there's no need to put a colon after it; the colon is only necessary when defining a formula in YAML format.
+<span class="tutorialStep"></span> **Try it:** In the `index.ori` template, inside the `\{\{ names }}` placeholder, replace `names` with a call to the `map` function directly. Use the same arguments to `map` as you used when defining `names` in `site.vfiles`. Tip: When invoking a function in a template, there's no need to put a colon after it; a trailing colon is only necessary when defining a formula in YAML format.
 
 <reveal-solution>
 
@@ -617,7 +623,7 @@ You're now going to create a similarly skeletal template for an invidual person.
 
 The next step is to combine two ideas you've already worked with: 1) a `map` can invoke a function once for each file in a folder, and 2) you can invoke a Graph Origami template as a function like `index.ori()`.
 
-<span class="tutorialStep"></span> Edit the `public` folder in `site.vfiles` to define a new `team` subfolder. Use a formula to define the `team` folder as a `map` of the `teamByName` folder. Use `person.ori` as the function that should be invoked.
+<span class="tutorialStep"></span> Edit the `public` folder in `site.vfiles` to define a new subfolder called `team`. Use a formula to define the `team` folder as a `map` of the `teamByName` folder. Use `person.ori` as the function that should be invoked.
 
 <reveal-solution>
 
@@ -685,9 +691,7 @@ The page for a team member like Alice uses the `person.ori` template you created
 
 <span class="tutorialStep"></span> Clear the preview address to return to the index page.
 
-<span class="tutorialStep"></span> In the preview of the index page, click the entry for a team member.
-
-<span class="tutorialStep"></span> Click the tile for a team member to navigate to the corresponding page for that person.
+<span class="tutorialStep"></span> In the preview of the index page, click the tile for a team member to navigate to that person's page.
 
 ## Fill out the person template
 
@@ -721,7 +725,7 @@ thumbnails = fakeImages:
 
 From a functional standpoint, you've achieved your goal. The site is now complete.
 
-## Comments
+## Optional: Comments
 
 Stepping back, consider that you've created this site with some templates and a rather concise `site.vfiles`:
 
@@ -764,7 +768,7 @@ teamByName = mapKeys(teamData.yaml, =name):
 
 ## Building static files
 
-You have been viewing your About Us site using the small Graph Origami server which is running in the background. But since this particular site is fundamentally static in nature, Glitch can automatically render all the pages and other necessary resources as static files. This lets Glitch serve the site faster and more cheaply — static sites on Glitch are free.
+You have been viewing your About Us site using a small Graph Origami server which is running in the background. But since this particular site is fundamentally static in nature, Glitch can automatically render all the pages and other necessary resources as static files. This lets Glitch serve the site faster and more cheaply; static sites on Glitch are free.
 
 Glitch will build the static files automatically, but you can manually trigger the build process to see it in action.
 
@@ -776,7 +780,7 @@ Glitch will build the static files automatically, but you can manually trigger t
 $ npm run build
 ```
 
-This invokes a Graph Origami tool called `ori`, and instructs it to copy the contents of the entire virtual `public` graph to a real file system folder called `build`.
+This invokes a Graph Origami tool called `ori`, and instructs it to copy the contents of the entire virtual `public` graph to a real file system folder called `build`. This turns the virtual files into real files.
 
 <span class="tutorialStep"></span> In the Glitch terminal, type:
 

@@ -1,0 +1,5 @@
+description: repeat built-in function can replicate a value
+expected:
+  - beep
+  - beep
+actual = repeat(2, 'beep'):

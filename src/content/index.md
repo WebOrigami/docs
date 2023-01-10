@@ -6,7 +6,7 @@ icon: bird.svg
 
 {{ templates/blocks.ori() }}
 
-Graph Origami is a set of ideas and tools for building a wide variety of software artifacts and digital content. The system encourages you to view creating such things as an exercise in transformation: you take your starting files, data, etc., and transform them step-by-step into a final result you can use and share.
+Graph Origami is a research project exploring a set of ideas and tools for building a wide variety of software artifacts and digital content. The system encourages you to view creating such things as an exercise in transformation: you take your starting files, data, etc., and transform them step-by-step into a final result you can use and share.
 
 The system is intended for designers, developers, and writers of digital artifacts. The system is built in a series of layers; work at whatever layer(s) you prefer.
 
