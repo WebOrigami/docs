@@ -60,7 +60,7 @@ another: This is a file at the top level.
 Each key — the name of the virtual folder or file — is followed by a colon. Everything after the colon and space becomes the content.
 
 - For virtual folders, indent virtual files beneath it.
-- For virtual files, enter text after the colon and a space character.<br>❌ `key:value` <br>✅ `key: value`
+- For virtual files, enter text after the colon and a space character, like `key: value`
 - You can use a `|` character to indicate the beginning of multi-line text.
 
 <span class="tutorialStep"></span> In the `src` folder, open `site.vfiles`, which defines a virtual folder called `public`.
@@ -90,7 +90,7 @@ As you build a collection of virtual folders and files, it's helpful to be able 
 
 <span class="tutorialStep"></span> Click the **Preview** button at the bottom of the window, then click **Preview in a new window**. This will open your site in a new tab or window.
 
-<span class="tutorialStep"></span> In the browser address bar for that preview tab/window, add `.svg` to the end of the URL.
+<span class="tutorialStep"></span> In the browser address bar for that preview tab/window, add `/.svg` to the end of the URL. The new URL should look like `https://your-project-name.glitch.me/.svg`
 
 You'll see your `public` folder visually represented as a graph:
 
@@ -104,7 +104,7 @@ The little circle represents the `public` folder, and the box represents the `in
 
 In Graph Origami, this project diagram can be a useful way to visualize and explore the graph you are building, so we'll return to the graph diagram window occasionally.
 
-(You can also do this in the Glitch preview pane, but Glitch has a quirk that prevents you from typing an address that starts with a period. If you ever want to type that address above the preview pane, you'll need to type `svg` first and then insert a `.` at the beginning.)
+(You can also view the diagram in the Glitch preview pane, but Glitch has a quirk that prevents you from typing an address that starts with a period. You would need to type `svg` first and then insert a `.` before that.)
 
 <span class="tutorialStep"></span> Leave the graph diagram window open and switch back to the main Glitch window.
 
@@ -126,7 +126,7 @@ A formula goes in the _key_ half of a definition — the part before the colon. 
 
 Plain text arguments in formulas require single quotes.
 
-<span class="tutorialStep"></span> **Try it:** In `site.vfiles`, update your definition of `index.html` to call the `greet` function, passing in "world". The page should end up with "world" in bold: Hello, **world**!.
+<span class="tutorialStep"></span> **Try it:** In `site.vfiles`, update your definition of `index.html` to call the `greet` function, passing in `'world'`. The page should end up with "world" in bold: Hello, **world**!.
 
 <reveal-solution>
 
@@ -154,7 +154,9 @@ This calls a built-in `repeat` function. The value of `doubled` will be "beepbee
 
 The order of the above definitions doesn't matter; `word` could just as well come after `doubled`.
 
-<span class="tutorialStep"></span> **Try it:** In `site.vfiles`, add a new top-level virtual file called `title` to hold the name of your site (say, "Our Amazing Team"). Then update the formula for `index.html` to pass the title to `greet`, so that the preview shows: Hello, **Our Amazing Team**!
+<span class="tutorialStep"></span> **Try it:** In `site.vfiles`, add a new top-level virtual file called `title` to hold the name of your site (say, "Our Amazing Team").
+
+<span class="tutorialStep"></span> Then update the formula for `index.html` to pass the title to `greet`, so that the preview shows: Hello, **Our Amazing Team**!
 
 <reveal-solution>
 
@@ -204,17 +206,19 @@ title: Our Amazing Team
 
 ## Define a template that creates text
 
-Instead of creating HTML directly in JavaScript, you can use any JavaScript-based template system. For this tutorial, you'll use the template system built into Graph Origami.
+Instead of creating HTML directly in JavaScript, you can use one of many JavaScript-based template systems. For this tutorial, you'll use the template system built into Graph Origami.
 
-**Example:** Graph Origami templates, like many template systems, let you insert data into boilerplate text using placeholders marked with curly braces `\{\{` … `}}`:
+**Example:** Graph Origami templates, like many template systems, let you insert data into boilerplate text using placeholders marked with curly braces `\{\{` … `}}`. If there's a piece of data called `name`, you could insert it into a paragraph like:
 
 ```html
 <p>\{\{ name }}</p>
 ```
 
-Inside the curly braces, you can do the same things as in formulas: call JavaScript function, reference real and virtual files, extract specific data with slash-separated paths, etc.
+Inside the curly braces, you can do the same things as in formulas: call JavaScript functions, reference real and virtual files, or extract specific data with slash-separated paths.
 
-<span class="tutorialStep"></span> **Try it:** In the src folder, create a new file called `index.ori`. This will become the template file for your index page. Inside the template, enter an `h1` tag to create a heading, and inside the heading put a `\{\{` … `}}` placeholder that will display your site's title.
+<span class="tutorialStep"></span> **Try it:** Create a new file called `index.ori`: Next to the `src` folder on the left, click the `⋮` icon, then **Add File to Folder**, then type `index.ori`. This will become the template file for your index page.
+
+<span class="tutorialStep"></span> Inside the template, enter an `h1` tag to create a heading, and inside the heading put a `\{\{` … `}}` placeholder that will display your site's title.
 
 <reveal-solution>
 
@@ -266,7 +270,7 @@ At this point, your project has two folders of interest:
 1. You've created a virtual `public` folder that contains a virtual `index.html` file.
 2. Your project also has a real `static` folder that contains resources necessary for the site to work, including a stylesheet and images.
 
-You can merge those folders together.
+For your site, you will want to have the files in _both_ of these together. You can create a new virtual folder that combines them both.
 
 <span class="tutorialStep"></span> **Try it:** In `site.vfiles`, rename your existing `public` folder to `virtual` to reflect the fact it contains virtual files. Then add a new top-level formula for a `public` folder that is the result of merging the real `static` folder and the `virtual` folder.
 
@@ -287,7 +291,7 @@ The order in which you define these folders doesn't matter. The formulas now def
 
 <span class="tutorialStep"></span> Switch to graph diagram window and refresh it to see the new, combined `public` folder.
 
-Your site now looks like:
+Your site now includes both real and virtual files:
 
 <figure>
 {{ svg merge(framework-intro/src/static, meta(yaml `
@@ -295,15 +299,15 @@ index.html: <h1>Our Amazing Team</h1>
 `)) }}
 </figure>
 
-Your site structure seamlessly includes both real and virtual files. You can continue to grow this into your final About Us site.
+You can continue to grow this into your final About Us site.
 
 ## Consolidate the public folder definition
 
 Before moving on, you can make one refinement to make the definition of the `public` folder more concise. That formula relies on a separate `virtual` folder definition that isn't used anywhere else. You can fold that `virtual` definition into the defintion of `public`.
 
-Recall that Graph Origami formulas in YAML format appear to the left of a colon; they're effectively a complex name for something. Often nothing will appear to the right of the colon, in which case the value of the key/value pair will be empty.
+As you've seen, Graph Origami formulas in YAML format appear to the left of a colon; they're effectively a complex name for something. So far, nothing has appeared to the right of the colon; the value of the key/value pair has been empty.
 
-But in some situations, it can be convenient and concise to put data in that value. Graph Origami provides a `this` keyword that lets a formula refer to the value to the right of the colon.
+But in some situations, it can be convenient and concise to put data in that value. Graph Origami provides a `this` keyword that lets a formula to the left of a colon refer to the value to the right of the colon.
 
 **Example:** The two invocations `greet` below both produce: Hello, **world**.
 
@@ -339,7 +343,7 @@ Instead of using an image-editing app to create a real folder of thumbnail image
 
 You can do this kind of transformation in Graph Origami with a _map_. A map is a many-to-many transformation: you give it a set of things (like a real folder, a virtual folder, or the array of people in teamData.yaml). You also give the map a function that can perform a one-to-one transformation. The map will generate a virtual folder with the same structure as the original set, but with the values transformed.
 
-**Example:** Above you saw a function called `greet()` that transforms a name like "Alice" into a greeting like "Hello, **Alice**!" This is a one-to-one transformation. If you have a virtual folder of names, you can perform a many-to-many transformation of that folder to create a new virtual folder of greetings. You can do this by defining a virtual folder with a formula:
+**Example:** Above you saw a function called `greet()` that transforms a name like "Alice" into a greeting like "Hello, **Alice**!" This is a one-to-one transformation. If you have a virtual folder of names, you can perform a many-to-many transformation of that folder to create a new virtual folder of greetings:
 
 ```yaml
 names:
@@ -350,7 +354,7 @@ names:
 greetings = map(names, greet):
 ```
 
-The `map()` function takes the `names` folder and returns a new folder with the same structure as `names`, but applying the `greet` function to each value. Since the formula needs to pass `greet` to the `map()` function, it refers to the function as `greet` without parentheses, instead of `greet()`.
+The `map()` function takes the `names` folder and returns a new folder with the same structure as `names`, but applying the `greet` function to each value. The formula needs to pass `greet` to the `map()` function, so it refers to the function as `greet` without parentheses. (Refering to the function as `greet()` would call the `greet` function and pass its result.)
 
 You can visualize the many-to-many transformation this way:
 
@@ -423,7 +427,7 @@ You can also use a `map` to create a virtual folder based on data, not just file
 locations = map(teamData.yaml, =location):
 ```
 
-The `locations` formula says: for each entry in `teamData.yaml`, evaluate the expression `=location`. The expression defines an unnamed function. The function will be evaluated in the context of a team member, so it will return the person's location.
+The `locations` formula says: for each entry in `teamData.yaml`, evaluate the expression `=location`. That last bit defines a little unnamed function. It will be evaluated in the context of a team member and return the person's location.
 
 The result of the above will be a new virtual folder called `locations` with the same keys (names) as `teamData.yaml`. Since the top level of `teamData.yaml` is an array, the keys will be integers.
 
@@ -479,7 +483,7 @@ Now the preview shows the names of your team members — although the names are
 
 ## Create a map inside a template
 
-If you're only going to use a virtual folder like `names` in one place like `index.ori`, you can move it inline.
+If you're only going to use a virtual folder like `names` in one place in a template like `index.ori`, you can move it inline.
 
 <span class="tutorialStep"></span> **Try it:** In the `index.ori` template, inside the `\{\{ names }}` placeholder, replace `names` with a call to the `map` function directly. Use the same arguments to `map` as you used when defining `names` in `site.vfiles`. Tip: When invoking a function in a template, there's no need to put a colon after it; a trailing colon is only necessary when defining a formula in YAML format.
 
@@ -512,7 +516,7 @@ You could improve that by formatting the locations. The code below puts each loc
 \{\{ map(teamData.yaml, =`<p>\{\{ location }}</p>`) }}
 ```
 
-The second argument to `map()` here is a smaller template instead the larger template. The smaller, nested template is surrounded by backtick (`) characters.
+The second argument to `map()` here is a smaller template nestead inside the larger template. The nested template is surrounded by backtick (`) characters.
 
 <span class="tutorialStep"></span> Update `index.ori` to make each name a separate bullet item — that is, surround the each name with a `<li>` and `</li>` tags. Since you'll be defining a nested template, you'll need to use backtick (`) characters instead of single quotes.
 
@@ -709,6 +713,8 @@ The last step is to fill out the template for a person.
 
 <span class="tutorialStep"></span> Visit the page for a team member to see their information and a full-size photo.
 
+<span class="tutorialStep"></span> In the preview address bar, clear the address to return to the index page.
+
 ## View the graph of the completed site
 
 <span class="tutorialStep"></span> Switch to the graph diagram window and refresh it to view your site's complete structure.
@@ -722,6 +728,8 @@ team = map(teamByName, framework-intro/assets/person.ori):
 thumbnails = fakeImages:
 `)) }}
 </figure>
+
+You can click on the circles or boxes in this diagram to explore what you've made.
 
 From a functional standpoint, you've achieved your goal. The site is now complete.
 
@@ -768,11 +776,11 @@ teamByName = mapKeys(teamData.yaml, =name):
 
 ## Building static files
 
-You have been viewing your About Us site using a small Graph Origami server which is running in the background. But since this particular site is fundamentally static in nature, Glitch can automatically render all the pages and other necessary resources as static files. This lets Glitch serve the site faster and more cheaply; static sites on Glitch are free.
+You have been viewing your About Us site using a small Graph Origami server which is running in the background. But since this particular site is fundamentally static in nature, Glitch can automatically render all the pages and other necessary resources as static files. This lets Glitch serve the site faster and more cheaply — static sites on Glitch are free.
 
 Glitch will build the static files automatically, but you can manually trigger the build process to see it in action.
 
-<span class="tutorialStep"></span> Switch to the Glitch editor window. Click the **Terminal** button in the toolbar at the bottom of the Glitch window.
+<span class="tutorialStep"></span> In the main Glitch editor window, click the **Terminal** button in the toolbar at the bottom of the Glitch window.
 
 <span class="tutorialStep"></span> In the Glitch terminal, type the following command:
 
@@ -794,7 +802,7 @@ This refreshes the files shown in the main portion of the Glitch window.
 
 <span class="tutorialStep"></span> Click the `build` folder on the left side of the Glitch window and view the files it contains.
 
-In addition to copies of the real files in the `src/static` folder, the `build` folder will contain:
+In addition to copies of the real files in the `src/static` folder, the `build` folder now contains real copies of all the virtual files you defined:
 
 - A real `thumbnails` folder with real thumbnail versions of each image.
 - A real `index.html` page with HTML that includes a listing for each team member.
@@ -802,13 +810,15 @@ In addition to copies of the real files in the `src/static` folder, the `build` 
 
 Because these static files are all in native web formats, your static site can be extremely fast. There are opportunities around the margins to make your site even faster, but this is already a good start on a performant site.
 
+## View your final site
+
 <span class="tutorialStep"></span> Find your site's shareable URL by clicking **Share** button in the upper right, then copy the URL for the **Live site**.
 
 Your site will have a URL like `https://<something>.glitch.me`.
 
 <span class="tutorialStep"></span> Open a new browser tab and navigate to that URL to see how your site will look to visitors.
 
-As long as you're working on your site, the Graph Origami server will be used to serve the content. At some point after you close the Glitch window, Glitch will rebuild the static files and stop the live server. From that point on, Glitch will serve the static files directly.
+As long as you're working on your site, the Graph Origami server will be used to serve the content. At some point after you close the Glitch window, Glitch will rebuild the static files and stop the live server. From that point on, Glitch will serve the static files directly. After that point, the files will load much faster.
 
 ## Learn more
 

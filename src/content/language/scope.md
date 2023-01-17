@@ -61,51 +61,6 @@ Graph Origami supports both approaches. The Origami CLI and Origami framework bo
 
 If you encounter a situation where the default scope is inadequate, you can construct an explicit scope yourself to tightly control how references in Origami expressions are resolved. You construct the scope with graphs and, given that there are many ways to define graphs in Graph Origami, this hopefully avoids the problems with explicit scoping in other frameworks.
 
-## Comparison with block scope in programming languages
-
-Implicit scoping in Graph Origami is inspired by scoping in traditional, block-oriented programming languages. For well over half a century, many programming languages have answered the scoping question with [block scoping](<https://en.wikipedia.org/wiki/Scope_(computer_science)#Block_scope>).
-
-Let's consider how block scoping works in a sample of JavaScript code:
-
-```js
-const power = 2;
-
-// Return the sum of the squares from 1 to n.
-function sumSquares(n) {
-  let total = 0;
-  for (const i = 1; i <= n; i++) {
-    const squared = Math.pow(i, power);
-    const newTotal = total + squared; // What variables can be referenced here?
-    total = newTotal;
-  }
-  return total;
-}
-```
-
-A sample scope question to consider is: on the line that defines `newTotal`, what variables are in scope? That is, what can you write to the right of the `=` equals sign?
-
-The answer in JavaScript and many other programming languages is that the definition of `newTotal` can "see" the following variables in scope, each defined by a different level of the programming language's hierarchical block structure:
-
-1. Variables defined inside the same `for` block, like: `squared`
-1. Variables defined by the `for` loop itself: `i`
-1. Variables defined inside the `function`: `n` and `total`
-1. Variables defined at the module's top level: `sumSquares` and `power`
-1. Global objects, like `Math`
-
-When you write a statement like `newTotal = total + squared`, the language interpreter evaluates the references `total` and `squared` by searching through the blocks of the current scope in the above order, from innermost to outermost block. (In programming languages like JavaScript, variables only become available in scope if they are encountered _before_ the current line, but for the purposes of this analogy, we can set that refinement aside.)
-
-We can visualize that scope as a graph. If we invoke `sumSquares(3)`, the first time through the loop, the scope looks like:
-
-<figure class="fullWidth">
-{{ svg jsScopeExample }}
-</figure>
-
-Visualized this way, looking up something in the current scope is a matter of walking metaphorically "up" the tree (here, that means moving to the left). The line for `newTotal` references `squared`, which is sitting right there in the same neighborhood of the graph; the reference to `total` requires walking up the tree a few levels to find that variable.
-
-The search always goes "up" the tree and never goes back deeper into the tree. So the definition for `sumSquares` can see the global math object `Math` but _not_ the `pow` function inside it. The definition for `sumSquares` must reference the `pow` function as `Math.pow`: it lets the automatic search of scope go up to find `Math`, then explicitly goes deeper into the `Math` object to find the `pow` function.
-
-The pervasiveness of block scoping in programming suggests that it is very effective. It is both automatic and precisely defined, so it's not too hard to learn. Given some code to read, programmers generally can correctly predict what is or isn't in scope.
-
 ## Scope in Graph Origami is based on graphs
 
 Graph Origami applies the principle of block scoping to explorable graphs to define a _graph scope_.
@@ -154,3 +109,48 @@ As with block scoping in programming languages, in graph scoping the search only
 Graph scope lets you use the file system structure of your project as one way to configure what's available to your own code as well as what's available to end users.
 
 You can take advantage of graph scope to hide internal details. If the little project defined above publishes the virtual contents of `site.vfiles`, a user will be able to browse to `index.html` — but will not be able to see `greet.js` or `ReadMe.md`.
+
+## Comparison with block scope in programming languages
+
+Implicit scoping in Graph Origami is inspired by scoping in traditional, block-oriented programming languages. For well over half a century, many programming languages have answered the scoping question with [block scoping](<https://en.wikipedia.org/wiki/Scope_(computer_science)#Block_scope>).
+
+Let's consider how block scoping works in a sample of JavaScript code:
+
+```js
+const power = 2;
+
+// Return the sum of the squares from 1 to n.
+function sumSquares(n) {
+  let total = 0;
+  for (const i = 1; i <= n; i++) {
+    const squared = Math.pow(i, power);
+    const newTotal = total + squared; // What variables can be referenced here?
+    total = newTotal;
+  }
+  return total;
+}
+```
+
+A sample scope question to consider is: on the line that defines `newTotal`, what variables are in scope? That is, what can you write to the right of the `=` equals sign?
+
+The answer in JavaScript and many other programming languages is that the definition of `newTotal` can "see" the following variables in scope, each defined by a different level of the programming language's hierarchical block structure:
+
+1. Variables defined inside the same `for` block, like: `squared`
+1. Variables defined by the `for` loop itself: `i`
+1. Variables defined inside the `function`: `n` and `total`
+1. Variables defined at the module's top level: `sumSquares` and `power`
+1. Global objects, like `Math`
+
+When you write a statement like `newTotal = total + squared`, the language interpreter evaluates the references `total` and `squared` by searching through the blocks of the current scope in the above order, from innermost to outermost block. (In programming languages like JavaScript, variables only become available in scope if they are encountered _before_ the current line, but for the purposes of this analogy, we can set that refinement aside.)
+
+We can visualize that scope as a graph. If we invoke `sumSquares(3)`, the first time through the loop, the scope looks like:
+
+<figure class="fullWidth">
+{{ svg jsScopeExample }}
+</figure>
+
+Visualized this way, looking up something in the current scope is a matter of walking metaphorically "up" the tree (here, that means moving to the left). The line for `newTotal` references `squared`, which is sitting right there in the same neighborhood of the graph; the reference to `total` requires walking up the tree a few levels to find that variable.
+
+The search always goes "up" the tree and never goes back deeper into the tree. So the definition for `sumSquares` can see the global math object `Math` but _not_ the `pow` function inside it. The definition for `sumSquares` must reference the `pow` function as `Math.pow`: it lets the automatic search of scope go up to find `Math`, then explicitly goes deeper into the `Math` object to find the `pow` function.
+
+The pervasiveness of block scoping in programming suggests that it is very effective. It is both automatic and precisely defined, so it's not too hard to learn. Given some code to read, programmers generally can correctly predict what is or isn't in scope.
