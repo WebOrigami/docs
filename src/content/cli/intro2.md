@@ -188,7 +188,7 @@ $ echo This is input from the shell | ori uppercase stdin/
 THIS IS INPUT FROM THE SHELL
 ```
 
-The result of the `stdin` function will be the complete standard input fed to the ori command. This lets you pipe data to a JavaScript function that accepts a simple argument instead of needing specialize the function specifically to read data from the console.
+Note the trailing slash in `stdin/`, which invokes the `stdin` function to obtain the complete standard input. This lets you pipe data to a JavaScript function that accepts a simple argument instead of needing specialize the function specifically to read data from the console.
 
 ## Writing output to a file
 

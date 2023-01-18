@@ -289,6 +289,80 @@ Evaluates `condition`, and if it is truthy, returns `trueValue`. If the conditio
 
 If `trueValue` or `falseValue` is a function, it will be evaluated and its result returned instead.
 
+<a name="image"></a>
+
+## image
+
+This returns a set of functions for working with images. These make use of the [sharp](https://sharp.pixelplumbing.com/) library.
+
+See below for the specific `image` functions, accessed via `image/`.
+
+### image/format(buffer, format, [options])
+
+Returns the image represented by `buffer` in a new image format. The `format` must be one of the following strings:
+
+- `avif`
+- `gif`
+- `heif`
+- `jp2`
+- `jpeg`
+- `jxl`
+- `png`
+- `raw`
+- `tiff`
+- `tile`
+- `webp`
+
+The [options](https://sharp.pixelplumbing.com/api-output#toformat) dictionary is passed to sharp's `toFormat()` function.
+
+### image/resize(buffer, options)
+
+Returns a new image, resizing the image represented by `buffer`. The [options](https://sharp.pixelplumbing.com/api-resize) should include a `height` and/or `width` property.
+
+<a name="inherited"></a>
+
+## inherited(key)
+
+Gets the value of `key` which the graph inherits from its [scope](/language/scope.html), bypassing any value the graph itself may have for `key`.
+
+<a name="inline"></a>
+
+## inline(text)
+
+Invokes any Origami expressions found inside `{{`…`}}` placeholders in the `text`. This operation preserves any front matter in the document.
+
+```console
+$ cat inline.yaml
+---
+name: world
+---
+Hello, \{\{ name }}!
+$ ori inline inline.yaml
+---
+name: world
+---
+Hello, world!
+```
+
+Among other things, you can use `inline` to incorporate one document inside another. For example, you can incorporate an HTML fragment in one document into an HTML defined in another document.
+
+```console
+$ cat page.html
+<html>
+  <body>
+\{\{ fragment.html }}
+  </body>
+</html>
+$ cat fragment.html
+    <p>Hello, world.</p>
+$ ori inline page.html
+<html>
+  <body>
+    <p>Hello, world.</p>
+  </body>
+</html>
+```
+
 <a name="inners"></a>
 
 ## inners(graph)
@@ -399,6 +473,26 @@ Carol:
   name: Carol
 ```
 
+<a name="match"></a>
+
+## match(pattern, fn, [keys])
+
+Returns a graph that can match against simple patterns or JavaScript regular expressions. This is useful in creating virtual graphs. For example, if you are creating a `/user` area within a site that will handle routes like `/user/[name].html`, you can use `match()` to match that pattern and return a result.
+
+```console
+$ ori "(match '[name].txt', =\`Hello, {{ name }}.\`)/Alice.txt"
+Hello, Alice.
+```
+
+The expression in parentheses defines a `match()` graph that will match patterns of the form `[name].txt`. This graph is then used to obtain a value for the key `Alice.txt`. Since that matches, the `match()` generates a result — here, using a template.
+
+The `pattern` argument can take one of two forms:
+
+1. A simple pattern like `[name].txt`. When used to match `Alice.txt`, this puts "Alice" in scope as the value of `name`.
+2. A JavaScript regular expression. One way to create a regular expression is with [RegExp()](#RegExp). If the regular expression matches, the value of any groups named in the regular expression will be put in scope.
+
+By default, the graph will have no public keys, but you can provide any graph [variant](/core/variants.html) as the `keys` argument. That graph's keys will be used as the keys for the graph returned by `match()`.
+
 <a name="mdHtml"></a>
 
 ## mdHtml(markdown)
@@ -411,13 +505,46 @@ Any front matter in the markdown will be preserved at the top of the HTML output
 
 ## merge(...graphs)
 
-This merges the indicated graphs, which can be any graph [variant](/core/variants.html), using [MergeGraph](/core/MergeGraph.html).
+Returns a graph that is the result of merging the indicated graphs. The graphs can be any graph [variant](/core/variants.html).
+
+```console
+$ cat graph1.yaml
+a: The letter A
+b: The letter B
+c: The letter C
+$ cat graph2.yaml
+c: This won't appear in the merge
+d: The letter D
+e: The letter E
+$ ori merge graph1.yaml, graph2.yaml
+a: The letter A
+b: The letter B
+c: The letter C
+d: The letter D
+e: The letter E
+```
+
+When asked for a key, the merged graph asks each of the constituent graphs in turn for that key; the first defined result is returned. In the example above, getting `c` returns the result from `graph1.yaml`, because that is the first graph that defines a value for `c`.
+
+The merge operation is shallow; for a deep merge operation, see [mergeDeep()](#mergeDeep).
+
+<a name="mergeDeep"></a>
+
+## mergeDeep(...graphs)
+
+Like [merge()](#merge), but performs a deep merge: if multiple graphs define values for the same key, and those values are themselves explorable graphs, then those values themselves will be merged.
 
 <a name="meta"></a>
 
 ## meta(graph)
 
 Returns an Origami [metagraph](/framework/metagraph.html) by applying a [MetaTransform](/framework/MetaTransform.html) to the indicated graph. This interprets [formulas](/framework/formulas.html) in the graph's keys as ori expressions.
+
+<a name="nextKey"></a>
+
+## nextKey(graph, key)
+
+Enumerates the graph's key until `key` is found, then returns the next key in the graph.
 
 <a name="nulls"></a>
 
@@ -437,6 +564,22 @@ $ ori nulls greetings.yaml
 ```
 
 `nulls` can be useful when you want to display the structure of a graph (especially a hierarchical graph) without concern for the actual data values.
+
+<a name="ori"></a>
+
+## ori(expression)
+
+Evaluates the text string `expression` as an Origami expression and returns the result.
+
+<a name="orit"></a>
+
+## orit(template, input, [options])
+
+Evaluates the given `template` as an Origami template, passing in the given `input` object as template input.
+
+Available `options`:
+
+- `preserveFrontMatter`: if `true`, the output will include any front matter found in the `template`. The default is `false`.
 
 <a name="parent"></a>
 
@@ -468,6 +611,12 @@ This is similar to the separate [plain](#plain) function, which can only parse J
 Converts an asynchronous explorable graph into a synchronous plain JavaScript object. The supplied argument can be any graph [variant](/core/variants.html) such as a JSON/YAML file, file system folder, etc. If omitted, `plain` converts the current graph — in the command line, this will be the current folder — to a plain JavaScript object.
 
 A common use for `plain` is to convert a graph into a form that you can pass to any function that works with plain JavaScript objects.
+
+<a name="previousKey"></a>
+
+## previousKey(graph, key)
+
+Enumerates the graph's key until `key` is found, then returns the previous key in the graph.
 
 <a name="RegExp"></a>
 
@@ -675,45 +824,9 @@ This can be used, for example, to serve a virtual folder, reevaluating the folde
 $ ori serve src, =site.vfiles/public
 ```
 
-<a name="image"></a>
-
-## image
-
-<a name="inherited"></a>
-
-## inherited
-
-<a name="inline"></a>
-
-## inline
-
-<a name="match"></a>
-
-## match
-
-<a name="mergeDeep"></a>
-
-## mergeDeep
-
-<a name="nextKey"></a>
-
-## nextKey
-
-<a name="ori"></a>
-
-## ori
-
-<a name="orit"></a>
-
-## orit
-
 <a name="perf"></a>
 
 ## perf
-
-<a name="previousKey"></a>
-
-## previousKey
 
 <a name="reals"></a>
 
