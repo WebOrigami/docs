@@ -3,7 +3,7 @@ title: Built-In Functions
 files = client/samples/cli.yaml:
 ---
 
-These examples generally demonstrate invoking built-in functions from the command line, although the same functions can also be used in Origami formulas.
+These examples generally demonstrate invoking built-in functions from the command line. The same functions can also be used in Origami formulas in the Origami [framework](/framework).
 
 <a name="@"></a>
 
@@ -120,7 +120,7 @@ Hello, Alice.
 
 The `files/greetings` argument indicates that `copy` should copy the input YAML graph to a file system graph under a folder named `greetings`. As a result, the key/value pairs in the YAML file are now individual files in a `greetings` folder.
 
-The `targetGraph` must support the [`set`](/core/set.html) method. The only types of graphs defined in the ExplorableGraph [core](/core) that provides such support are [ObjectGraph](/core/ObjectGraph.html) and [FilesGraph](/core/FilesGraph.html). Only the latter provides persistent effects, so `copy` is typically used to copy the values from the source graph into file system files.
+The `targetGraph` must support the [`set`](/core/set.html) method. The only types of graphs defined in the ExplorableGraph [core library](/core) that provides such support are [ObjectGraph](/core/ObjectGraph.html) and [FilesGraph](/core/FilesGraph.html). Only the latter provides persistent effects, so `copy` is typically used to copy the values from the source graph into file system files.
 
 <a name="dataflow"></a>
 
@@ -164,7 +164,7 @@ If you want a basic visual representation of a graph, use the [svg()](#svg) func
 
 ## expand(graph)
 
-Expands graph [variant](/core/variants.html) values (e.g., YAML/JSON text) into graphs.
+Expands [graph variant](/core/variants.html) values (e.g., YAML/JSON text) into graphs.
 
 <a name="false"></a>
 
@@ -176,7 +176,7 @@ This built-in is the JavaScript `false` value, and exists so you can pass `false
 
 ## feedRss(graph)
 
-Converts a graph of posts in [JSON Feed](https://www.jsonfeed.org/) format to [RSS](https://www.rssboard.org/rss-specification) format. The graph can be any graph [variant](/core/variants.html).
+Converts a graph of posts in [JSON Feed](https://www.jsonfeed.org/) format to [RSS](https://www.rssboard.org/rss-specification) format. The graph can be any [graph variant](/core/variants.html).
 
 <a name="fetch"></a>
 
@@ -194,7 +194,7 @@ Returns an [FilesGraph](/core/FilesGraph.html) representation of the current dir
 
 ## filter(graph, filter)
 
-Both arguments can be any graph [variant](/core/variants.html). This returns the values in the `graph` argument whose keys appear in the `filter` argument. This includes keys that appear in `filter` but not in `graph`, as long as the `graph` has a defined value for that key.
+Both arguments can be any [graph variant](/core/variants.html). This returns the values in the `graph` argument whose keys appear in the `filter` argument. This includes keys that appear in `filter` but not in `graph`, as long as the `graph` has a defined value for that key.
 
 <a name="first"></a>
 
@@ -251,13 +251,13 @@ This can be used, for example, in conjunction with [`filter`](#filter) to filter
 
 ## graph(variant)
 
-Converts any graph [variant](/core/variants.html) into an explorable graph.
+Converts any [graph variant](/core/variants.html) into an explorable graph.
 
 <a name="graphVirtual"></a>
 
 ## graphVirtual(graph)
 
-Wraps any graph [variant](/core/variants.html) as a virtual application using the Origami [framework](/framework). This will include the same [MetaTransform](/framework/MetaTransform.html) used by the [meta](#meta) function, as well as adding default pages like `index.html` via [DefaultPages](/framework/DefaultPages.html).
+Wraps any [graph variant](/core/variants.html) as a virtual application using the Origami [framework](/framework). This will include the same [MetaTransform](/framework/MetaTransform.html) used by the [meta](#meta) function, as well as adding default pages like `index.html` via [DefaultPages](/framework/DefaultPages.html).
 
 <a name="help"></a>
 
@@ -288,6 +288,8 @@ You normally won't need to call this function directly. ori will parse the URL `
 Evaluates `condition`, and if it is truthy, returns `trueValue`. If the condition is not truthy, this returns `falseValue` if supplied, otherwise `undefined`.
 
 If `trueValue` or `falseValue` is a function, it will be evaluated and its result returned instead.
+
+See also [unless()](#unless).
 
 <a name="image"></a>
 
@@ -394,7 +396,7 @@ $ ori json greetings.yaml
 
 ## keys([graph])
 
-Returns an array of the top-level keys in the indicated graph, which can be any graph [variant](/core/variants.html).
+Returns an array of the top-level keys in the indicated graph, which can be any [graph variant](/core/variants.html).
 
 ```console assert: true, path: files
 $ ori greetings.yaml
@@ -449,7 +451,7 @@ If a `sourceExtension` or `targetExtension` are supplied, this returns a [MapTyp
 
 Unlike a JavaScript [Array map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), the `map` function does not do any mapping work upon invocation — it only does the work when someone requests the mapped graph's keys or values.
 
-The `mapFn` mapping function is typically a JavaScript function, but can be any graph [variant](/core/variants.html). For example, you can use a second [graph as a map](/cli/intro.html#use-a-graph-as-a-map).
+The `mapFn` mapping function is typically a JavaScript function, but can be any [graph variant](/core/variants.html). For example, you can use a second [graph as a map](/cli/intro.html#use-a-graph-as-a-map).
 
 `map` works on all levels of a graph. If you only want to transform the top-level values in a graph, see [map](#map).
 
@@ -491,7 +493,7 @@ The `pattern` argument can take one of two forms:
 1. A simple pattern like `[name].txt`. When used to match `Alice.txt`, this puts "Alice" in scope as the value of `name`.
 2. A JavaScript regular expression. One way to create a regular expression is with [RegExp()](#RegExp). If the regular expression matches, the value of any groups named in the regular expression will be put in scope.
 
-By default, the graph will have no public keys, but you can provide any graph [variant](/core/variants.html) as the `keys` argument. That graph's keys will be used as the keys for the graph returned by `match()`.
+By default, the graph will have no public keys, but you can provide any [graph variant](/core/variants.html) as the `keys` argument. That graph's keys will be used as the keys for the graph returned by `match()`.
 
 <a name="mdHtml"></a>
 
@@ -505,7 +507,7 @@ Any front matter in the markdown will be preserved at the top of the HTML output
 
 ## merge(...graphs)
 
-Returns a graph that is the result of merging the indicated graphs. The graphs can be any graph [variant](/core/variants.html).
+Returns a graph that is the result of merging the indicated graphs. The graphs can be any [graph variant](/core/variants.html).
 
 ```console
 $ cat graph1.yaml
@@ -546,6 +548,12 @@ Returns an Origami [metagraph](/framework/metagraph.html) by applying a [MetaTra
 
 Enumerates the graph's key until `key` is found, then returns the next key in the graph.
 
+<a name="not"></a>
+
+## not(obj)
+
+Returns the logical truthy/falsy inverse of the given object.
+
 <a name="nulls"></a>
 
 ## nulls(graph)
@@ -567,9 +575,9 @@ $ ori nulls greetings.yaml
 
 <a name="ori"></a>
 
-## ori(expression)
+## ori(text)
 
-Evaluates the text string `expression` as an Origami expression and returns the result.
+Evaluates the string `text` as an Origami expression and returns the result.
 
 <a name="orit"></a>
 
@@ -604,11 +612,17 @@ $ ori parseYaml "'[1, 2, 3]'"
 
 This is similar to the separate [plain](#plain) function, which can only parse JSON/YAML representing graphs. In contrast, the `parseYaml` function can handle text representing things that aren't graphs, such as arrays, dates, and numbers.
 
+<a name="perf"></a>
+
+## perf(obj)
+
+Displays performance counters for various Origami operations used during the computation of `obj`.
+
 <a name="plain"></a>
 
 ## plain([graph])
 
-Converts an asynchronous explorable graph into a synchronous plain JavaScript object. The supplied argument can be any graph [variant](/core/variants.html) such as a JSON/YAML file, file system folder, etc. If omitted, `plain` converts the current graph — in the command line, this will be the current folder — to a plain JavaScript object.
+Converts an asynchronous explorable graph into a synchronous plain JavaScript object. The supplied argument can be any [graph variant](/core/variants.html) such as a JSON/YAML file, file system folder, etc. If omitted, `plain` converts the current graph — in the command line, this will be the current folder — to a plain JavaScript object.
 
 A common use for `plain` is to convert a graph into a form that you can pass to any function that works with plain JavaScript objects.
 
@@ -618,11 +632,61 @@ A common use for `plain` is to convert a graph into a form that you can pass to 
 
 Enumerates the graph's key until `key` is found, then returns the previous key in the graph.
 
+<a name="reals"></a>
+
+## reals(graph)
+
+Returns a graph of only the real values in the given [graph variant](/core/variants.html), omitting any virtual values implied by formulas.
+
+```console
+$ cat reals.yaml
+greeting: Hello
+message = greeting:
+$ ori meta reals.yaml
+greeting: Hello
+message: Hello
+$ ori reals meta reals.yaml
+greeting: Hello
+message = greeting: null
+```
+
+Here, the [meta()](#meta) interpretation of the sample graph returns one real value and one virtual value implied by a formula; the underlying formula key itself is hidden. The `reals()` function undoes this interpretation, ignoring the virtual value and recovering the otherwise hidden formula.
+
 <a name="RegExp"></a>
 
 ## RegExp(string)
 
 Creates and returns a JavaScript regular expression from the given string.
+
+<a name="repeat"></a>
+
+## repeat(count, obj)
+
+Returns an array of size `count` filled with copies of the given `obj`.
+
+```console
+$ ori repeat 3, "'Hello'"
+- Hello
+- Hello
+- Hello
+```
+
+<a name="reverse"></a>
+
+## reverse(graph)
+
+Reverses the order of keys in the given [graph variant](/core/variants.html).
+
+```console
+$ cat letters.yaml
+a: The letter A
+b: The letter B
+c: The letter C
+$ ori reverse letters.yaml
+c: The letter C
+b: The letter B
+a: The letter A
+```
 
 <a name="scope"></a>
 
@@ -644,6 +708,35 @@ Server running at http://localhost:5000
 A web route like `a/b/c` will be turned into a graph traversal operation that returns the graph value at that path.
 
 If no `graph` is supplied, `serve` uses the current graph (from the command line, that will be the current folder) transformed via the [app](#app) function into an application.
+
+<a name="setDeep"></a>
+
+## setDeep(target, source)
+
+Recursively applies updates from the `source` graph to the `target` graph, both of which can be any [graph variant](/core/variants.html).
+
+The `target` graph must support the [`set`](/core/set.html) method. The only types of graphs defined in the ExplorableGraph [core library](/core) that provides such support are [ObjectGraph](/core/ObjectGraph.html) and [FilesGraph](/core/FilesGraph.html).
+
+<a name="setScope"></a>
+
+## setScope(graph, ...scopeGraphs)
+
+Returns a copy of the given `graph` with the indicated graphs as its scope.
+
+<a name="site"></a>
+
+## site(domain, [...keys])
+
+Returns a new [SiteGraph](/core/SiteGraph.html) for the indicated `domain`. If `keys` are supplied, this traverses the keys and returns the resulting value.
+
+The site must define [.keys.json](https://graphorigami.org/core/sitegraph#keysjson-files) files if the site graph is to be able to enumerate its contents. Regular web sites won't support that, but will at least allow values to be retrieved via the `get` method.
+
+```console
+$ ori site://graphorigami.org/samples/greetings/
+Alice: Hello, Alice.
+Bob: Hello, Bob.
+Carol: Hello, Carol.
+```
 
 <a name="shell"></a>
 
@@ -670,6 +763,46 @@ $ ori shuffle greetings.yaml
 Carol: Hello, Carol.
 Bob: Hello, Bob.
 Alice: Hello, Alice.
+```
+
+<a name="sort"></a>
+
+## sort(graph)
+
+Returns a copy of the indicated [graph variant](/core/variants.html) with the keys sorted. The sort is performed with the default lexicograph Unicode sort order provided by JavaScript's [Array.sort()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) method.
+
+```console
+$ cat capitals.yaml
+Japan: Tokyo
+Turkey: Ankara
+Australia: Canberra
+Spain: Madrid
+$ ori sort capitals.yaml
+Australia: Canberra
+Japan: Tokyo
+Spain: Madrid
+Turkey: Ankara
+```
+
+See also [sortBy()](#sortBy).
+
+<a name="sortBy"></a>
+
+## sortBy(graph, expression)
+
+Like [sort()](#sort) above, but evaluates the indicated `expression` to determine the sort key. The sort key must support comparison via the JavaScript `<` (less than) and `>` (greater than) operators.
+
+```console
+$ cat capitals.yaml
+Japan: Tokyo
+Turkey: Ankara
+Australia: Canberra
+Spain: Madrid
+$ ori sortBy capitals.yaml, =@value
+Turkey: Ankara
+Australia: Canberra
+Spain: Madrid
+Japan: Tokyo
 ```
 
 <a name="static"></a>
@@ -699,6 +832,12 @@ THIS IS INPUT FROM THE SHELL
 ## stdout(obj)
 
 Writes the indicated object `obj` to the standard output stream. This `stdout` function is used by ori itself to write the evaluated result of an expression to the console. If you wish to override the standard `stdout` implementation to, say, default to JSON output instead of YAML, you can do so by defining your own function named `stdout` in the ori [config file](/cli/config.html).
+
+<a name="string"></a>
+
+## string(obj)
+
+Returns the given object as text by invoking the object's JavaScript [toString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString) method.
 
 <a name="svg"></a>
 
@@ -756,17 +895,41 @@ spanish  Hola, a.     Hola, b.     Hola, c.
 
 `table` separates columns with TAB characters. To ensure visual column alignment requires using other shell tools (such as [column](https://www.man7.org/linux/man-pages/man1/column.1.html), above).
 
+<a name="take"></a>
+
+## take(graph, n)
+
+Returns a copy of the given [graph variant](/core/variants.html), with the additional restriction that the new graph's `asyncIterator` will return only (at most) the first `n` keys.
+
+```console
+$ cat letters.yaml
+a: The letter A
+b: The letter B
+c: The letter C
+$ ori take letters.yaml, 2
+a: The letter A
+b: The letter B
+```
+
 <a name="true"></a>
 
 ## true
 
 This built-in is the JavaScript `true` value, and exists so you can pass `true` to functions.
 
+<a name="unless"></a>
+
+## unless(condition, falseValue)
+
+Evaluates `condition`, and if it is falsy, returns `falseValue`. Otherwise this returns `undefined. This is essentially the logical inverse of [if()](#if).
+
+If `falseValue` is a function, it will be evaluated and its result returned instead.
+
 <a name="values"></a>
 
 ## values([graph])
 
-Returns an array of the top-level values in the indicated graph, which can be any graph [variant](/core/variants.html).
+Returns an array of the top-level values in the indicated graph, which can be any [graph variant](/core/variants.html).
 
 ```console assert: true, path: files
 $ ori greetings.yaml
@@ -781,28 +944,37 @@ $ ori values greetings.yaml
 
 See also [keys](#keys).
 
-<a name="yaml"></a>
+<a name="valuesDeep"></a>
 
-## yaml(object)
+## valuesDeep(graph)
 
-Render the contents of the object in YAML format.
+Return the in-order exterior values of the given [graph variant](/core/variants.html) as a flat array.
 
-The ori tool uses YAML as its default output format, so you won't often need to invoke the `yaml` function yourself from the command line. One occasion to use it would be to convert a JSON file to YAML.
-
-```console assert: true, path: files
-$ ori letters.json
-{
-  "a": "The letter A",
-  "b": "The letter B",
-  "c": "The letter C"
-}
-$ ori yaml letters.json
-a: The letter A
-b: The letter B
-c: The letter C
+```console
+$ cat greetings.yaml
+english:
+  a: Hello, a.
+  b: Hello, b.
+  c: Hello, c.
+french:
+  a: Bonjour, a.
+  b: Bonjour, b.
+  c: Bonjour, c.
+spanish:
+  a: Hola, a.
+  b: Hola, b.
+  c: Hola, c.
+$ ori valuesDeep greetings.yaml
+- Hello, a.
+- Hello, b.
+- Hello, c.
+- Bonjour, a.
+- Bonjour, b.
+- Bonjour, c.
+- Hola, a.
+- Hola, b.
+- Hola, c.
 ```
-
-<a name="watch"></a>
 
 <a name="virtual"></a>
 
@@ -824,54 +996,23 @@ This can be used, for example, to serve a virtual folder, reevaluating the folde
 $ ori serve src, =site.vfiles/public
 ```
 
-<a name="perf"></a>
+<a name="yaml"></a>
 
-## perf
+## yaml(object)
 
-<a name="reals"></a>
+Render the contents of the object in YAML format.
 
-## reals
+The ori tool uses YAML as its default output format, so you won't often need to invoke the `yaml` function yourself from the command line. One occasion to use it would be to convert a JSON file to YAML.
 
-<a name="repeat"></a>
-
-## repeat
-
-<a name="reverse"></a>
-
-## reverse
-
-<a name="setDeep"></a>
-
-## setDeep
-
-<a name="setScope"></a>
-
-## setScope
-
-<a name="site"></a>
-
-## site
-
-<a name="sort"></a>
-
-## sort
-
-<a name="sortBy"></a>
-
-## sortBy
-
-<a name="string"></a>
-
-## string
-
-<a name="take"></a>
-
-## take
-
-<a name="unless"></a>
-
-## unless
-
-<a name="valuesDeep"></a>
-
-## valuesDeep
+```console assert: true, path: files
+$ ori letters.json
+{
+  "a": "The letter A",
+  "b": "The letter B",
+  "c": "The letter C"
+}
+$ ori yaml letters.json
+a: The letter A
+b: The letter B
+c: The letter C
+```
