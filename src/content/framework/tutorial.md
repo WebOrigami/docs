@@ -126,6 +126,12 @@ A formula goes in the _key_ half of a definition — the part before the colon. 
 
 Plain text arguments in formulas require single quotes.
 
+Unlike most programming languages, in Graph Origami a name can include a period. The above could also have been written:
+
+```yaml
+message.html = greet('Alice'):
+```
+
 <span class="tutorialStep"></span> **Try it:** In `site.vfiles`, update your definition of `index.html` to call the `greet` function, passing in `'world'`. The page should end up with "world" in bold: Hello, **world**!.
 
 <reveal-solution>
@@ -171,7 +177,9 @@ title: Our Amazing Team
 
 By putting `title` at the top level, the formulas inside `public` can reference it, but a user won't be able to browse to a URL like `/title` to see the title. This particular project is configured to only let the user directly browse to the contents of the virtual `public` folder.
 
-## Formulas can extract data
+## Defining the team data
+
+Data in Graph Origami projects can come from pretty much anything. This sample project stores the data for your team members in a YAML file.
 
 <span class="tutorialStep"></span> Open the team data file in `src/teamData.yaml`:
 
@@ -183,6 +191,8 @@ This defines an array of person records in YAML but _this data is too boring!_
 
 <span class="tutorialStep"></span> In `teamData.yaml`, replace the people's names with your name and the names of family or friends.
 
+## Formulas can extract data
+
 You can use slash-separated paths to extract information out of a folder or a data file like this team data file.
 
 **Example:** The following defines a file whose value in the sample data will be "Venice". (Array indexes start with zero, so this gets the `location` from the third team member.)
@@ -190,6 +200,8 @@ You can use slash-separated paths to extract information out of a folder or a da
 ```yaml
 carolLocation = teamData.yaml/2/location:
 ```
+
+You can use this slash-separated path syntax anywhere you can refer to something.
 
 <span class="tutorialStep"></span> **Try it:** In `site.vfiles`, update your formula for `index.html` to pass the `name` of the first team member to `greet`. The preview should show something like: Hello, **Alice**!
 
@@ -216,7 +228,9 @@ Instead of creating HTML directly in JavaScript, you can use one of many JavaScr
 
 Inside the curly braces, you can do the same things as in formulas: call JavaScript functions, reference real and virtual files, or extract specific data with slash-separated paths.
 
-<span class="tutorialStep"></span> **Try it:** Create a new file called `index.ori`: Next to the `src` folder on the left, click the `⋮` icon, then **Add File to Folder**, then type `index.ori`. This will become the template file for your index page.
+<span class="tutorialStep"></span> **Try it:** Using the Glitch user interface, create a new file called `index.ori`: Next to the `src` folder on the left, click the `⋮` icon, then **Add File to Folder**, then type `index.ori`. This will become the template file for your index page.
+
+A `.ori` file can define any kind of text content. Here you'll use it to define HTML, so in `index.ori` you can enter regular HTML interspersed with curly brace placholders.
 
 <span class="tutorialStep"></span> Inside the template, enter an `h1` tag to create a heading, and inside the heading put a `\{\{` … `}}` placeholder that will display your site's title.
 
