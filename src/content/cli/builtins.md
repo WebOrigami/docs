@@ -5,6 +5,12 @@ files = client/samples/cli.yaml:
 
 These examples generally demonstrate invoking built-in functions from the command line. The same functions can also be used in Origami formulas in the Origami [framework](/framework).
 
+<a name="…"></a>
+
+## …(key)
+
+Gets the value of `key` which the graph inherits from its [scope](/language/scope.html), bypassing any value the graph itself may have for `key`.
+
 <a name="@"></a>
 
 ## @
@@ -320,12 +326,6 @@ The [options](https://sharp.pixelplumbing.com/api-output#toformat) dictionary is
 ### image/resize(buffer, options)
 
 Returns a new image, resizing the image represented by `buffer`. The [options](https://sharp.pixelplumbing.com/api-resize) should include a `height` and/or `width` property.
-
-<a name="inherited"></a>
-
-## inherited(key)
-
-Gets the value of `key` which the graph inherits from its [scope](/language/scope.html), bypassing any value the graph itself may have for `key`.
 
 <a name="inline"></a>
 
