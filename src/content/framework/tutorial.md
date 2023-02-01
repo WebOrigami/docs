@@ -767,23 +767,26 @@ In a real project, it can be worth adding comments to remind you what each line 
 
 <clipboard-copy>
 
-```yaml
-# The public folder is the static folder plus some virtual subfolders.
-public = merge(static, this):
+```
+# The public folder is the static folder plus some virtual files and folders.
+public = merge(static, {
+
   # Generate the index page from the index.ori template.
-  index.html = index.ori():
+  index.html = index.ori()
 
   # Generate the thumbnails by reducing the full-size images.
-  thumbnails = map(images, thumbnail):
+  thumbnails = map(images, thumbnail)
 
   # Generate a page in the team area for each team member.
-  team = map(teamByName, person.ori, extension='->html'):
+  team = map(teamByName, person.ori, extension: '->html')
+
+})
 
 # Define the title here so both page templates can use it.
-title: Our Amazing Team
+title = 'Our Amazing Team'
 
 # Index the team members by name.
-teamByName = mapKeys(teamData.yaml, =name):
+teamByName = mapKeys(teamData.yaml, =name)
 ```
 
 </clipboard-copy>

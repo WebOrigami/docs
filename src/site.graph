@@ -13,22 +13,22 @@
 # Step 1: Take the markdown files in the `content` folder and inline any Graph
 # Origami expressions contained in curly braces. This produces a new graph
 # called `inlined`.
-inlined = mapDeep(content, inline, extension='md'):
+inlined = mapDeep(content, inline, { extension: 'md' })
 
 # Step 2: Convert the markdown (including inlined content) to HTML while
 # preserving the front matter at the top of each document. As the content is now
 # HTML, we change the file extension from `.md` to `.html`. The result is a
 # graph of HTML content; each value represents the main body of a given page.
-html = mapDeep(inlined, mdHtml, extension='md→html'):
+html = mapDeep(inlined, mdHtml, { extension: 'md→html' })
 
 # Step 3: Apply the documentation page template. This injects the HTML content
 # from the previous step into the site's main page template, which adds headers
 # and navigation chrome. This step concludes the main documentation pipeline.
-pages = mapDeep(html, templates/page.ori, extension='html'):
+pages = mapDeep(html, templates/page.ori, { extension: 'html' })
 
 # Expose the packages referenced in the documentation.
-framework-intro = node_modules/@graphorigami/framework-intro:
-pattern-intro = node_modules/@graphorigami/pattern-intro/src:
+framework-intro = node_modules/@graphorigami/framework-intro
+pattern-intro = node_modules/@graphorigami/pattern-intro/src
 
 # The following formulas are used by specific pages that want to inline API
 # documentation for specific classes in the Graph Origami core library. The
@@ -37,21 +37,22 @@ pattern-intro = node_modules/@graphorigami/pattern-intro/src:
 # API documentation objects for the core library. That formula uses a custom
 # transform called `jsApi`, based on the Microsoft TypeScript compiler, which
 # parses JavaScript source to extract type information and comments.
-source = node_modules/@graphorigami/origami/src:
-api = js/jsApi(source/core):
+source = node_modules/@graphorigami/origami/src
+api = js/jsApi(source/core)
 
 # The `develop` virtual graph exposes the routes useful at development time. It
 # merges the `client` folder (resources like styles) with the final HTML `pages`
 # graph from the documentation pipeline. It also exposes testing pages so that
 # the results of the test suite can be viewed in the browser, as well as the
 # source code and API documentation objects so that those can be inspected too.
-develop = merge(client, pages, test, meta(this)):
-  origamiApi = api:
-  origamiSource = source:
+
+# develop = merge(client, pages, test)
+develop = merge(client, pages)
 
 # The `production` virtual graph defines the final graph which is built into
 # static pages. This includes the `client` and `pages` graphs, as well as a
 # `redirects` file used by Netlify. This `production` graph is copied by the
 # `build` script in `package.json` to create the `dist` folder.
-production = merge(client, pages, meta(this)):
-  _redirects = src/_redirects:
+production = merge(client, pages, {
+  _redirects = src/_redirects
+})
