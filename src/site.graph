@@ -40,19 +40,24 @@ pattern-intro = node_modules/@graphorigami/pattern-intro/src
 source = node_modules/@graphorigami/origami/src
 api = js/jsApi(source/core)
 
+# For now "bundles" are just concatenated files
+bundles = {
+  components.js = concat(components)
+}
+
 # The `develop` virtual graph exposes the routes useful at development time. It
 # merges the `client` folder (resources like styles) with the final HTML `pages`
 # graph from the documentation pipeline. It also exposes testing pages so that
 # the results of the test suite can be viewed in the browser, as well as the
 # source code and API documentation objects so that those can be inspected too.
 
-# develop = merge(client, pages, test)
-develop = merge(client, pages)
+# develop = merge(client, pages, bundles, test)
+develop = merge(client, pages, bundles)
 
 # The `production` virtual graph defines the final graph which is built into
 # static pages. This includes the `client` and `pages` graphs, as well as a
 # `redirects` file used by Netlify. This `production` graph is copied by the
 # `build` script in `package.json` to create the `dist` folder.
-production = merge(client, pages, {
+production = merge(client, pages, bundles, {
   _redirects = src/_redirects
 })
