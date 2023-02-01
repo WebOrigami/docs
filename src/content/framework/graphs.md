@@ -10,7 +10,7 @@ complete:
   personIcon.svg = framework-intro/src/static/personIcon.svg:
   images = framework-intro/src/static/images:
   styles.css = framework-intro/src/static/styles.css:
-  team = map(teamByName, =`<h1>{{ name }}</h1>`, extension='→html'):
+  "team = map(teamByName, =`<h1>{{ name }}</h1>`, { extension: '→html' })":
   thumbnails = images:
 ---
 
