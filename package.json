@@ -4,7 +4,7 @@
   "type": "module",
   "dependencies": {
     "@graphorigami/framework-intro": "github:GraphOrigami/framework-intro#5875b782",
-    "@graphorigami/origami": "github:GraphOrigami/origami#3b8dd20b",
+    "@graphorigami/origami": "github:GraphOrigami/origami#7c5dd5af",
     "@graphorigami/pattern-intro": "github:GraphOrigami/pattern-intro#02f9ed01",
     "marked": "4.1.0",
     "sharp": "0.31.0",
@@ -13,7 +13,7 @@
   },
   "scripts": {
     "build": "ori 'copy netlify(src/site.graph/production), files/dist'",
-    "serve": "ori 'serve defaultPages(src/site.graph/develop)",
+    "serve": "ori 'serve defaultPages(src/site.graph/develop)'",
     "test": "ori virtual/src/test/summary"
   }
 }
