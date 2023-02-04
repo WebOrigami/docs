@@ -13,7 +13,7 @@ countries:
   - name: China
     abbreviation: CN
 countriesByAbbreviation = mapKeys(countries, =abbreviation):
-teamByName = mapKeys(framework-intro/src/teamData.yaml, =name):
+teamByName = mapKeys(framework-intro/src/teamData.yaml, =./name):
 ---
 
 <script src="/components.js"></script>
@@ -612,7 +612,7 @@ public = merge(static, this):
   thumbnails = map(images, thumbnail):
 
 title: Our Amazing Team
-teamByName = mapKeys(teamData.yaml, =name):
+teamByName = mapKeys(teamData.yaml, =./name):
 ```
 
 </reveal-solution>
@@ -652,7 +652,7 @@ public = merge(static, this):
   team = map(teamByName, person.ori):
 
 title: Our Amazing Team
-teamByName = mapKeys(teamData.yaml, =name):
+teamByName = mapKeys(teamData.yaml, =./name):
 ```
 
 </reveal-solution>
@@ -694,7 +694,7 @@ public = merge(static, this):
   team = map(teamByName, person.ori, extension='->html'):
 
 title: Our Amazing Team
-teamByName = mapKeys(teamData.yaml, =name):
+teamByName = mapKeys(teamData.yaml, =./name):
 ```
 
 </reveal-solution>
@@ -758,7 +758,7 @@ public = merge(static, this):
   team = map(teamByName, person.ori, extension='->html'):
 
 title: Our Amazing Team
-teamByName = mapKeys(teamData.yaml, =name):
+teamByName = mapKeys(teamData.yaml, =./name):
 ```
 
 Each of the lines defining the virtual `public` folder and its subfolders creates some important area of the site.
@@ -786,7 +786,7 @@ public = merge(static, {
 title = 'Our Amazing Team'
 
 # Index the team members by name.
-teamByName = mapKeys(teamData.yaml, =name)
+teamByName = mapKeys(teamData.yaml, =./name)
 ```
 
 </clipboard-copy>

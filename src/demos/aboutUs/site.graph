@@ -5,4 +5,4 @@ public = merge(static, {
 })
 
 title = 'Our Amazing Team'
-teamByName = mapKeys(team.yaml, =name)
+teamByName = mapKeys(team.yaml, =./name)

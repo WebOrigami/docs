@@ -1,5 +1,5 @@
 title: Our Amazing Team
-teamByName = mapKeys(framework-intro/src/public/team.yaml, =name):
+teamByName = mapKeys(framework-intro/src/public/team.yaml, =./name):
 public:
   index.html: |
     <h1>Our Amazing Team</h1>
@@ -9,5 +9,5 @@ public:
   personIcon.svg = framework-intro/src/public/personIcon.svg:
   images = framework-intro/src/public/images:
   styles.css = framework-intro/src/public/styles.css:
-  "team = map(teamByName, =`<h1>{{ name }}</h1>`, { extension: '→html') }":
+  "team = map(teamByName, =`<h1>{{ ./name }}</h1>`, { extension: '→html') }":
   thumbnails = images:

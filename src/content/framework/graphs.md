@@ -1,6 +1,6 @@
 ---
 title: Explorable graphs represent data, files, and other resources
-teamByName = mapKeys(framework-intro/src/teamData.yaml, =name):
+teamByName = mapKeys(framework-intro/src/teamData.yaml, =./name):
 complete:
   index.html: |
     <h1>Our Amazing Team</h1>
@@ -10,7 +10,7 @@ complete:
   personIcon.svg = framework-intro/src/static/personIcon.svg:
   images = framework-intro/src/static/images:
   styles.css = framework-intro/src/static/styles.css:
-  "team = map(teamByName, =`<h1>{{ name }}</h1>`, { extension: '→html' })":
+  "team = map(teamByName, =`<h1>{{ ./name }}</h1>`, { extension: '→html' })":
   thumbnails = images:
 ---
 

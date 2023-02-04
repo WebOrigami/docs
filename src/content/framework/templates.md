@@ -5,8 +5,8 @@ teamData.yaml:
   - name: Alice
   - name: Bob
   - name: Carol
-names = map(teamData.yaml, =name):
-strings = map(teamData.yaml, =`<a href="{{name}}.html">{{name}}</a> `):
+names = map(teamData.yaml, =./name):
+strings = map(teamData.yaml, =`<a href="{{name}}.html">{{./name}}</a> `):
 template:
   - Hello, <strong>
   - "{{name}}"
@@ -19,14 +19,14 @@ intro = client/samples/frameworkIntro:
 index.ori: |
   <h1>About Us</h1>
   {{map teamByName, =`
-    <li>{{name}}</li>
+    <li>{{./name}}</li>
   `}}
 indexTemplate:
   - <h1>About Us</h1>
-  - "{{map teamByName, =`<li>{{name}}</li>` }}"
+  - "{{map teamByName, =`<li>{{./name}}</li>` }}"
 indexText:
   0: "<h1>About Us</h1>"
-  1 = map(intro/teamByName, =`<li>{{name}}</li>`):
+  1 = map(intro/teamByName, =`<li>{{./name}}</li>`):
 index.html = index.ori(intro/teamData.yaml):
 ---
 
