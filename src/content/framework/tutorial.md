@@ -16,7 +16,7 @@ countriesByAbbreviation = mapKeys(countries, =./abbreviation):
 teamByName = mapKeys(framework-intro/src/teamData.yaml, =./name):
 siteWithTitle1:
   index.html = framework-intro/src/greet(title):
-  title: Our Amazing Team
+  title = 'Our Amazing Team'
 siteWithTitle2:
   index.html = framework-intro/src/greet('Our Amazing Team'):
 ---
@@ -193,6 +193,8 @@ title = 'Our Amazing Team'
 
 By putting `title` at the top level, the formulas inside `public` can reference it, but a user won't be able to browse to a URL like `/title` to see the title.
 
+<span class="tutorialStep"></span> In the graph diagram window, confirm that the public site no longer includes `title`:
+
 <figure>
 {{ svg siteWithTitle2 }}
 </figure>
@@ -321,7 +323,7 @@ public = merge(static, {
   index.html = index.ori()
 })
 
-title: Our Amazing Team
+title = 'Our Amazing Team'
 ```
 
 </reveal-solution>
@@ -392,7 +394,7 @@ public = merge(static, {
   thumbnails = map(static/images, thumbnail)
 })
 
-title: Our Amazing Team
+title = 'Our Amazing Team'
 ```
 
 </reveal-solution>
@@ -443,7 +445,7 @@ public = merge(static, {
   names = map(teamData.yaml, =./name)
 })
 
-title: Our Amazing Team
+title = 'Our Amazing Team'
 ```
 
 </reveal-solution>
