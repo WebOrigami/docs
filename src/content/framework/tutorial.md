@@ -16,7 +16,7 @@ countriesByAbbreviation = mapKeys(countries, =./abbreviation):
 teamByName = mapKeys(framework-intro/src/teamData.yaml, =./name):
 siteWithTitle1:
   index.html = framework-intro/src/greet(title):
-  title = 'Our Amazing Team'
+  title: Our Amazing Team
 siteWithTitle2:
   index.html = framework-intro/src/greet('Our Amazing Team'):
 ---
