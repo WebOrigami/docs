@@ -5,12 +5,6 @@ files = client/samples/cli.yaml:
 
 These examples generally demonstrate invoking built-in functions from the command line. The same functions can also be used in Origami formulas in the Origami [framework](/framework).
 
-<a name="…"></a>
-
-## …(key)
-
-Gets the value of `key` which the graph inherits from its [scope](/language/scope.html), bypassing any value the graph itself may have for `key`.
-
 <a name="@"></a>
 
 ## @
@@ -364,6 +358,12 @@ $ ori inline page.html
   </body>
 </html>
 ```
+
+<a name="inherited"></a>
+
+## inherited(key)
+
+Gets the value of `key` which the graph inherits from its [scope](/language/scope.html), bypassing any value the graph itself may have for `key`.
 
 <a name="inners"></a>
 
