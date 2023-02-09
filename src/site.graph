@@ -24,7 +24,7 @@ html = mapDeep(inlined, mdHtml, { extension: 'md→html' })
 # Step 3: Apply the documentation page template. This injects the HTML content
 # from the previous step into the site's main page template, which adds headers
 # and navigation chrome. This step concludes the main documentation pipeline.
-pages = mapDeep(html, templates/page.ori, { extension: 'html' })
+pages = mapDeep(html, =templates/page.ori(fromYaml(@value)), { extension: 'html' })
 
 # Expose the packages referenced in the documentation.
 framework-intro = node_modules/@graphorigami/framework-intro
