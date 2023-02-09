@@ -86,9 +86,9 @@ After a moment, the Glitch preview window should refresh to show: Hello, world!
 You'll see your site visually represented as a graph:
 
 <figure>
-{{ svg yaml `
+{{ svg fromYaml(`
 index.html: Hello, world!
-` }}
+`) }}
 </figure>
 
 The little circle represents the `public` folder, and the box represents the `index.html` file.
@@ -342,18 +342,18 @@ You can visualize the many-to-many transformation this way:
 
 <div class="sideBySide">
   <figure>
-    {{ svg yaml `
+    {{ svg fromYaml(`
 - name: Alice
 - name: Bob
 - name: Carol
-` }}
+`) }}
   </figure>
   <figure>
-    {{ svg yaml `
+    {{ svg fromYaml(`
 - Alice
 - Bob
 - Carol
-` }}
+`) }}
   </figure>
   <figcaption>teamData.yaml</figcaption>
   <figcaption>names</figcaption>
@@ -361,18 +361,18 @@ You can visualize the many-to-many transformation this way:
 
 <div class="sideBySide">
   <figure>
-    {{ svg yaml `
+    {{ svg fromYaml(`
 - name: Alice
 - name: Bob
 - name: Carol
-` }}
+`) }}
   </figure>
   <figure>
-    {{ svg yaml `
+    {{ svg fromYaml(`
 - <p>Hello, <strong>Alice</strong></p>
 - <p>Hello, <strong>Bob</strong></p>
 - <p>Hello, <strong>Carol</strong></p>
-` }}
+`) }}
   </figure>
   <figcaption>teamData.yaml</figcaption>
   <figcaption>greetings</figcaption>
@@ -458,10 +458,10 @@ Because Graph Origami treats real folders and virtual folders the same, you can 
 <span class="tutorialStep"></span> Switch to the graph diagram window and refresh it to view your site's updated structure.
 
 <figure>
-{{ svg merge(framework-intro/src/static, meta(yaml `
+{{ svg merge(framework-intro/src/static, meta(fromYaml(`
 index.html: <h1>Our Amazing Team</h1>
 thumbnails = fakeImages:
-`)) }}
+`))) }}
 </figure>
 
 The virtual `thumbnails` folder contains a set of thumbnail images _that do not exist._ They are potential images that are only created when you ask for them.
@@ -505,11 +505,11 @@ title = 'Our Amazing Team'
 <span class="tutorialStep"></span> Refresh the graph diagram window to see that your site now includes a `names` folder.
 
 <figure>
-{{ svg merge(framework-intro/src/static, meta(yaml `
+{{ svg merge(framework-intro/src/static, meta(fromYaml(`
 index.html: <h1>Our Amazing Team</h1>
 thumbnails = fakeImages:
 names = map(framework-intro/src/teamData.yaml, =./name):
-`)) }}
+`))) }}
 </figure>
 
 The `names` folder contains entries for three virtual files called `0`, `1`, and `2`. These files contain the corresponding name from an entry in `teamData.yaml`.
@@ -781,11 +781,11 @@ The last step is to fill out the template for a person.
 Your site now looks like:
 
 <figure>
-{{ svg merge(framework-intro/src/static, meta(yaml `
+{{ svg merge(framework-intro/src/static, meta(fromYaml(`
 index.html: <h1>Our Amazing Team</h1>
 team = map(teamByName, framework-intro/src/person.ori):
 thumbnails = fakeImages:
-`)) }}
+`))) }}
 </figure>
 
 You can click on the circles or boxes in this diagram to explore what you've made.
