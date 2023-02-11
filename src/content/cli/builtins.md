@@ -166,6 +166,12 @@ If you want a basic visual representation of a graph, use the [svg()](#svg) func
 
 Expands [graph variant](/core/variants.html) values (e.g., YAML/JSON text) into graphs.
 
+<a name="extendScope"></a>
+
+## extendScope(graph, ...scopeGraphs)
+
+Returns a copy of the given `graph` whose scope will the indicated graphs _and_ the current scope. This is similar to [setScope](#setScope), but the latter doesn't implicitly include the current scope.
+
 <a name="false"></a>
 
 ## false
