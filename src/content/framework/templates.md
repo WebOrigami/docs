@@ -5,8 +5,8 @@ teamData.yaml:
   - name: Alice
   - name: Bob
   - name: Carol
-names = map(teamData.yaml, =./name):
-strings = map(teamData.yaml, =`<a href="{{name}}.html">{{./name}}</a> `):
+names: !ori map(teamData.yaml, =./name)
+strings: !ori map(teamData.yaml, =`<a href="{{name}}.html">{{./name}}</a> `)
 template:
   - Hello, <strong>
   - "{{name}}"
@@ -15,7 +15,7 @@ application:
   - Hello, <strong>
   - Alice
   - </strong>!
-intro = client/samples/frameworkIntro:
+intro: !ori client/samples/frameworkIntro
 index.ori: |
   <h1>About Us</h1>
   {{map teamByName, =`
@@ -26,8 +26,8 @@ indexTemplate:
   - "{{map teamByName, =`<li>{{./name}}</li>` }}"
 indexText:
   0: "<h1>About Us</h1>"
-  1 = map(intro/teamByName, =`<li>{{./name}}</li>`):
-index.html = index.ori(intro/teamData.yaml):
+  1: !ori map(intro/teamByName, =`<li>{{./name}}</li>`)
+index.html: !ori index.ori(intro/teamData.yaml)
 ---
 
 Origami templates let you write Origami expressions in the context of a text document. These expressions can then be evaluated in the context of input data to efficiently produce, for example, HTML.

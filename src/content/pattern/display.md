@@ -1,6 +1,6 @@
 ---
 title: Display a graph
-functions = js/codeFunctions(pattern-intro/flat/json.js):
+functions: !ori js/codeFunctions(pattern-intro/flat/json.js)
 ---
 
 Now that we've applied the Explorable interface to an object to create an explorable graph, let's write a simple tool that will display the contents of that explorable graph in the console.

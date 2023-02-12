@@ -1,5 +1,5 @@
 ---
-areas = js/markCurrent(areas.yaml, currentArea):
-currentArea = js/pathArea(@path):
+areas: !ori js/markCurrent(areas.yaml, currentArea)
+currentArea: !ori js/pathArea(@path)
 ---
 {{map areas, =templates/linkCurrent.ori() }}

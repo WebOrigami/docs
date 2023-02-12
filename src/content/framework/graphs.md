@@ -1,17 +1,17 @@
 ---
 title: Explorable graphs represent data, files, and other resources
-teamByName = mapKeys(framework-intro/src/teamData.yaml, =./name):
+teamByName: !ori mapKeys(framework-intro/src/teamData.yaml, =./name)
 complete:
   index.html: |
     <h1>Our Amazing Team</h1>
     <li>Alice</li>
     <li>Bob</li>
     <li>Carol</li>
-  personIcon.svg = framework-intro/src/static/personIcon.svg:
-  images = framework-intro/src/static/images:
-  styles.css = framework-intro/src/static/styles.css:
-  "team = map(teamByName, =`<h1>{{ ./name }}</h1>`, { extension: '→html' })":
-  thumbnails = images:
+  personIcon.svg: !ori framework-intro/src/static/personIcon.svg
+  images: !ori framework-intro/src/static/images
+  styles.css: !ori framework-intro/src/static/styles.css
+  team: !ori "map(teamByName, =`<h1>{{ ./name }}</h1>`, { extension: '→html' })"
+  thumbnails: !ori images
 ---
 
 When creating digital content through transformation, it's often helpful to identify the high-level structure of the source form, intermediate forms, and result form. In many cases, the content will have a hierarchical or tree-like structure.

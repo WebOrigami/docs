@@ -1,7 +1,7 @@
 ---
 title: Index pages
-functions = js/codeFunctions(pattern-intro/index/indexPages.js):
-htmlObject = pattern-intro/index/transform(pattern-intro/index/object):
+functions: !ori js/codeFunctions(pattern-intro/index/indexPages.js)
+htmlObject: !ori pattern-intro/index/transform(pattern-intro/index/object)
 ---
 
 Right now, the experience of browsing our graph of generated HTML is a little unsatisfying because there are no index pages — we have to know what pages exist and manually enter a valid URL.

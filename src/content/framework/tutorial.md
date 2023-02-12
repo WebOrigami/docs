@@ -12,13 +12,13 @@ countries:
     abbreviation: BR
   - name: China
     abbreviation: CN
-countriesByAbbreviation = mapKeys(countries, =./abbreviation):
-teamByName = mapKeys(framework-intro/src/teamData.yaml, =./name):
+countriesByAbbreviation: !ori mapKeys(countries, =./abbreviation)
+teamByName: !ori mapKeys(framework-intro/src/teamData.yaml, =./name)
 siteWithTitle1:
-  index.html = framework-intro/src/greet(title):
+  index.html: !ori framework-intro/src/greet(title)
   title: Our Amazing Team
 siteWithTitle2:
-  index.html = framework-intro/src/greet('Our Amazing Team'):
+  index.html: !ori framework-intro/src/greet('Our Amazing Team')
 ---
 
 <script src="/components.js"></script>
@@ -626,7 +626,7 @@ countries:
   - name: China
     abbreviation: CN
 
-countriesByAbbreviation = mapKeys(countries, =./abbreviation):
+countriesByAbbreviation: !ori mapKeys(countries, =./abbreviation)
 ```
 
 This operation looks like:

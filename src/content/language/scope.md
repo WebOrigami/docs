@@ -9,10 +9,10 @@ projectExample: |
       image1.jpg: "[binary data]"
     greet.js: export default function greet() …
     site.vfiles:
-      index.html = greet(name):
+      index.html: !ori greet(name)
       name: Alice
 site.vfiles: |
-  index.html = greet(name):
+  index.html: !ori greet(name)
   name: Alice
 jsScopeExample: |
   Math:
@@ -34,8 +34,8 @@ jsScopeExample: |
 
 Most Origami expressions will contain references to named functions, files, data keys, etc., which must be resolved in order to evaluate the expression. For example, consider the framework formula:
 
-```yaml
-message = greet():
+```
+message = greet()
 ```
 
 Or the Origami CLI command:

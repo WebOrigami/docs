@@ -1,7 +1,7 @@
 ---
 title: Transforming data and graphs
 numberHeadings: true
-intro = client/samples/cli.yaml:
+intro: !ori client/samples/cli.yaml
 ---
 
 ## Transform data into something presentable with a template

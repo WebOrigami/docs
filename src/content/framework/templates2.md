@@ -37,7 +37,7 @@ Now you'll need to tell Graph Origami to use this template to create the index p
 (title): Our Amazing Team
 
 # Index page obtained by invoking the index.ori template
-index.html = index.ori():
+index.html: !ori index.ori()
 ```
 
 The new formula specifies that, if someone asks for `index.html`, then the `index.ori` template should be invoked as a function. This particular template will ask for the data it wants, so you don't need to supply any function arguments.

@@ -1,9 +1,9 @@
 ---
-currentPage = @key:
-currentPath = @path:
-currentRef = `{{@path}}/{{@key}}`:
-icon = js/chooseIcon(currentRef, client/assets/origami):
-pages = js/markCurrent(pages.yaml, @key):
+currentPage: !ori (@key)
+currentPath: !ori (@path)
+currentRef: !ori (`{{@path}}/{{@key}}`)
+icon: !ori js/chooseIcon(currentRef, client/assets/origami)
+pages: !ori js/markCurrent(pages.yaml, @key)
 ---
 <!DOCTYPE html>
 <html lang="en">

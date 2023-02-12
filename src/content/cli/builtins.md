@@ -1,6 +1,6 @@
 ---
 title: Built-In Functions
-files = client/samples/cli.yaml:
+files: !ori client/samples/cli.yaml
 ---
 
 These examples generally demonstrate invoking built-in functions from the command line. The same functions can also be used in Origami formulas in the Origami [framework](/framework).
@@ -27,7 +27,7 @@ If the assertion fails, `assert()` returns the `description`, `expected`, and ev
 $ cat test.yaml
 description: repeat built-in function can replicate a value
 expected: beepbeep
-actual = repeat(2, 'beep'):
+actual: !ori repeat(2, 'beep')
 $ ori assert test.yaml
 description: repeat built-in function can replicate a value
 expected: beepbeep
@@ -647,7 +647,7 @@ Returns a graph of only the real values in the given [graph variant](/core/varia
 ```console
 $ cat reals.yaml
 greeting: Hello
-message = greeting:
+message: !ori greeting
 $ ori meta reals.yaml
 greeting: Hello
 message: Hello

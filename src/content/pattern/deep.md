@@ -1,6 +1,6 @@
 ---
 title: Deep graphs
-functions = js/codeFunctions(pattern-intro/deep/json.js):
+functions: !ori js/codeFunctions(pattern-intro/deep/json.js)
 ---
 
 Until now, the "graphs" we've been working with are flat lists. Now that we've cleanly isolated our graph wrappers into classes, let's extend the `ObjectGraph` and `FilesGraph` classes to support arbitrarily deep trees.

@@ -2,7 +2,7 @@
 title: Transforming data with maps
 files:
   folder: |
-    html = map(markdown, mdHtml, extension='md→html'):
+    html: !ori map(markdown, mdHtml, extension='md→html')
     markdown:
       Alice.md: Hello, **Alice**.
       Bob.md: Hello, **Bob**.
@@ -22,7 +22,7 @@ Hello, **Alice**.
 
 ```console assert: true, path: files
 $ ori folder
-html = map(markdown, mdHtml, extension='md->html'):
+html: !ori map(markdown, mdHtml, extension='md->html')
 markdown:
   Alice.md: Hello, **Alice**.
   Bob.md: Hello, **Bob**.
