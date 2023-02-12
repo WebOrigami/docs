@@ -1,7 +1,6 @@
 ---
 title: Using graphs with the ori CLI
 numberHeadings: true
-intro = client/samples/cli.yaml:
 ---
 
 ## Explorable graphs
