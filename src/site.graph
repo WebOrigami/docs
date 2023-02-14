@@ -48,6 +48,8 @@ misc = {
   demos = {
     aboutUs = src/demos/aboutUs/site.graph/public
   }
+
+  test.html = test.ori()
 }
 
 # The `develop` virtual graph exposes the routes useful at development time. It
