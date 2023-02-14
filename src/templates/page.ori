@@ -1,7 +1,5 @@
 ---
-currentPage: !ori (@key)
-currentPath: !ori (@path)
-currentRef: !ori (`{{@path}}/{{@key}}`)
+currentRef: !ori (`{{area}}/{{@key}}`)
 icon: !ori js/chooseIcon(currentRef, client/assets/origami)
 pages: !ori js/markCurrent(pages.yaml, @key)
 ---

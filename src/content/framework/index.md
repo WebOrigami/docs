@@ -1,7 +1,6 @@
 ---
 title: Origami framework
 subtitle: Content creation for sites, tools, and data
-path: /framework/index.html
 ---
 
 {{ templates/blocks.ori() }}
