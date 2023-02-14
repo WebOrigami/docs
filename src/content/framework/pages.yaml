@@ -2,21 +2,17 @@
   text: Introduction
 - href: tutorial.html
   text: Tutorial
-- # href: model.html
-  text: Model
-- # href: graphs.html
-  text: Explorable graphs
-- # href: virtual.html
-  text: Virtual content
-- # href: metagraph.html
-  text: Metagraphs
-- # href: formulas.html
-  text: Formulas
-- # href: maps.html
-  text: Maps
-- # href: this.html
-  text: "<code>this</code> keyword"
-- # href: templates.html
-  text: Templates
-- # href: extensibility.html
-  text: Extensibility
+# - href: model.html
+#   text: Model
+# - href: graphs.html
+#   text: Explorable graphs
+# - href: virtual.html
+#   text: Virtual content
+# - href: maps.html
+#   text: Maps
+# - href: this.html
+#   text: "<code>this</code> keyword"
+# - href: templates.html
+#   text: Templates
+# - href: extensibility.html
+#   text: Extensibility
