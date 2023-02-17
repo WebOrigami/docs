@@ -508,7 +508,7 @@ title = 'Our Amazing Team'
 {{ svg merge(framework-intro/src/static, {
   index.html = '<h1>Our Amazing Team</h1>'
   thumbnails = fakeImages
-  names = map(framework-intro/src/teamData.yaml, =./name)
+  names = map(framework-intro/src/teamData.yaml, =name)
 }) }}
 </figure>
 

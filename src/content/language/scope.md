@@ -1,20 +1,21 @@
 ---
 title: Scope
 subtitle: How references in Origami expressions are resolved
-projectExample: |
-  package.json: '{ name: "Sample }'
+projectExample:
+  package.json: |
+    { "name": "Sample" }
   ReadMe.md: About this project
   src:
     assets:
       image1.jpg: "[binary data]"
-    greet.js: export default function greet() …
-    site.vfiles:
-      index.html: !ori greet(name)
-      name: Alice
-site.vfiles: |
-  index.html: !ori greet(name)
-  name: Alice
-jsScopeExample: |
+    greet.js: export default function greet() ...
+    site.graph: |
+      index.html = 'Hello, Alice!'
+      name = 'Alice'
+site.graph: |
+  index.html = greet(name)
+  name = 'Alice'
+jsScopeExample:
   Math:
     pow: "[function]"
   "[module]":
@@ -74,17 +75,16 @@ src/
   assets/
     image1.jpg
   greet.js
-  site.vfiles
+  site.graph
 ```
 
-And suppose that the file `site.vfiles` defines a graph in YAML format:
+And suppose that the file `site.graph` defines a graph:
 
 ```{{'yaml'}}
-{{ site.vfiles }}
-
+{{ site.graph }}
 ```
 
-To determine how this `greet()` reference in `site.vfiles` will be resolved, let's model the whole project as a graph, including the graph inside `site.vfiles`:
+To determine how this `greet()` reference in `site.graph` will be resolved, let's model the whole project as a graph, including the graph inside `site.graph`:
 
 <figure class="fullWidth">
 {{ svg projectExample }}
@@ -92,23 +92,23 @@ To determine how this `greet()` reference in `site.vfiles` will be resolved, let
 
 When Graph Origami evaluates the formula for `index.html`, it will evaluate the expression `greet(name)`. To resolve those references, it walks up the tree, considering the following graph nodes in term:
 
-1. The graph defined by `site.vfiles`: defines `name` and `index.html = greet('name')`. The latter implicitly defines a virtual file called `index.html`.
-1. The graph defined by the `src` folder: defines `assets`, `greet.js`, and `site.vfiles`. The `greet.js` file is text, but implicitly defines a virtual value called, `greet`, which is the actual exported JavaScript function.
+1. The graph defined by `site.graph`: defines `name` and `index.html = greet('name')`. The latter implicitly defines a virtual file called `index.html`.
+1. The graph defined by the `src` folder: defines `assets`, `greet.js`, and `site.graph`. The `greet.js` file is text, but implicitly defines a virtual value called, `greet`, which is the actual exported JavaScript function.
 1. The graph defined by the project's top-level folder: defines `package.json`, `ReadMe.md`, and `src`.
 1. The graph defined by Graph Origami's built-in functions.
 
-When looking for `greet`, Graph Origami doesn't find that key in the first graph (the contents of `site.vfiles`), so it moves up a level to the `src` folder. There it _does_ find `greet`, so the search ends.
+When looking for `greet`, Graph Origami doesn't find that key in the first graph (the contents of `site.graph`), so it moves up a level to the `src` folder. There it _does_ find `greet`, so the search ends.
 
 As with block scoping in programming languages, in graph scoping the search only goes "up" the graph. If you want to go back deeper into the graph, you must make an explicit reference using paths:
 
-- If a formula in `site.vfiles` wants to reference the image `image1.jpg`, it will have to do that as `assets/image1.jpg`, because `assets` is in scope but `image1.jpg` isn't.
-- A formula in `site.vfiles` can obtain its own project name via `package.json/name`, because `package.json` is in scope.
+- If a formula in `site.graph` wants to reference the image `image1.jpg`, it will have to do that as `assets/image1.jpg`, because `assets` is in scope but `image1.jpg` isn't.
+- A formula in `site.graph` can obtain its own project name via `package.json/name`, because `package.json` is in scope.
 
 ## Project structure can determine what's public
 
 Graph scope lets you use the file system structure of your project as one way to configure what's available to your own code as well as what's available to end users.
 
-You can take advantage of graph scope to hide internal details. If the little project defined above publishes the virtual contents of `site.vfiles`, a user will be able to browse to `index.html` — but will not be able to see `greet.js` or `ReadMe.md`.
+You can take advantage of graph scope to hide internal details. If the little project defined above publishes the virtual contents of `site.graph`, a user will be able to browse to `index.html` — but will not be able to see `greet.js` or `ReadMe.md`.
 
 ## Comparison with block scope in programming languages
 

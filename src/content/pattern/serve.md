@@ -1,6 +1,6 @@
 ---
 title: Serve a graph
-functions = js/codeFunctions(pattern-intro/deep/serve.js):
+functions: !ori js/codeFunctions(pattern-intro/deep/serve.js)
 ---
 
 Displaying a graph in the console is fine for playing around or debugging, but we can do much more interesting things with a graph — like serve it to a web browser.

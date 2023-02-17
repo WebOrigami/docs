@@ -7,9 +7,9 @@ complete:
     <li>Alice</li>
     <li>Bob</li>
     <li>Carol</li>
-  personIcon.svg: !ori framework-intro/src/static/personIcon.svg
-  images: !ori framework-intro/src/static/images
-  styles.css: !ori framework-intro/src/static/styles.css
+  personIcon.svg: !ori framework-intro/src/assets/personIcon.svg
+  images: !ori framework-intro/src/images
+  styles.css: !ori framework-intro/src/assets/styles.css
   team: !ori "map(teamByName, =`<h1>{{ ./name }}</h1>`, { extension: '→html' })"
   thumbnails: !ori images
 ---
