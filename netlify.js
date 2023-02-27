@@ -1,7 +1,7 @@
 import { ExplorableGraph } from "@graphorigami/origami";
 
 /**
- * Expose index.html and keys.json (no initial dot) for Netlify.
+ * Expose keys.json (no initial dot) for Netlify.
  *
  * Netlify won't deploy files that start with a dot like .keys.json. As a
  * workaround, we expose a `keys.json` key that contains the same content as
@@ -13,22 +13,18 @@ export default async function netlify(variant) {
   const graph = ExplorableGraph.from(variant);
   return {
     async *[Symbol.asyncIterator]() {
-      const keys = new Set();
       for await (const key of graph) {
-        keys.add(key);
         yield key;
-      }
-      if (!keys.has("index.html")) {
-        yield "index.html";
-      }
-      if (!keys.has("keys.json")) {
-        yield "keys.json";
+        if (key === ".keys.json") {
+          // Also yield "keys.json" for Netlify.
+          yield "keys.json";
+        }
       }
     },
 
     async get(key) {
       if (key === "keys.json") {
-        // Special case; see note above.
+        // keys.json is a synonym for .keys.json
         return await this.get(".keys.json");
       }
       const value = await graph.get(key);

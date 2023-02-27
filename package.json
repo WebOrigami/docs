@@ -12,7 +12,7 @@
     "yaml": "2.1.1"
   },
   "scripts": {
-    "build": "ori 'copy netlify(src/site.graph/production), files/dist'",
+    "build": "ori 'copy netlify(static(src/site.graph/production)), files/dist'",
     "serve": "ori 'serve watch src, =debug(src/site.graph/develop)'",
     "test": "ori virtual/src/test/summary"
   }
