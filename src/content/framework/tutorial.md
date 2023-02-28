@@ -12,8 +12,8 @@ countries:
     abbreviation: BR
   - name: China
     abbreviation: CN
-countriesByAbbreviation: !ori mapKeys(countries, =./abbreviation)
-teamByName: !ori mapKeys(framework-intro/src/teamData.yaml, =./name)
+countriesByAbbreviation: !ori mapKeys(countries, =abbreviation)
+teamByName: !ori mapKeys(framework-intro/src/teamData.yaml, =name)
 siteWithTitle1:
   index.html: !ori framework-intro/src/greet(title)
   title: Our Amazing Team
@@ -81,7 +81,7 @@ After a moment, the Glitch preview window should refresh to show: Hello, world!
 
 <span class="tutorialStep"></span> Click the **Preview** button at the bottom of the window, then click **Preview in a new window**. This will open your site in a new tab or window.
 
-<span class="tutorialStep"></span> In the browser address bar for that preview tab/window, add `/.svg` to the end of the URL. The new URL should look like `https://your-project-name.glitch.me/.svg`
+<span class="tutorialStep"></span> In the browser address bar for that preview tab/window, add `/!svg` to the end of the URL. The new URL should look like `https://your-project-name.glitch.me/!svg`
 
 You'll see your site visually represented as a graph:
 
@@ -94,8 +94,6 @@ index.html = 'Hello, world!'
 The little circle represents the `public` folder, and the box represents the `index.html` file.
 
 In Graph Origami, this project diagram can be a useful way to visualize and explore the graph you are building, so we'll return to the graph diagram window occasionally.
-
-(You can also view the diagram in the Glitch preview pane. A Glitch quirk prevents you from typing an address that starts with a period; instead, you can type `svg` first and insert a `.` before that.)
 
 <span class="tutorialStep"></span> Leave the graph diagram window open and switch back to the main Glitch window.
 
@@ -201,6 +199,186 @@ By putting `title` at the top level, the formulas inside `public` can reference 
 
 <span class="tutorialStep"></span> Switch back to the Glitch window.
 
+## Pull in resources
+
+The `src` folder has two real subfolders you'll want to include in your `public` graph:
+
+- `assets` contains a stylesheet and icon
+- `images` contains sample images you can use to represent your team members
+
+You can pull a real folder or file into your graph by writing its name on a line by itself.
+
+**Example:** To include a `styles` folder in the `public` graph you would write
+
+```
+public = {
+  styles
+}
+```
+
+<span class="tutorialStep"></span> **Try it:** In `site.graph`, update the formula for `public` to pull in the `assets` and `images` folders.
+
+<reveal-solution>
+
+```
+public = {
+  index.html = greet(title)
+  assets
+  images
+}
+
+title = 'Our Amazing Team'
+```
+
+</reveal-solution>
+
+<span class="tutorialStep"></span> Switch to graph diagram window and refresh it to see the updated `public` folder.
+
+Your site now includes both real and virtual files:
+
+<figure>
+{{ svg merge(siteWithTitle2, {
+  assets = framework-intro/src/assets
+  images = framework-intro/src/images
+}) }}
+</figure>
+
+You can continue to grow this into your final About Us site.
+
+## Creating a virtual folder with a map
+
+There are several places in this web site where you want to take one set of things and transform them to create a new set of things:
+
+- For each team member in teamData.yaml, you want to create a tile on the index page.
+- For each team member in teamData.yaml, you want to create a page. E.g., Alice should have a page at `team/Alice.html`.
+- For each image in the `images` folder like `van.jpg`, you want to create a thumbnail image `thumbnails/van.jpg`.
+
+Such situations are very common in websites and other development tasks, where you say: "For each [thing], create a [different thing]."
+
+Whenever you have such a situation in Graph Origami, you can often efficiently address it with a _map_. A map is a many-to-many transformation: you give it a set of things (like a real folder, a virtual folder, or the array of people in teamData.yaml) and a function. The function is a one-to-one transformation: it transforms a single thing into a new thing. A map can scale up a one-to-one transformation to turn it into a many-to-many transformation.
+
+Right now, your virtual file `index.html` is created with the `greet` function. That function performs a trivial one-to-one transformation of a text string (like "Our Amazing Team") to produce a new text string ("Hello, Our Amazing Team!").
+
+You can use a `map` to apply the `greet` function to a set of names. The map turns the one-to-one transformation of `greet` into a many-to-many transformation.
+
+<span class="tutorialStep"></span> **Try it:** First, pull in the array of names defined in `array.js` by adding `array` to the graph on a line by itself:
+
+```
+public = {
+  index.html = greet(title)
+  assets
+  images
+  array
+}
+
+title = 'Our Amazing Team'
+```
+
+<span class="tutorialStep"></span> In the graph diagram window, refresh the page to confirm that the graph now includes an `array` area with some names in it.
+
+<figure>
+  {{ svg [
+    'Alice'
+    'Bob'
+    'Carol'
+  ] }}
+</figure>
+
+The keys in this area are integers which are the indices of the array: 0, 1, 2.
+
+<span class="tutorialStep"></span> In the Glitch editor window, in `site.graph` add the following `greetings` formula.
+
+```
+public = {
+  index.html = greet(title)
+  assets
+  images
+  array
+  greetings = map(array, greet)
+}
+
+title = 'Our Amazing Team'
+```
+
+The `map()` function takes the `array` "folder" of names and returns a new virtual folder with the same structure as `array`, but applying the `greet` function to each value. Note that the formula passes the `greet` function without parentheses to the `map` function — `greet` is a reference to the function, whereas `greet()` would invoke it.
+
+<span class="tutorialStep"></span> In the graph diagram window, refresh the page to see the virtual `greetings` folder.
+
+You can visualize the many-to-many transformation this way:
+
+<div class="sideBySide">
+  <figure>
+    {{ svg [
+      'Alice'
+      'Bob'
+      'Carol'
+    ] }}
+  </figure>
+  <figure>
+    {{ svg [
+      '<p>Hello, <strong>Alice</strong></p>'
+      '<p>Hello, <strong>Bob</strong></p>'
+      '<p>Hello, <strong>Carol</strong></p>'
+    ] }}
+  </figure>
+  <figcaption>Array of names</figcaption>
+  <figcaption>Mapped array of Greetings</figcaption>
+</div>
+
+A map in Graph Origami is an efficient way to create entire areas of a site or, as we'll see, a top-level index page.
+
+## Create a virtual folder of thumbnails
+
+In your site's index page, you eventually will want to show a small thumbnail image for each team member. The `images` folder contains a few full-size images.
+
+<span class="tutorialStep"></span> View the images in the `src/images` folder. Each person in `teamData.yaml` identifies one of these sample images as a profile photo.
+
+For each full-size image, you will want to produce a corresponding thumbnail image. Instead of using an image-editing app to create a real folder of thumbnail images, you can create a virtual folder of thumbnail images on demand.
+
+In this case, the file `src/thumbnail.js` contains a small JavaScript function which, given the binary data for an image, invokes an image-editing library to generate a new image at a smaller size. This `thumbnail()` function is a one-to-one transformation. You're going to use a `map` to make that into a many-to-many transformation.
+
+<span class="tutorialStep"></span> **Try it:** Switch to the Glitch editor window. In `site.graph`, update the `public` folder to define a new virtual subfolder called `thumbnails` with a formula. Using the `greetings` formula as a model, write a formula that uses the `map()` function, passing in the `images` folder as the set of things to map, and the `thumbnail` function as the one-to-one transformation.
+
+<reveal-solution>
+
+```
+public = {
+  index.html = greet(title)
+  assets
+  images
+  array
+  greetings = map(array, greet)
+  thumbnails = map(images, thumbnail)
+}
+
+title = 'Our Amazing Team'
+```
+
+</reveal-solution>
+
+<span class="tutorialStep"></span> You won't need the `array` or `greetings` lines going forward — delete them.
+
+Because Graph Origami treats real folders and virtual folders the same, you can browse your virtual folder of thumbnails.
+
+<span class="tutorialStep"></span> Switch to the graph diagram window and refresh it to view your site's updated structure.
+
+<figure>
+{{ svg({
+  index.html = framework-intro/src/greet(title)
+  assets = framework-intro/src/assets
+  images = framework-intro/src/images
+  thumbnails = fakeImages
+}) }}
+</figure>
+
+The virtual `thumbnails` folder contains a set of thumbnail images _that do not exist._ They are potential images that are only created when you ask for them.
+
+<span class="tutorialStep"></span> In the graph diagram, click a box for a real image like `images/van.jpg` to preview it.
+
+<span class="tutorialStep"></span> Navigate back and click a box for the corresponding thumbnail image like `thumbnails/van.jpg` to see the same image at a smaller size. This image is produced on demand.
+
+<span class="tutorialStep"></span> Navigate back to the graph diagram.
+
 ## Defining the team data
 
 Data in Graph Origami projects can come from pretty much anything. This sample project stores the data for your team members in a YAML file.
@@ -248,7 +426,7 @@ Instead of creating HTML directly in JavaScript, you can use one of many JavaScr
 **Example:** Graph Origami templates, like many template systems, let you insert data into boilerplate text using placeholders marked with double curly braces `\{\{` … `}}`. If there's a piece of data called `name`, you could insert it into a paragraph like:
 
 ```html
-<p>\{\{ ./name }}</p>
+<p>\{\{ name }}</p>
 ```
 
 Inside the curly braces, you can do the same things as in formulas: call JavaScript functions, reference real and virtual files, or extract specific data with slash-separated paths.
@@ -295,183 +473,6 @@ title = 'Our Amazing Team'
 
 Now when you view the site's main page, the `index.ori` template will be invoked to obtain the HTML. The preview shows a header: **Our Amazing Team**
 
-## Creating a virtual folder with a map
-
-Your index page should show a photo tile and link for each team member. Such situations are very common in websites, where you say: "For each [thing], create a [different thing]."
-
-Whenever you have such a situation in Graph Origami, you can often efficiently address it with a _map_. A map is a many-to-many transformation: you give it a set of things (like a real folder, a virtual folder, or the array of people in teamData.yaml) and a function. The map then produces a virtual folder where the original things have each been transformed by that function.
-
-Your virtual file `index.html` is created with the `greet` function. That function performs a trivial one-to-one transformation of a text string ("world") to produce a new text string ("Hello, world!").
-
-You can use a `map` to apply the `greet` function to a set of names. The map turns the one-to-one transformation of `greet` into a many-to-many transformation.
-
-<span class="tutorialStep"></span> **Try it:** First, pull in the array of names defined in `array.js` by adding `array` to the graph on a line by itself:
-
-```
-public = {
-  index.html = index.ori()
-  assets
-  images
-  array
-}
-
-title = 'Our Amazing Team'
-```
-
-<span class="tutorialStep"></span> In the graph diagram window, refresh the page to confirm that the graph now includes a small `array` area with some names in it.
-
-<span class="tutorialStep"></span> In the Glitch editor window, in `site.graph` add the following `greetings` formula.
-
-```
-public = {
-  index.html = index.ori()
-  assets
-  images
-  array
-  greetings = map(array, greet)
-}
-
-title = 'Our Amazing Team'
-```
-
-The `map()` function takes the `array` folder and returns a new virtual folder with the same structure as `array`, but applying the `greet` function to each value. Note that the formula passes the `greet` function without parentheses to the `map` function — `greet` is a reference to the function, whereas `greet()` would invoke it.
-
-<span class="tutorialStep"></span> In the graph diagram window, refresh the page to see the virtual `greetings` folder.
-
-You can visualize the many-to-many transformation this way:
-
-<div class="sideBySide">
-  <figure>
-    {{ svg [
-      { name: Alice }
-      { name: Bob }
-      { name: Carol }
-    ] }}
-  </figure>
-  <figure>
-    {{ svg [
-      'Alice'
-      'Bob'
-      'Carol'
-    ] }}
-  </figure>
-  <figcaption>teamData.yaml</figcaption>
-  <figcaption>names</figcaption>
-</div>
-
-<div class="sideBySide">
-  <figure>
-    {{ svg [
-      { name: Alice }
-      { name: Bob }
-      { name: Carol }
-    ] }}
-  </figure>
-  <figure>
-    {{ svg [
-      '<p>Hello, <strong>Alice</strong></p>'
-      '<p>Hello, <strong>Bob</strong></p>'
-      '<p>Hello, <strong>Carol</strong></p>'
-    ] }}
-  </figure>
-  <figcaption>teamData.yaml</figcaption>
-  <figcaption>greetings</figcaption>
-</div>
-
-## Pull in resources
-
-The `src` folder has two real subfolders you'll want to include in your `public` graph:
-
-- `assets` contains a stylesheet and icon
-- `images` contains sample images you can use to represent your team members
-
-You can pull a real folder or file into your graph by writing its name on a line by itself.
-
-**Example:** To include a `styles` folder in the `public` graph you would write
-
-```
-public = {
-  styles
-}
-```
-
-<span class="tutorialStep"></span> **Try it:** In `site.graph`, update the formula for `public` to pull in the `assets` and `images` folders.
-
-<reveal-solution>
-
-```
-public = {
-  index.html = index.ori()
-  assets
-  images
-}
-
-title = 'Our Amazing Team'
-```
-
-</reveal-solution>
-
-<span class="tutorialStep"></span> Switch to graph diagram window and refresh it to see the updated `public` folder.
-
-Your site now includes both real and virtual files:
-
-<figure>
-{{ svg merge(siteWithTitle2, {
-  assets = framework-intro/src/assets
-  images = framework-intro/src/images
-}) }}
-</figure>
-
-You can continue to grow this into your final About Us site.
-
-## Create a virtual folder of thumbnails
-
-In your site's index page, you eventually will want to show a small thumbnail image for each team member.
-
-<span class="tutorialStep"></span> View the images in the `src/images` folder. Each person in `teamData.yaml` identifies one of these sample images as a profile photo.
-
-Instead of using an image-editing app to create a real folder of thumbnail images, you can create a virtual folder of thumbnail images.
-
-The above example is transforming text values, but you can use a `map` to transform things like images the same way.
-
-The file `src/thumbnail.js` contains a small JavaScript function which, given the binary data for an image, invokes an image-editing library to generate a new image at a smaller size.
-
-<span class="tutorialStep"></span> **Try it:** Switch to the Glitch editor window. In `site.graph`, update the `public` folder to define a new virtual subfolder called `thumbnails` with a formula. Use a `map()` function, passing in the `images` folder as the set of things to map, and the `thumbnail` function as the one-to-one function that will do the mapping.
-
-<reveal-solution>
-
-```
-public = merge(static, {
-  index.html = index.ori()
-  thumbnails = map(static/images, thumbnail)
-})
-
-title = 'Our Amazing Team'
-```
-
-</reveal-solution>
-
-Note: the formula for `thumbnails` can refer to `static/images` (as shown above) or just `images`. The `thumbnails` formula is defined inside of a `merge` and, inside a merged graph, a formula in one graph being merged can see everything defined in the other graphs being merged (like `static`).
-
-Because Graph Origami treats real folders and virtual folders the same, you can browse your virtual folder of thumbnails.
-
-<span class="tutorialStep"></span> Switch to the graph diagram window and refresh it to view your site's updated structure.
-
-<figure>
-{{ svg merge(framework-intro/src/static, {
-  index.html = '<h1>Our Amazing Team</h1>'
-  thumbnails = fakeImages
-}) }}
-</figure>
-
-The virtual `thumbnails` folder contains a set of thumbnail images _that do not exist._ They are potential images that are only created when you ask for them.
-
-<span class="tutorialStep"></span> In the graph diagram, click a box for a real image like `images/van.jpg` to preview it.
-
-<span class="tutorialStep"></span> Navigate back and click a box for the corresponding thumbnail image like `thumbnails/van.jpg` to see the same image at a smaller size. This image is produced on demand.
-
-<span class="tutorialStep"></span> Navigate back to the graph diagram.
-
 ## Create a virtual folder by mapping data
 
 You can also use a `map` to create a virtual folder based on data instead of files.
@@ -479,10 +480,10 @@ You can also use a `map` to create a virtual folder based on data instead of fil
 **Example:** The following formula uses the team data as the basis for a new virtual folder called `locations`. This will contain a virtual file for each person in teamData.yaml. Each virtual file will just contain the name of a single location.
 
 ```
-locations = map(teamData.yaml, =./location)
+locations = map(teamData.yaml, =location)
 ```
 
-The `locations` formula says: for each entry in `teamData.yaml`, evaluate the expression `=./location`. That last bit defines a little unnamed function. It will be evaluated in the context of a team member and return the person's location.
+The `locations` formula says: for each entry in `teamData.yaml`, evaluate the expression `=location`. That last bit defines a little unnamed function. It will be evaluated in the context of a team member and return the person's location.
 
 The result of the above will be a new virtual folder called `locations` with the same keys (names) as `teamData.yaml`. Since the top level of `teamData.yaml` is an array, the keys will be integers.
 
@@ -494,7 +495,7 @@ The result of the above will be a new virtual folder called `locations` with the
 public = merge(static, {
   index.html = index.ori()
   thumbnails = map(static/images, thumbnail)
-  names = map(teamData.yaml, =./name)
+  names = map(teamData.yaml, =name)
 })
 
 title = 'Our Amazing Team'
@@ -549,7 +550,7 @@ If you're only going to use a virtual folder like `names` in one place in a temp
 
 ```html
 <h1>\{\{ title }}</h1>
-\{\{ map(teamData.yaml, =./name) }}
+\{\{ map(teamData.yaml, =name) }}
 ```
 
 </reveal-solution>
@@ -563,13 +564,13 @@ The names are all crammed together on the index page because the `map` is produc
 **Example:** This template will cram all the locations together:
 
 ```html
-\{\{ map(teamData.yaml, =./location) }}
+\{\{ map(teamData.yaml, =location) }}
 ```
 
 You could improve that by formatting the locations. The code below puts each location into a separate paragraph.
 
 ```{{'html'}}
-\{\{ map(teamData.yaml, =`<p>\{\{ ./location }}</p>`) }}
+\{\{ map(teamData.yaml, =`<p>\{\{ location }}</p>`) }}
 ```
 
 The second argument to `map()` here is a smaller template nested inside the larger template. The nested template is surrounded by backtick (`) characters.
@@ -580,7 +581,7 @@ The second argument to `map()` here is a smaller template nested inside the larg
 
 ```{{'html'}}
 <h1>\{\{ title }}</h1>
-\{\{ map(teamData.yaml, =`<li>\{\{ ./name }}</li>`) }}
+\{\{ map(teamData.yaml, =`<li>\{\{ name }}</li>`) }}
 ```
 
 </reveal-solution>
@@ -626,7 +627,7 @@ countries:
   - name: China
     abbreviation: CN
 
-countriesByAbbreviation: !ori mapKeys(countries, =./abbreviation)
+countriesByAbbreviation: !ori mapKeys(countries, =abbreviation)
 ```
 
 This operation looks like:
@@ -655,7 +656,7 @@ public = merge(static, {
 })
 
 title = 'Our Amazing Team'
-teamByName = mapKeys(teamData.yaml, =./name)
+teamByName = mapKeys(teamData.yaml, =name)
 ```
 
 </reveal-solution>
@@ -667,7 +668,7 @@ You'll use this `teamByName` folder in the next step.
 As review, recall that an early iteration of your index page template displayed a heading with:
 
 ```html
-<h1>\{\{ ./title }}</h1>
+<h1>\{\{ title }}</h1>
 ```
 
 You're now going to create a similarly skeletal template for an individual person.
@@ -677,7 +678,7 @@ You're now going to create a similarly skeletal template for an individual perso
 <reveal-solution>
 
 ```html
-<h1>\{\{ ./name }}</h1>
+<h1>\{\{ name }}</h1>
 ```
 
 </reveal-solution>
@@ -696,7 +697,7 @@ public = merge(static, {
 })
 
 title = 'Our Amazing Team'
-teamByName = mapKeys(teamData.yaml, =./name)
+teamByName = mapKeys(teamData.yaml, =name)
 ```
 
 </reveal-solution>
@@ -739,7 +740,7 @@ public = merge(static, {
 })
 
 title = 'Our Amazing Team'
-teamByName = mapKeys(teamData.yaml, =./name)
+teamByName = mapKeys(teamData.yaml, =name)
 ```
 
 </reveal-solution>
@@ -804,7 +805,7 @@ public = merge(static, {
 })
 
 title = 'Our Amazing Team'
-teamByName = mapKeys(teamData.yaml, =./name)
+teamByName = mapKeys(teamData.yaml, =name)
 ```
 
 Each of the lines defining the virtual `public` folder and its subfolders creates some important area of the site.
@@ -830,7 +831,7 @@ public = merge(static, {
 title = 'Our Amazing Team'
 
 # Index the team members by name.
-teamByName = mapKeys(teamData.yaml, =./name)
+teamByName = mapKeys(teamData.yaml, =name)
 ```
 
 </clipboard-copy>
