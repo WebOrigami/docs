@@ -6,96 +6,88 @@ The [Origami CLI](/cli) parses command-line arguments by starting with the `expr
 
 ```
 args: parensArgs
-      implicitParensArgs
+      list
 
 argsChain: args [argsChain]
 
-assignment: ["…"]declaration "=" expression [extension]
+array: "[" list "]"
+
+assignment: identifier "=" expression
 
 colonCall: reference ":" expression
 
-declaration: literal
+declaration: identifier
 
-expression: singleQuoteString
+expression: string
+            templateidentifier
+            object
+            graph
+            array
             lambda
-            templateLiteral
-            spaceUrl
-            spacePathCall
+            number
             functionComposition
-            urlProtocolCall
             protocolCall
             slashCall
-            percentCall
             group
-            number
-            getReference
+            scopeReference
 
-extension:  "."literal
+formula: assignment
+         identifier
+
+functionCallTarget: group
+                    protocolCall
+                    slashCall
+                    scopeReference
 
 functionComposition: functionCallTarget argsChain
 
-functionCallTarget: group
-                    urlProtocolCall
-                    protocolCall
-                    colonCall
-                    slashCall
-                    percentCall
-                    getReference
+graph: "{" graphDocument "}"
 
-getReference: reference
+graphDocument: formula [separator graphDocument]
 
 group: "(" expression ")"
 
-key: assignment
-     inheritableDeclaration
-     declaration
+identifier: everything but unescaped =(){}$&"'/`%,:# and whitespace
+
+implicitParensArgs: whitespace list
 
 lambda: "=" expression
 
-list: expression "," list
+list: expression separator list
       expression
-
-literal: everything but =(){}$&"'/`%,# and whitespace
 
 number: (valid JavaScript signed/unsigned integer or floating point number)
 
-implicitParensArgs: whitespace list
+object: "{" property "}"
 
 parensArgs: "(" [list] ")"
 
 pathHead: group
           simpleFunctionCall
-          getReference
+          scopeReference
 
 pathKey: group
-         substitution
-         literal
+         identifier
 
-reference: thisReference
-           literal
+property: identifier ":" expression
+          identifier
 
-percentCall: pathHead "%" [percentPath]
+protocolCall: scopeReference "://"|":/"|":" slashPath
 
-percentPath: pathKey "%" percentPath
-           pathKey
+scopeReference: identifier
 
-protocolCall: reference "://"|":/" slashPath
+separator: ","
+           (newline)
 
-simpleFunctionCall: getReference parensArgs
+simpleFunctionCall: scopeReference parensArgs
 
-singleQuoteString: '[text]'
-
-slashCall: ["//"] pathHead "/" [slashPath]
+slashCall: ["/"]["/"] pathHead "/" [slashPath]
 
 slashPath: pathKey "/" slashPath
            pathKey
 
-spaceUrl: urlProtocol whitespace spaceUrlPath
-
-spaceUrlPath: pathKey whitespace spaceUrlPath
-              pathKey
-
-spacePathCall: "."|".." [spaceUrlPath]
+string: "[text]"
+        '[text]'
 
 substitution: "\{\{" expression "}}"
 
@@ -103,18 +95,7 @@ template: templateText [substitution template]
 
 templateDocument: templateDocumentText [substitution templateDocument]
 
-templateLiteral: "`" template "`"
+templateDocumentText: everything but unescaped "\{\{"
 
-templateDocumentText: everything but "\{\{"
-
-templateText: everything but "\{\{" and "`"
-
-thisReference: "this"
-
-urlProtocol: "https"
-             "http"
-
-urlProtocolCall: urlProtocol "://"|":/"|":" slashPath
-
-valueDeclaration: ["…"]declaration
+templateText: everything but unescaped "\{\{" or "`"
 ```
