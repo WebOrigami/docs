@@ -322,9 +322,9 @@ nav a:hover {
   font-weight: bold;
 }
 
-.blocks a[href="/language"],
-.blocks a[href="/core"],
-.blocks a[href="/pattern"] {
+.blocks a[href="/language/"],
+.blocks a[href="/core/"],
+.blocks a[href="/pattern/"] {
   grid-column: 1 / span 2;
 }
 

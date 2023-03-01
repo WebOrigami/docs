@@ -1,10 +1,10 @@
-- href: /framework
+- href: /framework/
   text: Framework
-- href: /cli
+- href: /cli/
   text: CLI
-- href: /language
+- href: /language/
   text: Language
-- href: /core
+- href: /core/
   text: Core library
-- href: /pattern
+- href: /pattern/
   text: Pattern
