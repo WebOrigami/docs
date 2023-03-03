@@ -49,6 +49,9 @@ group: "(" expression ")"
 
 identifier: everything but unescaped =(){}$&"'/`%,:# and whitespace
 
+identifierWithPort: identifier ":" number
+                    identifier
+
 implicitParensArgs: whitespace list
 
 lambda: "=" expression
@@ -72,7 +75,7 @@ pathKey: group
 property: identifier ":" expression
           identifier
 
-protocolCall: scopeReference "://"|":/"|":" slashPath
+protocolCall: scopeReference "://"|":/"|":" identifierWithPort ["/" slashPath]
 
 scopeReference: identifier
 
