@@ -29,7 +29,9 @@ One day your team decides:
 
 <span class="tutorialStep"></span> Open the
 <a href="/demos/aboutUs/" target="_blank">sample About Us area</a>
-and click on a few pages. The tutorial will use this sample as a model for the site you'll build.
+and click on a few pages.
+
+This tutorial will start with a few basic "Hello, world" concepts and then move on to building a small About Us site using the above site as a model.
 
 ## Start
 
@@ -46,28 +48,24 @@ The page in the preview pane says: Hello
 
 ## Define a virtual file
 
-In Graph Origami, you can build things from a combination of real files that are permanently stored, and virtual files that are created on demand according to your instructions. These virtual "files" are just data; a file could be tiny (like a single number or text string) or large (like an image).
+In Graph Origami, you build things from a combination of real files that are permanently stored, and virtual files that are created on demand according to your instructions. These virtual "files" can be anything from a single number or text string to a typical document to a large media file.
 
 As you build a collection of virtual folders and files, it's helpful to be able to think about their structure as a _graph_. Colloquially speaking, a graph is the sort of boxes-with-arrows diagram you often see depicting the structure of organizations, processes, and websites.
 
 Graph Origami lets you define a graph in several ways. The most concise is to write formulas in a file with a `.graph` extension.
 
-<span class="tutorialStep"></span> In the `src` folder, open `site.graph`, which defines a virtual folder called `public`. That virtual folder contains a single virtual file called `index.html` that currently says "Hello".
+<span class="tutorialStep"></span> In the `src` folder, open `site.graph`:
 
 ```
 public = {
-  index.html = 'Hello'
+  index.html = "Hello"
 }
 ```
 
-Each formula defines the name of a virtual folder or file as the result of an expression.
+This graph file defines two things:
 
-Unlike most programming languages, names in Graph Origami `.graph` files can include periods! This lets you easily create virtual files that include an extension like `index.html`.
-
-On the right side of each `=` sign is an expression:
-
-- The expression for the virtual folder `public` is a subgraph of formulas nested inside `{`…`}` curly braces. Each nested formula will define a folder or file inside `public`.
-- The expression for `index.html` in this case is a text string in single quotes.
+1. A virtual folder called `public`. The formulas nested inside the `{` `}` curly braces define virtual files in that folder.
+2. A virtual file called `index.html`. Unlike most programming languages, names in Graph Origami `.graph` files can include periods so you can define file names with extensions. For now, the `index.html` is defined as a simple text string.
 
 A `.graph` file can define more than one top-level virtual folder or file. This tutorial project is configured to serve the contents of the virtual `public` folder. The name "public" itself isn't special — you could configure the project to serve a different real or virtual folder.
 
@@ -78,6 +76,8 @@ You can edit your site by editing this `site.graph` file.
 After a moment, the Glitch preview window should refresh to show: Hello, world!
 
 ## View your site as a graph
+
+Graph Origami lets you visualize and explore the graph you are building.
 
 <span class="tutorialStep"></span> Click the **Preview** button at the bottom of the window, then click **Preview in a new window**. This will open your site in a new tab or window.
 
@@ -93,13 +93,11 @@ index.html = 'Hello, world!'
 
 The little circle represents the `public` folder, and the box represents the `index.html` file.
 
-In Graph Origami, this project diagram can be a useful way to visualize and explore the graph you are building, so we'll return to the graph diagram window occasionally.
-
-<span class="tutorialStep"></span> Leave the graph diagram window open and switch back to the main Glitch window.
+<span class="tutorialStep"></span> Leave the graph diagram tab or window open and switch back to the main Glitch window. You'll return to the graph diagram occasionally to visually confirm the structure of the site.
 
 ## Formulas can call JavaScript
 
-You can define virtual files with formulas that call JavaScript.
+You can define virtual files with formulas that call JavaScript. You can do a lot in Graph Origami without JavaScript, but easy access to JavaScript does provide flexibility.
 
 <span class="tutorialStep"></span> View the file `src/greet.js`.
 
@@ -107,27 +105,27 @@ You can define virtual files with formulas that call JavaScript.
 {{ framework-intro/src/greet.js }}
 ```
 
-This defines a function called `greet` which, given a person's name, returns a greeting in HTML. The person's name will be set in bold. You can call this JavaScript function in a Graph Origami expression.
+This defines a function called `greet` which, given a person's name, returns a greeting in HTML. The person's name will be set in bold. You can call this JavaScript function in a Graph Origami formula.
 
 **Example:** The following code defines a virtual file called `message` whose contents will be: Hello, **Alice**!
 
 ```greet
-message = greet('Alice')
+message = greet("Alice")
 ```
 
-<span class="tutorialStep"></span> **Try it:** In `site.graph`, update your definition of `index.html` to remove the quoted string, and instead call the `greet` function. Pass the text `'world'` to `greet`, so that the page ends up with "world" in bold: Hello, **world**!
+<span class="tutorialStep"></span> **Try it:** In `site.graph`, update your definition of `index.html` to remove the quoted string, and instead call the `greet` function. Pass the text `"world"` to `greet`, so that the page ends up with "world" in bold: Hello, **world**!
 
 <reveal-solution>
 
 ```
 public = {
-  index.html = greet('world')
+  index.html = greet("world")
 }
 ```
 
 </reveal-solution>
 
-When you call `greet` in a formula like this, Graph Origami searches the current [scope](/language/scope.html) for a real or virtual file called `greet`. If it doesn't find one, it will also try searching for `greet.js`. Graph Origami defines a convention that the export(s) of a JavaScript file `greet.js` can be referenced as `greet`, so you can invoke a JavaScript function by name as long as it appears in the file name.
+When you call `greet` in a formula like this, Graph Origami searches the current [scope](/language/scope.html) for a real or virtual file called `greet`. If it doesn't find one, it will also try searching for `greet.js`. Graph Origami defines a convention that the export(s) of a JavaScript file `greet.js` can be referenced as `greet`, so you can invoke a JavaScript function by using its file name.
 
 ## Formulas can reference real or virtual files
 
@@ -136,7 +134,7 @@ You can pass a real or virtual file to a function by name.
 **Example:** The following defines a virtual file called `doubled`, whose content will be the `word` file content repeated twice.
 
 ```
-word = beep
+word = "beep"
 doubled = repeat(2, word)
 ```
 
@@ -153,7 +151,7 @@ The order of the above definitions doesn't matter; `word` could just as well com
 ```
 public = {
   index.html = greet(title)
-  title = 'Our Amazing Team'
+  title = "Our Amazing Team"
 }
 ```
 
@@ -175,7 +173,7 @@ This project is configured to let a user browse the virtual `public` folder.
 
 The virtual `title` file is used by the expression that produces `index.html`. But you don't need make the `title` file itself part of your final site — it's only needed internally.
 
-<span class="tutorialStep"></span> **Try it:** Move the line for `title` to the top level of `site.graph` so that it's outside the `public` folder.
+<span class="tutorialStep"></span> **Try it:** Move the line for `title` to the top level of `site.graph` so that it's outside the `{` `}` of the `public` folder.
 
 <reveal-solution>
 
@@ -184,7 +182,7 @@ public = {
   index.html = greet(title)
 }
 
-title = 'Our Amazing Team'
+title = "Our Amazing Team"
 ```
 
 </reveal-solution>
@@ -199,7 +197,189 @@ By putting `title` at the top level, the formulas inside `public` can reference 
 
 <span class="tutorialStep"></span> Switch back to the Glitch window.
 
-## Pull in resources
+## Define a template that creates text
+
+There are just a couple more "Hello, world" exercises to go through before we'll move on to building the About Us site.
+
+Instead of creating HTML directly in JavaScript, you can use one of many JavaScript-based template systems. For this tutorial, you'll use the template system built into Graph Origami.
+
+**Example:** Graph Origami templates, like many template systems, let you insert data into boilerplate text using placeholders marked with double curly braces `\{\{` `}}`. If there's a piece of data called `name`, you could insert it into a paragraph like:
+
+```html
+<p>\{\{ name }}</p>
+```
+
+Inside the curly braces, you can do the same things as in formulas: call JavaScript functions, reference real and virtual files, or extract specific data with slash-separated paths.
+
+<span class="tutorialStep"></span> **Try it:** Using the Glitch user interface, create a new file called `index.ori`: Next to the `src` folder on the left, click the `⋮` icon, then **Add File to Folder**, then type `index.ori`. This will become the template file for your index page.
+
+A `.ori` file can define any kind of text content. Here you'll use it to define HTML, so in `index.ori` you can enter regular HTML interspersed with curly brace placeholders.
+
+<span class="tutorialStep"></span> Inside the template, enter an `h1` tag to create a heading, and inside the heading put a `\{\{` … `}}` placeholder that will display your site's title.
+
+<reveal-solution>
+
+```html
+<h1>\{\{ title }}</h1>
+```
+
+</reveal-solution>
+
+Now that you've defined this template, you can tell Graph Origami when to use it.
+
+## Invoke a template as a function
+
+**Example:** You invoke a Graph Origami template as a function just like you did with `greet`. If you have a template `product.ori`, you can invoke it with:
+
+```
+product.html = product.ori()
+```
+
+When invoking a JavaScript function, the `.js` extension is optional — but you _do_ need to include the `.ori` extension to invoke a template as a function.
+
+<span class="tutorialStep"></span> **Try it:** In `site.graph`, update your `index.html` formula to invoke your `index.ori` template as a function.
+
+<reveal-solution>
+
+```
+public = {
+  index.html = index.ori()
+}
+
+title = "Our Amazing Team"
+```
+
+</reveal-solution>
+
+Now when you view the site's main page, the `index.ori` template will be invoked to obtain the HTML. The preview shows a header: **Our Amazing Team**
+
+## Creating a virtual folder with a map
+
+You're almost ready to create the site — just one more fundamental concept to cover.
+
+There are several places in this web site where you want to take one set of things and transform them to create a new set of things:
+
+- For each team member in teamData.yaml, you want to create a tile on the index page.
+- For each team member in teamData.yaml, you want to create a page. E.g., Alice should have a page at `team/Alice.html`.
+- For each image in the `images` folder like `van.jpg`, you want to create a thumbnail image `thumbnails/van.jpg`.
+
+Such situations are very common in websites and other development tasks, where you say: "For each [thing], create a [different thing]."
+
+Whenever you have such a situation in Graph Origami, you can often efficiently address it with a _map_. A map is a many-to-many transformation: you give it a set of things (like a real folder, a virtual folder, or the array of people in teamData.yaml) and a function. The function is a one-to-one transformation: it transforms a single thing into a new thing. A map can scale up a one-to-one transformation to turn it into a many-to-many transformation.
+
+Earlier, you invoked the `greet` function to create a single file. That function performs a trivial one-to-one transformation of a text string (like "Our Amazing Team") to produce a new text string ("Hello, Our Amazing Team!").
+
+But let's say you want to greet a bunch of people by name. You could create individual files for each of them, but that would be repetitive and error-prone.
+
+Instead, you can use a `map` to apply the `greet` function to a set of names. The map turns the one-to-one transformation of `greet` into a many-to-many transformation.
+
+<span class="tutorialStep"></span> **Try it:** First, pull in a set of sample names defined in `names.js` by adding `names` to the graph on a line by itself:
+
+```
+public = {
+  index.html = greet(title)
+  names
+}
+
+title = "Our Amazing Team"
+```
+
+<span class="tutorialStep"></span> In the graph diagram window, refresh the page to confirm that the graph now includes an `array` area with some names in it.
+
+<figure>
+  {{ svg {
+    index.html = "<p>Hello, <strong>Our Amazing Team</strong>!</p>"
+    names = [
+      "Alice"
+      "Bob"
+      "Carol"
+    ]
+  } }}
+</figure>
+
+The keys in this area are integers which are the indices of the array (0, 1, 2), and the values are people's names. Let's create a greeting for each of those people.
+
+<span class="tutorialStep"></span> In the Glitch editor window, in `site.graph` add the following `greetings` formula.
+
+```
+public = {
+  index.html = greet(title)
+  names
+  greetings = map(names, greet)
+}
+
+title = "Our Amazing Team"
+```
+
+The `map()` function takes the `names` "folder" of names and returns a new virtual folder with the same structure as `names`, but applying the `greet` function to each value. Note that the formula passes the `greet` function without parentheses to the `map` function — `greet` is a reference to the function, whereas `greet()` would invoke it.
+
+<span class="tutorialStep"></span> In the graph diagram window, refresh the page to see the virtual `greetings` folder.
+
+You can visualize the many-to-many transformation this way:
+
+<div class="sideBySide">
+  <figure>
+    {{ svg [
+      "Alice"
+      "Bob"
+      "Carol"
+    ] }}
+  </figure>
+  <figure>
+    {{ svg [
+      "<p>Hello, <strong>Alice</strong></p>"
+      "<p>Hello, <strong>Bob</strong></p>"
+      "<p>Hello, <strong>Carol</strong></p>"
+    ] }}
+  </figure>
+  <figcaption>Graph of names</figcaption>
+  <figcaption>Mapped graph of greetings</figcaption>
+</div>
+
+A map in Graph Origami is an efficient way to create entire areas of a site or, as we'll see, a top-level index page.
+
+## Create a virtual folder of thumbnails
+
+You've now seen all the major concepts necessary to build a site, so now you can begin work on the site itself. Let's use what you've seen of the `map()` function to create small thumbnail images for each team member.
+
+<span class="tutorialStep"></span> View the images in the `src/images` folder, which contains a few full-size images. Each person in `teamData.yaml` identifies one of these sample images as a profile photo.
+
+For each full-size image, you will want to produce a corresponding thumbnail image that will appear on the index page. Instead of using an image-editing app to create a real folder of thumbnail images, you can create a virtual folder of thumbnail images on demand using a map.
+
+In this case, the file `src/thumbnail.js` contains a small JavaScript function which, given the binary data for an image, invokes an image-editing library to generate a new image at a smaller size. This `thumbnail()` function is a one-to-one transformation. You're going to use a map to apply that `thumbnail()` function as a many-to-many transformation.
+
+<span class="tutorialStep"></span> **Try it:** Switch to the Glitch editor window. In `site.graph`, update the `public` folder to define a new virtual subfolder called `thumbnails` with a formula. Using the `greetings` formula as a model, write a formula that uses the `map()` function, passing in the `images` folder as the set of things to map and the `thumbnail` function as the one-to-one transformation.
+
+<reveal-solution>
+
+```
+public = {
+  index.html = greet(title)
+  names
+  greetings = map(names, greet)
+  thumbnails = map(images, thumbnail)
+}
+
+title = "Our Amazing Team"
+```
+
+</reveal-solution>
+
+<span class="tutorialStep"></span> You won't need the `array` or `greetings` lines going forward — delete them.
+
+Because Graph Origami treats real folders and virtual folders the same, you can browse your virtual folder of thumbnails.
+
+<span class="tutorialStep"></span> Switch to the graph diagram window and refresh it to view your site's updated structure.
+
+The virtual `thumbnails` folder contains a set of thumbnail images _that do not exist_ in any persistent form. They are potential images that are only created when you ask for them.
+
+<span class="tutorialStep"></span> In the graph diagram, click a box for a real image like `images/van.jpg` to preview it.
+
+<span class="tutorialStep"></span> Navigate back and click a box for the corresponding thumbnail image like `thumbnails/van.jpg` to see the same image at a smaller size. This image is produced on demand.
+
+<span class="tutorialStep"></span> Navigate back to the graph diagram.
+
+## Pull in more resources
 
 The `src` folder has two real subfolders you'll want to include in your `public` graph:
 
@@ -227,7 +407,7 @@ public = {
   images
 }
 
-title = 'Our Amazing Team'
+title = "Our Amazing Team"
 ```
 
 </reveal-solution>
@@ -245,147 +425,13 @@ Your site now includes both real and virtual files:
 
 You can continue to grow this into your final About Us site.
 
-## Creating a virtual folder with a map
-
-There are several places in this web site where you want to take one set of things and transform them to create a new set of things:
-
-- For each team member in teamData.yaml, you want to create a tile on the index page.
-- For each team member in teamData.yaml, you want to create a page. E.g., Alice should have a page at `team/Alice.html`.
-- For each image in the `images` folder like `van.jpg`, you want to create a thumbnail image `thumbnails/van.jpg`.
-
-Such situations are very common in websites and other development tasks, where you say: "For each [thing], create a [different thing]."
-
-Whenever you have such a situation in Graph Origami, you can often efficiently address it with a _map_. A map is a many-to-many transformation: you give it a set of things (like a real folder, a virtual folder, or the array of people in teamData.yaml) and a function. The function is a one-to-one transformation: it transforms a single thing into a new thing. A map can scale up a one-to-one transformation to turn it into a many-to-many transformation.
-
-Right now, your virtual file `index.html` is created with the `greet` function. That function performs a trivial one-to-one transformation of a text string (like "Our Amazing Team") to produce a new text string ("Hello, Our Amazing Team!").
-
-You can use a `map` to apply the `greet` function to a set of names. The map turns the one-to-one transformation of `greet` into a many-to-many transformation.
-
-<span class="tutorialStep"></span> **Try it:** First, pull in the array of names defined in `array.js` by adding `array` to the graph on a line by itself:
-
-```
-public = {
-  index.html = greet(title)
-  assets
-  images
-  array
-}
-
-title = 'Our Amazing Team'
-```
-
-<span class="tutorialStep"></span> In the graph diagram window, refresh the page to confirm that the graph now includes an `array` area with some names in it.
-
-<figure>
-  {{ svg [
-    'Alice'
-    'Bob'
-    'Carol'
-  ] }}
-</figure>
-
-The keys in this area are integers which are the indices of the array: 0, 1, 2.
-
-<span class="tutorialStep"></span> In the Glitch editor window, in `site.graph` add the following `greetings` formula.
-
-```
-public = {
-  index.html = greet(title)
-  assets
-  images
-  array
-  greetings = map(array, greet)
-}
-
-title = 'Our Amazing Team'
-```
-
-The `map()` function takes the `array` "folder" of names and returns a new virtual folder with the same structure as `array`, but applying the `greet` function to each value. Note that the formula passes the `greet` function without parentheses to the `map` function — `greet` is a reference to the function, whereas `greet()` would invoke it.
-
-<span class="tutorialStep"></span> In the graph diagram window, refresh the page to see the virtual `greetings` folder.
-
-You can visualize the many-to-many transformation this way:
-
-<div class="sideBySide">
-  <figure>
-    {{ svg [
-      'Alice'
-      'Bob'
-      'Carol'
-    ] }}
-  </figure>
-  <figure>
-    {{ svg [
-      '<p>Hello, <strong>Alice</strong></p>'
-      '<p>Hello, <strong>Bob</strong></p>'
-      '<p>Hello, <strong>Carol</strong></p>'
-    ] }}
-  </figure>
-  <figcaption>Array of names</figcaption>
-  <figcaption>Mapped array of Greetings</figcaption>
-</div>
-
-A map in Graph Origami is an efficient way to create entire areas of a site or, as we'll see, a top-level index page.
-
-## Create a virtual folder of thumbnails
-
-In your site's index page, you eventually will want to show a small thumbnail image for each team member. The `images` folder contains a few full-size images.
-
-<span class="tutorialStep"></span> View the images in the `src/images` folder. Each person in `teamData.yaml` identifies one of these sample images as a profile photo.
-
-For each full-size image, you will want to produce a corresponding thumbnail image. Instead of using an image-editing app to create a real folder of thumbnail images, you can create a virtual folder of thumbnail images on demand.
-
-In this case, the file `src/thumbnail.js` contains a small JavaScript function which, given the binary data for an image, invokes an image-editing library to generate a new image at a smaller size. This `thumbnail()` function is a one-to-one transformation. You're going to use a `map` to make that into a many-to-many transformation.
-
-<span class="tutorialStep"></span> **Try it:** Switch to the Glitch editor window. In `site.graph`, update the `public` folder to define a new virtual subfolder called `thumbnails` with a formula. Using the `greetings` formula as a model, write a formula that uses the `map()` function, passing in the `images` folder as the set of things to map, and the `thumbnail` function as the one-to-one transformation.
-
-<reveal-solution>
-
-```
-public = {
-  index.html = greet(title)
-  assets
-  images
-  array
-  greetings = map(array, greet)
-  thumbnails = map(images, thumbnail)
-}
-
-title = 'Our Amazing Team'
-```
-
-</reveal-solution>
-
-<span class="tutorialStep"></span> You won't need the `array` or `greetings` lines going forward — delete them.
-
-Because Graph Origami treats real folders and virtual folders the same, you can browse your virtual folder of thumbnails.
-
-<span class="tutorialStep"></span> Switch to the graph diagram window and refresh it to view your site's updated structure.
-
-<figure>
-{{ svg({
-  index.html = framework-intro/src/greet(title)
-  assets = framework-intro/src/assets
-  images = framework-intro/src/images
-  thumbnails = fakeImages
-}) }}
-</figure>
-
-The virtual `thumbnails` folder contains a set of thumbnail images _that do not exist._ They are potential images that are only created when you ask for them.
-
-<span class="tutorialStep"></span> In the graph diagram, click a box for a real image like `images/van.jpg` to preview it.
-
-<span class="tutorialStep"></span> Navigate back and click a box for the corresponding thumbnail image like `thumbnails/van.jpg` to see the same image at a smaller size. This image is produced on demand.
-
-<span class="tutorialStep"></span> Navigate back to the graph diagram.
-
 ## Defining the team data
 
 Data in Graph Origami projects can come from pretty much anything. This sample project stores the data for your team members in a YAML file.
 
 <span class="tutorialStep"></span> Open the team data file in `src/teamData.yaml`:
 
-```{{'yaml'}}
+```{{"yaml"}}
 {{ framework-intro/src/teamData.yaml }}
 ```
 
@@ -414,64 +460,10 @@ public = {
   index.html = greet(teamData.yaml/0/name)
 }
 
-title = 'Our Amazing Team'
+title = "Our Amazing Team"
 ```
 
 </reveal-solution>
-
-## Define a template that creates text
-
-Instead of creating HTML directly in JavaScript, you can use one of many JavaScript-based template systems. For this tutorial, you'll use the template system built into Graph Origami.
-
-**Example:** Graph Origami templates, like many template systems, let you insert data into boilerplate text using placeholders marked with double curly braces `\{\{` … `}}`. If there's a piece of data called `name`, you could insert it into a paragraph like:
-
-```html
-<p>\{\{ name }}</p>
-```
-
-Inside the curly braces, you can do the same things as in formulas: call JavaScript functions, reference real and virtual files, or extract specific data with slash-separated paths.
-
-<span class="tutorialStep"></span> **Try it:** Using the Glitch user interface, create a new file called `index.ori`: Next to the `src` folder on the left, click the `⋮` icon, then **Add File to Folder**, then type `index.ori`. This will become the template file for your index page.
-
-A `.ori` file can define any kind of text content. Here you'll use it to define HTML, so in `index.ori` you can enter regular HTML interspersed with curly brace placeholders.
-
-<span class="tutorialStep"></span> Inside the template, enter an `h1` tag to create a heading, and inside the heading put a `\{\{` … `}}` placeholder that will display your site's title.
-
-<reveal-solution>
-
-```html
-<h1>\{\{ title }}</h1>
-```
-
-</reveal-solution>
-
-This template won't affect anything until you tell Graph Origami where to use it.
-
-## Invoke a template as a function
-
-**Example:** You invoke a Graph Origami template as a function like `greet`. If you have a template `product.ori`, you can invoke it with:
-
-```
-product.html = product.ori()
-```
-
-When invoking a JavaScript function, you don't need to include the `.js` extension — but you _do_ need to include the `.ori` extension to invoke a template as a function.
-
-<span class="tutorialStep"></span> **Try it:** In `site.graph`, update your `index.html` formula to invoke your `index.ori` template as a function.
-
-<reveal-solution>
-
-```
-public = {
-  index.html = index.ori()
-}
-
-title = 'Our Amazing Team'
-```
-
-</reveal-solution>
-
-Now when you view the site's main page, the `index.ori` template will be invoked to obtain the HTML. The preview shows a header: **Our Amazing Team**
 
 ## Create a virtual folder by mapping data
 
@@ -498,7 +490,7 @@ public = merge(static, {
   names = map(teamData.yaml, =name)
 })
 
-title = 'Our Amazing Team'
+title = "Our Amazing Team"
 ```
 
 </reveal-solution>
@@ -507,7 +499,7 @@ title = 'Our Amazing Team'
 
 <figure>
 {{ svg merge(framework-intro/src/static, {
-  index.html = '<h1>Our Amazing Team</h1>'
+  index.html = "<h1>Our Amazing Team</h1>"
   thumbnails = fakeImages
   names = map(framework-intro/src/teamData.yaml, =name)
 }) }}
@@ -579,7 +571,7 @@ The second argument to `map()` here is a smaller template nested inside the larg
 
 <reveal-solution>
 
-```{{'html'}}
+```{{"html"}}
 <h1>\{\{ title }}</h1>
 \{\{ map(teamData.yaml, =`<li>\{\{ name }}</li>`) }}
 ```
@@ -655,7 +647,7 @@ public = merge(static, {
   thumbnails = map(static/images, thumbnail)
 })
 
-title = 'Our Amazing Team'
+title = "Our Amazing Team"
 teamByName = mapKeys(teamData.yaml, =name)
 ```
 
@@ -696,7 +688,7 @@ public = merge(static, {
   team = map(teamByName, person.ori)
 })
 
-title = 'Our Amazing Team'
+title = "Our Amazing Team"
 teamByName = mapKeys(teamData.yaml, =name)
 ```
 
@@ -722,10 +714,10 @@ The `map()` function supports via an optional `extension` parameter. This takes 
 
 ```
 # Add a .txt extension to the mapped file names
-textFiles = map(data, fn, { extension: '->txt' })
+textFiles = map(data, fn, { extension: "->txt" })
 
 # Convert markdown files to HTML, replacing the .md extension with .html
-htmlFiles = map(mdFiles, mdHtml, { extension: 'md->html' })
+htmlFiles = map(mdFiles, mdHtml, { extension: "md->html" })
 ```
 
 <span class="tutorialStep"></span> Update the `team` formula and add an `extension` parameter that adds a `html` extension to the mapped file names.
@@ -736,10 +728,10 @@ htmlFiles = map(mdFiles, mdHtml, { extension: 'md->html' })
 public = merge(static, {
   index.html = index.ori()
   thumbnails = map(static/images, thumbnail)
-  team = map(teamByName, person.ori, { extension: '->html' })
+  team = map(teamByName, person.ori, { extension: "->html" })
 })
 
-title = 'Our Amazing Team'
+title = "Our Amazing Team"
 teamByName = mapKeys(teamData.yaml, =name)
 ```
 
@@ -783,7 +775,7 @@ Your site now looks like:
 
 <figure>
 {{ svg merge(framework-intro/src/static, {
-  index.html = '<h1>Our Amazing Team</h1>'
+  index.html = "<h1>Our Amazing Team</h1>"
   team = map(teamByName, framework-intro/src/person.ori)
   thumbnails = fakeImages
 }) }}
@@ -801,10 +793,10 @@ Stepping back, consider that you've created this site with some templates and a 
 public = merge(static, {
   index.html = index.ori()
   thumbnails = map(static/images, thumbnail)
-  team = map(teamByName, person.ori, { extension: '->html' })
+  team = map(teamByName, person.ori, { extension: "->html" })
 })
 
-title = 'Our Amazing Team'
+title = "Our Amazing Team"
 teamByName = mapKeys(teamData.yaml, =name)
 ```
 
@@ -824,11 +816,11 @@ public = merge(static, {
   thumbnails = map(static/images, thumbnail)
 
   # Generate a page in the team area for each team member.
-  team = map(teamByName, person.ori, { extension: '->html' })
+  team = map(teamByName, person.ori, { extension: "->html" })
 })
 
 # Define the title here so both page templates can use it.
-title = 'Our Amazing Team'
+title = "Our Amazing Team"
 
 # Index the team members by name.
 teamByName = mapKeys(teamData.yaml, =name)
