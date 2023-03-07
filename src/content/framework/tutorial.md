@@ -604,12 +604,14 @@ In the original `countries` definition, you could get the name of Australia with
 
 <span class="tutorialStep"></span> **Try it:** In `site.graph`, define a new, top-level virtual folder called `teamByName` that maps the keys of `teamData.yaml` to the team member's names. Since this `teamByName` folder is only needed for internal use, it can go outside of the `public` definition.
 
+<span class="tutorialStep"></span> Then update the `team` formula to reference `teamByName` instead of `teamData.yaml`.
+
 <reveal-solution>
 
 ```
 public = {
   index.html = index.ori()
-  team = map(teamData.yaml, =greet(name))
+  team = map(teamByName, =greet(name))
   assets
   images
   thumbnails = map(images, =thumbnail(@value))
@@ -620,8 +622,6 @@ teamByName = mapKeys(teamData.yaml, =name)
 ```
 
 </reveal-solution>
-
-<span class="tutorialStep"></span> Now update the `team` formula to reference `teamByName` instead of `teamData.yaml`.
 
 <span class="tutorialStep"></span> Switch to the graph diagram window and refresh it to confirm that the `team` area is now indexed by names instead of integers:
 
