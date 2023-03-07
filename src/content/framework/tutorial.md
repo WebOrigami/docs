@@ -19,6 +19,15 @@ siteWithTitle1:
   title: Our Amazing Team
 siteWithTitle2:
   index.html: !ori framework-intro/src/greet('Our Amazing Team')
+siteComplete:
+  index.html: <h1>Our Amazing Team</h1>
+  team:
+    Alice.html: <h1>Alice</h1>
+    Bob.html: <h1>Bob</h1>
+    Carol.html: <h1>Carol</h1>
+  assets: !ori framework-intro/src/assets
+  images: !ori fakeImages
+  thumbnails: !ori fakeImages
 ---
 
 <script src="/components.js"></script>
@@ -748,13 +757,13 @@ The only thing left to do is complete the `person.ori` template.
 
 ## View the graph of the completed site
 
-<span class="tutorialStep"></span> Switch to the graph diagram window and refresh it to view your site's complete structure. You can click on the circles or boxes in this diagram to explore what you've made.
+<span class="tutorialStep"></span> Switch to the graph diagram window and refresh it to view your site's complete structure. You can click on the circles or boxes in that window to explore what you've made.
 
-From a functional standpoint, you've achieved your goal. The site is now complete.
+<figure>
+{{ svg siteComplete }}
+</figure>
 
-## Optional: Comments
-
-Stepping back, consider that you've created this site with some templates and a rather concise `site.graph`:
+Stepping back, consider that you've created this entire site with a few resources, a couple of templates, and a rather concise `site.graph`:
 
 ```
 public = {
@@ -769,9 +778,11 @@ title = "Our Amazing Team"
 teamByName = mapKeys(teamData.yaml, =name)
 ```
 
-Each of the lines defining the virtual `public` folder and its subfolders creates some important area of the site.
+From a functional standpoint, you've achieved your goal. The site is now complete.
 
-In a real project, it can be worth adding comments to remind you what each line does, like:
+## Optional: Comments
+
+Each of the lines in `site.graph` defines some important area of the site. In a real project, it can be worth adding comments to remind you what each line does, like:
 
 <clipboard-copy>
 
