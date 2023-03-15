@@ -6,7 +6,7 @@ export default async function yamlsTests(variant) {
 
   let fixture = null;
   const tests = [];
-  for await (const key of graph) {
+  for (const key of await graph.keys()) {
     const value = await graph.get(key);
     const obj = YAML.parse(value);
     if (obj.fixture) {

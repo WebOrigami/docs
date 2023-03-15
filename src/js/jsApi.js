@@ -91,10 +91,6 @@ class DocsGraph {
     this.path = docsPath;
   }
 
-  async *[Symbol.asyncIterator]() {
-    yield* this.graph;
-  }
-
   async get(key) {
     let value = await this.graph.get(key);
     if (ExplorableGraph.isExplorable(value)) {
@@ -105,6 +101,10 @@ class DocsGraph {
       ]);
     }
     return value;
+  }
+
+  async keys() {
+    return this.graph.keys();
   }
 }
 

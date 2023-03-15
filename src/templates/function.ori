@@ -1,7 +1,7 @@
 <h3>
   {{if ./static, 'static ' }}
   {{if ./async, 'async '}}
-  {{if ./generator, '*'}}{{./name}}({{ @template/scope/parameters.ori(./parameters) }})
+  {{if ./generator, '*'}}{{./name}}()
   {{if ./constructor, 'constructor'}}
 </h3>
 <ul>
