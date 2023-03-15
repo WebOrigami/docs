@@ -40,9 +40,9 @@ function classDocs(checker, symbol) {
   );
   const constructorSignature = constructorType.getConstructSignatures()[0];
   if (constructorSignature.declaration) {
-    result.constructor = {
+    result.classConstructor = {
       name: checker.typeToString(constructorSignature.getReturnType()),
-      constructor: true,
+      isConstructor: true,
       description: ts.displayPartsToString(
         constructorSignature.declaration.symbol.getDocumentationComment(checker)
       ),
@@ -159,10 +159,7 @@ function methodDocs(checker, symbol) {
     returnTypes,
   };
 
-  const parameters = parametersDocs(checker, signature);
-  if (Object.keys(parameters).length > 0) {
-    result.parameters = parameters;
-  }
+  result.parameters = parametersDocs(checker, signature);
 
   const async = ts.isAsyncFunction(signature.declaration);
   if (async) {
@@ -191,9 +188,12 @@ function renderTypes(checker, type) {
   // but we just want to return `boolean`.
   const multipleTypes =
     type.types !== undefined && type.intrinsicName !== "boolean";
-  return multipleTypes
+  let result = multipleTypes
     ? type.types.map((type) => checker.typeToString(type))
     : [checker.typeToString(type)];
+  // HACK: Map `{}` to `unknown`
+  result = result.map((type) => (type === "{}" ? "unknown" : type));
+  return result;
 }
 
 function parameterDocs(checker, parameter) {

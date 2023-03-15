@@ -2,8 +2,8 @@
 <p>
   {{mdHtml ./description}}
 </p>
-{{if ./constructor, =`
-  {{ @template/scope/function.ori(./constructor) }}
+{{if ./classConstructor, =`
+  {{ @template/scope/function.ori(./classConstructor) }}
 `}}
 {{map ./members, =`
   {{ @template/scope/function.ori(.) }}

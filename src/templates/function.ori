@@ -1,8 +1,8 @@
 <h3>
   {{if ./static, 'static ' }}
   {{if ./async, 'async '}}
-  {{if ./generator, '*'}}{{./name}}()
-  {{if ./constructor, 'constructor'}}
+  {{if ./generator, '*'}}{{./name}}({{ @template/scope/parameters.ori(./parameters) }})
+  {{if ./isConstructor, 'constructor'}}
 </h3>
 <ul>
 {{map ./parameters, =`
@@ -13,7 +13,7 @@
   </li>  
 `}}
 </ul>
-{{unless ./constructor, =`
+{{unless ./isConstructor, =`
 <p>
   Returns: {{ @template/scope/typeList.ori(./returnTypes) }}
 </p>
