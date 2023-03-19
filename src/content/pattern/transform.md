@@ -34,8 +34,7 @@ import { marked } from "marked";
 
 export default function (graph) {
   return {
-    async *[Symbol.asyncIterator]() { … },
-
+    async keys() { … },
     async get(key) { … },
   };
 }
@@ -50,15 +49,14 @@ The first step is to transform the extension on the keys from `.md` to `.html`.
 When dealing with content, we often use an extension in a name as a type signature to indicate the type of data contained therein. In this case, we want the keys of the transformed graph to reflect the fact its contents are HTML.
 
 ```js
-    async *[Symbol.asyncIterator]() {
-      for await (const markdownKey of graph) {
-        const htmlKey = markdownKey.replace(/\.md$/, ".html");
-        yield htmlKey;
-      }
+    async keys() {
+      const markdownKeys = Array.from(await graph.keys());
+      const htmlKeys = markdownKeys.map((key) => key.replace(/\.md$/, ".html"));
+      return htmlKeys;
     }
 ```
 
-The transformed graph's `asyncIterator` iterates over the keys of the inner `graph`. If a key ends in `.md`, the extension will be replaced with `.html`. That key is then yielded. For example, if the inner `graph` has a key `Alice.md`, the transformed graph will yield `Alice.html`.
+The transformed graph's `keys` method iterates over the keys of the inner `graph`. If a key ends in `.md`, the extension will be replaced with `.html`. For example, if the inner `graph` has a key `Alice.md`, the transformed graph will return the key `Alice.html`.
 
 ## Transform the values
 
@@ -80,7 +78,7 @@ The second step is to transform the markdown values into HTML values.
 
 The `get` function is given a key, most likely one ending in `.html`. This function will then ask the underlying markdown graph for a corresponding markdown file. If asked for `foo.html`, it asks the markdown graph for `foo.md`.
 
-When it comes to keys, the `get` function is working in the opposite direction of the `asyncIterator`. The `asyncIterator` maps a markdown key to an HTML key so that it can enumerate what HTML keys it virtually contains. The `get` function maps an HTML key to a markdown key so that it can retrieve the corresponding markdown content.
+When it comes to keys, the `get` function is working in the opposite direction of the `keys` method. The `keys` method maps a markdown key to an HTML key so that it can enumerate what HTML keys it virtually contains. The `get` function maps an HTML key to a markdown key so that it can retrieve the corresponding markdown content.
 
 If the markdown graph actually returns a value, we cast that value to a string. In the object graph we're using for markdown content at this point, the value will already be a string. But in the general case, we'd like to handle any value type that can be cast to a string. We then pass the markdown string to the `marked` function to get the corresponding HTML.
 

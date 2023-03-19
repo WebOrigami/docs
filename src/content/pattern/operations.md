@@ -20,25 +20,23 @@ export default class MergeGraph {
     this.graphs = graphs;
   }
 
-  async *[Symbol.asyncIterator]() { … }
+  async keys() { … }
 
   async get(key) { … }
 }
 ```
 
-The `asyncIterator` will yield all the keys in all of the supplied graphs. We can use a `Set` to de-duplicate the keys.
+The `keys` will return all the keys in all of the supplied graphs. We can use a `Set` to de-duplicate the keys.
 
 ```js
-  async *[Symbol.asyncIterator]() {
+  async keys() {
     const keys = new Set();
     for (const graph of this.graphs) {
       for await (const key of graph) {
-        if (!keys.has(key)) {
-          keys.add(key);
-          yield key;
-        }
+        keys.add(key);
       }
     }
+    return keys;
   }
 ```
 
@@ -51,8 +49,8 @@ The `get` method looks in each of the graphs in turn, returning the first define
       const value = await graph.get(key);
 
       const isExplorable =
-        typeof value?.[Symbol.asyncIterator] === "function" &&
-        typeof value?.get === "function";
+        typeof value?.get === "function" &&
+        typeof value?.keys === "function";
 
       if (value !== undefined) {
         if (isExplorable) {
@@ -120,8 +118,8 @@ You can define a range of useful higher-level graph operations to handle situati
 
 - A cache operation that accepts two graphs: a source graph that produces values, and a read-write graph to cache values which have already been produced. The latter is consulted first. If no value for a given key has been produced yet, the source graph is consulted, and the resulting value cached for later use.
 - A filter operation that accepts two graphs: a source graph that produces values, and a graph that defines a filter which should be used to decide whether or not to return a value from the source graph.
-- A sort operation that wraps a source graph, with an `asyncIterator` that yields the source graph's keys in a particular sort order.
-- A shuffle operation that wraps a source graph, with an `asyncIterator` that yields the source graph's keys in a random order.
+- A sort operation that wraps a source graph, with an `keys` method that returns the source graph's keys in a particular sort order.
+- A shuffle operation that wraps a source graph, with an `keys` method that returns the source graph's keys in a random order.
 
 Such higher-level operations are common enough that they would be of value in many projects. Rather than having many people implement such operations, it'd be nice to share solid implementations of them in a common library.
 

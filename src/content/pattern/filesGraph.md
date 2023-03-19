@@ -12,7 +12,7 @@ Before starting, let's quickly look at both objects and files through the lens o
 
 | Explorable interface method &emsp; | Object implementation &emsp; | File implementation   |
 | :--------------------------------- | :--------------------------- | :-------------------- |
-| `asyncIterator`                    | `Object.keys(obj)`           | `fs.readdir(dirname)` |
+| `keys()`                           | `Object.keys(obj)`           | `fs.readdir(dirname)` |
 | `get(key)`                         | `obj[key]`                   | `fs.readFile(key)`    |
 
 If we're using the Node `fs` API, we have our choice of synchronous or asynchronous methods, but there are performance benefits to be gained by using the asynchronous API.
@@ -36,8 +36,7 @@ const moduleFolder = path.dirname(fileURLToPath(import.meta.url));
 const dirname = path.resolve(moduleFolder, "markdown");
 
 export default {
-  async *[Symbol.asyncIterator]() { … },
-
+  async keys() { … },
   async get(key) { … },
 };
 ```
@@ -47,9 +46,9 @@ export default {
 To get the keys for the folder, we'll ask the `fs.readdir` API for the list of file names in that folder, then yield the names in that list.
 
 ```js
-  async *[Symbol.asyncIterator]() {
+  async keys() {
     const filenames = await fs.readdir(dirname);
-    yield* filenames;
+    return filenames;
   },
 ```
 

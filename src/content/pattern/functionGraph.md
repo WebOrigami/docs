@@ -18,7 +18,7 @@ Because the Explorable interface supports asynchronous functions by default, we 
 
 The earlier object-based and files-based explorable graphs are "real" in that the data is stored persistently in the real world. But the explorable function-based graph above is virtual from the start — the complete data is not stored persistently, and is only available when code is running.
 
-As noted in the original definition of the Explorable interface, an explorable graph's `asyncIterator` is _not_ required to yield all of the keys the graph can handle. The `asyncIterator` for the explorable function above yields three representative keys, but the `get` method will actually accept any key ending in `.md`.
+As noted in the original definition of the Explorable interface, an explorable graph's `keys` method is _not_ required to return all of the keys the graph can handle. The `keys` for the explorable function above returns three representative keys, but the `get` method will actually accept any key ending in `.md`.
 
 ## Verify the explorable function
 
@@ -39,7 +39,7 @@ $ node json fn.js
 {{ json pattern-intro/flat/fn }}
 ```
 
-You can think of an explorable function as a function that can provide a sample output set. Here the core `fn` function can actually handle more keys that the graph exposes in its `asyncIterator`, which we can take advantage of later.
+You can think of an explorable function as a function that can provide a sample output set. Here the core `fn` function can actually handle more keys that the graph exposes in its `keys`, which we can take advantage of later.
 
 We can apply our markdown-to-HTML transformation to this virtual graph to create a new virtual graph of HTML.
 

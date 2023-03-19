@@ -65,8 +65,8 @@ And a fair bit of work for our file system-based graph:
     }
 
     const isExplorable =
-      typeof value?.[Symbol.asyncIterator] === "function" &&
-      typeof value?.get === "function";
+      typeof value?.get === "function" &&
+      typeof value?.keys === "function";
 
     if (isExplorable) {
       // Write out the contents of the value graph to the destination.

@@ -58,7 +58,7 @@ $ ls dist
 files      function   index.html object
 ```
 
-The build process is copying the virtual graph into real files. Among other things, this will create files for all the values in the `asyncIterator` provided by the dynamic `function` route. But now that the files are static, the pages provided by that `function` route are essentially frozen.
+The build process is copying the virtual graph into real files. Among other things, this will create files for all the values in the `keys` provided by the dynamic `function` route. But now that the files are static, the pages provided by that `function` route are essentially frozen.
 
 If it's necessary that your site handle dynamic requests, then you would have to serve the live site graph (not static files). It would also be possible to blend approaches: use a build process to generate static files for those things that can be statically generated, and use a live server for the remaining portion.
 
