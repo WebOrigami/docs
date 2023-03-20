@@ -50,6 +50,21 @@ The constructor for a function-based graph takes a function and an array as a fu
 
 With these classes, we can quickly create new graphs based on any object, folder, or function.
 
+## Test the classes
+
+<span class="tutorialStep"></span> Run all the tests to confirm that the class-based graphs all behave as expected.
+
+```console
+$ cd ../classes
+$ node --test
+…
+# tests 4
+# pass 4
+# fail 0
+```
+
+All tests pass, so now we have three different general ways to implement a graph that all work the same way. The markdown-to-HTML transformation doesn't need any modification to work with these new class-based graphs, as it can already work with anything implementing the Explorable interface.
+
 &nbsp;
 
 Next: [Deep graphs](deep.html) »

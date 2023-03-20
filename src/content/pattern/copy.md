@@ -25,7 +25,8 @@ Let's extend our Explorable interface with an optional method `set(key, value)`.
 This is straightforward for our object-based graph:
 
 ```js
-// Inside src/set/ObjectGraph.js
+  /* In src/set/ObjectGraph.js */
+
   async set(key, value) {
     if (value === undefined) {
       delete this.obj[key];
@@ -38,7 +39,7 @@ This is straightforward for our object-based graph:
 And a fair bit of work for our file system-based graph:
 
 ```js
-// Inside src/set/FilesGraph.js
+  /* In src/set/FilesGraph.js */
 
   async set(key, value) {
     // Where are we going to write this value?

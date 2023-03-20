@@ -36,8 +36,12 @@ const moduleFolder = path.dirname(fileURLToPath(import.meta.url));
 const dirname = path.resolve(moduleFolder, "markdown");
 
 export default {
-  async get(key) { … },
-  async keys() { … },
+  async get(key) {
+    /* TODO */
+  },
+  async keys() {
+    /* TODO */
+  },
 };
 ```
 

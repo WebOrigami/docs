@@ -16,6 +16,8 @@ The first thing is to recognize a URL as a graph traversal — we can treat a U
 Specifically, we convert a string URL path like `/foo/bar` into an array of keys `["foo", "bar"]`.
 
 ```{{'js'}}
+/* In src/deep/serve.js */
+
 {{ functions/keysFromUrl }}
 ```
 
@@ -26,6 +28,8 @@ If the path ends in a slash like `foo/`, this produces the keys `["foo", "index.
 We can then iteratively follow this array of keys through a deep graph to a final value:
 
 ```{{'js'}}
+/* In src/deep/serve.js */
+
 {{ functions/traverse }}
 ```
 
@@ -36,6 +40,8 @@ The graph itself is acting as a web site router.
 Putting these together, we can build a listener function that uses a graph to respond to HTTP requests.
 
 ```{{'js'}}
+/* In src/deep/serve.js */
+
 {{ functions/requestListener }}
 ```
 
@@ -48,7 +54,11 @@ If a request returns an explorable graph, we redirect to an `index.html` value i
 Finally, we start the server at a default port.
 
 ```{{'js'}}
+/* src/deep/serve.js */
+
 {{ functions/@prologue }}
+
+/* …Plus the above code fragments… */
 
 {{ functions/@epilogue }}
 

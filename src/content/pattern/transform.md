@@ -17,8 +17,8 @@ In our markdown-to-HTML transformation, we will create a virtual graph of HTML c
   <figure>
     {{ svg pattern-intro/flat/htmlObject }}
   </figure>
-  <figcaption>Real markdown graph</figcaption>
-  <figcaption>Virtual HTML graph</figcaption>
+  <figcaption>Graph of markdown content</figcaption>
+  <figcaption>Virtual graph of HTML</figcaption>
 </div>
 
 The markdown graph is "real", in the sense that it is persistently stored in some fashion as `object.js`. In the code that follows, we'll create a new graph which is _virtual_ as it exists only while the code is running.
@@ -34,8 +34,12 @@ import { marked } from "marked";
 
 export default function (graph) {
   return {
-    async keys() { … },
-    async get(key) { … },
+    async keys() {
+      /* TODO */
+    },
+    async get(key) {
+      /* TODO */
+    },
   };
 }
 ```

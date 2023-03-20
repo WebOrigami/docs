@@ -20,9 +20,13 @@ export default class MergeGraph {
     this.graphs = graphs;
   }
 
-  async keys() { … }
+  async keys() {
+    /* TODO */
+  }
 
-  async get(key) { … }
+  async get(key) {
+    /* TODO */
+  }
 }
 ```
 

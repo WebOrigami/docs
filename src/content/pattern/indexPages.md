@@ -18,6 +18,8 @@ The default value will be an HTML page listing the graph's other keys as links.
 First let's write a function that returns a reasonable default index page for a graph that doesn't define one.
 
 ```{{'js'}}
+/* In src/index/indexPages.js */
+
 {{ functions/indexPage }}
 ```
 
@@ -38,7 +40,7 @@ Then invoking `indexPage` on this branch will return:
 Using the default `indexPage` function above, let's now create a graph transform. This will accept any explorable graph, and return a new graph with an `index.html` key.
 
 ```{{'js'}}
-/* src/index/indexPages.js */
+/* In src/index/indexPages.js */
 
 {{ functions/@prologue }}
 {{ functions/@epilogue }}
