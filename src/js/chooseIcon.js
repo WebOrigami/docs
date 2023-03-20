@@ -1,5 +1,3 @@
-import { ExplorableGraph } from "@graphorigami/origami";
-
 // Pick an icon for a page that is quasi-random but stable across visits.
 export default async function chooseIcon(page, icons) {
   if (!page || !icons) {
@@ -7,7 +5,7 @@ export default async function chooseIcon(page, icons) {
   }
 
   // Treating the icons as buckets, hash the page URL to a bucket (icon).
-  const keys = await ExplorableGraph.keys(icons);
+  const keys = Array.from(await icons.keys());
   const pageHash = hash(page, keys.length);
   const icon = keys[pageHash];
   return icon;
