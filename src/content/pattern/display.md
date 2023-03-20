@@ -30,7 +30,7 @@ We could write a tool to statically import a specific graph we want to display, 
 
 {{ functions/@prologue }}
 
-async function plain(graph) { … }
+async function plain(graph) { /* See above */ }
 
 {{ functions/@epilogue }}
 ```

@@ -5,7 +5,11 @@ title: The Explorable graph interface
 The last section noted that, in the context of our markdown-to-HTML problem, it's possible to conceptualize the markdown content as a graph:
 
 <figure>
-  {{ svg pattern-intro/flat/markdown }}
+  {{ svg {
+    Alice.md: "Hello, **Alice**.",
+    Bob.md: "Hello, **Bob**.",
+    Carol.md: "Hello, **Carol**.",
+  } }}
   <figcaption>The markdown documents as a graph</figcaption>
 </figure>
 
@@ -23,17 +27,17 @@ In code, an implementation of the Explorable interface looks like this:
 ```js
 // An explorable graph
 const graph = {
-  // Iterate over this graph node's keys.
-  async keys() { ... }
-
   // Get the value of a given key.
   async get(key) { ... }
+
+  // Iterate over this graph node's keys.
+  async keys() { ... }
 }
 ```
 
 Notes:
 
-- The `keys` method must return an [iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_iterator_protocol). An iterator is an object that can produce a sequence of values. A graph's `keys` method can return an instance of a JavaScript class like `Array` and `Set` that support the iterator protocol, or `keys` can return an iterator defined by other means.
+- The `keys` method must return an [iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_iterator_protocol): an object that can produce a sequence of values. The simplest way to meet this requirement is to a JavaScript `Array` or `Set`, which provide built-in support for the iterator protocol.
 
 - Both functions in the `Explorable` interface are marked with the [async](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) keyword, indicating that they are asynchronous functions. In practice, the functions may return immediately, but they have the potential, at least, to do work that will require a bit of time: retrieving data from the file system, accessing data from a network, or performing long calculations.
 
