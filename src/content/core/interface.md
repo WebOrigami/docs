@@ -23,11 +23,11 @@ JavaScript does not have a first-class representation of interfaces, but a graph
 
 ```js
 const graph = {
-  // Iterate over this graph node's keys.
-  async *[Symbol.asyncIterator]() { ... }
-
   // Get the value of a given key.
   async get(key) { ... }
+
+  // Iterate over this graph node's keys.
+  async keys() { ... }
 
   // Optional: set the value of a given key.
   async set(key, value) { ... }
@@ -36,18 +36,20 @@ const graph = {
 
 Some notes on the JavaScript shown above:
 
-- The [Symbol.asyncIterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/asyncIterator) reference is what is called a "well-known symbol" in JavaScript: a symbol that has special meaning to the JavaScript engine. In this case, the symbol lets you easily iterate over a graph node's set of keys asynchronously using a [for await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of) loop.
+- The `keys` method must return an [iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_iterator_protocol). An iterator is an object that can produce a sequence of values. A graph's `keys` method can return an instance of a JavaScript class like `Array` and `Set` that support the iterator protocol, or `keys` can return an iterator defined by other means.
 
-- The asterisk (`*`) before the `Symbol.asyncIterator` indicates that the function is a [generator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator): a function that can be repeatedly invoked to return the next result in a sequence. The sequence can be potentially infinite in length.
+- Both functions in the `Explorable` interface are marked with the [async](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) keyword, indicating that they are asynchronous functions. In practice, the functions may return immediately, but they have the potential, at least, to do work that will require a bit of time: retrieving data from the file system, accessing data from a network, or performing long calculations.
 
-- All of the functions in the `Explorable` interface are marked with the [async](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) keyword, indicating that they are asynchronous functions. In practice, the functions may return immediately, but they have the potential, at least, to do work that will require a bit of time: retrieving data from the file system, accessing data from a network, or performing long calculations.
+- The `keys` method does _not_ have to return all the keys supported by `get`! There may be keys that `get` can handle that the `keys` will not include. This turns out to be useful in a number of situations.
+
+- An Explorable graph's `get` method is expected to return `undefined` if the key is not present in the graph.
 
 In a strongly-typed language like TypeScript, the interface looks like:
 
 ```ts
 interface Explorable {
-  [Symbol.asyncIterator](): AsyncIterableIterator<any>;
   get(key: any): Promise<any>;
+  keys(): Promise<IterableIterator<any>>;
   set?(key: any, value: any): Promise<void>;
 }
 ```
@@ -64,19 +66,17 @@ The small circle on the left is a graph node with three keys ("Alice", "Bob", "C
 
 ```js
 const graph = {
-  // Iterate over this graph node's keys.
-  async *[Symbol.asyncIterator]() {
-    yield* ["Alice", "Bob", "Carol"];
-  },
-
   // Get the value of a given key.
   async get(key) {
     return `Hello, ${key}.`;
   },
+
+  // Return this graph node's keys.
+  async keys() {
+    return ["Alice", "Bob", "Carol"];
+  },
 };
 ```
-
-The [yield\*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/yield*) keyword is a kind of `return` statement used in a JavaScript generator to produce a sequence of values from an object — here, from an array. The first time you call this `Symbol.asyncIterator`, it will yield the key "Alice", then pause and hand control back to your invoking code. The next time you call the iterator, it will yield the key "Bob". The third time it will yield "Carol" and also indicate that the graph has no more keys it wants to share.
 
 ## Traversing an explorable graph
 
@@ -84,9 +84,8 @@ If we wish to display the keys and values in the above graph, we can write:
 
 ```js
 // Display a graph.
-// Loop over the graph's keys using a `for await` loop, which will invoke the
-// graph's `Symbol.asyncIterator` to produce a sequence of keys.
-for await (const key of graph) {
+// Loop over the graph's keys.
+for (const key of await graph.keys()) {
   // For a given key, get the value associated with it.
   const value = await graph.get(key);
   // Display the key and value.
@@ -101,8 +100,6 @@ Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
 ```
-
-Note that the `for await` loop implicitly invokes the graph's `Symbol.asyncIterator`. That specific symbol lets JavaScript know which function the `for await` loop should iterate over.
 
 ## Wrappers
 

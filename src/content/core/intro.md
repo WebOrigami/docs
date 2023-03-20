@@ -7,21 +7,21 @@ _DRAFT_
 
 ## Defining an explorable graph directly
 
-The `samples` folder contains a JavaScript file `direct.js` that defines a graph by implementing the `Symbol.asyncIterator` and `get` methods directly.
+The `samples` folder contains a JavaScript file `direct.js` that defines a graph by implementing the `get` and `keys` methods directly.
 
 ```js
 // direct.js
 
 // Define a set of greetings directly in explorable graph form.
 export default {
-  // Iterate over this graph node's keys.
-  async *[Symbol.asyncIterator]() {
-    yield* ["Alice", "Bob", "Carol"];
-  },
-
   // Get the value of a given key.
   async get(key) {
     return `Hello, ${key}.`;
+  },
+
+  // Return this graph node's keys.
+  async keys() {
+    return ["Alice", "Bob", "Carol"];
   },
 };
 ```

@@ -34,19 +34,19 @@ class FunctionGraph {
     this.domain = domain;
   }
 
-  // Yield the function's domain as its keys.
-  async *[Symbol.asyncIterator]() {
-    yield* this.domain;
-  }
-
   // Return the value for a given key.
   async get(key) {
     return this.fn(key);
   }
+
+  // Return the function's domain as its keys.
+  async keys() {
+    return this.domain;
+  }
 }
 ```
 
-Unlike explorable classes like [ObjectGraph](ObjectGraph.html), an `FunctionGraph` can often accept keys which it does not make public in its `asyncIterator`. The sample `FunctionGraph` defined above exposes only three keys ("Alice", "Bob", "Carol"), but will actually accept any key.
+Unlike explorable classes like [ObjectGraph](ObjectGraph.html), an `FunctionGraph` can often accept keys which it does not make public in its `keys` iterator. The sample `FunctionGraph` defined above exposes only three keys ("Alice", "Bob", "Carol"), but will actually accept any key.
 
 ```console
 $ ori keys function

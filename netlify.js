@@ -12,16 +12,6 @@ import { ExplorableGraph } from "@graphorigami/origami";
 export default async function netlify(variant) {
   const graph = ExplorableGraph.from(variant);
   return {
-    async *[Symbol.asyncIterator]() {
-      for await (const key of graph) {
-        yield key;
-        if (key === ".keys.json") {
-          // Also yield "keys.json" for Netlify.
-          yield "keys.json";
-        }
-      }
-    },
-
     async get(key) {
       if (key === "keys.json") {
         // keys.json is a synonym for .keys.json
@@ -29,6 +19,15 @@ export default async function netlify(variant) {
       }
       const value = await graph.get(key);
       return ExplorableGraph.isExplorable(value) ? netlify(value) : value;
+    },
+
+    async keys() {
+      const keys = Array.from(await graph.keys());
+      if (keys.includes(".keys.json")) {
+        // Also include "keys.json" for Netlify.
+        keys.push("keys.json");
+      }
+      return keys;
     },
   };
 }

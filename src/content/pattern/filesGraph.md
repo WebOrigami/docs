@@ -12,8 +12,8 @@ Before starting, let's quickly look at both objects and files through the lens o
 
 | Explorable interface method &emsp; | Object implementation &emsp; | File implementation   |
 | :--------------------------------- | :--------------------------- | :-------------------- |
-| `keys()`                           | `Object.keys(obj)`           | `fs.readdir(dirname)` |
 | `get(key)`                         | `obj[key]`                   | `fs.readFile(key)`    |
+| `keys()`                           | `Object.keys(obj)`           | `fs.readdir(dirname)` |
 
 If we're using the Node `fs` API, we have our choice of synchronous or asynchronous methods, but there are performance benefits to be gained by using the asynchronous API.
 
@@ -36,8 +36,8 @@ const moduleFolder = path.dirname(fileURLToPath(import.meta.url));
 const dirname = path.resolve(moduleFolder, "markdown");
 
 export default {
-  async keys() { … },
   async get(key) { … },
+  async keys() { … },
 };
 ```
 

@@ -435,7 +435,7 @@ Bob: HELLO, BOB.
 Carol: HELLO, CAROL.
 ```
 
-If a `sourceExtension` or `targetExtension` are supplied, this returns a [MapTypesGraph](/core/MapTypesGraph.html) instead, which will only apply the `mapFn` to values whose keys end in the indicated `sourceExtension`. In that case, the mapped `asyncIterator` will change the key's extension to the indicated `targetExtension`.
+If a `sourceExtension` or `targetExtension` are supplied, this returns a [MapTypesGraph](/core/MapTypesGraph.html) instead, which will only apply the `mapFn` to values whose keys end in the indicated `sourceExtension`. In that case, the mapped `keys` method will change the key's extension to the indicated `targetExtension`.
 
 Unlike a JavaScript [Array map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), the `map` function does not do any mapping work upon invocation — it only does the work when someone requests the mapped graph's keys or values.
 
@@ -867,7 +867,7 @@ spanish  Hola, a.     Hola, b.     Hola, c.
 
 ## take(graph, n)
 
-Returns a copy of the given [graph variant](/core/variants.html), with the additional restriction that the new graph's `asyncIterator` will return only (at most) the first `n` keys.
+Returns a copy of the given [graph variant](/core/variants.html), with the additional restriction that the new graph's `keys` method will return only (at most) the first `n` keys.
 
 ```console
 $ cat letters.yaml
