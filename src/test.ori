@@ -1,1 +1,1 @@
-{{ templates/areaLinks.ori() }}
+{{ templates/sideBar.ori(content/core/pages.yaml) }}

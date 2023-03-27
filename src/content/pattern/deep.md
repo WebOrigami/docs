@@ -30,7 +30,7 @@ This lets us create a deep tree:
 which represents the deep graph
 
 <figure>
-  {{ svg pattern-intro/deep/object }}
+  {{ @svg pattern-intro/deep/object }}
 </figure>
 
 ## Deep file graphs
@@ -66,7 +66,7 @@ Finally, we need to update our `json` utility. That code has a function called `
 ```console
 $ cd ../deep
 $ node json files.js
-{{ json pattern-intro/deep/files }}
+{{ @json pattern-intro/deep/files }}
 ```
 
 ## Deep transforms
@@ -83,13 +83,13 @@ Our transformation that converts markdown to HTML needs to be updated too. After
 
 ```console
 $ node json htmlFiles.js
-{{ json pattern-intro/deep/transform pattern-intro/deep/files }}
+{{ @json pattern-intro/deep/transform pattern-intro/deep/files }}
 ```
 
 Visually this looks like:
 
 <figure>
-{{ svg pattern-intro/deep/transform pattern-intro/deep/files }}
+{{ @svg pattern-intro/deep/transform pattern-intro/deep/files }}
 </figure>
 
 So now we have a way of transforming an arbitrarily deep folder of markdown content into a corresponding deep tree of HTML content. We're now ready to do some interesting things with this content.

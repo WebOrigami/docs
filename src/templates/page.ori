@@ -1,7 +1,7 @@
 ---
 currentRef: !ori (`{{area}}/{{@key}}`)
 icon: !ori js/chooseIcon(currentRef, client/assets/origami)
-pages: !ori js/markCurrent(pages.yaml, @key)
+pagesInArea: !ori js/markCurrent(pages.yaml, @key)
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +14,7 @@ pages: !ori js/markCurrent(pages.yaml, @key)
     <title>{{ title }}</title>
     <link rel="icon" href="/assets/origami/{{ icon }}" type="image/svg+xml">
   </head>
-  <body{{ if numberHeadings, ` class="numberHeadings"` }}>
+  <body{{ @if numberHeadings, ` class="numberHeadings"` }}>
     <div id="page">
       <div id="topNav" class="pageRow">
         <div id="homeContainer">
@@ -32,11 +32,13 @@ pages: !ori js/markCurrent(pages.yaml, @key)
         </div>
         <header>
           <h1>{{ title }}</h1>
-{{if ./subtitle, =`
+{{ @if ./subtitle, =`
           <p class="subtitle">{{ subtitle }}</p>
 `}}
         </header>
-{{ templates/sideBar.ori() }}
+          <nav id="sideBar">
+{{ templates/sideBar.ori(pagesInArea) }}
+          </nav>
         <main class="markdown-body">
           {{ @text }}
         </main>

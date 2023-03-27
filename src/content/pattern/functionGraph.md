@@ -36,7 +36,7 @@ $ node fn.test.js
 
 ```console
 $ node json fn.js
-{{ json pattern-intro/flat/fn }}
+{{ @json pattern-intro/flat/fn }}
 ```
 
 You can think of an explorable function as a function that can provide a sample output set. Here the core `fn` function can actually handle more keys that the graph exposes in its `keys`, which we can take advantage of later.
@@ -53,7 +53,7 @@ We can apply our markdown-to-HTML transformation to this virtual graph to create
 
 ```console
 $ node json htmlFn.js
-{{ json pattern-intro/flat/transform pattern-intro/flat/htmlFn }}
+{{ @json pattern-intro/flat/transform pattern-intro/flat/htmlFn }}
 ```
 
 We have now implemented three different ways to construct an explorable graph. In a bit, we'll see how they can be used together to create interesting combinations and be used for practical purposes. Before doing that, however, let's make our code a little more general-purpose and flexible.

@@ -1,8 +1,8 @@
-public = merge(static, {
+public = @graph/merge(static, {
   index.html = index.ori()
-  team = map(teamByName, person.ori, { extension: '→html' })
-  thumbnails = map(images, =image/resize(@value, { width: 400 }))
+  team = @map/values(teamByName, person.ori, { extension: '→html' })
+  thumbnails = @map/values(images, =@image/resize(@value, { width: 400 }))
 })
 
 title = 'Our Amazing Team'
-teamByName = mapKeys(team.yaml, =./name)
+teamByName = @map/keys(team.yaml, =./name)

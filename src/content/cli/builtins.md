@@ -13,49 +13,6 @@ The built-in called `@` is a graph of the complete set of built-in functions. Th
 
 For example, if your project contains a folder called `map`, then using `map` in a local formula will reference the local folder instead of the `map()` built-in. To reference the built-in `map`, you can write `@/map`.
 
-<a name="assert"></a>
-
-## assert([graph])
-
-Treats the graph as an object with a `description`, `expected`, and `actual` keys. The graph is converted to a [metagraph](/framework/metagraph.html) if it is not already one so that a formula can be used to calculate the value of `actual`.
-
-The result of `assert()` will be the result of the comparing `expected` and `actual` with Node's [deepStrictEqual](https://nodejs.org/api/assert.html#assertdeepstrictequalactual-expected-message) test.
-
-If the assertion fails, `assert()` returns the `description`, `expected`, and evaluated `actual` values. Example:
-
-```console
-$ cat test.yaml
-description: repeat built-in function can replicate a value
-expected: beepbeep
-actual: !ori repeat(2, 'beep')
-$ ori assert test.yaml
-description: repeat built-in function can replicate a value
-expected: beepbeep
-actual:
-  - beep
-  - beep
-```
-
-This assertion fails because [`repeat()`](#repeat) doesn't return a string; it returns an array. If this test is rewritten and re-run, the test passes and `assert()` generates no output.
-
-```console
-$ cat test.yaml
-description: repeat built-in function can replicate a value
-expected:
-  - beep
-  - beep
-$ ori assert test.yaml
-$
-```
-
-<a name="basename"></a>
-
-## basename(path, [extension])
-
-Returns the last file name in a path. If an `extension` is provided, it is removed from the file name.
-
-Example: `basename('/src/index.html', '.html')` returns `index`.
-
 <a name="cache"></a>
 
 ## cache(graph, [cache], [filter])
@@ -178,12 +135,6 @@ This built-in is the JavaScript `false` value, and exists so you can pass `false
 
 Converts a graph of posts in [JSON Feed](https://www.jsonfeed.org/) format to [RSS](https://www.rssboard.org/rss-specification) format. The graph can be any [graph variant](/core/variants.html).
 
-<a name="fetch"></a>
-
-## fetch(url)
-
-Returns a [Buffer](https://nodejs.org/api/buffer.html) of the web resource at `url`.
-
 <a name="files"></a>
 
 ## files([dirname])
@@ -207,25 +158,6 @@ Returns the first value in `graph`.
 ## flowSvg(graph)
 
 Renders the dataflow output of [dataflow()](#dataflow) as an SVG image.
-
-<a name="front"></a>
-
-## front(text)
-
-Returns any _front matter_ parsed from the start of the indicated text. The front matter data should be in JSON or YAML format and delimited before and after by three hyphens on a line by themselves.
-
-```console assert: true, path: files
-$ ori hello.md
----
-title: Hello
----
-
-Hello, world.
-$ ori front hello.md
-title: Hello
-```
-
-If the indicated text includes no front matter, this returns `undefined`.
 
 <a name="globs"></a>
 
@@ -567,16 +499,6 @@ $ ori nulls greetings.yaml
 
 Evaluates the string `text` as an Origami expression and returns the result.
 
-<a name="orit"></a>
-
-## orit(template, input, [options])
-
-Evaluates the given `template` as an Origami template, passing in the given `input` object as template input.
-
-Available `options`:
-
-- `preserveFrontMatter`: if `true`, the output will include any front matter found in the `template`. The default is `false`.
-
 <a name="parent"></a>
 
 ## parent(graph)
@@ -735,7 +657,7 @@ Alice: Hello, Alice.
 
 <a name="sort"></a>
 
-## sort(graph)
+## sort(graph, [keyFn])
 
 Returns a copy of the indicated [graph variant](/core/variants.html) with the keys sorted. The sort is performed with the default lexicograph Unicode sort order provided by JavaScript's [Array.sort()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) method.
 
@@ -752,13 +674,7 @@ Spain: Madrid
 Turkey: Ankara
 ```
 
-See also [sortBy()](#sortBy).
-
-<a name="sortBy"></a>
-
-## sortBy(graph, expression)
-
-Like [sort()](#sort) above, but evaluates the indicated `expression` to determine the sort key. The sort key must support comparison via the JavaScript `<` (less than) and `>` (greater than) operators.
+If a `keyFn` parameter is supplied, this evaluates that function for each graph key to determine a sort key. The sort key must support comparison via the JavaScript `<` (less than) and `>` (greater than) operators.
 
 ```console
 $ cat capitals.yaml
@@ -766,7 +682,7 @@ Japan: Tokyo
 Turkey: Ankara
 Australia: Canberra
 Spain: Madrid
-$ ori sortBy capitals.yaml, =@value
+$ ori sort capitals.yaml, =@value
 Turkey: Ankara
 Australia: Canberra
 Spain: Madrid
@@ -794,12 +710,6 @@ export default (x) => x.toString().toUpperCase();
 $ echo This is input from the shell | ori uppercase stdin
 THIS IS INPUT FROM THE SHELL
 ```
-
-<a name="stdout"></a>
-
-## stdout(obj)
-
-Writes the indicated object `obj` to the standard output stream. This `stdout` function is used by ori itself to write the evaluated result of an expression to the console. If you wish to override the standard `stdout` implementation to, say, default to JSON output instead of YAML, you can do so by defining your own function named `stdout` in the ori [config file](/cli/config.html).
 
 <a name="string"></a>
 

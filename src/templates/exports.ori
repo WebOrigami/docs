@@ -1,8 +1,8 @@
-{{map ./exports, =`
-  {{if js/equals(./kind, 'class'), =`
+{{ @map/values ./exports, =`
+  {{ @if js/equals(./kind, 'class'), =`
     {{ @template/scope/class.ori(.) }}
   `}}
-  {{if js/equals(./kind, 'function'), =`
+  {{ @if js/equals(./kind, 'function'), =`
     {{ @template/scope/function.ori(.) }}
   `}}
 `}}

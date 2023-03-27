@@ -26,7 +26,7 @@ First let's write a function that returns a reasonable default index page for a 
 If the little `more` branch of our HTML graph looks like this:
 
 <figure>
-{{ svg htmlObject/more }}
+{{ @svg htmlObject/more }}
 </figure>
 
 Then invoking `indexPage` on this branch will return:
@@ -49,7 +49,7 @@ Using the default `indexPage` function above, let's now create a graph transform
 If we use this to transform the `more` branch of the HTML graph, we'll get:
 
 <figure>
-{{ svg pattern-intro/index/indexPages(htmlObject/more) }}
+{{ @svg pattern-intro/index/indexPages(htmlObject/more) }}
 </figure>
 
 ## Incorporate the index page transform

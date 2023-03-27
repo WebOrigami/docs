@@ -43,7 +43,7 @@ The tool dynamically imports the indicated JavaScript file and gets its default 
 
 ```console
 $ node json object.js
-{{ json pattern-intro/flat/object }}
+{{ @json pattern-intro/flat/object }}
 ```
 
 &nbsp;

@@ -33,7 +33,7 @@ about:
 The graph looks like this:
 
 <figure>
-{{ svg intro/site.yaml }}
+{{ @svg intro/site.yaml }}
 </figure>
 
 <span class="tutorialStep"></span> You can serve this tiny site directly from the file:

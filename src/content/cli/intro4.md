@@ -63,7 +63,7 @@ HELLO, ALICE.
 <span class="tutorialStep"></span> You can apply that `uppercase` transformation to an entire graph with the ori's built-in `map` function:
 
 ```console
-$ ori map greetings.yaml, uppercase
+$ ori @map/values greetings.yaml, uppercase
 Alice: HELLO, ALICE.
 Bob: HELLO, BOB.
 Carol: HELLO, CAROL.
@@ -76,13 +76,13 @@ The second argument to `map` is a function. Technically, the second argument can
 The `map` example above takes the original greetings graph:
 
 <figure>
-{{ svg intro/greetings.yaml }}
+{{ @svg intro/greetings.yaml }}
 </figure>
 
 and creates a new graph where all the values are uppercase:
 
 <figure>
-{{ svg map(intro/greetings.yaml, intro/uppercase) }}
+{{ @svg @map/values(intro/greetings.yaml, intro/uppercase) }}
 </figure>
 
 In this intro, we're just transforming text, but you can transform anything in bulk, including images and other binaries. If you can write a function to transform a single thing in JavaScript, you can use ori to apply that transformation to an entire graph of things.
@@ -92,7 +92,7 @@ In this intro, we're just transforming text, but you can transform anything in b
 <span class="tutorialStep"></span> If you ask for a specific value from a `map` graph, then only that value is computed:
 
 ```console
-$ ori "map(greetings.yaml, uppercase)/Alice"
+$ ori "@map/values(greetings.yaml, uppercase)/Alice"
 HELLO, ALICE.
 ```
 
@@ -122,20 +122,20 @@ Carol: Hello, Carol.
 <span class="tutorialStep"></span> You can then treat both the base data and the greetings data as graphs, and pass those to `map`, to turn the list of specific people into a list of greetings:
 
 ```console
-$ ori map people.yaml, greetings.yaml
+$ ori @map/values people.yaml, greetings.yaml
 - Hello, Alice.
 - Hello, Carol.
 ```
 
 <div class="sideBySide">
   <figure>
-    {{ svg intro/people.yaml }}
+    {{ @svg intro/people.yaml }}
   </figure>
   <figure>
-    {{ svg intro/greetings.yaml }}
+    {{ @svg intro/greetings.yaml }}
   </figure>
   <figure>
-    {{ svg map(intro/people.yaml, intro/greetings.yaml) }}
+    {{ @svg @map/values(intro/people.yaml, intro/greetings.yaml) }}
   </figure>
   <figcaption>List of people</figcaption>
   <figcaption>Greetings for everyone</figcaption>
@@ -149,7 +149,7 @@ Here the second `greetings.yaml` graph is used as a function to transform the sp
 <span class="tutorialStep"></span> You can transform a graph and save the results as files.
 
 ```console
-$ ori "copy map(greetings.yaml, template), files/html"
+$ ori "@copy @map/values(greetings.yaml, template), @files/html"
 $ ls html
 Alice   Bob     Carol
 ```

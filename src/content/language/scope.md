@@ -87,7 +87,7 @@ And suppose that the file `site.graph` defines a graph:
 To determine how this `greet()` reference in `site.graph` will be resolved, let's model the whole project as a graph, including the graph inside `site.graph`:
 
 <figure class="fullWidth">
-{{ svg projectExample }}
+{{ @svg projectExample }}
 </figure>
 
 When Graph Origami evaluates the formula for `index.html`, it will evaluate the expression `greet(name)`. To resolve those references, it walks up the tree, considering the following graph nodes in term:
@@ -146,7 +146,7 @@ When you write a statement like `newTotal = total + squared`, the language inter
 We can visualize that scope as a graph. If we invoke `sumSquares(3)`, the first time through the loop, the scope looks like:
 
 <figure class="fullWidth">
-{{ svg jsScopeExample }}
+{{ @svg jsScopeExample }}
 </figure>
 
 Visualized this way, looking up something in the current scope is a matter of walking metaphorically "up" the tree (here, that means moving to the left). The line for `newTotal` references `squared`, which is sitting right there in the same neighborhood of the graph; the reference to `total` requires walking up the tree a few levels to find that variable.

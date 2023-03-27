@@ -1,23 +1,23 @@
 <h3>
-  {{if ./static, 'static ' }}
-  {{if ./async, 'async '}}
-  {{if ./generator, '*'}}{{./name}}({{ @template/scope/parameters.ori(./parameters) }})
-  {{if ./isConstructor, 'constructor'}}
+  {{ @if ./static, 'static ' }}
+  {{ @if ./async, 'async '}}
+  {{ @if ./generator, '*'}}{{./name}}({{ @template/scope/parameters.ori(./parameters) }})
+  {{ @if ./isConstructor, 'constructor'}}
 </h3>
 <ul>
-{{map ./parameters, =`
+{{ @map/values ./parameters, =`
   <li>{{./name}}: {{ @template/scope/typeList.ori(./types) }}
-    {{if ./description, =`
+    {{ @if ./description, =`
       &ndash; {{./description}}
     `}}
   </li>  
 `}}
 </ul>
-{{unless ./isConstructor, =`
+{{ @if @not(./isConstructor), =`
 <p>
   Returns: {{ @template/scope/typeList.ori(./returnTypes) }}
 </p>
 `}}
 <p>
-  {{mdHtml ./description}}
+  {{ @mdHtml ./description}}
 </p>

@@ -13,18 +13,18 @@
 # Step 1: Take the markdown files in the `content` folder and inline any Graph
 # Origami expressions contained in curly braces. This produces a new graph
 # called `inlined`.
-inlined = mapDeep(content, =inline(@value), { extension: 'md' })
+inlined = @map/values(content, =@inline(@value), { deep: @true, extension: 'md' })
 
 # Step 2: Convert the markdown (including inlined content) to HTML while
 # preserving the front matter at the top of each document. As the content is now
 # HTML, we change the file extension from `.md` to `.html`. The result is a
 # graph of HTML content; each value represents the main body of a given page.
-html = mapDeep(inlined, =mdHtml(@value), { extension: 'md→html' })
+html = @map/values(inlined, =@mdHtml(@value), { deep: @true, extension: 'md→html' })
 
 # Step 3: Apply the documentation page template. This injects the HTML content
 # from the previous step into the site's main page template, which adds headers
 # and navigation chrome. This step concludes the main documentation pipeline.
-pages = mapDeep(html, =templates/page.ori(@value), { extension: 'html' })
+pages = @map/values(html, =templates/page.ori(@value), { deep: @true, extension: 'html' })
 
 # Expose the packages referenced in the documentation.
 framework-intro = node_modules/@graphorigami/framework-intro
@@ -43,7 +43,7 @@ api = js/jsApi(source/core)
 # Miscellaneous artifacts with special builds
 misc = {
   # This " is just concatenated files
-  components.js = concat(components)
+  components.js = @graph/concat(components)
 
   demos = {
     aboutUs = src/demos/aboutUs/site.graph/public
@@ -59,12 +59,12 @@ misc = {
 # source code and API documentation objects so that those can be inspected too.
 
 # develop = merge(client, pages, misc, test)
-develop = merge(client, pages, misc)
+develop = @graph/merge(client, pages, misc)
 
 # The `production` virtual graph defines the final graph which is built into
 # static pages. This includes the `client` and `pages` graphs, as well as a
 # `redirects` file used by Netlify. This `production` graph is copied by the
 # `build` script in `package.json` to create the `dist` folder.
-production = merge(client, pages, misc, {
+production = @graph/merge(client, pages, misc, {
   _redirects = src/_redirects
 })

@@ -15,7 +15,7 @@ Let's use the explorable graph pattern to tackle a small, common development tas
 We want to end up with a corresponding collection of HTML pages, such as `Alice.html`:
 
 ```{{'html'}}
-{{ mdHtml pattern-intro/approaches/markdown/Alice.md }}
+{{ @mdHtml pattern-intro/approaches/markdown/Alice.md }}
 ```
 
 We will make use of a markdown-to-HTML translator, but beyond that are going to solve this problem without depending on a framework or other code. We'll essentially write everything from scratch.
@@ -39,7 +39,7 @@ We use the `fs.readFile` API to get a list of the file names that we can loop ov
 ```console
 $ cd src/approaches
 $ node files.js
-{{ yaml pattern-intro/approaches/markdown }}
+{{ @yaml pattern-intro/approaches/markdown }}
 ```
 
 ## Wait — why files?
@@ -62,7 +62,7 @@ If the set of markdown files is really so trivial, we could decide to load the d
 
 ```console
 $ node object.js
-{{ yaml pattern-intro/approaches/markdown }}
+{{ @yaml pattern-intro/approaches/markdown }}
 ```
 
 This object-based approach has its own advantages. For one thing, the code is lot simpler. Being synchronous and working directly against memory, it will also be much faster. In some cases, keeping the data in a single file might also make it easier to create, edit, and manage the data as a collection. On the downside, working directly in a JavaScript file is something only someone with development experience would feel comfortable doing.
@@ -83,7 +83,7 @@ This particular function `fn` happens to be synchronous. If the function were as
 
 ```console
 $ node fn.js
-{{ yaml pattern-intro/approaches/markdown }}
+{{ @yaml pattern-intro/approaches/markdown }}
 ```
 
 ## Pros and cons
@@ -129,7 +129,7 @@ You often encounter this overspecialization in tools. In searching for a tool th
 Regardless of how we are storing the markdown content, it's possible to conceptualize the content as a graph:
 
 <figure>
-  {{ svg {
+  {{ @svg {
     Alice.md: "Hello, **Alice**.",
     Bob.md: "Hello, **Bob**.",
     Carol.md: "Hello, **Carol**.",

@@ -12,10 +12,10 @@ In our markdown-to-HTML transformation, we will create a virtual graph of HTML c
 
 <div class="sideBySide split2to3">
   <figure>
-    {{ svg pattern-intro/flat/object }}
+    {{ @svg pattern-intro/flat/object }}
   </figure>
   <figure>
-    {{ svg pattern-intro/flat/htmlObject }}
+    {{ @svg pattern-intro/flat/htmlObject }}
   </figure>
   <figcaption>Graph of markdown content</figcaption>
   <figcaption>Virtual graph of HTML</figcaption>
@@ -126,7 +126,7 @@ One way to think about this virtual HTML graph is that it represents a _tree of 
 
 ```console
 $ node json htmlObject.js
-{{ json pattern-intro/flat/transform pattern-intro/flat/htmlObject }}
+{{ @json pattern-intro/flat/transform pattern-intro/flat/htmlObject }}
 ```
 
 The `json` utility traverses the virtual HTML graph, causing it to do its work of transforming markdown to HTML as the utility builds an in-memory object it ultimately displays as JSON. You can see that the displayed JSON has the desired shape, keys, and values as the virtual HTML graph in the diagram at the top of this page.

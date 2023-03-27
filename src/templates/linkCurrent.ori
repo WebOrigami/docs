@@ -1,5 +1,4 @@
-{{if ./href, =`
-<a href="{{ ./href }}"{{if ./current, ` aria-current="page"` }}>{{ ./text }}</a>
-`, =`
-<span class="noLink">{{ ./text }}</span>
-`}}
+{{ @if ./href,
+  =`<a href="{{ ./href }}"{{ @if ./current, ` aria-current="page"` }}>{{ ./text }}</a>`
+  =`<span class="noLink">{{ ./text }}</span>`
+}}

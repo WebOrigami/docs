@@ -10,7 +10,7 @@ To participate in the explorable graph ecosystem, a server can indicate which ke
 For example, this site has a route [/samples/greetings](/samples/greetings) containing some trivial files. The server defines a JSON file at [/samples/greetings/.keys.json](/samples/greetings/.keys.json) that enumerates the names of those files:
 
 ```{{'json'}}
-{{ json keys client/samples/greetings }}
+{{ @json @graph/keys client/samples/greetings }}
 ```
 
 If you ask a `SiteGraph` to enumerate the keys available at its URL, it will retrieve this `.keys.json` file, then yield those keys. This allows you to loop over the keys in a `SiteGraph`.

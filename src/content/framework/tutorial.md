@@ -12,8 +12,8 @@ countries:
     abbreviation: BR
   - name: China
     abbreviation: CN
-countriesByAbbreviation: !ori mapKeys(countries, =abbreviation)
-teamByName: !ori mapKeys(framework-intro/src/teamData.yaml, =name)
+countriesByAbbreviation: !ori (@map/keys(countries, =abbreviation))
+teamByName: !ori (@map/keys(framework-intro/src/teamData.yaml, =name))
 siteWithTitle1:
   index.html: !ori framework-intro/src/greet(title)
   title: Our Amazing Team
@@ -95,7 +95,7 @@ Graph Origami lets you visualize and explore the graph you are building.
 You'll see your site visually represented as a graph:
 
 <figure>
-{{ svg {
+{{ @svg {
 index.html = 'Hello, world!'
 } }}
 </figure>
@@ -182,10 +182,10 @@ You can pass a real or virtual file to a function by name.
 
 ```
 word = "beep"
-doubled = repeat(2, word)
+doubled = @repeat(2, word)
 ```
 
-This calls a built-in `repeat` function. The value of `doubled` will be "beepbeep".
+This calls a built-in `@repeat` function. (All built-in functions start with an `@` sign.) The value of `doubled` will be "beepbeep".
 
 The order of the above definitions doesn't matter; `word` could just as well come after `doubled`.
 
@@ -215,7 +215,7 @@ This project is configured to let a user browse the virtual `public` folder.
 <span class="tutorialStep"></span> Switch to graph diagram window and refresh it to see its current structure.
 
 <figure>
-{{ svg siteWithTitle1 }}
+{{ @svg siteWithTitle1 }}
 </figure>
 
 The virtual `title` file is used by the formula for `index.html`. But you don't need make the `title` file itself part of your final site — it's only needed internally.
@@ -239,7 +239,7 @@ By putting `title` at the top level, the formulas inside `public` can reference 
 <span class="tutorialStep"></span> Refresh the graph diagram window to confirm that the public site no longer includes `title`:
 
 <figure>
-{{ svg siteWithTitle2 }}
+{{ @svg siteWithTitle2 }}
 </figure>
 
 <span class="tutorialStep"></span> Switch back to the Glitch window.
@@ -327,7 +327,7 @@ Instead, you can use a `map` to apply the `greet` function to all of the people 
 ```
 public = {
   index.html = index.ori()
-  team = map(teamData.yaml, =name)
+  team = @map/values(teamData.yaml, =name)
 }
 
 title = "Our Amazing Team"
@@ -336,7 +336,7 @@ title = "Our Amazing Team"
 <span class="tutorialStep"></span> In the graph diagram window, refresh the page to confirm that the graph now includes an `team` area with the names from `teamData.yaml`.
 
 <figure>
-  {{ svg {
+  {{ @svg {
     index.html = "<h1>Our Amazing Team</h1>"
     team = [
       "Alice"
@@ -346,20 +346,20 @@ title = "Our Amazing Team"
   } }}
 </figure>
 
-The keys in this area are integers which are the indices of the array in teamData.yaml; the values are the people's names. The small expression `=name` in the `team` formula is an unnamed function that `map()` will apply to each person in `teamData.yaml`. In this case, the unnamed function returns a person's name.
+The keys in this area are integers which are the indices of the array in teamData.yaml; the values are the people's names. The small expression `=name` in the `team` formula is an unnamed function that `@map` will apply to each person in `teamData.yaml`. In this case, the unnamed function returns a person's name.
 
-In this way, `map()` performs a many-to-many transformation:
+In this way, `@map` performs a many-to-many transformation:
 
 <div class="sideBySide">
   <figure>
-    {{ svg [
+    {{ @svg [
       { name: "Alice", image: "kingfisher.jpg" }
       { name: "Bob", image: "beach.jpg" }
       { name: "Carol", image: "venice.jpg" }
     ] }}
   </figure>
   <figure>
-    {{ svg [
+    {{ @svg [
       "Alice"
       "Bob"
       "Carol"
@@ -369,7 +369,7 @@ In this way, `map()` performs a many-to-many transformation:
   <figcaption>Mapped graph of names</figcaption>
 </div>
 
-The formula you give to `map` can be arbitrarily complex.
+The formula you give to `@map` can be arbitrarily complex.
 
 <span class="tutorialStep"></span> **Try it**: In the Glitch editor window, in `site.graph`, update the expression `=name` so that, instead of just returning a `name`, it calls the `greet` function and passes in that person's name.
 
@@ -378,7 +378,7 @@ The formula you give to `map` can be arbitrarily complex.
 ```
 public = {
   index.html = index.ori()
-  team = map(teamData.yaml, =greet(name))
+  team = @map/values(teamData.yaml, =greet(name))
 }
 
 title = "Our Amazing Team"
@@ -389,7 +389,7 @@ title = "Our Amazing Team"
 <span class="tutorialStep"></span> In the graph diagram window, refresh the page to see the updated `team` area.
 
 <figure>
-  {{ svg {
+  {{ @svg {
     index.html = "<h1>Our Amazing Team</h1>"
     team = [
       "<p>Hello, <strong>Alice</strong>!</p>"
@@ -425,7 +425,7 @@ public = {
 ```
 public = {
   index.html = index.ori()
-  team = map(teamData.yaml, =greet(name))
+  team = @map/values(teamData.yaml, =greet(name))
   assets
   images
 }
@@ -441,7 +441,7 @@ Your site now includes both real and virtual files. You can continue to grow thi
 
 ## Create a virtual folder of thumbnails
 
-You've now seen all the major concepts necessary to build the actual About Us site. Let's start by using what you've seen of the `map()` function to create small thumbnail images for each team member.
+You've now seen all the major concepts necessary to build the actual About Us site. Let's start by using what you've seen of the `@map` function to create small thumbnail images for each team member.
 
 <span class="tutorialStep"></span> View the images in the `src/images` folder, which contains a few full-size images. Each person in `teamData.yaml` identifies one of these sample images as a profile photo.
 
@@ -449,12 +449,12 @@ For each full-size image, you will want to produce a corresponding thumbnail ima
 
 In this case, the file `src/thumbnail.js` contains a small JavaScript function which, given the binary data for an image, invokes an image-editing library to generate a new image at a smaller size. This `thumbnail()` function is a one-to-one transformation. You're going to use a map to apply that `thumbnail()` function as a many-to-many transformation.
 
-One question: In the `map()` formula above, you passed `name` to `greet` — but what should you pass to the `thumbnail()` function? You want to transform an entire image, not some specific field that belongs to it. The solution requires a new bit of syntax to pass an entire value being mapped to a function.
+One question: In the `@map` formula above, you passed `name` to `greet` — but what should you pass to the `thumbnail()` function? You want to transform an entire image, not some specific field that belongs to it. The solution requires a new bit of syntax to pass an entire value being mapped to a function.
 
 **Example:** To pass an entire value being mapped, you can use the built-in `@value` variable:
 
 ```
-mapped = map(graph, =function(@value))
+mapped = @map/values(graph, =function(@value))
 ```
 
 <span class="tutorialStep"></span> **Try it:** Switch to the Glitch editor window. In `site.graph`, update the `public` folder to define a new virtual subfolder called `thumbnails`. Using the `team` formula as a model, define `thumbnails` with a formula that uses the `map()` function. Use the `images` folder as the set of things to map and the `thumbnail` function as the one-to-one transformation. Pass `@value` to the `thumbnail` function to give it the full image data.
@@ -464,10 +464,10 @@ mapped = map(graph, =function(@value))
 ```
 public = {
   index.html = index.ori()
-  team = map(teamData.yaml, =greet(name))
+  team = @map/values(teamData.yaml, =greet(name))
   assets
   images
-  thumbnails = map(images, =thumbnail(@value))
+  thumbnails = @map/values(images, =thumbnail(@value))
 }
 
 title = "Our Amazing Team"
@@ -522,7 +522,7 @@ You can do anything inside a template's `{{` `}}` placeholders that you can do i
 
 ```html
 <h1>\{\{ title }}</h1>
-\{\{ map(teamData.yaml, =greet(name)) }}
+\{\{ @map/values(teamData.yaml, =greet(name)) }}
 ```
 
 </reveal-solution>
@@ -536,10 +536,10 @@ Earlier you updated the formula for `index.html` to replace an invocation of `gr
 **Example:** If you want to display paragraphs with the team member locations, you could write:
 
 ```{{"html"}}
-\{\{ map(teamData.yaml, =`<p>\{\{ location }}</p>`) }}
+\{\{ @map/values(teamData.yaml, =`<p>\{\{ location }}</p>`) }}
 ```
 
-The second argument to `map()` here is a smaller template nested inside the larger template. The nested template is surrounded by backtick (`) characters.
+The second argument to `@map` here is a smaller template nested inside the larger template. The nested template is surrounded by backtick (`) characters.
 
 <span class="tutorialStep"></span> Update `index.ori` to remove the call to `greet()`. Instead, display each name as a bullet item — that is, surround the each name with a `<li>` and `</li>` tags. Since you'll be defining a nested template, you'll need to use backtick (`) characters.
 
@@ -547,7 +547,7 @@ The second argument to `map()` here is a smaller template nested inside the larg
 
 ```{{"html"}}
 <h1>\{\{ title }}</h1>
-\{\{ map(teamData.yaml, =`<li>\{\{ name }}</li>`) }}
+\{\{ @map/values(teamData.yaml, =`<li>\{\{ name }}</li>`) }}
 ```
 
 </reveal-solution>
@@ -563,7 +563,7 @@ The text inside a backtick-delimited template can span multiple lines, so it can
 <clipboard-copy>
 
 ```html
-{{ string framework-intro/src/index.ori }}
+{{ @js/String framework-intro/src/index.ori }}
 ```
 
 </clipboard-copy>
@@ -580,7 +580,7 @@ To lay the groundwork for that, you're first going to create an intermediate fol
 
 As you've seen, the top-level "file names" in `teamData.yaml` are integers, like `0` for the first person. So at the moment the `team` area pages are identified with integers too. But in your final website graph, you'd like the names of the pages in the `team` area to include the person's name, like `Alice.html`.
 
-For this, Graph Origami provides a `mapKeys()` function that works like `map()`. Instead of mapping the values (the file contents), it maps the keys (the file names).
+For this, Graph Origami provides a `@map/keys()` function that works like `@map/values()`. Instead of mapping the values (the file contents), it maps the keys (the file names).
 
 **Example:**
 
@@ -593,17 +593,17 @@ countries = [
   { name: "China", abbreviation: "CN" }
 ]
 
-countriesByAbbreviation = mapKeys(countries, =abbreviation)
+countriesByAbbreviation = @map/keys(countries, =abbreviation)
 ```
 
 This operation looks like:
 
 <div class="sideBySide">
   <figure>
-    {{ svg countries }}
+    {{ @svg countries }}
   </figure>
   <figure>
-    {{ svg countriesByAbbreviation }}
+    {{ @svg countriesByAbbreviation }}
   </figure>
   <figcaption>Countries with integer keys</figcaption>
   <figcaption>Countries with abbreviation keys</figcaption>
@@ -620,14 +620,14 @@ In the original `countries` definition, you could get the name of Australia with
 ```
 public = {
   index.html = index.ori()
-  team = map(teamByName, =greet(name))
+  team = @map/values(teamByName, =greet(name))
   assets
   images
-  thumbnails = map(images, =thumbnail(@value))
+  thumbnails = @map/values(images, =thumbnail(@value))
 }
 
 title = "Our Amazing Team"
-teamByName = mapKeys(teamData.yaml, =name)
+teamByName = @map/keys(teamData.yaml, =name)
 ```
 
 </reveal-solution>
@@ -636,14 +636,14 @@ teamByName = mapKeys(teamData.yaml, =name)
 
 <div class="sideBySide">
   <figure>
-    {{ svg [
+    {{ @svg [
       "<p>Hello, <strong>Alice</strong>!<p>"
       "<p>Hello, <strong>Bob</strong>!<p>"
       "<p>Hello, <strong>Carol</strong>!<p>"
     ] }}
   </figure>
   <figure>
-    {{ svg {
+    {{ @svg {
       Alice: "<p>Hello, <strong>Alice</strong>!<p>"
       Bob: "<p>Hello, <strong>Bob</strong>!<p>"
       Carol: "<p>Hello, <strong>Carol</strong>!<p>"
@@ -663,10 +663,10 @@ The `map()` function supports this via an optional `extension` parameter, which 
 
 ```
 # Add a .txt extension to the mapped file names
-textFiles = map(data, fn, { extension: "->txt" })
+textFiles = @map/values(data, fn, { extension: "->txt" })
 
 # Convert markdown files to HTML, replacing the .md extension with .html
-htmlFiles = map(mdFiles, mdHtml, { extension: "md->html" })
+htmlFiles = @map/values(mdFiles, mdHtml, { extension: "md->html" })
 ```
 
 <span class="tutorialStep"></span> Update the `team` formula and add an `extension` parameter that adds an `html` extension to the mapped file names.
@@ -676,14 +676,14 @@ htmlFiles = map(mdFiles, mdHtml, { extension: "md->html" })
 ```
 public = {
   index.html = index.ori()
-  team = map(teamByName, =greet(name), { extension: "->html" })
+  team = @map/values(teamByName, =greet(name), { extension: "->html" })
   assets
   images
-  thumbnails = map(images, =thumbnail(@value))
+  thumbnails = @map/values(images, =thumbnail(@value))
 }
 
 title = "Our Amazing Team"
-teamByName = mapKeys(teamData.yaml, =name)
+teamByName = @map/keys(teamData.yaml, =name)
 ```
 
 </reveal-solution>
@@ -717,14 +717,14 @@ You're now going to create a similarly skeletal template for an individual perso
 ```
 public = {
   index.html = index.ori()
-  team = map(teamByName, =person.ori(@value))
+  team = @map/values(teamByName, =person.ori(@value))
   assets
   images
-  thumbnails = map(images, =thumbnail(@value))
+  thumbnails = @map/values(images, =thumbnail(@value))
 }
 
 title = "Our Amazing Team"
-teamByName = mapKeys(teamData.yaml, =name)
+teamByName = @map/keys(teamData.yaml, =name)
 ```
 
 </reveal-solution>
@@ -732,7 +732,7 @@ teamByName = mapKeys(teamData.yaml, =name)
 <span class="tutorialStep"></span> Refresh the graph diagram window to see that the pages in the `team` area now use your `person.ori` template.
 
 <figure>
-  {{ svg {
+  {{ @svg {
     Alice.html: "<h1>Alice</h1>"
     Bob.html: "<h1>Bob</h1>"
     Carol.html: "<h1>Carol</h1>"
@@ -748,7 +748,7 @@ The only thing left to do is complete the `person.ori` template.
 <clipboard-copy>
 
 ```{{"html"}}
-{{ string framework-intro/src/person.ori }}
+{{ @js/String framework-intro/src/person.ori }}
 ```
 
 </clipboard-copy>
@@ -760,7 +760,7 @@ The only thing left to do is complete the `person.ori` template.
 <span class="tutorialStep"></span> Switch to the graph diagram window and refresh it to view your site's complete structure. You can click on the circles or boxes in that window to explore what you've made.
 
 <figure>
-{{ svg siteComplete }}
+{{ @svg siteComplete }}
 </figure>
 
 Stepping back, consider that you've created this entire site with a few resources, a couple of templates, and a rather concise `site.graph`:
@@ -768,14 +768,14 @@ Stepping back, consider that you've created this entire site with a few resource
 ```
 public = {
   index.html = index.ori()
-  team = map(teamByName, =person.ori(@value), { extension: "->html" })
+  team = @map/values(teamByName, =person.ori(@value), { extension: "->html" })
   assets
   images
-  thumbnails = map(images, =thumbnail(@value))
+  thumbnails = @map/values(images, =thumbnail(@value))
 }
 
 title = "Our Amazing Team"
-teamByName = mapKeys(teamData.yaml, =name)
+teamByName = @map/keys(teamData.yaml, =name)
 ```
 
 From a functional standpoint, you've achieved your goal. The site is now complete.
@@ -793,21 +793,21 @@ public = {
   index.html = index.ori()
 
   # Generate a page in the team area for each team member.
-  team = map(teamByName, =person.ori(@value), { extension: "->html" })
+  team = @map/values(teamByName, =person.ori(@value), { extension: "->html" })
 
   # These are static resources
   assets
   images
 
   # Generate the thumbnails by reducing the full-size images.
-  thumbnails = map(images, =thumbnail(@value))
+  thumbnails = @map/values(images, =thumbnail(@value))
 }
 
 # Define the title here so both page templates can use it.
 title = "Our Amazing Team"
 
 # Index the team members by name.
-teamByName = mapKeys(teamData.yaml, =name)
+teamByName = @map/keys(teamData.yaml, =name)
 ```
 
 </clipboard-copy>

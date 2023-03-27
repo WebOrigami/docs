@@ -102,7 +102,7 @@ $ node files.test.js
 
 ```console
 $ node json files.js
-{{ json pattern-intro/flat/files }}
+{{ @json pattern-intro/flat/files }}
 ```
 
 That's a single chunk of data now — but the keys of that object came from a directory listing, and each of those values is content from a separate file!
@@ -111,7 +111,7 @@ That's a single chunk of data now — but the keys of that object came from a d
 
 ```console
 $ node json object.js
-{{ json pattern-intro/flat/object }}
+{{ @json pattern-intro/flat/object }}
 ```
 
 The critical bit here is that the `json` utility required no modification to work with the new files-based graph. We wrote the `json` utility to work with explorable graphs, and the folder is just another explorable graph.
@@ -130,7 +130,7 @@ Since our folder is now available to us in graph form, we can convert its markdo
 
 ```console
 $ node json htmlFiles.js
-{{ json pattern-intro/flat/transform pattern-intro/flat/htmlFiles }}
+{{ @json pattern-intro/flat/transform pattern-intro/flat/htmlFiles }}
 ```
 
 The transform function can accept any graph of markdown content, so we can switch between our object and folder graph implementations at will. If we wanted to read the markdown content from a CMS, we could create a graph implementation backed by the CMS, then directly apply the unmodified transform function to that graph.

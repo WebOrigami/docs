@@ -17,7 +17,7 @@ $ ori greetings.yaml
 ori can interpret this file as the following graph:
 
 <figure>
-{{ svg client/samples/cli.yaml/greetings.yaml }}
+{{ @svg client/samples/cli.yaml/greetings.yaml }}
 </figure>
 
 The YAML data format shown above can be easier for people to read than formats like JSON. If you prefer, you can just as easily use the ubiquitous JSON format.
@@ -60,23 +60,23 @@ HELLO, ALICE.
 
 ## Translate JSON to YAML and vice versa
 
-<span class="tutorialStep"></span> You can use ori to transform a graph from one format to another. By default, ori renders graphs in YAML format, but you can ask for JSON format with the `json` function:
+<span class="tutorialStep"></span> You can use ori to transform a graph from one format to another. By default, ori renders graphs in YAML format, but you can ask for JSON format with the `@json` function:
 
 ```console
 $ ori greetings.yaml
-{{ client/samples/cli.yaml/greetings.yaml }}$ ori json greetings.yaml
-{{ json client/samples/cli.yaml/greetings.yaml }}
+{{ client/samples/cli.yaml/greetings.yaml }}$ ori @json greetings.yaml
+{{ @json client/samples/cli.yaml/greetings.yaml }}
 ```
 
-<span class="tutorialStep"></span> In the other direction, you can render a JSON file as YAML with the [yaml](/ori/builtins.html#yaml) function:
+<span class="tutorialStep"></span> In the other direction, you can render a JSON file as YAML with the [@yaml](/ori/builtins.html#yaml) function:
 
 ```console
 $ ori letters.json
-{{ client/samples/cli.yaml/letters.json }}$ ori yaml letters.json
-{{ yaml client/samples/cli.yaml/letters.json }}
+{{ client/samples/cli.yaml/letters.json }}$ ori @yaml letters.json
+{{ @yaml client/samples/cli.yaml/letters.json }}
 ```
 
-The `json` function isn't a specific YAML-to-JSON transformation; it can transform any graph to JSON text. Similarly, `yaml` can transform any graph to YAML text.
+The `json` function isn't a specific YAML-to-JSON transformation; it can transform any graph to JSON text. Similarly, `@yaml` can transform any graph to YAML text.
 
 ## Parse JSON/YAML files
 
@@ -91,10 +91,10 @@ export default function text(obj) {
 }
 ```
 
-<span class="tutorialStep"></span> You can use the built-in `plain` function to convert a YAML file to a plain JavaScript object, then pass that to the sample `text` function:
+<span class="tutorialStep"></span> You can use the built-in `@plain` function to convert a YAML file to a plain JavaScript object, then pass that to the sample `text` function:
 
 ```console
-$ ori text plain greetings.yaml
+$ ori text @plain greetings.yaml
 Hello, Alice.   Hello, Bob.     Hello, Carol.
 ```
 
@@ -138,7 +138,7 @@ $ ori greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
-$ ori copy greetings.yaml, files/greetings
+$ ori @copy greetings.yaml, files/greetings
 $ ls greetings
 Alice   Bob     Carol
 $ cat greetings/Alice
@@ -165,7 +165,7 @@ The `greetings` folder and the `greetings.yaml` file both define the same graph,
 <span class="tutorialStep"></span> Because the `greetings` folder created in the above example is just another graph ori can process, you can feed it to the simple JavaScript function `text(obj)` shown earlier that displayed the text values of a plain JavaScript object.
 
 ```console
-$ ori text plain greetings
+$ ori text @plain greetings
 Hello, Alice.   Hello, Bob.     Hello, Carol.
 ```
 

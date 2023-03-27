@@ -12,8 +12,8 @@
     "yaml": "2.1.1"
   },
   "scripts": {
-    "build": "ori 'copy src/site.graph/production, files/dist'",
-    "serve": "ori 'serve watch src, =debug(src/site.graph/develop)'",
+    "build": "ori '@copy src/site.graph/production, @files/dist'",
+    "serve": "ori '@serve @watch src, =@debug(src/site.graph/develop)'",
     "test": "ori virtual/src/test/summary"
   }
 }

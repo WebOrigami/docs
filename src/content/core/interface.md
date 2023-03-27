@@ -59,7 +59,7 @@ interface Explorable {
 Suppose we want to represent the small graph used in the [introduction](/cli/) to the ori command-line tool:
 
 <figure>
-{{ svg client/samples/cli.yaml/greetings.yaml }}
+{{ @svg client/samples/cli.yaml/greetings.yaml }}
 </figure>
 
 The small circle on the left is a graph node with three keys ("Alice", "Bob", "Carol") that correspond to three values ("Hello, Alice", etc.). This can be represented in the `Explorable` interface as:

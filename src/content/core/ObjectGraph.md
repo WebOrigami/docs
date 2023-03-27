@@ -27,14 +27,14 @@ export default new ObjectGraph({
 This defines a graph whose keys are the object's keys, and whose values are the object's values:
 
 <figure>
-{{ svg sample }}
+{{ @svg sample }}
 </figure>
 
 The [ori](/ori) tool will display the contents of the resulting `ObjectGraph`.
 
 ```console
 $ ori object
-{{ yaml sample }}
+{{ @yaml sample }}
 ```
 
 {{ templates/class.ori(api/ObjectGraph.yaml/exports/0) }}

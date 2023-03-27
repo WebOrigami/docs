@@ -5,7 +5,7 @@ title: The Explorable graph interface
 The last section noted that, in the context of our markdown-to-HTML problem, it's possible to conceptualize the markdown content as a graph:
 
 <figure>
-  {{ svg {
+  {{ @svg {
     Alice.md: "Hello, **Alice**.",
     Bob.md: "Hello, **Bob**.",
     Carol.md: "Hello, **Carol**.",
