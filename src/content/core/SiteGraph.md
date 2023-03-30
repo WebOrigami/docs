@@ -15,7 +15,7 @@ For example, this site has a route [/samples/greetings](/samples/greetings) cont
 
 If you ask a `SiteGraph` to enumerate the keys available at its URL, it will retrieve this `.keys.json` file, then yield those keys. This allows you to loop over the keys in a `SiteGraph`.
 
-For example, you can use the ori [CLI](/cli) to display the complete contents of all pages at a given route using the [site](/cli/builtins.html#site) command.
+For example, you can use the ori [CLI](/cli) to display the complete contents of all pages at a given route using the [site](/language/builtins.html#site) command.
 
 ```console
 $ ori site://graphorigami.org/samples/greetings

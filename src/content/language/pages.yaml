@@ -6,3 +6,8 @@
   text: Grammar
 - href: scope.html
   text: Scope
+- href: builtins.html
+  text: Built-In Functions
+  pages:
+    - href: graph.html
+      text: "@graph"

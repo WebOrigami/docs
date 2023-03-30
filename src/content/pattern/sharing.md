@@ -28,14 +28,14 @@ The library also contains general-purpose versions of some of the graph operatio
 
 This tutorial demonstrated a simple `json` tool that dumps a graph's contents to the console. The Graph Origami project expands this idea with its [ori](/cli) command-line interface.
 
-By default, ori displays a graph in YAML format, but can also display a graph as JSON, a table, or a diagram in SVG format. That [svg](/cli/builtins.html#svg) command is used to generate all the graph diagrams in this tutorial.
+By default, ori displays a graph in YAML format, but can also display a graph as JSON, a table, or a diagram in SVG format. That [svg](/language/builtins.html#svg) command is used to generate all the graph diagrams in this tutorial.
 
 ori includes richer implementations of all the general-purpose tools shown in this tutorial:
 
-- [serve](/cli/builtins.html#serve) command. ori's server has more features, but the basic concept remains the same: the server translates an HTTP/HTTPS request into the traversal of an explorable graph. ori also includes an Express middleware version that does the same thing.
-- [setDeep](/cli/builtins.html#setDeep) command like the one in this tutorial. ori also includes a related [copy](/cli/builtins.html#copy) command that adds command-line progress feedback. This can be used as the basis for a build process like the one shown in this tutorial.
-- [defaultPages](/cli/builtins.html#defaultPages) command that provides a superset of the `indexPages` transformation discussed in the tutorial.
-- [mdHtml](/cli/builtins.html#mdHtml) command that transforms markdown text to the corresponding HTML.
+- [serve](/language/builtins.html#serve) command. ori's server has more features, but the basic concept remains the same: the server translates an HTTP/HTTPS request into the traversal of an explorable graph. ori also includes an Express middleware version that does the same thing.
+- [setDeep](/language/builtins.html#setDeep) command like the one in this tutorial. ori also includes a related [copy](/language/builtins.html#copy) command that adds command-line progress feedback. This can be used as the basis for a build process like the one shown in this tutorial.
+- [defaultPages](/language/builtins.html#defaultPages) command that provides a superset of the `indexPages` transformation discussed in the tutorial.
+- [mdHtml](/language/builtins.html#mdHtml) command that transforms markdown text to the corresponding HTML.
 
 In addition to these commands, ori includes a number of other general-purpose commands for working with explorable graphs.
 
