@@ -57,7 +57,7 @@ Hello, world.
 When you ask ori to evaluate `greet`:
 
 - It looks for a file called `greet` but doesn't find one.
-- ori tries adding `.js` to see if `greet.js` exists. This time it finds a JavaScript module with that name.
+- ori sees if `greet.js` exists. This time it finds a JavaScript module with that name.
 - ori dynamically imports the module and obtains the default export (a function).
 - Because the result is a JavaScript function, ori executes it.
 - The function's result is the string "Hello, world.", which ori displays.
@@ -71,7 +71,7 @@ $ ori "greet('Alice')"
 Hello, Alice.
 ```
 
-ori accepts strings in single quotes. The double quotes shown above are parsed by the _shell_, and are necessary because the `bash` shell shown here would otherwise prevent ori from seeing the single quotes.
+ori accepts strings in single quotes or double quotes. In this case, the double quotes above are parsed by the _shell_, and are necessary because the `bash` shell shown here would otherwise prevent ori from seeing the single quotes.
 
 <span class="tutorialStep"></span> In the explorable graph paradigm discussed later, any function can be treated like a graph, and vice versa. This means you can use path syntax as a convenient alternative to specify a string argument:
 
@@ -109,7 +109,7 @@ By default, Node imports .js files as CommonJS modules. To allow ori to dynamica
 
 ## Use ori as a general-purpose JavaScript shell tool
 
-Suppose you have a collection of functions:
+The samples include a small collection of functions:
 
 ```console
 $ ori double.js
@@ -184,11 +184,11 @@ In this example, ori ends up passing a file buffer to the `uppercase` function. 
 <span class="tutorialStep"></span> You can pipe data into JavaScript functions with the built-in `stdin` function:
 
 ```console
-$ echo This is input from the shell | ori uppercase stdin/
+$ echo This is input from the shell | ori uppercase @stdin/
 THIS IS INPUT FROM THE SHELL
 ```
 
-Note the trailing slash in `stdin/`, which invokes the `stdin` function to obtain the complete standard input. This lets you pipe data to a JavaScript function that accepts a simple argument instead of needing specialize the function specifically to read data from the console.
+Note the trailing slash in `@stdin/`, which invokes the [@stdin](builtins.html#stdin) function to obtain the complete standard input. This lets you pipe data to a JavaScript function that accepts a simple argument instead of needing specialize the function specifically to read data from the console.
 
 ## Writing output to a file
 

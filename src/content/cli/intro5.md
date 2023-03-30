@@ -39,7 +39,7 @@ The graph looks like this:
 <span class="tutorialStep"></span> You can serve this tiny site directly from the file:
 
 ```console
-$ ori serve site.yaml
+$ ori @serve site.yaml
 Server running at http://localhost:5000
 ```
 
@@ -52,16 +52,16 @@ Press Ctrl+C to stop the server.
 <span class="tutorialStep"></span> You can serve any graph. To serve the current folder:
 
 ```console
-$ ori serve .
+$ ori @serve .
 Server running at http://localhost:5000
 ```
 
 This effectively lets ori work as a static file server.
 
-As a shorthand, you can omit the period (`.`). If you don't specify a graph to serve, `serve` serves up the current folder.
+As a shorthand, you can omit the period (`.`). If you don't specify a graph to serve, `@serve` serves up the current folder.
 
 ```console
-$ ori serve
+$ ori @serve
 Server running at http://localhost:5000
 ```
 
@@ -70,18 +70,18 @@ Server running at http://localhost:5000
 <span class="tutorialStep"></span> You can ask ori to serve data transformed on demand into HTML using `map` and the template we saw earlier.
 
 ```console
-$ ori "serve map greetings.yaml, template"
+$ ori "@serve @map/values greetings.yaml, template"
 Server running at http://localhost:5000
 ```
 
-The served site does _not_ have an index page, but you can browse to one of the defined pages like http://localhost:5000/Alice. You'll see "Hello, Alice." rendered in HTML. Due to the lazy nature of explorable graphs and `map`, that rendering work is only done on request.
+You can browse to one of the defined pages like http://localhost:5000/Alice. You'll see "Hello, Alice." rendered in HTML. Due to the lazy nature of explorable graphs and `map`, that rendering work is only done on request.
 
 ## Transforming data into static files and then serving
 
 Earlier you saw how you can transform a graph and save the results as files.
 
 ```console
-$ ori "copy map(greetings.yaml, template), files/html"
+$ ori "@copy @map/values(greetings.yaml, template), @files/html"
 $ ls html
 Alice   Bob     Carol
 ```
@@ -89,7 +89,7 @@ Alice   Bob     Carol
 <span class="tutorialStep"></span> If you serve the `html` folder created this way, the user experience will be the same as above, when the HTML pages were generated dynamically by `map`:
 
 ```console
-$ ori serve html
+$ ori @serve html
 Server running at http://localhost:5000
 ```
 
@@ -105,6 +105,8 @@ Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
 ```
+
+The `site:` protocol treats the indicated site as an explorable graph.
 
 <span class="tutorialStep"></span> While that result may look like a YAML file, each of those lines is actually coming from a separate web resource.
 
@@ -129,7 +131,7 @@ Making the full contents of a site more freely available might be concerning to 
 <span class="tutorialStep"></span> Since a web site like graphorigami.org is an explorable graph, and ori can serve explorable graphs, then you can easily set up a local mirror for this site:
 
 ```console
-$ ori serve site://graphorigami.org
+$ ori @serve site://graphorigami.org
 Server running at http://localhost:5000
 ```
 
@@ -140,7 +142,7 @@ Your local server is now mirroring the graphorigami.org site: when you browse yo
 <span class="tutorialStep"></span> You can also use ori to copy an explorable web route to local files:
 
 ```console
-$ ori copy site://graphorigami.org/samples/greetings/, files/snapshot
+$ ori @copy site://graphorigami.org/samples/greetings/, @files/snapshot
 $ ls snapshot
 Alice Bob   Carol
 ```

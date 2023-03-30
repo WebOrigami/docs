@@ -60,7 +60,7 @@ $ ori uppercase greetings.yaml/Alice
 HELLO, ALICE.
 ```
 
-<span class="tutorialStep"></span> You can apply that `uppercase` transformation to an entire graph with the ori's built-in `map` function:
+<span class="tutorialStep"></span> You can apply that `uppercase` transformation to an entire graph with the ori's built-in [@map/values](builtins.html#mapValues) function:
 
 ```console
 $ ori @map/values greetings.yaml, uppercase
@@ -71,9 +71,9 @@ Carol: HELLO, CAROL.
 
 It is easy to transform an entire explorable graph of one type of object into a new graph of a different type of object. You only need to identify or define a one-to-one transformation function that handles a single object, and ori can apply that as a many-to-many transformation of an entire graph.
 
-The second argument to `map` is a function. Technically, the second argument can be any explorable graph, but for the moment, we'll use a regular JavaScript function.
+The second argument to `@map/values` is a function. Technically, the second argument can be any explorable graph, but for the moment, we'll use a regular JavaScript function.
 
-The `map` example above takes the original greetings graph:
+The map example above takes the original greetings graph:
 
 <figure>
 {{ @svg intro/greetings.yaml }}
@@ -89,7 +89,7 @@ In this intro, we're just transforming text, but you can transform anything in b
 
 ## Traversing a transformed graph
 
-<span class="tutorialStep"></span> If you ask for a specific value from a `map` graph, then only that value is computed:
+<span class="tutorialStep"></span> If you ask for a specific value from a mapped graph, then only that value is computed:
 
 ```console
 $ ori "@map/values(greetings.yaml, uppercase)/Alice"

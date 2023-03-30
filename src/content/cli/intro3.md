@@ -60,7 +60,7 @@ HELLO, ALICE.
 
 ## Translate JSON to YAML and vice versa
 
-<span class="tutorialStep"></span> You can use ori to transform a graph from one format to another. By default, ori renders graphs in YAML format, but you can ask for JSON format with the `@json` function:
+<span class="tutorialStep"></span> You can use ori to transform a graph from one format to another. By default, ori renders graphs in YAML format, but you can ask for JSON format with the [@json](builtins.html#json) function:
 
 ```console
 $ ori greetings.yaml
@@ -76,7 +76,7 @@ $ ori letters.json
 {{ @yaml client/samples/cli.yaml/letters.json }}
 ```
 
-The `json` function isn't a specific YAML-to-JSON transformation; it can transform any graph to JSON text. Similarly, `@yaml` can transform any graph to YAML text.
+The `@json` function isn't a specific YAML-to-JSON transformation; it can transform any graph to JSON text. Similarly, `@yaml` can transform any graph to YAML text.
 
 ## Parse JSON/YAML files
 
@@ -91,17 +91,17 @@ export default function text(obj) {
 }
 ```
 
-<span class="tutorialStep"></span> You can use the built-in `@plain` function to convert a YAML file to a plain JavaScript object, then pass that to the sample `text` function:
+<span class="tutorialStep"></span> You can use the built-in `@graph/plain` function to convert a YAML file to a plain JavaScript object, then pass that to the sample `text` function:
 
 ```console
-$ ori text @plain greetings.yaml
+$ ori text @graph/plain greetings.yaml
 Hello, Alice.   Hello, Bob.     Hello, Carol.
 ```
 
 <span class="tutorialStep"></span> Or pass a parsed JSON file to your function:
 
 ```console
-$ ori text plain letters.json
+$ ori text @graph/plain letters.json
 The letter A    The letter B    The letter C
 ```
 
@@ -126,7 +126,7 @@ $ ori . > files.yaml
 <span class="tutorialStep"></span> Or package the folder as JSON:
 
 ```console
-$ ori json . > files.json
+$ ori @json . > files.json
 ```
 
 ## Unpack files into the file system
@@ -138,14 +138,14 @@ $ ori greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
-$ ori @copy greetings.yaml, files/greetings
+$ ori @copy greetings.yaml, @files/greetings
 $ ls greetings
 Alice   Bob     Carol
 $ cat greetings/Alice
 Hello, Alice.
 ```
 
-The `files/greetings` argument indicates that [copy](/ori/builtins.html#copy) should copy the input YAML graph to a file system graph under a folder named `greetings`. As a result, the key/value pairs in the YAML file are now individual files in a `greetings` folder.
+The `@files/greetings` argument indicates that [@copy](/ori/builtins.html#copy) should copy the input YAML graph to a file system graph under a folder named `greetings`. As a result, the key/value pairs in the YAML file are now individual files in a `greetings` folder.
 
 <span class="tutorialStep"></span> The important point here is that _all graphs look the same to ori_. It doesn't matter whether a graph is defined in a single file like YAML, or a collection of loose files in the file system. Having unpacked the `greetings.yaml` file above, we can ask ori to display the `greetings` folder we just created:
 
@@ -165,16 +165,16 @@ The `greetings` folder and the `greetings.yaml` file both define the same graph,
 <span class="tutorialStep"></span> Because the `greetings` folder created in the above example is just another graph ori can process, you can feed it to the simple JavaScript function `text(obj)` shown earlier that displayed the text values of a plain JavaScript object.
 
 ```console
-$ ori text @plain greetings
+$ ori text @graph/plain greetings
 Hello, Alice.   Hello, Bob.     Hello, Carol.
 ```
 
 This connects two ideas:
 
 - A folder like `greetings` is a explorable graph ori can understand.
-- ori to convert any graph to a plain JavaScript object with the `plain` function.
+- ori to convert any graph to a plain JavaScript object with the `@graph/plain` function.
 
-This means that you can use the `plain` function to convert a _folder_ to a plain JavaScript object too. The keys will be the file/folder names, and the values will be the file contents or folder subgraphs.
+This means that you can use the `@graph/plain` function to convert a _folder_ to a plain JavaScript object too. The keys will be the file/folder names, and the values will be the file contents or folder subgraphs.
 
 Writing code to work with folder and files this way can be much easier than using Node's file system API directly. There is a performance trade-off implied by building an in-memory object to hold the file system data, but in many cases this is still very fast. And in practice it can much easier to manipulate a complete file system hierarchy as an in-memory object than working with a file system API.
 

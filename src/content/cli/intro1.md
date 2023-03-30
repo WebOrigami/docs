@@ -37,7 +37,7 @@ $ npx ori
 <span class="tutorialStep"></span> You can use ori itself to copy sample files used in this introduction into a new local folder called `samples`:
 
 ```console
-$ ori copy https://graphorigami.org/samples/cli.yaml, files/samples
+$ ori @copy https://graphorigami.org/samples/cli.yaml, @files/samples
 $ cd samples
 $ ls
 double.js      letters.json   sample.txt     text.js
@@ -45,7 +45,7 @@ greet.js       package.json   site.yaml      uppercase.js
 greetings.yaml people.yaml    template.js
 ```
 
-Note the comma after the URL — ori is invoking a function called [copy](/ori/builtins.html#copy) that takes two arguments which must be separated with a comma.
+Note the comma after the URL — ori is invoking a built-in function called [@copy](/ori/builtins.html#copy) that takes two arguments which must be separated with a comma. All built-in functions are prefixed with `@`.
 
 The new `samples` folder should show a small collection of files. (The specific files may differ slightly from what's shown above.) ori treated the indicated file as a graph — more on graphs later. The `copy` function read values out of that graph and wrote them into the destination graph: a file system (`files`) folder called `samples`.
 
