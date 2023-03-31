@@ -8,6 +8,8 @@
   text: Graph Variants
 - text: API
   pages:
+    - href: ExplorableGraph.html
+      text: ExplorableGraph
     - href: FilesGraph.html
       text: FilesGraph
     - href: FunctionGraph.html
