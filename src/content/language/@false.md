@@ -1,0 +1,5 @@
+---
+title: "@false"
+---
+
+This is simply the JavaScript `false` value. It exists so that Origami expressions can easily pass a `false` value to functions.
