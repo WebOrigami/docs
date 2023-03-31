@@ -6,13 +6,13 @@ Returns a new [SiteGraph](/core/SiteGraph.html) for the indicated `domain`. If `
 
 The site must define [.keys.json](https://graphorigami.org/core/sitegraph#keysjson-files) files if the site graph is to be able to enumerate its contents.
 
-You won't normally call this function directly. Instead, you can specify the custom `graphHttps:` protocol in a URL:
+You won't normally call this function directly. Instead, you can specify the custom `graphhttps:` protocol in a URL:
 
 ```console
-$ ori graphHttps://graphorigami.org/samples/greetings/
+$ ori graphhttps://graphorigami.org/samples/greetings/
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
 ```
 
-The custom `graphHttps:` protocol invokes this `@graphHttps` function to create a `SiteGraph`.
+The custom `graphhttps:` protocol invokes this `@graphHttps` function to create a `SiteGraph`.

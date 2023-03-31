@@ -97,32 +97,30 @@ You can perform a `copy` operation like the one in this example in preparation f
 
 ## Inspect a live web site
 
-<span class="tutorialStep"></span> The web site you're reading now supports viewing its contents as an explorable graph, so you can reference it directly in ori. For example, this site includes a route [/samples/greetings/](/samples/greetings/), and you can pass that URL to ori to view the files there:
+<span class="tutorialStep"></span> The web site you're reading now supports viewing its contents as an explorable graph, so you can reference it directly in ori. For example, this site includes a route [/samples/greetings/](/samples/greetings/). You can pass that URL to ori with the custom [graphhttps:](/language/@graphHttps.html) protocol to treat that route as an explorable graph, and display all the files at that route:
 
 ```console
-$ ori graphHttps://graphorigami.org/samples/greetings/
+$ ori graphhttps://graphorigami.org/samples/greetings/
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
 ```
 
-The [graphHttps](/language/@graphHttps.html) protocol treats the indicated site as an explorable graph.
-
-<span class="tutorialStep"></span> While that result may look like a YAML file, each of those lines is actually coming from a separate web resource.
+<span class="tutorialStep"></span> While the result above may look like a YAML file, each of those lines is actually coming from a separate web resource.
 
 ```console
 $ ori https://graphorigami.org/samples/greetings/Alice
 Hello, Alice.
 ```
 
-<span class="tutorialStep"></span> ori can discover all the resources at the `/samples/greetings/` route because this server supports a simple protocol: for every route on this server, a `.keys.json` file exists that enumerates the resources at that route.
+<span class="tutorialStep"></span> ori can discover all the resources at the `/samples/greetings/` route because this server supports a simple protocol: for every route on this server, a [.keys.json](/core/SiteGraph.html#keysjson-files) file exists that enumerates the resources at that route.
 
 ```console
 $ ori https://graphorigami.org/samples/greetings/.keys.json
 ["Alice","Bob","Carol"]
 ```
 
-When you ask to view a route, ori asks that server for its `.keys.json` file, then uses that information to traverse all the resources at that route.
+When you ask to view a route via `graphHttps`, ori asks that server for its `.keys.json` file, then uses that information to traverse all the resources at that route.
 
 Making the full contents of a site more freely available might be concerning to some people, but most web content is already available to users; it's just not conveniently inspectable. ori extends the spirit of the browser's View Source feature, which looks at a single web page at a time, to let you inspect everything at a particular web route.
 

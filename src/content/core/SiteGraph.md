@@ -9,22 +9,22 @@ To participate in the explorable graph ecosystem, a server can indicate which ke
 
 For example, this site has a route [/samples/greetings](/samples/greetings) containing some trivial files. The server defines a JSON file at [/samples/greetings/.keys.json](/samples/greetings/.keys.json) that enumerates the names of those files:
 
-```{{'json'}}
-{{ @json @graph/keys client/samples/greetings }}
+```json
+["Alice", "Bob", "Carol"]
 ```
 
-If you ask a `SiteGraph` to enumerate the keys available at its URL, it will retrieve this `.keys.json` file, then yield those keys. This allows you to loop over the keys in a `SiteGraph`.
+If you ask a `SiteGraph` to enumerate the keys available at its URL, it will retrieve this `.keys.json` file, then use those keys as the keys of the `SiteGraph`.
 
-For example, you can use the ori [CLI](/cli) to display the complete contents of all pages at a given route using the built-in [graphHttps](/language/@graphHttps.html) or [graphHttp](/language/@graphHttp.html) protocols.
+For example, you can use the ori [CLI](/cli) to display the complete contents of all pages at a given route using the custom [graphhttps](/language/@graphHttps.html) or [graphhttp](/language/@graphHttp.html) protocols.
 
 ```console
-$ ori graphHttps://graphorigami.org/samples/greetings
+$ ori graphhttps://graphorigami.org/samples/greetings
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
 ```
 
-Above, the `graphHttps` command retrieves the route's keys defined in the `.keys.json`, then makes separate requests for each of those pages.
+Above, the custom `graphhttps:` protocol retrieves the route's keys defined in the `.keys.json`, then makes separate requests for each of those pages.
 
 The `.keys.json` file should normally not include itself in its list of keys.
 
