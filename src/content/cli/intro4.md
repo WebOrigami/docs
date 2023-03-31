@@ -60,7 +60,7 @@ $ ori uppercase greetings.yaml/Alice
 HELLO, ALICE.
 ```
 
-<span class="tutorialStep"></span> You can apply that `uppercase` transformation to an entire graph with the ori's built-in [@map/values](builtins.html#mapValues) function:
+<span class="tutorialStep"></span> You can apply that `uppercase` transformation to an entire graph with the ori's built-in [@map/values](/language/@map.html#values) function:
 
 ```console
 $ ori @map/values greetings.yaml, uppercase

@@ -60,7 +60,7 @@ HELLO, ALICE.
 
 ## Translate JSON to YAML and vice versa
 
-<span class="tutorialStep"></span> You can use ori to transform a graph from one format to another. By default, ori renders graphs in YAML format, but you can ask for JSON format with the [@json](builtins.html#json) function:
+<span class="tutorialStep"></span> You can use ori to transform a graph from one format to another. By default, ori renders graphs in YAML format, but you can ask for JSON format with the [@json](/language/@json.html) function:
 
 ```console
 $ ori greetings.yaml
@@ -68,7 +68,7 @@ $ ori greetings.yaml
 {{ @json client/samples/cli.yaml/greetings.yaml }}
 ```
 
-<span class="tutorialStep"></span> In the other direction, you can render a JSON file as YAML with the [@yaml](/ori/builtins.html#yaml) function:
+<span class="tutorialStep"></span> In the other direction, you can render a JSON file as YAML with the [@yaml](/language/@yaml.html) function:
 
 ```console
 $ ori letters.json
@@ -145,7 +145,7 @@ $ cat greetings/Alice
 Hello, Alice.
 ```
 
-The `@files/greetings` argument indicates that [@copy](/ori/builtins.html#copy) should copy the input YAML graph to a file system graph under a folder named `greetings`. As a result, the key/value pairs in the YAML file are now individual files in a `greetings` folder.
+The `@files/greetings` argument indicates that [@copy](/language/@copy.html) should copy the input YAML graph to a file system graph under a folder named `greetings`. As a result, the key/value pairs in the YAML file are now individual files in a `greetings` folder.
 
 <span class="tutorialStep"></span> The important point here is that _all graphs look the same to ori_. It doesn't matter whether a graph is defined in a single file like YAML, or a collection of loose files in the file system. Having unpacked the `greetings.yaml` file above, we can ask ori to display the `greetings` folder we just created:
 

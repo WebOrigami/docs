@@ -6,7 +6,7 @@ intro: !ori client/samples/cli.yaml
 
 ## Serve a graph
 
-You can serve any graph with the [serve](/ori/builtins.html#serve) function. For example, the sample `site.yaml` file defines a tiny graph with two web pages:
+You can serve any graph with the [@serve](/language/@serve.html) function. For example, the sample `site.yaml` file defines a tiny graph with two web pages:
 
 ```console
 $ ori site.yaml
@@ -100,13 +100,13 @@ You can perform a `copy` operation like the one in this example in preparation f
 <span class="tutorialStep"></span> The web site you're reading now supports viewing its contents as an explorable graph, so you can reference it directly in ori. For example, this site includes a route [/samples/greetings/](/samples/greetings/), and you can pass that URL to ori to view the files there:
 
 ```console
-$ ori site://graphorigami.org/samples/greetings/
+$ ori graphHttps://graphorigami.org/samples/greetings/
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
 ```
 
-The `site:` protocol treats the indicated site as an explorable graph.
+The [graphHttps](/language/@graphHttps.html) protocol treats the indicated site as an explorable graph.
 
 <span class="tutorialStep"></span> While that result may look like a YAML file, each of those lines is actually coming from a separate web resource.
 

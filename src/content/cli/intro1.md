@@ -23,7 +23,7 @@ $ npm install -g @graphorigami/origami
 $ ori
 ```
 
-This should display the list of [built-in functions](/ori/builtins.html) included with ori.
+This should display the list of built-in functions included with ori.
 
 <span class="tutorialStep"></span> **Local installation:** As an alternative to global installation, run `npm install` without the `-g` global flag inside a new directory. Because ori won't be available everywhere, wherever the instructions below refer to ori, use Node's [npx](https://docs.npmjs.com/cli/v7/commands/npx) command to invoke ori:
 
@@ -45,7 +45,7 @@ greet.js       package.json   site.yaml      uppercase.js
 greetings.yaml people.yaml    template.js
 ```
 
-Note the comma after the URL — ori is invoking a built-in function called [@copy](/ori/builtins.html#copy) that takes two arguments which must be separated with a comma. All built-in functions are prefixed with `@`.
+Note the comma after the URL — ori is invoking a built-in function called [@copy](/language/@copy.html) that takes two arguments which must be separated with a comma. All built-in functions are prefixed with `@`.
 
 The new `samples` folder should show a small collection of files. (The specific files may differ slightly from what's shown above.) ori treated the indicated file as a graph — more on graphs later. The `copy` function read values out of that graph and wrote them into the destination graph: a file system (`files`) folder called `samples`.
 
