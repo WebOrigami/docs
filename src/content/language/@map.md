@@ -50,6 +50,13 @@ The `mapFn` mapping function is typically a JavaScript function, but can be any 
 Available `options` include:
 
 - `deep`: If `false` (the default), this only maps the top-level values in the graph. If `true`, this maps values at all levels of the graph.
+- `extension`: See below.
 - `getValue`: If `true` (the default), this gets values from the inner graph before passing them to the `mapFn`. If `false`, the `mapFn` is invoked with an `undefined` argument. In cases where you want to map all the values to, say, a constant value, this avoids the unnecessary cost of getting the values from the inner graph.
-- `sourceExtension`: If supplied, this only maps values whose keys end in the indicated extension.
-- `targetExtension`: If supplied, change the extension of the mapped keys to the indicated extension.
+
+Mapping values often changes the type of the data, and it is useful to be able to reflect that change in type in file extensions. The `extension` option takes the form of a string that indicates which keys the map will affect, and whether or how those keys will change:
+
+- `extension:"md"` restricts the map to only apply to keys ending in `.md`
+- `extension:"->html"` adds the `.html` extension to the keys in the result
+- `extension:"md->html"` only applies the map to keys ending in `.md`, and adds the `.html` extension to keys in the result
+
+In place of the `->` text, you can alternatively write a Unicode `→` Rightwards Arrow, as in `{ extension: "md→html" }`. You can optionally include the `.` in extensions: `{ extension: ".md" }`.

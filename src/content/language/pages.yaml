@@ -54,6 +54,8 @@
   text: "@js"
 - href: "@json.html"
   text: "@json"
+- href: "@map.html"
+  text: "@map"
 - href: "@match.html"
   text: "@match"
 - href: "@mdHtml.html"
