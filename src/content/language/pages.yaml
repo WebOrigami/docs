@@ -2,8 +2,6 @@
   text: Overview
 - href: syntax.html
   text: Syntax
-- href: grammar.html
-  text: Grammar
 - href: scope.html
   text: Scope
 - href: "@builtins.html"
