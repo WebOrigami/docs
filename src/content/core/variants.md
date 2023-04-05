@@ -2,7 +2,7 @@
 title: Graph variants
 ---
 
-Many features in the core library and many of the ori [built-in functions](/language/builtins.html) accept explorable graphs in a variety of types. These types are called _graph variants_.
+Many features in the core library and many of the [Origami expression language](/language) built-in functions accept explorable graphs in a variety of types. These types are called _graph variants_.
 
 The graph variant types are, in order of priority:
 

@@ -143,4 +143,4 @@ We can start with the simplest possible data representation and, if that suffice
 
 &nbsp;
 
-Next: [The Explorable interface](interface.html) »
+Next: [The Explorable graph interface](interface.html) »

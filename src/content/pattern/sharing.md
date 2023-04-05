@@ -12,30 +12,29 @@ You don't have to use any of these Graph Origami pieces to take advantage of the
 
 The Graph Origami [core](/core) library contains implementations of the base classes illustrated in this tutorial:
 
-- [ObjectGraph](/core/ObjectGraph) creates an explorable graph backed by an in-memory JavaScript object.
-- [FilesGraph](/core/FilesGraph) creates an explorable graph backed by a file system folder tree.
-- [FunctionGraph](/core/FunctionGraph) creates an explorable graph backed by a function and a domain.
+- [ObjectGraph](/core/ObjectGraph.html) creates an explorable graph backed by an in-memory JavaScript object.
+- [FilesGraph](/core/FilesGraph.html) creates an explorable graph backed by a file system folder tree.
+- [FunctionGraph](/core/FunctionGraph.html) creates an explorable graph backed by a function and a domain.
 
 These core library implementations are somewhat more full-featured that the simplified versions presented in this tutorial.
 
 The library also contains general-purpose versions of some of the graph operations in this tutorial:
 
-- [MapExtensionsGraph](/core/MapExtensionsGraph) handles the general case of mapping a graph with keys of one type (`.md` for markdown files, say) to another (`.html` for HTML files). This is in turn based on a more general [MapKeysValuesGraph](/core/MapKeysValuesGraph).
-- [MergeGraph](/core/MergeGraph) performs a deep merge of multiple graphs.
-- [ExplorableGraph](/core/ExplorableGraph) is a utility class that includes a `plain` function like the one discussed in this tutorial. It resolves any explorable graph to a plain JavaScript object.
+- [MapExtensionsGraph](/core/MapExtensionsGraph.html) handles the general case of mapping a graph with keys of one type (`.md` for markdown files, say) to another (`.html` for HTML files). This is in turn based on a more general [MapKeysValuesGraph](/core/MapKeysValuesGraph.html).
+- [MergeGraph](/core/MergeGraph.html) performs a deep merge of multiple graphs.
+- [ExplorableGraph](/core/ExplorableGraph.html) is a utility class that includes a `plain` function like the one discussed in this tutorial. It resolves any explorable graph to a plain JavaScript object.
 
 ## Command-line tool
 
 This tutorial demonstrated a simple `json` tool that dumps a graph's contents to the console. The Graph Origami project expands this idea with its [ori](/cli) command-line interface.
 
-By default, ori displays a graph in YAML format, but can also display a graph as JSON, a table, or a diagram in SVG format. That [svg](/language/builtins.html#svg) command is used to generate all the graph diagrams in this tutorial.
+By default, ori displays a graph in YAML format, but can also display a graph as JSON, a table, or a diagram in SVG format. The built-in [@svg](/language/@svg.html) command is used to generate all the graph diagrams in this tutorial.
 
 ori includes richer implementations of all the general-purpose tools shown in this tutorial:
 
-- [serve](/language/builtins.html#serve) command. ori's server has more features, but the basic concept remains the same: the server translates an HTTP/HTTPS request into the traversal of an explorable graph. ori also includes an Express middleware version that does the same thing.
-- [setDeep](/language/builtins.html#setDeep) command like the one in this tutorial. ori also includes a related [copy](/language/builtins.html#copy) command that adds command-line progress feedback. This can be used as the basis for a build process like the one shown in this tutorial.
-- [defaultPages](/language/builtins.html#defaultPages) command that provides a superset of the `indexPages` transformation discussed in the tutorial.
-- [mdHtml](/language/builtins.html#mdHtml) command that transforms markdown text to the corresponding HTML.
+- [@serve](/language/@serve.html) command. ori's server has more features, but the basic concept remains the same: the server translates an HTTP/HTTPS request into the traversal of an explorable graph. ori also includes an Express middleware version that does the same thing.
+- [@graph/setDeep](/language/@graph.html#setDeep) command like the one in this tutorial. ori also includes a related [@copy](/language/@copy.html) command that adds command-line progress feedback. This can be used as the basis for a build process like the one shown in this tutorial.
+- [@mdHtml](/language/@mdHtml.html) command that transforms markdown text to the corresponding HTML.
 
 In addition to these commands, ori includes a number of other general-purpose commands for working with explorable graphs.
 
