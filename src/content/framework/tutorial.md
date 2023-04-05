@@ -14,11 +14,6 @@ countries:
     abbreviation: CN
 countriesByAbbreviation: !ori (@map/keys(countries, =abbreviation))
 teamByName: !ori (@map/keys(framework-intro/src/teamData.yaml, =name))
-siteWithTitle1:
-  index.html: !ori framework-intro/src/greet(title)
-  title: Our Amazing Team
-siteWithTitle2:
-  index.html: !ori framework-intro/src/greet('Our Amazing Team')
 siteComplete:
   index.html: <h1>Our Amazing Team</h1>
   team:
@@ -90,7 +85,7 @@ Graph Origami lets you visualize and explore the graph you are building.
 
 <span class="tutorialStep"></span> Click the **Preview** button at the bottom of the window, then click **Preview in a new window**. This will open your site in a new window (or tab).
 
-<span class="tutorialStep"></span> In the browser address bar for that new window, add `/!svg` to the end of the URL. The new URL should look like `https://your-project-name.glitch.me/!svg`
+<span class="tutorialStep"></span> In the browser address bar for that new window, add `/!@svg` to the end of the URL. The new URL should look like `https://your-project-name.glitch.me/!@svg`
 
 You'll see your site visually represented as a graph:
 
@@ -185,7 +180,7 @@ word = "beep"
 doubled = @repeat(2, word)
 ```
 
-This calls a built-in `@repeat` function. (All built-in functions start with an `@` sign.) The value of `doubled` will be "beepbeep".
+This calls a built-in [@repeat](/language/@repeat.html) function. (All built-in functions start with an `@` sign.) The value of `doubled` will be "beepbeep".
 
 The order of the above definitions doesn't matter; `word` could just as well come after `doubled`.
 
@@ -215,7 +210,10 @@ This project is configured to let a user browse the virtual `public` folder.
 <span class="tutorialStep"></span> Switch to graph diagram window and refresh it to see its current structure.
 
 <figure>
-{{ @svg siteWithTitle1 }}
+{{ @svg {
+  index.html: framework-intro/src/greet("Our Amazing Team")
+  title: "Our Amazing Team"
+ } }}
 </figure>
 
 The virtual `title` file is used by the formula for `index.html`. But you don't need make the `title` file itself part of your final site — it's only needed internally.
@@ -239,7 +237,9 @@ By putting `title` at the top level, the formulas inside `public` can reference 
 <span class="tutorialStep"></span> Refresh the graph diagram window to confirm that the public site no longer includes `title`:
 
 <figure>
-{{ @svg siteWithTitle2 }}
+{{ @svg {
+  index.html: framework-intro/src/greet("Our Amazing Team")
+} }}
 </figure>
 
 <span class="tutorialStep"></span> Switch back to the Glitch window.
@@ -320,7 +320,7 @@ Earlier, you invoked the `greet` function to create a single file. That function
 
 But let's say you want to greet a bunch of people by name. You could create individual files for each of them, but that would be repetitive and error-prone.
 
-Instead, you can use a `map` to apply the `greet` function to all of the people at once.
+Instead, you can use a built-in function called [@map/values](/language/@map.html#values) to apply the `greet` function to all of the people at once.
 
 <span class="tutorialStep"></span> First, add the following formula for `team` to `site.graph`:
 
@@ -346,9 +346,9 @@ title = "Our Amazing Team"
   } }}
 </figure>
 
-The keys in this area are integers which are the indices of the array in teamData.yaml; the values are the people's names. The small expression `=name` in the `team` formula is an unnamed function that `@map` will apply to each person in `teamData.yaml`. In this case, the unnamed function returns a person's name.
+The keys in this area are integers which are the indices of the array in teamData.yaml; the values are the people's names. The small expression `=name` in the `team` formula is an unnamed function that `@map/values` will apply to each person in `teamData.yaml`. In this case, the unnamed function returns a person's name.
 
-In this way, `@map` performs a many-to-many transformation:
+In this way, `@map/values` performs a many-to-many transformation:
 
 <div class="sideBySide">
   <figure>
@@ -369,7 +369,7 @@ In this way, `@map` performs a many-to-many transformation:
   <figcaption>Mapped graph of names</figcaption>
 </div>
 
-The formula you give to `@map` can be arbitrarily complex.
+The formula you give to `@map/values` can be arbitrarily complex.
 
 <span class="tutorialStep"></span> **Try it**: In the Glitch editor window, in `site.graph`, update the expression `=name` so that, instead of just returning a `name`, it calls the `greet` function and passes in that person's name.
 
@@ -516,7 +516,7 @@ Now the preview shows the greetings to your team members.
 
 You can do anything inside a template's `{{` `}}` placeholders that you can do in a `.graph` formula. This means that you can do things like map data directly inside a template.
 
-<span class="tutorialStep"></span> **Try it:** From the `team` formula in `site.graph`, copy the right side of the formula (the `map` and everything after the `=` sign) and paste that into `index.ori` in place of the `team` reference.
+<span class="tutorialStep"></span> **Try it:** From the `team` formula in `site.graph`, copy the right side of the formula (the `@map/values` and everything after the `=` sign) and paste that into `index.ori` in place of the `team` reference.
 
 <reveal-solution>
 
@@ -580,7 +580,7 @@ To lay the groundwork for that, you're first going to create an intermediate fol
 
 As you've seen, the top-level "file names" in `teamData.yaml` are integers, like `0` for the first person. So at the moment the `team` area pages are identified with integers too. But in your final website graph, you'd like the names of the pages in the `team` area to include the person's name, like `Alice.html`.
 
-For this, Graph Origami provides a `@map/keys()` function that works like `@map/values()`. Instead of mapping the values (the file contents), it maps the keys (the file names).
+For this, Graph Origami provides a [@map/keys](/language/@map.html#keys) function that works like `@map/values`, but instead of mapping the values (the file contents), it maps the keys (the file names).
 
 **Example:**
 
