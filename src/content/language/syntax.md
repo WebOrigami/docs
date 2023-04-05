@@ -141,7 +141,7 @@ I have a pet named Fluffy.
 
 ## Function calls
 
-One way to invoke a function is with final parentheses:
+You can invoke a function with final parentheses:
 
 ```
 fn(arg)
@@ -158,7 +158,7 @@ $ ori "uppercase(sample.txt)"
 THIS IS A TEXT FILE.
 ```
 
-To make it easier for you to invoke functions in the command line, Origami expressions also permit use of implicit parentheses for function calls. For example, the above can also be written as:
+To make it easier for you to invoke functions in the command line, Origami expressions also let you use implicit parentheses for function calls. For example, the above can also be written as:
 
 ```console
 $ ori uppercase sample.txt
@@ -167,7 +167,7 @@ THIS IS A TEXT FILE.
 
 In some situations, you can also avoid the need for parentheses by using a `/` slash; see below.
 
-Additionally, when ori evaluates an Origami expression, if the top-level result is a function, ori will implicitly invoke it:
+Additionally, when ori evaluates an Origami expression, if the top-level result is a function, ori implicitly invokes it:
 
 ```console
 $ ori greet.js
@@ -271,7 +271,7 @@ You can define an unnamed lambda function with an `=` equals sign.
 =expression
 ```
 
-This expression will not be evaluated immediately, but only when invoked.
+This expression will not be evaluated immediately, but only later when explicitly invoked.
 
 For example, the [@map/values](/language/@map.html#values) built-in function can apply another function to a graph's values. To concisely define a function that will be evaluated in the context of each graph value, you can use a lambda:
 
@@ -292,17 +292,17 @@ c: THE LETTER C
 
 ## Comments
 
-Comments start with a `#` sharp sign and extend to the end of the line
+Comments start with a `#` sharp sign and extend to the end of the line:
 
 ```
 # This is a comment
 ```
 
-## No reserved words
+## Reserved words
 
-The Origami expression language generally does not have reserved words. Exceptions:
+Generally speaking, the Origami expression language does not have reserved words, but:
 
-- Origami does include a number of built-in functions and values which will normally be in scope. All of them have names that start with an `@` at sign. If you can, you should avoid adopting names for your own functions or data members that begin with `@`.
+- Origami does include a number of built-in functions and values which will normally be in scope. All of them have names that start with an `@` at sign. If you can, avoid adopting names for your own functions or data members that begin with `@`.
 - A few protocols like `https:` are reserved in URLs.
 
 Some of the Origami built-ins provide values which are normally reserved in a language, such as [@true](@true.html) and [@false](@false.html) values for true and false.

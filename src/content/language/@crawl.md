@@ -12,4 +12,4 @@ For example, to copy the original [Space Jam](https://www.spacejam.com/1996/) we
 $ ori "@copy(@crawl(graphhttps://www.spacejam.com/1996/), @files/snapshot)"
 ```
 
-Crawling is a network-intensive operation, so a command like the one above can take a long time (on the order of minutes) to complete.
+Crawling is a network-intensive operation, so a command to crawl a site like the (surprisingly large!) site above can take a long time to complete -- on the order of minutes.

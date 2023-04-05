@@ -5,16 +5,16 @@ subtitle: A small language for expressions that access or transform graphs and o
 
 {{ templates/blocks.ori() }}
 
-Graph Origami includes a small Origami expression language which is focused on:
+Graph Origami includes a small Origami expression language focused on:
 
 - Invoking functions
-- Traversing paths into graphs, including hierarchical data, files, virtual files
+- Traversing paths into graphs likes files and data
 - Defining graphs
 - Defining text with templates
 
-The Origami language is used by
+You can use the same Origami expression language in:
 
-- The [Origami CLI](/cli) command-line tool to evaluate command-line arguments. This gives you considerable expressive power to invoke JavaScript utilities from the command line to, for example, traverse and manipulate files and other types of data.
-- [Framework](/framework) `.graph` files that define virtual folders and files.
-- [Templates](/framework) to add dynamic content inside boilerplate text like HTML.
-- Document front matter.
+- The [ori command-line tool](/cli) to evaluate command-line arguments. This gives you considerable expressive power to invoke JavaScript utilities from the command line to, for example, traverse and manipulate files and other types of data.
+- The Graph Origami [framework](/framework) `.graph` files that define virtual folders and files.
+- Graph Origami [templates](/framework) to add dynamic content inside boilerplate text like HTML.
+- Document front matter in YAML via a custom `!ori` tag.
