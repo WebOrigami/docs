@@ -4,8 +4,12 @@ export default async function chooseIcon(page, icons) {
     return undefined;
   }
 
+  // Get the keys that end with .svg
+  const keys = Array.from(await icons.keys()).filter((key) =>
+    key.endsWith(".svg")
+  );
+
   // Treating the icons as buckets, hash the page URL to a bucket (icon).
-  const keys = Array.from(await icons.keys());
   const pageHash = hash(page, keys.length);
   const icon = keys[pageHash];
   return icon;
