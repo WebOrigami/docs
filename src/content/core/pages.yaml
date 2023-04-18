@@ -6,15 +6,14 @@
   href: interface.html
 - href: variants.html
   text: Graph Variants
-- text: API
-  pages:
-    - href: ExplorableGraph.html
-      text: ExplorableGraph
-    - href: FilesGraph.html
-      text: FilesGraph
-    - href: FunctionGraph.html
-      text: FunctionGraph
-    - href: ObjectGraph.html
-      text: ObjectGraph
-    - href: SiteGraph.html
-      text: SiteGraph
+- text: "API:"
+- href: ExplorableGraph.html
+  text: ExplorableGraph
+- href: FilesGraph.html
+  text: FilesGraph
+- href: FunctionGraph.html
+  text: FunctionGraph
+- href: ObjectGraph.html
+  text: ObjectGraph
+- href: SiteGraph.html
+  text: SiteGraph

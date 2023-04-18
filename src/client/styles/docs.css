@@ -275,6 +275,14 @@ nav a:hover {
   grid-column: 1; /* Baffled as to why this is necessary. */
 }
 
+#sideBar > ul {
+  display: grid;
+  gap: 0 1em;
+  grid-template-columns: repeat(auto-fit, minmax(150px, max-content));
+  justify-content: space-between;
+  padding-left: 0;
+}
+
 #sideBar li {
   list-style: none;
   margin-bottom: 0.5rem;
@@ -444,6 +452,7 @@ g.node polygon[fill="none"] {
   }
 
   #sideBar ul {
+    display: block;
     padding-left: 20px;
   }
 

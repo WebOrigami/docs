@@ -4,6 +4,7 @@
   text: Syntax
 - href: scope.html
   text: Scope
+- text: "Built-ins:"
 - href: "@builtins.html"
   text: "@builtins"
 - href: "@cache.html"

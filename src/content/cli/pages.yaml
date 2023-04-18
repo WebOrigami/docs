@@ -1,13 +1,12 @@
 - href: index.html
   text: Introduction
-  pages:
-    - href: intro1.html
-      text: CLI tutorial setup
-    - href: intro2.html
-      text: Basic usage
-    - href: intro3.html
-      text: Using graphs
-    - href: intro4.html
-      text: Transformations
-    - href: intro5.html
-      text: Serving graphs
+- href: intro1.html
+  text: CLI tutorial setup
+- href: intro2.html
+  text: Basic usage
+- href: intro3.html
+  text: Using graphs
+- href: intro4.html
+  text: Transformations
+- href: intro5.html
+  text: Serving graphs
