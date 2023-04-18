@@ -15,7 +15,7 @@ $ ori team.yaml
 - name: Alice
 - name: Bob
 - name: Carol
-$ ori mapKeys team.yaml, =name
+$ ori @map/keys team.yaml, =name
 Alice:
   name: Alice
 Bob:
@@ -37,7 +37,7 @@ Bob: Hello, Bob.
 Carol: Hello, Carol.
 $ ori uppercase.js
 export default (x) => x.toString().toUpperCase();
-$ ori "map(greetings.yaml, uppercase)"
+$ ori @map/values greetings.yaml, uppercase
 Alice: HELLO, ALICE.
 Bob: HELLO, BOB.
 Carol: HELLO, CAROL.

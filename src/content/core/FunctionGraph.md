@@ -49,7 +49,7 @@ class FunctionGraph {
 Unlike explorable classes like [ObjectGraph](ObjectGraph.html), an `FunctionGraph` can often accept keys which it does not make public in its `keys` iterator. The sample `FunctionGraph` defined above exposes only three keys ("Alice", "Bob", "Carol"), but will actually accept any key.
 
 ```console
-$ ori keys function
+$ ori @graph/keys function
 - Alice
 - Bob
 - Carol
