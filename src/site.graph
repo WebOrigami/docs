@@ -1,14 +1,8 @@
 # This file defines the top-level virtual values in the graph used to create the
-# Graph Origami documentation. When the `src` folder is viewed as a virtual
-# graph, all of the formulas defined here will be treated as if they are members
-# of the `src` folder.
+# Graph Origami documentation.
 
 # The first set of formulas define a pipeline for the documentation content,
-# which is authored as a tree of markdown files in the `content` folder. That
-# real `content` folder is treated as a graph that is used as the basis for a
-# graph pipeline: a sequence of graph transforms. Each step defines another
-# virtual graph, culminating in a final graph of HTML pages that can be browsed
-# or rendered as static pages.
+# which is authored as a tree of markdown files in the `content` folder.
 
 # Step 1: Take the markdown files in the `content` folder and inline any Graph
 # Origami expressions contained in curly braces. This produces a new graph
@@ -48,8 +42,6 @@ misc = {
   demos = {
     aboutUs = src/demos/aboutUs/site.graph/public
   }
-
-  test.html = test.ori()
 }
 
 # The `develop` virtual graph exposes the routes useful at development time. It
