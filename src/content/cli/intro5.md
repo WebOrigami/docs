@@ -124,23 +124,12 @@ When you ask to view a route via `graphHttps`, ori asks that server for its `.ke
 
 Making the full contents of a site more freely available might be concerning to some people, but most web content is already available to users; it's just not conveniently inspectable. ori extends the spirit of the browser's View Source feature, which looks at a single web page at a time, to let you inspect everything at a particular web route.
 
-## Create a web site mirror
-
-<span class="tutorialStep"></span> Since a web site like graphorigami.org is an explorable graph, and ori can serve explorable graphs, then you can easily set up a local mirror for this site:
-
-```console
-$ ori @serve site://graphorigami.org
-Server running at http://localhost:5000
-```
-
-Your local server is now mirroring the graphorigami.org site: when you browse your local site, the local server gets the necessary resources from the original site, then re-serves them at the local address.
-
 ## Copy a live web site to local files
 
 <span class="tutorialStep"></span> You can also use ori to copy an explorable web route to local files:
 
 ```console
-$ ori @copy site://graphorigami.org/samples/greetings/, @files/snapshot
+$ ori @copy graphhttps://graphorigami.org/samples/greetings/, @files/snapshot
 $ ls snapshot
 Alice Bob   Carol
 ```
