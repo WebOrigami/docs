@@ -8,7 +8,7 @@ Graph Origami's general-purpose facilities for working with hierarchical trees a
 
 The documentation system has the following features:
 
-1. **Expresses the high-level steps of the pipeline as formulas.** The [YAML](./src/%2B.yaml) file defines formulas in the Origami expression language. Each formula succinctly expresses a step in the pipeline or some other high-level output of the project. The end result of the pipeline is a virtual graph of HTML pages and the other resources (styles, etc.) representing the final site.
+1. **Expresses the high-level steps of the pipeline as formulas.** The [site.graph](./src/site.graph) file defines formulas in the Origami expression language. Each formula succinctly expresses a step in the pipeline or some other high-level output of the project. The end result of the pipeline is a virtual graph of HTML pages and the other resources (styles, etc.) representing the final site.
 1. **Browsable immediately.** You can directly serve the virtual graph for the site — visiting a URL is translated into a traversal of the virtual graph, and you can immediately view the result in your browser.
 1. **Intermediate steps are browsable too.** If anything looks incorrect in the final result, it's possible to browse the intermediate steps of the pipeline to diagnose where the problem occurred.
 1. **Deployable as static files.** A one-line Origami CLI command copies the virtual graph for the site into a tree of real files. These are deployed to the Netlify CDN (Content Delivery Network) as static files, which is both: a) free, and b) extremely fast.
