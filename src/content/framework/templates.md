@@ -1,12 +1,12 @@
 ---
 title: Origami templates
-subtitle: Map graphs and object data to text
+subtitle: Transform data to text
 teamData.yaml:
   - name: Alice
   - name: Bob
   - name: Carol
-names: !ori map(teamData.yaml, =./name)
-strings: !ori map(teamData.yaml, =`<a href="{{name}}.html">{{./name}}</a> `)
+names: !ori (@map/values(teamData.yaml, =./name))
+strings: !ori (@map/values(teamData.yaml, =`<a href='{{name}}.html'>{{./name}}</a> `))
 template:
   - Hello, <strong>
   - "{{name}}"
@@ -15,28 +15,28 @@ application:
   - Hello, <strong>
   - Alice
   - </strong>!
-intro: !ori client/samples/frameworkIntro
 index.ori: |
   <h1>About Us</h1>
-  {{map teamByName, =`
+  {{ @map/values teamData.yaml, =`
     <li>{{./name}}</li>
   `}}
 indexTemplate:
   - <h1>About Us</h1>
-  - "{{map teamByName, =`<li>{{./name}}</li>` }}"
+  - "{{ @map/values teamData.yaml, =`<li>{{./name}}</li>` }}"
 indexText:
   0: "<h1>About Us</h1>"
-  1: !ori map(intro/teamByName, =`<li>{{./name}}</li>`)
-index.html: !ori index.ori(intro/teamData.yaml)
+  1: !ori (@map/values(teamData.yaml, =`<li>{{./name}}</li>`))
+index.html: !ori index.ori(teamData.yaml)
 ---
 
-Origami templates let you write Origami expressions in the context of a text document. These expressions can then be evaluated in the context of input data to efficiently produce, for example, HTML.
+Origami templates let you write Origami expressions in the context of boilerplate text to efficiently produce HTML or other text formats.
 
-The Origami system provides its own template engine as a convenience and because the Origami language lends itself to the domain of templates. But the Origami framework is designed to be extended with other template systems (e.g., [Handlebars](https://handlebarsjs.com/)). This requires writing a small degree of integration code which is currently beyond the scope of this documentation.
+The Origami system provides its own template engine as a convenience, and because the Origami language lends itself to the domain of templates. The Origami framework is designed to be extended with other template systems, although that requires writing a small degree of integration code which is currently beyond the scope of this documentation.
 
 ## Origami template documents
 
-An Origami template is a text file containing _substitutions_ surrounded by `\{{` and `}}` curly braces.
+An Origami template document is a text file with a `.ori` extension. A template contains
+containing placeholders indicated with `\{{` and `}}` curly braces.
 
 ```console
 $ cat greet.ori
@@ -52,7 +52,7 @@ $ ori "greet.ori(alice.yaml)"
 Hello, Alice Andrews.
 ```
 
-The text inside the `\{{` and `}}` can be any valid expression in the Origami [language](/language).
+The text inside the `\{{` and `}}` can be any valid expression in the Origami [language](/language/).
 
 ## A template is a graph transformation
 
@@ -60,8 +60,8 @@ You can consider the application of a template itself as a graph transformation.
 
 In the case of the above template, you can view the elements of the template as an array:
 
-```\yaml
-{{ yaml template }}
+```{{'yaml'}}
+{{ @yaml template }}
 ```
 
 The first and last items in this array are boilerplate strings holding HTML; the middle element is a placeholder. As with other arrays, you can model this array as a graph.
@@ -134,7 +134,7 @@ $ ori teamData.yaml
 - name: Alice
 - name: Bob
 - name: Carol
-$ ori "map teamData.yaml, =name"
+$ ori @map/values teamData.yaml, =name
 - Alice
 - Bob
 - Carol
@@ -158,7 +158,7 @@ Because the Origami CLI and Origami templates share the same expression language
 ```console
 $ cat index.ori
 <h1>Team</h1>
-{{ map teamData.yaml, =name }}
+{{ @map/values teamData.yaml, =name }}
 ```
 
 When you apply the template, the people objects in `teamData.yaml` will be mapped to names. Then, per the above section about concatenating graph values, those names will then be concatenated and incorporate in the template's final text output.
@@ -178,8 +178,7 @@ Let's extend the above example to generate HTML links for each person. This beco
 ```console
 $ cat index.ori
 <h1>Team</h1>
-\{{ map teamData.yaml, =`<a href="\{{name}}.html">\{{name}}</a>
-` }}
+\{{ @map/values teamData.yaml, =`<a href="\{{name}}.html">\{{name}}</a>` }}
 ```
 
 The `index.ori` file represents an outer template that includes an `h1` heading. Below that, a substitution calling `map` appears, which maps the `teamData.yaml` graph of people to an inner, nested Origami template. The inner template incorporates an individual person's `name` into a short HTML fragment.
@@ -200,7 +199,7 @@ We can visualize this as a graph transformation:
 When the template is invoked, it performs the above transformation, then flattens all the strings into a single text string representing the result:
 
 ```console
-$ ori index.ori
+$ ori index.ori/
 <h1>Team</h1>
 <a href="Alice.html">Alice</a>
 <a href="Bob.html">Bob</a>

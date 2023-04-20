@@ -10,9 +10,7 @@
 #   text: Virtual content
 # - href: maps.html
 #   text: Maps
-# - href: this.html
-#   text: "<code>this</code> keyword"
-# - href: templates.html
-#   text: Templates
+- href: templates.html
+  text: Templates
 # - href: extensibility.html
 #   text: Extensibility
