@@ -54,6 +54,8 @@ Hello, Alice Andrews.
 
 The text inside the `\{{` and `}}` can be any valid expression in the Origami [language](/language/).
 
+## Inlining expressions
+
 ## A template is a graph transformation
 
 You can consider the application of a template itself as a graph transformation.
@@ -208,9 +210,20 @@ $ ori index.ori/
 
 ## Front matter
 
-## Template scope
+Front matter can include Origami expressions via the `!ori` YAML tag; see [Origami expressions in YAML](/language/yaml.html) for details.
 
+## Ambient properties available inside a template
+
+- `@input`
+- `@template`
+- `@text`
 - `.`
-- `@key`
+
+The `@template` property itself has the following properties:
+
+- `graph`
+- `recurse`
+- `scope`
+- `text`
 
 ## Extending the template language

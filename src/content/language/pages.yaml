@@ -4,6 +4,8 @@
   text: Syntax
 - href: scope.html
   text: Scope
+- href: yaml.html
+  text: In YAML
 - text: "Built-ins:"
 - href: "@builtins.html"
   text: "@builtins"
