@@ -1,5 +1,6 @@
 ---
 title: Origami templates
+samples: !ori node_modules/@graphorigami/samples/src
 subtitle: Transform data to text
 teamData.yaml:
   - name: Alice
@@ -173,15 +174,11 @@ The first argument to `@if` is a condition that is evaluted. If the result is tr
 
 ```console
 $ cat condition.ori
-{{ @if rating, `
-Rating: {{ rating }}
-`, `
-Not yet rated
-` }}
+{{ @js/String samples/condition.ori }}
 $ ori “condition.ori({ rating: 3 })”
-Rating: 3
+{{ samples/condition.ori({ rating: 3 }) }}
 $ ori “condition.ori({})”
-Not yet rated
+{{ samples/condition.ori({}) }}
 ```
 
 ## Extending the template language
@@ -194,7 +191,7 @@ If you have a file named `uppercase.js`, then you can invoke it by referencing `
 $ cat uppercase.js
 export default (x) => x.toString().toUpperCase();
 $ cat callJs.ori
-Hello, {{ uppercase(‘world’) }}!
+Hello, \{{ uppercase(‘world’) }}!
 $ ori callJs.ori/
 Hello, WORLD!
 ```
@@ -291,25 +288,20 @@ $ ori concatSvgs.ori/
 
 ## Including text for each item in a collection
 
-It’s very common to have a template generate some fragment of text for each value in a graph: an array, a set, a folder, etc. In Origami templates, this is done by mapping the graph’s values to text with the built-in [@map/values](/language/@map.html#values) function.
+It’s common to have a template generate some fragment of text for each value in a graph: an array, a set, a folder, etc. In Origami templates, this is done by mapping the graph’s values to text with the built-in [@map/values](/language/@map.html#values) function.
 
 ```console
-$ ori teamData.yaml
+$ cat teamData.yaml
 - name: Alice
-- name: Bob
-- name: Carol
-$ cat index.ori
-<ul>
-\{{ @map/values teamData.yaml, =`
-  <li>\{{name}}</li>
-` }}
-</ul>
-$ ori index.ori/
-<ul>
-  <li>Alice</li>
-  <li>Bob</li>
-  <li>Carol</li>
-</ul>
+  image: van.jpg
+  location: Honolulu
+  bio: After working as a manager for numerous startups over the years, I
+    decided to take the plunge and start a business of my own.
+  …
+$ cat teamList.ori
+{{ @js/String samples/teamList.ori }}
+$ ori teamList.ori/
+{{ samples/teamList.ori/ }}
 ```
 
 The `index.ori` file represents an outer template that includes an `ul` heading. Below that, a substitution calling `map` appears, which maps the `teamData.yaml` graph of people to an inner, nested Origami template. The inner template incorporates an individual person’s `name` into a short HTML fragment.
