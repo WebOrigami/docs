@@ -30,22 +30,23 @@ indexText:
 index.html: !ori index.ori(teamData.yaml)
 ---
 
-This is a test.
+Graph Origami templates let you efficiently turn data into HTML or other text documents using Origami expressions embedded in boilerplate text. Origami templates can:
 
-Origami templates let you efficiently produce HTML or other text documents from data using Origami expressions.
+- Work directly on a wide range of data including file system folders or network resources
+- Be easily extended in JavaScript with essentially no configuration.
 
-The Graph Origami system provides a template system both as a convenience and because the Origami language lends itself to the domain of templates. (You can use Graph Origami with other template systems, although that requires writing a small degree of integration code that’s currently beyond the scope of this documentation.)
+You can use Graph Origami with other template systems, but the small degree of integration code required is currently beyond the scope of this documentation.
 
-## Origami template documents
+## Template documents
 
-An Origami template document is a text file with a `.ori` extension. A template contains placeholders marked with `\{{` and `}}` curly braces.
+An Origami template document is a text file with a `.ori` extension. A template contains placeholders marked with `\{{` and `}}` curly braces that contain [Origami expressions](/language/syntax.html).
 
 ```console
 $ cat greet.ori
 Hello, \{{ name }}.
 ```
 
-A template like this can then be evaluated in the context of an object such as a graph or data object.
+You can evaluate a template like this in the context of an object such as a graph or data object.
 
 ```console
 $ cat alice.yaml
@@ -54,7 +55,18 @@ $ ori "greet.ori(alice.yaml)"
 Hello, Alice Andrews.
 ```
 
-The text inside the `\{{` and `}}` can be any valid expression in the Origami [language](/language/).
+## Referencing input
+
+When you invoke a template as a function, you can refer to the overall input object as `@input`.
+
+```console
+$ cat heading.ori
+{{ @js/String samples/heading.ori }}
+$ ori "heading.ori('Contact')"
+{{ samples/heading.ori('Contact') }}
+```
+
+If you specifically want to treat the input as text, you can use `@text`.
 
 ## Referencing files
 
@@ -73,7 +85,7 @@ $ ori ref.ori/
 
 ## Traversing into data
 
-Inside a template, you can use slash-separated paths to traverse into data files.
+Inside a template, you can use slash-separated paths to traverse into data.
 
 ```console
 *** example
@@ -88,6 +100,111 @@ $ cat net.ori
 This content came from graphorigami.org:
 {{ https://graphorigami.org/samples/templates/net.txt }}
 $ ori net.ori/
+```
+
+## Conditions
+
+Use the built-in [@if](/language/@if.html) function to include text based on some condition.
+
+The first argument to `@if` is a condition that is evaluated. If the result is truthy (not `false`, `null`, or `undefined`), the second argument to `@if` is included in the template’s text output. If the result is falsy, the third argument will be included, or nothing if there is no third argument.
+
+```console
+$ cat condition.ori
+{{ @js/String samples/condition.ori }}
+$ ori “condition.ori({ rating: 3 })”
+{{ samples/condition.ori({ rating: 3 }) }}
+$ ori “condition.ori({})”
+{{ samples/condition.ori({}) }}
+```
+
+## Including text for each item in a collection
+
+It’s common to have a template generate some fragment of text for each value in a graph: an array, a set, a folder, etc. In Origami templates, this is done by mapping the graph’s values to text with the built-in [@map/values](/language/@map.html#values) function.
+
+```console
+$ cat teamData.yaml
+- name: Alice
+  image: van.jpg
+  location: Honolulu
+  bio: After working as a manager for numerous startups over the years, I
+    decided to take the plunge and start a business of my own.
+  …
+$ cat teamList.ori
+{{ @js/String samples/teamList.ori }}
+$ ori teamList.ori/
+{{ samples/teamList.ori/ }}
+```
+
+The `index.ori` file represents an outer template that includes an `ul` heading. Below that, a substitution calling `map` appears, which maps the `teamData.yaml` graph of people to an inner, nested Origami template. The inner template incorporates an individual person’s `name` into a short HTML fragment.
+
+### Referencing the key for a value
+
+## Ambient properties available inside a template
+
+- `@input`
+- `@template`
+- `@text`
+- `.`
+
+The `@template` property itself has the following properties:
+
+- `graph`
+- `recurse`
+- `scope`
+- `text`
+
+## Calling your own functions from template expressions
+
+Your template expressions can call any JavaScript in [scope](/language/scope.html) via the base of the JavaScript file name.
+
+For example, if you have a file named `uppercase.js` in the same directory as the template, a template expression can reference that module's default export as `uppercase`:
+
+```console
+$ cat uppercase.js
+export default (x) => x.toString().toUpperCase();
+$ cat callJs.ori
+Hello, \{{ uppercase(‘world’) }}!
+$ ori callJs.ori/
+Hello, WORLD!
+```
+
+## Calling another template as a function
+
+One template can invoke another as a function. For example, if you create an overall site page template `page.ori`:
+
+```
+{{ @js/String samples/page.ori }}
+```
+
+An individual page template like `contact.ori` can invoke `page.ori` as a function:
+
+```
+{{ @js/String samples/contact.ori }}
+```
+
+Evaluating this will embed the contact page content inside the overall site page template:
+
+```console
+$ ori contact.ori/
+{{ samples/contact.ori/ }}
+```
+
+## Front matter
+
+Both a template’s input document and the template itself can contain front matter in YAML or JSON format.
+
+### Front matter expressions
+
+Front matter can include Origami expressions via the `!ori` YAML tag; see [Origami expressions in YAML](/language/yaml.html) for details. You can use this to, for examle, calculate a value that you want to reference multiple times in the template.
+
+```console
+$ cat frontExpression.ori
+
+*** missing front matter ***
+
+{{ @js/String samples/frontExpression.ori }}
+$ ori frontExpression.ori/
+{{ samples/frontExpression.ori/ }}
 ```
 
 ## Inlining the results of expressions
@@ -121,82 +238,7 @@ $ ori @inline inline.html
 
 The @inline function preserves any front matter (below) in its output.
 
-## Front matter
-
-Both a template’s input document and the template itself can contain front matter in YAML or JSON format.
-
-### Ambient properties available inside a template
-
-- `@input`
-- `@template`
-- `@text`
-- `.`
-
-The `@template` property itself has the following properties:
-
-- `graph`
-- `recurse`
-- `scope`
-- `text`
-
-### Front matter expressions
-
-Front matter can include Origami expressions via the `!ori` YAML tag; see [Origami expressions in YAML](/language/yaml.html) for details. You can use this to, for examle, calculate a value that you want to reference multiple times in the template.
-
-```console
-$ cat expr.ori
----
-banner: !ori `<p>{{ title }}</p>`
-title: My Blog
----
-<html>
-  <body>
-    {{ banner }}
-    <p>Page content goes here</p>
-    {{ banner }}
-  </body>
-</html>
-$ ori expr.ori/
-<html>
-  <body>
-    <p>My Blog</p>
-    <p>Page content goes here</p>
-    <p>My Blog</p>
-  </body>
-</html>
-```
-
-## Conditions
-
-You can use the built-in [@if](/language/@if.html) function to include text based on some condition.
-
-The first argument to `@if` is a condition that is evaluted. If the result is truthy (not `false`, `null`, or `undefined`), the second argument to `@if` is included in the template’s text output. If the result is falsy, the third argument will be included, or nothing if there is no third argument.
-
-```console
-$ cat condition.ori
-{{ @js/String samples/condition.ori }}
-$ ori “condition.ori({ rating: 3 })”
-{{ samples/condition.ori({ rating: 3 }) }}
-$ ori “condition.ori({})”
-{{ samples/condition.ori({}) }}
-```
-
-## Extending the template language
-
-As with the Origami CLI itself and Graph Origami .graph files, you can extend the template language in JavaScript. Generally this consists of placing a JavaScript file somewhere in the current [scope](/language/scope.html), for example in the current directory.
-
-If you have a file named `uppercase.js`, then you can invoke it by referencing `uppercase` in your template expressions:
-
-```console
-$ cat uppercase.js
-export default (x) => x.toString().toUpperCase();
-$ cat callJs.ori
-Hello, \{{ uppercase(‘world’) }}!
-$ ori callJs.ori/
-Hello, WORLD!
-```
-
-## A template is a graph transformation
+## How Origami templates work
 
 You can consider the application of a template itself as a graph transformation.
 
@@ -285,28 +327,6 @@ $ ori concatSvgs.ori/
 </body>
 </html>
 ```
-
-## Including text for each item in a collection
-
-It’s common to have a template generate some fragment of text for each value in a graph: an array, a set, a folder, etc. In Origami templates, this is done by mapping the graph’s values to text with the built-in [@map/values](/language/@map.html#values) function.
-
-```console
-$ cat teamData.yaml
-- name: Alice
-  image: van.jpg
-  location: Honolulu
-  bio: After working as a manager for numerous startups over the years, I
-    decided to take the plunge and start a business of my own.
-  …
-$ cat teamList.ori
-{{ @js/String samples/teamList.ori }}
-$ ori teamList.ori/
-{{ samples/teamList.ori/ }}
-```
-
-The `index.ori` file represents an outer template that includes an `ul` heading. Below that, a substitution calling `map` appears, which maps the `teamData.yaml` graph of people to an inner, nested Origami template. The inner template incorporates an individual person’s `name` into a short HTML fragment.
-
-### Referencing the key for a value
 
 ### How mapping works
 
