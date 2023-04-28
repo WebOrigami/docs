@@ -29,6 +29,8 @@ indexText:
 index.html: !ori index.ori(teamData.yaml)
 ---
 
+This is a test.
+
 Origami templates let you efficiently produce HTML or other text documents from data using Origami expressions.
 
 The Graph Origami system provides a template system both as a convenience and because the Origami language lends itself to the domain of templates. (You can use Graph Origami with other template systems, although that requires writing a small degree of integration code that’s currently beyond the scope of this documentation.)
