@@ -23,6 +23,7 @@ pages = @map/values(html, =templates/page.ori(@value), { deep: @true, extension:
 # Expose the packages referenced in the documentation.
 framework-intro = node_modules/@graphorigami/framework-intro
 pattern-intro = node_modules/@graphorigami/pattern-intro/src
+samples = node_modules/@graphorigami/samples/src
 
 # The following formulas are used by specific pages that want to inline API
 # documentation for specific classes in the Graph Origami core library. The
@@ -34,7 +35,7 @@ pattern-intro = node_modules/@graphorigami/pattern-intro/src
 source = node_modules/@graphorigami/origami/src
 api = js/jsApi(source/core)
 
-# Miscellaneous artifacts with special builds
+# Miscellaneous artifacts
 misc = {
   # This components.js "bundle" is just concatenated files
   components.js = @graph/concat(components)
@@ -42,6 +43,8 @@ misc = {
   demos = {
     aboutUs = src/demos/aboutUs/site.graph/public
   }
+
+  samples
 }
 
 # The `develop` virtual graph exposes the routes useful at development time. It

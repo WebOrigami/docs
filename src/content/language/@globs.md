@@ -9,7 +9,7 @@ Treats the keys of `graph` as simple [glob](<https://en.m.wikipedia.org/wiki/Glo
 
 ```console
 $ cat globs.yaml
-{{ client/samples/help/globs.yaml }}
+{{ samples/help/globs.yaml }}
 $ ori "@globs(globs.yaml)/foo.jpg"
 false
 $ ori "@globs(globs.yaml)/foo.txt"

@@ -1,24 +1,22 @@
 ---
 title: Origami expressions in YAML
-samples: !ori node_modules/@graphorigami/samples/src
 ---
 
 When you load YAML files in Graph Origami, any values tagged with the `!ori` YAML tag will be evaluated as Origami expressions.
 
-If `expressions.yaml` contains:
+Suppose `expressions.yaml` contains:
 
 ```{{"yaml"}}
-{{ samples/expressions.yaml }}
+{{ samples/templates/expressions.yaml }}
 ```
 
-Then you can invoke this file to evaluate its expressions:
+The `greetings` expression above is in parentheses, because YAML prohibits values from starting with an `@` at sign or a \` backtick. If your Origami expression starts with one of those characters, quote the expression in double quotes, or surround it with parentheses as shown above.
+
+You can invoke this file to evaluate its expressions:
 
 ```console
 $ ori "expressions.yaml()"
-
-*** doesn't work ***
-
-{{ samples/expressions.yaml/ }}
+{{ @yaml @scope/invoke samples/templates, samples/templates/expressions.yaml }}
 ```
 
-Note that the `greetings` expression above is in parentheses. YAML prohibits values from starting with certain characters like an `@` at sign or a \` backtick. If your Origami expression starts with one of those characters, quote the expression in double quotes, or surround it with parentheses as shown above.
+This lets you treat a YAML file as a template for data.

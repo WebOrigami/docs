@@ -1,7 +1,7 @@
 ---
 title: Serving graphs
 numberHeadings: true
-intro: !ori client/samples/cli.yaml
+intro: !ori samples/cli
 ---
 
 ## Serve a graph

@@ -1,4 +1,0 @@
-{
-  "comment": "This file exists to tell Node to load .js files as ES modules",
-  "type": "module"
-}

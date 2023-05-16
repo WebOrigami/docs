@@ -1,6 +1,5 @@
 ---
 title: Origami templates
-samples: !ori node_modules/@graphorigami/samples/src
 subtitle: Transform data to text
 teamData.yaml:
   - name: Alice
@@ -61,8 +60,8 @@ When you invoke a template as a function, you can refer to the overall input obj
 
 ```console
 $ cat heading.ori
-{{ @js/String samples/heading.ori }}$ ori "heading.ori('Contact')"
-{{ samples/heading.ori('Contact') }}
+{{ @js/String samples/templates/heading.ori }}$ ori "heading.ori('Contact')"
+{{ samples/templates/heading.ori('Contact') }}
 ```
 
 If you specifically want to treat the input as text, you can use the expression `@text`.
@@ -73,17 +72,17 @@ You can reference local files in Origami expressions. Depending on the situation
 
 ```console
 $ cat fileRef.ori
-{{ @js/String samples/fileRef.ori }}$ cat copyright.txt
-{{ @js/String samples/copyright.txt }}
+{{ @js/String samples/templates/fileRef.ori }}$ cat copyright.txt
+{{ @js/String samples/templates/copyright.txt }}
 $ ori "fileRef.ori()"
-{{ @scope/invoke samples, samples/fileRef.ori }}
+{{ @scope/invoke samples/templates, samples/templates/fileRef.ori }}
 ```
 
 In cases like this, where the template does not require any argument, you can avoid the need to quote parentheses by invoking the template using slash syntax:
 
 ```console
 $ ori fileRef.ori/
-{{ @scope/invoke samples, samples/fileRef.ori }}
+{{ @scope/invoke samples/templates, samples/templates/fileRef.ori }}
 ```
 
 ## Inlining the results of expressions
@@ -94,9 +93,9 @@ For example, you can use this to inline resources such as stylesheets.
 
 ```console
 $ cat inline.html
-{{ @js/String samples/inline.html }}$ cat inline.css
-{{ @js/String samples/inline.css }}$ ori @inline inline.html
-{{ @scope/invoke samples, @inline, samples/inline.html }}
+{{ @js/String samples/templates/inline.html }}$ cat inline.css
+{{ @js/String samples/templates/inline.css }}$ ori @inline inline.html
+{{ @scope/invoke samples/templates, @inline, samples/templates/inline.html }}
 ```
 
 Here, the `inline.html` file is acting as an Origami template, but keeps the `.html` extension so that it can be otherwise treated as an HTML file.
@@ -116,8 +115,8 @@ $ cat teamData.yaml
     decided to take the plunge and start a business of my own.
 …
 $ cat teamLead.ori
-{{ @js/String samples/teamLead.ori }}$ ori teamLead.ori/
-{{ samples/teamLead.ori() }}
+{{ @js/String samples/templates/teamLead.ori }}$ ori teamLead.ori/
+{{ samples/templates/teamLead.ori() }}
 ```
 
 ## Referencing network resources
@@ -126,9 +125,9 @@ Since `https` and `http` URLs are valid Origami expressions, you can incorporate
 
 ```console
 $ cat net.ori
+{{ @js/String samples/templates/net.ori }}$ ori net.ori/
 This content came from graphorigami.org:
-\{\{ https://graphorigami.org/samples/templates/net.txt }}
-$ ori net.ori/
+{{ samples/templates/net.txt }}
 ```
 
 ## Conditions
@@ -139,11 +138,11 @@ The first argument to `@if` is a condition that is evaluated. If the result is t
 
 ```console
 $ cat condition.ori
-{{ @js/String samples/condition.ori }}
+{{ @js/String samples/templates/condition.ori }}
 $ ori “condition.ori({ rating: 3 })”
-{{ samples/condition.ori({ rating: 3 }) }}
+{{ samples/templates/condition.ori({ rating: 3 }) }}
 $ ori “condition.ori({})”
-{{ samples/condition.ori({}) }}
+{{ samples/templates/condition.ori({}) }}
 ```
 
 ## Calling your own functions from template expressions
@@ -168,20 +167,20 @@ If the function you invoke is asynchronous, its result will be awaited before be
 One template can invoke another as a function. For example, if you create an overall site page template `page.ori`:
 
 ```
-{{ @js/String samples/page.ori }}
+{{ @js/String samples/templates/page.ori }}
 ```
 
 An individual page template like `contact.ori` can invoke `page.ori` as a function:
 
 ```
-{{ @js/String samples/contact.ori }}
+{{ @js/String samples/templates/contact.ori }}
 ```
 
 Evaluating this will embed the contact page content inside the overall site page template:
 
 ```console
 $ ori contact.ori/
-{{ samples/contact.ori/ }}
+{{ samples/templates/contact.ori/ }}
 ```
 
 ## Ambient properties available inside a template
@@ -211,9 +210,9 @@ $ cat front.ori
 
 *** missing front matter ***
 
-{{ @js/String samples/front.ori }}
+{{ @js/String samples/templates/front.ori }}
 $ ori front.ori/
-{{ samples/front.ori/ }}
+{{ samples/templates/front.ori/ }}
 ```
 
 ### Front matter expressions
@@ -225,9 +224,9 @@ $ cat blogPage.ori
 
 *** missing front matter ***
 
-{{ @js/String samples/blogPost.ori }}
+{{ @js/String samples/templates/blogPost.ori }}
 $ ori blogPost.ori posts/post1.html
-{{ samples/blogPost.ori samples/posts/post1.html }}
+{{ samples/templates/blogPost.ori samples/templates/posts/post1.html }}
 ```
 
 ### Template and input front matter
@@ -238,7 +237,7 @@ You can use this to have a template define a default, fallback value for a given
 
 ```console
 $ ori blogPost.ori posts/post2.html
-{{ samples/blogPost.ori samples/posts/post2.html }}
+{{ samples/templates/blogPost.ori samples/templates/posts/post2.html }}
 ```
 
 ## Including text for each item in a collection
@@ -254,9 +253,9 @@ $ cat teamData.yaml
     decided to take the plunge and start a business of my own.
 …
 $ cat teamList.ori
-{{ @js/String samples/teamList.ori }}
+{{ @js/String samples/templates/teamList.ori }}
 $ ori teamList.ori/
-{{ samples/teamList.ori/ }}
+{{ samples/templates/teamList.ori/ }}
 ```
 
 The `index.ori` file represents an outer template that includes an `ul` heading. Below that, a substitution calling `map` appears, which maps the `teamData.yaml` graph of people to an inner, nested Origami template. The inner template incorporates an individual person’s `name` into a short HTML fragment.
@@ -278,9 +277,9 @@ You can create an index page that links to these files using the ambient `@key` 
 
 ```console
 $ cat blogIndex.ori
-{{ @js/String samples/blogIndex.ori }}
+{{ @js/String samples/templates/blogIndex.ori }}
 $ ori blogIndex.ori/
-{{ samples/blogIndex.ori/ }}
+{{ samples/templates/blogIndex.ori/ }}
 ```
 
 ## How Origami templates work

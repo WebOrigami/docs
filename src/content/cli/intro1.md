@@ -34,11 +34,11 @@ $ npx ori
 
 ## Unpack some files
 
-<span class="tutorialStep"></span> You can use ori itself to copy sample files used in this introduction into a new local folder called `samples`:
+<span class="tutorialStep"></span> You can use ori itself to copy sample files used in this introduction into a new local folder called `samples`. Then change to the `samples/cli` directory.
 
 ```console
-$ ori @copy https://graphorigami.org/samples/cli.yaml, @files/samples
-$ cd samples
+$ ori @copy graphhttps://graphorigami.org/samples/, @files/samples
+$ cd samples/cli
 $ ls
 double.js      letters.json   sample.txt     text.js
 greet.js       package.json   site.yaml      uppercase.js

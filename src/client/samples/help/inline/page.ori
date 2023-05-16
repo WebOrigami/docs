@@ -1,5 +1,0 @@
-<html>
-  <body>
-{{ fragment.html }}
-  </body>
-</html>

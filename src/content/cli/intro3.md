@@ -11,13 +11,13 @@ ori is especially good at dealing with graphs. More specifically, ori is designe
 
 ```console
 $ ori greetings.yaml
-{{ client/samples/cli.yaml/greetings.yaml }}
+{{ samples/cli/greetings.yaml }}
 ```
 
 ori can interpret this file as the following graph:
 
 <figure>
-{{ @svg client/samples/cli.yaml/greetings.yaml }}
+{{ @svg samples/cli/greetings.yaml }}
 </figure>
 
 The YAML data format shown above can be easier for people to read than formats like JSON. If you prefer, you can just as easily use the ubiquitous JSON format.
@@ -64,16 +64,16 @@ HELLO, ALICE.
 
 ```console
 $ ori greetings.yaml
-{{ client/samples/cli.yaml/greetings.yaml }}$ ori @json greetings.yaml
-{{ @json client/samples/cli.yaml/greetings.yaml }}
+{{ samples/cli/greetings.yaml }}$ ori @json greetings.yaml
+{{ @json samples/cli/greetings.yaml }}
 ```
 
 <span class="tutorialStep"></span> In the other direction, you can render a JSON file as YAML with the [@yaml](/language/@yaml.html) function:
 
 ```console
 $ ori letters.json
-{{ client/samples/cli.yaml/letters.json }}$ ori @yaml letters.json
-{{ @yaml client/samples/cli.yaml/letters.json }}
+{{ samples/cli/letters.json }}$ ori @yaml letters.json
+{{ @yaml samples/cli/letters.json }}
 ```
 
 The `@json` function isn't a specific YAML-to-JSON transformation; it can transform any graph to JSON text. Similarly, `@yaml` can transform any graph to YAML text.
