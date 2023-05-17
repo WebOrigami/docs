@@ -34,7 +34,7 @@ When you invoke a template as a function, you can refer to the overall input obj
 
 ```console
 $ cat heading.ori
-{{ @js/String samples/templates/heading.ori }}$ ori "heading.ori('Contact')"
+{{ samples/templates/heading.ori }}$ ori "heading.ori('Contact')"
 {{ samples/templates/heading.ori('Contact') }}
 ```
 
@@ -46,8 +46,8 @@ You can reference local files in Origami expressions. Depending on the situation
 
 ```console
 $ cat fileRef.ori
-{{ @js/String samples/templates/fileRef.ori }}$ cat copyright.txt
-{{ @js/String samples/templates/copyright.txt }}
+{{ samples/templates/fileRef.ori }}$ cat copyright.txt
+{{ samples/templates/copyright.txt }}
 $ ori "fileRef.ori()"
 {{ @scope/invoke samples/templates, samples/templates/fileRef.ori }}
 ```
@@ -67,7 +67,7 @@ If a template expression results in a graph such as a folder or hierarchical dat
 $ cat greetings.yaml
 {{ samples/templates/greetings.yaml }}
 $ cat flatten.ori
-{{ @js/String samples/templates/flatten.ori }}
+{{ samples/templates/flatten.ori }}
 $ ori flatten.ori/
 {{ @scope/invoke samples/templates, samples/templates/flatten.ori }}
 ```
@@ -85,7 +85,7 @@ You can then reference that `fragments` folder in a template to concatenate all 
 
 ```console
 $ cat concat.ori
-{{ @js/String samples/templates/concat.ori }}
+{{ samples/templates/concat.ori }}
 $ ori concat.ori/
 {{ @scope/invoke samples/templates, samples/templates/concat.ori }}
 ```
@@ -98,8 +98,8 @@ For example, you can use this to inline resources such as stylesheets.
 
 ```console
 $ cat inline.html
-{{ @js/String samples/templates/inline.html }}$ cat inline.css
-{{ @js/String samples/templates/inline.css }}$ ori @inline inline.html
+{{ samples/templates/inline.html }}$ cat inline.css
+{{ samples/templates/inline.css }}$ ori @inline inline.html
 {{ @scope/invoke samples/templates, @inline, samples/templates/inline.html }}
 ```
 
@@ -120,7 +120,7 @@ $ cat teamData.yaml
     decided to take the plunge and start a business of my own.
 …
 $ cat teamLead.ori
-{{ @js/String samples/templates/teamLead.ori }}$ ori teamLead.ori/
+{{ samples/templates/teamLead.ori }}$ ori teamLead.ori/
 {{ @scope/invoke samples/templates, samples/templates/teamLead.ori }}
 ```
 
@@ -130,7 +130,7 @@ Since `https` and `http` URLs are valid Origami expressions, you can incorporate
 
 ```console
 $ cat net.ori
-{{ @js/String samples/templates/net.ori }}$ ori net.ori/
+{{ samples/templates/net.ori }}$ ori net.ori/
 This content came from graphorigami.org:
 {{ samples/templates/net.txt }}
 ```
@@ -139,7 +139,7 @@ This includes being able to traverse into data from the network. A [teamData.yam
 
 ```console
 $ cat netData.ori
-{{ @js/String samples/templates/netData.ori }}$ ori netData.ori/
+{{ samples/templates/netData.ori }}$ ori netData.ori/
 Bob lives in {{ samples/templates/teamData.yaml/1/location }}.
 ```
 
@@ -153,7 +153,7 @@ The first argument to `@if` is a condition that is evaluated. If the result is t
 
 ```console
 $ cat condition.ori
-{{ @js/String samples/templates/condition.ori }}
+{{ samples/templates/condition.ori }}
 $ ori “condition.ori({ rating: 3 })”
 {{ samples/templates/condition.ori({ rating: 3 }) }}
 $ ori “condition.ori({})”
@@ -177,18 +177,18 @@ Hello, WORLD!
 
 If the function you invoke is asynchronous, its result will be awaited before being incorporated into the text output.
 
-## Calling another template as a function
+## Call another template as a function
 
 One template can invoke another as a function. For example, if you create an overall site page template `page.ori`:
 
 ```
-{{ @js/String samples/templates/page.ori }}
+{{ samples/templates/page.ori }}
 ```
 
 An individual page template like `contact.ori` can invoke `page.ori` as a function:
 
 ```
-{{ @js/String samples/templates/contact.ori }}
+{{ samples/templates/contact.ori }}
 ```
 
 Evaluating this will embed the contact page content inside the overall site page template:
@@ -200,16 +200,25 @@ $ ori contact.ori/
 
 ## Front matter
 
-Both a template’s input document and the template itself can contain front matter in YAML or JSON format. The front matter values are added to the scope used to evaluate the template's expressions.
-
-The following example defines a `title` value as front matter and then references that value in multiple expressions. This makes it easy to update the title in a single place and have that change reflected everywhere.
+Both a template’s input document and the template itself can contain front matter in YAML or JSON format. The front matter is delineated with a leading and trailing line that contain only three hyphens (`---`), like so:
 
 ```console
 $ cat front.ori
+{{ @frontMatter/render samples/templates/front.ori }}
+```
 
-*** missing front matter ***
+Graph Origami tools like the [ori](/cli) CLI generally treat front matter for file formats like .md and .ori as metadata that is tracked separately from the main text content. For example, if you ask ori to display the file above, it shows only the body text:
 
-{{ @js/String samples/templates/front.ori }}
+```console
+$ ori front.ori
+{{ samples/templates/front.ori }}
+```
+
+This template defines a `title` value as front matter and then references that value in multiple expressions. This makes it easy to update the title in a single place and have that change reflected everywhere. The front matter values inside those lines are added to the scope used to evaluate the template's expressions, so the `{{ title }}` references in the template body will find the title value.
+
+Invoking this template performs the title substitutions:
+
+```console
 $ ori front.ori/
 {{ samples/templates/front.ori/ }}
 ```
@@ -220,10 +229,7 @@ Front matter can include Origami expressions via the `!ori` YAML tag, as discuss
 
 ```console
 $ cat blogPage.ori
-
-*** missing front matter ***
-
-{{ @js/String samples/templates/blogPost.ori }}
+{{ @frontMatter/render samples/templates/blogPost.ori }}
 $ ori blogPost.ori posts/post1.html
 {{ samples/templates/blogPost.ori samples/templates/posts/post1.html }}
 ```
@@ -263,7 +269,7 @@ It’s common to have a template generate some fragment of text for each value i
 $ cat teamData.yaml
 {{ samples/templates/teamData.yaml }}
 $ cat teamList.ori
-{{ @js/String samples/templates/teamList.ori }}
+{{ samples/templates/teamList.ori }}
 $ ori teamList.ori/
 {{ samples/templates/teamList.ori/ }}
 ```
@@ -310,7 +316,7 @@ You can create an index page that links to these files using the ambient `@key` 
 
 ```console
 $ cat blogIndex.ori
-{{ @js/String samples/templates/blogIndex.ori }}
+{{ samples/templates/blogIndex.ori }}
 $ ori blogIndex.ori/
 {{ samples/templates/blogIndex.ori/ }}
 ```
