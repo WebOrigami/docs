@@ -6,6 +6,7 @@ subtitle: Transform data to text
 Graph Origami templates let you convert turn data into HTML or other text documents through expressions embedded in text.
 
 - These templates work directly on a wide range of data types, including file system folders or network resources.
+- Templates have a very small number of fundamental features that can be combined to address a wide range of scenarios.
 - You can extend what's possible in a template expression in JavaScript with essentially no configuration.
 
 _You can use Graph Origami with other template systems, but the small degree of integration code required is currently beyond the scope of this documentation._
@@ -90,7 +91,7 @@ $ ori concat.ori/
 {{ @scope/invoke samples/templates, samples/templates/concat.ori }}
 ```
 
-## Inlining the results of expressions
+## Use template expressions in any file type
 
 It may be useful to embed Origami expressions inside other kinds of files, such as .html files. You can evaluate such expressions with the built-in [@inline](/language/@inline.html) function.
 
@@ -107,7 +108,7 @@ Here, the `inline.html` file is acting as an Origami template, but keeps the `.h
 
 If the input document contains any front matter (see below), @inline preserves this in the output.
 
-## Traversing into data
+## Traverse into data
 
 Inside a template, you can use slash-separated paths to traverse into data.
 
@@ -179,19 +180,50 @@ If the function you invoke is asynchronous, its result will be awaited before be
 
 ## Call another template as a function
 
-One template can invoke another as a function. For example, if you create an overall site page template `page.ori`:
+One template can invoke another as a function.
 
+We can define a template `stars.ori` as a component that displays a star rating:
+
+```console
+$ cat stars.ori
+{{ samples/templates/stars.ori }}
 ```
+
+This template repeats a ★ star character for the number of times defined in a `count` value somewhere in scope. For example, you can directly invoke and test this template, passing in a `count` value:
+
+```console
+$ ori "stars.ori({ count: 3 })"
+{{ samples/templates/stars.ori { count: 3 } }}
+```
+
+This `stars.ori` template defines a function that you can invoke inside expressions in other templates:
+
+```console
+$ cat review.ori
+{{ samples/templates/review.ori }}
+$ ori review.ori/
+{{ samples/templates/review.ori/ }}
+```
+
+This technique can let you define components in plain HTML and CSS.
+
+## Wrap one template with another
+
+Another application of invoking a template as a function is to wrap the output of one template inside another. For example, you can create an overall page template for a site called `page.ori`:
+
+```console
+$ cat page.ori
 {{ samples/templates/page.ori }}
 ```
 
-An individual page template like `contact.ori` can invoke `page.ori` as a function:
+A template for a specific type of page, like a `contact.ori` template for a Contact Us page, can invoke `page.ori` as a function:
 
-```
+```console
+$ cat contact.ori
 {{ samples/templates/contact.ori }}
 ```
 
-Evaluating this will embed the contact page content inside the overall site page template:
+Evaluating this embeds the contact page template, then passes its content to the overall site page template:
 
 ```console
 $ ori contact.ori/
@@ -200,21 +232,14 @@ $ ori contact.ori/
 
 ## Front matter
 
-Both a template’s input document and the template itself can contain front matter in YAML or JSON format. The front matter is delineated with a leading and trailing line that contain only three hyphens (`---`), like so:
+Both a template’s input document and the template itself can contain front matter in YAML or JSON format. The front matter is delineated with both a leading and trailing line of three hyphens (`---`), like so:
 
 ```console
 $ cat front.ori
-{{ @frontMatter/render samples/templates/front.ori }}
-```
-
-Graph Origami tools like the [ori](/cli) CLI generally treat front matter for file formats like .md and .ori as metadata that is tracked separately from the main text content. For example, if you ask ori to display the file above, it shows only the body text:
-
-```console
-$ ori front.ori
 {{ samples/templates/front.ori }}
 ```
 
-This template defines a `title` value as front matter and then references that value in multiple expressions. This makes it easy to update the title in a single place and have that change reflected everywhere. The front matter values inside those lines are added to the scope used to evaluate the template's expressions, so the `{{ title }}` references in the template body will find the title value.
+This template defines a `title` value as front matter and then references that value in multiple expressions. This makes it easy to update the title in a single place and have that change reflected everywhere. The front matter values are added to the scope used to evaluate the template's expressions, so the `\{\{title}}` references in the template body will find the title value.
 
 Invoking this template performs the title substitutions:
 
@@ -228,26 +253,44 @@ $ ori front.ori/
 Front matter can include Origami expressions via the `!ori` YAML tag, as discussed in [Origami expressions in YAML](/language/yaml.html). You can use this to calculate a value you want to reference multiple times in the template.
 
 ```console
-$ cat blogPage.ori
-{{ @frontMatter/render samples/templates/blogPost.ori }}
-$ ori blogPost.ori posts/post1.html
-{{ samples/templates/blogPost.ori samples/templates/posts/post1.html }}
+$ cat banner.ori
+{{ samples/templates/banner.ori }}
+$ ori banner.ori/
+{{ samples/templates/banner.ori/ }}
 ```
 
 ### Template and input front matter
 
 Both a template and an input document can define front matter. In cases where they both define the same key, the input's value for that key takes priority.
 
-You can use this to have a template define a default, fallback value for a given key, such as a default HTML page title.
+Among other things, you can use this to have a template define a default, fallback value for a given key. A blog post template can define a default `title`:
 
 ```console
+$ ori blogPost.ori
+{{ samples/templates/blogPost.ori }}
+```
+
+If a blog post defines a `title`, that title is preferred:
+
+```console
+$ cat posts/post1.html
+{{ samples/templates/posts/post1.html }}
+$ ori blogPost.ori posts/post1.html
+{{ samples/templates/blogPost.ori samples/templates/posts/post1.html }}
+```
+
+But if a post fails to define a `title`, the template's default `title` is used:
+
+```console
+$ cat posts/post2.html
+{{ samples/templates/posts/post2.html }}
 $ ori blogPost.ori posts/post2.html
 {{ samples/templates/blogPost.ori samples/templates/posts/post2.html }}
 ```
 
 ## Ambient properties available inside a template
 
-Inside a template, additional _ambient properties_ are added to the scope in which the template's expressions are evaluated. These are generally prefixed with `@` to avoid conflict with properties in your data.
+Inside a template, additional ambient properties are added to the scope in which the template's expressions are evaluated. These are generally prefixed with `@` to avoid conflict with properties in your data.
 
 - `@input`: the input object passed to the template; see [Reference input](#reference-input).
 - `@template`: a reference to properties of the current template; see below.
@@ -263,7 +306,8 @@ The `@template` property itself has the following sub-properties:
 
 ## Map graphs to text
 
-It’s common to have a template generate some fragment of text for each value in a graph: an array, a set, a folder, etc. In Origami templates, this is done by mapping the graph’s values to text with the built-in [@map/values](/language/@map.html#values) function.
+It’s common to have a template generate some fragment of text for each value in a graph: an array, a set, a folder, etc.
+You can handle such cases in Graph Origami templates by calling the built-in [@map/values](/language/@map.html#values) function to map a graph’s values to text.
 
 ```console
 $ cat teamData.yaml
@@ -301,8 +345,6 @@ Per the discussion in [Reference graphs](#Reference-graphs), the template concat
 
 ### Reference the key for a value
 
-**_ Define title for all posts? What about showing default values? _**
-
 When mapping a graph (like a folder) to text, you can obtain the key (like a file name) via the ambient `@key` property.
 
 Suppose you have a folder holding some files:
@@ -317,6 +359,13 @@ You can create an index page that links to these files using the ambient `@key` 
 ```console
 $ cat blogIndex.ori
 {{ samples/templates/blogIndex.ori }}
+```
+
+This index page template defines a default `title` property to use if a page omits a title; see [template and input front matter](#template-and-input-front-matter) above.
+
+Evaluating this template produces a list of links to each post, with each `href` attribute referencing the appropriate file:
+
+```console
 $ ori blogIndex.ori/
 {{ samples/templates/blogIndex.ori/ }}
 ```

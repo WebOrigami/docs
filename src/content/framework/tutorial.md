@@ -246,7 +246,7 @@ By putting `title` at the top level, the formulas inside `public` can reference 
 
 ## Define a template that creates text
 
-Instead of creating HTML directly in JavaScript, you can use one of many JavaScript-based template systems. For this tutorial, you'll use the template system built into Graph Origami.
+Instead of creating HTML directly in JavaScript, you can use one of many JavaScript-based template systems. For this tutorial, you'll use the [template system built into Graph Origami](templates.html).
 
 **Example:** Graph Origami templates, like many template systems, let you insert data into boilerplate text using placeholders marked with double curly braces `\{\{` `}}`. If there's a piece of data called `name`, you could insert it into a paragraph like:
 
