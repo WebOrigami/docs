@@ -27,11 +27,11 @@ ori itself natively understands several types of explorable graphs:
 - JSON
 - YAML
 - JavaScript objects
-- JavaScript arrays
+- JavaScript Array, Map, or Set instances
 - JavaScript functions
 - folder trees
 - web sites (some operations require support for [.keys.json](/ori/.keys.json) files, discussed later)
-- any object that implements the [Explorable](/core/explorable.html) interface
+- any object that implements the [Explorable interface](/core/interface.html)
 
 ## Extract specific values out of a graph
 

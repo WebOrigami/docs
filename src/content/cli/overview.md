@@ -4,6 +4,9 @@ title: Overview
 
 _reference CLI samples folder_
 
+call functions
+traverse paths
+
 ori evaluates [expressions] and displays the result in the terminal
 
 - a string in single quotes, or a number

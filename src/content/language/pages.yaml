@@ -6,7 +6,7 @@
   text: Scope
 - href: yaml.html
   text: In YAML
-- text: "Built-ins:"
+- text: "<br>Built-ins:"
 - href: "@builtins.html"
   text: "@builtins"
 - href: "@cache.html"

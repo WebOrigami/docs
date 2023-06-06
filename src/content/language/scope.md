@@ -85,19 +85,7 @@ As with block scoping in programming languages (see below), in graph scoping the
 - For example, a formula in `site.graph` could obtain the project's name via `package.json/name`, because `package.json` is in scope.
 - If a formula in `site.graph` wants to reference the image `image1.jpg`, it will have to do that as `assets/image1.jpg`, because `assets` is in scope but `image1.jpg` isn't.
 
-### Project structure determines what's public
-
-Graph scope lets you use the file system structure of your project as one way to configure what's available to your own code as well as what's available to end users.
-
-You can take advantage of graph scope to hide internal details. If the little project defined above publishes the virtual contents of `site.graph`, a user will be able to browse to `index.html` — but will not be able to see `greet.js` or `ReadMe.md`.
-
-### Extend the language by taking advantage of scope
-
-Most frameworks let you call custom functions like `greet` so that you can define new features beyond those built into the framework. Some frameworks does this with implicit heuristics that guess what a name should refer to. This can be easy to start with, but can become problematic as you fight with the framework’s built-in rules. Other frameworks use explicit configuration: you write code or create configuration files to define what specific names should refer to. This gives you more control, but is harder to get started with and can be tedious.
-
-The graph scope system described here attempts to balance simplicity and flexibility. You can use this system to make new functions available to any part of Graph Origami — the ori CLI, the framework's [template system](/framework/templates.html), or the framework's `.graph` files.
-
-## Comparison with block scope in programming languages
+### Like block scope in programming languages
 
 Graphe scope in Graph Origami is inspired by [block scope](<https://en.wikipedia.org/wiki/Scope_(computer_science)#Block_scope>) in traditional, block-oriented programming languages like JavaScript. Consider the following JavaScript sample:
 
@@ -124,11 +112,25 @@ The line that defines `newTotal` can "see" the following variables in scope, eac
 - `sumSquares` and `power` are defined at the module's top level
 - `Math` and other global objects are defined by the language and the environment
 
-Block scoping is both automatic and precisely defined, so it's not too hard to learn. Given some code to read, programmers generally can correctly predict what is or isn't in scope.
+Scope in Graph Origami works the same way, but instead of working up a hierarchy of lexical programming blocks, Graph Origami scope works its way up a hierarchy of folders and data.
 
-## Define a project root
+## Extend the language by leveraging scope
 
-By default, Graph Origami tools like the [ori](/cli) command-line interface (CLI) search in the current directory. If you ask ori to evaluate an expression that includes a deeper file system path, it will search from that deeper location up to the current directory.
+You can use this system to make new functions available to any part of Graph Origami — the ori CLI, the framework's [template system](/framework/templates.html), `.graph` files, or [expressions in YAML files](yaml.html). All you need to do is make a JavaScript file available somewhere in scope.
+
+In the example above, placing a file like `greet.js` in the same folder as the `site.graph` file makes the `greet` function available to expressions in `site.graph`.
+
+## Determine what's public with project structure
+
+Graph scope lets you use the file system structure of your project as one way to configure what's available to your own code as well as what's available to end users.
+
+You can take advantage of graph scope to hide internal details. If the sample project above publishes the contents of `site.graph`, a user will be able to browse to `index.html` — but will not be able to see `greet.js` or `ReadMe.md`.
+
+## Default scope
+
+By default, Graph Origami tools like the [ori](/cli) command-line interface (CLI) search in the current directory, then the collection of built-in functions.
+
+If you ask ori to evaluate an expression that includes a deeper file system path, it will search from that deeper location up to the current directory.
 
 To use that same folder tree as an example:
 
@@ -158,9 +160,9 @@ $ ori src/site.graph/index.html
 
 This also works, because Graph Origami works from the graph defining `index.html` up to the current folder.
 
-### An example that doesn't work
+## Define a project root with ori.config.js
 
-Let's consider what would happen if you moved `greet.js` from the `src` folder to the project root:
+Let's consider what would happen in the above project if you moved `greet.js` from the `src` folder to the project root:
 
 ```
 greet.js
@@ -186,9 +188,7 @@ $ ori site.graph/index.html
 
 In this situation, `greet.js` is _above_ the current folder (`src`), so it's out of scope.
 
-### Define a project root with ori.config.js
-
-You can address the above situation by defining a file called `ori.config.js` at the root level of your project. This configuration file has two roles: 1) it marks the root of your project, and 2) it defines the project's base scope.
+You can fix this by defining a file called `ori.config.js` at the root level of your project. This configuration file has two roles: 1) it marks the root of your project, and 2) it defines the project's base scope.
 
 The simplest definition of `ori.config.js` is to export the Graph Origami built-in functions:
 
