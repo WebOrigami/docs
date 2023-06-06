@@ -297,6 +297,22 @@ nav a:hover {
 }
 
 /*
+ * Code
+ */
+.hljs {
+  background: inherit;
+  color: inherit;
+}
+
+code.hljs {
+  padding: 0;
+}
+
+pre code.hljs {
+  padding: 0;
+}
+
+/*
  * Architecture block diagram
  */
 .blocks {
