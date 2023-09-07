@@ -1,4 +1,4 @@
-import { ExplorableGraph } from "@graphorigami/origami";
+import { GraphHelpers } from "@graphorigami/origami";
 
 /**
  * Expose keys.json (no initial dot) for Netlify.
@@ -10,7 +10,7 @@ import { ExplorableGraph } from "@graphorigami/origami";
  * be available).
  */
 export default async function netlify(variant) {
-  const graph = ExplorableGraph.from(variant);
+  const graph = GraphHelpers.from(variant);
   return {
     async get(key) {
       if (key === "keys.json") {
@@ -18,7 +18,7 @@ export default async function netlify(variant) {
         return await this.get(".keys.json");
       }
       const value = await graph.get(key);
-      return ExplorableGraph.isExplorable(value) ? netlify(value) : value;
+      return GraphHelpers.isAsyncDictionary(value) ? netlify(value) : value;
     },
 
     async keys() {

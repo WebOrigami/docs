@@ -1,9 +1,9 @@
 import {
-  config,
-  ExplorableGraph,
-  ObjectGraph,
+  GraphHelpers,
   MetaTransform,
+  ObjectGraph,
   StringWithGraph,
+  config,
 } from "@graphorigami/origami";
 import assert from "assert/strict";
 
@@ -11,8 +11,8 @@ export default async function (variant) {
   if (!variant) {
     return undefined;
   }
-  const graph = ExplorableGraph.from(variant);
-  const obj = await ExplorableGraph.plain(graph);
+  const graph = GraphHelpers.from(variant);
+  const obj = await GraphHelpers.plain(graph);
   const test = new (MetaTransform(ObjectGraph))(obj);
   test.parent = this?.graph ?? (await config());
   const description = await test.get("description");
@@ -33,7 +33,7 @@ export default async function (variant) {
 async function plainResult(result) {
   return result instanceof StringWithGraph
     ? result.toString()
-    : ExplorableGraph.isExplorable(result)
-    ? await ExplorableGraph.plain(result)
+    : GraphHelpers.isAsyncDictionary(result)
+    ? await GraphHelpers.plain(result)
     : result;
 }

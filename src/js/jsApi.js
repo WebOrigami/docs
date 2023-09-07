@@ -1,5 +1,5 @@
 import {
-  ExplorableGraph,
+  GraphHelpers,
   isPlainObject,
   MapExtensionsGraph,
 } from "@graphorigami/origami";
@@ -12,8 +12,8 @@ import ts from "typescript";
  * from both the documentation comments and type signatures.
  */
 export default async function jsDocs(variant) {
-  const graph = ExplorableGraph.from(variant);
-  const plain = await ExplorableGraph.plain(graph);
+  const graph = GraphHelpers.from(variant);
+  const plain = await GraphHelpers.plain(graph);
 
   const paths = sourceFilePaths(plain);
   const host = await virtualHost(plain);
@@ -93,7 +93,7 @@ class DocsGraph {
 
   async get(key) {
     let value = await this.graph.get(key);
-    if (ExplorableGraph.isExplorable(value)) {
+    if (GraphHelpers.isAsyncDictionary(value)) {
       value = Reflect.construct(this.constructor, [
         value,
         this.program,
