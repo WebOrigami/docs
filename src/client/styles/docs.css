@@ -117,7 +117,8 @@ header h1 {
   margin-top: 0;
 }
 
-img {
+img,
+iframe {
   max-width: 100%;
 }
 

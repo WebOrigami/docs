@@ -25,6 +25,8 @@ Every part of the final result is present at the start; the sequence of folds tr
 
 In the same way, Graph Origami lets you take content you write and transform it step-by-step into something to share. The system is intended for designers, developers, and content authors.
 
+<iframe style="aspect-ratio: 16/9; max-width: 100%; width: 560px;" src="https://www.youtube.com/embed/H5qu0sHLbi0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 Graph Origami is built in a series of layers:
 
 - At the lowest level, there's a conceptual programming [pattern](/pattern/) for representing a wide variety of data types as graphs that can be easily transformed. There's no code at this level; you can use the ideas without depending on another project.
