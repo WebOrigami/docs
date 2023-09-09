@@ -35,4 +35,4 @@ Graph Origami is built in a series of layers:
 - There is also a companion [command-line interface](/cli/) (CLI) for using the framework in a command terminal. The CLI is also useful as a general tool in its own right for working with JavaScript in the shell.
 - Both the framework and CLI make use of a small [expression language](/language/) that lets you concisely describe transformations of data using formulas similar to those in a spreadsheet.
 
-You can work at whatever layer you prefer.
+These layers are independently useful; you can work at whatever layer you prefer.

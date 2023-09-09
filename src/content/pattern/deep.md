@@ -5,11 +5,11 @@ functions: !ori js/codeFunctions(pattern-intro/deep/json.js)
 
 Until now, the "graphs" we've been working with are flat lists. Now that we've cleanly isolated our graph wrappers into classes, let's extend the `ObjectGraph` and `FilesGraph` classes to support arbitrarily deep trees.
 
-As mentioned earlier, you can think of an explorable graph as a tree of promises. If you have a deep `FilesGraph` (below), you are essentially holding a tree of a promises for all the files in the corresponding file system hierarchy.
+As mentioned earlier, you can think of an async graph as a tree of promises. If you have a deep `FilesGraph` (below), you are essentially holding a tree of a promises for all the files in the corresponding file system hierarchy.
 
 ## Deep object graphs
 
-We rewrite the `get` implementation in `ObjectGraph.js`, adding a simplistic check to see whether the value we're passing back is a plain JavaScript object. If it is a plain object, but is not already explorable, we'll wrap it in its own `ObjectGraph` before returning it.
+We rewrite the `get` implementation in `ObjectGraph.js`, adding a simplistic check to see whether the value we're passing back is a plain JavaScript object. If it is a plain object, we'll wrap it in its own `ObjectGraph` before returning it.
 
 ```{{'js'}}
 /* src/deep/ObjectGraph.js */
@@ -49,11 +49,11 @@ This lets us support arbitrarily deep subfolders.
 
 By itself, the `FunctionGraph` class doesn't need to be updated to support deep function-backed graphs. Instead, the function that's being wrapped would need to be updated.
 
-For this tutorial, we'll leave the sample function in `fn.js` alone, but if we wanted it to define a deep graph, for certain keys it could return values that are explorable graphs of any type.
+For this tutorial, we'll leave the sample function in `fn.js` alone, but if we wanted it to define a deep graph, for certain keys it could return values that are async graphs of any type.
 
 ## Converting a deep graph to a plain object
 
-Finally, we need to update our `json` utility. That code has a function called `plain` that resolves an explorable graph to a plain JavaScript object. To handle deep graphs, we make the same `isExplorable` check that the transform above does to decide whether to recurse into an explorable value.
+Finally, we need to update our `json` utility. That code has a function called `plain` that resolves an async graph to a plain JavaScript object. To handle deep graphs, we make the same `isAsyncDictionary` check that the transform above does to decide whether to recurse into a subgraph.
 
 ```{{'js'}}
 /* Inside src/deep/json.js */
@@ -71,7 +71,7 @@ $ node json files.js
 
 ## Deep transforms
 
-Our transformation that converts markdown to HTML needs to be updated too. After its `get` implementation receives a value from the inner graph, it checks to see whether that value is itself explorable. If it is, the function applies itself to that explorable value before returning it.
+Our transformation that converts markdown to HTML needs to be updated too. After its `get` implementation receives a value from the inner graph, it checks to see whether that value is itself a subgraph. If it is, the function applies itself to that subgraph before returning it.
 
 ```{{'js'}}
 /* src/deep/transform.js */

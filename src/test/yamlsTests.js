@@ -1,8 +1,7 @@
-import { ExplorableGraph } from "@graphorigami/origami";
 import YAML from "yaml";
 
 export default async function yamlsTests(variant) {
-  const graph = ExplorableGraph.from(variant);
+  const graph = GraphHelpers.from(variant);
 
   let fixture = null;
   const tests = [];

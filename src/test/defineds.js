@@ -1,11 +1,9 @@
-import { ExplorableGraph } from "@graphorigami/origami";
-
 export default async function defineds(variant) {
   variant = variant ?? (await this.get("@defaultGraph"));
   if (variant === undefined) {
     return undefined;
   }
-  return ExplorableGraph.mapReduce(variant, null, (values, keys) => {
+  return GraphHelpers.mapReduce(variant, null, (values, keys) => {
     const result = {};
     let someValuesExist = false;
     for (let i = 0; i < keys.length; i++) {

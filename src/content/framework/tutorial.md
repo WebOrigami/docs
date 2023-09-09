@@ -865,7 +865,7 @@ This concludes the Graph Origami framework tutorial. You can continue exploring 
 - As you were creating the About Us site, the [Origami command-line interface](/cli) and its included web server was working behind the scenes to let you view the site during development and to copy the virtual files to real files.
 - The [Origami expression language](/language) you've been using to write formulas and template expressions has additional features not covered in this tutorial.
 - The Graph Origami framework is built on a [core library](/core) that can let you do everything that you did here with formulas using JavaScript instead. This can be useful in more complex projects, or if you prefer more direct control.
-- You can implement sites like this About Us site completely from scratch using the [explorable graph pattern](/pattern) and no library or framework at all. That approach may appeal to people who want to work as close to the metal as possible, and that pattern is also a useful reference if you want to understand how the Graph Origami framework works under the hood.
+- You can implement sites like this About Us site completely from scratch using the [async graph pattern](/pattern) and no library or framework at all. That approach may appeal to people who want to work as close to the metal as possible, and that pattern is also a useful reference if you want to understand how the Graph Origami framework works under the hood.
 
 &nbsp;
 

@@ -2,7 +2,7 @@
 title: "@graph"
 ---
 
-This collection of functions operates on explorable graphs. Functions that accept a `graph` parameter will accept any [graph variant](/core/variants.html).
+This collection of functions operates on async graphs. Functions that accept a `graph` parameter will accept any [graph variant](/core/variants.html).
 
 <a name="concat"></a>
 
@@ -56,7 +56,7 @@ Returns the first value in `graph`.
 
 ## @graph/from(variant)
 
-Converts any [graph variant](/core/variants.html) into an explorable graph.
+Converts any [graph variant](/core/variants.html) into an async graph.
 
 <a name="inners"></a>
 
@@ -114,7 +114,7 @@ The merge operation is shallow; for a deep merge operation, see [mergeDeep()](#m
 
 ## @graph/mergeDeep(...graphs)
 
-Like [merge()](#merge), but performs a deep merge: if multiple graphs define values for the same key, and those values are themselves explorable graphs, then those values themselves will be merged.
+Like [merge()](#merge), but performs a deep merge: if multiple graphs define values for the same key, and those values are themselves async graphs, then those values themselves will be merged.
 
 <a name="nextKey"></a>
 
@@ -151,7 +151,7 @@ If the graph has a `parent` property, this returns the value of that property.
 
 ## @graph/plain([graph])
 
-Converts an asynchronous explorable graph into a synchronous plain JavaScript object. The supplied argument can be any [graph variant](/core/variants.html) such as a JSON/YAML file, file system folder, etc. If omitted, `plain` converts the current graph — in the command line, this will be the current folder — to a plain JavaScript object.
+Converts an asynchronous async graph into a synchronous plain JavaScript object. The supplied argument can be any [graph variant](/core/variants.html) such as a JSON/YAML file, file system folder, etc. If omitted, `plain` converts the current graph — in the command line, this will be the current folder — to a plain JavaScript object.
 
 A common use for `plain` is to convert a graph into a form that you can pass to any function that works with plain JavaScript objects.
 
@@ -184,7 +184,7 @@ a: The letter A
 
 Recursively applies updates from the `source` graph to the `target` graph.
 
-The `target` graph must support the [`set`](/core/set.html) method. The only types of graphs defined in the ExplorableGraph [core library](/core) that provides such support are [ObjectGraph](/core/ObjectGraph.html) and [FilesGraph](/core/FilesGraph.html).
+The `target` graph must support the [`set`](/core/set.html) method. The only types of graphs defined in the GraphOrigami [core library](/core) that provides such support are [ObjectGraph](/core/ObjectGraph.html) and [FilesGraph](/core/FilesGraph.html).
 
 <a name="shuffle"></a>
 

@@ -2,7 +2,7 @@
 title: Data representations
 ---
 
-Let's use the explorable graph pattern to tackle a small, common development task:
+Let's use the async graph pattern to tackle a small, common development task:
 
 > _Our team writes site content in markdown format since that's friendlier than raw HTML. We need to convert a folder of markdown files to HTML pages so we can deploy them on our site._
 
@@ -143,4 +143,4 @@ We can start with the simplest possible data representation and, if that suffice
 
 &nbsp;
 
-Next: [The Explorable graph interface](interface.html) »
+Next: [The async graph interface](interface.html) »

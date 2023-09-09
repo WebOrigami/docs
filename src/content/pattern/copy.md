@@ -20,7 +20,7 @@ For the last step, we could write the files out directly using a file system API
 
 ## Setting graph values
 
-Let's extend our Explorable interface with an optional method `set(key, value)`. This updates the graph so that getting the corresponding `key` will now return the new `value`. We can supporting deleting a key/value from the graph by declaring that, if `value` is undefined, the key and its corresponding value will be removed from the graph.
+Let's extend our AsyncDictionary interface with an optional method `set(key, value)`. This updates the graph so that getting the corresponding `key` will now return the new `value`. We can supporting deleting a key/value from the graph by declaring that, if `value` is undefined, the key and its corresponding value will be removed from the graph.
 
 This is straightforward for our object-based graph:
 
@@ -65,11 +65,11 @@ And a fair bit of work for our file system-based graph:
       }
     }
 
-    const isExplorable =
+    const isAsyncDictionary =
       typeof value?.get === "function" &&
       typeof value?.keys === "function";
 
-    if (isExplorable) {
+    if (isAsyncDictionary) {
       // Write out the contents of the value graph to the destination.
       const destGraph = key === undefined ? this : new FilesGraph(destPath);
       for await (const subKey of value) {
@@ -87,11 +87,11 @@ And a fair bit of work for our file system-based graph:
 
 Half the work here involves handling the case where we want to delete a file or subfolder by passing in an `undefined` value.
 
-The other complex case we handle is when the value itself is explorable, and we have to recursively write out that value as a set of files or folders. We didn't have to handle that case specially for `ObjectGraph`, as it's perfectly fine for an `ObjectGraph` instance to have a value which is an explorable graph.
+The other complex case we handle is when the value itself is an async graph node, and we have to recursively write out that value as a set of files or folders. We didn't have to handle that case specially for `ObjectGraph`, as it's perfectly fine for an `ObjectGraph` instance to have a value which is an async graph.
 
 The file system is not so flexible. The good news is that all this complexity can live inside of the `FilesGraph` class — from the outside, we can just call `set` and trust that the file system will be updated as expected.
 
-This leads to another way to think about explorable graphs: explorable graphs are software adapters or drivers for any real or virtual hierarchical storage.
+This leads to another way to think about async graphs: async graphs are software adapters or drivers for any real or virtual hierarchical storage.
 
 ## setDeep
 
@@ -168,9 +168,9 @@ We've now solved our original problem: we've created a system in which our team 
 
 In this tutorial, we're using real markdown files to create virtual HTML files and then save those as real HTML files. But this type of build pipeline doesn't really have anything to do with the web specifically — HTML pages are just a convenient and common example of content that can be created this way.
 
-You could apply this same explorable graph pattern in build pipelines for many other kinds of artifacts: data sets, PDF documents, application binaries, etc. The pattern can benefit any situation in which you are transforming graphs of values.
+You could apply this same async graph pattern in build pipelines for many other kinds of artifacts: data sets, PDF documents, application binaries, etc. The pattern can benefit any situation in which you are transforming graphs of values.
 
-- In some cases, the source information will be an obvious graph. In others, you might start with a single block of content (a document, say) and parse that to construct a virtual graph. Or you might wrap a data set to interpret it as an explorable graph.
+- In some cases, the source information will be an obvious graph. In others, you might start with a single block of content (a document, say) and parse that to construct a virtual graph. Or you might wrap a data set to interpret it as an async graph.
 - You can then apply multiple transforms to that source graph to create additional virtual graphs, each one step closer to your desired result.
 - Finally, you can save the last virtual graph in some persistent form. That might be a hierarchical set of files as in the example above, or you might reduce the graph in some fashion to a single result, perhaps a single file.
 

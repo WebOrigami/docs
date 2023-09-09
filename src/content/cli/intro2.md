@@ -73,7 +73,7 @@ Hello, Alice.
 
 ori accepts strings in single quotes or double quotes. In this case, the double quotes above are parsed by the _shell_, and are necessary because the `bash` shell shown here would otherwise prevent ori from seeing the single quotes.
 
-<span class="tutorialStep"></span> In the explorable graph paradigm discussed later, any function can be treated like a graph, and vice versa. This means you can use path syntax as a convenient alternative to specify a string argument:
+<span class="tutorialStep"></span> In the async graph paradigm discussed later, any function can be treated like a graph, and vice versa. This means you can use path syntax as a convenient alternative to specify a string argument:
 
 ```console
 $ ori greet/Alice

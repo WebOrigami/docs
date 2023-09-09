@@ -1,6 +1,6 @@
 ---
 title: FunctionGraph
-subtitle: Wraps a function and a domain as an explorable graph
+subtitle: Wraps a function and a domain as an async graph
 ---
 
 ## Usage
@@ -8,7 +8,7 @@ subtitle: Wraps a function and a domain as an explorable graph
 ```js
 import { FunctionGraph } from "@graphorigami/origami";
 
-// Wrap an object to create an explorable graph.
+// Wrap an object to create an async graph.
 const graph = new FunctionGraph({
   (key) => `Hello, ${key}.`,
   ["Alice", "Bob", "Carol"]
@@ -24,7 +24,7 @@ Bob: Hello, Bob.
 Carol: Hello, Carol.
 ```
 
-A rough implementation of the core interface methods in the `FunctionGraph` [implementation](https://github.com/GraphOrigami/explorable/blob/main/src/core/FunctionGraph.js) are:
+A rough implementation of the core interface methods in `FunctionGraph` is:
 
 ```js
 // Rough implementation
@@ -46,7 +46,7 @@ class FunctionGraph {
 }
 ```
 
-Unlike explorable classes like [ObjectGraph](ObjectGraph.html), an `FunctionGraph` can often accept keys which it does not make public in its `keys` iterator. The sample `FunctionGraph` defined above exposes only three keys ("Alice", "Bob", "Carol"), but will actually accept any key.
+Unlike async graph classes like [ObjectGraph](ObjectGraph.html), an `FunctionGraph` can often accept keys which it does not make public in its `keys` iterator. The sample `FunctionGraph` defined above exposes only three keys ("Alice", "Bob", "Carol"), but will actually accept any key.
 
 ```console
 $ ori @graph/keys function

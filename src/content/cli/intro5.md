@@ -74,7 +74,7 @@ $ ori "@serve @map/values greetings.yaml, template"
 Server running at http://localhost:5000
 ```
 
-You can browse to one of the defined pages like http://localhost:5000/Alice. You'll see "Hello, Alice." rendered in HTML. Due to the lazy nature of explorable graphs and `map`, that rendering work is only done on request.
+You can browse to one of the defined pages like http://localhost:5000/Alice. You'll see "Hello, Alice." rendered in HTML. Due to the lazy nature of async graphs and `map`, that rendering work is only done on request.
 
 ## Transforming data into static files and then serving
 
@@ -97,7 +97,7 @@ You can perform a `copy` operation like the one in this example in preparation f
 
 ## Inspect a live web site
 
-<span class="tutorialStep"></span> The web site you're reading now supports viewing its contents as an explorable graph, so you can reference it directly in ori. For example, this site includes a route [/samples/greetings/](/samples/greetings/). You can pass that URL to ori with the custom [graphhttps:](/language/@graphHttps.html) protocol to treat that route as an explorable graph, and display all the files at that route:
+<span class="tutorialStep"></span> The web site you're reading now supports viewing its contents as an async graph, so you can reference it directly in ori. For example, this site includes a route [/samples/greetings/](/samples/greetings/). You can pass that URL to ori with the custom [graphhttps:](/language/@graphHttps.html) protocol to treat that route as an async graph, and display all the files at that route:
 
 ```console
 $ ori graphhttps://graphorigami.org/samples/greetings/
@@ -126,7 +126,7 @@ Making the full contents of a site more freely available might be concerning to 
 
 ## Copy a live web site to local files
 
-<span class="tutorialStep"></span> You can also use ori to copy an explorable web route to local files:
+<span class="tutorialStep"></span> You can also use ori to copy a website as an async graph to local files:
 
 ```console
 $ ori @copy graphhttps://graphorigami.org/samples/greetings/, @files/snapshot

@@ -48,32 +48,32 @@ The `get` method looks in each of the graphs in turn, returning the first define
 
 ```js
   async get(key) {
-    const explorableValues = [];
+    const subgraphs = [];
     for (const graph of this.graphs) {
       const value = await graph.get(key);
 
-      const isExplorable =
+      const isAsyncDictionary =
         typeof value?.get === "function" &&
         typeof value?.keys === "function";
 
       if (value !== undefined) {
-        if (isExplorable) {
-          explorableValues.push(value);
+        if (isAsyncDictionary) {
+          subgraphs.push(value);
         } else {
           return value;
         }
       }
     }
 
-    return explorableValues.length === 0
+    return subgraphs.length === 0
       ? undefined
-      : explorableValues.length === 1
-      ? explorableValues[0]
-      : new this.constructor(...explorableValues);
+      : subgraphs.length === 1
+      ? subgraphs[0]
+      : new this.constructor(...subgraphs);
   }
 ```
 
-We also take care to handle the case where multiple graphs define explorable values for the same key. In that case, we collect the explorable values and wrap them in a new `MergeGraph` instance. This implements a deep merge operation.
+We also take care to handle the case where multiple graphs define async subgraphs for the same key. In that case, we collect the subgraphs and wrap them in a new `MergeGraph` instance. This implements a deep merge operation.
 
 ## Use MergeGraph to define the site
 

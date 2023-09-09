@@ -2,7 +2,7 @@
 title: Transform a graph
 ---
 
-In the last step, we defined an in-memory JavaScript object to hold the set of markdown content we want to convert to HTML. We wrapped the object in the Explorable graph interface so that other code can access that content as an abstract graph, without the need to know specifically how and where that content is stored.
+In the last step, we defined an in-memory JavaScript object to hold the set of markdown content we want to convert to HTML. We wrapped the object in the async graph interface so that other code can access that content as an abstract graph, without the need to know specifically how and where that content is stored.
 
 With that in place, we can now write code to transform the graph of markdown into a corresponding graph of HTML.
 
@@ -25,7 +25,7 @@ The markdown graph is "real", in the sense that it is persistently stored in som
 
 ## Rough in the transformation
 
-The transformation will be a function that accepts an explorable graph of markdown and returns a new explorable graph of HTML.
+The transformation will be a function that accepts an async graph of markdown and returns a new async graph of HTML.
 
 ```js
 /* src/flat/transform.js */

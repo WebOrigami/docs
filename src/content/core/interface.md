@@ -1,25 +1,25 @@
 ---
-title: The Explorable interface
+title: The AsyncDictionary interface
 ---
 
-The `Explorable` interface is a simple and flexible way to represent a wide variety of data types as graphs.
+The `AsyncDictionary` interface is a simple and flexible way to represent a wide variety of data types as graphs.
 
-## Explorable graphs
+## Async dictionaries and async graphs
 
-Specifically, the graphs handled by the `Explorable` are said to be _explorable_ graphs, which means:
+The nodes in an async graph are called async dictionaries.
 
-- You can ask a node in the graph for its _keys_.
+- You can ask an async dictionary for its _keys_.
 - With a key, you can ask a node to give you the corresponding _value_ associated with that key.
 - The value may be another node in the graph, or the value may be any other type of JavaScript data.
 - The set of keys you get back may not be complete. That is, the node may have keys that it can handle that it chooses _not_ to return in the set of keys it will give you.
 - The node may (or may not) allow you set the value associated with a given key.
 - All these node operations — obtaining its keys, getting the value for a given key, and optionally setting the value for a given key — may be asynchronous.
 
-A useful way to think about an explorable graph is that it is a "lazy dictionary". Such a construct is sufficiently flexible to encompass many types of data.
+Such a construct is sufficiently flexible to encompass many types of data.
 
-## Explorable interface definition
+## AsyncDictionary interface definition
 
-JavaScript does not have a first-class representation of interfaces, but a graph node supporting the `Explorable` interface looks like this:
+JavaScript does not have a first-class representation of interfaces, but a graph node supporting the `AsyncDictionary` interface looks like this:
 
 ```js
 const graph = {
@@ -38,16 +38,16 @@ Some notes on the JavaScript shown above:
 
 - The `keys` method must return an [iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_iterator_protocol). An iterator is an object that can produce a sequence of values. A graph's `keys` method can return an instance of a JavaScript class like `Array` and `Set` that support the iterator protocol, or `keys` can return an iterator defined by other means.
 
-- Both functions in the `Explorable` interface are marked with the [async](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) keyword, indicating that they are asynchronous functions. In practice, the functions may return immediately, but they have the potential, at least, to do work that will require a bit of time: retrieving data from the file system, accessing data from a network, or performing long calculations.
+- Both functions in the `AsyncDictionary` interface are marked with the [async](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) keyword, indicating that they are asynchronous functions. In practice, the functions may return immediately, but they have the potential, at least, to do work that will require a bit of time: retrieving data from the file system, accessing data from a network, or performing long calculations.
 
 - The `keys` method does _not_ have to return all the keys supported by `get`! There may be keys that `get` can handle that the `keys` will not include. This turns out to be useful in a number of situations.
 
-- An Explorable graph's `get` method is expected to return `undefined` if the key is not present in the graph.
+- An async graph's `get` method is expected to return `undefined` if the key is not present in the graph.
 
-In a strongly-typed language like TypeScript, the interface looks like:
+In TypeScript, the interface looks like:
 
 ```ts
-interface Explorable {
+interface AsyncDictionary {
   get(key: any): Promise<any>;
   keys(): Promise<IterableIterator<any>>;
   set?(key: any, value: any): Promise<void>;
@@ -62,7 +62,7 @@ Suppose we want to represent the small graph used in the [introduction](/cli/) t
 {{ @svg samples/cli/greetings.yaml }}
 </figure>
 
-The small circle on the left is a graph node with three keys ("Alice", "Bob", "Carol") that correspond to three values ("Hello, Alice", etc.). This can be represented in the `Explorable` interface as:
+The small circle on the left is a graph node with three keys ("Alice", "Bob", "Carol") that correspond to three values ("Hello, Alice", etc.). This can be represented in the `AsyncDictionary` interface as:
 
 ```js
 const graph = {
@@ -78,7 +78,7 @@ const graph = {
 };
 ```
 
-## Traversing an explorable graph
+## Traversing an async graph
 
 If we wish to display the keys and values in the above graph, we can write:
 
@@ -103,10 +103,9 @@ Carol: Hello, Carol.
 
 ## Wrappers
 
-Instead of directly defining a class or object that implements the `Explorable` interface, you can make use of various wrappers that will turn something into an explorable version:
+Instead of directly defining a class or object that implements the `AsyncDictionary` interface, you can make use of various wrappers that will turn something into an async graph version:
 
-- [ExplorableArray](ExplorableArray.html) can wrap a JavaScript `Array` instance
 - [FilesGraph](FilesGraph.html) can wrap a file system folder
-- [FunctionGraph](ExplorableFunctions.html) can wrap a JavaScript function and an optional domain
-- [ObjectGraph](ObjectGraph.html) can wrap a plain JavaScript object
-- [ExplorableSite](ExplorableSite.html) can wrap a web site
+- [FunctionGraph](FunctionGraph.html) can wrap a JavaScript function and an optional domain
+- [ObjectGraph](ObjectGraph.html) can wrap a plain JavaScript object or array
+- [SiteGraph](SiteGraph.html) can wrap a web site

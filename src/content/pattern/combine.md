@@ -4,7 +4,7 @@ title: Combine graphs
 
 Now that we have a basic site working in graph form, we can manipulate that graph to suit our needs without needing to adjust our server and build infrastructure. For example, we can readily combine graphs to create larger graphs.
 
-In the course of this tutorial, we've created three parallel graph implementations, backed by an object, a folder tree, and a function. We can combine those graphs to make a larger graph with three branches, each of which is defined differently, but each of which can be explored using the same Explorable interface.
+In the course of this tutorial, we've created three parallel graph implementations, backed by an object, a folder tree, and a function. We can combine those graphs to make a larger graph with three branches, each of which is defined differently, but each of which can be explored using the same AsyncDictionary interface.
 
 ## Using ObjectGraph to combine graphs
 

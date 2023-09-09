@@ -1,18 +1,18 @@
 ---
-title: Hands-on intro to explorable graphs
+title: Hands-on intro to async graphs
 numberHeadings: true
 ---
 
 _DRAFT_
 
-## Defining an explorable graph directly
+## Defining an async graph directly
 
 The `samples` folder contains a JavaScript file `direct.js` that defines a graph by implementing the `get` and `keys` methods directly.
 
 ```js
 // direct.js
 
-// Define a set of greetings directly in explorable graph form.
+// Define a set of greetings directly in async graph form.
 export default {
   // Get the value of a given key.
   async get(key) {
@@ -42,7 +42,7 @@ Carol: Hello, Carol.
 
 import { ObjectGraph } from "@graphorigami/origami";
 
-// Create an explorable in-memory object.
+// Create an async graph for an in-memory object.
 export default new ObjectGraph({
   Alice: "Hello, Alice. [from an object]",
   Bob: "Hello, Bob. [from an object]",
@@ -64,7 +64,7 @@ Carol: Hello, Carol. [from an object]
 
 import { FunctionGraph } from "@graphorigami/origami";
 
-// Create an explorable function with a domain.
+// Create an async graph for a function with a domain.
 export default new FunctionGraph(
   (key) => `Hello, ${key}. [from a function]`,
   ["Alice", "Bob", "Carol"]

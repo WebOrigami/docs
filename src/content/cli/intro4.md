@@ -69,9 +69,9 @@ Bob: HELLO, BOB.
 Carol: HELLO, CAROL.
 ```
 
-It is easy to transform an entire explorable graph of one type of object into a new graph of a different type of object. You only need to identify or define a one-to-one transformation function that handles a single object, and ori can apply that as a many-to-many transformation of an entire graph.
+It is easy to transform an entire async graph of one type of object into a new graph of a different type of object. You only need to identify or define a one-to-one transformation function that handles a single object, and ori can apply that as a many-to-many transformation of an entire graph.
 
-The second argument to `@map/values` is a function. Technically, the second argument can be any explorable graph, but for the moment, we'll use a regular JavaScript function.
+The second argument to `@map/values` is a function. Technically, the second argument can be any async graph, but for the moment, we'll use a regular JavaScript function.
 
 The map example above takes the original greetings graph:
 
@@ -96,7 +96,7 @@ $ ori "@map/values(greetings.yaml, uppercase)/Alice"
 HELLO, ALICE.
 ```
 
-`map` doesn't do all its work when invoked, but immediately returns a new explorable graph that will invoke the mapping function on demand. You can think of such an explorable graph as a _lazy dictionary_. The lazy dictionary doesn't have a permanent entry for "Alice", but if you ask for "Alice", the lazy dictionary will go and compute the desired value.
+`map` doesn't do all its work when invoked, but immediately returns a new async graph that will invoke the mapping function on demand. You can think of such an async graph as a _lazy dictionary_. The lazy dictionary doesn't have a permanent entry for "Alice", but if you ask for "Alice", the lazy dictionary will go and compute the desired value.
 
 ## Use a graph as a map
 

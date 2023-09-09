@@ -1,8 +1,8 @@
 - href: index.html
   text: Overview
 - href: intro.html
-  text: Intro to explorable graphs
-- text: Explorable interface
+  text: Intro to async graphs
+- text: AsyncDictionary interface
   href: interface.html
 - href: variants.html
   text: Graph Variants

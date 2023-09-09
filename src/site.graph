@@ -23,7 +23,12 @@ pages = @map/values(html, =templates/page.ori(@value), { deep: @true, extension:
 # Expose the packages referenced in the documentation.
 framework-intro = node_modules/@graphorigami/framework-intro
 pattern-intro = node_modules/@graphorigami/pattern-intro/src
-samples = node_modules/@graphorigami/samples/src
+samples = @graph/merge(
+  node_modules/@graphorigami/samples/src
+  {
+    cli.yaml: @yaml(node_modules/@graphorigami/samples/src/cli)
+  }
+)
 
 # The following formulas are used by specific pages that want to inline API
 # documentation for specific classes in the Graph Origami core library. The

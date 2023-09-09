@@ -8,12 +8,12 @@ Which approach is best for our particular team authors might vary, but as an exa
 
 ## Comparing files and objects
 
-Before starting, let's quickly look at both objects and files through the lens of the Explorable interface. In both cases, we have standard ways of getting keys — in the case of folders and files, the keys are folder and file names. And in both cases, we have a way of getting the value or content associated with a given key.
+Before starting, let's quickly look at both objects and files through the lens of the AsyncDictionary interface. In both cases, we have standard ways of getting keys — in the case of folders and files, the keys are folder and file names. And in both cases, we have a way of getting the value or content associated with a given key.
 
-| Explorable interface method &emsp; | Object implementation &emsp; | File implementation   |
-| :--------------------------------- | :--------------------------- | :-------------------- |
-| `get(key)`                         | `obj[key]`                   | `fs.readFile(key)`    |
-| `keys()`                           | `Object.keys(obj)`           | `fs.readdir(dirname)` |
+| AsyncDictionary interface method &emsp; | Object implementation &emsp; | File implementation   |
+| :-------------------------------------- | :--------------------------- | :-------------------- |
+| `get(key)`                              | `obj[key]`                   | `fs.readFile(key)`    |
+| `keys()`                                | `Object.keys(obj)`           | `fs.readdir(dirname)` |
 
 If we're using the Node `fs` API, we have our choice of synchronous or asynchronous methods, but there are performance benefits to be gained by using the asynchronous API.
 
@@ -23,7 +23,7 @@ It's worth noting how much of the `fs` API is _not_ necessary for our task at ha
 
 To start on our file-backed graph implementation, we'll need to get a path to the directory that will be the root of the graph. In this case, we use some Node APIs to get the directory of a folder relative to the folder containing the JavaScript module we're writing.
 
-Our goal is to then return an object implementing the Explorable interface for that folder.
+Our goal is to then return an object implementing the AsyncDictionary interface for that folder.
 
 ```js
 /* src/flat/files.js */
@@ -58,7 +58,7 @@ To get the keys for the folder, we'll ask the `fs.readdir` API for the list of f
 
 ## Get the contents of a file
 
-To implement the `get` method in the Explorable interface, we'll use the `fs.readFile` API to read the contents of the file with the indicated key/name.
+To implement the `get` method in the AsyncDictionary interface, we'll use the `fs.readFile` API to read the contents of the file with the indicated key/name.
 
 ```js
   async get(key) {
@@ -74,11 +74,11 @@ To implement the `get` method in the Explorable interface, we'll use the `fs.rea
   },
 ```
 
-This `get` method includes some error handling. The Explorable interface expects the `get` method to return `undefined` for an unsupported key, but the `fs.readFile` API will throw an exception if a file does not exist with the indicated name. To create a well-behaved explorable graph, we catch exceptions and, if the exception is specifically an `ENOENT` (file not found) exception, we return undefined.
+This `get` method includes some error handling. The AsyncDictionary interface expects the `get` method to return `undefined` for an unsupported key, but the `fs.readFile` API will throw an exception if a file does not exist with the indicated name. To create a well-behaved async graph, we catch exceptions and, if the exception is specifically an `ENOENT` (file not found) exception, we return undefined.
 
 ## Test the files graph
 
-We can test this files graph, once again copying-and-pasting the tests used for the explorable object implementation:
+We can test this files graph, once again copying-and-pasting the tests used for the async graph object implementation:
 
 ```{{'js'}}
 /* src/flat/files.test.js */
@@ -114,7 +114,7 @@ $ node json object.js
 {{ @json pattern-intro/flat/object }}
 ```
 
-The critical bit here is that the `json` utility required no modification to work with the new files-based graph. We wrote the `json` utility to work with explorable graphs, and the folder is just another explorable graph.
+The critical bit here is that the `json` utility required no modification to work with the new files-based graph. We wrote the `json` utility to work with async graphs, and the folder is just another async graph.
 
 ## Transform the folder
 

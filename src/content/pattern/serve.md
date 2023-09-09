@@ -7,7 +7,7 @@ Displaying a graph in the console is fine for playing around or debugging, but w
 
 Let's build a small graph server directly on top of Node's `http` API. (If we were already using a server like [Express](https://expressjs.com/), it would be straightforward to adapt this same idea into a server middleware function that handles a specific portion of a larger site.)
 
-Using the Explorable interface to model the graph will let us browse content regardless of how that content is stored or generated.
+Using the AsyncDictionary interface to model the graph will let us browse content regardless of how that content is stored or generated.
 
 ## Treat a URL as a series of graph keys
 
@@ -47,7 +47,7 @@ Putting these together, we can build a listener function that uses a graph to re
 
 This converts a request's URL into an array of keys, then returns what it finds there. If no value is found, the listener responds with 404 Not Found.
 
-If a request returns an explorable graph, we redirect to an `index.html` value inside that graph. E.g., in our sample deep object and files graphs, we have a subfolder called `more`. If someone navigates to the path `more`, that request will return the corresponding subgraph. We then redirect to `more/`, which will ultimately render the page at `more/index.html`.
+If a request returns an async graph, we redirect to an `index.html` value inside that graph. E.g., in our sample deep object and files graphs, we have a subfolder called `more`. If someone navigates to the path `more`, that request will return the corresponding subgraph. We then redirect to `more/`, which will ultimately render the page at `more/index.html`.
 
 ## Serve the graph
 
@@ -97,9 +97,9 @@ We defined the markdown-to-HTML transform such that, if it's asked for a key tha
 Hello, **Alice**.
 ```
 
-## Explorable graphs are lazy
+## async graphs are lazy
 
-Explorable graphs are lazy by nature. When you start the server, no real work is done beyond starting the HTTP listener.
+async graphs are lazy by nature. When you start the server, no real work is done beyond starting the HTTP listener.
 
 The graph only generates the HTML when you ask for it by browsing to a page like Alice.html:
 

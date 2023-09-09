@@ -2,15 +2,15 @@
 title: Graph classes
 ---
 
-We now have explorable wrappers for a _specific_ object, folder, or function — but let's generalize that code to create classes to wrap _any_ object, folder, or function.
+We now have async graph wrappers for a _specific_ object, folder, or function — but let's generalize that code to create classes to wrap _any_ object, folder, or function.
 
-These classes package up our existing code, adding a constructor to accept the thing we want to wrap. Any code that we've written to work with explorable graphs, like our `json` utility, will already accept instances of these classes, as the classes support the necessary Explorable interface methods.
+These classes package up our existing code, adding a constructor to accept the thing we want to wrap. Any code that we've written to work with async graphs, like our `json` utility, will already accept instances of these classes, as the classes support the necessary AsyncDictionary interface methods.
 
-These classes do _not_ inherit from some shared base class. Doing so is possible but would be awkward, as these classes have substantially different constructor parameters. By defining an explorable graph as an interface instead of a base class, we retain more flexibility than using a class hierarchy.
+These classes do _not_ inherit from some shared base class. Doing so is possible but would be awkward, as these classes have substantially different constructor parameters. By defining an async graph as an interface instead of a base class, we retain more flexibility than using a class hierarchy.
 
 ## Object graph class
 
-This class accepts a plain JavaScript object and returns a corresponding explorable graph:
+This class accepts a plain JavaScript object and returns a corresponding async graph:
 
 ```{{'js'}}
 /* src/classes/ObjectGraph.js */
@@ -63,7 +63,7 @@ $ node --test
 # fail 0
 ```
 
-All tests pass, so now we have three different general ways to implement a graph that all work the same way. The markdown-to-HTML transformation doesn't need any modification to work with these new class-based graphs, as it can already work with anything implementing the Explorable interface.
+All tests pass, so now we have three different general ways to implement a graph that all work the same way. The markdown-to-HTML transformation doesn't need any modification to work with these new class-based graphs, as it can already work with anything implementing the AsyncDictionary interface.
 
 &nbsp;
 

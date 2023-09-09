@@ -37,7 +37,7 @@ Then invoking `indexPage` on this branch will return:
 
 ## Transform a graph by adding index pages
 
-Using the default `indexPage` function above, let's now create a graph transform. This will accept any explorable graph, and return a new graph with an `index.html` key.
+Using the default `indexPage` function above, let's now create a graph transform. This will accept any async graph, and return a new graph with an `index.html` key.
 
 ```{{'js'}}
 /* In src/index/indexPages.js */

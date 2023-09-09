@@ -3,11 +3,11 @@ title: Using graphs with the ori CLI
 numberHeadings: true
 ---
 
-## Explorable graphs
+## async graphs
 
-ori is especially good at dealing with graphs. More specifically, ori is designed to work with _explorable graphs_: a graph that can tell you what's in it, and can be either synchronous or asynchronous. Many common data structures can be represented as explorable graphs.
+ori is especially good at dealing with graphs. More specifically, ori is designed to work with _async graphs_: a graph whose nodes can enumerate their keys and, given a key, can return the corresponding value. Many common data structures can be represented as async graphs.
 
-<span class="tutorialStep"></span> One way to define an explorable graph is in [YAML](https://yaml.org/) format.
+<span class="tutorialStep"></span> One way to define an async graph is in [YAML](https://yaml.org/) format.
 
 ```console
 $ ori greetings.yaml
@@ -22,7 +22,7 @@ ori can interpret this file as the following graph:
 
 The YAML data format shown above can be easier for people to read than formats like JSON. If you prefer, you can just as easily use the ubiquitous JSON format.
 
-ori itself natively understands several types of explorable graphs:
+ori itself natively understands several types of async graphs:
 
 - JSON
 - YAML
@@ -31,7 +31,7 @@ ori itself natively understands several types of explorable graphs:
 - JavaScript functions
 - folder trees
 - web sites (some operations require support for [.keys.json](/ori/.keys.json) files, discussed later)
-- any object that implements the [Explorable interface](/core/interface.html)
+- any object that implements the [AsyncDictionary interface](/core/interface.html)
 
 ## Extract specific values out of a graph
 
@@ -44,7 +44,7 @@ Hello, Alice.
 
 The `greetings.yaml` graph is a flat list, but it can be a hierarchical tree or arbitrarily complex.
 
-<span class="tutorialStep"></span> An explorable graph can also be invoked like a function, so you also have the option of using function call syntax:
+<span class="tutorialStep"></span> An async graph can also be invoked like a function, so you also have the option of using function call syntax:
 
 ```console
 $ ori "greetings.yaml('Alice')"
@@ -171,14 +171,14 @@ Hello, Alice.   Hello, Bob.     Hello, Carol.
 
 This connects two ideas:
 
-- A folder like `greetings` is a explorable graph ori can understand.
+- A folder like `greetings` is a async graph ori can understand.
 - ori to convert any graph to a plain JavaScript object with the `@graph/plain` function.
 
 This means that you can use the `@graph/plain` function to convert a _folder_ to a plain JavaScript object too. The keys will be the file/folder names, and the values will be the file contents or folder subgraphs.
 
 Writing code to work with folder and files this way can be much easier than using Node's file system API directly. There is a performance trade-off implied by building an in-memory object to hold the file system data, but in many cases this is still very fast. And in practice it can much easier to manipulate a complete file system hierarchy as an in-memory object than working with a file system API.
 
-Another important benefit of working with explorable graphs is that you can change your mind later about how you want to represent data without having to rewrite code that processes that data. You could start a small project by representing data in a single file and then, if your needs change later, switch to representing that data in a hierarchical tree of files, or data stored as web resources.
+Another important benefit of working with async graphs is that you can change your mind later about how you want to represent data without having to rewrite code that processes that data. You could start a small project by representing data in a single file and then, if your needs change later, switch to representing that data in a hierarchical tree of files, or data stored as web resources.
 
 &nbsp;
 

@@ -1,5 +1,5 @@
 ---
-title: The Explorable graph interface
+title: Async dictionaries
 ---
 
 The last section noted that, in the context of our markdown-to-HTML problem, it's possible to conceptualize the markdown content as a graph:
@@ -15,18 +15,18 @@ The last section noted that, in the context of our markdown-to-HTML problem, it'
 
 This section introduces an interface suitable for working with such a graph, regardless of its underlying data representation.
 
-## The Explorable interface
+## The AsyncDictionary interface
 
-Let's identify a minimal interface sufficient to define a wide variety of graphs. This interface, which we'll call the Explorable interface, has two parts:
+Let's identify a minimal interface sufficient to define a wide variety of graphs. This interface, which we'll call the AsyncDictionary interface, has two parts:
 
 - A method which produces the keys of the graph. In the graph above, the keys are `Alice.md`, `Bob.md`, and `Carol.md`. The keys will often be strings, but don't have to be strings.
 - A method which gets the value for a given key. If we ask the above graph for `Alice.md`, we want to get back `Hello, **Alice**.` Here the value we get is text, but like the keys, the values can be of any data type.
 
-In code, an implementation of the Explorable interface looks like this:
+In code, an implementation of the AsyncDictionary interface looks like this:
 
 ```js
-// An explorable graph
-const graph = {
+// An async key-value dictionary
+const dictionary = {
   // Get the value of a given key.
   async get(key) { ... }
 
@@ -43,11 +43,11 @@ Notes:
 
 - The `keys` method does _not_ have to return all the keys supported by `get`! There may be keys that `get` can handle that the `keys` will not include. This turns out to be useful in a number of situations.
 
-- An Explorable graph's `get` method is expected to return `undefined` if the key is not present in the graph.
+- An async dictionary's `get` method is expected to return `undefined` if the key is not present in the graph.
 
-## Apply the Explorable interface to the object
+## Apply the AsyncDictionary interface to the object
 
-Of the three data representations we looked at previously, the in-memory JavaScript object was perhaps the simplest, so let's first look at applying the Explorable interface to a JavaScript object:
+Of the three data representations we looked at previously, the in-memory JavaScript object was perhaps the simplest, so let's first look at applying the AsyncDictionary interface to a JavaScript object:
 
 ```{{'js'}}
 /* src/flat/object.js */
@@ -55,11 +55,11 @@ Of the three data representations we looked at previously, the in-memory JavaScr
 {{ pattern-intro/flat/object.js }}
 ```
 
-This module exports an explorable graph that wraps the JavaScript object containing the markdown data. For now, this wrapper can only handle a flat object — later we will extend this to handle hierarchical objects.
+This module exports an async graph that wraps the JavaScript object containing the markdown data. For now, this wrapper can only handle a flat object — later we will extend this to handle hierarchical objects.
 
-## Test the object graph
+## Test the object dictionary
 
-The first thing we can do with this explorable object is programmatically verify it implements the Explorable interface.
+The first thing we can do with this object dictionary is programmatically verify it implements the AsyncDictionary interface.
 
 ```{{'js'}}
 /* src/flat/object.test.js */

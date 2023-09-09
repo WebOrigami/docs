@@ -3,19 +3,19 @@ title: Display a graph
 functions: !ori js/codeFunctions(pattern-intro/flat/json.js)
 ---
 
-Now that we've applied the Explorable interface to an object to create an explorable graph, let's write a simple tool that will display the contents of that explorable graph in the console.
+Now that we've applied the AsyncDictionary interface to an object to create an async graph, let's write a simple tool that will display the contents of that async graph in the console.
 
 To stay as close to the platform as possible, we'll render the graph in JSON format. JSON isn't particularly friendly to write or read, but it's built into the platform and supports hierarchical structures.
 
-## Convert an explorable graph to a plain object
+## Convert an async graph to a plain object
 
-An explorable graph is asynchronous, so we'll need to either traverse it asynchronously and display its values as we go, or else resolve the entire graph to a synchronous, in-memory object. We'll take the latter approach here.
+An async graph is asynchronous, so we'll need to either traverse it asynchronously and display its values as we go, or else resolve the entire graph to a synchronous, in-memory object. We'll take the latter approach here.
 
 ```{{'js'}}
 {{ functions/plain }}
 ```
 
-It may feel counter-productive to do work to wrap a synchronous in-memory object with the asynchronous Explorable interface — and then immediately unwind all those asynchronous promises to get back an in-memory object!
+It may feel counter-productive to do work to wrap a synchronous in-memory object with the asynchronous AsyncDictionary interface — and then immediately unwind all those asynchronous promises to get back an in-memory object!
 
 But we'll soon be working with graphs that are inherently asynchronous, so it's worth tackling the general case now. We've still made an important step to separate the underlying representation of some hierarchical data with a tool to display such data.
 
@@ -35,7 +35,7 @@ async function plain(graph) { /* See above */ }
 {{ functions/@epilogue }}
 ```
 
-The tool dynamically imports the indicated JavaScript file and gets its default export, which is expected to be an explorable graph. We then use the `plain` function above to resolve the graph to an in-memory object, then render the JSON for that object to the console.
+The tool dynamically imports the indicated JavaScript file and gets its default export, which is expected to be an async graph. We then use the `plain` function above to resolve the graph to an in-memory object, then render the JSON for that object to the console.
 
 ## Display the graph in the console
 

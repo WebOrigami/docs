@@ -1,11 +1,11 @@
 ---
 title: SiteGraph
-subtitle: Wraps a web site as an explorable graph
+subtitle: Wraps a web site as an async graph
 ---
 
 ## .keys.json files
 
-To participate in the explorable graph ecosystem, a server can indicate which keys are available at a given route by defining a **.keys.json** file. This is an array of the keys available at that route in JSON format.
+To participate in the async graph ecosystem, a server can indicate which keys are available at a given route by defining a **.keys.json** file. This is an array of the keys available at that route in JSON format.
 
 For example, this site has a route [/samples/greetings](/samples/greetings) containing some trivial files. The server defines a JSON file at [/samples/greetings/.keys.json](/samples/greetings/.keys.json) that enumerates the names of those files:
 

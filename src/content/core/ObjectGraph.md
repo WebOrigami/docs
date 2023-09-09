@@ -1,6 +1,6 @@
 ---
 title: ObjectGraph
-subtitle: Wraps a plain JavaScript object or array as an explorable graph
+subtitle: Wraps a plain JavaScript object or array as an async graph
 sample:
   Alice: Hello, Alice.
   Bob: Hello, Bob.
@@ -16,7 +16,7 @@ Create a new `ObjectGraph` by passing an object or array to the constructor:
 
 import { ObjectGraph } from "@graphorigami/origami";
 
-// Wrap an object to create an explorable graph.
+// Wrap an object to create an async graph.
 export default new ObjectGraph({
   Alice: "Hello, Alice.",
   Bob: "Hello, Bob.",
