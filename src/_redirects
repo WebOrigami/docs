@@ -3,16 +3,3 @@
 
 /.keys.json /keys.json 200
 /\*/.keys.json /:splat/keys.json 200
-
-# Support redirects so SiteGraph works
-
-/samples/cli/* /samples/cli/:splat
-/samples/cli /samples/cli/
-/samples/greetings/* /samples/greetings/:splat
-/samples/greetings /samples/greetings/
-/samples/help/* /samples/help/:splat
-/samples/help /samples/help/
-/samples/templates/* /samples/templates/:splat
-/samples/templates /samples/templates/
-
-/samples /samples/
