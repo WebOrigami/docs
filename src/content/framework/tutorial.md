@@ -114,22 +114,22 @@ This defines a function called `greet` which, given a person's name, returns a g
 **Example:** The following code defines a virtual file called `message` whose contents will be: Hello, **Alice**!
 
 ```greet
-message = greet("Alice")
+message = greet.js("Alice")
 ```
 
-<span class="tutorialStep"></span> **Try it:** In `site.graph`, update the formula for `index.html` to remove the quoted string, and instead call the `greet` function. Pass the text `"world"` to `greet`, so that the page ends up with "world" in bold: Hello, **world**!
+<span class="tutorialStep"></span> **Try it:** In `site.graph`, update the formula for `index.html` to remove the quoted string, and instead call the function in `greet.js`. Pass the text `"world"` to the function, so that the page ends up with "world" in bold: Hello, **world**!
 
 <reveal-solution>
 
 ```
 public = {
-  index.html = greet("world")
+  index.html = greet.js("world")
 }
 ```
 
 </reveal-solution>
 
-When you call `greet` in a formula like this, Graph Origami searches the current [scope](/language/scope.html) for a real or virtual file called `greet`. If it doesn't find one, it will also try searching for `greet.js`. Graph Origami defines a convention that the export(s) of a JavaScript file `greet.js` can be referenced as `greet`, so you can invoke a JavaScript function by using its file name.
+When you call `greet.js` in a formula like this, Graph Origami searches the current [scope](/language/scope.html) for a file with that name. If it finds one, it dynamically imports that JavaScript module, and invokes the module's default export — in this case, a function that returns a greeting.
 
 ## Defining the team data
 
@@ -163,7 +163,7 @@ You can use this slash-separated path syntax anywhere you can refer to something
 
 ```
 public = {
-  index.html = greet(teamData.yaml/0/name)
+  index.html = greet.js(teamData.yaml/0/name)
 }
 ```
 
@@ -192,7 +192,7 @@ The order of the above definitions doesn't matter; `word` could just as well com
 
 ```
 public = {
-  index.html = greet(title)
+  index.html = greet.js(title)
   title = "Our Amazing Team"
 }
 ```
@@ -211,7 +211,7 @@ This project is configured to let a user browse the virtual `public` folder.
 
 <figure>
 {{ @svg {
-  index.html: framework-intro/src/greet("Our Amazing Team")
+  index.html: framework-intro/src/greet.js("Our Amazing Team")
   title: "Our Amazing Team"
  } }}
 </figure>
@@ -224,7 +224,7 @@ The virtual `title` file is used by the formula for `index.html`. But you don't 
 
 ```
 public = {
-  index.html = greet(title)
+  index.html = greet.js(title)
 }
 
 title = "Our Amazing Team"
@@ -238,7 +238,7 @@ By putting `title` at the top level, the formulas inside `public` can reference 
 
 <figure>
 {{ @svg {
-  index.html: framework-intro/src/greet("Our Amazing Team")
+  index.html: framework-intro/src/greet.js("Our Amazing Team")
 } }}
 </figure>
 
@@ -274,15 +274,13 @@ Next you can tell Graph Origami when to use this template.
 
 ## Invoke a template as a function
 
-You invoke a Graph Origami template as a function just like you invoked `greet`.
+You invoke a Graph Origami template as a function just like you invoked `greet.js`.
 
 **Example:** If you have a template `product.ori`, you can invoke it with:
 
 ```
 product.html = product.ori()
 ```
-
-When invoking a JavaScript function, the `.js` extension is optional — but you _do_ need to include the `.ori` extension to invoke a template as a function.
 
 <span class="tutorialStep"></span> **Try it:** In `site.graph`, update your `index.html` formula to invoke your `index.ori` template as a function.
 
@@ -378,7 +376,7 @@ The formula you give to `@map/values` can be arbitrarily complex.
 ```
 public = {
   index.html = index.ori()
-  team = @map/values(teamData.yaml, =greet(name))
+  team = @map/values(teamData.yaml, =greet.js(name))
 }
 
 title = "Our Amazing Team"
@@ -425,7 +423,7 @@ public = {
 ```
 public = {
   index.html = index.ori()
-  team = @map/values(teamData.yaml, =greet(name))
+  team = @map/values(teamData.yaml, =greet.js(name))
   assets
   images
 }
@@ -447,9 +445,9 @@ You've now seen all the major concepts necessary to build the actual About Us si
 
 For each full-size image, you will want to produce a corresponding thumbnail image that will appear on the index page. Instead of using an image-editing app to create a real folder of thumbnail images, you can create a virtual folder of thumbnail images on demand using a map.
 
-In this case, the file `src/thumbnail.js` contains a small JavaScript function which, given the binary data for an image, invokes an image-editing library to generate a new image at a smaller size. This `thumbnail()` function is a one-to-one transformation. You're going to use a map to apply that `thumbnail()` function as a many-to-many transformation.
+In this case, the file `src/thumbnail.js` contains a small JavaScript function which, given the binary data for an image, invokes an image-editing library to generate a new image at a smaller size. This `thumbnail` function is a one-to-one transformation. You're going to use a map to apply that `thumbnail` function as a many-to-many transformation.
 
-One question: In the `@map` formula above, you passed `name` to `greet` — but what should you pass to the `thumbnail()` function? You want to transform an entire image, not some specific field that belongs to it. The solution requires a new bit of syntax to pass an entire value being mapped to a function.
+One question: In the `@map` formula above, you passed `name` to `greet` — but what should you pass to the `thumbnail` function? You want to transform an entire image, not some specific field that belongs to it. The solution requires a new bit of syntax to pass an entire value being mapped to a function.
 
 **Example:** To pass an entire value being mapped, you can use the built-in `@value` variable:
 
@@ -457,17 +455,17 @@ One question: In the `@map` formula above, you passed `name` to `greet` — but
 mapped = @map/values(graph, =function(@value))
 ```
 
-<span class="tutorialStep"></span> **Try it:** Switch to the Glitch editor window. In `site.graph`, update the `public` folder to define a new virtual subfolder called `thumbnails`. Using the `team` formula as a model, define `thumbnails` with a formula that uses the `map()` function. Use the `images` folder as the set of things to map and the `thumbnail` function as the one-to-one transformation. Pass `@value` to the `thumbnail` function to give it the full image data.
+<span class="tutorialStep"></span> **Try it:** Switch to the Glitch editor window. In `site.graph`, update the `public` folder to define a new virtual subfolder called `thumbnails`. Using the `team` formula as a model, define `thumbnails` with a formula that uses the `map()` function. Use the `images` folder as the set of things to map and the `thumbnail.js` function as the one-to-one transformation. Pass `@value` to the `thumbnail.js` function to give it the full image data.
 
 <reveal-solution>
 
 ```
 public = {
   index.html = index.ori()
-  team = @map/values(teamData.yaml, =greet(name))
+  team = @map/values(teamData.yaml, =greet.js(name))
   assets
   images
-  thumbnails = @map/values(images, =thumbnail(@value))
+  thumbnails = @map/values(images, =thumbnail.js(@value))
 }
 
 title = "Our Amazing Team"
@@ -522,7 +520,7 @@ You can do anything inside a template's `{{` `}}` placeholders that you can do i
 
 ```html
 <h1>\{\{ title }}</h1>
-\{\{ @map/values(teamData.yaml, =greet(name)) }}
+\{\{ @map/values(teamData.yaml, =greet.js(name)) }}
 ```
 
 </reveal-solution>
@@ -531,7 +529,7 @@ This produces the same result as before, but without relying on a separate defin
 
 ## Use a nested template
 
-Earlier you updated the formula for `index.html` to replace an invocation of `greet()` with the `index.ori` template. In `index.ori`, you're now invoking `greet()` inside of a `{{` `}}` placeholder. You can replace _that_ invocation too — with a nested template.
+Earlier you updated the formula for `index.html` to replace an invocation of `greet.js()` with the `index.ori` template. In `index.ori`, you're now invoking `greet.js()` inside of a `{{` `}}` placeholder. You can replace _that_ invocation too — with a nested template.
 
 **Example:** If you want to display paragraphs with the team member locations, you could write:
 
@@ -541,7 +539,7 @@ Earlier you updated the formula for `index.html` to replace an invocation of `gr
 
 The second argument to `@map` here is a smaller template nested inside the larger template. The nested template is surrounded by backtick (`) characters.
 
-<span class="tutorialStep"></span> Update `index.ori` to remove the call to `greet()`. Instead, display each name as a bullet item — that is, surround the each name with a `<li>` and `</li>` tags. Since you'll be defining a nested template, you'll need to use backtick (`) characters.
+<span class="tutorialStep"></span> Update `index.ori` to remove the call to `greet.js()`. Instead, display each name as a bullet item — that is, surround the each name with a `<li>` and `</li>` tags. Since you'll be defining a nested template, you'll need to use backtick (`) characters.
 
 <reveal-solution>
 
@@ -620,10 +618,10 @@ In the original `countries` definition, you could get the name of Australia with
 ```
 public = {
   index.html = index.ori()
-  team = @map/values(teamByName, =greet(name))
+  team = @map/values(teamByName, =greet.js(name))
   assets
   images
-  thumbnails = @map/values(images, =thumbnail(@value))
+  thumbnails = @map/values(images, =thumbnail.js(@value))
 }
 
 title = "Our Amazing Team"
@@ -676,10 +674,10 @@ htmlFiles = @map/values(mdFiles, mdHtml, { extension: "md->html" })
 ```
 public = {
   index.html = index.ori()
-  team = @map/values(teamByName, =greet(name), { extension: "->html" })
+  team = @map/values(teamByName, =greet.js(name), { extension: "->html" })
   assets
   images
-  thumbnails = @map/values(images, =thumbnail(@value))
+  thumbnails = @map/values(images, =thumbnail.js(@value))
 }
 
 title = "Our Amazing Team"
@@ -720,7 +718,7 @@ public = {
   team = @map/values(teamByName, =person.ori(@value))
   assets
   images
-  thumbnails = @map/values(images, =thumbnail(@value))
+  thumbnails = @map/values(images, =thumbnail.js(@value))
 }
 
 title = "Our Amazing Team"
@@ -771,7 +769,7 @@ public = {
   team = @map/values(teamByName, =person.ori(@value), { extension: "->html" })
   assets
   images
-  thumbnails = @map/values(images, =thumbnail(@value))
+  thumbnails = @map/values(images, =thumbnail.js(@value))
 }
 
 title = "Our Amazing Team"
@@ -800,7 +798,7 @@ public = {
   images
 
   # Generate the thumbnails by reducing the full-size images.
-  thumbnails = @map/values(images, =thumbnail(@value))
+  thumbnails = @map/values(images, =thumbnail.js(@value))
 }
 
 # Define the title here so both page templates can use it.

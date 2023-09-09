@@ -39,11 +39,11 @@ The graph looks like this:
 <span class="tutorialStep"></span> You can serve this tiny site directly from the file:
 
 ```console
-$ ori @serve site.yaml
+$ ori @serve @debug site.yaml
 Server running at http://localhost:5000
 ```
 
-If you open the indicated URL in your browser, you'll be able to browse between the two pages in the site. The YAML file defines a graph, and the server translates each HTTP URL into a graph traversal.
+If you open the indicated URL in your browser, you'll be able to browse between the two pages in the site. The YAML file defines a graph, and the server translates each HTTP URL into a graph traversal. The built-in `@debug` function adds a default index page
 
 Press Ctrl+C to stop the server.
 

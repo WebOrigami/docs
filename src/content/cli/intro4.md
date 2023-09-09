@@ -31,7 +31,7 @@ export default (body) => `<!DOCTYPE html>
 <span class="tutorialStep"></span> We can use ori to apply this template to data, potentially plucked out of a graph, to render that data as HTML:
 
 ```console
-$ ori template greetings.yaml/Alice
+$ ori template.js greetings.yaml/Alice
 <!DOCTYPE html>
 <html>
   <head>
@@ -56,14 +56,14 @@ You could save this output as an HTML file and open it in your browser, or in a 
 Earlier you saw an `uppercase` function that takes a string argument and returns an uppercase version:
 
 ```console
-$ ori uppercase greetings.yaml/Alice
+$ ori uppercase.js greetings.yaml/Alice
 HELLO, ALICE.
 ```
 
 <span class="tutorialStep"></span> You can apply that `uppercase` transformation to an entire graph with the ori's built-in [@map/values](/language/@map.html#values) function:
 
 ```console
-$ ori @map/values greetings.yaml, uppercase
+$ ori @map/values greetings.yaml, uppercase.js
 Alice: HELLO, ALICE.
 Bob: HELLO, BOB.
 Carol: HELLO, CAROL.
@@ -149,7 +149,7 @@ Here the second `greetings.yaml` graph is used as a function to transform the sp
 <span class="tutorialStep"></span> You can transform a graph and save the results as files.
 
 ```console
-$ ori "@copy @map/values(greetings.yaml, template), @files/html"
+$ ori "@copy @map/values(greetings.yaml, template.js), @files/html"
 $ ls html
 Alice   Bob     Carol
 ```

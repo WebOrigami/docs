@@ -40,24 +40,16 @@ $ ori greet.js
 export default (name = "world") => `Hello, ${name}.`;
 ```
 
-<span class="tutorialStep"></span> If you leave off the `.js` extension, ori _invokes_ the function exported by that file:
+<span class="tutorialStep"></span> You can _invoke_ the function exported by that module by adding parentheses. Since most command-line shells interpret parentheses, you'll need to quote the expression:
 
 ```console
-$ ori greet
+$ ori "greet.js()"
 Hello, world.
 ```
 
-<span class="tutorialStep"></span> Or, with explicit parentheses:
+When you ask ori to evaluate `greet.js()`:
 
-```console
-$ ori "greet()"
-Hello, world.
-```
-
-When you ask ori to evaluate `greet`:
-
-- It looks for a file called `greet` but doesn't find one.
-- ori sees if `greet.js` exists. This time it finds a JavaScript module with that name.
+- ori sees if `greet.js` exists. In this case, it finds a JavaScript module with that name.
 - ori dynamically imports the module and obtains the default export (a function).
 - Because the result is a JavaScript function, ori executes it.
 - The function's result is the string "Hello, world.", which ori displays.
@@ -67,7 +59,7 @@ When you ask ori to evaluate `greet`:
 <span class="tutorialStep"></span> You can pass arguments to JavaScript functions from the shell:
 
 ```console
-$ ori "greet('Alice')"
+$ ori "greet.js('Alice')"
 Hello, Alice.
 ```
 
@@ -76,7 +68,7 @@ ori accepts strings in single quotes or double quotes. In this case, the double 
 <span class="tutorialStep"></span> In the async graph paradigm discussed later, any function can be treated like a graph, and vice versa. This means you can use path syntax as a convenient alternative to specify a string argument:
 
 ```console
-$ ori greet/Alice
+$ ori greet.js/Alice
 Hello, Alice.
 ```
 
@@ -85,25 +77,15 @@ In this path syntax, the first path segment (`greet`) will be looked up in the c
 This means you can also explicitly invoke a function like `greet` by adding a trailing slash:
 
 ```console
-$ ori greet/
+$ ori greet.js/
 Hello, world.
 ```
 
-The trailing slash isn't strictly necessary here — since the result of the top-level expression is a function, ori will execute it anyway. But if you want to invoke a function and pass its result to another function, the trailing slash syntax can be a useful alternative to quoting parenthesis.
-
-ori lets you call a JavaScript function like `greet` from the shell without needing to write JavaScript code to parse command line arguments.
+In this way, ori lets you call a JavaScript function from the shell without needing to write JavaScript code to parse command line arguments.
 
 ## Aside: Loading functions as ES modules
 
-<span class="tutorialStep"></span> The `samples` folder you're working in includes a file called `package.json` that instructs Node to load `.js` files as ES (EcmaScript) modules:
-
-```console
-$ ori package.json
-{
-  "comment": "This file exists to tell Node to load .js files as ES modules",
-  "type": "module"
-}
-```
+<span class="tutorialStep"></span> The `samples` folder you're working in includes a file called `package.json` that instructs Node to load `.js` files as ES (EcmaScript) modules.
 
 By default, Node imports .js files as CommonJS modules. To allow ori to dynamically import JavaScript files in your own projects as ES modules, you will need to include a `package.json` file in the folder with your .js file or in any parent folder. That `package.json` should include the entry `"type": "module"`.
 
@@ -123,42 +105,42 @@ export default (x) => x.toString().toUpperCase();
 <span class="tutorialStep"></span> You can then use ori to mix and match these functions from the shell:
 
 ```console
-$ ori greet
+$ ori greet.js/
 Hello, world.
-$ ori uppercase/hi
+$ ori uppercase.js/hi
 HI
-$ ori greet uppercase/there
+$ ori greet.js uppercase.js/there
 Hello, THERE.
-$ ori uppercase greet
-(NAME = "WORLD") => `HELLO, ${NAME}. `
-$ ori uppercase greet/
+$ ori uppercase.js greet.js
+EXPORT DEFAULT (NAME = "WORLD") => `HELLO, ${NAME}. `
+$ ori uppercase.js greet.js/
 HELLO, WORLD.
-$ ori double greet/everybody
+$ ori double.js greet.js/everybody
 Hello, everybody. Hello, everybody.
-$ ori double greet uppercase/there
+$ ori double.js greet.js uppercase.js/there
 Hello, THERE. Hello, THERE.
 ```
 
 Here are the equivalent verbose forms with parentheses:
 
 ```console
-$ ori "greet()"
+$ ori "greet.js()"
 Hello, world.
-$ ori "uppercase('hi')"
+$ ori "uppercase.js('hi')"
 HI
-$ ori "greet(uppercase('there'))"
+$ ori "greet.js(uppercase.js('there'))"
 Hello, THERE.
-$ ori "uppercase(greet)"
-(NAME = "WORLD") => `HELLO, ${NAME}. `
-$ ori "uppercase(greet())"
+$ ori "uppercase.js(greet.js)"
+EXPORT DEFAULT (NAME = "WORLD") => `HELLO, ${NAME}. `
+$ ori "uppercase.js(greet.js())"
 HELLO, WORLD.
-$ ori "double(greet('everybody'))"
+$ ori "double.js(greet.js('everybody'))"
 Hello, everybody. Hello, everybody.
-$ ori "double(greet(uppercase('there')))"
+$ ori "double.js(greet.js(uppercase.js('there')))"
 Hello, THERE. Hello, THERE.
 ```
 
-Observe that `ori greet` is the same as `ori greet()`, because if the result of the top-level expression is a function, ori invokes it. However, functions inside an expression are treated as first-class objects. This is why `ori uppercase greet` performs the dubious work of uppercasing the `greet` function definition. To invoke `greet` and pass its result to `uppercase` without using parenthesis, the correct form is `ori uppercase greet/` (with a trailing slash).
+The expression `ori uppercase.js greet.js` performs the dubious work of uppercasing the `greet.js` code. To invoke `greet.js` and pass its result to `uppercase.js` without using parenthesis, the correct form is `ori uppercase.js greet.js/` (with a trailing slash).
 
 ori lets you use the shell as a basic JavaScript console, so you can invoke and compose functions in any combination without having to write permanent code. This can be useful when you're experimenting, testing, or need to do one-off operations from the shell.
 
@@ -171,20 +153,20 @@ $ ori sample.txt
 This is a text file.
 $ ori uppercase.js
 export default (x) => x.toString().toUpperCase();
-$ ori uppercase sample.txt
+$ ori uppercase.js sample.txt
 THIS IS A TEXT FILE.
 ```
 
 This lets you pass files to your JavaScript functions without you having to write code to deal with files.
 
-In this example, ori ends up passing a file buffer to the `uppercase` function. The `uppercase` function includes a `toString()` call which here will extract the text from the file buffer. It can then do its uppercasing work on the resulting text.
+In this example, ori ends up passing a file buffer to the `uppercase.js` function. The `uppercase.js` function includes a `toString()` call which here will extract the text from the file buffer. It can then do its uppercasing work on the resulting text.
 
 ## Reading input from stdin
 
 <span class="tutorialStep"></span> You can pipe data into JavaScript functions with the built-in `stdin` function:
 
 ```console
-$ echo This is input from the shell | ori uppercase @stdin/
+$ echo This is input from the shell | ori uppercase.js @stdin/
 THIS IS INPUT FROM THE SHELL
 ```
 
@@ -197,7 +179,7 @@ Note the trailing slash in `@stdin/`, which invokes the [@stdin](/language/@stdi
 ```console
 $ ori sample.txt
 This is a text file.
-$ ori uppercase sample.txt > uppercase.txt
+$ ori uppercase.js sample.txt > uppercase.txt
 $ ori uppercase.txt
 THIS IS A TEXT FILE.
 ```

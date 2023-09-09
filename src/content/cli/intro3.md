@@ -94,14 +94,14 @@ export default function text(obj) {
 <span class="tutorialStep"></span> You can use the built-in `@graph/plain` function to convert a YAML file to a plain JavaScript object, then pass that to the sample `text` function:
 
 ```console
-$ ori text @graph/plain greetings.yaml
+$ ori text.js @graph/plain greetings.yaml
 Hello, Alice.   Hello, Bob.     Hello, Carol.
 ```
 
 <span class="tutorialStep"></span> Or pass a parsed JSON file to your function:
 
 ```console
-$ ori text @graph/plain letters.json
+$ ori text.js @graph/plain letters.json
 The letter A    The letter B    The letter C
 ```
 
@@ -131,7 +131,7 @@ $ ori @json . > files.json
 
 ## Unpack files into the file system
 
-<span class="tutorialStep"></span> This ori introduction began with you unpacking a YAML file into separate files. As another example, you can unpack the greetings in `greetings.yaml` into individual files:
+<span class="tutorialStep"></span> You can unpack the greetings in `greetings.yaml` into individual files:
 
 ```console
 $ ori greetings.yaml
