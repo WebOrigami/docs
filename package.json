@@ -5,7 +5,7 @@
   "dependencies": {
     "@graphorigami/framework-intro": "github:GraphOrigami/framework-intro#30c6335f",
     "@graphorigami/origami": "https://gitpkg.now.sh/GraphOrigami/origami/packages/origami?10ba63ec",
-    "@graphorigami/pattern-intro": "github:GraphOrigami/pattern-intro#6ae1391d",
+    "@graphorigami/pattern-intro": "github:GraphOrigami/pattern-intro#a37365ac",
     "@graphorigami/samples": "github:GraphOrigami/samples#945bab43",
     "marked": "4.1.0",
     "sharp": "0.31.3",
