@@ -1,5 +1,5 @@
 ---
-title: Start
+title: Start the pattern tutorial
 ---
 
 If you'd like to run the samples shown in this pattern tutorial, you can do that in two ways:

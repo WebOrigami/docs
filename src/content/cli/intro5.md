@@ -149,16 +149,6 @@ This concludes the ori introduction. As you've seen, ori is useful for
 - working with graphs defined in JSON/YAML files, the file system, or web sites
 - serving graphs to a web browser
 
-<span class="tutorialStep"></span> If you installed ori globally at the start of this introduction, but won't use ori after this, now is a good time to uninstall it and clean up:
-
-```console
-$ cd ..
-$ rm -r samples
-$ npm uninstall -g @graphorigami/origami
-```
-
-If you installed ori without the `-g` global flag, you can just delete the directory you were working in.
-
 _Reviewer's note: Feel free to experiment further with ori if you'd like, but understand that it's a research project and will undergo further change. Anyone interested in using it should be in contact with [Jan Miksovsky](https://jan.miksovsky.com/contact.html), and at this stage should be prepared to participate in the project at some level beyond just filing bug reports and expecting those bugs to be fixed._
 
 &nbsp;

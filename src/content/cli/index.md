@@ -12,4 +12,4 @@ The Origami CLI, called `ori`, is a command line tool that lets you:
 
 Follow the intro tutorial to walk through common uses for the Origami CLI.
 
-Start: [CLI tutorial setup](intro1.html) »
+Start: [Start the tutorial](intro1.html) »

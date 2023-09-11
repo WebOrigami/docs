@@ -1,53 +1,51 @@
 ---
-title: Origami CLI tutorial setup
-numberHeadings: true
+title: Start the CLI tutorial
 ---
 
-This tutorial introduces the basics of ori by demonstrating useful actions you can perform with it. You can follow along with these examples on your own machine.
+This tutorial introduces the basics of ori. If you'd like to run the samples yourself, you can do that in two ways:
 
-Start a terminal window running a shell — the examples here use `bash`. You'll need [node](https://nodejs.org) installed.
+## Option 1: Web-hosted GitHub Codespaces coding environment
 
-## Install
+GitHub Codespaces is a web-based version of VS Code, a popular editor for professional software developers. Codespaces is a fee-based service, but free GitHub accounts include a monthly amount of free use of Codespaces.
 
-You can install the Origami CLI globally or locally.
+<span class="tutorialStep"></span> Open the
+<a href="https://github.com/GraphOrigami/ori-intro" target="_blank">ori introduction on GitHub</a>.
 
-<span class="tutorialStep"></span> **Global installation:** Installing ori globally will make it easier to invoke it in the rest of this tutorial:
+<span class="tutorialStep"></span> Create your own copy of the project by clicking the **Fork** button near the top.
+
+<span class="tutorialStep"></span> In your newly-created copy of the framework intro project, click the **Code** button, then the **Codespaces** tab, then click the button **Create codespace on main**.
+
+<span class="tutorialStep"></span> Install the Graph Origami command-line interface:
 
 ```console
 $ npm install -g @graphorigami/origami
 ```
 
-<span class="tutorialStep"></span> To confirm the installation, invoke ori with no arguments.
+<span class="tutorialStep"></span> Change to the `src` directory:
 
 ```console
-$ ori
+$ cd src
 ```
 
-This should display the list of built-in functions included with ori.
+## Option 2: Your local coding environment
 
-<span class="tutorialStep"></span> **Local installation:** As an alternative to global installation, run `npm install` without the `-g` global flag inside a new directory. Because ori won't be available everywhere, wherever the instructions below refer to ori, use Node's [npx](https://docs.npmjs.com/cli/v7/commands/npx) command to invoke ori:
+With this option, you can use whatever code editor you prefer. You will need to have [Node.js](https://nodejs.org/en/) installed.
+
+<span class="tutorialStep"></span> Clone the [GraphOrigami/ori-intro](https://github.com/GraphOrigami/ori-intro) repository to your own machine.
+
+<span class="tutorialStep"></span> Open a terminal window in the project's root directory.
+
+<span class="tutorialStep"></span> Install the Graph Origami command-line interface:
 
 ```console
-$ npm install @graphorigami/origami
-$ npx ori
+$ npm install -g @graphorigami/origami
 ```
 
-## Unpack some files
-
-<span class="tutorialStep"></span> You can use ori itself to copy sample files used in this introduction into a new local folder called `samples`. Then change to the `samples/cli` directory.
+<span class="tutorialStep"></span> Change to the `src` directory:
 
 ```console
-$ ori @copy graphhttps://graphorigami.org/samples/, @files/samples
-$ cd samples/cli
-$ ls
-double.js      letters.json   sample.txt     text.js
-greet.js       package.json   site.yaml      uppercase.js
-greetings.yaml people.yaml    template.js
+$ cd src
 ```
-
-Note the comma after the URL — ori is invoking a built-in function called [@copy](/language/@copy.html) that takes two arguments which must be separated with a comma. All built-in functions are prefixed with `@`.
-
-The new `samples` folder should show a small collection of files. (The specific files may differ slightly from what's shown above.) ori treated the indicated file as a graph — more on graphs later. The `copy` function read values out of that graph and wrote them into the destination graph: a file system (`files`) folder called `samples`.
 
 &nbsp;
 
