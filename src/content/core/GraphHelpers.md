@@ -1,6 +1,6 @@
 ---
 title: GraphHelpers
-# subtitle: Helper functions for working with asynchronous graphs
+subtitle: Helper functions for working with asynchronous graphs
 ---
 
-{{ templates/class.ori(api/GraphHelpers.yaml/exports/0) }}
+{{ templates/exports.ori(api/GraphHelpers.yaml) }}
