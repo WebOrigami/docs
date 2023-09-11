@@ -54,7 +54,7 @@ Hello, Alice.
 <span class="tutorialStep"></span> You can easily combine ori features like JSON/YAML parsing, path syntax, and function invocation to have ori parse a specific value out of a graph and feed that directly to your function.
 
 ```console
-$ ori uppercase greetings.yaml/Alice
+$ ori uppercase.js greetings.yaml/Alice
 HELLO, ALICE.
 ```
 
