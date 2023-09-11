@@ -15,7 +15,7 @@ GitHub Codespaces is a web-based version of VS Code, a popular editor for profes
 
 <span class="tutorialStep"></span> In your newly-created copy of the framework intro project, click the **Code** button, then the **Codespaces** tab, then click the button **Create codespace on main**.
 
-<span class="tutorialStep"></span> Install the Graph Origami command-line interface:
+<span class="tutorialStep"></span> In the GitHub Codespaces terminal window, install the Graph Origami command-line interface:
 
 ```console
 $ npm install -g @graphorigami/origami
