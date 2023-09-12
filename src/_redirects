@@ -3,3 +3,6 @@
 
 /.keys.json /keys.json 200
 /*/.keys.json /:splat/keys.json 200
+
+# Define default index page for all samples so Netlify routes exist
+/samples/*/index.html /samples.html 200
