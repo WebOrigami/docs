@@ -37,7 +37,7 @@ Bob: Hello, Bob.
 Carol: Hello, Carol.
 $ ori uppercase.js
 export default (x) => x.toString().toUpperCase();
-$ ori @map/values greetings.yaml, uppercase
+$ ori @map/values greetings.yaml, uppercase.js
 Alice: HELLO, ALICE.
 Bob: HELLO, BOB.
 Carol: HELLO, CAROL.

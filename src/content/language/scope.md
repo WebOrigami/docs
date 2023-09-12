@@ -36,16 +36,16 @@ jsScopeExample:
 Most Origami expressions will contain references to named functions, files, data keys, etc., which must be resolved in order to evaluate the expression. For example, consider the framework formula:
 
 ```
-message = greet()
+message = greet.js()
 ```
 
 Or the Origami CLI command:
 
 ```console
-$ ori greet
+$ ori greet.js/
 ```
 
-In these examples, where does Origami look for the definition of `greet` function? And if `greet` is defined in multiple places, which definition will be used? Graph Origami answers these questions by defining a _scope_ that is used to evaluate any expression.
+In these examples, where does Origami look for the definition of `greet.js` function? And if `greet.js` is defined in multiple places, which definition will be used? Graph Origami answers these questions by defining a _scope_ that is used to evaluate any expression.
 
 ## Scope in Graph Origami is based on graphs
 
@@ -73,11 +73,11 @@ The reference to `greet` is resolved by treating the entire project as a graph:
 {{ @svg projectExample }}
 </figure>
 
-When Graph Origami needs to resolve the `greet` reference, it walks "up" this graph:
+When Graph Origami needs to resolve the `greet.js` reference, it walks "up" this graph:
 
-- It starts by looking for `greet` inside the `site.graph` file. This defines `index.html` and `name`, but not `greet`, so Graph Origami moves up a level to the `src` folder that contains the file.
-- In the `src` folder, Graph Origami doesn't find `greet`, but _does_ find `greet.js`. It dynamically loads that module and takes its default export as `greet`. The search ends there.
-- Depending on how Graph Origami was invoked, if `src` didn't define `greet` or `greet.js`, Graph Origami could continue walking up the file system hierarchy into the project's root folder. (See [Define a project root](#define-a-project-root).)
+- It starts by looking for `greet.js` inside the `site.graph` file. This defines `index.html` and `name`, but not `greet.js`, so Graph Origami moves up a level to the `src` folder that contains the file.
+- In the `src` folder, Graph Origami _does_ find `greet.js`. It dynamically loads that module and takes its default export as `greet`. The search ends there.
+- Depending on how Graph Origami was invoked, if `src` didn't define `greet.js`, Graph Origami could continue walking up the file system hierarchy into the project's root folder. (See [Define a project root](#define-a-project-root).)
 - The last place Graph Origami would look is the base scope, which by default is Graph Origami's collection of built-in functions. (See [Define a custom base scope](#define-a-custom-base-scope).)
 
 As with block scoping in programming languages (see below), in graph scoping the search only goes up the graph. If you want to go back deeper into the graph, you must make an explicit reference using paths:
@@ -87,7 +87,7 @@ As with block scoping in programming languages (see below), in graph scoping the
 
 ### Like block scope in programming languages
 
-Graphe scope in Graph Origami is inspired by [block scope](<https://en.wikipedia.org/wiki/Scope_(computer_science)#Block_scope>) in traditional, block-oriented programming languages like JavaScript. Consider the following JavaScript sample:
+Graph scope in Graph Origami is inspired by [block scope](<https://en.wikipedia.org/wiki/Scope_(computer_science)#Block_scope>) in traditional, block-oriented programming languages like JavaScript. Consider the following JavaScript sample:
 
 ```js
 const power = 2;

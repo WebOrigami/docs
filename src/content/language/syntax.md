@@ -154,29 +154,18 @@ $ ori sample.txt
 This is a text file.
 $ ori uppercase.js
 export default (x) => x.toString().toUpperCase();
-$ ori "uppercase(sample.txt)"
+$ ori "uppercase.js(sample.txt)"
 THIS IS A TEXT FILE.
 ```
 
 To make it easier for you to invoke functions in the command line, Origami expressions also let you use implicit parentheses for function calls. For example, the above can also be written as:
 
 ```console
-$ ori uppercase sample.txt
+$ ori uppercase.js sample.txt
 THIS IS A TEXT FILE.
 ```
 
 In some situations, you can also avoid the need for parentheses by using a `/` slash; see below.
-
-Additionally, when ori evaluates an Origami expression, if the top-level result is a function, ori implicitly invokes it:
-
-```console
-$ ori greet.js
-export default (name = "world") => `Hello, ${name}.`;
-$ ori greet
-Hello, world.
-```
-
-Here, the reference `greet` will resolve to the default export of the module `greet.js`. Since that's a function, ori invokes it and returns the result.
 
 ## Paths
 
@@ -202,16 +191,16 @@ In Graph Origami, functions are a type of graph, so a function can also be invok
 ```console
 $ ori greet.js
 export default (name = "world") => `Hello, ${name}.`;
-$ ori greet/David
+$ ori greet.js/David
 Hello, David.
 ```
 
 A function call using a slash like this lets you avoid having to quote parentheses in the command line.
 
-A path that ends with a trailing slash is considered to have the JavaScript `undefined` value as the final key. If the `greet` function here is invoked with a trailing slash, that invokes the function with an `undefined` value for the `name` parameter. In this example, `greet` then uses a default name:
+If the `greet.js` function here is invoked with a trailing slash, that invokes the function with an `undefined` value for the `name` parameter. In this example, `greet` then uses a default name:
 
 ```console
-$ ori greet/
+$ ori greet.js/
 Hello, world.
 ```
 
@@ -284,7 +273,7 @@ $ cat letters.json
 }
 $ cat uppercase.js
 export default (x) => x.toString().toUpperCase();
-$ ori "@map/values(letters.json, =uppercase(@value))"
+$ ori "@map/values(letters.json, =uppercase.js(@value))"
 a: THE LETTER A
 b: THE LETTER B
 c: THE LETTER C
