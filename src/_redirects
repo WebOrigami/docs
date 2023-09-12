@@ -7,9 +7,7 @@
 # Define default index page for all samples so Netlify routes exist
 
 /samples/*/index.html /samples.html 200
-
-/samples/*/ /samples/*/index.html
-/samples/ /samples/index.html
+/samples/*/ /samples.html 200
 
 /samples/cli /samples/cli/ 301
 /samples/greetings /samples/greetings/ 301
