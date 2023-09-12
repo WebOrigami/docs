@@ -5,4 +5,18 @@
 /*/.keys.json /:splat/keys.json 200
 
 # Define default index page for all samples so Netlify routes exist
+
 /samples/*/index.html /samples.html 200
+
+/samples/*/ /samples/*/index.html
+/samples/ /samples/index.html
+
+/samples/cli /samples/cli/ 301
+/samples/greetings /samples/greetings/ 301
+/samples/help/inline /samples/help/inline/ 301
+/samples/help/merge /samples/help/merge/ 301
+/samples/help /samples/help/ 301
+/samples/templates/fragments /samples/templates/fragments/ 301
+/samples/templates/posts /samples/templates/posts/ 301
+/samples/templates /samples/templates/ 301
+/samples /samples/ 301
