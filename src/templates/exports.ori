@@ -1,4 +1,4 @@
 {{ @map/values ./exports, =`
-  {{ @if js/equals(./kind, 'class'), =@template/scope/class.ori(.) }}
-  {{ @if js/equals(./kind, 'function'), =@template/scope/function.ori(.) }}
+  {{ @if @equals(./kind, 'class'), =@template/scope/class.ori(.) }}
+  {{ @if @equals(./kind, 'function'), =@template/scope/function.ori(.) }}
 `}}

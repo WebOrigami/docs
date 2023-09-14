@@ -1,7 +1,7 @@
 ---
 currentRef: !ori (`{{area}}/{{@key}}`)
-icon: !ori js/chooseIcon(currentRef, client/assets/origami)
-pagesInArea: !ori js/markCurrent(pages.yaml, @key)
+icon: !ori js/chooseIcon.js(currentRef, client/assets/origami)
+pagesInArea: !ori js/markCurrent.js(pages.yaml, @key)
 ---
 <!DOCTYPE html>
 <html lang="en">

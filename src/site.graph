@@ -33,7 +33,7 @@ samples = node_modules/@graphorigami/samples/src
 # transform called `jsApi`, based on the Microsoft TypeScript compiler, which
 # parses JavaScript source to extract type information and comments.
 source = node_modules/@graphorigami/core/src
-api = js/jsApi(source)
+api = js/jsApi.js(source)
 
 # Miscellaneous artifacts
 misc = {
