@@ -1,5 +1,5 @@
 import {
-  GraphHelpers,
+  Graph,
   MetaTransform,
   ObjectGraph,
   StringWithGraph,
@@ -11,8 +11,8 @@ export default async function (variant) {
   if (!variant) {
     return undefined;
   }
-  const graph = GraphHelpers.from(variant);
-  const obj = await GraphHelpers.plain(graph);
+  const graph = Graph.from(variant);
+  const obj = await Graph.plain(graph);
   const test = new (MetaTransform(ObjectGraph))(obj);
   test.parent = this?.graph ?? (await config());
   const description = await test.get("description");
@@ -33,7 +33,7 @@ export default async function (variant) {
 async function plainResult(result) {
   return result instanceof StringWithGraph
     ? result.toString()
-    : GraphHelpers.isAsyncDictionary(result)
-    ? await GraphHelpers.plain(result)
+    : Graph.isAsyncDictionary(result)
+    ? await Graph.plain(result)
     : result;
 }

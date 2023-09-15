@@ -24,7 +24,7 @@ import mdCode from "./mdCode.js";
 //   }
 //   graph = transformObject(InheritScopeTransform, graph);
 //   graph.parent = scope;
-//   graph = await GraphHelpers.traverse(graph, ...rest);
+//   graph = await Graph.traverse(graph, ...rest);
 //   scope = getScope(graph);
 // }
 

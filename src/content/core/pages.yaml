@@ -11,8 +11,8 @@
   text: FilesGraph
 - href: FunctionGraph.html
   text: FunctionGraph
-- href: GraphHelpers.html
-  text: GraphHelpers
+- href: Graph.html
+  text: Graph
 - href: ObjectGraph.html
   text: ObjectGraph
 - href: SiteGraph.html

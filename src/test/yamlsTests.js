@@ -1,7 +1,7 @@
 import YAML from "yaml";
 
 export default async function yamlsTests(variant) {
-  const graph = GraphHelpers.from(variant);
+  const graph = Graph.from(variant);
 
   let fixture = null;
   const tests = [];

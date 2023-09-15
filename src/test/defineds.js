@@ -3,7 +3,7 @@ export default async function defineds(variant) {
   if (variant === undefined) {
     return undefined;
   }
-  return GraphHelpers.mapReduce(variant, null, (values, keys) => {
+  return Graph.mapReduce(variant, null, (values, keys) => {
     const result = {};
     let someValuesExist = false;
     for (let i = 0; i < keys.length; i++) {

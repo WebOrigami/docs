@@ -22,7 +22,7 @@ The library also contains general-purpose versions of some of the graph operatio
 
 - [MapExtensionsGraph](/core/MapExtensionsGraph.html) handles the general case of mapping a graph with keys of one type (`.md` for markdown files, say) to another (`.html` for HTML files). This is in turn based on a more general [MapKeysValuesGraph](/core/MapKeysValuesGraph.html).
 - [MergeGraph](/core/MergeGraph.html) performs a deep merge of multiple graphs.
-- [GraphHelpers](/core/GraphHelpers.html) is a collection of helper functions, including a `plain` function like the one discussed in this tutorial. It resolves any async graph to a plain JavaScript object.
+- [Graph](/core/Graph.html) is a collection of helper functions, including a `plain` function like the one discussed in this tutorial. It resolves any async graph to a plain JavaScript object.
 
 ## Command-line tool
 

@@ -16,11 +16,11 @@ The graph variant types are, in order of priority:
 1. A `Buffer` object containing text that can be parsed as JSON or YAML, including text with JSON or YAML front matter.
 1. A JavaScript `object` instance
 
-The easiest way for you to write a function that can accept any graph variant as a parameter is to pass that parameter to [GraphHelpers.from()](GraphHelpers.html#from). The `from()` function considers the types above in priority order and, if the type applies, wraps the object with a library class such as [ObjectGraph](ObjectGraph.html) and returns the resulting graph.
+The easiest way for you to write a function that can accept any graph variant as a parameter is to pass that parameter to [Graph.from()](Graph.html#from). The `from()` function considers the types above in priority order and, if the type applies, wraps the object with a library class such as [ObjectGraph](ObjectGraph.html) and returns the resulting graph.
 
 ```js
 async function manipulateGraph(variant) {
-  const graph = GraphHelpers.from(variant);
+  const graph = Graph.from(variant);
   if (graph) {
     /* `graph` is an async graph */
   }
