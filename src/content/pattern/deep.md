@@ -1,6 +1,6 @@
 ---
 title: Deep graphs
-functions: !ori js/codeFunctions(pattern-intro/deep/json.js)
+functions: !ori js/codeFunctions.js(pattern-intro/deep/json.js)
 ---
 
 Until now, the "graphs" we've been working with are flat lists. Now that we've cleanly isolated our graph wrappers into classes, let's extend the `ObjectGraph` and `FilesGraph` classes to support arbitrarily deep trees.
@@ -66,7 +66,7 @@ Finally, we need to update our `json` utility. That code has a function called `
 ```console
 $ cd ../deep
 $ node json files.js
-{{ @json pattern-intro/deep/files }}
+{{ @json pattern-intro/deep/files.js }}
 ```
 
 ## Deep transforms
@@ -83,13 +83,13 @@ Our transformation that converts markdown to HTML needs to be updated too. After
 
 ```console
 $ node json htmlFiles.js
-{{ @json pattern-intro/deep/transform pattern-intro/deep/files }}
+{{ @json pattern-intro/deep/transform.js @graph/from pattern-intro/deep/files.js }}
 ```
 
 Visually this looks like:
 
 <figure>
-{{ @svg pattern-intro/deep/transform pattern-intro/deep/files }}
+{{ @svg pattern-intro/deep/transform.js @graph/from pattern-intro/deep/files.js }}
 </figure>
 
 So now we have a way of transforming an arbitrarily deep folder of markdown content into a corresponding deep tree of HTML content. We're now ready to do some interesting things with this content.

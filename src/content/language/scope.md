@@ -10,10 +10,10 @@ projectExample:
       image1.jpg: "[binary data]"
     greet.js: export default function greet() ...
     site.graph: |
-      index.html = greet(name)
+      index.html = greet.js(name)
       name = 'Alice'
 site.graph: |
-  index.html = greet(name)
+  index.html = greet.js(name)
   name = 'Alice'
 jsScopeExample:
   Math:

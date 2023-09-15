@@ -6,14 +6,14 @@
     "@graphorigami/framework-intro": "github:GraphOrigami/framework-intro#39320763",
     "@graphorigami/origami": "https://gitpkg.now.sh/GraphOrigami/origami/packages/origami?28f8ecb2",
     "@graphorigami/pattern-intro": "github:GraphOrigami/pattern-intro#a37365ac",
-    "@graphorigami/samples": "github:GraphOrigami/samples#945bab43",
+    "@graphorigami/samples": "github:GraphOrigami/samples#2b4e6bda",
     "marked": "4.1.0",
     "sharp": "0.31.3",
     "typescript": "4.8.4",
     "yaml": "2.1.1"
   },
   "scripts": {
-    "build": "ori '@copy netlify(@graph/keysJson(src/site.graph/production)), @files/dist'",
+    "build": "ori '@copy netlify.js(@graph/keysJson(src/site.graph/production)), @files/dist'",
     "serve": "ori '@serve @watch src, =@debug(src/site.graph/develop)'",
     "test": "ori virtual/src/test/summary"
   }

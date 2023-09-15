@@ -130,7 +130,7 @@ Since our folder is now available to us in graph form, we can convert its markdo
 
 ```console
 $ node json htmlFiles.js
-{{ @json pattern-intro/flat/transform pattern-intro/flat/htmlFiles }}
+{{ @json pattern-intro/flat/transform.js @graph/from pattern-intro/flat/htmlFiles.js }}
 ```
 
 The transform function can accept any graph of markdown content, so we can switch between our object and folder graph implementations at will. If we wanted to read the markdown content from a CMS, we could create a graph implementation backed by the CMS, then directly apply the unmodified transform function to that graph.

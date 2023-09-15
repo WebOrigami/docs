@@ -1,1 +1,1 @@
-{{ js/separatedList(., ' | ', =@value) }}
+{{ js/separatedList.js(., ' | ', =@value) }}

@@ -120,7 +120,7 @@ Graph literals are similar to object literals, with the differences that: a) eac
 
 ```
 public = {
-  index.html = greet("world")
+  index.html = greet.js("world")
 }
 ```
 

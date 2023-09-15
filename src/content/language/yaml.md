@@ -15,7 +15,7 @@ The `greetings` expression above is in parentheses, because YAML prohibits value
 You can invoke this file to evaluate its expressions:
 
 ```console
-$ ori "expressions.yaml()"
+$ ori expressions.yaml/
 {{ @yaml @scope/invoke samples/templates, samples/templates/expressions.yaml }}
 ```
 

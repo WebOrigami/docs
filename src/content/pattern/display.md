@@ -1,6 +1,6 @@
 ---
 title: Display a graph
-functions: !ori js/codeFunctions(pattern-intro/flat/json.js)
+functions: !ori js/codeFunctions.js(pattern-intro/flat/json.js)
 ---
 
 Now that we've applied the AsyncDictionary interface to an object to create an async graph, let's write a simple tool that will display the contents of that async graph in the console.

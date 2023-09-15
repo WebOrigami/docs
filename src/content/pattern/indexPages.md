@@ -1,7 +1,7 @@
 ---
 title: Index pages
-functions: !ori js/codeFunctions(pattern-intro/index/indexPages.js)
-htmlObject: !ori pattern-intro/index/transform(pattern-intro/index/object)
+functions: !ori js/codeFunctions.js(pattern-intro/index/indexPages.js)
+htmlObject: !ori pattern-intro/index/transform.js(@graph/from pattern-intro/index/object.js)
 ---
 
 Right now, the experience of browsing our graph of generated HTML is a little unsatisfying because there are no index pages — we have to know what pages exist and manually enter a valid URL.
@@ -32,7 +32,7 @@ If the little `more` branch of our HTML graph looks like this:
 Then invoking `indexPage` on this branch will return:
 
 ```{{'html'}}
-{{ ((pattern-intro/index/indexPages)(htmlObject/more))/index.html }}
+{{ ((pattern-intro/index/indexPages.js)(htmlObject/more))/index.html }}
 ```
 
 ## Transform a graph by adding index pages
@@ -49,7 +49,7 @@ Using the default `indexPage` function above, let's now create a graph transform
 If we use this to transform the `more` branch of the HTML graph, we'll get:
 
 <figure>
-{{ @svg pattern-intro/index/indexPages(htmlObject/more) }}
+{{ @svg pattern-intro/index/indexPages.js(htmlObject/more) }}
 </figure>
 
 ## Incorporate the index page transform

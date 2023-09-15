@@ -328,14 +328,14 @@ In the above example, the `@map/values` function maps an array of people to HTML
 
 <div class="sideBySide">
   <figure>
-    {{ svg [
+    {{ svg.js [
       { name: "Alice" },
       { name: "Bob" },
       { name: "Carol" }
     ] }}
   </figure>
   <figure>
-    {{ svg @map/values samples/templates/teamData.yaml, =`<li>{{ name }}</li>` }}
+    {{ svg.js @map/values samples/templates/teamData.yaml, =`<li>{{ name }}</li>` }}
   </figure>
   <figcaption>Source graph of people objects</figcaption>
   <figcaption>Result graph of HTML fragments</figcaption>
