@@ -1,3 +1,0 @@
-{{ js/separatedList.js(., ', ', =`
-  {{ @if ./optional, '[' }}{{ ./name }}{{ @if ./optional, ']' }}
-`) }}

@@ -9,5 +9,5 @@ This also watches the `graph` for `change` events. Currently, [FilesGraph](/core
 This can be used to serve a virtual folder, reevaluating its definition whenever the containing real folder changes.
 
 ```console
-$ ori @serve @watch src, =site.graph/public
+$ ori @serve @watch src, =site.ori/public
 ```

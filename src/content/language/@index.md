@@ -6,7 +6,7 @@ Returns a default `index.html` page for the indicated graph. This will contain l
 
 This built-in function is implicitly included when you use the [@serve](#@serve) function, but you can also invoke it manually in situations where you want to explicitly create a functional index page but don't care about its appearance, or want to define a simple index page with a different name.
 
-For example, in an Origami `.graph` file you can write:
+For example, in an Origami `.ori` file you can write:
 
 ```
 public = {

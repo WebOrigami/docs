@@ -31,7 +31,7 @@ To contrast the values coming from each branch of this graph, we can update the 
 Our combined graph is quite large:
 
 <figure>
-{{ @svg pattern-intro/combine/siteGraph }}
+{{ @svg pattern-intro/combine/siteGraph.js }}
 </figure>
 
 Each of the three main branches of this tree is defined in a different way, with different pros and cons. When constructing a real site, this flexibility lets us pick the most appropriate implementation for any part of the site. And when our needs inevitably change, we can switch those implementations around without needing to change any of our surrounding infrastructure.

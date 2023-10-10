@@ -3,7 +3,7 @@ title: Origami CLI
 subtitle: Command-line interface for tinkering and transforming
 ---
 
-{{ templates/blocks.ori() }}
+{{ templates/blocks.orit() }}
 
 The Origami CLI, called `ori`, is a command line tool that lets you:
 

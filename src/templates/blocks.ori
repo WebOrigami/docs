@@ -1,3 +1,0 @@
-<div class="blocks">
-{{ templates/areaLinks.ori(.) }}
-</div>

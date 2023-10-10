@@ -3,4 +3,4 @@ title: FilesGraph
 subtitle: Wraps a file system directory as an async graph
 ---
 
-{{ templates/class.ori(api/FilesGraph.yaml/exports/0) }}
+{{ templates/class.orit(api/FilesGraph.yaml/exports/0) }}

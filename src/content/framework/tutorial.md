@@ -56,9 +56,9 @@ In Graph Origami, you build things from a combination of real files that are sto
 
 As you build a collection of virtual folders and files, it's helpful to be able to think about their structure as a _graph_. Colloquially speaking, a graph is the sort of boxes-with-arrows diagram you often see depicting the structure of organizations, processes, and websites.
 
-Graph Origami lets you define a graph in several ways, and one way is to write formulas in a file with a `.graph` extension.
+Graph Origami lets you define a graph in several ways, and one way is to write formulas in a file with a `.ori` extension.
 
-<span class="tutorialStep"></span> In the `src` folder, open `site.graph`:
+<span class="tutorialStep"></span> In the `src` folder, open `site.ori`:
 
 ```
 public = {
@@ -71,9 +71,9 @@ This graph file has formulas that define two things:
 1. A virtual folder called `public`. The formulas nested inside the `{` `}` curly braces define virtual files in that folder.
 2. A virtual file called `index.html`. Unlike most programming languages, names in Graph Origami can include periods so you can define file names with extensions. For now, the `index.html` file is defined as a simple text string.
 
-A `.graph` file can define more than one top-level virtual folder or file. This tutorial project is configured to serve the contents of the virtual `public` folder. The name "public" itself isn't special — you could configure the project to serve a different real or virtual folder.
+A `.ori` file can define more than one top-level virtual folder or file. This tutorial project is configured to serve the contents of the virtual `public` folder. The name "public" itself isn't special — you could configure the project to serve a different real or virtual folder.
 
-You can edit your site by editing this `site.graph` file.
+You can edit your site by editing this `site.ori` file.
 
 <span class="tutorialStep"></span> **Try it:** Edit the text in the formula for `index.html` to give it more content, like: Hello, world!
 
@@ -117,7 +117,7 @@ This defines a function called `greet` which, given a person's name, returns a g
 message = greet.js("Alice")
 ```
 
-<span class="tutorialStep"></span> **Try it:** In `site.graph`, update the formula for `index.html` to remove the quoted string, and instead call the function in `greet.js`. Pass the text `"world"` to the function, so that the page ends up with "world" in bold: Hello, **world**!
+<span class="tutorialStep"></span> **Try it:** In `site.ori`, update the formula for `index.html` to remove the quoted string, and instead call the function in `greet.js`. Pass the text `"world"` to the function, so that the page ends up with "world" in bold: Hello, **world**!
 
 <reveal-solution>
 
@@ -157,7 +157,7 @@ carolLocation = teamData.yaml/2/location
 
 You can use this slash-separated path syntax anywhere you can refer to something.
 
-<span class="tutorialStep"></span> **Try it:** In `site.graph`, update your formula for `index.html` to pass the `name` of the first team member to `greet`. The preview should show something like: Hello, **Alice**!
+<span class="tutorialStep"></span> **Try it:** In `site.ori`, update your formula for `index.html` to pass the `name` of the first team member to `greet`. The preview should show something like: Hello, **Alice**!
 
 <reveal-solution>
 
@@ -184,7 +184,7 @@ This calls a built-in [@repeat](/language/@repeat.html) function. (All built-in 
 
 The order of the above definitions doesn't matter; `word` could just as well come after `doubled`.
 
-<span class="tutorialStep"></span> **Try it:** In `site.graph`, define a new virtual file called `title` (no extension is required) to hold the title of your site (say, "Our Amazing Team").
+<span class="tutorialStep"></span> **Try it:** In `site.ori`, define a new virtual file called `title` (no extension is required) to hold the title of your site (say, "Our Amazing Team").
 
 <span class="tutorialStep"></span> Then update the formula for `index.html` to pass the `title` to `greet`.
 
@@ -218,7 +218,7 @@ This project is configured to let a user browse the virtual `public` folder.
 
 The virtual `title` file is used by the formula for `index.html`. But you don't need make the `title` file itself part of your final site — it's only needed internally.
 
-<span class="tutorialStep"></span> **Try it:** Move the line for `title` to the top level of `site.graph` so that it's outside the `{` `}` curly braces that define the `public` folder.
+<span class="tutorialStep"></span> **Try it:** Move the line for `title` to the top level of `site.ori` so that it's outside the `{` `}` curly braces that define the `public` folder.
 
 <reveal-solution>
 
@@ -256,9 +256,9 @@ Instead of creating HTML directly in JavaScript, you can use one of many JavaScr
 
 Inside the curly braces, you can do the same things you can in formulas: call JavaScript functions, reference real and virtual files, or extract specific data with slash-separated paths.
 
-<span class="tutorialStep"></span> **Try it:** Using the Glitch user interface, create a new file called `index.ori`: Next to the `src` folder on the left, click the `⋮` icon, then **Add File to Folder**, then type `index.ori`. This will become the template file for your index page.
+<span class="tutorialStep"></span> **Try it:** Using the Glitch user interface, create a new file called `index.orit`: Next to the `src` folder on the left, click the `⋮` icon, then **Add File to Folder**, then type `index.orit`. This will become the template file for your index page.
 
-A `.ori` template file can define any kind of text content. Here you'll use it to define HTML, so in `index.ori` you can enter regular HTML interspersed with curly brace placeholders.
+A `.orit` template file can define any kind of text content. Here you'll use it to define HTML, so in `index.orit` you can enter regular HTML interspersed with curly brace placeholders.
 
 <span class="tutorialStep"></span> Inside the template, enter opening and closing `h1` tags to create a heading. Inside the heading tags, put a `\{\{` `}}` placeholder that displays your site's `title`.
 
@@ -276,19 +276,19 @@ Next you can tell Graph Origami when to use this template.
 
 You invoke a Graph Origami template as a function just like you invoked `greet.js`.
 
-**Example:** If you have a template `product.ori`, you can invoke it with:
+**Example:** If you have a template `product.orit`, you can invoke it with:
 
 ```
-product.html = product.ori()
+product.html = product.orit()
 ```
 
-<span class="tutorialStep"></span> **Try it:** In `site.graph`, update your `index.html` formula to invoke your `index.ori` template as a function.
+<span class="tutorialStep"></span> **Try it:** In `site.ori`, update your `index.html` formula to invoke your `index.orit` template as a function.
 
 <reveal-solution>
 
 ```
 public = {
-  index.html = index.ori()
+  index.html = index.orit()
 }
 
 title = "Our Amazing Team"
@@ -296,7 +296,7 @@ title = "Our Amazing Team"
 
 </reveal-solution>
 
-Now when you view the site's main page, the `index.ori` template will be invoked to obtain the HTML. The preview shows a header: **Our Amazing Team**
+Now when you view the site's main page, the `index.orit` template will be invoked to obtain the HTML. The preview shows a header: **Our Amazing Team**
 
 ## Creating a virtual folder with a map
 
@@ -320,11 +320,11 @@ But let's say you want to greet a bunch of people by name. You could create indi
 
 Instead, you can use a built-in function called [@map/values](/language/@map.html#values) to apply the `greet` function to all of the people at once.
 
-<span class="tutorialStep"></span> First, add the following formula for `team` to `site.graph`:
+<span class="tutorialStep"></span> First, add the following formula for `team` to `site.ori`:
 
 ```
 public = {
-  index.html = index.ori()
+  index.html = index.orit()
   team = @map/values(teamData.yaml, =name)
 }
 
@@ -369,13 +369,13 @@ In this way, `@map/values` performs a many-to-many transformation:
 
 The formula you give to `@map/values` can be arbitrarily complex.
 
-<span class="tutorialStep"></span> **Try it**: In the Glitch editor window, in `site.graph`, update the expression `=name` so that, instead of just returning a `name`, it calls the `greet` function and passes in that person's name.
+<span class="tutorialStep"></span> **Try it**: In the Glitch editor window, in `site.ori`, update the expression `=name` so that, instead of just returning a `name`, it calls the `greet` function and passes in that person's name.
 
 <reveal-solution>
 
 ```
 public = {
-  index.html = index.ori()
+  index.html = index.orit()
   team = @map/values(teamData.yaml, =greet.js(name))
 }
 
@@ -416,13 +416,13 @@ public = {
 }
 ```
 
-<span class="tutorialStep"></span> **Try it:** In `site.graph`, update the formula for `public` to pull in the `assets` and `images` folders.
+<span class="tutorialStep"></span> **Try it:** In `site.ori`, update the formula for `public` to pull in the `assets` and `images` folders.
 
 <reveal-solution>
 
 ```
 public = {
-  index.html = index.ori()
+  index.html = index.orit()
   team = @map/values(teamData.yaml, =greet.js(name))
   assets
   images
@@ -455,13 +455,13 @@ One question: In the `@map` formula above, you passed `name` to `greet` — but
 mapped = @map/values(graph, =function(@value))
 ```
 
-<span class="tutorialStep"></span> **Try it:** Switch to the Glitch editor window. In `site.graph`, update the `public` folder to define a new virtual subfolder called `thumbnails`. Using the `team` formula as a model, define `thumbnails` with a formula that uses the `map()` function. Use the `images` folder as the set of things to map and the `thumbnail.js` function as the one-to-one transformation. Pass `@value` to the `thumbnail.js` function to give it the full image data.
+<span class="tutorialStep"></span> **Try it:** Switch to the Glitch editor window. In `site.ori`, update the `public` folder to define a new virtual subfolder called `thumbnails`. Using the `team` formula as a model, define `thumbnails` with a formula that uses the `map()` function. Use the `images` folder as the set of things to map and the `thumbnail.js` function as the one-to-one transformation. Pass `@value` to the `thumbnail.js` function to give it the full image data.
 
 <reveal-solution>
 
 ```
 public = {
-  index.html = index.ori()
+  index.html = index.orit()
   team = @map/values(teamData.yaml, =greet.js(name))
   assets
   images
@@ -497,7 +497,7 @@ If you have a virtual folder that contains text, you can reference that folder i
 \{\{ fragments }}
 ```
 
-<span class="tutorialStep"></span> **Try it:** Switch the Glitch editor window. At the bottom of the `index.ori` template, add a `\{\{` `}}` placeholder to incorporate the virtual `team` folder into the template.
+<span class="tutorialStep"></span> **Try it:** Switch the Glitch editor window. At the bottom of the `index.orit` template, add a `\{\{` `}}` placeholder to incorporate the virtual `team` folder into the template.
 
 <reveal-solution>
 
@@ -512,9 +512,9 @@ Now the preview shows the greetings to your team members.
 
 ## Create a map inside a template
 
-You can do anything inside a template's `{{` `}}` placeholders that you can do in a `.graph` formula. This means that you can do things like map data directly inside a template.
+You can do anything inside a template's `{{` `}}` placeholders that you can do in a `.ori` formula. This means that you can do things like map data directly inside a template.
 
-<span class="tutorialStep"></span> **Try it:** From the `team` formula in `site.graph`, copy the right side of the formula (the `@map/values` and everything after the `=` sign) and paste that into `index.ori` in place of the `team` reference.
+<span class="tutorialStep"></span> **Try it:** From the `team` formula in `site.ori`, copy the right side of the formula (the `@map/values` and everything after the `=` sign) and paste that into `index.orit` in place of the `team` reference.
 
 <reveal-solution>
 
@@ -529,7 +529,7 @@ This produces the same result as before, but without relying on a separate defin
 
 ## Use a nested template
 
-Earlier you updated the formula for `index.html` to replace an invocation of `greet.js()` with the `index.ori` template. In `index.ori`, you're now invoking `greet.js()` inside of a `{{` `}}` placeholder. You can replace _that_ invocation too — with a nested template.
+Earlier you updated the formula for `index.html` to replace an invocation of `greet.js()` with the `index.orit` template. In `index.orit`, you're now invoking `greet.js()` inside of a `{{` `}}` placeholder. You can replace _that_ invocation too — with a nested template.
 
 **Example:** If you want to display paragraphs with the team member locations, you could write:
 
@@ -539,7 +539,7 @@ Earlier you updated the formula for `index.html` to replace an invocation of `gr
 
 The second argument to `@map` here is a smaller template nested inside the larger template. The nested template is surrounded by backtick (`) characters.
 
-<span class="tutorialStep"></span> Update `index.ori` to remove the call to `greet.js()`. Instead, display each name as a bullet item — that is, surround the each name with a `<li>` and `</li>` tags. Since you'll be defining a nested template, you'll need to use backtick (`) characters.
+<span class="tutorialStep"></span> Update `index.orit` to remove the call to `greet.js()`. Instead, display each name as a bullet item — that is, surround the each name with a `<li>` and `</li>` tags. Since you'll be defining a nested template, you'll need to use backtick (`) characters.
 
 <reveal-solution>
 
@@ -556,12 +556,12 @@ The preview now shows a bulleted list of names.
 
 The text inside a backtick-delimited template can span multiple lines, so it can be as complex as you want.
 
-<span class="tutorialStep"></span> To fill out the index page template, replace the contents of `index.ori` with:
+<span class="tutorialStep"></span> To fill out the index page template, replace the contents of `index.orit` with:
 
 <clipboard-copy>
 
 ```html
-{{ @js/String framework-intro/src/index.ori }}
+{{ @js/String framework-intro/src/index.orit }}
 ```
 
 </clipboard-copy>
@@ -609,7 +609,7 @@ This operation looks like:
 
 In the original `countries` definition, you could get the name of Australia with `countries/0/name`. With the mapped keys, you can get the name of Australia with `countriesByAbbreviation/AU/name`.
 
-<span class="tutorialStep"></span> **Try it:** In `site.graph`, define a new, top-level virtual folder called `teamByName` that maps the keys of `teamData.yaml` to the team member's names. Since this `teamByName` folder is only needed for internal use, it can go outside of the `public` definition.
+<span class="tutorialStep"></span> **Try it:** In `site.ori`, define a new, top-level virtual folder called `teamByName` that maps the keys of `teamData.yaml` to the team member's names. Since this `teamByName` folder is only needed for internal use, it can go outside of the `public` definition.
 
 <span class="tutorialStep"></span> Then update the `team` formula to reference `teamByName` instead of `teamData.yaml`.
 
@@ -617,7 +617,7 @@ In the original `countries` definition, you could get the name of Australia with
 
 ```
 public = {
-  index.html = index.ori()
+  index.html = index.orit()
   team = @map/values(teamByName, =greet.js(name))
   assets
   images
@@ -657,7 +657,7 @@ We often use extensions at the end of file names to indicate the type of data th
 
 The `map()` function supports this via an optional `extension` parameter, which takes a string describing how an extension should change.
 
-**Example:** The following are two examples of the `extension` parameter. (Note that the `.graph` format allows comments that start with a `#` character.)
+**Example:** The following are two examples of the `extension` parameter. (Note that the `.ori` format allows comments that start with a `#` character.)
 
 ```
 # Add a .txt extension to the mapped file names
@@ -673,7 +673,7 @@ htmlFiles = @map/values(mdFiles, mdHtml, { extension: "md->html" })
 
 ```
 public = {
-  index.html = index.ori()
+  index.html = index.orit()
   team = @map/values(teamByName, =greet.js(name), { extension: "->html" })
   assets
   images
@@ -698,7 +698,7 @@ As review, recall that an early iteration of your index page template displayed 
 
 You're now going to create a similarly skeletal template for an individual person.
 
-<span class="tutorialStep"></span> **Try it:** In the src folder, create a new template called `person.ori`. Inside the template, create a `<h1>` heading with a `\{\{` `}}` placeholder that displays the person's name.
+<span class="tutorialStep"></span> **Try it:** In the src folder, create a new template called `person.orit`. Inside the template, create a `<h1>` heading with a `\{\{` `}}` placeholder that displays the person's name.
 
 <reveal-solution>
 
@@ -708,14 +708,14 @@ You're now going to create a similarly skeletal template for an individual perso
 
 </reveal-solution>
 
-<span class="tutorialStep"></span> Edit the `team` formula in `site.graph` to use the `person.ori` template as the function that should be invoked. As with the `thumbnails` map earlier, you'll want to use `@value` to pass the entire team member object as an argument to the `person.ori` template.
+<span class="tutorialStep"></span> Edit the `team` formula in `site.ori` to use the `person.orit` template as the function that should be invoked. As with the `thumbnails` map earlier, you'll want to use `@value` to pass the entire team member object as an argument to the `person.orit` template.
 
 <reveal-solution>
 
 ```
 public = {
-  index.html = index.ori()
-  team = @map/values(teamByName, =person.ori(@value))
+  index.html = index.orit()
+  team = @map/values(teamByName, =person.orit(@value))
   assets
   images
   thumbnails = @map/values(images, =thumbnail.js(@value))
@@ -727,7 +727,7 @@ teamByName = @map/keys(teamData.yaml, =name)
 
 </reveal-solution>
 
-<span class="tutorialStep"></span> Refresh the graph diagram window to see that the pages in the `team` area now use your `person.ori` template.
+<span class="tutorialStep"></span> Refresh the graph diagram window to see that the pages in the `team` area now use your `person.orit` template.
 
 <figure>
   {{ @svg {
@@ -739,14 +739,14 @@ teamByName = @map/keys(teamData.yaml, =name)
 
 ## Fill out the person template
 
-The only thing left to do is complete the `person.ori` template.
+The only thing left to do is complete the `person.orit` template.
 
-<span class="tutorialStep"></span> Replace the contents of `person.ori` with:
+<span class="tutorialStep"></span> Replace the contents of `person.orit` with:
 
 <clipboard-copy>
 
 ```{{"html"}}
-{{ @js/String framework-intro/src/person.ori }}
+{{ @js/String framework-intro/src/person.orit }}
 ```
 
 </clipboard-copy>
@@ -761,12 +761,12 @@ The only thing left to do is complete the `person.ori` template.
 {{ @svg siteComplete }}
 </figure>
 
-Stepping back, consider that you've created this entire site with a few resources, a couple of templates, and a rather concise `site.graph`:
+Stepping back, consider that you've created this entire site with a few resources, a couple of templates, and a rather concise `site.ori`:
 
 ```
 public = {
-  index.html = index.ori()
-  team = @map/values(teamByName, =person.ori(@value), { extension: "->html" })
+  index.html = index.orit()
+  team = @map/values(teamByName, =person.orit(@value), { extension: "->html" })
   assets
   images
   thumbnails = @map/values(images, =thumbnail.js(@value))
@@ -780,18 +780,18 @@ From a functional standpoint, you've achieved your goal. The site is now complet
 
 ## Optional: Comments
 
-Each of the lines in `site.graph` defines some important area of the site. In a real project, it can be worth adding comments to remind you what each line does, like:
+Each of the lines in `site.ori` defines some important area of the site. In a real project, it can be worth adding comments to remind you what each line does, like:
 
 <clipboard-copy>
 
 ```
 # The public folder is what users can browse.
 public = {
-  # Generate the index page from the index.ori template.
-  index.html = index.ori()
+  # Generate the index page from the index.orit template.
+  index.html = index.orit()
 
   # Generate a page in the team area for each team member.
-  team = @map/values(teamByName, =person.ori(@value), { extension: "->html" })
+  team = @map/values(teamByName, =person.orit(@value), { extension: "->html" })
 
   # These are static resources
   assets
@@ -838,7 +838,7 @@ This refreshes the files shown in the main portion of the Glitch window.
 
 <span class="tutorialStep"></span> Click the `build` folder on the left side of the Glitch window and view the files it contains.
 
-In addition to copies of the real files in the `assets` and `images` folders, the `build` folder now contains real copies of all the virtual files you defined in `site.graph`:
+In addition to copies of the real files in the `assets` and `images` folders, the `build` folder now contains real copies of all the virtual files you defined in `site.ori`:
 
 - A real `thumbnails` folder with real thumbnail versions of each image.
 - A real `index.html` page with HTML that includes a tile for each team member.

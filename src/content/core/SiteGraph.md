@@ -28,4 +28,4 @@ Above, the custom `graphhttps:` protocol retrieves the route's keys defined in t
 
 The `.keys.json` file should normally not include itself in its list of keys.
 
-{{ templates/class.ori(api/SiteGraph.yaml/exports/0) }}
+{{ templates/class.orit(api/SiteGraph.yaml/exports/0) }}

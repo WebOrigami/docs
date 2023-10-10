@@ -1,0 +1,4 @@
+---
+areas: !ori js/markCurrent.js(areas.yaml, `/{{ _/area }}/`)
+---
+{{ @map/values areas, templates/linkCurrent.orit }}

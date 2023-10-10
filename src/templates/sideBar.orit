@@ -1,0 +1,8 @@
+{{ @if(_, =`
+<ul>
+  {{ @map/values(_, =`
+    <li>{{ templates/linkCurrent.orit(_) }}</li>
+    {{ @if _/pages, =@recurse(_/pages) }}
+  `) }}
+</ul>
+`) }}

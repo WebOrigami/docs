@@ -3,7 +3,7 @@ title: The async graph pattern
 subtitle: A flexible way to work with objects, files, files, web resources, and more
 ---
 
-{{ templates/blocks.ori() }}
+{{ templates/blocks.orit() }}
 
 The async graph pattern helps you tackle complex development tasks. You represent data as asynchronous graphs and envision your project's final output as the result of graph transformations.
 

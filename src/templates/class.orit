@@ -1,0 +1,10 @@
+<h2>{{_/name}} class</h2>
+<p>
+  {{ @mdHtml _/description}}
+</p>
+{{ @if _/classConstructor, =`
+  {{ @local/function.orit(_/classConstructor) }}
+`}}
+{{ @map/values _/members, =`
+  {{ @local/function.orit(_) }}
+`}}

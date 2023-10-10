@@ -1,5 +1,0 @@
-{{ @if @input, =`
-<ul>
-{{ @map/values @input, =`<li>{{ templates/linkCurrent.ori(.) }}</li>
-{{ @if ./pages, =@template/recurse(./pages) }}`}}</ul>
-`}}

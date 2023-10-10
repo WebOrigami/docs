@@ -57,4 +57,4 @@ $ ori function/David
 Hello, David.
 ```
 
-{{ templates/class.ori(api/FunctionGraph.yaml/exports/0) }}
+{{ templates/class.orit(api/FunctionGraph.yaml/exports/0) }}

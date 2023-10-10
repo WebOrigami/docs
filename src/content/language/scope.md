@@ -9,10 +9,10 @@ projectExample:
     assets:
       image1.jpg: "[binary data]"
     greet.js: export default function greet() ...
-    site.graph: |
+    site.ori: |
       index.html = greet.js(name)
       name = 'Alice'
-site.graph: |
+site.ori: |
   index.html = greet.js(name)
   name = 'Alice'
 jsScopeExample:
@@ -58,13 +58,13 @@ src/
   assets/
     image1.jpg
   greet.js
-  site.graph
+  site.ori
 ```
 
-And suppose that the file `site.graph` defines a graph:
+And suppose that the file `site.ori` defines a graph:
 
 ```{{'yaml'}}
-{{ site.graph }}
+{{ site.ori }}
 ```
 
 The reference to `greet` is resolved by treating the entire project as a graph:
@@ -75,15 +75,15 @@ The reference to `greet` is resolved by treating the entire project as a graph:
 
 When Graph Origami needs to resolve the `greet.js` reference, it walks "up" this graph:
 
-- It starts by looking for `greet.js` inside the `site.graph` file. This defines `index.html` and `name`, but not `greet.js`, so Graph Origami moves up a level to the `src` folder that contains the file.
+- It starts by looking for `greet.js` inside the `site.ori` file. This defines `index.html` and `name`, but not `greet.js`, so Graph Origami moves up a level to the `src` folder that contains the file.
 - In the `src` folder, Graph Origami _does_ find `greet.js`. It dynamically loads that module and takes its default export as `greet`. The search ends there.
 - Depending on how Graph Origami was invoked, if `src` didn't define `greet.js`, Graph Origami could continue walking up the file system hierarchy into the project's root folder. (See [Define a project root](#define-a-project-root).)
 - The last place Graph Origami would look is the base scope, which by default is Graph Origami's collection of built-in functions. (See [Define a custom base scope](#define-a-custom-base-scope).)
 
 As with block scoping in programming languages (see below), in graph scoping the search only goes up the graph. If you want to go back deeper into the graph, you must make an explicit reference using paths:
 
-- For example, a formula in `site.graph` could obtain the project's name via `package.json/name`, because `package.json` is in scope.
-- If a formula in `site.graph` wants to reference the image `image1.jpg`, it will have to do that as `assets/image1.jpg`, because `assets` is in scope but `image1.jpg` isn't.
+- For example, a formula in `site.ori` could obtain the project's name via `package.json/name`, because `package.json` is in scope.
+- If a formula in `site.ori` wants to reference the image `image1.jpg`, it will have to do that as `assets/image1.jpg`, because `assets` is in scope but `image1.jpg` isn't.
 
 ### Like block scope in programming languages
 
@@ -116,15 +116,15 @@ Scope in Graph Origami works the same way, but instead of working up a hierarchy
 
 ## Extend the language by leveraging scope
 
-You can use this system to make new functions available to any part of Graph Origami — the ori CLI, the framework's [template system](/framework/templates.html), `.graph` files, or [expressions in YAML files](yaml.html). All you need to do is make a JavaScript file available somewhere in scope.
+You can use this system to make new functions available to any part of Graph Origami — the ori CLI, the framework's [template system](/framework/templates.html), `.ori` files, or [expressions in YAML files](yaml.html). All you need to do is make a JavaScript file available somewhere in scope.
 
-In the example above, placing a file like `greet.js` in the same folder as the `site.graph` file makes the `greet` function available to expressions in `site.graph`.
+In the example above, placing a file like `greet.js` in the same folder as the `site.ori` file makes the `greet` function available to expressions in `site.ori`.
 
 ## Determine what's public with project structure
 
 Graph scope lets you use the file system structure of your project as one way to configure what's available to your own code as well as what's available to end users.
 
-You can take advantage of graph scope to hide internal details. If the sample project above publishes the contents of `site.graph`, a user will be able to browse to `index.html` — but will not be able to see `greet.js` or `ReadMe.md`.
+You can take advantage of graph scope to hide internal details. If the sample project above publishes the contents of `site.ori`, a user will be able to browse to `index.html` — but will not be able to see `greet.js` or `ReadMe.md`.
 
 ## Default scope
 
@@ -141,13 +141,13 @@ src/
   assets/
     image1.jpg
   greet.js
-  site.graph
+  site.ori
 ```
 
 From the `src` folder, you can invoke:
 
 ```console
-$ ori site.graph/index.html
+$ ori site.ori/index.html
 ```
 
 The invokes `greet`, which works because Graph Origami finds `greet.js` in the current folder.
@@ -155,7 +155,7 @@ The invokes `greet`, which works because Graph Origami finds `greet.js` in the c
 You can also invoke the command from the project's root:
 
 ```console
-$ ori src/site.graph/index.html
+$ ori src/site.ori/index.html
 ```
 
 This also works, because Graph Origami works from the graph defining `index.html` up to the current folder.
@@ -171,19 +171,19 @@ ReadMe.md
 src/
   assets/
     image1.jpg
-  site.graph
+  site.ori
 ```
 
 In this situation, you'd still be able to issue the command from the project root:
 
 ```console
-$ ori src/site.graph/index.html
+$ ori src/site.ori/index.html
 ```
 
 But what you couldn't do is this command from inside the `src` folder:
 
 ```console
-$ ori site.graph/index.html
+$ ori site.ori/index.html
 ```
 
 In this situation, `greet.js` is _above_ the current folder (`src`), so it's out of scope.

@@ -80,7 +80,7 @@ As with references (above), you can use periods in keys. Escape any special char
 }
 ```
 
-In `.graph` files, the value in a key/value pair can be an expression that will be evaluated when the graph is loaded.
+In `.ori` files, the value in a key/value pair can be an expression that will be evaluated when the graph is loaded.
 
 ```
 data = {
@@ -119,12 +119,14 @@ As with object literals (above), you can separate array items with commas, newli
 Graph literals are similar to object literals, with the differences that: a) each key and value is separated with an `=` equals sign instead of a `:` colon, and b) a value defined by an expression is not evaluated until the value is requested.
 
 ```
-public = {
-  index.html = greet.js("world")
+{
+  public = {
+    index.html = greet.js("world")
+  }
 }
 ```
 
-The top level of a `.graph` file is treated as the contents of graph literal; omit the outer curly braces. The `.graph` file above defines a virtual folder called `public`, whose value is a subgraph defining `index.html`.
+The top level of a `.ori` file is treated as the contents of graph literal. The `.ori` file above defines a virtual folder containing a subgraph called `public` that defines `index.html`.
 
 ## Template literals
 
@@ -133,9 +135,9 @@ Text templates are quoted in backticks and can contain Origami expressions insid
 ```console
 $ cat pet.txt
 Fluffy
-$ cat sample.graph
+$ cat sample.ori
 message = `I have a pet named \{\{ pet.txt }}.`
-$ ori sample.graph/message
+$ ori sample.ori/message
 I have a pet named Fluffy.
 ```
 

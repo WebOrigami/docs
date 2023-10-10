@@ -2,9 +2,11 @@
 title: Graph Origami
 subtitle: A conceptual system and tools for creating websites, documentation, data sets, and other content
 icon: bird.svg
+area: ""
+fileName: index.html
 ---
 
-{{ templates/blocks.ori() }}
+{{ templates/blocks.orit(_) }}
 
 Graph Origami is a research project exploring ideas and tools for building a wide variety of software artifacts and digital content. The system encourages you to view creating such things as an exercise in transformation: you take your starting files, data, etc., and transform them step-by-step into a final result you can use and share.
 

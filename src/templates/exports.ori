@@ -1,4 +1,0 @@
-{{ @map/values ./exports, =`
-  {{ @if @equals(./kind, 'class'), =@template/scope/class.ori(.) }}
-  {{ @if @equals(./kind, 'function'), =@template/scope/function.ori(.) }}
-`}}

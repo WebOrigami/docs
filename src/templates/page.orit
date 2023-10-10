@@ -1,7 +1,9 @@
 ---
-currentRef: !ori (`{{area}}/{{@key}}`)
-icon: !ori js/chooseIcon.js(currentRef, client/assets/origami)
-pagesInArea: !ori js/markCurrent.js(pages.yaml, @key)
+currentRef: !ori (`{{ _/area }}/{{ _/fileName }}`)
+icon: !ori (@or(_/icon, js/chooseIcon.js(currentRef, client/assets/origami)))
+pagesLinks: !ori js/markCurrent.js(pagesInArea, _/fileName)
+pagesInArea: !ori (@scope/get(_)/pages.yaml)
+foo: !ori _/fileName
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -11,10 +13,10 @@ pagesInArea: !ori js/markCurrent.js(pages.yaml, @key)
     <link rel="stylesheet" href="/styles/github-subset.css">
     <link rel="stylesheet" href="/styles/github.min.css">
     <link rel="stylesheet" href="/styles/docs.css">
-    <title>{{ title }}</title>
+    <title>{{ _/title }}</title>
     <link rel="icon" href="/assets/origami/{{ icon }}" type="image/svg+xml">
   </head>
-  <body{{ @if numberHeadings, ` class="numberHeadings"` }}>
+  <body{{ @if(_/numberHeadings, ` class="numberHeadings"`) }}>
     <div id="page">
       <div id="topNav" class="pageRow">
         <div id="homeContainer">
@@ -22,7 +24,7 @@ pagesInArea: !ori js/markCurrent.js(pages.yaml, @key)
         </div>
         <nav id="navBar">
           <a href="/">Origami</a>
-{{ templates/areaLinks.ori(.) }}
+{{ templates/areaLinks.orit(_) }}
           <a href="https://github.com/GraphOrigami/origami">GitHub</a>
         </nav>
       </div>
@@ -31,16 +33,16 @@ pagesInArea: !ori js/markCurrent.js(pages.yaml, @key)
           <img class="origami" src="/assets/origami/{{ icon }}">
         </div>
         <header>
-          <h1>{{ title }}</h1>
-{{ @if subtitle, =`
-          <p class="subtitle">{{ subtitle }}</p>
-` }}
+          <h1>{{ _/title }}</h1>
+{{ @if(_/subtitle, =`
+          <p class="subtitle">{{ _/subtitle }}</p>
+`) }}
         </header>
         <nav id="sideBar">
-{{ templates/sideBar.ori(pagesInArea) }}
+{{ templates/sideBar.orit(pagesLinks) }}
         </nav>
         <main class="markdown-body">
-          {{ @text }}
+          {{ _ }}
         </main>
       </div>
     </div>

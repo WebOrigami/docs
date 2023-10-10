@@ -30,7 +30,7 @@ This lets us create a deep tree:
 which represents the deep graph
 
 <figure>
-  {{ @svg pattern-intro/deep/object }}
+  {{ @svg pattern-intro/deep/object.js }}
 </figure>
 
 ## Deep file graphs
@@ -66,7 +66,7 @@ Finally, we need to update our `json` utility. That code has a function called `
 ```console
 $ cd ../deep
 $ node json files.js
-{{ @json pattern-intro/deep/files.js }}
+{{ @json @map/values(@unpack(pattern-intro/deep/files.js), @js/String) }}
 ```
 
 ## Deep transforms

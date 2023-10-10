@@ -1,0 +1,67 @@
+{
+  # This file defines the top-level virtual values in the graph used to create the
+  # Graph Origami documentation.
+
+  # The first set of formulas define a pipeline for the documentation content,
+  # which is authored as a tree of markdown files in the `content` folder.
+
+  # Add the `area` and `fileName` properties to the documents.
+  withData = @map/values(
+    content
+    =@if(
+      @graph/isAsyncDictionary(_)
+      @map/values(
+        _
+        =js/addData.js(@document(_), area, @key)
+        { extension: "md" }
+      )
+      _
+    )
+    { keyName: "area" }
+  )
+
+  # Take the markdown files and inline any Graph Origami expressions contained
+  # in curly braces.
+  inlined = @map/values(withData, @inline, { deep: @true, extension: "md" })
+
+  # Convert the markdown (including inlined content) to HTML while preserving
+  # the front matter at the top of each document. As the content is now HTML, we
+  # change the file extension from `.md` to `.html`. The result is a graph of
+  # HTML content; each value represents the main body of a given page.
+  html = @map/values(inlined, @mdHtml, { deep: @true, extension: "md→html" })
+
+  # Apply the documentation page template. This injects the HTML content from
+  # the previous step into the site's main page template, which adds headers and
+  # navigation chrome. This step concludes the main documentation pipeline.
+  pages = @map/values(html, =templates/page.orit(test.js(_)), { deep: @true, extension: "html" })
+
+  # Expose the packages referenced in the documentation.
+  framework-intro = node_modules/@graphorigami/framework-intro
+  pattern-intro = node_modules/@graphorigami/pattern-intro/src
+  samples = node_modules/@graphorigami/samples/src
+
+  # The following formulas are used by specific pages that want to inline API
+  # documentation for specific classes in the Graph Origami core library. The
+  # first formula defines a shorthand `source` that refers to the Graph Origami
+  # source in the Node modules tree. The second formula creates a virtual graph of
+  # API documentation objects for the core library. That formula uses a custom
+  # transform called `jsApi`, based on the Microsoft TypeScript compiler, which
+  # parses JavaScript source to extract type information and comments.
+  source = node_modules/@graphorigami/core/src
+  api = js/jsApi.js(source)
+
+  # The `public` graph defines the final graph which is built into static pages.
+  public = @graph/merge(client, pages, {
+    # This components.js "bundle" is just concatenated files
+    components.js = @graph/concat(components)
+
+    demos = {
+      aboutUs = src/demos/aboutUs/site.graph/public
+    }
+
+    # Used by Netlify
+    _redirects = src/_redirects
+
+    samples
+  })
+}

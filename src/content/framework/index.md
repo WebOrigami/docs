@@ -3,7 +3,7 @@ title: Origami framework
 subtitle: Content creation for sites, tools, and data
 ---
 
-{{ templates/blocks.ori() }}
+{{ templates/blocks.orit(_) }}
 
 Use the Graph Origami framework to make digital content:
 

@@ -16,7 +16,7 @@ You can invoke this file to evaluate its expressions:
 
 ```console
 $ ori expressions.yaml/
-{{ @yaml @scope/invoke samples/templates, samples/templates/expressions.yaml }}
+{{ @yaml samples/templates/expressions.yaml/ }}
 ```
 
 This lets you treat a YAML file as a template for data.
