@@ -39,6 +39,38 @@ $ cat heading.orit
 {{ samples/templates/heading.orit('About Us') }}
 ```
 
+## Reference individual files
+
+You can reference local files in Origami expressions. Depending on the situation, you may not have to pass any arguments to the template — it may be able obtain whatever it needs from its file system context.
+
+```console
+$ cat fileRef.orit
+{{ samples/templates/fileRef.orit }}$ cat copyright.txt
+{{ samples/templates/copyright.txt }}
+$ ori "fileRef.orit()"
+{{ samples/templates/fileRef.orit/ }}
+```
+
+In cases like this, where the template does not require any argument, you can avoid the need to quote parentheses by invoking the template using slash syntax:
+
+```console
+$ ori fileRef.orit/
+{{ samples/templates/fileRef.orit/ }}
+```
+
+## Reference graphs
+
+If a template expression results in a graph such as a folder or hierarchical data, Origami will collect the deep values of that graph, convert them to strings, then concatenate them.
+
+```console
+$ cat greetings.yaml
+{{ samples/templates/greetings.yaml }}
+$ cat flatten.orit
+{{ samples/templates/flatten.orit }}
+$ ori flatten.orit/
+{{ samples/templates/flatten.orit/ }}
+```
+
 This feature forms the basis for more complex ones (like maps, below), but one basic use for it is to inline a set of files. For example, you might create a folder that contains a collection of HTML fragments as separate files:
 
 ```console
