@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
-    "@graphorigami/framework-intro": "github:GraphOrigami/framework-intro#05d9b264",
-    "@graphorigami/origami": "https://gitpkg.now.sh/GraphOrigami/origami/packages/origami?501f749c",
+    "@graphorigami/framework-intro": "github:GraphOrigami/framework-intro#0c8c2d57",
+    "@graphorigami/origami": "https://gitpkg.now.sh/GraphOrigami/origami/origami?4260061f",
     "@graphorigami/pattern-intro": "github:GraphOrigami/pattern-intro#a37365ac",
-    "@graphorigami/samples": "github:GraphOrigami/samples#2b4e6bda",
+    "@graphorigami/samples": "github:GraphOrigami/samples#e39eb44b",
     "marked": "4.1.0",
     "sharp": "0.31.3",
     "typescript": "4.8.4",
