@@ -14,7 +14,7 @@
   },
   "scripts": {
     "build": "ori '@copy netlify.js(@graph/keysJson(src/site.ori/public)), @files/dist'",
-    "serve": "ori '@serve @watch src, =@debug(src/site.ori/public)'",
+    "start": "ori @serve @watch src, =@debug src/site.ori/public",
     "test": "ori virtual/src/test/summary"
   }
 }

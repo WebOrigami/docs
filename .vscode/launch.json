@@ -7,11 +7,14 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "serve",
+      "name": "serve via npm",
       "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/node_modules/@graphorigami/origami/src/cli/cli.js",
-      "runtimeArgs": ["--preserve-symlinks"],
-      "args": ["@serve src/site.ori/public"]
+      // "runtimeArgs": ["--preserve-symlinks"],
+      // "args": ["@serve src/site.ori/public"]
+      "runtimeExecutable": "npm",
+      // If using nvm, uncomment the line below and specify the node version.
+      "runtimeVersion": "20",
+      "runtimeArgs": ["run-script", "start"]
     }
   ]
 }
