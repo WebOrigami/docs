@@ -2,24 +2,24 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>{{ ./name }}</title>
+    <title>{{ _/name }}</title>
     <link rel="stylesheet" href="../styles.css">
   </head>
   <body>
     <a class="headerLink" href="..">
       <header>
         <img class="icon" src="../personIcon.svg">
-        <h1>{{ ./title }}</h1>
+        <h1>{{ _/title }}</h1>
       </header>
     </a>
     <main class="person">
-      <img class="avatar large" src="../images/{{ ./image }}" alt="{{ ./name }}" />
-      <h2 class="name">{{ ./name }}</h2>
+      <img class="avatar large" src="../images/{{ _/image }}" alt="{{ _/name }}" />
+      <h2 class="name">{{ _/name }}</h2>
       <div class="location">
-        {{ ./location }}
+        {{ _/location }}
       </div>
       <p class="bio">
-        {{ ./bio }}
+        {{ _/bio }}
       </p>
     </main>
   </body>

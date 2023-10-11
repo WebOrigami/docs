@@ -1,7 +1,6 @@
 ---
 title: Transforming data and graphs
 numberHeadings: true
-intro: !ori samples/cli
 ---
 
 ## Transform data into something presentable with a template
@@ -76,13 +75,13 @@ The second argument to `@map/values` is a function. Technically, the second argu
 The map example above takes the original greetings graph:
 
 <figure>
-{{ @svg intro/greetings.yaml }}
+{{ @svg samples/cli/greetings.yaml }}
 </figure>
 
 and creates a new graph where all the values are uppercase:
 
 <figure>
-{{ @svg @map/values(intro/greetings.yaml, intro/uppercase) }}
+{{ @svg @map/values(samples/cli/greetings.yaml, samples/cli/uppercase.js) }}
 </figure>
 
 In this intro, we're just transforming text, but you can transform anything in bulk, including images and other binaries. If you can write a function to transform a single thing in JavaScript, you can use ori to apply that transformation to an entire graph of things.
@@ -129,13 +128,13 @@ $ ori @map/values people.yaml, greetings.yaml
 
 <div class="sideBySide">
   <figure>
-    {{ @svg intro/people.yaml }}
+    {{ @svg samples/cli/people.yaml }}
   </figure>
   <figure>
-    {{ @svg intro/greetings.yaml }}
+    {{ @svg samples/cli/greetings.yaml }}
   </figure>
   <figure>
-    {{ @svg @map/values(intro/people.yaml, intro/greetings.yaml) }}
+    {{ @svg @map/values(samples/cli/people.yaml, samples/cli/greetings.yaml) }}
   </figure>
   <figcaption>List of people</figcaption>
   <figcaption>Greetings for everyone</figcaption>

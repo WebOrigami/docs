@@ -1,7 +1,6 @@
 ---
 title: Serving graphs
 numberHeadings: true
-intro: !ori samples/cli
 ---
 
 ## Serve a graph
@@ -33,7 +32,7 @@ about:
 The graph looks like this:
 
 <figure>
-{{ @svg intro/site.yaml }}
+{{ @svg samples/cli/site.yaml }}
 </figure>
 
 <span class="tutorialStep"></span> You can serve this tiny site directly from the file:

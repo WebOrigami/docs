@@ -259,9 +259,9 @@ $ ori banner.orit/
 
 ### Template and input front matter
 
-Both a template and an input document can define front matter. In cases where they both define the same key, the input's value for that key takes priority.
+Both a template and an input document can define front matter.
 
-Among other things, you can use this to have a template define a default, fallback value for a given key. A blog post template can define a default `title`:
+Among other things, you can use this to have a template define a default, fallback value for a given key. A blog post template can define a default title in its own front matter. It can then use an [@or](/builtins/@or.html) statement to prefer the input's `title` property if one is defined, but if not falling back to the default title.
 
 ```console
 $ ori blogPost.orit
@@ -277,7 +277,7 @@ $ ori blogPost.orit posts/post1.html
 {{ samples/templates/blogPost.orit samples/templates/posts/post1.html }}
 ```
 
-But if a post fails to define a `title`, the template's default `title` is used:
+But if a post fails to define a `title`, the template's default title is used:
 
 ```console
 $ cat posts/post2.html

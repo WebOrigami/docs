@@ -56,7 +56,7 @@
     components.js = @graph/concat(components)
 
     demos = {
-      aboutUs = src/demos/aboutUs/site.graph/public
+      aboutUs = src/demos/aboutUs/site.ori/public
     }
 
     # Used by Netlify
