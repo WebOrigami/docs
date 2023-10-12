@@ -48,14 +48,14 @@ $ cat fileRef.orit
 {{ samples/templates/fileRef.orit }}$ cat copyright.txt
 {{ samples/templates/copyright.txt }}
 $ ori "fileRef.orit()"
-{{ samples/templates/fileRef.orit/ }}
+{{ @scope/invoke samples/templates, samples/templates/fileRef.orit }}
 ```
 
 In cases like this, where the template does not require any argument, you can avoid the need to quote parentheses by invoking the template using slash syntax:
 
 ```console
 $ ori fileRef.orit/
-{{ samples/templates/fileRef.orit/ }}
+{{ @scope/invoke samples/templates, samples/templates/fileRef.orit }}
 ```
 
 ## Reference graphs
@@ -68,7 +68,7 @@ $ cat greetings.yaml
 $ cat flatten.orit
 {{ samples/templates/flatten.orit }}
 $ ori flatten.orit/
-{{ samples/templates/flatten.orit/ }}
+{{ @scope/invoke samples/templates, samples/templates/flatten.orit }}
 ```
 
 This feature forms the basis for more complex ones (like maps, below), but one basic use for it is to inline a set of files. For example, you might create a folder that contains a collection of HTML fragments as separate files:
@@ -86,7 +86,7 @@ You can then reference that `fragments` folder in a template to concatenate all 
 $ cat concat.orit
 {{ samples/templates/concat.orit }}
 $ ori concat.orit/
-{{ samples/templates/concat.orit/ }}
+{{ @scope/invoke samples/templates, samples/templates/concat.orit }}
 ```
 
 ## Use template expressions in any file type
@@ -99,7 +99,7 @@ For example, you can use this to inline resources such as stylesheets.
 $ cat inline.html
 {{ samples/templates/inline.html }}$ cat inline.css
 {{ samples/templates/inline.css }}$ ori @inline inline.html
-{{ @inline samples/templates/inline.html }}
+{{ @scope/invoke samples/templates, =@inline inline.html }}
 ```
 
 Here, the `inline.html` file is acting as an Origami template, but keeps the `.html` extension so that it can be otherwise treated as an HTML file.
@@ -120,7 +120,7 @@ $ cat teamData.yaml
 …
 $ cat teamLead.orit
 {{ samples/templates/teamLead.orit }}$ ori teamLead.orit/
-{{ samples/templates/teamLead.orit/ }}
+{{ @scope/invoke samples/templates, samples/templates/teamLead.orit }}
 ```
 
 ## Reference network resources
@@ -171,7 +171,7 @@ $ cat uppercase.js
 $ cat callJs.orit
 {{ samples/templates/callJs.orit }}
 $ ori callJs.orit/
-{{ samples/templates/callJs.orit/ }}
+{{ @scope/invoke samples/templates, samples/templates/callJs.orit }}
 ```
 
 If the function you invoke is asynchronous, its result will be awaited before being incorporated into the text output.
@@ -187,11 +187,11 @@ $ cat stars.orit
 {{ samples/templates/stars.orit }}
 ```
 
-This template repeats a ★ star character for the number of times defined in a `count` value somewhere in scope. For example, you can directly invoke and test this template, passing in a `count` value:
+This template repeats a ★ star character for the number of times defined in in the input value. For example, you can directly invoke and test this template, passing in a value of 3:
 
 ```console
-$ ori "stars.orit({ count: 3 })"
-{{ samples/templates/stars.orit { count: 3 } }}
+$ ori "stars.orit(3)"
+{{ @scope/invoke samples/templates, =stars.orit(3) }}
 ```
 
 This `stars.orit` template defines a function that you can invoke inside expressions in other templates:
@@ -200,7 +200,7 @@ This `stars.orit` template defines a function that you can invoke inside express
 $ cat review.orit
 {{ samples/templates/review.orit }}
 $ ori review.orit/
-{{ samples/templates/review.orit/ }}
+{{ @scope/invoke samples/templates, samples/templates/review.orit }}
 ```
 
 This technique can let you define components in plain HTML and CSS.
@@ -225,7 +225,7 @@ Evaluating this embeds the contact page template, then passes its content to the
 
 ```console
 $ ori contact.orit/
-{{ samples/templates/contact.orit/ }}
+{{ @scope/invoke samples/templates, samples/templates/contact.orit }}
 ```
 
 ## Front matter
@@ -313,7 +313,7 @@ $ cat teamData.yaml
 $ cat teamList.orit
 {{ samples/templates/teamList.orit }}
 $ ori teamList.orit/
-{{ samples/templates/teamList.orit/ }}
+{{ @scope/invoke samples/templates, samples/templates/teamList.orit }}
 ```
 
 The `teamList.orit` file defines an outer template that includes an `<ul>` tag. Inside that, a substitution calling `@map/values` appears, which maps the array of people in `teamData.yaml` to a set of HTML fragments using a nested template with an `<li>` tag.
@@ -365,5 +365,5 @@ Evaluating this template produces a list of links to each post, with each `href`
 
 ```console
 $ ori blogIndex.orit/
-{{ samples/templates/blogIndex.orit/ }}
+{{ @scope/invoke samples/templates, samples/templates/blogIndex.orit }}
 ```
