@@ -66,7 +66,7 @@ Finally, we need to update our `json` utility. That code has a function called `
 ```console
 $ cd ../deep
 $ node json files.js
-{{ @json @map/values(@unpack(pattern-intro/deep/files.js), @js/String) }}
+{{ @json pattern-intro/deep/files.js }}
 ```
 
 ## Deep transforms

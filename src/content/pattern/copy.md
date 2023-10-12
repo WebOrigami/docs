@@ -136,7 +136,7 @@ Alice.html Bob.html   Carol.html index.html more
 
 ```console
 $ node json distFiles.js
-{{ @json @map/values(@unpack(pattern-intro/set/htmlObject.js), @js/String) }}
+{{ @json pattern-intro/set/htmlObject.js }}
 ```
 
 We can see that we've generated HTML pages for all the markdown content, and also see that each level of this tree has an `index.html` page.
