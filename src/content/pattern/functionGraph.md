@@ -36,7 +36,7 @@ $ node fn.test.js
 
 ```console
 $ node json fn.js
-{{ @json @map/values(@unpack(pattern-intro/flat/fn.js), @js/String) }}
+{{ @json pattern-intro/flat/fn.js }}
 ```
 
 You can think of a function graph as a function that can provide a sample output set. Here the core `fn` function can actually handle more keys that the graph exposes in its `keys`, which we can take advantage of later.
