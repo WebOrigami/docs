@@ -1,10 +1,6 @@
 ---
 title: Create a simple About Us site
 numberHeadings: true
-fakeImages:
-  kingfisher.jpg: "[binary data]"
-  van.jpg: "[binary data]"
-  venice.jpg: "[binary data]"
 countries:
   - name: Australia
     abbreviation: AU
@@ -12,17 +8,24 @@ countries:
     abbreviation: BR
   - name: China
     abbreviation: CN
-countriesByAbbreviation: !ori (@map/keys(countries, =abbreviation))
-teamByName: !ori (@map/keys(framework-intro/src/teamData.yaml, =name))
+teamByName: !ori (@map/keys(framework-intro/src/teamData.yaml, =_/name))
 siteComplete:
   index.html: <h1>Our Amazing Team</h1>
   team:
     Alice.html: <h1>Alice</h1>
     Bob.html: <h1>Bob</h1>
     Carol.html: <h1>Carol</h1>
-  assets: !ori framework-intro/src/assets
-  images: !ori fakeImages
-  thumbnails: !ori fakeImages
+  assets:
+    personIcon.svg: ""
+    styles.css: ""
+  images:
+    kingfisher.jpg: "[binary data]"
+    van.jpg: "[binary data]"
+    venice.jpg: "[binary data]"
+  thumbnails:
+    kingfisher.jpg: "[binary data]"
+    van.jpg: "[binary data]"
+    venice.jpg: "[binary data]"
 ---
 
 <script src="/components.js"></script>
@@ -61,17 +64,20 @@ Graph Origami lets you define a graph in several ways, and one way is to write f
 <span class="tutorialStep"></span> In the `src` folder, open `site.ori`:
 
 ```
-public = {
-  index.html = "Hello"
+{
+  public = {
+    index.html = "Hello"
+  }
 }
 ```
 
-This graph file has formulas that define two things:
+This graph file has formulas that define three things:
 
-1. A virtual folder called `public`. The formulas nested inside the `{` `}` curly braces define virtual files in that folder.
-2. A virtual file called `index.html`. Unlike most programming languages, names in Graph Origami can include periods so you can define file names with extensions. For now, the `index.html` file is defined as a simple text string.
+1. A virtual folder at the project's top level. Everything in between the `{` on the first line and the `}` on the last line will become part of that top-level virtual folder.
+1. A virtual folder called `public`. This is a virtual subfolder inside the top-level folder.
+1. A virtual file called `index.html`. Unlike most programming languages, names in Graph Origami can include periods so you can define file names with extensions. For now, the `index.html` file is defined as a simple text string.
 
-A `.ori` file can define more than one top-level virtual folder or file. This tutorial project is configured to serve the contents of the virtual `public` folder. The name "public" itself isn't special — you could configure the project to serve a different real or virtual folder.
+This tutorial project is already configured to serve the contents of the virtual `public` folder. The name "public" itself isn't special — you could configure the project to serve the top-level folder, or some folder with a different name.
 
 You can edit your site by editing this `site.ori` file.
 
@@ -90,7 +96,7 @@ Graph Origami lets you visualize and explore the graph you are building.
 You'll see your site visually represented as a graph:
 
 <figure>
-{{ @svg {
+{{ svg.js {
 index.html = 'Hello, world!'
 } }}
 </figure>
@@ -122,8 +128,10 @@ message = greet.js("Alice")
 <reveal-solution>
 
 ```
-public = {
-  index.html = greet.js("world")
+{
+  public = {
+    index.html = greet.js("world")
+  }
 }
 ```
 
@@ -162,8 +170,10 @@ You can use this slash-separated path syntax anywhere you can refer to something
 <reveal-solution>
 
 ```
-public = {
-  index.html = greet.js(teamData.yaml/0/name)
+{
+  public = {
+    index.html = greet.js(teamData.yaml/0/name)
+  }
 }
 ```
 
@@ -191,9 +201,11 @@ The order of the above definitions doesn't matter; `word` could just as well com
 <reveal-solution>
 
 ```
-public = {
-  index.html = greet.js(title)
-  title = "Our Amazing Team"
+{
+  public = {
+    index.html = greet.js(title)
+    title = "Our Amazing Team"
+  }
 }
 ```
 
@@ -210,7 +222,7 @@ This project is configured to let a user browse the virtual `public` folder.
 <span class="tutorialStep"></span> Switch to graph diagram window and refresh it to see its current structure.
 
 <figure>
-{{ @svg {
+{{ svg.js {
   index.html: framework-intro/src/greet.js("Our Amazing Team")
   title: "Our Amazing Team"
  } }}
@@ -218,16 +230,18 @@ This project is configured to let a user browse the virtual `public` folder.
 
 The virtual `title` file is used by the formula for `index.html`. But you don't need make the `title` file itself part of your final site — it's only needed internally.
 
-<span class="tutorialStep"></span> **Try it:** Move the line for `title` to the top level of `site.ori` so that it's outside the `{` `}` curly braces that define the `public` folder.
+<span class="tutorialStep"></span> **Try it:** Move the line for `title` to the top level of `site.ori` so that it's inside the outermost `{` `}` curly braces but no longer inside the curly braces that define the contents of the `public` folder.
 
 <reveal-solution>
 
 ```
-public = {
-  index.html = greet.js(title)
-}
+{
+  public = {
+    index.html = greet.js(title)
+  }
 
-title = "Our Amazing Team"
+  title = "Our Amazing Team"
+}
 ```
 
 </reveal-solution>
@@ -237,7 +251,7 @@ By putting `title` at the top level, the formulas inside `public` can reference 
 <span class="tutorialStep"></span> Refresh the graph diagram window to confirm that the public site no longer includes `title`:
 
 <figure>
-{{ @svg {
+{{ svg.js {
   index.html: framework-intro/src/greet.js("Our Amazing Team")
 } }}
 </figure>
@@ -258,7 +272,7 @@ Inside the curly braces, you can do the same things you can in formulas: call Ja
 
 <span class="tutorialStep"></span> **Try it:** Using the Glitch user interface, create a new file called `index.orit`: Next to the `src` folder on the left, click the `⋮` icon, then **Add File to Folder**, then type `index.orit`. This will become the template file for your index page.
 
-A `.orit` template file can define any kind of text content. Here you'll use it to define HTML, so in `index.orit` you can enter regular HTML interspersed with curly brace placeholders.
+An Origami template in a `.orit` file (with an extra `t` for "template" in the extension) can produce text content. Here you'll use it to define HTML, so in `index.orit` you can enter regular HTML interspersed with curly brace placeholders.
 
 <span class="tutorialStep"></span> Inside the template, enter opening and closing `h1` tags to create a heading. Inside the heading tags, put a `\{\{` `}}` placeholder that displays your site's `title`.
 
@@ -287,11 +301,13 @@ product.html = product.orit()
 <reveal-solution>
 
 ```
-public = {
-  index.html = index.orit()
-}
+{
+  public = {
+    index.html = index.orit()
+  }
 
-title = "Our Amazing Team"
+  title = "Our Amazing Team"
+}
 ```
 
 </reveal-solution>
@@ -318,23 +334,25 @@ Earlier, you invoked the `greet` function to create a single file. That function
 
 But let's say you want to greet a bunch of people by name. You could create individual files for each of them, but that would be repetitive and error-prone.
 
-Instead, you can use a built-in function called [@map/values](/language/@map.html#values) to apply the `greet` function to all of the people at once.
+Instead, you can use a built-in function called [@map/values](/language/@map.html#values). All built-in functions start with an `@` sign. The built-in `@map/values` function can apply the `greet` function to all of the people at once.
 
 <span class="tutorialStep"></span> First, add the following formula for `team` to `site.ori`:
 
 ```
-public = {
-  index.html = index.orit()
-  team = @map/values(teamData.yaml, =name)
-}
+{
+  public = {
+    index.html = index.orit()
+    team = @map/values(teamData.yaml, =_/name)
+  }
 
-title = "Our Amazing Team"
+  title = "Our Amazing Team"
+}
 ```
 
 <span class="tutorialStep"></span> In the graph diagram window, refresh the page to confirm that the graph now includes an `team` area with the names from `teamData.yaml`.
 
 <figure>
-  {{ @svg {
+  {{ svg.js {
     index.html = "<h1>Our Amazing Team</h1>"
     team = [
       "Alice"
@@ -344,20 +362,20 @@ title = "Our Amazing Team"
   } }}
 </figure>
 
-The keys in this area are integers which are the indices of the array in teamData.yaml; the values are the people's names. The small expression `=name` in the `team` formula is an unnamed function that `@map/values` will apply to each person in `teamData.yaml`. In this case, the unnamed function returns a person's name.
+The keys in this area are integers which are the indices of the array in teamData.yaml; the values are the people's names. The small expression `=_/name` in the `team` formula is an unnamed function that `@map/values` will apply to each person in `teamData.yaml`. The underscore (`_`) represents the person being operated on. The `/name` path will get the `name` field of that person.
 
 In this way, `@map/values` performs a many-to-many transformation:
 
 <div class="sideBySide">
   <figure>
-    {{ @svg [
+    {{ svg.js [
       { name: "Alice", image: "kingfisher.jpg" }
       { name: "Bob", image: "beach.jpg" }
       { name: "Carol", image: "venice.jpg" }
     ] }}
   </figure>
   <figure>
-    {{ @svg [
+    {{ svg.js [
       "Alice"
       "Bob"
       "Carol"
@@ -369,17 +387,19 @@ In this way, `@map/values` performs a many-to-many transformation:
 
 The formula you give to `@map/values` can be arbitrarily complex.
 
-<span class="tutorialStep"></span> **Try it**: In the Glitch editor window, in `site.ori`, update the expression `=name` so that, instead of just returning a `name`, it calls the `greet` function and passes in that person's name.
+<span class="tutorialStep"></span> **Try it**: In the Glitch editor window, in `site.ori`, update the expression `=_/name` so that, instead of just returning a `name`, it calls the `greet` function and passes in that person's name.
 
 <reveal-solution>
 
 ```
-public = {
-  index.html = index.orit()
-  team = @map/values(teamData.yaml, =greet.js(name))
-}
+{
+  public = {
+    index.html = index.orit()
+    team = @map/values(teamData.yaml, =greet.js(_/name))
+  }
 
-title = "Our Amazing Team"
+  title = "Our Amazing Team"
+}
 ```
 
 </reveal-solution>
@@ -387,7 +407,7 @@ title = "Our Amazing Team"
 <span class="tutorialStep"></span> In the graph diagram window, refresh the page to see the updated `team` area.
 
 <figure>
-  {{ @svg {
+  {{ svg.js {
     index.html = "<h1>Our Amazing Team</h1>"
     team = [
       "<p>Hello, <strong>Alice</strong>!</p>"
@@ -411,8 +431,10 @@ You can pull a folder or file into your graph by writing its name on a line by i
 **Example:** To include a `styles` folder in the `public` graph you would write
 
 ```
-public = {
-  styles
+{
+  public = {
+    styles
+  }
 }
 ```
 
@@ -421,14 +443,16 @@ public = {
 <reveal-solution>
 
 ```
-public = {
-  index.html = index.orit()
-  team = @map/values(teamData.yaml, =greet.js(name))
-  assets
-  images
-}
+{
+  public = {
+    index.html = index.orit()
+    team = @map/values(teamData.yaml, =greet.js(_/name))
+    assets
+    images
+  }
 
-title = "Our Amazing Team"
+  title = "Our Amazing Team"
+}
 ```
 
 </reveal-solution>
@@ -447,28 +471,30 @@ For each full-size image, you will want to produce a corresponding thumbnail ima
 
 In this case, the file `src/thumbnail.js` contains a small JavaScript function which, given the binary data for an image, invokes an image-editing library to generate a new image at a smaller size. This `thumbnail` function is a one-to-one transformation. You're going to use a map to apply that `thumbnail` function as a many-to-many transformation.
 
-One question: In the `@map` formula above, you passed `name` to `greet` — but what should you pass to the `thumbnail` function? You want to transform an entire image, not some specific field that belongs to it. The solution requires a new bit of syntax to pass an entire value being mapped to a function.
+One question: In the `@map` formula above, you passed `name` to `greet` — but what should you pass to the `thumbnail` function? You want to transform an entire image, not some specific field that belongs to it.
 
-**Example:** To pass an entire value being mapped, you can use the built-in `@value` variable:
+**Example:** To pass an entire value being mapped, you can use an underscore on its own: `_`
 
 ```
-mapped = @map/values(graph, =function(@value))
+mapped = @map/values(graph, =someFunction.js(_))
 ```
 
-<span class="tutorialStep"></span> **Try it:** Switch to the Glitch editor window. In `site.ori`, update the `public` folder to define a new virtual subfolder called `thumbnails`. Using the `team` formula as a model, define `thumbnails` with a formula that uses the `map()` function. Use the `images` folder as the set of things to map and the `thumbnail.js` function as the one-to-one transformation. Pass `@value` to the `thumbnail.js` function to give it the full image data.
+<span class="tutorialStep"></span> **Try it:** Switch to the Glitch editor window. In `site.ori`, update the `public` folder to define a new virtual subfolder called `thumbnails`. Using the `team` formula as a model, define `thumbnails` with a formula that uses the `@map/values` function. Use the `images` folder as the set of things to map and the `thumbnail.js` function as the one-to-one transformation. Pass an underscore (`_`) to the `thumbnail.js` function to give it the full image data.
 
 <reveal-solution>
 
 ```
-public = {
-  index.html = index.orit()
-  team = @map/values(teamData.yaml, =greet.js(name))
-  assets
-  images
-  thumbnails = @map/values(images, =thumbnail.js(@value))
-}
+{
+  public = {
+    index.html = index.orit()
+    team = @map/values(teamData.yaml, =greet.js(_/name))
+    assets
+    images
+    thumbnails = @map/values(images, =thumbnail.js(_))
+  }
 
-title = "Our Amazing Team"
+  title = "Our Amazing Team"
+}
 ```
 
 </reveal-solution>
@@ -520,7 +546,7 @@ You can do anything inside a template's `{{` `}}` placeholders that you can do i
 
 ```html
 <h1>\{\{ title }}</h1>
-\{\{ @map/values(teamData.yaml, =greet.js(name)) }}
+\{\{ @map/values(teamData.yaml, =greet.js(_/name)) }}
 ```
 
 </reveal-solution>
@@ -534,7 +560,7 @@ Earlier you updated the formula for `index.html` to replace an invocation of `gr
 **Example:** If you want to display paragraphs with the team member locations, you could write:
 
 ```{{"html"}}
-\{\{ @map/values(teamData.yaml, =`<p>\{\{ location }}</p>`) }}
+\{\{ @map/values(teamData.yaml, =`<p>\{\{ _/location }}</p>`) }}
 ```
 
 The second argument to `@map` here is a smaller template nested inside the larger template. The nested template is surrounded by backtick (`) characters.
@@ -545,7 +571,7 @@ The second argument to `@map` here is a smaller template nested inside the large
 
 ```{{"html"}}
 <h1>\{\{ title }}</h1>
-\{\{ @map/values(teamData.yaml, =`<li>\{\{ name }}</li>`) }}
+\{\{ @map/values(teamData.yaml, =`<li>\{\{ _/name }}</li>`) }}
 ```
 
 </reveal-solution>
@@ -585,23 +611,25 @@ For this, Graph Origami provides a [@map/keys](/language/@map.html#keys) functio
 If you had an array of data objects about countries, you could index them by a country code abbreviation like this:
 
 ```
-countries = [
-  { name: "Australia", abbreviation: "AU" }
-  { name: "Brazil", abbreviation: "BR" }
-  { name: "China", abbreviation: "CN" }
-]
+{
+  countries = [
+    { name: "Australia", abbreviation: "AU" }
+    { name: "Brazil", abbreviation: "BR" }
+    { name: "China", abbreviation: "CN" }
+  ]
 
-countriesByAbbreviation = @map/keys(countries, =abbreviation)
+  countriesByAbbreviation = @map/keys(countries, =_/abbreviation)
+}
 ```
 
 This operation looks like:
 
 <div class="sideBySide">
   <figure>
-    {{ @svg countries }}
+    {{ svg.js countries }}
   </figure>
   <figure>
-    {{ @svg countriesByAbbreviation }}
+    {{ svg.js @map/keys(countries, =_/abbreviation) }}
   </figure>
   <figcaption>Countries with integer keys</figcaption>
   <figcaption>Countries with abbreviation keys</figcaption>
@@ -616,16 +644,18 @@ In the original `countries` definition, you could get the name of Australia with
 <reveal-solution>
 
 ```
-public = {
-  index.html = index.orit()
-  team = @map/values(teamByName, =greet.js(name))
-  assets
-  images
-  thumbnails = @map/values(images, =thumbnail.js(@value))
-}
+{
+  public = {
+    index.html = index.orit()
+    team = @map/values(teamByName, =greet.js(_/name))
+    assets
+    images
+    thumbnails = @map/values(images, =thumbnail.js(_))
+  }
 
-title = "Our Amazing Team"
-teamByName = @map/keys(teamData.yaml, =name)
+  title = "Our Amazing Team"
+  teamByName = @map/keys(teamData.yaml, =_/name)
+}
 ```
 
 </reveal-solution>
@@ -634,14 +664,14 @@ teamByName = @map/keys(teamData.yaml, =name)
 
 <div class="sideBySide">
   <figure>
-    {{ @svg [
+    {{ svg.js [
       "<p>Hello, <strong>Alice</strong>!<p>"
       "<p>Hello, <strong>Bob</strong>!<p>"
       "<p>Hello, <strong>Carol</strong>!<p>"
     ] }}
   </figure>
   <figure>
-    {{ @svg {
+    {{ svg.js {
       Alice: "<p>Hello, <strong>Alice</strong>!<p>"
       Bob: "<p>Hello, <strong>Bob</strong>!<p>"
       Carol: "<p>Hello, <strong>Carol</strong>!<p>"
@@ -660,11 +690,13 @@ The `map()` function supports this via an optional `extension` parameter, which 
 **Example:** The following are two examples of the `extension` parameter. (Note that the `.ori` format allows comments that start with a `#` character.)
 
 ```
-# Add a .txt extension to the mapped file names
-textFiles = @map/values(data, fn, { extension: "->txt" })
+{
+  # Add a .txt extension to the mapped file names
+  textFiles = @map/values(data, fn, { extension: "->txt" })
 
-# Convert markdown files to HTML, replacing the .md extension with .html
-htmlFiles = @map/values(mdFiles, mdHtml, { extension: "md->html" })
+  # Convert markdown files to HTML, replacing the .md extension with .html
+  htmlFiles = @map/values(mdFiles, mdHtml, { extension: "md->html" })
+}
 ```
 
 <span class="tutorialStep"></span> Update the `team` formula and add an `extension` parameter that adds an `html` extension to the mapped file names.
@@ -672,16 +704,18 @@ htmlFiles = @map/values(mdFiles, mdHtml, { extension: "md->html" })
 <reveal-solution>
 
 ```
-public = {
-  index.html = index.orit()
-  team = @map/values(teamByName, =greet.js(name), { extension: "->html" })
-  assets
-  images
-  thumbnails = @map/values(images, =thumbnail.js(@value))
-}
+{
+  public = {
+    index.html = index.orit()
+    team = @map/values(teamByName, =greet.js(_/name), { extension: "->html" })
+    assets
+    images
+    thumbnails = @map/values(images, =thumbnail.js(_))
+  }
 
-title = "Our Amazing Team"
-teamByName = @map/keys(teamData.yaml, =name)
+  title = "Our Amazing Team"
+  teamByName = @map/keys(teamData.yaml, =_/name)
+}
 ```
 
 </reveal-solution>
@@ -698,31 +732,33 @@ As review, recall that an early iteration of your index page template displayed 
 
 You're now going to create a similarly skeletal template for an individual person.
 
-<span class="tutorialStep"></span> **Try it:** In the src folder, create a new template called `person.orit`. Inside the template, create a `<h1>` heading with a `\{\{` `}}` placeholder that displays the person's name.
+<span class="tutorialStep"></span> **Try it:** In the src folder, create a new template called `person.orit`. Inside the template, create a `<h1>` heading with a `\{\{` `}}` placeholder. Inside the placeholder, enter the expression `_/name`.
 
 <reveal-solution>
 
 ```html
-<h1>\{\{ name }}</h1>
+<h1>\{\{ _/name }}</h1>
 ```
 
 </reveal-solution>
 
-<span class="tutorialStep"></span> Edit the `team` formula in `site.ori` to use the `person.orit` template as the function that should be invoked. As with the `thumbnails` map earlier, you'll want to use `@value` to pass the entire team member object as an argument to the `person.orit` template.
+<span class="tutorialStep"></span> Edit the `team` formula in `site.ori` to use the `person.orit` template as the function that should be invoked. As with the `thumbnails` map earlier, you'll want to use an underscore `_` to pass the entire team member object as an argument to the `person.orit` template.
 
 <reveal-solution>
 
 ```
-public = {
-  index.html = index.orit()
-  team = @map/values(teamByName, =person.orit(@value))
-  assets
-  images
-  thumbnails = @map/values(images, =thumbnail.js(@value))
-}
+{
+  public = {
+    index.html = index.orit()
+    team = @map/values(teamByName, =person.orit(_), { extension: "->html" })
+    assets
+    images
+    thumbnails = @map/values(images, =thumbnail.js(_))
+  }
 
-title = "Our Amazing Team"
-teamByName = @map/keys(teamData.yaml, =name)
+  title = "Our Amazing Team"
+  teamByName = @map/keys(teamData.yaml, =_/name)
+}
 ```
 
 </reveal-solution>
@@ -730,7 +766,7 @@ teamByName = @map/keys(teamData.yaml, =name)
 <span class="tutorialStep"></span> Refresh the graph diagram window to see that the pages in the `team` area now use your `person.orit` template.
 
 <figure>
-  {{ @svg {
+  {{ svg.js {
     Alice.html: "<h1>Alice</h1>"
     Bob.html: "<h1>Bob</h1>"
     Carol.html: "<h1>Carol</h1>"
@@ -758,22 +794,24 @@ The only thing left to do is complete the `person.orit` template.
 <span class="tutorialStep"></span> Switch to the graph diagram window and refresh it to view your site's complete structure. You can click on the circles or boxes in that window to explore what you've made.
 
 <figure>
-{{ @svg siteComplete }}
+{{ svg.js siteComplete }}
 </figure>
 
 Stepping back, consider that you've created this entire site with a few resources, a couple of templates, and a rather concise `site.ori`:
 
 ```
-public = {
-  index.html = index.orit()
-  team = @map/values(teamByName, =person.orit(@value), { extension: "->html" })
-  assets
-  images
-  thumbnails = @map/values(images, =thumbnail.js(@value))
-}
+{
+  public = {
+    index.html = index.orit()
+    team = @map/values(teamByName, =person.orit(_), { extension: "->html" })
+    assets
+    images
+    thumbnails = @map/values(images, =thumbnail.js(_))
+  }
 
-title = "Our Amazing Team"
-teamByName = @map/keys(teamData.yaml, =name)
+  title = "Our Amazing Team"
+  teamByName = @map/keys(teamData.yaml, =_/name)
+}
 ```
 
 From a functional standpoint, you've achieved your goal. The site is now complete.
@@ -785,27 +823,29 @@ Each of the lines in `site.ori` defines some important area of the site. In a re
 <clipboard-copy>
 
 ```
-# The public folder is what users can browse.
-public = {
-  # Generate the index page from the index.orit template.
-  index.html = index.orit()
+{
+  # The public folder is what users can browse.
+  public = {
+    # Generate the index page from the index.orit template.
+    index.html = index.orit()
 
-  # Generate a page in the team area for each team member.
-  team = @map/values(teamByName, =person.orit(@value), { extension: "->html" })
+    # Generate a page in the team area for each team member.
+    team = @map/values(teamByName, =person.orit(_), { extension: "->html" })
 
-  # These are static resources
-  assets
-  images
+    # These are static resources
+    assets
+    images
 
-  # Generate the thumbnails by reducing the full-size images.
-  thumbnails = @map/values(images, =thumbnail.js(@value))
+    # Generate the thumbnails by reducing the full-size images.
+    thumbnails = @map/values(images, =thumbnail.js(_))
+  }
+
+  # Define the title here so both page templates can use it.
+  title = "Our Amazing Team"
+
+  # Index the team members by name.
+  teamByName = @map/keys(teamData.yaml, =_/name)
 }
-
-# Define the title here so both page templates can use it.
-title = "Our Amazing Team"
-
-# Index the team members by name.
-teamByName = @map/keys(teamData.yaml, =name)
 ```
 
 </clipboard-copy>
