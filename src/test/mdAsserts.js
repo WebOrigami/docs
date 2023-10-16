@@ -1,7 +1,7 @@
 import {
   extractFrontMatter,
   MetaTransform,
-  ObjectGraph,
+  ObjectTree,
 } from "@graphorigami/origami";
 import consoleAsserts from "./consoleAsserts.js";
 import mdCode from "./mdCode.js";
@@ -12,20 +12,20 @@ import mdCode from "./mdCode.js";
 // // If a path was provided, traverse that before evaluating the code.
 // //
 // // REVIEW: This path-traversing feature of ori exists to support asserts,
-// // which often need to traverse a graph before evaluating an assertion. That
+// // which often need to traverse a tree before evaluating an assertion. That
 // // feels too specific to support in this otherwise general-purpose function.
 // // The use of slash-separated paths also feels too specific.
 // if (path) {
 //   const keys = path.split("/");
 //   const [first, ...rest] = keys;
-//   let graph = await scope.get(first);
-//   if (!graph) {
+//   let tree = await scope.get(first);
+//   if (!tree) {
 //     return undefined;
 //   }
-//   graph = transformObject(InheritScopeTransform, graph);
-//   graph.parent = scope;
-//   graph = await Graph.traverse(graph, ...rest);
-//   scope = getScope(graph);
+//   tree = transformObject(InheritScopeTransform, tree);
+//   tree.parent = scope;
+//   tree = await Tree.traverse(tree, ...rest);
+//   scope = getScope(tree);
 // }
 
 export default async function mdAsserts(markdown) {
@@ -55,13 +55,13 @@ export default async function mdAsserts(markdown) {
 
   // Add the extracted asserts to the data. Workaround: we expand the map to a
   // plain object so that the eventual application of the MetaTransform will be
-  // applied to this subgraph.
+  // applied to this subtree.
   data.asserts = {};
   asserts.forEach((assert, index) => {
     data.asserts[index] = assert;
   });
 
-  const meta = new (MetaTransform(ObjectGraph))(data);
+  const meta = new (MetaTransform(ObjectTree))(data);
   meta.parent = this;
 
   return meta;

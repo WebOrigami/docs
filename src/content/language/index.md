@@ -1,6 +1,6 @@
 ---
 title: Origami expression language
-subtitle: A small language for expressions that access or transform graphs and other data
+subtitle: A small language for expressions that access or transform trees and other data
 ---
 
 {{ templates/blocks.orit() }}
@@ -8,8 +8,8 @@ subtitle: A small language for expressions that access or transform graphs and o
 Graph Origami includes a small Origami expression language focused on:
 
 - Invoking functions
-- Traversing paths into graphs likes files and data
-- Defining graphs
+- Traversing paths into trees likes files and data
+- Defining trees
 - Defining text with templates
 
 You can use the same Origami expression language in:

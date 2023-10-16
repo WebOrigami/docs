@@ -1,4 +1,4 @@
-import { Graph } from "@graphorigami/origami";
+import { Tree } from "@graphorigami/origami";
 
 /**
  * Expose keys.json (no initial dot) for Netlify.
@@ -10,7 +10,7 @@ import { Graph } from "@graphorigami/origami";
  * be available).
  */
 export default async function netlify(variant) {
-  const graph = Graph.from(variant);
+  const graph = Tree.from(variant);
   return {
     async get(key) {
       if (key === "keys.json") {
@@ -18,7 +18,7 @@ export default async function netlify(variant) {
         return await this.get(".keys.json");
       }
       const value = await graph.get(key);
-      return Graph.isAsyncDictionary(value) ? netlify(value) : value;
+      return Tree.isAsyncDictionary(value) ? netlify(value) : value;
     },
 
     async keys() {

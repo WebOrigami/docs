@@ -58,9 +58,9 @@ $ ori fileRef.orit/
 {{ @scope/invoke samples/templates, samples/templates/fileRef.orit }}
 ```
 
-## Reference graphs
+## Reference trees
 
-If a template expression results in a graph such as a folder or hierarchical data, Origami will collect the deep values of that graph, convert them to strings, then concatenate them.
+If a template expression results in a tree such as a folder or hierarchical data, Origami will collect the deep values of that tree, convert them to strings, then concatenate them.
 
 ```console
 $ cat greetings.yaml
@@ -142,7 +142,7 @@ $ cat netData.orit
 Bob lives in {{ samples/templates/teamData.yaml/1/location }}.
 ```
 
-You can also obtain a data file from the network, treat it as a graph, and [map the graph to text](#map-graphs-to-text). This allows you to directly process network data into text in a template.
+You can also obtain a data file from the network, treat it as a tree, and [map the tree to text](#map-trees-to-text). This allows you to directly process network data into text in a template.
 
 ## Conditions
 
@@ -286,26 +286,10 @@ $ ori blogPost.orit posts/post2.html
 {{ samples/templates/blogPost.orit samples/templates/posts/post2.html }}
 ```
 
-## Ambient properties available inside a template
+## Map trees to text
 
-Inside a template, additional ambient properties are added to the scope in which the template's expressions are evaluated. These are generally prefixed with `@` to avoid conflict with properties in your data.
-
-- `@input`: the input object passed to the template; see [Reference input](#reference-input).
-- `@template`: a reference to properties of the current template; see below.
-- `@text`: the input object as a text string. If the input object has front matter, this contains only the input's body text without the front matter.
-- `.` (a single period): a shorthand for `@input`.
-
-The `@template` property itself has the following sub-properties:
-
-- `graph`: the data in the template's front matter
-- `recurse`: a reference to the template itself as a function. You can use this to recursively call a template, such as one that renders hierarchical data as text.
-- `scope`: the scope used to create the template.
-- `text`: the body text of the template.
-
-## Map graphs to text
-
-It’s common to have a template generate some fragment of text for each value in a graph: an array, a set, a folder, etc.
-You can handle such cases in Graph Origami templates by calling the built-in [@map/values](/language/@map.html#values) function to map a graph’s values to text.
+It’s common to have a template generate some fragment of text for each value in a tree: an array, a set, a folder, etc.
+You can handle such cases in Graph Origami templates by calling the built-in [@map/values](/language/@map.html#values) function to map a tree’s values to text.
 
 ```console
 $ cat teamData.yaml
@@ -320,7 +304,7 @@ The `teamList.orit` file defines an outer template that includes an `<ul>` tag. 
 
 ### How maps work
 
-Graph Origami templates don't treat such maps specially. Rather, the `@map/values` function is returning a graph of HTML fragments that are concatenated into the text output.
+Graph Origami templates don't treat such maps specially. Rather, the `@map/values` function is returning a tree of HTML fragments that are concatenated into the text output.
 
 In the above example, the `@map/values` function maps an array of people to HTML fragments. The transformation can be visualized like this:
 
@@ -335,15 +319,15 @@ In the above example, the `@map/values` function maps an array of people to HTML
   <figure>
     {{ svg.js @map/values samples/templates/teamData.yaml, =`<li>{{ name }}</li>` }}
   </figure>
-  <figcaption>Source graph of people objects</figcaption>
-  <figcaption>Result graph of HTML fragments</figcaption>
+  <figcaption>Source tree of people objects</figcaption>
+  <figcaption>Result tree of HTML fragments</figcaption>
 </div>
 
-Per the discussion in [Reference graphs](#Reference-graphs), the template concatenates the HTML fragments into the text output.
+Per the discussion in [Reference trees](#Reference-trees), the template concatenates the HTML fragments into the text output.
 
 ### Reference the key for a value
 
-When mapping a graph (like a folder) to text, you can obtain the key (like a file name) via the ambient `@key` property.
+When mapping a tree (like a folder) to text, you can obtain the key (like a file name) via the ambient `@key` property.
 
 Suppose you have a folder holding some files:
 

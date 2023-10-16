@@ -2,7 +2,7 @@
 title: Data representations
 ---
 
-Let's use the async graph pattern to tackle a small, common development task:
+Let's use the async tree pattern to tackle a small, common development task:
 
 > _Our team writes site content in markdown format since that's friendlier than raw HTML. We need to convert a folder of markdown files to HTML pages so we can deploy them on our site._
 
@@ -124,9 +124,9 @@ This leads to overspecialized code. In the context of this markdown-to-HTML task
 
 You often encounter this overspecialization in tools. In searching for a tool that can transform markdown to HTML, you may find a tool that expects the content to be files — but if your project isn't storing markdown in separate files, then you may find yourself forced to save data in temporary files just to be able to use that tool.
 
-## Data as graphs
+## Data as trees
 
-Regardless of how we are storing the markdown content, it's possible to conceptualize the content as a graph:
+Regardless of how we are storing the markdown content, it's possible to conceptualize the content as a tree:
 
 <figure>
   {{ @svg {
@@ -134,13 +134,13 @@ Regardless of how we are storing the markdown content, it's possible to conceptu
     Bob.md: "Hello, **Bob**.",
     Carol.md: "Hello, **Carol**.",
   } }}
-  <figcaption>The markdown documents as a graph</figcaption>
+  <figcaption>The markdown documents as a tree</figcaption>
 </figure>
 
-We can write code to treat _any_ of the relevant data representations for this problem as a graph. That is, we can create an adapter or wrapper that lets us work with the data as a graph. Our core operation can then work on graphs.
+We can write code to treat _any_ of the relevant data representations for this problem as a tree. That is, we can create an adapter or wrapper that lets us work with the data as a tree. Our core operation can then work on trees.
 
-We can start with the simplest possible data representation and, if that suffices, we're done. If we later need to change our representation, we can write a new adapter that lets us treat that as a graph. Our core code should continue to work without modification. In this way, we productively reduce our switching costs.
+We can start with the simplest possible data representation and, if that suffices, we're done. If we later need to change our representation, we can write a new adapter that lets us treat that as a tree. Our core code should continue to work without modification. In this way, we productively reduce our switching costs.
 
 &nbsp;
 
-Next: [The async graph interface](interface.html) »
+Next: [The async tree interface](interface.html) »

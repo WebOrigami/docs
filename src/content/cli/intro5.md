@@ -1,11 +1,11 @@
 ---
-title: Serving graphs
+title: Serving trees
 numberHeadings: true
 ---
 
-## Serve a graph
+## Serve a tree
 
-You can serve any graph with the [@serve](/language/@serve.html) function. For example, the sample `site.yaml` file defines a tiny graph with two web pages:
+You can serve any tree with the [@serve](/language/@serve.html) function. For example, the sample `site.yaml` file defines a tiny tree with two web pages:
 
 ```console
 $ ori site.yaml
@@ -29,7 +29,7 @@ about:
     </html>
 ```
 
-The graph looks like this:
+The tree looks like this:
 
 <figure>
 {{ @svg samples/cli/site.yaml }}
@@ -42,13 +42,13 @@ $ ori @serve site.yaml
 Server running at http://localhost:5000
 ```
 
-If you open the indicated URL in your browser, you'll be able to browse between the two pages in the site. The YAML file defines a graph, and the server translates each HTTP URL into a graph traversal.
+If you open the indicated URL in your browser, you'll be able to browse between the two pages in the site. The YAML file defines a tree, and the server translates each HTTP URL into a tree traversal.
 
 Press Ctrl+C to stop the server.
 
 ## Serve a folder
 
-<span class="tutorialStep"></span> You can serve any graph. To serve the current folder:
+<span class="tutorialStep"></span> You can serve any tree. To serve the current folder:
 
 ```console
 $ ori @serve .
@@ -57,14 +57,14 @@ Server running at http://localhost:5000
 
 This effectively lets ori work as a static file server.
 
-As a shorthand, you can omit the period (`.`). If you don't specify a graph to serve, `@serve` serves up the current folder.
+As a shorthand, you can omit the period (`.`). If you don't specify a tree to serve, `@serve` serves up the current folder.
 
 ```console
 $ ori @serve
 Server running at http://localhost:5000
 ```
 
-## Serve a transformed graph of stuff
+## Serve a transformed tree of stuff
 
 <span class="tutorialStep"></span> You can ask ori to serve data transformed on demand into HTML using `map` and the template we saw earlier.
 
@@ -73,11 +73,11 @@ $ ori "@serve @map/values greetings.yaml, template.js"
 Server running at http://localhost:5000
 ```
 
-You can browse to one of the defined pages like http://localhost:5000/Alice. You'll see "Hello, Alice." rendered in HTML. Due to the lazy nature of async graphs and `map`, that rendering work is only done on request.
+You can browse to one of the defined pages like http://localhost:5000/Alice. You'll see "Hello, Alice." rendered in HTML. Due to the lazy nature of async trees and `map`, that rendering work is only done on request.
 
 ## Transforming data into static files and then serving
 
-Earlier you saw how you can transform a graph and save the results as files.
+Earlier you saw how you can transform a tree and save the results as files.
 
 ```console
 $ ori "@copy @map/values(greetings.yaml, template.js), @files/html"
@@ -102,8 +102,8 @@ This concludes the ori introduction. As you've seen, ori is useful for
 - parsing arguments from the command line and passing those to JavaScript functions
 - passing files and folder trees to JavaScript functions
 - capturing function output to files
-- working with graphs defined in JSON/YAML files, the file system, or web sites
-- serving graphs to a web browser
+- working with trees defined in JSON/YAML files, the file system, or web sites
+- serving trees to a web browser
 
 _Reviewer's note: Feel free to experiment further with ori if you'd like, but understand that it's a research project and will undergo further change. Anyone interested in using it should be in contact with [Jan Miksovsky](https://jan.miksovsky.com/contact.html), and at this stage should be prepared to participate in the project at some level beyond just filing bug reports and expecting those bugs to be fixed._
 

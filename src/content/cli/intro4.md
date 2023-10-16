@@ -1,5 +1,5 @@
 ---
-title: Transforming data and graphs
+title: Transforming data and trees
 numberHeadings: true
 ---
 
@@ -27,7 +27,7 @@ export default (body) => `<!DOCTYPE html>
 `;
 ```
 
-<span class="tutorialStep"></span> We can use ori to apply this template to data, potentially plucked out of a graph, to render that data as HTML:
+<span class="tutorialStep"></span> We can use ori to apply this template to data, potentially plucked out of a tree, to render that data as HTML:
 
 ```console
 $ ori template.js greetings.yaml/Alice
@@ -50,7 +50,7 @@ $ ori template.js greetings.yaml/Alice
 
 You could save this output as an HTML file and open it in your browser, or in a minute you'll see another way to view such a page directly.
 
-## Transform a whole graph of stuff
+## Transform a whole tree of stuff
 
 Earlier you saw an `uppercase` function that takes a string argument and returns an uppercase version:
 
@@ -59,7 +59,7 @@ $ ori uppercase.js greetings.yaml/Alice
 HELLO, ALICE.
 ```
 
-<span class="tutorialStep"></span> You can apply that `uppercase` transformation to an entire graph with the ori's built-in [@map/values](/language/@map.html#values) function:
+<span class="tutorialStep"></span> You can apply that `uppercase` transformation to an entire tree with the ori's built-in [@map/values](/language/@map.html#values) function:
 
 ```console
 $ ori @map/values greetings.yaml, uppercase.js
@@ -68,38 +68,38 @@ Bob: HELLO, BOB.
 Carol: HELLO, CAROL.
 ```
 
-It is easy to transform an entire async graph of one type of object into a new graph of a different type of object. You only need to identify or define a one-to-one transformation function that handles a single object, and ori can apply that as a many-to-many transformation of an entire graph.
+It is easy to transform an entire async tree of one type of object into a new tree of a different type of object. You only need to identify or define a one-to-one transformation function that handles a single object, and ori can apply that as a many-to-many transformation of an entire tree.
 
-The second argument to `@map/values` is a function. Technically, the second argument can be any async graph, but for the moment, we'll use a regular JavaScript function.
+The second argument to `@map/values` is a function. Technically, the second argument can be any async tree, but for the moment, we'll use a regular JavaScript function.
 
-The map example above takes the original greetings graph:
+The map example above takes the original greetings tree:
 
 <figure>
 {{ @svg samples/cli/greetings.yaml }}
 </figure>
 
-and creates a new graph where all the values are uppercase:
+and creates a new tree where all the values are uppercase:
 
 <figure>
 {{ @svg @map/values(samples/cli/greetings.yaml, samples/cli/uppercase.js) }}
 </figure>
 
-In this intro, we're just transforming text, but you can transform anything in bulk, including images and other binaries. If you can write a function to transform a single thing in JavaScript, you can use ori to apply that transformation to an entire graph of things.
+In this intro, we're just transforming text, but you can transform anything in bulk, including images and other binaries. If you can write a function to transform a single thing in JavaScript, you can use ori to apply that transformation to an entire tree of things.
 
-## Traversing a transformed graph
+## Traversing a transformed tree
 
-<span class="tutorialStep"></span> If you ask for a specific value from a mapped graph, then only that value is computed:
+<span class="tutorialStep"></span> If you ask for a specific value from a mapped tree, then only that value is computed:
 
 ```console
 $ ori "@map/values(greetings.yaml, uppercase)/Alice"
 HELLO, ALICE.
 ```
 
-`map` doesn't do all its work when invoked, but immediately returns a new async graph that will invoke the mapping function on demand. You can think of such an async graph as a _lazy dictionary_. The lazy dictionary doesn't have a permanent entry for "Alice", but if you ask for "Alice", the lazy dictionary will go and compute the desired value.
+`map` doesn't do all its work when invoked, but immediately returns a new async tree that will invoke the mapping function on demand. You can think of such an async tree as a _lazy dictionary_. The lazy dictionary doesn't have a permanent entry for "Alice", but if you ask for "Alice", the lazy dictionary will go and compute the desired value.
 
-## Use a graph as a map
+## Use a tree as a map
 
-Above it was noted that the second argument passed to `map` can actually be any graph, not just a mapping function. This lets you use data to transform other data.
+Above it was noted that the second argument passed to `map` can actually be any tree, not just a mapping function. This lets you use data to transform other data.
 
 Suppose that you have base data, like an array of people:
 
@@ -118,7 +118,7 @@ Bob: Hello, Bob.
 Carol: Hello, Carol.
 ```
 
-<span class="tutorialStep"></span> You can then treat both the base data and the greetings data as graphs, and pass those to `map`, to turn the list of specific people into a list of greetings:
+<span class="tutorialStep"></span> You can then treat both the base data and the greetings data as trees, and pass those to `map`, to turn the list of specific people into a list of greetings:
 
 ```console
 $ ori @map/values people.yaml, greetings.yaml
@@ -141,11 +141,11 @@ $ ori @map/values people.yaml, greetings.yaml
   <figcaption>Map to create list of greetings</figcaption>
 </div>
 
-Here the second `greetings.yaml` graph is used as a function to transform the specific names coming from `people.yaml` into greetings.
+Here the second `greetings.yaml` tree is used as a function to transform the specific names coming from `people.yaml` into greetings.
 
-## Turn a transformed graph of stuff into files
+## Turn a transformed tree of stuff into files
 
-<span class="tutorialStep"></span> You can transform a graph and save the results as files.
+<span class="tutorialStep"></span> You can transform a tree and save the results as files.
 
 ```console
 $ ori "@copy @map/values(greetings.yaml, template.js), @files/html"
@@ -157,4 +157,4 @@ Alice   Bob     Carol
 
 &nbsp;
 
-Next: [Serving graphs](intro5.html) »
+Next: [Serving trees](intro5.html) »

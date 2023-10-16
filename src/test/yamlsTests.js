@@ -1,12 +1,12 @@
 import YAML from "yaml";
 
 export default async function yamlsTests(variant) {
-  const graph = Graph.from(variant);
+  const tree = Tree.from(variant);
 
   let fixture = null;
   const tests = [];
-  for (const key of await graph.keys()) {
-    const value = await graph.get(key);
+  for (const key of await tree.keys()) {
+    const value = await tree.get(key);
     const obj = YAML.parse(value);
     if (obj.fixture) {
       // Fixture

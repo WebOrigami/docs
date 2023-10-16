@@ -1,10 +1,10 @@
 ---
-title: "@debug(graph)"
+title: "@debug(treelike)"
 ---
 
-Adds features to the indicated graph that facilitate debugging in the browser.
+Adds features to the indicated tree that facilitate debugging in the browser.
 
-You can enable these features by including `@debug` in the command that serves a graph:
+You can enable these features by including `@debug` in the command that serves a tree:
 
 ```console
 $ ori @serve @debug site.ori
@@ -16,7 +16,7 @@ $ ori @serve @debug site.ori
 
 You can issue Origami commands in the browser's address bar by prefixing the command with a `!` exclamation mark.
 
-For example, the [@svg](@svg.html) built-in function lets you generate an SVG diagram of a graph in the command line:
+For example, the [@svg](@svg.html) built-in function lets you generate an SVG diagram of a tree in the command line:
 
 ```console
 $ ori @svg site.ori
@@ -28,4 +28,4 @@ The `@debug` facility lets you issue this same command from inside the browser. 
 http://localhost:5000/!@svg
 ```
 
-to obtain an SVG diagram rooted at that point in the graph.
+to obtain an SVG diagram rooted at that point in the tree.

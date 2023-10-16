@@ -57,9 +57,9 @@ The page in the preview pane says: Hello
 
 In Graph Origami, you build things from a combination of real files that are stored permanently and virtual files that are created on demand according to your instructions. These virtual "files" can be anything from a single number or text string to a typical document or media file.
 
-As you build a collection of virtual folders and files, it's helpful to be able to think about their structure as a _graph_. Colloquially speaking, a graph is the sort of boxes-with-arrows diagram you often see depicting the structure of organizations, processes, and websites.
+As you build a collection of virtual folders and files, it's helpful to be able to think about their structure as a _tree_. Colloquially speaking, a tree is the sort of boxes-with-arrows diagram you often see depicting the structure of organizations or websites.
 
-Graph Origami lets you define a graph in several ways, and one way is to write formulas in a file with a `.ori` extension.
+Graph Origami lets you define a tree in several ways, and one way is to write formulas in a file with a `.ori` extension.
 
 <span class="tutorialStep"></span> In the `src` folder, open `site.ori`:
 
@@ -71,10 +71,10 @@ Graph Origami lets you define a graph in several ways, and one way is to write f
 }
 ```
 
-This graph file has formulas that define three things:
+This Origami file defines three things:
 
-1. A virtual folder at the project's top level. Everything in between the `{` on the first line and the `}` on the last line will become part of that top-level virtual folder.
-1. A virtual folder called `public`. This is a virtual subfolder inside the top-level folder.
+1. A virtual folder at the project's top level. Everything in between the outermost `{` on the first line and the `}` on the last line will become part of that top-level virtual folder.
+1. A virtual folder called `public`.
 1. A virtual file called `index.html`. Unlike most programming languages, names in Graph Origami can include periods so you can define file names with extensions. For now, the `index.html` file is defined as a simple text string.
 
 This tutorial project is already configured to serve the contents of the virtual `public` folder. The name "public" itself isn't special — you could configure the project to serve the top-level folder, or some folder with a different name.
@@ -85,15 +85,15 @@ You can edit your site by editing this `site.ori` file.
 
 After a moment, the Glitch preview window should refresh to show: Hello, world!
 
-## View your site as a graph
+## View your site as a tree
 
-Graph Origami lets you visualize and explore the graph you are building.
+Graph Origami lets you visualize and explore the tree you are building.
 
 <span class="tutorialStep"></span> Click the **Preview** button at the bottom of the window, then click **Preview in a new window**. This will open your site in a new window (or tab).
 
 <span class="tutorialStep"></span> In the browser address bar for that new window, add `/!@svg` to the end of the URL. The new URL should look like `https://your-project-name.glitch.me/!@svg`
 
-You'll see your site visually represented as a graph:
+You'll see your site visually represented as a tree with just one "branch":
 
 <figure>
 {{ svg.js {
@@ -103,7 +103,7 @@ index.html = 'Hello, world!'
 
 The little circle represents the `public` folder, and the box represents the `index.html` file.
 
-<span class="tutorialStep"></span> Leaving the graph diagram window open, switch back to the main Glitch window. You'll return to the graph diagram occasionally to visually confirm the structure of your evolving site.
+<span class="tutorialStep"></span> Leaving the tree diagram window open, switch back to the main Glitch window. You'll return to the tree diagram occasionally to visually confirm the structure of your evolving site.
 
 ## Formulas can call JavaScript
 
@@ -219,7 +219,7 @@ The preview now shows: Hello, **Our Amazing Team**!
 
 This project is configured to let a user browse the virtual `public` folder.
 
-<span class="tutorialStep"></span> Switch to graph diagram window and refresh it to see its current structure.
+<span class="tutorialStep"></span> Switch to tree diagram window and refresh it to see its current structure.
 
 <figure>
 {{ svg.js {
@@ -248,7 +248,7 @@ The virtual `title` file is used by the formula for `index.html`. But you don't 
 
 By putting `title` at the top level, the formulas inside `public` can reference it, but a user won't be able to browse to a URL like `/title` to see the title.
 
-<span class="tutorialStep"></span> Refresh the graph diagram window to confirm that the public site no longer includes `title`:
+<span class="tutorialStep"></span> Refresh the tree diagram window to confirm that the public site no longer includes `title`:
 
 <figure>
 {{ svg.js {
@@ -349,7 +349,7 @@ Instead, you can use a built-in function called [@map/values](/language/@map.htm
 }
 ```
 
-<span class="tutorialStep"></span> In the graph diagram window, refresh the page to confirm that the graph now includes an `team` area with the names from `teamData.yaml`.
+<span class="tutorialStep"></span> In the tree diagram window, refresh the page to confirm that the tree now includes an `team` area with the names from `teamData.yaml`.
 
 <figure>
   {{ svg.js {
@@ -381,8 +381,8 @@ In this way, `@map/values` performs a many-to-many transformation:
       "Carol"
     ] }}
   </figure>
-  <figcaption>(Partial) graph of teamData.yaml</figcaption>
-  <figcaption>Mapped graph of names</figcaption>
+  <figcaption>(Partial) tree of teamData.yaml</figcaption>
+  <figcaption>Mapped tree of names</figcaption>
 </div>
 
 The formula you give to `@map/values` can be arbitrarily complex.
@@ -404,7 +404,7 @@ The formula you give to `@map/values` can be arbitrarily complex.
 
 </reveal-solution>
 
-<span class="tutorialStep"></span> In the graph diagram window, refresh the page to see the updated `team` area.
+<span class="tutorialStep"></span> In the tree diagram window, refresh the page to see the updated `team` area.
 
 <figure>
   {{ svg.js {
@@ -421,14 +421,14 @@ A map in Graph Origami is an efficient way to create entire areas of a site. We'
 
 ## Pull in more resources
 
-The `src` folder has two real subfolders you'll want to include in your `public` graph:
+The `src` folder has two real subfolders you'll want to include in your `public` tree:
 
 - `assets` contains a stylesheet and icon
 - `images` contains sample images you can use to represent your team members
 
-You can pull a folder or file into your graph by writing its name on a line by itself.
+You can pull a folder or file into your tree by writing its name on a line by itself.
 
-**Example:** To include a `styles` folder in the `public` graph you would write
+**Example:** To include a `styles` folder in the `public` tree you would write
 
 ```
 {
@@ -457,7 +457,7 @@ You can pull a folder or file into your graph by writing its name on a line by i
 
 </reveal-solution>
 
-<span class="tutorialStep"></span> Switch to graph diagram window and refresh it to see the updated site structure.
+<span class="tutorialStep"></span> Switch to tree diagram window and refresh it to see the updated site structure.
 
 Your site now includes both real and virtual files. You can continue to grow this into your final About Us site.
 
@@ -476,7 +476,7 @@ One question: In the `@map` formula above, you passed `name` to `greet` — but
 **Example:** To pass an entire value being mapped, you can use an underscore on its own: `_`
 
 ```
-mapped = @map/values(graph, =someFunction.js(_))
+mapped = @map/values(tree, =someFunction.js(_))
 ```
 
 <span class="tutorialStep"></span> **Try it:** Switch to the Glitch editor window. In `site.ori`, update the `public` folder to define a new virtual subfolder called `thumbnails`. Using the `team` formula as a model, define `thumbnails` with a formula that uses the `@map/values` function. Use the `images` folder as the set of things to map and the `thumbnail.js` function as the one-to-one transformation. Pass an underscore (`_`) to the `thumbnail.js` function to give it the full image data.
@@ -501,15 +501,15 @@ mapped = @map/values(graph, =someFunction.js(_))
 
 Because Graph Origami treats real folders and virtual folders the same, you can browse your virtual folder of thumbnails.
 
-<span class="tutorialStep"></span> Switch to the graph diagram window and refresh it to view your site's updated structure.
+<span class="tutorialStep"></span> Switch to the tree diagram window and refresh it to view your site's updated structure.
 
 The virtual `thumbnails` folder contains a set of thumbnail images _that do not exist_ in any persistent form. They are potential images that are only created when you ask for them.
 
-<span class="tutorialStep"></span> In the graph diagram, click a box for a real image like `images/van.jpg` to preview it.
+<span class="tutorialStep"></span> In the tree diagram, click a box for a real image like `images/van.jpg` to preview it.
 
 <span class="tutorialStep"></span> Navigate back and click a box for the corresponding thumbnail image like `thumbnails/van.jpg` to see the same image at a smaller size. This image is produced on demand.
 
-<span class="tutorialStep"></span> Navigate back to the graph diagram.
+<span class="tutorialStep"></span> Navigate back to the tree diagram.
 
 ## Incorporate a virtual folder into a template
 
@@ -602,7 +602,7 @@ The last phase of building your site involves fleshing out the pages in the `tea
 
 To lay the groundwork for that, you're first going to create an intermediate folder with the same data as `teamData.yaml`, but where the files are named after the people on the team.
 
-As you've seen, the top-level "file names" in `teamData.yaml` are integers, like `0` for the first person. So at the moment the `team` area pages are identified with integers too. But in your final website graph, you'd like the names of the pages in the `team` area to include the person's name, like `Alice.html`.
+As you've seen, the top-level "file names" in `teamData.yaml` are integers, like `0` for the first person. So at the moment the `team` area pages are identified with integers too. But in your final website tree, you'd like the names of the pages in the `team` area to include the person's name, like `Alice.html`.
 
 For this, Graph Origami provides a [@map/keys](/language/@map.html#keys) function that works like `@map/values`, but instead of mapping the values (the file contents), it maps the keys (the file names).
 
@@ -660,7 +660,7 @@ In the original `countries` definition, you could get the name of Australia with
 
 </reveal-solution>
 
-<span class="tutorialStep"></span> Switch to the graph diagram window and refresh it to confirm that the `team` area is now indexed by names instead of integers:
+<span class="tutorialStep"></span> Switch to the tree diagram window and refresh it to confirm that the `team` area is now indexed by names instead of integers:
 
 <div class="sideBySide">
   <figure>
@@ -763,7 +763,7 @@ You're now going to create a similarly skeletal template for an individual perso
 
 </reveal-solution>
 
-<span class="tutorialStep"></span> Refresh the graph diagram window to see that the pages in the `team` area now use your `person.orit` template.
+<span class="tutorialStep"></span> Refresh the tree diagram window to see that the pages in the `team` area now use your `person.orit` template.
 
 <figure>
   {{ svg.js {
@@ -789,9 +789,9 @@ The only thing left to do is complete the `person.orit` template.
 
 <span class="tutorialStep"></span> In the site preview, you can now click a person tile on the index page to navigate to the page for that person.
 
-## View the graph of the completed site
+## View the tree of the completed site
 
-<span class="tutorialStep"></span> Switch to the graph diagram window and refresh it to view your site's complete structure. You can click on the circles or boxes in that window to explore what you've made.
+<span class="tutorialStep"></span> Switch to the tree diagram window and refresh it to view your site's complete structure. You can click on the circles or boxes in that window to explore what you've made.
 
 <figure>
 {{ svg.js siteComplete }}
@@ -864,7 +864,7 @@ Glitch will build the static files automatically, but you can manually trigger t
 $ npm run build
 ```
 
-This invokes a Graph Origami tool called `ori`, and instructs it to copy the contents of the entire virtual `public` graph to a real file system folder called `build`. This turns the virtual files into real files.
+This invokes a Graph Origami tool called `ori`, and instructs it to copy the contents of the entire virtual `public` tree to a real file system folder called `build`. This turns the virtual files into real files.
 
 <span class="tutorialStep"></span> In the Glitch terminal, type:
 
@@ -903,7 +903,7 @@ This concludes the Graph Origami framework tutorial. You can continue exploring 
 - As you were creating the About Us site, the [Origami command-line interface](/cli) and its included web server was working behind the scenes to let you view the site during development and to copy the virtual files to real files.
 - The [Origami expression language](/language) you've been using to write formulas and template expressions has additional features not covered in this tutorial.
 - The Graph Origami framework is built on a [core library](/core) that can let you do everything that you did here with formulas using JavaScript instead. This can be useful in more complex projects, or if you prefer more direct control.
-- You can implement sites like this About Us site completely from scratch using the [async graph pattern](/pattern) and no library or framework at all. That approach may appeal to people who want to work as close to the metal as possible, and that pattern is also a useful reference if you want to understand how the Graph Origami framework works under the hood.
+- You can implement sites like this About Us site completely from scratch using the [async tree pattern](/pattern) and no library or framework at all. That approach may appeal to people who want to work as close to the metal as possible, and that pattern is also a useful reference if you want to understand how the Graph Origami framework works under the hood.
 
 &nbsp;
 

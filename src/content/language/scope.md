@@ -47,7 +47,7 @@ $ ori greet.js/
 
 In these examples, where does Origami look for the definition of `greet.js` function? And if `greet.js` is defined in multiple places, which definition will be used? Graph Origami answers these questions by defining a _scope_ that is used to evaluate any expression.
 
-## Scope in Graph Origami is based on graphs
+## Scope in Graph Origami is based on trees
 
 Suppose we have a project with a file system hierarchy like:
 
@@ -61,33 +61,33 @@ src/
   site.ori
 ```
 
-And suppose that the file `site.ori` defines a graph:
+And suppose that the file `site.ori` defines a tree:
 
 ```{{'yaml'}}
 {{ site.ori }}
 ```
 
-The reference to `greet` is resolved by treating the entire project as a graph:
+The reference to `greet` is resolved by treating the entire project as a tree:
 
 <figure>
 {{ @svg projectExample }}
 </figure>
 
-When Graph Origami needs to resolve the `greet.js` reference, it walks "up" this graph:
+When Graph Origami needs to resolve the `greet.js` reference, it walks "up" this tree:
 
 - It starts by looking for `greet.js` inside the `site.ori` file. This defines `index.html` and `name`, but not `greet.js`, so Graph Origami moves up a level to the `src` folder that contains the file.
 - In the `src` folder, Graph Origami _does_ find `greet.js`. It dynamically loads that module and takes its default export as `greet`. The search ends there.
 - Depending on how Graph Origami was invoked, if `src` didn't define `greet.js`, Graph Origami could continue walking up the file system hierarchy into the project's root folder. (See [Define a project root](#define-a-project-root).)
 - The last place Graph Origami would look is the base scope, which by default is Graph Origami's collection of built-in functions. (See [Define a custom base scope](#define-a-custom-base-scope).)
 
-As with block scoping in programming languages (see below), in graph scoping the search only goes up the graph. If you want to go back deeper into the graph, you must make an explicit reference using paths:
+As with block scoping in programming languages (see below), in tree scoping the search only goes up the tree. If you want to go back deeper into the tree, you must make an explicit reference using paths:
 
 - For example, a formula in `site.ori` could obtain the project's name via `package.json/name`, because `package.json` is in scope.
 - If a formula in `site.ori` wants to reference the image `image1.jpg`, it will have to do that as `assets/image1.jpg`, because `assets` is in scope but `image1.jpg` isn't.
 
 ### Like block scope in programming languages
 
-Graph scope in Graph Origami is inspired by [block scope](<https://en.wikipedia.org/wiki/Scope_(computer_science)#Block_scope>) in traditional, block-oriented programming languages like JavaScript. Consider the following JavaScript sample:
+Tree scope in Graph Origami is inspired by [block scope](<https://en.wikipedia.org/wiki/Scope_(computer_science)#Block_scope>) in traditional, block-oriented programming languages like JavaScript. Consider the following JavaScript sample:
 
 ```js
 const power = 2;
@@ -122,9 +122,9 @@ In the example above, placing a file like `greet.js` in the same folder as the `
 
 ## Determine what's public with project structure
 
-Graph scope lets you use the file system structure of your project as one way to configure what's available to your own code as well as what's available to end users.
+Tree scope lets you use the file system structure of your project as one way to configure what's available to your own code as well as what's available to end users.
 
-You can take advantage of graph scope to hide internal details. If the sample project above publishes the contents of `site.ori`, a user will be able to browse to `index.html` — but will not be able to see `greet.js` or `ReadMe.md`.
+You can take advantage of tree scope to hide internal details. If the sample project above publishes the contents of `site.ori`, a user will be able to browse to `index.html` — but will not be able to see `greet.js` or `ReadMe.md`.
 
 ## Default scope
 
@@ -158,7 +158,7 @@ You can also invoke the command from the project's root:
 $ ori src/site.ori/index.html
 ```
 
-This also works, because Graph Origami works from the graph defining `index.html` up to the current folder.
+This also works, because Graph Origami works from the tree defining `index.html` up to the current folder.
 
 ## Define a project root with ori.config.js
 
@@ -198,18 +198,18 @@ import { builtins } from "@graphorigami/origami";
 export default builtins;
 ```
 
-With such a file in place, instead of stopping its search of the file system hierarchy at the current folder, it will continue searching up to the project root. As a last resort, it will search inside the graph exported by the configuration file — here, the Graph Origami built-in functions.
+With such a file in place, instead of stopping its search of the file system hierarchy at the current folder, it will continue searching up to the project root. As a last resort, it will search inside the tree exported by the configuration file — here, the Graph Origami built-in functions.
 
 ## Define a custom base scope
 
-You can make additional custom commands available throughout your project by including them in the graph exported by `ori.config.js`.
+You can make additional custom commands available throughout your project by including them in the tree exported by `ori.config.js`.
 
 For example, you could rewrite `ori.config.js` to include a custom `uppercase` command in the base scope for your project:
 
 ```js
 // ori.config.js
-import { builtins, MergeGraph } from "@graphorigami/origami";
-export default new MergeGraph(
+import { builtins, MergeTree } from "@graphorigami/origami";
+export default new MergeTree(
   {
     uppercase(s) {
       return s.toUpperCase();

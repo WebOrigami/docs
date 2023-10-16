@@ -2,13 +2,13 @@
 title: "@map"
 ---
 
-This is a collection of functions for transforming graphs.
+This is a collection of functions for transforming trees.
 
 <a name="keys"></a>
 
-## @map/keys(graph, [keyFn])
+## @map/keys(tree, [keyFn])
 
-Returns a new graph that replaces the original keys with mapped keys, obtained by invoking the `keyFn` function for each value in the original graph. If the `keyFn` is omitted, the value itself becomes its own key.
+Returns a new tree that replaces the original keys with mapped keys, obtained by invoking the `keyFn` function for each value in the original tree. If the `keyFn` is omitted, the value itself becomes its own key.
 
 ```console assert: true, path: files
 $ ori team.yaml
@@ -26,9 +26,9 @@ Carol:
 
 <a name="values"></a>
 
-## @map/values(graph, mapFn, [options])
+## @map/values(tree, mapFn, [options])
 
-Returns a new graph whose values are the result of invoking the `mapFn` function for each value in the original graph.
+Returns a new tree whose values are the result of invoking the `mapFn` function for each value in the original tree.
 
 ```console assert: true, path: files
 $ ori greetings.yaml
@@ -43,15 +43,15 @@ Bob: HELLO, BOB.
 Carol: HELLO, CAROL.
 ```
 
-Unlike a JavaScript [Array map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), the `map` function does not do any mapping work upon invocation — it only does the work when someone requests the mapped graph's keys or values.
+Unlike a JavaScript [Array map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), the `map` function does not do any mapping work upon invocation — it only does the work when someone requests the mapped tree's keys or values.
 
-The `mapFn` mapping function is typically a JavaScript function, but can be any [graph variant](/core/variants.html). For example, you can use a second [graph as a map](/cli/intro.html#use-a-graph-as-a-map).
+The `mapFn` mapping function is typically a JavaScript function, but can be any [treelike object](/core/treelike.html). For example, you can use a second [tree as a map](/cli/intro.html#use-a-tree-as-a-map).
 
 Available `options` include:
 
-- `deep`: If `false` (the default), this only maps the top-level values in the graph. If `true`, this maps values at all levels of the graph.
+- `deep`: If `false` (the default), this only maps the top-level values in the tree. If `true`, this maps values at all levels of the tree.
 - `extension`: See below.
-- `getValue`: If `true` (the default), this gets values from the inner graph before passing them to the `mapFn`. If `false`, the `mapFn` is invoked with an `undefined` argument. In cases where you want to map all the values to, say, a constant value, this avoids the unnecessary cost of getting the values from the inner graph.
+- `getValue`: If `true` (the default), this gets values from the inner tree before passing them to the `mapFn`. If `false`, the `mapFn` is invoked with an `undefined` argument. In cases where you want to map all the values to, say, a constant value, this avoids the unnecessary cost of getting the values from the inner tree.
 
 Mapping values often changes the type of the data, and it is useful to be able to reflect that change in type in file extensions. The `extension` option takes the form of a string that indicates which keys the map will affect, and whether or how those keys will change:
 

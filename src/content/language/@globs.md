@@ -1,8 +1,8 @@
 ---
-title: "@globs(graph)"
+title: "@globs(treelike)"
 ---
 
-Treats the keys of `graph` as simple [glob](<https://en.m.wikipedia.org/wiki/Glob_(programming)>) patterns. The following patterns are supported:
+Treats the keys of `tree` as simple [glob](<https://en.m.wikipedia.org/wiki/Glob_(programming)>) patterns. The following patterns are supported:
 
 - `*` matches anything
 - `?` matches a single character

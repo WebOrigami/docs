@@ -1,5 +1,5 @@
 {
-  # This file defines the top-level virtual values in the graph used to create the
+  # This file defines the top-level virtual values in the tree used to create the
   # Graph Origami documentation.
 
   # The first set of formulas define a pipeline for the documentation content,
@@ -9,7 +9,7 @@
   withData = @map/values(
     content
     =@if(
-      @graph/isAsyncDictionary(_)
+      @tree/isAsyncDictionary(_)
       @map/values(
         _
         =js/addData.js(@document(_), area, @key)
@@ -26,7 +26,7 @@
 
   # Convert the markdown (including inlined content) to HTML while preserving
   # the front matter at the top of each document. As the content is now HTML, we
-  # change the file extension from `.md` to `.html`. The result is a graph of
+  # change the file extension from `.md` to `.html`. The result is a tree of
   # HTML content; each value represents the main body of a given page.
   html = @map/values(inlined, @mdHtml, { deep: @true, extension: "md→html" })
 
@@ -43,17 +43,17 @@
   # The following formulas are used by specific pages that want to inline API
   # documentation for specific classes in the Graph Origami core library. The
   # first formula defines a shorthand `source` that refers to the Graph Origami
-  # source in the Node modules tree. The second formula creates a virtual graph of
+  # source in the Node modules tree. The second formula creates a virtual tree of
   # API documentation objects for the core library. That formula uses a custom
   # transform called `jsApi`, based on the Microsoft TypeScript compiler, which
   # parses JavaScript source to extract type information and comments.
   source = node_modules/@graphorigami/core/src
   api = js/jsApi.js(source)
 
-  # The `public` graph defines the final graph which is built into static pages.
-  public = @graph/merge(client, pages, {
+  # The `public` tree defines the final tree which is built into static pages.
+  public = @tree/merge(client, pages, {
     # This components.js "bundle" is just concatenated files
-    components.js = @graph/concat(components)
+    components.js = @tree/concat(components)
 
     demos = {
       aboutUs = src/demos/aboutUs/site.ori/public

@@ -9,7 +9,7 @@ This tutorial introduces the basics of ori. If you'd like to run the samples you
 GitHub Codespaces is a web-based version of VS Code, a popular editor for professional software developers. Codespaces is a fee-based service, but free GitHub accounts include a monthly amount of free use of Codespaces.
 
 <span class="tutorialStep"></span> Open the
-<a href="https://github.com/GraphOrigami/ori-intro" target="_blank">ori introduction on GitHub</a>.
+<a href="https://github.com/Graphorigami/ori-intro" target="_blank">ori introduction on GitHub</a>.
 
 <span class="tutorialStep"></span> Create your own copy of the project by clicking the **Fork** button near the top.
 
@@ -31,7 +31,7 @@ $ cd src
 
 With this option, you can use whatever code editor you prefer. You will need to have [Node.js](https://nodejs.org/en/) installed.
 
-<span class="tutorialStep"></span> Clone the [GraphOrigami/ori-intro](https://github.com/GraphOrigami/ori-intro) repository to your own machine.
+<span class="tutorialStep"></span> Clone the [Graphorigami/ori-intro](https://github.com/Graphorigami/ori-intro) repository to your own machine.
 
 <span class="tutorialStep"></span> Open a terminal window in the project's root directory.
 

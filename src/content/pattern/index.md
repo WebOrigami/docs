@@ -1,11 +1,11 @@
 ---
-title: The async graph pattern
+title: The async tree pattern
 subtitle: A flexible way to work with objects, files, files, web resources, and more
 ---
 
 {{ templates/blocks.orit() }}
 
-The async graph pattern helps you tackle complex development tasks. You represent data as asynchronous graphs and envision your project's final output as the result of graph transformations.
+The async tree pattern helps you tackle complex development tasks. You represent data as asynchronous trees and envision your project's final output as the result of tree transformations.
 
 You can use this software design pattern in many contexts, including:
 
@@ -23,9 +23,9 @@ At this level, _there is no code library or framework_. It's the pattern itself 
 - Use a consistent model for manipulating one thing or an entire batch of things
 - Reuse code between projects
 
-This async graph pattern serves as the foundation for the Graph Origami project. If you use the higher-level parts of Graph Origami, such as the [framework](/framework/) or [command-line interface](/cli/), you will find it useful to understand this foundational pattern.
+This async tree pattern serves as the foundation for the Graph Origami project. If you use the higher-level parts of Graph Origami, such as the [framework](/framework/) or [command-line interface](/cli/), you will find it useful to understand this foundational pattern.
 
-You can follow the tutorial to see how to represent and transform data using the async graph pattern. The tutorial uses JavaScript and Node.js, but you can apply the pattern in other languages that support asynchronous [futures or promises](https://en.wikipedia.org/wiki/Futures_and_promises).
+You can follow the tutorial to see how to represent and transform data using the async tree pattern. The tutorial uses JavaScript and Node.js, but you can apply the pattern in other languages that support asynchronous [futures or promises](https://en.wikipedia.org/wiki/Futures_and_promises).
 
 &nbsp;
 

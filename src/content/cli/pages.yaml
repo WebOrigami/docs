@@ -5,8 +5,8 @@
 - href: intro2.html
   text: Basic usage
 - href: intro3.html
-  text: Using graphs
+  text: Working with trees
 - href: intro4.html
   text: Transformations
 - href: intro5.html
-  text: Serving graphs
+  text: Serving trees

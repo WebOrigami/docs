@@ -1,17 +1,17 @@
 ---
-title: Serve a graph
+title: Serve a tree
 functions: !ori js/codeFunctions.js(pattern-intro/deep/serve.js)
 ---
 
-Displaying a graph in the console is fine for playing around or debugging, but we can do much more interesting things with a graph — like serve it to a web browser.
+Displaying a tree in the console is fine for playing around or debugging, but we can do much more interesting things with a tree — like serve it to a web browser.
 
-Let's build a small graph server directly on top of Node's `http` API. (If we were already using a server like [Express](https://expressjs.com/), it would be straightforward to adapt this same idea into a server middleware function that handles a specific portion of a larger site.)
+Let's build a small tree server directly on top of Node's `http` API. (If we were already using a server like [Express](https://expressjs.com/), it would be straightforward to adapt this same idea into a server middleware function that handles a specific portion of a larger site.)
 
-Using the AsyncDictionary interface to model the graph will let us browse content regardless of how that content is stored or generated.
+Using the AsyncDictionary interface to model the tree will let us browse content regardless of how that content is stored or generated.
 
-## Treat a URL as a series of graph keys
+## Treat a URL as a series of tree keys
 
-The first thing is to recognize a URL as a graph traversal — we can treat a URL path as a series of keys to follow through a graph.
+The first thing is to recognize a URL as a tree traversal — we can treat a URL path as a series of keys to follow through a tree.
 
 Specifically, we convert a string URL path like `/foo/bar` into an array of keys `["foo", "bar"]`.
 
@@ -23,9 +23,9 @@ Specifically, we convert a string URL path like `/foo/bar` into an array of keys
 
 If the path ends in a slash like `foo/`, this produces the keys `["foo", "index.html"]`.
 
-## Traverse a graph
+## Traverse a tree
 
-We can then iteratively follow this array of keys through a deep graph to a final value:
+We can then iteratively follow this array of keys through a deep tree to a final value:
 
 ```{{'js'}}
 /* In src/deep/serve.js */
@@ -33,11 +33,11 @@ We can then iteratively follow this array of keys through a deep graph to a fina
 {{ functions/traverse }}
 ```
 
-The graph itself is acting as a web site router.
+The tree itself is acting as a web site router.
 
-## Handle requests using a graph
+## Handle requests using a tree
 
-Putting these together, we can build a listener function that uses a graph to respond to HTTP requests.
+Putting these together, we can build a listener function that uses a tree to respond to HTTP requests.
 
 ```{{'js'}}
 /* In src/deep/serve.js */
@@ -47,9 +47,9 @@ Putting these together, we can build a listener function that uses a graph to re
 
 This converts a request's URL into an array of keys, then returns what it finds there. If no value is found, the listener responds with 404 Not Found.
 
-If a request returns an async graph, we redirect to an `index.html` value inside that graph. E.g., in our sample deep object and files graphs, we have a subfolder called `more`. If someone navigates to the path `more`, that request will return the corresponding subgraph. We then redirect to `more/`, which will ultimately render the page at `more/index.html`.
+If a request returns an async tree, we redirect to an `index.html` value inside that tree. E.g., in our sample deep object and file trees, we have a subfolder called `more`. If someone navigates to the path `more`, that request will return the corresponding subtree. We then redirect to `more/`, which will ultimately render the page at `more/index.html`.
 
-## Serve the graph
+## Serve the tree
 
 Finally, we start the server at a default port.
 
@@ -64,12 +64,12 @@ Finally, we start the server at a default port.
 
 ```
 
-To add a layer of flexibility, we'll serve the graph defined in a new file called `siteGraph.js`. This file exports whichever graph of transformed HTML we'd like to use, as defined in `htmlObject.js`, `htmlFiles.js`, or `htmlFn.js`. To use the files-backed graph:
+To add a layer of flexibility, we'll serve the tree defined in a new file called `SiteTree.js`. This file exports whichever tree of transformed HTML we'd like to use, as defined in `htmlObject.js`, `htmlFiles.js`, or `htmlFn.js`. To use the files-backed tree:
 
 ```{{'js'}}
-/* src/deep/siteGraph.js */
+/* src/deep/SiteTree.js */
 
-{{ pattern-intro/deep/siteGraph.js }}
+{{ pattern-intro/deep/SiteTree.js }}
 ```
 
 ## Trying our server
@@ -89,7 +89,7 @@ If you want, you can define an index page at `markdown/index.md`, and then immed
 
 > Hello, **Alice**.
 
-We defined the markdown-to-HTML transform such that, if it's asked for a key that doesn't end in `.html`, it will ask the inner graph for the corresponding value and return that value as is. One ramification of that is that, if we can ask the server for a markdown file, it will obtain that from the inner markdown graph.
+We defined the markdown-to-HTML transform such that, if it's asked for a key that doesn't end in `.html`, it will ask the inner tree for the corresponding value and return that value as is. One ramification of that is that, if we can ask the server for a markdown file, it will obtain that from the inner markdown tree.
 
 <span class="tutorialStep"></span> Browse to `Alice.md` to see the original markdown content.
 
@@ -97,15 +97,15 @@ We defined the markdown-to-HTML transform such that, if it's asked for a key tha
 Hello, **Alice**.
 ```
 
-## async graphs are lazy
+## async trees are lazy
 
-async graphs are lazy by nature. When you start the server, no real work is done beyond starting the HTTP listener.
+async trees are lazy by nature. When you start the server, no real work is done beyond starting the HTTP listener.
 
-The graph only generates the HTML when you ask for it by browsing to a page like Alice.html:
+The tree only generates the HTML when you ask for it by browsing to a page like Alice.html:
 
-1. The server asks the HTML graph for Alice.html.
-1. The transform defining the HTML graph asks the inner markdown graph for Alice.md.
-1. The inner markdown graph asks the file system for the content of Alice.md.
+1. The server asks the HTML tree for Alice.html.
+1. The transform defining the HTML tree asks the inner markdown tree for Alice.md.
+1. The inner markdown tree asks the file system for the content of Alice.md.
 1. The transform converts the markdown content to HTML.
 1. The listener responds with the HTML content.
 
@@ -113,9 +113,9 @@ The graph only generates the HTML when you ask for it by browsing to a page like
 
 This server is already pretty interesting! We've got a simple site, but can flexibly change the representation of the data. Having done relatively little work, we can let our team write content in markdown. Unlike many markdown-to-HTML solutions, the translation is happening at runtime, so an author can immediately view the result of markdown changes by refreshing the corresponding page.
 
-Each of our underlying object, file, or function-based graphs has its advantages. For example, we can serve our function-based graph to browse HTML pages which are generated on demand.
+Each of our underlying object, file, or function-based trees has its advantages. For example, we can serve our function-based tree to browse HTML pages which are generated on demand.
 
-<span class="tutorialStep"></span> Edit `src/deep/siteGraph.js` to export the function-based graph from `htmlFn.js` instead of `htmlFiles.js`.
+<span class="tutorialStep"></span> Edit `src/deep/SiteTree.js` to export the function-based tree from `htmlFn.js` instead of `htmlFiles.js`.
 
 <span class="tutorialStep"></span> Restart the server with `node serve`.
 
@@ -123,13 +123,13 @@ Each of our underlying object, file, or function-based graphs has its advantages
 
 > Hello, **index**.
 
-The served graph is responding to `index.html` by asking the function-based markdown graph for `index.md`, and the underlying function is dutifully generating a markdown file for that "name".
+The served tree is responding to `index.html` by asking the function-based markdown tree for `index.md`, and the underlying function is dutifully generating a markdown file for that "name".
 
 <span class="tutorialStep"></span> Add `.html` to your own name, like `Sara.html`, and try putting that in the address bar.
 
 > Hello, **Sara**.
 
-<span class="tutorialStep"></span> In the browser preview, you can also navigate to the corresponding `Sara.md` to view the markdown generated by the inner function-based markdown graph.
+<span class="tutorialStep"></span> In the browser preview, you can also navigate to the corresponding `Sara.md` to view the markdown generated by the inner function-based markdown tree.
 
 ```
 Hello, **Sara*..

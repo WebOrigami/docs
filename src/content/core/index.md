@@ -1,6 +1,6 @@
 ---
 title: Core library
-subtitle: Basic building blocks for working with async graphs
+subtitle: Basic building blocks for working with async trees
 ---
 
 {{ templates/blocks.orit() }}

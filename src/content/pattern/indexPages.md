@@ -1,21 +1,21 @@
 ---
 title: Index pages
 functions: !ori js/codeFunctions.js(pattern-intro/index/indexPages.js)
-htmlObject: !ori pattern-intro/index/transform.js(@graph/from pattern-intro/index/object.js)
+htmlObject: !ori pattern-intro/index/transform.js(@tree/from pattern-intro/index/object.js)
 ---
 
-Right now, the experience of browsing our graph of generated HTML is a little unsatisfying because there are no index pages — we have to know what pages exist and manually enter a valid URL.
+Right now, the experience of browsing our tree of generated HTML is a little unsatisfying because there are no index pages — we have to know what pages exist and manually enter a valid URL.
 
-We can fix that by adding another graph transform. Wrapping a graph with this transform will:
+We can fix that by adding another tree transform. Wrapping a tree with this transform will:
 
-1. add "index.html" as one of the inner graph's keys if it's not already defined
+1. add "index.html" as one of the inner tree's keys if it's not already defined
 2. define a default value for "index.html" if one isn't already defined
 
-The default value will be an HTML page listing the graph's other keys as links.
+The default value will be an HTML page listing the tree's other keys as links.
 
 ## Generate a single index page
 
-First let's write a function that returns a reasonable default index page for a graph that doesn't define one.
+First let's write a function that returns a reasonable default index page for a tree that doesn't define one.
 
 ```{{'js'}}
 /* In src/index/indexPages.js */
@@ -23,7 +23,7 @@ First let's write a function that returns a reasonable default index page for a 
 {{ functions/indexPage }}
 ```
 
-If the little `more` branch of our HTML graph looks like this:
+If the little `more` branch of our HTML tree looks like this:
 
 <figure>
 {{ @svg htmlObject/more }}
@@ -35,9 +35,9 @@ Then invoking `indexPage` on this branch will return:
 {{ ((pattern-intro/index/indexPages.js)(htmlObject/more))/index.html }}
 ```
 
-## Transform a graph by adding index pages
+## Transform a tree by adding index pages
 
-Using the default `indexPage` function above, let's now create a graph transform. This will accept any async graph, and return a new graph with an `index.html` key.
+Using the default `indexPage` function above, let's now create a tree transform. This will accept any async tree, and return a new tree with an `index.html` key.
 
 ```{{'js'}}
 /* In src/index/indexPages.js */
@@ -46,7 +46,7 @@ Using the default `indexPage` function above, let's now create a graph transform
 {{ functions/@epilogue }}
 ```
 
-If we use this to transform the `more` branch of the HTML graph, we'll get:
+If we use this to transform the `more` branch of the HTML tree, we'll get:
 
 <figure>
 {{ @svg pattern-intro/index/indexPages.js(htmlObject/more) }}
@@ -54,7 +54,7 @@ If we use this to transform the `more` branch of the HTML graph, we'll get:
 
 ## Incorporate the index page transform
 
-We can apply this `indexPages` transform on top of our object, file, and function-based HTML graphs. For example, the file-based graph now looks like:
+We can apply this `indexPages` transform on top of our object, file, and function-based HTML trees. For example, the file-based tree now looks like:
 
 ```{{'js'}}
 /* src/index/htmlFiles.js */
@@ -62,11 +62,11 @@ We can apply this `indexPages` transform on top of our object, file, and functio
 {{ pattern-intro/index/htmlFiles.js }}
 ```
 
-These transforms are just functions, so we can apply as many graph transforms as we want.
+These transforms are just functions, so we can apply as many tree transforms as we want.
 
-In this case, the order of function calls matters: when the `indexPages` transform is iterating through the keys of a graph, we want it to see keys that end in `.html` so that it create links to the HTML pages. If we applied the `indexPages` transform first, it would create links to the `.md` files.
+In this case, the order of function calls matters: when the `indexPages` transform is iterating through the keys of a tree, we want it to see keys that end in `.html` so that it create links to the HTML pages. If we applied the `indexPages` transform first, it would create links to the `.md` files.
 
-<span class="tutorialStep"></span> From inside the `src/index` directory, serve the HTML graph again.
+<span class="tutorialStep"></span> From inside the `src/index` directory, serve the HTML tree again.
 
 ```console
 $ cd../index
@@ -82,4 +82,4 @@ This server can be good enough for development, and we could easily deploy it in
 
 &nbsp;
 
-Next: [Copy a graph](copy.html) »
+Next: [Copy a tree](copy.html) »

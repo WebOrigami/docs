@@ -2,7 +2,7 @@
 title: "@files([dirname])"
 ---
 
-Returns an [FilesGraph](/core/FilesGraph.html) representation of the current directory or (if `dirname` is supplied) subdirectory named `dirname` within the current directory.
+Returns an [FileTree](/core/FileTree.html) representation of the current directory or (if `dirname` is supplied) subdirectory named `dirname` within the current directory.
 
 Because the Graph Origami expression language recognizes many types of file paths, you won't often need to explicitly invoke the `@files` command.
 

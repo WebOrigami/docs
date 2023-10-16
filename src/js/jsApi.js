@@ -1,8 +1,4 @@
-import {
-  Graph,
-  isPlainObject,
-  MapExtensionsGraph,
-} from "@graphorigami/origami";
+import { MapExtensionsTree, Tree, isPlainObject } from "@graphorigami/origami";
 import path from "path";
 import ts from "typescript";
 
@@ -11,9 +7,9 @@ import ts from "typescript";
  * the TypeScript compiler to parse the source file, and returns information
  * from both the documentation comments and type signatures.
  */
-export default async function jsDocs(variant) {
-  const graph = Graph.from(variant);
-  const plain = await Graph.plain(graph);
+export default async function jsDocs(treelike) {
+  const tree = Tree.from(treelike);
+  const plain = await Tree.plain(tree);
 
   const paths = sourceFilePaths(plain);
   const host = await virtualHost(plain);
@@ -24,7 +20,7 @@ export default async function jsDocs(variant) {
 
   const program = ts.createProgram(paths, options, host);
 
-  return new DocsGraph(graph, program);
+  return new DocsTree(tree, program);
 }
 
 /** Serialize a class symbol information */
@@ -71,7 +67,7 @@ function classDocs(checker, symbol) {
   return result;
 }
 
-class DocsGraph {
+class DocsTree {
   constructor(variant, program, docsPath = "") {
     const mapFn = (value, outerKey, innerKey) => {
       const filePath = `${this.path}/${innerKey}`;
@@ -86,14 +82,14 @@ class DocsGraph {
     const options = {
       extension: "js→yaml",
     };
-    this.graph = new MapExtensionsGraph(variant, mapFn, options);
+    this.tree = new MapExtensionsTree(variant, mapFn, options);
     this.program = program;
     this.path = docsPath;
   }
 
   async get(key) {
-    let value = await this.graph.get(key);
-    if (Graph.isAsyncDictionary(value)) {
+    let value = await this.tree.get(key);
+    if (Tree.isAsyncDictionary(value)) {
       value = Reflect.construct(this.constructor, [
         value,
         this.program,
@@ -104,7 +100,7 @@ class DocsGraph {
   }
 
   async keys() {
-    return this.graph.keys();
+    return this.tree.keys();
   }
 }
 
@@ -347,7 +343,7 @@ function traverse(plain, path) {
   return current;
 }
 
-// Create a virtual compiler host serving the plain object graph.
+// Create a virtual compiler host serving the plain object tree.
 async function virtualHost(plain) {
   // directoryExists: (dirPath) => dirPath === "/",
   // getDirectories: () => [],

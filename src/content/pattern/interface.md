@@ -2,7 +2,7 @@
 title: Async dictionaries
 ---
 
-The last section noted that, in the context of our markdown-to-HTML problem, it's possible to conceptualize the markdown content as a graph:
+The last section noted that, in the context of our markdown-to-HTML problem, it's possible to conceptualize the markdown content as a tree:
 
 <figure>
   {{ @svg {
@@ -10,17 +10,17 @@ The last section noted that, in the context of our markdown-to-HTML problem, it'
     Bob.md: "Hello, **Bob**.",
     Carol.md: "Hello, **Carol**.",
   } }}
-  <figcaption>The markdown documents as a graph</figcaption>
+  <figcaption>The markdown documents as a tree</figcaption>
 </figure>
 
-This section introduces an interface suitable for working with such a graph, regardless of its underlying data representation.
+This section introduces an interface suitable for working with such a tree, regardless of its underlying data representation.
 
 ## The AsyncDictionary interface
 
-Let's identify a minimal interface sufficient to define a wide variety of graphs. This interface, which we'll call the AsyncDictionary interface, has two parts:
+Let's identify a minimal interface sufficient to define a wide variety of trees. This interface, which we'll call the AsyncDictionary interface, has two parts:
 
-- A method which produces the keys of the graph. In the graph above, the keys are `Alice.md`, `Bob.md`, and `Carol.md`. The keys will often be strings, but don't have to be strings.
-- A method which gets the value for a given key. If we ask the above graph for `Alice.md`, we want to get back `Hello, **Alice**.` Here the value we get is text, but like the keys, the values can be of any data type.
+- A method which produces the keys of the tree. In the tree above, the keys are `Alice.md`, `Bob.md`, and `Carol.md`. The keys will often be strings, but don't have to be strings.
+- A method which gets the value for a given key. If we ask the above tree for `Alice.md`, we want to get back `Hello, **Alice**.` Here the value we get is text, but like the keys, the values can be of any data type.
 
 In code, an implementation of the AsyncDictionary interface looks like this:
 
@@ -30,7 +30,7 @@ const dictionary = {
   // Get the value of a given key.
   async get(key) { ... }
 
-  // Iterate over this graph node's keys.
+  // Iterate over this tree node's keys.
   async keys() { ... }
 }
 ```
@@ -43,7 +43,7 @@ Notes:
 
 - The `keys` method does _not_ have to return all the keys supported by `get`! There may be keys that `get` can handle that the `keys` will not include. This turns out to be useful in a number of situations.
 
-- An async dictionary's `get` method is expected to return `undefined` if the key is not present in the graph.
+- An async dictionary's `get` method is expected to return `undefined` if the key is not present in the tree.
 
 ## Apply the AsyncDictionary interface to the object
 
@@ -55,7 +55,7 @@ Of the three data representations we looked at previously, the in-memory JavaScr
 {{ pattern-intro/flat/object.js }}
 ```
 
-This module exports an async graph that wraps the JavaScript object containing the markdown data. For now, this wrapper can only handle a flat object — later we will extend this to handle hierarchical objects.
+This module exports an async tree that wraps the JavaScript object containing the markdown data. For now, this wrapper can only handle a flat object — later we will extend this to handle hierarchical objects.
 
 ## Test the object dictionary
 
@@ -80,4 +80,4 @@ $ node object.test.js
 
 &nbsp;
 
-Next: [Display a graph](display.html) »
+Next: [Display a tree](display.html) »

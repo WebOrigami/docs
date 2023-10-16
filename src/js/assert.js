@@ -1,8 +1,8 @@
 import {
-  Graph,
   MetaTransform,
-  ObjectGraph,
-  StringWithGraph,
+  ObjectTree,
+  StringWithTree,
+  Tree,
   config,
 } from "@graphorigami/origami";
 import assert from "assert/strict";
@@ -11,10 +11,10 @@ export default async function (variant) {
   if (!variant) {
     return undefined;
   }
-  const graph = Graph.from(variant);
-  const obj = await Graph.plain(graph);
-  const test = new (MetaTransform(ObjectGraph))(obj);
-  test.parent = this?.graph ?? (await config());
+  const tree = Tree.from(variant);
+  const obj = await Tree.plain(tree);
+  const test = new (MetaTransform(ObjectTree))(obj);
+  test.parent = this?.tree ?? (await config());
   const description = await test.get("description");
   const expected = await test.get("expected");
   const expectedPlain = await plainResult(expected);
@@ -31,9 +31,9 @@ export default async function (variant) {
 }
 
 async function plainResult(result) {
-  return result instanceof StringWithGraph
+  return result instanceof StringWithTree
     ? result.toString()
-    : Graph.isAsyncDictionary(result)
-    ? await Graph.plain(result)
+    : Tree.isAsyncDictionary(result)
+    ? await Tree.plain(result)
     : result;
 }

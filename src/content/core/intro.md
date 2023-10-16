@@ -1,32 +1,32 @@
 ---
-title: Hands-on intro to async graphs
+title: Hands-on intro to async trees
 numberHeadings: true
 ---
 
 _DRAFT_
 
-## Defining an async graph directly
+## Defining an async tree directly
 
-The `samples` folder contains a JavaScript file `direct.js` that defines a graph by implementing the `get` and `keys` methods directly.
+The `samples` folder contains a JavaScript file `direct.js` that defines a tree by implementing the `get` and `keys` methods directly.
 
 ```js
 // direct.js
 
-// Define a set of greetings directly in async graph form.
+// Define a set of greetings directly in async tree form.
 export default {
   // Get the value of a given key.
   async get(key) {
     return `Hello, ${key}.`;
   },
 
-  // Return this graph node's keys.
+  // Return this tree node's keys.
   async keys() {
     return ["Alice", "Bob", "Carol"];
   },
 };
 ```
 
-You can use the ori tool to load and display the above graph:
+You can use the ori tool to load and display the above tree:
 
 ```console
 $ ori direct
@@ -40,10 +40,10 @@ Carol: Hello, Carol.
 ```js
 // object.js
 
-import { ObjectGraph } from "@graphorigami/origami";
+import { ObjectTree } from "@graphorigami/origami";
 
-// Create an async graph for an in-memory object.
-export default new ObjectGraph({
+// Create an async tree for an in-memory object.
+export default new ObjectTree({
   Alice: "Hello, Alice. [from an object]",
   Bob: "Hello, Bob. [from an object]",
   Carol: "Hello, Carol. [from an object]",
@@ -62,10 +62,10 @@ Carol: Hello, Carol. [from an object]
 ```js
 // function.js
 
-import { FunctionGraph } from "@graphorigami/origami";
+import { FunctionTree } from "@graphorigami/origami";
 
-// Create an async graph for a function with a domain.
-export default new FunctionGraph(
+// Create an async tree for a function with a domain.
+export default new FunctionTree(
   (key) => `Hello, ${key}. [from a function]`,
   ["Alice", "Bob", "Carol"]
 );
@@ -78,14 +78,14 @@ Bob: Hello, Bob. [from a function]
 Carol: Hello, Carol. [from a function]
 ```
 
-## Transforming a graph
+## Transforming a tree
 
-## Serving a graph
+## Serving a tree
 
-## Serving a graph with Express
+## Serving a tree with Express
 
-## Composing multiple graphs together
+## Composing multiple trees together
 
-## Caching a graph
+## Caching a tree
 
-## Copying a graph to files
+## Copying a tree to files

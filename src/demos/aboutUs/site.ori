@@ -1,5 +1,5 @@
 {
-  public = @graph/merge(static, {
+  public = @tree/merge(static, {
     index.html = index.orit()
     team = @map/values(teamByName, person.orit, { extension: '→html' })
     thumbnails = @map/values(images, =@image/resize(_, { width: 400 }))

@@ -21,13 +21,13 @@ Most tools for creating content like websites achieve power through complexity t
 
 The Graph Origami framework gives you a high degree of power and flexibility in a very different way — by providing a foundation of interlocking, fundamental concepts:
 
-1. **async graphs** are a convenient way think about data, files, and other resources.
+1. **Async trees** are a convenient way think about hierarchical data, files, and other resources.
 1. **Virtual content** represents your intermediate results and your final result.
 1. **Formulas** transform your real data and files into virtual content you can browse.
 1. **Scope** determines the code and data your formulas can reference.
-1. **Templates** turn data and graphs into text.
-1. **Transforms** change a graph from one form to another, processing content in bulk.
-1. **Graph tools** serve virtual content or copy it to static files for publishing.
+1. **Templates** turn data and trees into text.
+1. **Transforms** change a tree from one form to another, processing content in bulk.
+1. **Tree tools** serve virtual content or copy it to static files for publishing.
 
 Applying these concepts lets you create impressive results with much less work than other systems while maintaining control over all aspects of the process.
 

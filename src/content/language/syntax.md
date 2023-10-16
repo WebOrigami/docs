@@ -2,7 +2,7 @@
 title: Origami language syntax
 ---
 
-The Origami expression language is mostly focused on invoking functions and traversing graphs, and borrows elements of its syntax from JavaScript expressions, web URLs, and template languages.
+The Origami expression language is mostly focused on invoking functions and traversing trees, and borrows elements of its syntax from JavaScript expressions, web URLs, and template languages.
 
 ## Strings
 
@@ -34,11 +34,11 @@ Numbers that appear in paths are treated as strings:
 years/2023
 ```
 
-searches in the `years` graph for the key "2023".
+searches in the `years` tree for the key "2023".
 
 ## References
 
-Unquoted character sequences will be evaluated in the current [scope](scope.html) to find, for example, a file or other graph value with the indicated name.
+Unquoted character sequences will be evaluated in the current [scope](scope.html) to find, for example, a file or other tree value with the indicated name.
 
 ```console
 $ ls
@@ -80,7 +80,7 @@ As with references (above), you can use periods in keys. Escape any special char
 }
 ```
 
-In `.ori` files, the value in a key/value pair can be an expression that will be evaluated when the graph is loaded.
+In `.ori` files, the value in a key/value pair can be an expression that will be evaluated when the tree is loaded.
 
 ```
 data = {
@@ -114,9 +114,9 @@ As with object literals (above), you can separate array items with commas, newli
 ]
 ```
 
-## Graph literals
+## Tree literals
 
-Graph literals are similar to object literals, with the differences that: a) each key and value is separated with an `=` equals sign instead of a `:` colon, and b) a value defined by an expression is not evaluated until the value is requested.
+Tree literals are similar to object literals, with the differences that: a) each key and value is separated with an `=` equals sign instead of a `:` colon, and b) a value defined by an expression is not evaluated until the value is requested.
 
 ```
 {
@@ -126,7 +126,7 @@ Graph literals are similar to object literals, with the differences that: a) eac
 }
 ```
 
-The top level of a `.ori` file is treated as the contents of graph literal. The `.ori` file above defines a virtual folder containing a subgraph called `public` that defines `index.html`.
+The top level of a `.ori` file is treated as the contents of tree literal. The `.ori` file above defines a virtual folder containing a subtree called `public` that defines `index.html`.
 
 ## Template literals
 
@@ -174,10 +174,10 @@ In some situations, you can also avoid the need for parentheses by using a `/` s
 Paths are a sequence of string keys separated with `/` slashes.
 
 ```
-graph/with/path/to/something
+tree/with/path/to/something
 ```
 
-The head of the path, like `graph` here, is resolved as a reference. If that returns a graph, it will be traversed using the remaining keys "with", "path", "to", and "something".
+The head of the path, like `tree` here, is resolved as a reference. If that returns a tree, it will be traversed using the remaining keys "with", "path", "to", and "something".
 
 ```console
 $ ori greetings.yaml
@@ -188,7 +188,7 @@ $ ori greetings.yaml/Alice
 Hello, Alice.
 ```
 
-In Graph Origami, functions are a type of graph, so a function can also be invoked with slash syntax:
+In Graph Origami, functions are a type of tree, so a function can also be invoked with slash syntax:
 
 ```console
 $ ori greet.js
@@ -228,7 +228,7 @@ is equivalent to:
 fn('a', 'b', 'c')
 ```
 
-The protocols `https:`, `http:`, `graphhttps:`, and `graphhttp:` are reserved.
+The protocols `https:`, `http:`, `treehttps:`, and `treehttp:` are reserved.
 
 ## Absolute file paths
 
@@ -264,7 +264,7 @@ You can define an unnamed lambda function with an `=` equals sign.
 
 This expression will not be evaluated immediately, but only later when explicitly invoked.
 
-For example, the [@map/values](/language/@map.html#values) built-in function can apply another function to a graph's values. To concisely define a function that will be evaluated in the context of each graph value, you can use a lambda:
+For example, the [@map/values](/language/@map.html#values) built-in function can apply another function to a tree's values. To concisely define a function that will be evaluated in the context of each tree value, you can use a lambda:
 
 ```console
 $ cat letters.json

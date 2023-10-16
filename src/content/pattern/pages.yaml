@@ -7,26 +7,26 @@
 - href: interface.html
   text: Async dictionaries
 - href: display.html
-  text: Display a graph
+  text: Display a tree
 - href: transform.html
-  text: Transform a graph
-- href: filesGraph.html
-  text: File graphs
-- href: functionGraph.html
-  text: Function graphs
+  text: Transform a tree
+- href: FileTree.html
+  text: File trees
+- href: FunctionTree.html
+  text: Function trees
 - href: classes.html
   text: Classes
 - href: deep.html
-  text: Deep graphs
+  text: Deep trees
 - href: serve.html
-  text: Serve a graph
+  text: Serve a tree
 - href: indexPages.html
   text: Index pages
 - href: copy.html
-  text: Copy a graph
+  text: Copy a tree
 - href: combine.html
-  text: Combine graphs
+  text: Combine trees
 - href: operations.html
-  text: Graph operations
+  text: Tree operations
 - href: sharing.html
   text: Sharing tools

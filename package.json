@@ -4,7 +4,7 @@
   "type": "module",
   "dependencies": {
     "@graphorigami/framework-intro": "github:GraphOrigami/framework-intro#74e35cda",
-    "@graphorigami/origami": "https://gitpkg.now.sh/GraphOrigami/origami/origami?9a547c0f",
+    "@graphorigami/origami": "https://gitpkg.now.sh/GraphOrigami/origami/origami?7e09f766",
     "@graphorigami/pattern-intro": "github:GraphOrigami/pattern-intro#a37365ac",
     "@graphorigami/samples": "github:GraphOrigami/samples#c7deb7fe",
     "marked": "4.1.0",
@@ -13,7 +13,7 @@
     "yaml": "2.1.1"
   },
   "scripts": {
-    "build": "ori '@copy netlify.js(@graph/keysJson(src/site.ori/public)), @files/dist'",
+    "build": "ori '@copy netlify.js(@tree/keysJson(src/site.ori/public)), @files/dist'",
     "start": "ori @serve @watch src, =@debug src/site.ori/public",
     "test": "ori virtual/src/test/summary"
   }

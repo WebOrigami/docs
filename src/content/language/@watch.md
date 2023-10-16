@@ -1,10 +1,10 @@
 ---
-title: "@watch([graph], [expression])"
+title: "@watch([treelike], [expression])"
 ---
 
-Returns a graph that will be the result of executing the indicated `expression` in the context of the indicated `graph`.
+Returns a tree that will be the result of executing the indicated `expression` in the context of the indicated `tree`.
 
-This also watches the `graph` for `change` events. Currently, [FilesGraph](/core/FilesGraph.html) is the only type of graph that supports `change` events. If a `change` event is raised, the `expression` is reevaluated to obtain a new result graph. Subsequent references to the `watch()` result will access the new graph.
+This also watches the `tree` for `change` events. Currently, [FileTree](/core/FileTree.html) is the only type of tree that supports `change` events. If a `change` event is raised, the `expression` is reevaluated to obtain a new result tree. Subsequent references to the `watch()` result will access the new tree.
 
 This can be used to serve a virtual folder, reevaluating its definition whenever the containing real folder changes.
 

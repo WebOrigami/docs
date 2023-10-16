@@ -36,13 +36,13 @@ parens vs slashes
 
 Read input from stdin
 
-Extract a value from a graph
+Extract a value from a tree
 
 Translate JSON to YAML or vice-versa
 
 Parse JSON or YAML
 
-Render the current file system tree as a graph
+Render the current file system tree as a tree
 
 Unpack files into the file system
 
@@ -50,15 +50,15 @@ Treat a folder tree as a JavaScript object
 
 Apply a template
 
-Map the values in a graph
+Map the values in a tree
 
-Map the keys in a graph
+Map the keys in a tree
 
 Copy virtual files into real files
 
 Serve a folder
 
-Serve a virtual graph
+Serve a virtual tree
 
 Define a command-line traversable site
 

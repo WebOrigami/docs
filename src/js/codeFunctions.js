@@ -1,16 +1,16 @@
-import { ObjectGraph } from "@graphorigami/origami";
+import { ObjectTree } from "@graphorigami/origami";
 
 /**
- * Given JavaScript source code, returns a graph of the source code for the
+ * Given JavaScript source code, returns a tree of the source code for the
  * code's top-level functions. Anything before the first function is included
  * under the special key `@prologue`, and anything after the last function is
  * included under the special key `@epilogue`.
  */
 export default function codeFunctions(code) {
-  return new CodeFunctionsGraph(code.toString());
+  return new CodeFunctionsTree(code.toString());
 }
 
-class CodeFunctionsGraph extends ObjectGraph {
+class CodeFunctionsTree extends ObjectTree {
   constructor(code) {
     const functionRegex =
       /(\/\/.+)?\n(async )?function (?<name>.+)\([\s\S]+?\n\}\n/g;
