@@ -126,7 +126,7 @@ You often encounter this overspecialization in tools. In searching for a tool th
 
 ## Data as trees
 
-Regardless of how we are storing the markdown content, it's possible to conceptualize the content as a tree:
+Regardless of how we are storing the markdown content, it's possible to conceptualize the content as a hierarchical tree:
 
 <figure>
   {{ @svg {
