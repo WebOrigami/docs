@@ -1,6 +1,6 @@
 ---
 title: Display a tree
-functions: !ori js/codeFunctions.js(pattern-intro/flat/json.js)
+functions: !ori js/codeFunctions.js(node_modules/@graphorigami/pattern-intro/src/flat/json.js)
 ---
 
 Now that we've applied the AsyncDictionary interface to an object to create an async tree, let's write a simple tool that will display the contents of that async tree in the console.

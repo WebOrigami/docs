@@ -12,7 +12,7 @@
       @tree/isAsyncDictionary(_)
       @map/values(
         _
-        =js/addData.js(@document(_), area, @key)
+        =js/addData.js(_, area, @key)
         { extension: "md" }
       )
       _

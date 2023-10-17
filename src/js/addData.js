@@ -1,6 +1,6 @@
-import { TextDocument } from "@graphorigami/origami";
+import { MergeTree, TextDocument } from "@graphorigami/origami";
 
-export default function addData(document, area, fileName) {
+export default async function addData(buffer, area, fileName) {
   fileName = String(fileName);
 
   // HACK
@@ -8,12 +8,12 @@ export default function addData(document, area, fileName) {
     fileName = `${fileName.slice(0, -3)}.html`;
   }
 
-  // HACK
-  const documentData = document.data?.object ?? document.data;
+  const document = await buffer.unpack();
 
-  const data = Object.assign({}, documentData, {
+  const merged = new MergeTree(document.data, {
     area: String(area),
     fileName,
   });
-  return new TextDocument(document, data);
+
+  return new TextDocument(document, merged, document.parent);
 }

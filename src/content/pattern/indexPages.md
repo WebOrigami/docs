@@ -1,7 +1,7 @@
 ---
 title: Index pages
-functions: !ori js/codeFunctions.js(pattern-intro/index/indexPages.js)
-htmlObject: !ori pattern-intro/index/transform.js(@tree/from pattern-intro/index/object.js)
+functions: !ori js/codeFunctions.js(node_modules/@graphorigami/pattern-intro/src/index/indexPages.js)
+htmlObject: !ori pattern-intro/index/transform.js(@tree/from node_modules/@graphorigami/pattern-intro/src/index/object.js)
 ---
 
 Right now, the experience of browsing our tree of generated HTML is a little unsatisfying because there are no index pages — we have to know what pages exist and manually enter a valid URL.

@@ -1,6 +1,6 @@
 ---
 title: Deep trees
-functions: !ori js/codeFunctions.js(pattern-intro/deep/json.js)
+functions: !ori js/codeFunctions.js(node_modules/@graphorigami/pattern-intro/src/deep/json.js)
 ---
 
 Until now, the "trees" we've been working with are flat lists. Now that we've cleanly isolated our tree wrappers into classes, let's extend the `ObjectTree` and `FileTree` classes to support arbitrarily deep trees.
