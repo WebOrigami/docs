@@ -1,6 +1,6 @@
 ---
 title: Deep trees
-functions: !ori js/codeFunctions.js(node_modules/@graphorigami/pattern-intro/src/deep/json.js)
+functions: !ori js/codeFunctions.js(source.ori/deep/json.js)
 ---
 
 Until now, the "trees" we've been working with are flat lists. Now that we've cleanly isolated our tree wrappers into classes, let's extend the `ObjectTree` and `FileTree` classes to support arbitrarily deep trees.
@@ -14,7 +14,7 @@ We rewrite the `get` implementation in `ObjectTree.js`, adding a simplistic chec
 ```{{'js'}}
 /* src/deep/ObjectTree.js */
 
-{{ pattern-intro/deep/ObjectTree.js }}
+{{ source.ori/deep/ObjectTree.js }}
 ```
 
 Note that instead of creating new instances with `new ObjectTree`, we use `new this.constructor`. The former could work in this tutorial, but the latter is more future-proof because it supports subclassing. If you ever were to subclass `ObjectTree`, you'd want that subclass to spawn new instances of the same subclass, not `ObjectTree`.
@@ -24,13 +24,13 @@ This lets us create a deep tree:
 ```{{'js'}}
 /* src/deep/object.js */
 
-{{ pattern-intro/deep/object.js }}
+{{ source.ori/deep/object.js }}
 ```
 
 which represents the deep tree
 
 <figure>
-  {{ @svg pattern-intro/deep/object.js }}
+  {{ @svg source.ori/deep/object.js }}
 </figure>
 
 ## Deep file trees
@@ -40,7 +40,7 @@ We do something very similar in `FileTree.js`. Here we check to see whether the 
 ```{{'js'}}
 /* src/deep/FileTree.js */
 
-{{ pattern-intro/deep/FileTree.js }}
+{{ source.ori/deep/FileTree.js }}
 ```
 
 This lets us support arbitrarily deep subfolders.
@@ -66,7 +66,7 @@ Finally, we need to update our `json` utility. That code has a function called `
 ```console
 $ cd ../deep
 $ node json files.js
-{{ @json pattern-intro/deep/files.js }}
+{{ @json source.ori/deep/files.js }}
 ```
 
 ## Deep transforms
@@ -76,20 +76,20 @@ Our transformation that converts markdown to HTML needs to be updated too. After
 ```{{'js'}}
 /* src/deep/transform.js */
 
-{{ pattern-intro/deep/transform.js }}
+{{ source.ori/deep/transform.js }}
 ```
 
 <span class="tutorialStep"></span> Display the result of this transformation applied to the deep object or folder tree.
 
 ```console
 $ node json htmlFiles.js
-{{ @json pattern-intro/deep/transform.js @tree/from pattern-intro/deep/files.js }}
+{{ @json source.ori/deep/transform.js @tree/from source.ori/deep/files.js }}
 ```
 
 Visually this looks like:
 
 <figure>
-{{ @svg pattern-intro/deep/transform.js @tree/from pattern-intro/deep/files.js }}
+{{ @svg source.ori/deep/transform.js @tree/from source.ori/deep/files.js }}
 </figure>
 
 So now we have a way of transforming an arbitrarily deep folder of markdown content into a corresponding deep tree of HTML content. We're now ready to do some interesting things with this content.

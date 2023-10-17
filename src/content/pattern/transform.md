@@ -12,10 +12,10 @@ In our markdown-to-HTML transformation, we will create a virtual tree of HTML co
 
 <div class="sideBySide split2to3">
   <figure>
-    {{ @svg pattern-intro/flat/object.js }}
+    {{ @svg source.ori/flat/object.js }}
   </figure>
   <figure>
-    {{ @svg pattern-intro/flat/htmlObject.js }}
+    {{ @svg source.ori/flat/htmlObject.js }}
   </figure>
   <figcaption>Tree of markdown content</figcaption>
   <figcaption>Virtual tree of HTML</figcaption>
@@ -95,7 +95,7 @@ We can now verify that our transform is working as expected by adapting the same
 ```{{'js'}}
 /* src/flat/transform.test.js */
 
-{{ pattern-intro/flat/transform.test.js }}
+{{ source.ori/flat/transform.test.js }}
 ```
 
 <span class="tutorialStep"></span> From inside the `src/flat` directory, run the transform tests:
@@ -115,7 +115,7 @@ We can bake the transform and the object together to create a final HTML tree.
 ```{{'js'}}
 /* src/flat/htmlObject.js */
 
-{{ pattern-intro/flat/htmlObject.js }}
+{{ source.ori/flat/htmlObject.js }}
 ```
 
 You can think of this `transform` function as a function that takes a tree of markdown and returns a virtual tree of HTML. But keep in mind that the virtual tree is actually asynchronous. The `transform` function does not do any substantive work when it is called above.
@@ -126,7 +126,7 @@ One way to think about this virtual HTML tree is that it represents a _tree of p
 
 ```console
 $ node json htmlObject.js
-{{ @json pattern-intro/flat/transform.js @tree/from pattern-intro/flat/htmlObject.js }}
+{{ @json source.ori/flat/transform.js @tree/from source.ori/flat/htmlObject.js }}
 ```
 
 The `json` utility traverses the virtual HTML tree, causing it to do its work of transforming markdown to HTML as the utility builds an in-memory object it ultimately displays as JSON. You can see that the displayed JSON has the desired shape, keys, and values as the virtual HTML tree in the diagram at the top of this page.

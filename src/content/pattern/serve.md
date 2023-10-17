@@ -1,6 +1,6 @@
 ---
 title: Serve a tree
-functions: !ori js/codeFunctions.js(node_modules/@graphorigami/pattern-intro/src/deep/serve.js)
+functions: !ori js/codeFunctions.js(source.ori/deep/serve.js)
 ---
 
 Displaying a tree in the console is fine for playing around or debugging, but we can do much more interesting things with a tree — like serve it to a web browser.
@@ -69,7 +69,7 @@ To add a layer of flexibility, we'll serve the tree defined in a new file called
 ```{{'js'}}
 /* src/deep/SiteTree.js */
 
-{{ pattern-intro/deep/SiteTree.js }}
+{{ source.ori/deep/SiteTree.js }}
 ```
 
 ## Trying our server

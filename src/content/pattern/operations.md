@@ -82,7 +82,7 @@ We can update our site tree to use this new higher-level `MergeTree` operation.
 ```{{'js'}}
 /* src/merge/SiteTree.js */
 
-{{ pattern-intro/merge/SiteTree.js }}
+{{ source.ori/merge/SiteTree.js }}
 ```
 
 We apply our `indexPages` transform to give the merged tree index pages.
@@ -90,7 +90,7 @@ We apply our `indexPages` transform to give the merged tree index pages.
 The site is now the deep merge of all three trees:
 
 <figure>
-{{ @svg pattern-intro/merge/SiteTree.js }}
+{{ @svg source.ori/merge/SiteTree.js }}
 </figure>
 
 If you compare this to the previous step, where we treated each of the component trees as separate branches, you can see that the merged tree is flatter.

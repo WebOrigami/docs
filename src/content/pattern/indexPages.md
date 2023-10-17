@@ -1,7 +1,7 @@
 ---
 title: Index pages
-functions: !ori js/codeFunctions.js(node_modules/@graphorigami/pattern-intro/src/index/indexPages.js)
-htmlObject: !ori pattern-intro/index/transform.js(@tree/from node_modules/@graphorigami/pattern-intro/src/index/object.js)
+functions: !ori js/codeFunctions.js(source.ori/index/indexPages.js)
+htmlObject: !ori source.ori/index/transform.js(@tree/from source.ori/index/object.js)
 ---
 
 Right now, the experience of browsing our tree of generated HTML is a little unsatisfying because there are no index pages — we have to know what pages exist and manually enter a valid URL.
@@ -32,7 +32,7 @@ If the little `more` branch of our HTML tree looks like this:
 Then invoking `indexPage` on this branch will return:
 
 ```{{'html'}}
-{{ ((pattern-intro/index/indexPages.js)(htmlObject/more))/index.html }}
+{{ ((source.ori/index/indexPages.js)(htmlObject/more))/index.html }}
 ```
 
 ## Transform a tree by adding index pages
@@ -49,7 +49,7 @@ Using the default `indexPage` function above, let's now create a tree transform.
 If we use this to transform the `more` branch of the HTML tree, we'll get:
 
 <figure>
-{{ @svg pattern-intro/index/indexPages.js(htmlObject/more) }}
+{{ @svg source.ori/index/indexPages.js(htmlObject/more) }}
 </figure>
 
 ## Incorporate the index page transform
@@ -59,7 +59,7 @@ We can apply this `indexPages` transform on top of our object, file, and functio
 ```{{'js'}}
 /* src/index/htmlFiles.js */
 
-{{ pattern-intro/index/htmlFiles.js }}
+{{ source.ori/index/htmlFiles.js }}
 ```
 
 These transforms are just functions, so we can apply as many tree transforms as we want.
