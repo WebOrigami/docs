@@ -10,7 +10,7 @@ countries:
     abbreviation: CN
 teamByName: !ori (@map/keys(framework-intro/src/teamData.yaml, =_/name))
 siteComplete:
-  index.html: <h1>Our Amazing Team</h1>
+  index.html: <h1>About Us</h1>
   team:
     Alice.html: <h1>Alice</h1>
     Bob.html: <h1>Bob</h1>
@@ -179,116 +179,25 @@ You can use this slash-separated path syntax anywhere you can refer to something
 
 </reveal-solution>
 
-## Formulas can reference real or virtual files
-
-You can pass a real or virtual file to a function by name.
-
-**Example:** The following defines a virtual file called `doubled`, whose content will be the `word` file content repeated twice.
-
-```
-word = "beep"
-doubled = @repeat(2, word)
-```
-
-This calls a built-in [@repeat](/language/@repeat.html) function. (All built-in functions start with an `@` sign.) The value of `doubled` will be "beepbeep".
-
-The order of the above definitions doesn't matter; `word` could just as well come after `doubled`.
-
-<span class="tutorialStep"></span> **Try it:** In `site.ori`, define a new virtual file called `title` (no extension is required) to hold the title of your site (say, "Our Amazing Team").
-
-<span class="tutorialStep"></span> Then update the formula for `index.html` to pass the `title` to `greet`.
-
-<reveal-solution>
-
-```
-{
-  public = {
-    index.html = greet.js(title)
-    title = "Our Amazing Team"
-  }
-}
-```
-
-</reveal-solution>
-
-Since the order doesn't matter, you could also define `title` before `index.html`.
-
-The preview now shows: Hello, **Our Amazing Team**!
-
-## Controlling what is public
-
-This project is configured to let a user browse the virtual `public` folder.
-
-<span class="tutorialStep"></span> Switch to tree diagram window and refresh it to see its current structure.
-
-<figure>
-{{ svg.js {
-  index.html: framework-intro/src/greet.js("Our Amazing Team")
-  title: "Our Amazing Team"
- } }}
-</figure>
-
-The virtual `title` file is used by the formula for `index.html`. But you don't need make the `title` file itself part of your final site — it's only needed internally.
-
-<span class="tutorialStep"></span> **Try it:** Move the line for `title` to the top level of `site.ori` so that it's inside the outermost `{` `}` curly braces but no longer inside the curly braces that define the contents of the `public` folder.
-
-<reveal-solution>
-
-```
-{
-  public = {
-    index.html = greet.js(title)
-  }
-
-  title = "Our Amazing Team"
-}
-```
-
-</reveal-solution>
-
-By putting `title` at the top level, the formulas inside `public` can reference it, but a user won't be able to browse to a URL like `/title` to see the title.
-
-<span class="tutorialStep"></span> Refresh the tree diagram window to confirm that the public site no longer includes `title`:
-
-<figure>
-{{ svg.js {
-  index.html: framework-intro/src/greet.js("Our Amazing Team")
-} }}
-</figure>
-
-<span class="tutorialStep"></span> Switch back to the Glitch window.
-
 ## Define a template that creates text
 
 Instead of creating HTML directly in JavaScript, you can use one of many JavaScript-based template systems. For this tutorial, you'll use the [template system built into Graph Origami](templates.html).
 
-**Example:** Graph Origami templates, like many template systems, let you insert data into boilerplate text using placeholders marked with double curly braces `\{\{` `}}`. If there's a piece of data called `name`, you could insert it into a paragraph like:
-
-```html
-<p>\{\{ name }}</p>
-```
-
-Inside the curly braces, you can do the same things you can in formulas: call JavaScript functions, reference real and virtual files, or extract specific data with slash-separated paths.
-
 <span class="tutorialStep"></span> **Try it:** Using the Glitch user interface, create a new file called `index.orit`: Next to the `src` folder on the left, click the `⋮` icon, then **Add File to Folder**, then type `index.orit`. This will become the template file for your index page.
 
-An Origami template in a `.orit` file (with an extra `t` for "template" in the extension) can produce text content. Here you'll use it to define HTML, so in `index.orit` you can enter regular HTML interspersed with curly brace placeholders.
+An Origami template in a `.orit` file (with an extra `t` for "template") can produce text content. Here you'll use it to define HTML, so in `index.orit` you can enter regular HTML; later, you'll add have the template include some live data.
 
-<span class="tutorialStep"></span> Inside the template, enter opening and closing `h1` tags to create a heading. Inside the heading tags, put a `\{\{` `}}` placeholder that displays your site's `title`.
+<span class="tutorialStep"></span> Inside the `index.orit` template, enter the following:
 
-<reveal-solution>
+<clipboard-copy>
 
 ```html
-<h1>\{\{ title }}</h1>
+<h1>About Us</h1>
 ```
 
-</reveal-solution>
+</clipboard-copy>
 
-Next you can tell Graph Origami when to use this template.
-
-## Invoke a template as a function
-
-You invoke a Graph Origami template as a function just like you invoked `greet.js`.
+Your `.ori` file can then invoke the template as a function, just like you invoked `greet.js`.
 
 **Example:** If you have a template `product.orit`, you can invoke it with:
 
@@ -305,14 +214,68 @@ product.html = product.orit()
   public = {
     index.html = index.orit()
   }
-
-  title = "Our Amazing Team"
 }
 ```
 
 </reveal-solution>
 
-Now when you view the site's main page, the `index.orit` template will be invoked to obtain the HTML. The preview shows a header: **Our Amazing Team**
+Now when you view the site's main page, the `index.orit` template will be invoked to obtain the HTML. The preview shows a paragraph with the plain text, "Hello".
+
+## Add an expression to a template
+
+Graph Origami templates, like many template systems, let you insert data into boilerplate text using placeholders marked with double curly braces `\{\{` `}}`.
+
+Inside the curly braces, you can do the same things you can in formulas in a `.ori` file: call JavaScript functions, reference real and virtual files, or extract specific data with slash-separated paths.
+
+**Example:** A template can call the JavaScript function in `doStuff.js` with:
+
+```html
+<p>\{\{ doStuff.js() }}</p>
+```
+
+<span class="tutorialStep"></span> **Try it:** At the end of `index.orit` (after the heading), add a `\{\{ }}` placeholder. Inside the placeholder, call the JavaScript function `greet.js` and pass it the name "Bob".
+
+<reveal-solution>
+
+```html
+<h1>About Us</h1>
+\{\{ greet.js("Bob") }}
+```
+
+</reveal-solution>
+
+The preview now includes a paragraph: Hello, **Bob**!
+
+## Pass data to a template
+
+When you call a Graph Origami template as a function like `index.orit()`, you can put things inside those parentheses to pass data to the template. Inside that template, you can refer to the data passed to it using an underscore (`_`).
+
+<span class="tutorialStep"></span> **Try it:** Update `site.ori` to pass `teamData.yaml/0/name` to the `index.orit` template.
+
+<reveal-solution>
+
+```
+{
+  public = {
+    index.html = index.orit(teamData.yaml/0/name)
+  }
+}
+```
+
+</reveal-solution>
+
+<span class="tutorialStep"></span> Next, update the `index.orit` template to make use of the name you're passing to it. In the call to `greet.js`, replace the hard-coded name "Bob" with an underscore (`_`).
+
+<reveal-solution>
+
+```html
+<h1>About Us</h1>
+<p>\{\{ greet.js(_) }}</p>
+```
+
+</reveal-solution>
+
+The preview updates to use the name you passed, like Hello, **Alice**!
 
 ## Creating a virtual folder with a map
 
@@ -341,11 +304,9 @@ Instead, you can use a built-in function called [@map/values](/language/@map.htm
 ```
 {
   public = {
-    index.html = index.orit()
+    index.html = index.orit(teamData.yaml/0/name)
     team = @map/values(teamData.yaml, =_/name)
   }
-
-  title = "Our Amazing Team"
 }
 ```
 
@@ -353,7 +314,7 @@ Instead, you can use a built-in function called [@map/values](/language/@map.htm
 
 <figure>
   {{ svg.js {
-    index.html = "<h1>Our Amazing Team</h1>"
+    index.html = "<h1>About Us</h1>"
     team = [
       "Alice"
       "Bob"
@@ -394,11 +355,9 @@ The formula you give to `@map/values` can be arbitrarily complex.
 ```
 {
   public = {
-    index.html = index.orit()
+    index.html = index.orit(teamData.yaml/0/name)
     team = @map/values(teamData.yaml, =greet.js(_/name))
   }
-
-  title = "Our Amazing Team"
 }
 ```
 
@@ -408,7 +367,7 @@ The formula you give to `@map/values` can be arbitrarily complex.
 
 <figure>
   {{ svg.js {
-    index.html = "<h1>Our Amazing Team</h1>"
+    index.html = "<h1>About Us</h1>"
     team = [
       "<p>Hello, <strong>Alice</strong>!</p>"
       "<p>Hello, <strong>Bob</strong>!</p>"
@@ -445,13 +404,11 @@ You can pull a folder or file into your tree by writing its name on a line by it
 ```
 {
   public = {
-    index.html = index.orit()
+    index.html = index.orit(teamData.yaml/0/name)
     team = @map/values(teamData.yaml, =greet.js(_/name))
     assets
     images
   }
-
-  title = "Our Amazing Team"
 }
 ```
 
@@ -486,14 +443,12 @@ mapped = @map/values(tree, =someFunction.js(_))
 ```
 {
   public = {
-    index.html = index.orit()
+    index.html = index.orit(teamData.yaml/0/name)
     team = @map/values(teamData.yaml, =greet.js(_/name))
     assets
     images
     thumbnails = @map/values(images, =thumbnail.js(_))
   }
-
-  title = "Our Amazing Team"
 }
 ```
 
@@ -513,9 +468,35 @@ The virtual `thumbnails` folder contains a set of thumbnail images _that do not 
 
 ## Incorporate a virtual folder into a template
 
-Let's now flesh out the index page with real content. Your index page will need to display a tile for each member that links to their individual page. To do that, let's explore an interesting feature of Origami templates.
+Let's now flesh out the index page with real content. Your index page will need to display a tile for each member that links to their individual page.
 
-If you have a virtual folder that contains text, you can reference that folder inside a template. Graph Origami will take all the text values in that virtual folder and inline them into the template's output.
+At the moment, the `site.ori` file is passing a single person's name to `index.orit`:
+
+```
+    index.html = index.orit(teamData.yaml/0/name)
+```
+
+We're going to change `index.orit` so that, instead of just accepting a single person's name, it accepts a virtual folder of people data.
+
+<span class="tutorialStep"></span> **Try it:** Switch the Glitch editor window. Update the formula for `index.html` so that the entire `team` folder is passed to the template.
+
+<reveal-solution>
+
+```
+{
+  public = {
+    index.html = index.orit(team)
+    team = @map/values(teamData.yaml, =greet.js(_/name))
+    assets
+    images
+    thumbnails = @map/values(images, =thumbnail.js(_))
+  }
+}
+```
+
+</reveal-solution>
+
+Next, we're going to explore an interesting feature of Origami templates. If you have a real or virtual folder that contains text, you can reference that folder inside a template. Graph Origami will take all the text values in that virtual folder and inline them into the template's output.
 
 **Example:** If you had a folder called `fragments` that contained HTML fragments, you could inline them all into a template with:
 
@@ -523,13 +504,13 @@ If you have a virtual folder that contains text, you can reference that folder i
 \{\{ fragments }}
 ```
 
-<span class="tutorialStep"></span> **Try it:** Switch the Glitch editor window. At the bottom of the `index.orit` template, add a `\{\{` `}}` placeholder to incorporate the virtual `team` folder into the template.
+<span class="tutorialStep"></span> Update the placeholder in the `index.orit` template so that, instead of calling `greet.js`, the template incorporates its entire input (`_`) into the result.
 
 <reveal-solution>
 
 ```html
-<h1>\{\{ title }}</h1>
-\{\{ team }}
+<h1>About Us</h1>
+\{\{ _ }}
 ```
 
 </reveal-solution>
@@ -540,20 +521,15 @@ Now the preview shows the greetings to your team members.
 
 You can do anything inside a template's `{{` `}}` placeholders that you can do in a `.ori` formula. This means that you can do things like map data directly inside a template.
 
-<span class="tutorialStep"></span> **Try it:** From the `team` formula in `site.ori`, copy the right side of the formula (the `@map/values` and everything after the `=` sign) and paste that into `index.orit` in place of the `team` reference.
-
-<reveal-solution>
-
-```html
-<h1>\{\{ title }}</h1>
-\{\{ @map/values(teamData.yaml, =greet.js(_/name)) }}
 ```
 
-</reveal-solution>
 
-This produces the same result as before, but without relying on a separate definition of `team` elsewhere.
 
-## Use a nested template
+Use a nested template
+
+
+
+```
 
 Earlier you updated the formula for `index.html` to replace an invocation of `greet.js()` with the `index.orit` template. In `index.orit`, you're now invoking `greet.js()` inside of a `{{` `}}` placeholder. You can replace _that_ invocation too — with a nested template.
 
@@ -595,6 +571,47 @@ The text inside a backtick-delimited template can span multiple lines, so it can
 Functionally speaking, this is no more complex than the earlier template; it just has more elements.
 
 The index page preview now shows a tile for each team member that includes their name and location. It also shows a thumbnail image pulled from the virtual `thumbnails` folder you created earlier.
+
+## Controlling what is public
+
+This project is configured to let a user browse the virtual `public` folder.
+
+<span class="tutorialStep"></span> Switch to tree diagram window and refresh it to see its current structure.
+
+<figure>
+{{ svg.js {
+  index.html: framework-intro/src/greet.js("Our Amazing Team")
+  title: "Our Amazing Team"
+ } }}
+</figure>
+
+The virtual `title` file is used by the formula for `index.html`. But you don't need make the `title` file itself part of your final site — it's only needed internally.
+
+<span class="tutorialStep"></span> **Try it:** Move the line for `title` to the top level of `site.ori` so that it's inside the outermost `{` `}` curly braces but no longer inside the curly braces that define the contents of the `public` folder.
+
+<reveal-solution>
+
+```
+{
+  public = {
+    index.html = greet.js(title)
+  }
+}
+```
+
+</reveal-solution>
+
+By putting `title` at the top level, the formulas inside `public` can reference it, but a user won't be able to browse to a URL like `/title` to see the title.
+
+<span class="tutorialStep"></span> Refresh the tree diagram window to confirm that the public site no longer includes `title`:
+
+<figure>
+{{ svg.js {
+  index.html: framework-intro/src/greet.js("Our Amazing Team")
+} }}
+</figure>
+
+<span class="tutorialStep"></span> Switch back to the Glitch window.
 
 ## Index the team data by person name
 
@@ -652,8 +669,6 @@ In the original `countries` definition, you could get the name of Australia with
     images
     thumbnails = @map/values(images, =thumbnail.js(_))
   }
-
-  title = "Our Amazing Team"
   teamByName = @map/keys(teamData.yaml, =_/name)
 }
 ```
@@ -712,8 +727,6 @@ The `map()` function supports this via an optional `extension` parameter, which 
     images
     thumbnails = @map/values(images, =thumbnail.js(_))
   }
-
-  title = "Our Amazing Team"
   teamByName = @map/keys(teamData.yaml, =_/name)
 }
 ```
@@ -755,8 +768,6 @@ You're now going to create a similarly skeletal template for an individual perso
     images
     thumbnails = @map/values(images, =thumbnail.js(_))
   }
-
-  title = "Our Amazing Team"
   teamByName = @map/keys(teamData.yaml, =_/name)
 }
 ```
@@ -808,8 +819,6 @@ Stepping back, consider that you've created this entire site with a few resource
     images
     thumbnails = @map/values(images, =thumbnail.js(_))
   }
-
-  title = "Our Amazing Team"
   teamByName = @map/keys(teamData.yaml, =_/name)
 }
 ```
@@ -840,8 +849,7 @@ Each of the lines in `site.ori` defines some important area of the site. In a re
     thumbnails = @map/values(images, =thumbnail.js(_))
   }
 
-  # Define the title here so both page templates can use it.
-  title = "Our Amazing Team"
+  # Define the title here so both page templates can use it
 
   # Index the team members by name.
   teamByName = @map/keys(teamData.yaml, =_/name)
