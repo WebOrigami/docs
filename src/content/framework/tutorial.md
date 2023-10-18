@@ -57,9 +57,9 @@ The page in the preview pane says: Hello
 
 In Graph Origami, you build things from a combination of real files that are stored permanently and virtual files that are created on demand according to your instructions. These virtual "files" can be anything from a single number or text string to a typical document or media file.
 
-As you build a collection of virtual folders and files, it's helpful to be able to think about their structure as a _tree_. Colloquially speaking, a tree is the sort of boxes-with-arrows diagram you often see depicting the structure of organizations or websites.
+As you build a collection of virtual files, it's helpful to be able to think about their structure as a _tree_. Colloquially speaking, a tree is the sort of boxes-with-arrows diagram you often see depicting the structure of organizations or websites.
 
-Graph Origami lets you define a tree in several ways, and one way is to write formulas in a file with a `.ori` extension.
+When you build a website, you're building a virtual tree of resources that will be served to the site's visitors. You can think of that virtual tree as a virtual folder hierarchy. In Graph Origami, you'll directly build this tree in one of several ways. The easiest way to define a tree is in a file with a `.ori` extension.
 
 <span class="tutorialStep"></span> In the `src` folder, open `site.ori`:
 
@@ -73,11 +73,11 @@ Graph Origami lets you define a tree in several ways, and one way is to write fo
 
 This Origami file defines three things:
 
-1. A virtual folder at the project's top level. Everything in between the outermost `{` on the first line and the `}` on the last line will become part of that top-level virtual folder.
-1. A virtual folder called `public`.
+1. A virtual tree at the project's top level. Everything in between the outermost `{` on the first line and the `}` on the last line will become part of that top-level virtual tree.
+1. A virtual tree called `public`.
 1. A virtual file called `index.html`. Unlike most programming languages, names in Graph Origami can include periods so you can define file names with extensions. For now, the `index.html` file is defined as a simple text string.
 
-This tutorial project is already configured to serve the contents of the virtual `public` folder. The name "public" itself isn't special — you could configure the project to serve the top-level folder, or some folder with a different name.
+This tutorial project is already configured to serve the contents of the virtual `public` tree. The name "public" itself isn't special — you could configure the project to serve the top-level tree, or some other tree in that file with a different name.
 
 You can edit your site by editing this `site.ori` file.
 
@@ -87,13 +87,13 @@ After a moment, the Glitch preview window should refresh to show: Hello, world!
 
 ## View your site as a tree
 
-Graph Origami lets you visualize and explore the tree you are building.
+Graph Origami lets you visualize and explore the tree of pages and other resources you are building for your website.
 
 <span class="tutorialStep"></span> Click the **Preview** button at the bottom of the window, then click **Preview in a new window**. This will open your site in a new window (or tab).
 
 <span class="tutorialStep"></span> In the browser address bar for that new window, add `/!@svg` to the end of the URL. The new URL should look like `https://your-project-name.glitch.me/!@svg`
 
-You'll see your site visually represented as a tree with just one "branch":
+You'll see your site visually represented as a tree with just one branch:
 
 <figure>
 {{ svg.js {
@@ -101,7 +101,7 @@ index.html = 'Hello, world!'
 } }}
 </figure>
 
-The little circle represents the `public` folder, and the box represents the `index.html` file.
+The little circle represents the `public` tree, and the box represents the `index.html` file.
 
 <span class="tutorialStep"></span> Leaving the tree diagram window open, switch back to the main Glitch window. You'll return to the tree diagram occasionally to visually confirm the structure of your evolving site.
 
@@ -155,7 +155,7 @@ This defines an array of person records in YAML but _this data is too boring!_
 
 ## Formulas can extract data
 
-You can use slash-separated paths to extract information out of a folder or a data file like the team data.
+You can use slash-separated paths to extract information out of a tree like a file system folder or the hierarchical team data.
 
 **Example:** The following defines a virtual file whose value will be the location of the third team member. (Array indexes start with zero.)
 
@@ -205,7 +205,7 @@ Your `.ori` file can then invoke the template as a function, just like you invok
 product.html = product.orit()
 ```
 
-<span class="tutorialStep"></span> **Try it:** In `site.ori`, update your `index.html` formula to invoke your `index.orit` template as a function.
+<span class="tutorialStep"></span> **Try it:** In `site.ori`, update your `index.html` formula to remove the call to `greet.js`, and instead invoke your `index.orit` template as a function.
 
 <reveal-solution>
 
@@ -219,7 +219,7 @@ product.html = product.orit()
 
 </reveal-solution>
 
-Now when you view the site's main page, the `index.orit` template will be invoked to obtain the HTML. The preview shows a paragraph with the plain text, "Hello".
+Now when you view the site's main page, the `index.orit` template will be invoked to obtain the HTML. The preview shows the heading: **About Us**
 
 ## Add an expression to a template
 
@@ -291,7 +291,7 @@ Such situations are very common in websites and other development tasks, where y
 
 Whenever you have such a situation in Graph Origami, you can efficiently address it with a _map_.
 
-A map is a many-to-many transformation: you give it a set of things (like a real folder, a virtual folder, the array of people in teamData.yaml, etc.) and a function. The function is a one-to-one transformation: it transforms a single existing thing into a single new thing. A map scales up a one-to-one transformation to produce a many-to-many transformation.
+A map is a many-to-many transformation: you give it a set of things (like a real folder, a virtual folder, the hierarchical tree of data in teamData.yaml, etc.) and a function. The function is a one-to-one transformation: it transforms a single existing thing into a single new thing. A map scales up a one-to-one transformation to produce a many-to-many transformation.
 
 Earlier, you invoked the `greet` function to create a single file. That function performs a trivial one-to-one transformation of a text string (like "Our Amazing Team") to produce a new text string ("Hello, Our Amazing Team!").
 
@@ -416,7 +416,7 @@ You can pull a folder or file into your tree by writing its name on a line by it
 
 <span class="tutorialStep"></span> Switch to tree diagram window and refresh it to see the updated site structure.
 
-Your site now includes both real and virtual files. You can continue to grow this into your final About Us site.
+Your site now includes both real and virtual files. You can continue to grow this tree into your final About Us site.
 
 ## Create a virtual folder of thumbnails
 
@@ -466,7 +466,7 @@ The virtual `thumbnails` folder contains a set of thumbnail images _that do not 
 
 <span class="tutorialStep"></span> Navigate back to the tree diagram.
 
-## Incorporate a virtual folder into a template
+## Incorporate input into a template
 
 Let's now flesh out the index page with real content. Your index page will need to display a tile for each member that links to their individual page.
 
@@ -476,16 +476,16 @@ At the moment, the `site.ori` file is passing a single person's name to `index.o
     index.html = index.orit(teamData.yaml/0/name)
 ```
 
-We're going to change `index.orit` so that, instead of just accepting a single person's name, it accepts a virtual folder of people data.
+We're going to change `index.orit` so that, instead of just accepting a single person's name, it accepts the entire hierarchical tree of team data.
 
-<span class="tutorialStep"></span> **Try it:** Switch the Glitch editor window. Update the formula for `index.html` so that the entire `team` folder is passed to the template.
+<span class="tutorialStep"></span> **Try it:** Switch the Glitch editor window. Update the formula for `index.html` so that the entire `teamData.yaml` file is passed to the template.
 
 <reveal-solution>
 
 ```
 {
   public = {
-    index.html = index.orit(team)
+    index.html = index.orit(teamData.yaml)
     team = @map/values(teamData.yaml, =greet.js(_/name))
     assets
     images
@@ -496,58 +496,48 @@ We're going to change `index.orit` so that, instead of just accepting a single p
 
 </reveal-solution>
 
-Next, we're going to explore an interesting feature of Origami templates. If you have a real or virtual folder that contains text, you can reference that folder inside a template. Graph Origami will take all the text values in that virtual folder and inline them into the template's output.
-
-**Example:** If you had a folder called `fragments` that contained HTML fragments, you could inline them all into a template with:
-
-```html
-\{\{ fragments }}
-```
-
-<span class="tutorialStep"></span> Update the placeholder in the `index.orit` template so that, instead of calling `greet.js`, the template incorporates its entire input (`_`) into the result.
+<span class="tutorialStep"></span> Next, replace the contents of the placeholder in the `index.orit` template so that, instead of calling `greet.js`, the template incorporates its entire input (`_`) into the result.
 
 <reveal-solution>
 
-```html
+```{{"html"}}
 <h1>About Us</h1>
 \{\{ _ }}
 ```
 
 </reveal-solution>
 
-Now the preview shows the greetings to your team members.
+The preview updates to show the entire contents of `teamData.yaml`. That's more data than you want to show; the next step will let you show just the portion of that data that's meaningful on an index page.
 
 ## Create a map inside a template
 
-You can do anything inside a template's `{{` `}}` placeholders that you can do in a `.ori` formula. This means that you can do things like map data directly inside a template.
+Inside a template's `\{\{` `}}` placeholders you can directly map a tree of data to text like HTML.
 
-```
+In `site.ori`, you've already created a map of `images` to `thumbnails`, and a map of `teamData.yaml` to a set of `team` greetings. You're now going to do the same kind of map inside the `index.ori` template. The map will translate the people in the incoming team data into a corresponding set of HTML text fragments for each person.
 
+To do this, you will use a _nested_ template: a small template inside of `index.orit`.
 
-
-Use a nested template
-
-
-
-```
-
-Earlier you updated the formula for `index.html` to replace an invocation of `greet.js()` with the `index.orit` template. In `index.orit`, you're now invoking `greet.js()` inside of a `{{` `}}` placeholder. You can replace _that_ invocation too — with a nested template.
-
-**Example:** If you want to display paragraphs with the team member locations, you could write:
+**Example:** If you wanted to display paragraphs with the team member locations, you could write the following map of the input data to a nested template surrounded by backtick (`) characters:
 
 ```{{"html"}}
-\{\{ @map/values(teamData.yaml, =`<p>\{\{ _/location }}</p>`) }}
+\{\{ @map/values(_, =`
+  <p>\{\{ _/location }}</p>
+`) }}
+
 ```
 
-The second argument to `@map` here is a smaller template nested inside the larger template. The nested template is surrounded by backtick (`) characters.
+The two underscore (`_`) characters here both refer to inputs — but to different inputs. The first underscore represents the overall input to the template, which in this case is the entire `teamData.yaml` data file. The second underscore refers to the input to the nested template: an individual team member.
 
-<span class="tutorialStep"></span> Update `index.orit` to remove the call to `greet.js()`. Instead, display each name as a bullet item — that is, surround the each name with a `<li>` and `</li>` tags. Since you'll be defining a nested template, you'll need to use backtick (`) characters.
+<span class="tutorialStep"></span> Update `index.orit` to replace the `_` in the placeholder with a map to a nested template like the one above. Display each person's name as a bullet item by surrounding it with `<li>` and `</li>` tags.
 
 <reveal-solution>
 
 ```{{"html"}}
-<h1>\{\{ title }}</h1>
-\{\{ @map/values(teamData.yaml, =`<li>\{\{ _/name }}</li>`) }}
+<h1>About Us</hi>
+\{\{ @map/values(_, =`
+  <li>\{\{ _/name }}</li>
+`) }}
+
 ```
 
 </reveal-solution>
@@ -572,52 +562,11 @@ Functionally speaking, this is no more complex than the earlier template; it jus
 
 The index page preview now shows a tile for each team member that includes their name and location. It also shows a thumbnail image pulled from the virtual `thumbnails` folder you created earlier.
 
-## Controlling what is public
-
-This project is configured to let a user browse the virtual `public` folder.
-
-<span class="tutorialStep"></span> Switch to tree diagram window and refresh it to see its current structure.
-
-<figure>
-{{ svg.js {
-  index.html: framework.ori/greet.js("Our Amazing Team")
-  title: "Our Amazing Team"
- } }}
-</figure>
-
-The virtual `title` file is used by the formula for `index.html`. But you don't need make the `title` file itself part of your final site — it's only needed internally.
-
-<span class="tutorialStep"></span> **Try it:** Move the line for `title` to the top level of `site.ori` so that it's inside the outermost `{` `}` curly braces but no longer inside the curly braces that define the contents of the `public` folder.
-
-<reveal-solution>
-
-```
-{
-  public = {
-    index.html = greet.js(title)
-  }
-}
-```
-
-</reveal-solution>
-
-By putting `title` at the top level, the formulas inside `public` can reference it, but a user won't be able to browse to a URL like `/title` to see the title.
-
-<span class="tutorialStep"></span> Refresh the tree diagram window to confirm that the public site no longer includes `title`:
-
-<figure>
-{{ svg.js {
-  index.html: framework.ori/greet.js("Our Amazing Team")
-} }}
-</figure>
-
-<span class="tutorialStep"></span> Switch back to the Glitch window.
-
 ## Index the team data by person name
 
 The last phase of building your site involves fleshing out the pages in the `team` area for each person, so that `/team/Alice.html` shows the data for Alice along with a full-size image.
 
-To lay the groundwork for that, you're first going to create an intermediate folder with the same data as `teamData.yaml`, but where the files are named after the people on the team.
+To lay the groundwork for that, you're first going to create an intermediate virtual tree with the same data as `teamData.yaml`, but where the files are named after the people on the team.
 
 As you've seen, the top-level "file names" in `teamData.yaml` are integers, like `0` for the first person. So at the moment the `team` area pages are identified with integers too. But in your final website tree, you'd like the names of the pages in the `team` area to include the person's name, like `Alice.html`.
 
@@ -654,7 +603,7 @@ This operation looks like:
 
 In the original `countries` definition, you could get the name of Australia with `countries/0/name`. With the mapped keys, you can get the name of Australia with `countriesByAbbreviation/AU/name`.
 
-<span class="tutorialStep"></span> **Try it:** In `site.ori`, define a new, top-level virtual folder called `teamByName` that maps the keys of `teamData.yaml` to the team member's names. Since this `teamByName` folder is only needed for internal use, it can go outside of the `public` definition.
+<span class="tutorialStep"></span> **Try it:** In `site.ori`, define a new, top-level virtual tree called `teamByName` that maps the keys of `teamData.yaml` to the team member's names. Since this `teamByName` tree is only needed for internal use, it can go _outside_ the `public` definition and within the file's outermost pair of `\{ }` curly braces.
 
 <span class="tutorialStep"></span> Then update the `team` formula to reference `teamByName` instead of `teamData.yaml`.
 
@@ -663,12 +612,13 @@ In the original `countries` definition, you could get the name of Australia with
 ```
 {
   public = {
-    index.html = index.orit()
+    index.html = index.orit(teamData.yaml)
     team = @map/values(teamByName, =greet.js(_/name))
     assets
     images
     thumbnails = @map/values(images, =thumbnail.js(_))
   }
+
   teamByName = @map/keys(teamData.yaml, =_/name)
 }
 ```
@@ -698,7 +648,7 @@ In the original `countries` definition, you could get the name of Australia with
 
 ## Add an HTML extension
 
-We often use extensions at the end of file names to indicate the type of data they contain. Virtual folders created with functions like `map()` will often change the type of the data, so as a convenience those functions allow you to add, change, or remove extensions.
+We often use extensions at the end of file names to indicate the type of data they contain. Virtual trees created with functions like `map()` will often change the type of the data, so as a convenience those functions allow you to add, change, or remove extensions.
 
 The `map()` function supports this via an optional `extension` parameter, which takes a string describing how an extension should change.
 
@@ -721,12 +671,13 @@ The `map()` function supports this via an optional `extension` parameter, which 
 ```
 {
   public = {
-    index.html = index.orit()
+    index.html = index.orit(teamData.yaml)
     team = @map/values(teamByName, =greet.js(_/name), { extension: "->html" })
     assets
     images
     thumbnails = @map/values(images, =thumbnail.js(_))
   }
+
   teamByName = @map/keys(teamData.yaml, =_/name)
 }
 ```
@@ -736,14 +687,6 @@ The `map()` function supports this via an optional `extension` parameter, which 
 ## Create a person template
 
 The last step in building your site is creating a page template for the people in the `team` area.
-
-As review, recall that an early iteration of your index page template displayed a heading with:
-
-```html
-<h1>\{\{ title }}</h1>
-```
-
-You're now going to create a similarly skeletal template for an individual person.
 
 <span class="tutorialStep"></span> **Try it:** In the src folder, create a new template called `person.orit`. Inside the template, create a `<h1>` heading with a `\{\{` `}}` placeholder. Inside the placeholder, enter the expression `_/name`.
 
@@ -755,19 +698,20 @@ You're now going to create a similarly skeletal template for an individual perso
 
 </reveal-solution>
 
-<span class="tutorialStep"></span> Edit the `team` formula in `site.ori` to use the `person.orit` template as the function that should be invoked. As with the `thumbnails` map earlier, you'll want to use an underscore `_` to pass the entire team member object as an argument to the `person.orit` template.
+<span class="tutorialStep"></span> Edit the `team` formula in `site.ori` so that, instead of passing a name to `greet.js`, it passes a person to the `person.orit` template. As with the `thumbnails` map earlier, you'll want to use an underscore `_` to pass the entire team member object as an argument to the `person.orit` template.
 
 <reveal-solution>
 
 ```
 {
   public = {
-    index.html = index.orit()
+    index.html = index.orit(teamData.yaml)
     team = @map/values(teamByName, =person.orit(_), { extension: "->html" })
     assets
     images
     thumbnails = @map/values(images, =thumbnail.js(_))
   }
+
   teamByName = @map/keys(teamData.yaml, =_/name)
 }
 ```
@@ -813,12 +757,13 @@ Stepping back, consider that you've created this entire site with a few resource
 ```
 {
   public = {
-    index.html = index.orit()
+    index.html = index.orit(teamData.yaml)
     team = @map/values(teamByName, =person.orit(_), { extension: "->html" })
     assets
     images
     thumbnails = @map/values(images, =thumbnail.js(_))
   }
+
   teamByName = @map/keys(teamData.yaml, =_/name)
 }
 ```
@@ -833,10 +778,10 @@ Each of the lines in `site.ori` defines some important area of the site. In a re
 
 ```
 {
-  # The public folder is what users can browse.
+  # The public tree is what users can browse.
   public = {
     # Generate the index page from the index.orit template.
-    index.html = index.orit()
+    index.html = index.orit(teamData.yaml)
 
     # Generate a page in the team area for each team member.
     team = @map/values(teamByName, =person.orit(_), { extension: "->html" })
@@ -848,8 +793,6 @@ Each of the lines in `site.ori` defines some important area of the site. In a re
     # Generate the thumbnails by reducing the full-size images.
     thumbnails = @map/values(images, =thumbnail.js(_))
   }
-
-  # Define the title here so both page templates can use it
 
   # Index the team members by name.
   teamByName = @map/keys(teamData.yaml, =_/name)
