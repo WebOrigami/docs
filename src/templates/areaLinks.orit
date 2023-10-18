@@ -1,1 +1,1 @@
-{{ @map/values _, templates/linkCurrent.orit }}
+{{ @map/values _, linkCurrent.orit }}

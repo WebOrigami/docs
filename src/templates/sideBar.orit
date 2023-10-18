@@ -1,7 +1,7 @@
 {{ @if(_, =`
 <ul>
   {{ @map/values(_, =`
-    <li>{{ templates/linkCurrent.orit(_) }}</li>
+    <li>{{ linkCurrent.orit(_) }}</li>
   `) }}
 </ul>
 `) }}

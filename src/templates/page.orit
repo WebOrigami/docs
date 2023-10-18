@@ -17,7 +17,7 @@
         </div>
         <nav id="navBar">
           <a href="/">Origami</a>
-{{ templates/areaLinks.orit(_/areaLinks) }}
+{{ areaLinks.orit(_/areaLinks) }}
           <a href="https://github.com/GraphOrigami/origami">GitHub</a>
         </nav>
       </div>
@@ -32,7 +32,7 @@
 `) }}
         </header>
         <nav id="sideBar">
-{{ templates/sideBar.orit(_/pageLinks) }}
+{{ sideBar.orit(_/pageLinks) }}
         </nav>
         <main class="markdown-body">
           {{ _ }}

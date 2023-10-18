@@ -1,4 +1,4 @@
 {{ @map/values _/exports, =`
-  {{ @if @equals(_/kind, 'class'), =@local/class.orit(_) }}
-  {{ @if @equals(_/kind, 'function'), =@local/function.orit(_) }}
+  {{ @if @equals(_/kind, 'class'), =class.orit(_) }}
+  {{ @if @equals(_/kind, 'function'), =function.orit(_) }}
 `}}

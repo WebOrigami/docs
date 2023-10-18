@@ -1,12 +1,12 @@
 <h3>
   {{ @if _/static, 'static ' }}
   {{ @if _/async, 'async '}}
-  {{ @if _/generator, '*'}}{{_/name}}({{ @local/parameters.orit(_/parameters) }})
+  {{ @if _/generator, '*'}}{{_/name}}({{ parameters.orit(_/parameters) }})
   {{ @if _/isConstructor, 'constructor'}}
 </h3>
 <ul>
 {{ @map/values _/parameters, =`
-  <li>{{_/name}}: {{ @local/typeList.orit(_/types) }}
+  <li>{{_/name}}: {{ typeList.orit(_/types) }}
     {{ @if _/description, =`
       &ndash; {{_/description}}
     `}}
@@ -15,7 +15,7 @@
 </ul>
 {{ @if @not(_/isConstructor), =`
 <p>
-  Returns: {{ @local/typeList.orit(_/returnTypes) }}
+  Returns: {{ typeList.orit(_/returnTypes) }}
 </p>
 `}}
 <p>
