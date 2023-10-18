@@ -3,7 +3,7 @@ title: Origami expression language
 subtitle: A small language for expressions that access or transform trees and other data
 ---
 
-{{ templates/blocks.orit() }}
+{{ templates/blocks.orit(_) }}
 
 Graph Origami includes a small Origami expression language focused on:
 

@@ -1,6 +1,6 @@
 // Pick an icon for a page that is quasi-random but stable across visits.
-export default async function chooseIcon(page, icons) {
-  if (!page || !icons) {
+export default async function chooseIcon(filePath, icons) {
+  if (!filePath || !icons) {
     return undefined;
   }
 
@@ -10,7 +10,7 @@ export default async function chooseIcon(page, icons) {
   );
 
   // Treating the icons as buckets, hash the page URL to a bucket (icon).
-  const pageHash = hash(page, keys.length);
+  const pageHash = hash(filePath, keys.length);
   const icon = keys[pageHash];
   return icon;
 }

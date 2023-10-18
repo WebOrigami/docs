@@ -5,6 +5,8 @@
   # The first set of formulas define a pipeline for the documentation content,
   # which is authored as a tree of markdown files in the `content` folder.
 
+  areas = @tree/plain(areas.yaml)
+
   # Add the `area` and `fileName` properties to the documents.
   withData = @map/values(
     content
@@ -12,10 +14,10 @@
       @tree/isAsyncDictionary(_)
       @map/values(
         _
-        =js/addData.js(_, area, @key)
+        =js/addData.js(_, area, @key, areas, @tree/plain(content(area)/pages.yaml), client/assets/origami)
         { extension: "md" }
       )
-      _
+      =js/addData.js(_, "", area, areas, {}, client/assets/origami)
     )
     { keyName: "area" }
   )
@@ -35,20 +37,6 @@
   # navigation chrome. This step concludes the main documentation pipeline.
   pages = @map/values(html, templates/page.orit, { deep: @true, extension: "html" })
 
-  # Expose the packages referenced in the documentation.
-  framework-intro = node_modules/@graphorigami/framework-intro
-  samples = node_modules/@graphorigami/samples/src
-
-  # The following formulas are used by specific pages that want to inline API
-  # documentation for specific classes in the Graph Origami core library. The
-  # first formula defines a shorthand `source` that refers to the Graph Origami
-  # source in the Node modules tree. The second formula creates a virtual tree of
-  # API documentation objects for the core library. That formula uses a custom
-  # transform called `jsApi`, based on the Microsoft TypeScript compiler, which
-  # parses JavaScript source to extract type information and comments.
-  source = node_modules/@graphorigami/core/src
-  api = js/jsApi.js(source)
-
   # The `public` tree defines the final tree which is built into static pages.
   public = @tree/merge(client, pages, {
     # This components.js "bundle" is just concatenated files
@@ -61,6 +49,6 @@
     # Used by Netlify
     _redirects = src/_redirects
 
-    samples
+    samples = samples.ori/
   })
 }

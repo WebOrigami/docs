@@ -1,5 +1,5 @@
 ---
-title: Hands-on intro to async trees
+title: Introduction to async trees
 numberHeadings: true
 ---
 

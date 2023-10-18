@@ -8,7 +8,7 @@ countries:
     abbreviation: BR
   - name: China
     abbreviation: CN
-teamByName: !ori (@map/keys(framework-intro/src/teamData.yaml, =_/name))
+teamByName: !ori (@map/keys(framework.ori/teamData.yaml, =_/name))
 siteComplete:
   index.html: <h1>About Us</h1>
   team:
@@ -112,7 +112,7 @@ The formulas you write to define virtual files can call JavaScript. You can do a
 <span class="tutorialStep"></span> View the file `src/greet.js`.
 
 ```{{'js'}}
-{{ framework-intro/src/greet.js }}
+{{ framework.ori/greet.js }}
 ```
 
 This defines a function called `greet` which, given a person's name, returns a greeting in HTML. The person's name will be set in bold. You can call this JavaScript function in a Graph Origami formula.
@@ -146,7 +146,7 @@ Data in Graph Origami projects can come from pretty much anything. This sample p
 <span class="tutorialStep"></span> Open the team data file in `src/teamData.yaml`:
 
 ```{{"yaml"}}
-{{ framework-intro/src/teamData.yaml }}
+{{ framework.ori/teamData.yaml }}
 ```
 
 This defines an array of person records in YAML but _this data is too boring!_
@@ -563,7 +563,7 @@ The text inside a backtick-delimited template can span multiple lines, so it can
 <clipboard-copy>
 
 ```html
-{{ @js/String framework-intro/src/index.orit }}
+{{ @js/String framework.ori/index.orit }}
 ```
 
 </clipboard-copy>
@@ -580,7 +580,7 @@ This project is configured to let a user browse the virtual `public` folder.
 
 <figure>
 {{ svg.js {
-  index.html: framework-intro/src/greet.js("Our Amazing Team")
+  index.html: framework.ori/greet.js("Our Amazing Team")
   title: "Our Amazing Team"
  } }}
 </figure>
@@ -607,7 +607,7 @@ By putting `title` at the top level, the formulas inside `public` can reference 
 
 <figure>
 {{ svg.js {
-  index.html: framework-intro/src/greet.js("Our Amazing Team")
+  index.html: framework.ori/greet.js("Our Amazing Team")
 } }}
 </figure>
 
@@ -793,7 +793,7 @@ The only thing left to do is complete the `person.orit` template.
 <clipboard-copy>
 
 ```{{"html"}}
-{{ @js/String framework-intro/src/person.orit }}
+{{ @js/String framework.ori/person.orit }}
 ```
 
 </clipboard-copy>

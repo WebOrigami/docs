@@ -9,7 +9,7 @@
     <a class="headerLink" href="..">
       <header>
         <img class="icon" src="../personIcon.svg">
-        <h1>{{ _/title }}</h1>
+        <h1>About Us</h1>
       </header>
     </a>
     <main class="person">

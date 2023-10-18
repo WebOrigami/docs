@@ -1,10 +1,3 @@
----
-currentRef: !ori (`{{ _/area }}/{{ _/fileName }}`)
-icon: !ori (@or(_/icon, js/chooseIcon.js(currentRef, client/assets/origami)))
-pagesLinks: !ori js/markCurrent.js(pagesInArea, _/fileName)
-pagesInArea: !ori (@scope/get(_)/pages.yaml)
-foo: !ori _/fileName
----
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,7 +7,7 @@ foo: !ori _/fileName
     <link rel="stylesheet" href="/styles/github.min.css">
     <link rel="stylesheet" href="/styles/docs.css">
     <title>{{ _/title }}</title>
-    <link rel="icon" href="/assets/origami/{{ icon }}" type="image/svg+xml">
+    <link rel="icon" href="/assets/origami/{{ _/icon }}" type="image/svg+xml">
   </head>
   <body{{ @if(_/numberHeadings, ` class="numberHeadings"`) }}>
     <div id="page">
@@ -24,13 +17,13 @@ foo: !ori _/fileName
         </div>
         <nav id="navBar">
           <a href="/">Origami</a>
-{{ templates/areaLinks.orit(_) }}
+{{ templates/areaLinks.orit(_/areaLinks) }}
           <a href="https://github.com/GraphOrigami/origami">GitHub</a>
         </nav>
       </div>
       <div id="pageContent">
         <div id="iconContainer">
-          <img class="origami" src="/assets/origami/{{ icon }}">
+          <img class="origami" src="/assets/origami/{{ _/icon }}">
         </div>
         <header>
           <h1>{{ _/title }}</h1>
@@ -39,7 +32,7 @@ foo: !ori _/fileName
 `) }}
         </header>
         <nav id="sideBar">
-{{ templates/sideBar.orit(pagesLinks) }}
+{{ templates/sideBar.orit(_/pageLinks) }}
         </nav>
         <main class="markdown-body">
           {{ _ }}

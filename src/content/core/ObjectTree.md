@@ -37,4 +37,4 @@ $ ori object
 {{ @yaml sample }}
 ```
 
-{{ templates/class.orit(api/ObjectTree.yaml/exports/0) }}
+{{ templates/class.orit(api.ori/ObjectTree.yaml/exports/0) }}

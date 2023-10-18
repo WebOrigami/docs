@@ -75,13 +75,13 @@ The second argument to `@map/values` is a function. Technically, the second argu
 The map example above takes the original greetings tree:
 
 <figure>
-{{ @svg samples/cli/greetings.yaml }}
+{{ @svg samples.ori/cli/greetings.yaml }}
 </figure>
 
 and creates a new tree where all the values are uppercase:
 
 <figure>
-{{ @svg @map/values(samples/cli/greetings.yaml, samples/cli/uppercase.js) }}
+{{ @svg @map/values(samples.ori/cli/greetings.yaml, samples.ori/cli/uppercase.js) }}
 </figure>
 
 In this intro, we're just transforming text, but you can transform anything in bulk, including images and other binaries. If you can write a function to transform a single thing in JavaScript, you can use ori to apply that transformation to an entire tree of things.
@@ -128,13 +128,13 @@ $ ori @map/values people.yaml, greetings.yaml
 
 <div class="sideBySide">
   <figure>
-    {{ @svg samples/cli/people.yaml }}
+    {{ @svg samples.ori/cli/people.yaml }}
   </figure>
   <figure>
-    {{ @svg samples/cli/greetings.yaml }}
+    {{ @svg samples.ori/cli/greetings.yaml }}
   </figure>
   <figure>
-    {{ @svg @map/values(samples/cli/people.yaml, samples/cli/greetings.yaml) }}
+    {{ @svg @map/values(samples.ori/cli/people.yaml, samples.ori/cli/greetings.yaml) }}
   </figure>
   <figcaption>List of people</figcaption>
   <figcaption>Greetings for everyone</figcaption>

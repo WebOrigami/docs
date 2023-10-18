@@ -2,16 +2,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>{{ title }}</title>
+    <title>About Us</title>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <header>
       <img class="icon" src="personIcon.svg">
-      <h1>{{ title }}</h1>
+      <h1>About Us</h1>
     </header>
     <ul class="tileGrid">
-      {{ @map/values team.yaml, =`
+      {{ @map/values _, =`
       <li class="tile">
         <a href="team/{{ _/name }}.html">
           <img class="avatar" src="thumbnails/{{ _/image }}" alt="{{ _/name }}">

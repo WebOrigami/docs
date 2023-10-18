@@ -35,8 +35,8 @@ When you invoke a template as a function, you can refer to the template's input 
 
 ```console
 $ cat heading.orit
-{{ samples/templates/heading.orit }}$ ori "heading.orit('About Us')"
-{{ samples/templates/heading.orit('About Us') }}
+{{ samples.ori/templates/heading.orit }}$ ori "heading.orit('About Us')"
+{{ samples.ori/templates/heading.orit('About Us') }}
 ```
 
 ## Reference individual files
@@ -45,17 +45,17 @@ You can reference local files in Origami expressions. Depending on the situation
 
 ```console
 $ cat fileRef.orit
-{{ samples/templates/fileRef.orit }}$ cat copyright.txt
-{{ samples/templates/copyright.txt }}
+{{ samples.ori/templates/fileRef.orit }}$ cat copyright.txt
+{{ samples.ori/templates/copyright.txt }}
 $ ori "fileRef.orit()"
-{{ @scope/invoke samples/templates, samples/templates/fileRef.orit }}
+{{ @scope/invoke samples.ori/templates, samples.ori/templates/fileRef.orit }}
 ```
 
 In cases like this, where the template does not require any argument, you can avoid the need to quote parentheses by invoking the template using slash syntax:
 
 ```console
 $ ori fileRef.orit/
-{{ @scope/invoke samples/templates, samples/templates/fileRef.orit }}
+{{ @scope/invoke samples.ori/templates, samples.ori/templates/fileRef.orit }}
 ```
 
 ## Reference trees
@@ -64,11 +64,11 @@ If a template expression results in a tree such as a folder or hierarchical data
 
 ```console
 $ cat greetings.yaml
-{{ samples/templates/greetings.yaml }}
+{{ samples.ori/templates/greetings.yaml }}
 $ cat flatten.orit
-{{ samples/templates/flatten.orit }}
+{{ samples.ori/templates/flatten.orit }}
 $ ori flatten.orit/
-{{ @scope/invoke samples/templates, samples/templates/flatten.orit }}
+{{ @scope/invoke samples.ori/templates, samples.ori/templates/flatten.orit }}
 ```
 
 This feature forms the basis for more complex ones (like maps, below), but one basic use for it is to inline a set of files. For example, you might create a folder that contains a collection of HTML fragments as separate files:
@@ -77,16 +77,16 @@ This feature forms the basis for more complex ones (like maps, below), but one b
 $ ls fragments
 a.html b.html c.html
 $ cat fragments/a.html
-{{ samples/templates/fragments/a.html }}
+{{ samples.ori/templates/fragments/a.html }}
 ```
 
 You can then reference that `fragments` folder in a template to concatenate all those HTML fragments into the output:
 
 ```console
 $ cat concat.orit
-{{ samples/templates/concat.orit }}
+{{ samples.ori/templates/concat.orit }}
 $ ori concat.orit/
-{{ @scope/invoke samples/templates, samples/templates/concat.orit }}
+{{ @scope/invoke samples.ori/templates, samples.ori/templates/concat.orit }}
 ```
 
 ## Use template expressions in any file type
@@ -97,9 +97,9 @@ For example, you can use this to inline resources such as stylesheets.
 
 ```console
 $ cat inline.html
-{{ samples/templates/inline.html }}$ cat inline.css
-{{ samples/templates/inline.css }}$ ori @inline inline.html
-{{ @scope/invoke samples/templates, =@inline inline.html }}
+{{ samples.ori/templates/inline.html }}$ cat inline.css
+{{ samples.ori/templates/inline.css }}$ ori @inline inline.html
+{{ @scope/invoke samples.ori/templates, =@inline inline.html }}
 ```
 
 Here, the `inline.html` file is acting as an Origami template, but keeps the `.html` extension so that it can be otherwise treated as an HTML file.
@@ -119,8 +119,8 @@ $ cat teamData.yaml
     decided to take the plunge and start a business of my own.
 …
 $ cat teamLead.orit
-{{ samples/templates/teamLead.orit }}$ ori teamLead.orit/
-{{ @scope/invoke samples/templates, samples/templates/teamLead.orit }}
+{{ samples.ori/templates/teamLead.orit }}$ ori teamLead.orit/
+{{ @scope/invoke samples.ori/templates, samples.ori/templates/teamLead.orit }}
 ```
 
 ## Reference network resources
@@ -129,17 +129,17 @@ Since `https` and `http` URLs are valid Origami expressions, you can incorporate
 
 ```console
 $ cat net.orit
-{{ samples/templates/net.orit }}$ ori net.orit/
+{{ samples.ori/templates/net.orit }}$ ori net.orit/
 This content came from graphorigami.org:
-{{ samples/templates/net.txt }}
+{{ samples.ori/templates/net.txt }}
 ```
 
 This includes being able to traverse into data from the network. A [teamData.yaml](samples/templates/teamData.yaml) file posted on the network can be referenced as an expression and then further traversed:
 
 ```console
 $ cat netData.orit
-{{ samples/templates/netData.orit }}$ ori netData.orit/
-Bob lives in {{ samples/templates/teamData.yaml/1/location }}.
+{{ samples.ori/templates/netData.orit }}$ ori netData.orit/
+Bob lives in {{ samples.ori/templates/teamData.yaml/1/location }}.
 ```
 
 You can also obtain a data file from the network, treat it as a tree, and [map the tree to text](#map-trees-to-text). This allows you to directly process network data into text in a template.
@@ -152,11 +152,11 @@ The first argument to `@if` is a condition that is evaluated. If the result is t
 
 ```console
 $ cat condition.orit
-{{ samples/templates/condition.orit }}
+{{ samples.ori/templates/condition.orit }}
 $ ori “condition.orit({ rating: 3 })”
-{{ samples/templates/condition.orit({ rating: 3 }) }}
+{{ samples.ori/templates/condition.orit({ rating: 3 }) }}
 $ ori “condition.orit({})”
-{{ samples/templates/condition.orit({}) }}
+{{ samples.ori/templates/condition.orit({}) }}
 ```
 
 ## Call your own JavaScript functions
@@ -167,11 +167,11 @@ For example, if you have a file named `uppercase.js` in the same directory as th
 
 ```console
 $ cat uppercase.js
-{{ samples/templates/uppercase.js }}
+{{ samples.ori/templates/uppercase.js }}
 $ cat callJs.orit
-{{ samples/templates/callJs.orit }}
+{{ samples.ori/templates/callJs.orit }}
 $ ori callJs.orit/
-{{ @scope/invoke samples/templates, samples/templates/callJs.orit }}
+{{ @scope/invoke samples.ori/templates, samples.ori/templates/callJs.orit }}
 ```
 
 If the function you invoke is asynchronous, its result will be awaited before being incorporated into the text output.
@@ -184,23 +184,23 @@ We can define a template `stars.orit` as a component that displays a star rating
 
 ```console
 $ cat stars.orit
-{{ samples/templates/stars.orit }}
+{{ samples.ori/templates/stars.orit }}
 ```
 
 This template repeats a ★ star character for the number of times defined in in the input value. For example, you can directly invoke and test this template, passing in a value of 3:
 
 ```console
 $ ori "stars.orit(3)"
-{{ @scope/invoke samples/templates, =stars.orit(3) }}
+{{ @scope/invoke samples.ori/templates, =stars.orit(3) }}
 ```
 
 This `stars.orit` template defines a function that you can invoke inside expressions in other templates:
 
 ```console
 $ cat review.orit
-{{ samples/templates/review.orit }}
+{{ samples.ori/templates/review.orit }}
 $ ori review.orit/
-{{ @scope/invoke samples/templates, samples/templates/review.orit }}
+{{ @scope/invoke samples.ori/templates, samples.ori/templates/review.orit }}
 ```
 
 This technique can let you define components in plain HTML and CSS.
@@ -211,21 +211,21 @@ Another application of invoking a template as a function is to wrap the output o
 
 ```console
 $ cat page.orit
-{{ samples/templates/page.orit }}
+{{ samples.ori/templates/page.orit }}
 ```
 
 A template for a specific type of page, like a `contact.orit` template for a Contact Us page, can invoke `page.orit` as a function:
 
 ```console
 $ cat contact.orit
-{{ samples/templates/contact.orit }}
+{{ samples.ori/templates/contact.orit }}
 ```
 
 Evaluating this embeds the contact page template, then passes its content to the overall site page template:
 
 ```console
 $ ori contact.orit/
-{{ @scope/invoke samples/templates, samples/templates/contact.orit }}
+{{ @scope/invoke samples.ori/templates, samples.ori/templates/contact.orit }}
 ```
 
 ## Front matter
@@ -234,7 +234,7 @@ Both a template’s input document and the template itself can contain front mat
 
 ```console
 $ cat front.orit
-{{ samples/templates/front.orit }}
+{{ samples.ori/templates/front.orit }}
 ```
 
 This template defines a `title` value as front matter and then references that value in multiple expressions. This makes it easy to update the title in a single place and have that change reflected everywhere. The front matter values are added to the scope used to evaluate the template's expressions, so the `\{\{title}}` references in the template body will find the title value.
@@ -243,7 +243,7 @@ Invoking this template performs the title substitutions:
 
 ```console
 $ ori front.orit/
-{{ samples/templates/front.orit/ }}
+{{ samples.ori/templates/front.orit/ }}
 ```
 
 ### Front matter expressions
@@ -252,9 +252,9 @@ Front matter can include Origami expressions via the `!ori` YAML tag, as discuss
 
 ```console
 $ cat banner.orit
-{{ samples/templates/banner.orit }}
+{{ samples.ori/templates/banner.orit }}
 $ ori banner.orit/
-{{ samples/templates/banner.orit/ }}
+{{ samples.ori/templates/banner.orit/ }}
 ```
 
 ### Template and input front matter
@@ -265,25 +265,25 @@ Among other things, you can use this to have a template define a default, fallba
 
 ```console
 $ ori blogPost.orit
-{{ samples/templates/blogPost.orit }}
+{{ samples.ori/templates/blogPost.orit }}
 ```
 
 If a blog post defines a `title`, that title is preferred:
 
 ```console
 $ cat posts/post1.html
-{{ samples/templates/posts/post1.html }}
+{{ samples.ori/templates/posts/post1.html }}
 $ ori blogPost.orit posts/post1.html
-{{ samples/templates/blogPost.orit samples/templates/posts/post1.html }}
+{{ samples.ori/templates/blogPost.orit samples.ori/templates/posts/post1.html }}
 ```
 
 But if a post fails to define a `title`, the template's default title is used:
 
 ```console
 $ cat posts/post2.html
-{{ samples/templates/posts/post2.html }}
+{{ samples.ori/templates/posts/post2.html }}
 $ ori blogPost.orit posts/post2.html
-{{ samples/templates/blogPost.orit samples/templates/posts/post2.html }}
+{{ samples.ori/templates/blogPost.orit samples.ori/templates/posts/post2.html }}
 ```
 
 ## Map trees to text
@@ -293,11 +293,11 @@ You can handle such cases in Graph Origami templates by calling the built-in [@m
 
 ```console
 $ cat teamData.yaml
-{{ samples/templates/teamData.yaml }}
+{{ samples.ori/templates/teamData.yaml }}
 $ cat teamList.orit
-{{ samples/templates/teamList.orit }}
+{{ samples.ori/templates/teamList.orit }}
 $ ori teamList.orit/
-{{ @scope/invoke samples/templates, samples/templates/teamList.orit }}
+{{ @scope/invoke samples.ori/templates, samples.ori/templates/teamList.orit }}
 ```
 
 The `teamList.orit` file defines an outer template that includes an `<ul>` tag. Inside that, a substitution calling `@map/values` appears, which maps the array of people in `teamData.yaml` to a set of HTML fragments using a nested template with an `<li>` tag.
@@ -317,7 +317,7 @@ In the above example, the `@map/values` function maps an array of people to HTML
     ] }}
   </figure>
   <figure>
-    {{ svg.js @map/values samples/templates/teamData.yaml, =`<li>{{ name }}</li>` }}
+    {{ svg.js @map/values samples.ori/templates/teamData.yaml, =`<li>{{ name }}</li>` }}
   </figure>
   <figcaption>Source tree of people objects</figcaption>
   <figcaption>Result tree of HTML fragments</figcaption>
@@ -340,7 +340,7 @@ You can create an index page that links to these files using the ambient `@key` 
 
 ```console
 $ cat blogIndex.orit
-{{ samples/templates/blogIndex.orit }}
+{{ samples.ori/templates/blogIndex.orit }}
 ```
 
 This index page template defines a default `title` property to use if a page omits a title; see [template and input front matter](#template-and-input-front-matter) above.
@@ -349,5 +349,5 @@ Evaluating this template produces a list of links to each post, with each `href`
 
 ```console
 $ ori blogIndex.orit/
-{{ @scope/invoke samples/templates, samples/templates/blogIndex.orit }}
+{{ @scope/invoke samples.ori/templates, samples.ori/templates/blogIndex.orit }}
 ```

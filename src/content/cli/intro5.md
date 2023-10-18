@@ -32,7 +32,7 @@ about:
 The tree looks like this:
 
 <figure>
-{{ @svg samples/cli/site.yaml }}
+{{ @svg samples.ori/cli/site.yaml }}
 </figure>
 
 <span class="tutorialStep"></span> You can serve this tiny site directly from the file:
