@@ -1,4 +1,9 @@
-import { MapExtensionsTree, Tree, isPlainObject } from "@graphorigami/origami";
+import {
+  MapExtensionsTree,
+  Tree,
+  isPlainObject,
+  treeWithScope,
+} from "@graphorigami/origami";
 import path from "path";
 import ts from "typescript";
 
@@ -20,7 +25,11 @@ export default async function jsDocs(treelike) {
 
   const program = ts.createProgram(paths, options, host);
 
-  return new DocsTree(tree, program);
+  let result = new DocsTree(tree, program);
+  if (this) {
+    result = treeWithScope(result, this);
+  }
+  return result;
 }
 
 /** Serialize a class symbol information */
@@ -68,7 +77,7 @@ function classDocs(checker, symbol) {
 }
 
 class DocsTree {
-  constructor(variant, program, docsPath = "") {
+  constructor(treelike, program, docsPath = "") {
     const mapFn = (value, outerKey, innerKey) => {
       const filePath = `${this.path}/${innerKey}`;
       const sourceFile = this.program.getSourceFile(filePath);
@@ -82,9 +91,10 @@ class DocsTree {
     const options = {
       extension: "js→yaml",
     };
-    this.tree = new MapExtensionsTree(variant, mapFn, options);
+    this.tree = new MapExtensionsTree(treelike, mapFn, options);
     this.program = program;
     this.path = docsPath;
+    this.parent = null;
   }
 
   async get(key) {

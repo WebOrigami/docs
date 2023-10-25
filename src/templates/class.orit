@@ -1,6 +1,8 @@
 <h2>{{_/name}} class</h2>
 <p>
-  {{ @mdHtml _/description}}
+  {{ @if _/description, =`
+    {{ @mdHtml _/description}}
+  `}}
 </p>
 {{ @if _/classConstructor, =`
   {{ function.orit(_/classConstructor) }}

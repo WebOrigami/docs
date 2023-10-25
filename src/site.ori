@@ -22,6 +22,8 @@
     { keyName: "area" }
   )
 
+  foo = test.js(@unpack content/framework/index.md)
+
   # Take the markdown files and inline any Graph Origami expressions contained
   # in curly braces.
   inlined = @map/values(withData, @inline, { deep: @true, extension: "md" })
