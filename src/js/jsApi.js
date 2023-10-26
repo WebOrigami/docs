@@ -99,7 +99,7 @@ class DocsTree {
 
   async get(key) {
     let value = await this.tree.get(key);
-    if (Tree.isAsyncDictionary(value)) {
+    if (Tree.isAsyncTree(value)) {
       value = Reflect.construct(this.constructor, [
         value,
         this.program,

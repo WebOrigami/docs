@@ -11,7 +11,7 @@
   withData = @map/values(
     content
     =@if(
-      @tree/isAsyncDictionary(_)
+      @tree/isAsyncTree(_)
       @map/values(
         _
         =js/addData.js(_, area, @key, areas, @tree/plain(content(area)/pages.yaml), client/assets/origami)

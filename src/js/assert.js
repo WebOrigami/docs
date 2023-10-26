@@ -33,7 +33,7 @@ export default async function (variant) {
 async function plainResult(result) {
   return result instanceof StringWithTree
     ? result.toString()
-    : Tree.isAsyncDictionary(result)
+    : Tree.isAsyncTree(result)
     ? await Tree.plain(result)
     : result;
 }

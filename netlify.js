@@ -18,7 +18,7 @@ export default async function netlify(variant) {
         return await this.get(".keys.json");
       }
       const value = await graph.get(key);
-      return Tree.isAsyncDictionary(value) ? netlify(value) : value;
+      return Tree.isAsyncTree(value) ? netlify(value) : value;
     },
 
     async keys() {
