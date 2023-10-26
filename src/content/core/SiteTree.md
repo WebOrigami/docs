@@ -13,18 +13,20 @@ For example, this site has a route [/samples/greetings](/samples/greetings) cont
 ["Alice", "Bob", "Carol"]
 ```
 
+The strings for keys for subtrees will have a trailing `/` after them.
+
 If you ask a `SiteTree` to enumerate the keys available at its URL, it will retrieve this `.keys.json` file, then use those keys as the keys of the `SiteTree`.
 
-For example, you can use the ori [CLI](/cli) to display the complete contents of all pages at a given route using the custom [treehttps](/language/@treeHttps.html) or [treehttp](/language/@treeHttp.html) protocols.
+For example, you can use the ori [CLI](/cli) to display the complete contents of all pages at a given route using the custom [tree](/language/@treeHttps.html) or [treehttp](/language/@treeHttp.html) protocols.
 
 ```console
-$ ori treehttps://graphorigami.org/samples/greetings
+$ ori tree://graphorigami.org/samples/greetings
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
 ```
 
-Above, the custom `treehttps:` protocol retrieves the route's keys defined in the `.keys.json`, then makes separate requests for each of those pages.
+Above, the custom `tree:` protocol retrieves the route's keys defined in the `.keys.json`, then makes separate requests for each of those pages.
 
 The `.keys.json` file should normally not include itself in its list of keys.
 
