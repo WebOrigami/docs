@@ -1,7 +1,7 @@
 // Given a set of links, add an annotation to the link whose href is the current
 // page.
 
-import { ObjectTree, Tree } from "@graphorigami/origami";
+import { ObjectTree, Tree } from "@graphorigami/async-tree";
 
 export default async function markCurrent(treelike, currentPage) {
   if (!treelike) {

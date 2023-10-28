@@ -1,9 +1,6 @@
-import {
-  MapExtensionsTree,
-  Tree,
-  isPlainObject,
-  treeWithScope,
-} from "@graphorigami/origami";
+import { Tree, isPlainObject } from "@graphorigami/async-tree";
+import { Scope } from "@graphorigami/language";
+import { MapExtensionsTree } from "@graphorigami/origami";
 import path from "path";
 import ts from "typescript";
 
@@ -27,7 +24,7 @@ export default async function jsDocs(treelike) {
 
   let result = new DocsTree(tree, program);
   if (this) {
-    result = treeWithScope(result, this);
+    result = Scope.treeWithScope(result, this);
   }
   return result;
 }
