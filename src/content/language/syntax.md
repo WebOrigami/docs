@@ -275,11 +275,13 @@ $ cat letters.json
 }
 $ cat uppercase.js
 export default (x) => x.toString().toUpperCase();
-$ ori "@map/values(letters.json, =uppercase.js(@value))"
+$ ori "@map/values(letters.json, =uppercase.js(_))"
 a: THE LETTER A
 b: THE LETTER B
 c: THE LETTER C
 ```
+
+The `_` underscore above refers to the value being mapped, so `=uppercase.js(_)` will convert the value to uppercase.
 
 ## Comments
 

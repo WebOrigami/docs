@@ -234,12 +234,14 @@ Japan: Tokyo
 Turkey: Ankara
 Australia: Canberra
 Spain: Madrid
-$ ori @tree/sort capitals.yaml, =@value
+$ ori @tree/sort capitals.yaml, =_
 Turkey: Ankara
 Australia: Canberra
 Spain: Madrid
 Japan: Tokyo
 ```
+
+The underscore in the `=_` function above refers to the value being sorted (as opposed to the key).
 
 <a name="static"></a>
 
