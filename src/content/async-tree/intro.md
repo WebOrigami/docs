@@ -29,7 +29,7 @@ export default {
 You can use the ori tool to load and display the above tree:
 
 ```console
-$ ori direct
+$ ori direct.js/
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
@@ -51,7 +51,7 @@ export default new ObjectTree({
 ```
 
 ```console
-$ ori object
+$ ori object.js/
 Alice: Hello, Alice. [from an object]
 Bob: Hello, Bob. [from an object]
 Carol: Hello, Carol. [from an object]
@@ -72,7 +72,7 @@ export default new FunctionTree(
 ```
 
 ```console
-$ ori function
+$ ori function.js/
 Alice: Hello, Alice. [from a function]
 Bob: Hello, Bob. [from a function]
 Carol: Hello, Carol. [from a function]

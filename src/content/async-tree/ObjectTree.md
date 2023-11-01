@@ -33,7 +33,7 @@ This defines a tree whose keys are the object's keys, and whose values are the o
 The [ori](/ori) tool will display the contents of the resulting `ObjectTree`.
 
 ```console
-$ ori object
+$ ori object.js/
 {{ @yaml sample }}
 ```
 

@@ -18,7 +18,7 @@ const tree = new FunctionTree({
 The [ori](/ori) tool will display the contents of the resulting `FunctionTree`.
 
 ```console
-$ ori function
+$ ori function.js/
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
@@ -49,11 +49,11 @@ class FunctionTree {
 Unlike async tree classes like [ObjectTree](ObjectTree.html), an `FunctionTree` can often accept keys which it does not make public in its `keys` iterator. The sample `FunctionTree` defined above exposes only three keys ("Alice", "Bob", "Carol"), but will actually accept any key.
 
 ```console
-$ ori @tree/keys function
+$ ori @tree/keys function.js/
 - Alice
 - Bob
 - Carol
-$ ori function/David
+$ ori function.js/David
 Hello, David.
 ```
 
