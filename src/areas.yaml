@@ -4,7 +4,7 @@
   text: CLI
 - href: /language/
   text: Language
-- href: /core/
-  text: Core library
+- href: /async-tree/
+  text: async-tree
 - href: /pattern/
   text: Pattern

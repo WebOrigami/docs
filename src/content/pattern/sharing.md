@@ -8,21 +8,21 @@ But it's also true that everything shown in this tutorial is general-purpose in 
 
 You don't have to use any of these Graph Origami pieces to take advantage of the async tree pattern in your work — but it's likely they address things you'd want to do, and so can make your work easier.
 
-## Core library
+## async-tree library
 
-The Graph Origami [core](/core) library contains implementations of the base classes illustrated in this tutorial:
+The Graph Origami [async-tree](/async-tree) library contains implementations of the base classes illustrated in this tutorial:
 
-- [ObjectTree](/core/ObjectTree.html) creates an async tree backed by an in-memory JavaScript object.
-- [FileTree](/core/FileTree.html) creates an async tree backed by a file system folder tree.
-- [FunctionTree](/core/FunctionTree.html) creates an async tree backed by a function and a domain.
+- [ObjectTree](/async-tree/ObjectTree.html) creates an async tree backed by an in-memory JavaScript object.
+- [FileTree](/async-tree/FileTree.html) creates an async tree backed by a file system folder tree.
+- [FunctionTree](/async-tree/FunctionTree.html) creates an async tree backed by a function and a domain.
 
-These core library implementations are somewhat more full-featured that the simplified versions presented in this tutorial.
+These async-tree library implementations are somewhat more full-featured that the simplified versions presented in this tutorial.
 
 The library also contains general-purpose versions of some of the tree operations in this tutorial:
 
-- [MapExtensionsTree](/core/MapExtensionsTree.html) handles the general case of mapping a tree with keys of one type (`.md` for markdown files, say) to another (`.html` for HTML files). This is in turn based on a more general [MapKeysValuesTree](/core/MapKeysValuesTree.html).
-- [MergeTree](/core/MergeTree.html) performs a deep merge of multiple trees.
-- [Tree](/core/Tree.html) is a collection of helper functions, including a `plain` function like the one discussed in this tutorial. It resolves any async tree to a plain JavaScript object.
+- [MapExtensionsTree](/async-tree/MapExtensionsTree.html) handles the general case of mapping a tree with keys of one type (`.md` for markdown files, say) to another (`.html` for HTML files). This is in turn based on a more general [MapKeysValuesTree](/async-tree/MapKeysValuesTree.html).
+- [MergeTree](/async-tree/MergeTree.html) performs a deep merge of multiple trees.
+- [Tree](/async-tree/Tree.html) is a collection of helper functions, including a `plain` function like the one discussed in this tutorial. It resolves any async tree to a plain JavaScript object.
 
 ## Command-line tool
 
@@ -40,7 +40,7 @@ In addition to these commands, ori includes a number of other general-purpose co
 
 ## Pick a representation that works, change it later if necessary
 
-The async tree pattern in general, and the Graph Origami core library in particular, make it fairly easy to start on a development problem. You can pick a data representation that's good enough to get started, knowing that you have the flexibility to change that representation later.
+The async tree pattern in general, and the Graph Origami async-tree library in particular, make it fairly easy to start on a development problem. You can pick a data representation that's good enough to get started, knowing that you have the flexibility to change that representation later.
 
 When working with async trees, it's often useful to deliberately start with a simplified tree and change it later. For example:
 
@@ -51,9 +51,9 @@ When working with async trees, it's often useful to deliberately start with a si
 
 ## Focus on your domain-specific problems
 
-This tutorial set out to tackle a simple problem: converting a tree of markdown content into a corresponding tree of HTML content. If you were to solve the same problem using the Graph Origami core library and the ori tool, you would have to very little code.
+This tutorial set out to tackle a simple problem: converting a tree of markdown content into a corresponding tree of HTML content. If you were to solve the same problem using the Graph Origami async-tree library and the ori tool, you would have to very little code.
 
-Most of the code we've looked at here would be subsumed by the corresponding classes in the core library and commands provided by the ori tool. The only code you would have to write would be to address the specifics of the particular development task covered in this tutorial:
+Most of the code we've looked at here would be subsumed by the corresponding classes in the async-tree library and commands provided by the ori tool. The only code you would have to write would be to address the specifics of the particular development task covered in this tutorial:
 
 - the specific definition of a collection of markdown content from an object, folder tree, or function (or a combination of all three)
 - the specific transformation of values identified with keys ending in `.md` to keys ending in `.html`

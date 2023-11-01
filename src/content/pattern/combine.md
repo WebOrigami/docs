@@ -4,7 +4,7 @@ title: Combine trees
 
 Now that we have a basic site working in tree form, we can manipulate that tree to suit our needs without needing to adjust our server and build infrastructure. For example, we can readily combine trees to create larger trees.
 
-In the course of this tutorial, we've created three parallel tree implementations, backed by an object, a folder tree, and a function. We can combine those trees to make a larger tree with three branches, each of which is defined differently, but each of which can be explored using the same AsyncDictionary interface.
+In the course of this tutorial, we've created three parallel tree implementations, backed by an object, a folder tree, and a function. We can combine those trees to make a larger tree with three branches, each of which is defined differently, but each of which can be explored using the same AsyncTree interface.
 
 ## Using ObjectTree to combine trees
 

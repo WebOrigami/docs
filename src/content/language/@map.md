@@ -45,7 +45,7 @@ Carol: HELLO, CAROL.
 
 Unlike a JavaScript [Array map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), the `map` function does not do any mapping work upon invocation — it only does the work when someone requests the mapped tree's keys or values.
 
-The `mapFn` mapping function is typically a JavaScript function, but can be any [treelike object](/core/treelike.html). For example, you can use a second [tree as a map](/cli/intro.html#use-a-tree-as-a-map).
+The `mapFn` mapping function is typically a JavaScript function, but can be any [treelike object](/async-tree/treelike.html). For example, you can use a second [tree as a map](/cli/intro.html#use-a-tree-as-a-map).
 
 Available `options` include:
 

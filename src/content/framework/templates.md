@@ -31,7 +31,7 @@ Hello, Alice Andrews.
 
 ## Reference input
 
-When you invoke a template as a function, you can refer to the template's input using an underscore (`_`).
+When you invoke a template as a function, you can refer to the template's input using an unders (`_`).
 
 ```console
 $ cat heading.orit

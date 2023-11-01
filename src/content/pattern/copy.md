@@ -20,7 +20,7 @@ For the last step, we could write the files out directly using a file system API
 
 ## Setting tree values
 
-Let's extend our AsyncDictionary interface with an optional method `set(key, value)`. This updates the tree so that getting the corresponding `key` will now return the new `value`. We can supporting deleting a key/value from the tree by declaring that, if `value` is undefined, the key and its corresponding value will be removed from the tree.
+Let's extend our AsyncTree interface with an optional method `set(key, value)`. This updates the tree so that getting the corresponding `key` will now return the new `value`. We can supporting deleting a key/value from the tree by declaring that, if `value` is undefined, the key and its corresponding value will be removed from the tree.
 
 This is straightforward for our object-based tree:
 

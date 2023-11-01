@@ -2,7 +2,7 @@
 title: "@tree"
 ---
 
-This collection of functions operates on async trees. Functions that accept a `tree` parameter will accept any [treelike object](/core/treelike.html).
+This collection of functions operates on async trees. Functions that accept a `tree` parameter will accept any [treelike object](/async-tree/treelike.html).
 
 <a name="concat"></a>
 
@@ -44,7 +44,7 @@ If you want a basic visual representation of a tree, use the [@svg()](@svg.html)
 
 ## @tree/expand(treelike)
 
-Expands any tree nodes which can be treated as [treelike object](/core/treelike.html) values (e.g., YAML/JSON text) into subtrees.
+Expands any tree nodes which can be treated as [treelike object](/async-tree/treelike.html) values (e.g., YAML/JSON text) into subtrees.
 
 <a name="first"></a>
 
@@ -56,7 +56,7 @@ Returns the first value in `tree`.
 
 ## @tree/from(treelike)
 
-Converts any [treelike object](/core/treelike.html) into an async tree.
+Converts any [treelike object](/async-tree/treelike.html) into an async tree.
 
 <a name="inners"></a>
 
@@ -151,7 +151,7 @@ If the tree has a `parent` property, this returns the value of that property.
 
 ## @tree/plain([treelike])
 
-Converts an asynchronous async tree into a synchronous plain JavaScript object. The supplied argument can be any [treelike object](/core/treelike.html) such as a JSON/YAML file, file system folder, etc. If omitted, `plain` converts the current tree — in the command line, this will be the current folder — to a plain JavaScript object.
+Converts an asynchronous async tree into a synchronous plain JavaScript object. The supplied argument can be any [treelike object](/async-tree/treelike.html) such as a JSON/YAML file, file system folder, etc. If omitted, `plain` converts the current tree — in the command line, this will be the current folder — to a plain JavaScript object.
 
 A common use for `plain` is to convert a tree into a form that you can pass to any function that works with plain JavaScript objects.
 
@@ -184,7 +184,7 @@ a: The letter A
 
 Recursively applies updates from the `source` tree to the `target` tree.
 
-The `target` tree must support the [`set`](/core/set.html) method. The only types of trees defined in the Graphorigami [core library](/core) that provides such support are [ObjectTree](/core/ObjectTree.html) and [FileTree](/core/FileTree.html).
+The `target` tree must support the [`set`](/async-tree/set.html) method. The only types of trees defined in the [async-tree](/async-tree) library that provides such support are [ObjectTree](/async-tree/ObjectTree.html) and [FileTree](/async-tree/FileTree.html).
 
 <a name="shuffle"></a>
 
@@ -211,7 +211,7 @@ Alice: Hello, Alice.
 
 ## @tree/sort(treelike, [keyFn])
 
-Returns a copy of the indicated [treelike object](/core/treelike.html) with the keys sorted. The sort is performed with the default lexicotree Unicode sort order provided by JavaScript's [Array.sort()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) method.
+Returns a copy of the indicated [treelike object](/async-tree/treelike.html) with the keys sorted. The sort is performed with the default lexicotree Unicode sort order provided by JavaScript's [Array.sort()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) method.
 
 ```console
 $ cat capitals.yaml
@@ -250,7 +250,7 @@ The underscore in the `=_` function above refers to the value being sorted (as o
 This adds keys to the tree which are commonly used when deploying a static web site:
 
 - `index.html`
-- `.keys.json` (see details on [.keys.json](/core/SiteTree.html#keysjson-files) files)
+- `.keys.json` (see details on [.keys.json](/async-tree/SiteTree.html#keysjson-files) files)
 
 <a name="table"></a>
 

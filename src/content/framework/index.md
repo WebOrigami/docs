@@ -31,7 +31,7 @@ The Graph Origami framework gives you a high degree of power and flexibility in 
 
 Applying these concepts lets you create impressive results with much less work than other systems while maintaining control over all aspects of the process.
 
-The foundation of the project isn't hidden — if you want to understand things all the way down, explore the [programming pattern](/pattern), [core library](/core), and [language](language) that support the high-level framework.
+The foundation of the project isn't hidden — if you want to understand things all the way down, explore the [programming pattern](/pattern), [async-tree](/async-tree) library, and [language](language) that support the high-level framework.
 
 Follow the tutorial to build a simple website in Graph Origami and explore each of the above concepts in turn.
 

@@ -7,7 +7,7 @@ Displaying a tree in the console is fine for playing around or debugging, but we
 
 Let's build a small tree server directly on top of Node's `http` API. (If we were already using a server like [Express](https://expressjs.com/), it would be straightforward to adapt this same idea into a server middleware function that handles a specific portion of a larger site.)
 
-Using the AsyncDictionary interface to model the tree will let us browse content regardless of how that content is stored or generated.
+Using the AsyncTree interface to model the tree will let us browse content regardless of how that content is stored or generated.
 
 ## Treat a URL as a series of tree keys
 

@@ -2,9 +2,9 @@
 title: "@treeHttps(domain, [...keys])"
 ---
 
-Returns a new [SiteTree](/core/SiteTree.html) for the indicated `domain`. If `keys` are supplied, this traverses the keys and returns the resulting value. This lets you retrieve resources from an existing website by treating it as a tree.
+Returns a new [SiteTree](/async-tree/SiteTree.html) for the indicated `domain`. If `keys` are supplied, this traverses the keys and returns the resulting value. This lets you retrieve resources from an existing website by treating it as a tree.
 
-The site must define [.keys.json](https://graphorigami.org/core/SiteTree#keysjson-files) files if the site tree is to be able to enumerate its contents.
+The site must define [.keys.json](https://graphorigami.org/async-tree/SiteTree#keysjson-files) files if the site tree is to be able to enumerate its contents.
 
 You won't normally call this function directly. Instead, you can specify the custom `treehttps:` protocol in a URL:
 

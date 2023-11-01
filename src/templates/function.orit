@@ -1,4 +1,4 @@
-<h3>
+<h3 id="{{ _/name }}">
   {{ @if _/static, 'static ' }}
   {{ @if _/async, 'async '}}
   {{ @if _/generator, '*'}}{{_/name}}({{ parameters.orit(_/parameters) }})

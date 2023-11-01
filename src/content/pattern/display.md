@@ -3,7 +3,7 @@ title: Display a tree
 functions: !ori js/codeFunctions.js(pattern.ori/flat/json.js)
 ---
 
-Now that we've applied the AsyncDictionary interface to an object to create an async tree, let's write a simple tool that will display the contents of that async tree in the console.
+Now that we've applied the AsyncTree interface to an object to create an async tree, let's write a simple tool that will display the contents of that async tree in the console.
 
 To stay as close to the platform as possible, we'll render the tree in JSON format. JSON isn't particularly friendly to write or read, but it's built into the platform and supports hierarchical structures.
 
@@ -15,7 +15,7 @@ An async tree is asynchronous, so we'll need to either traverse it asynchronousl
 {{ functions/plain }}
 ```
 
-It may feel counter-productive to do work to wrap a synchronous in-memory object with the asynchronous AsyncDictionary interface — and then immediately unwind all those asynchronous promises to get back an in-memory object!
+It may feel counter-productive to do work to wrap a synchronous in-memory object with the asynchronous AsyncTree interface — and then immediately unwind all those asynchronous promises to get back an in-memory object!
 
 But we'll soon be working with trees that are inherently asynchronous, so it's worth tackling the general case now. We've still made an important step to separate the underlying representation of some hierarchical data with a tool to display such data.
 

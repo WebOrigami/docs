@@ -31,7 +31,7 @@ ori itself natively understands several types of async trees:
 - JavaScript functions
 - folder trees
 - web sites (some operations require support for [.keys.json](/ori/.keys.json) files, discussed later)
-- any object that implements the [AsyncDictionary interface](/core/interface.html)
+- any object that implements the [AsyncTree interface](/async-tree/interface.html)
 
 ## Extract specific values out of a tree
 

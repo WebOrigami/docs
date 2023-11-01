@@ -348,7 +348,7 @@ pre code.hljs {
 }
 
 .blocks a[href="/language/"],
-.blocks a[href="/core/"],
+.blocks a[href="/async-tree/"],
 .blocks a[href="/pattern/"] {
   grid-column: 1 / span 2;
 }
@@ -411,7 +411,7 @@ g.node polygon[fill="none"] {
  * Tutorial
  */
 .tutorialStep:before {
-  content: '➤';
+  content: "➤";
   color: var(--color-rule);
 }
 
@@ -504,7 +504,7 @@ g.node polygon[fill="none"] {
     left: calc(0px - var(--side-nav-width));
     width: calc(100% + var(--side-nav-width));
   }
-  
+
   .tutorialStep:before {
     margin-left: -1.5em;
     position: absolute;

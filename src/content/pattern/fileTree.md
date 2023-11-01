@@ -8,12 +8,12 @@ Which approach is best for our particular team authors might vary, but as an exa
 
 ## Comparing files and objects
 
-Before starting, let's quickly look at both objects and files through the lens of the AsyncDictionary interface. In both cases, we have standard ways of getting keys — in the case of folders and files, the keys are folder and file names. And in both cases, we have a way of getting the value or content associated with a given key.
+Before starting, let's quickly look at both objects and files through the lens of the AsyncTree interface. In both cases, we have standard ways of getting keys — in the case of folders and files, the keys are folder and file names. And in both cases, we have a way of getting the value or content associated with a given key.
 
-| AsyncDictionary interface method &emsp; | Object implementation &emsp; | File implementation   |
-| :-------------------------------------- | :--------------------------- | :-------------------- |
-| `get(key)`                              | `obj[key]`                   | `fs.readFile(key)`    |
-| `keys()`                                | `Object.keys(obj)`           | `fs.readdir(dirname)` |
+| AsyncTree interface method &emsp; | Object implementation &emsp; | File implementation   |
+| :-------------------------------- | :--------------------------- | :-------------------- |
+| `get(key)`                        | `obj[key]`                   | `fs.readFile(key)`    |
+| `keys()`                          | `Object.keys(obj)`           | `fs.readdir(dirname)` |
 
 If we're using the Node `fs` API, we have our choice of synchronous or asynchronous methods, but there are performance benefits to be gained by using the asynchronous API.
 
@@ -23,7 +23,7 @@ It's worth noting how much of the `fs` API is _not_ necessary for our task at ha
 
 To start on our file-backed tree implementation, we'll need to get a path to the directory that will be the root of the tree. In this case, we use some Node APIs to get the directory of a folder relative to the folder containing the JavaScript module we're writing.
 
-Our goal is to then return an object implementing the AsyncDictionary interface for that folder.
+Our goal is to then return an object implementing the AsyncTree interface for that folder.
 
 ```js
 /* src/flat/files.js */
@@ -58,7 +58,7 @@ To get the keys for the folder, we'll ask the `fs.readdir` API for the list of f
 
 ## Get the contents of a file
 
-To implement the `get` method in the AsyncDictionary interface, we'll use the `fs.readFile` API to read the contents of the file with the indicated key/name.
+To implement the `get` method in the AsyncTree interface, we'll use the `fs.readFile` API to read the contents of the file with the indicated key/name.
 
 ```js
   async get(key) {
@@ -74,7 +74,7 @@ To implement the `get` method in the AsyncDictionary interface, we'll use the `f
   },
 ```
 
-This `get` method includes some error handling. The AsyncDictionary interface expects the `get` method to return `undefined` for an unsupported key, but the `fs.readFile` API will throw an exception if a file does not exist with the indicated name. To create a well-behaved async tree, we catch exceptions and, if the exception is specifically an `ENOENT` (file not found) exception, we return undefined.
+This `get` method includes some error handling. The AsyncTree interface expects the `get` method to return `undefined` for an unsupported key, but the `fs.readFile` API will throw an exception if a file does not exist with the indicated name. To create a well-behaved async tree, we catch exceptions and, if the exception is specifically an `ENOENT` (file not found) exception, we return undefined.
 
 ## Test the file tree
 
