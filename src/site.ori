@@ -7,15 +7,15 @@
 
   areas = @tree/plain(areas.yaml)
 
+  addDataToPages = =js/addData.js(_, area, @key, areas, @tree/plain(content(area)/pages.yaml), client/assets/origami)
+
   # Add the `area` and `fileName` properties to the documents.
   withData = @tree/map({
+    description: "withData outer"
     keyName: "area"
     valueFn: =@if(
       @tree/isAsyncTree(_)
-      @tree/map({
-        extensions: "md"
-        valueFn: =js/addData.js(_, area, @key, areas, @tree/plain(content(area)/pages.yaml), client/assets/origami)
-      })(_)
+      @tree/map({ description: "withData inner", extensions: "md", valueFn: addDataToPages })(_)
       =js/addData.js(_, "", area, areas, {}, client/assets/origami)
     )
   })(content)
