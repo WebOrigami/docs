@@ -228,7 +228,13 @@ is equivalent to:
 fn('a', 'b', 'c')
 ```
 
-The protocols `https:`, `http:`, `treehttps:`, and `treehttp:` are reserved.
+The following protocols are reserved:
+
+- `http:`
+- `https:`
+- `tree:`
+- `treehttp:`
+- `treehttps:`
 
 ## Absolute file paths
 
