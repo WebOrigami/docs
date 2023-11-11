@@ -1,9 +1,14 @@
 {
-  public = @tree/merge(static, {
-    index.html = index.orit(team.yaml)
-    team = @map/values(teamByName, person.orit, { extension: '→html' })
-    thumbnails = @map/values(images, =@image/resize(_, { width: 400 }))
+  index.html = index.orit(teamData.yaml)
+
+  team = @tree/map({
+    source: teamData.yaml
+    keyMap: =`{{_/name}}.html`
+    valueMap: person.orit
   })
 
-  teamByName = @map/keys(team.yaml, =_/name)
+  assets
+  images
+
+  thumbnails = @tree/map({ source: images, valueMap: =@image/resize(_, { width: 400 } })
 }

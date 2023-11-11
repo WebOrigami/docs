@@ -1,11 +1,11 @@
 import { Tree } from "@graphorigami/async-tree";
-import { mapValues } from "@graphorigami/origami";
+import { treeMap } from "@graphorigami/origami";
 
-export default async function separatedList(list, separator, itemFn) {
+export default async function separatedList(list, separator, valueMap) {
   if (!list) {
     return undefined;
   }
-  const mapped = mapValues.call(this, list, itemFn);
+  const mapped = treeMap.call(this, { source: list, valueMap });
   const values = await Tree.values(mapped);
   const trimmed = values.map((value) => value.trim());
   const result = trimmed.join(separator);

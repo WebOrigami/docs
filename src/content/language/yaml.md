@@ -10,7 +10,7 @@ Suppose `expressions.yaml` contains:
 {{ samples.ori/templates/expressions.yaml }}
 ```
 
-The `greetings` expression above is in parentheses, because YAML prohibits values from starting with an `@` at sign or a \` backtick. If your Origami expression starts with one of those characters, quote the expression in double quotes, or surround it with parentheses as shown above.
+The `greetings` expression above is in parentheses, because YAML prohibits values from starting with an `@` at sign or a \` backtick. If your Origami expression starts with one of those characters, quote the expression in double quotes or surround it with parentheses.
 
 You can invoke this file to evaluate its expressions:
 

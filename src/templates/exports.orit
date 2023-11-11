@@ -1,4 +1,4 @@
-{{ @map/values _/exports, =`
+{{ @tree/map({ source: _/exports, valueMap: =`
   {{ @if @equals(_/kind, 'class'), =class.orit(_) }}
   {{ @if @equals(_/kind, 'function'), =function.orit(_) }}
-`}}
+`}) }}

@@ -595,7 +595,7 @@ This operation looks like:
     {{ svg.js countries }}
   </figure>
   <figure>
-    {{ svg.js @map/keys(countries, =_/abbreviation) }}
+    {{ svg.js @tree/map({ source: countries, keyMap: =_/abbreviation }) }}
   </figure>
   <figcaption>Countries with integer keys</figcaption>
   <figcaption>Countries with abbreviation keys</figcaption>

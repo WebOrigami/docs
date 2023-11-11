@@ -13,27 +13,28 @@
   withData = @tree/map({
     description: "withData outer"
     keyName: "area"
-    valueFn: =@if(
+    source: content
+    valueMap: =@if(
       @tree/isAsyncTree(_)
-      @tree/map({ description: "withData inner", extensions: "md", valueFn: addDataToPages })(_)
+      @tree/map({ description: "withData inner", extensions: "md", valueMap: addDataToPages })(_)
       =js/addData.js(_, "", area, areas, {}, client/assets/origami)
     )
-  })(content)
+  })
 
   # Take the markdown files and inline any Graph Origami expressions contained
   # in curly braces.
-  inlined = @tree/map({ deep: @true, extensions: "md", valueFn: @inline })(withData)
+  inlined = @tree/map({ deep: @true, extensions: "md", source: withData, valueMap: @inline })
 
   # Convert the markdown (including inlined content) to HTML while preserving
   # the front matter at the top of each document. As the content is now HTML, we
   # change the file extension from `.md` to `.html`. The result is a tree of
   # HTML content; each value represents the main body of a given page.
-  html = @tree/map({ deep: @true, extensions: "md→html", valueFn: @mdHtml })(inlined)
+  html = @tree/map({ deep: @true, extensions: "md→html", source: inlined, valueMap: @mdHtml })
 
   # Apply the documentation page template. This injects the HTML content from
   # the previous step into the site's main page template, which adds headers and
   # navigation chrome. This step concludes the main documentation pipeline.
-  pages = @tree/map({ deep: @true, extensions: "html", valueFn: templates/page.orit })(html)
+  pages = @tree/map({ deep: @true, extensions: "html", source: html, valueMap: templates/page.orit })
 
   # The `public` tree defines the final tree which is built into static pages.
   public = @tree/merge(client, pages, {
@@ -41,7 +42,7 @@
     components.js = @tree/concat(components)
 
     demos = {
-      aboutUs = src/demos/aboutUs/site.ori/public
+      aboutUs = src/demos/aboutUs/site.ori
     }
 
     # Used by Netlify

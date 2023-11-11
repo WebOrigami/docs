@@ -5,13 +5,13 @@
   {{ @if _/isConstructor, 'constructor'}}
 </h3>
 <ul>
-{{ @map/values _/parameters, =`
+{{ @tree/map({ source: _/parameters, valueMap: =`
   <li>{{_/name}}: {{ typeList.orit(_/types) }}
     {{ @if _/description, =`
       &ndash; {{_/description}}
     `}}
   </li>  
-`}}
+`}) }}
 </ul>
 {{ @if @not(_/isConstructor), =`
 <p>

@@ -1,4 +1,5 @@
-import { MergeTree, TextDocument } from "@graphorigami/origami";
+import { merge, Tree } from "@graphorigami/async-tree";
+import { TextDocument } from "@graphorigami/origami";
 import chooseIcon from "./chooseIcon.js";
 import markCurrent from "./markCurrent.js";
 
@@ -29,13 +30,16 @@ export default async function addData(
 
   const pageLinks = await markCurrent(pages, fileName);
 
-  const merged = new MergeTree(data, {
-    area,
-    areaLinks,
-    fileName,
-    icon,
-    pageLinks,
-  });
+  const merged = merge(
+    Tree.from(data),
+    Tree.from({
+      area,
+      areaLinks,
+      fileName,
+      icon,
+      pageLinks,
+    })
+  );
 
   return new TextDocument(document, merged, document.parent);
 }

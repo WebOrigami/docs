@@ -1,1 +1,1 @@
-{{ @map/values _, linkCurrent.orit }}
+{{ @tree/map({ source: _, valueMap: linkCurrent.orit }) }}
