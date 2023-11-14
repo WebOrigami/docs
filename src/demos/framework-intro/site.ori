@@ -1,0 +1,14 @@
+{
+  index.html = index.orit(teamData.yaml)
+
+  team = @tree/map({
+    source: teamData.yaml
+    keyMap: =`{{_/name}}.html`
+    valueMap: person.orit
+  })
+
+  assets
+  images
+
+  thumbnails = @tree/map({ source: images, valueMap: thumbnail.js })
+}
