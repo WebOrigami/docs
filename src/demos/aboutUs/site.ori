@@ -10,5 +10,5 @@
   assets
   images
 
-  thumbnails = @tree/map({ source: images, valueMap: =@image/resize(_, { width: 400 } })
+  thumbnails = @tree/map({ source: images, valueMap: =@image/resize(_, { width: 400 }) })
 }

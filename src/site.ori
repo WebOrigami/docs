@@ -42,7 +42,7 @@
     components.js = @tree/concat(components)
 
     demos = {
-      aboutUs = src/demos/aboutUs/site.ori
+      aboutUs = @tree/from src/demos/aboutUs/site.ori
     }
 
     # Used by Netlify
