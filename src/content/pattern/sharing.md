@@ -4,13 +4,13 @@ title: Sharing a common library and tools
 
 The async tree pattern is simple enough that you can readily apply it to any project without having to accept a dependency on anyone else's code. That independence can be a strength, and depending on your constraints, may be appropriate for your projects.
 
-But it's also true that everything shown in this tutorial is general-purpose in nature, and could find ready application in many contexts. That is one objective of the Graph Origami project: to provide solid implementations of these general-purpose building blocks.
+But it's also true that everything shown in this tutorial is general-purpose in nature, and could find ready application in many contexts. That is one objective of the Web Origami project: to provide solid implementations of these general-purpose building blocks.
 
-You don't have to use any of these Graph Origami pieces to take advantage of the async tree pattern in your work — but it's likely they address things you'd want to do, and so can make your work easier.
+You don't have to use any of these Web Origami pieces to take advantage of the async tree pattern in your work — but it's likely they address things you'd want to do, and so can make your work easier.
 
 ## async-tree library
 
-The Graph Origami [async-tree](/async-tree) library contains implementations of the base classes illustrated in this tutorial:
+The Web Origami [async-tree](/async-tree) library contains implementations of the base classes illustrated in this tutorial:
 
 - [ObjectTree](/async-tree/ObjectTree.html) creates an async tree backed by an in-memory JavaScript object.
 - [FileTree](/async-tree/FileTree.html) creates an async tree backed by a file system folder tree.
@@ -26,7 +26,7 @@ The library also contains general-purpose versions of some of the tree operation
 
 ## Command-line tool
 
-This tutorial demonstrated a simple `json` tool that dumps a tree's contents to the console. The Graph Origami project expands this idea with its [ori](/cli) command-line interface.
+This tutorial demonstrated a simple `json` tool that dumps a tree's contents to the console. The Web Origami project expands this idea with its [ori](/cli) command-line interface.
 
 By default, ori displays a tree in YAML format, but can also display a tree as JSON, a table, or a diagram in SVG format. The built-in [@svg](/language/@svg.html) command is used to generate all the tree diagrams in this tutorial.
 
@@ -40,7 +40,7 @@ In addition to these commands, ori includes a number of other general-purpose co
 
 ## Pick a representation that works, change it later if necessary
 
-The async tree pattern in general, and the Graph Origami async-tree library in particular, make it fairly easy to start on a development problem. You can pick a data representation that's good enough to get started, knowing that you have the flexibility to change that representation later.
+The async tree pattern in general, and the Web Origami async-tree library in particular, make it fairly easy to start on a development problem. You can pick a data representation that's good enough to get started, knowing that you have the flexibility to change that representation later.
 
 When working with async trees, it's often useful to deliberately start with a simplified tree and change it later. For example:
 
@@ -51,14 +51,14 @@ When working with async trees, it's often useful to deliberately start with a si
 
 ## Focus on your domain-specific problems
 
-This tutorial set out to tackle a simple problem: converting a tree of markdown content into a corresponding tree of HTML content. If you were to solve the same problem using the Graph Origami async-tree library and the ori tool, you would have to very little code.
+This tutorial set out to tackle a simple problem: converting a tree of markdown content into a corresponding tree of HTML content. If you were to solve the same problem using the Web Origami async-tree library and the ori tool, you would have to very little code.
 
 Most of the code we've looked at here would be subsumed by the corresponding classes in the async-tree library and commands provided by the ori tool. The only code you would have to write would be to address the specifics of the particular development task covered in this tutorial:
 
 - the specific definition of a collection of markdown content from an object, folder tree, or function (or a combination of all three)
 - the specific transformation of values identified with keys ending in `.md` to keys ending in `.html`
 
-Those things can be accomplished in very little JavaScript code. (Using the even higher-level Graph Origami [framework](/framework/), you can solve the entire problem without any JavaScript code at all.)
+Those things can be accomplished in very little JavaScript code. (Using the even higher-level Web Origami [framework](/framework/), you can solve the entire problem without any JavaScript code at all.)
 
 The general lesson of working with async trees is that many common development tasks can be viewed as the definition or transformation of trees. Viewed at the proper level of abstraction, most of those tasks are, in fact, general problems that can be solved with shared code. Using such shared code lets you focus most of your time on solving the problems that are unique to your chosen domain.
 

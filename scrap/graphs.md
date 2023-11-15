@@ -20,7 +20,7 @@ A _graph_ is an appropriate way to conceptualize and visualize such hierarchical
 
 ## Visualize a folder as a graph
 
-The `src/public` folder contains the material that will become your public-facing About Us site. The hierarchical structure of file system folders lends itself well to representation as a graph. Graph Origami includes tools that let you visualize graphs such as folders in your browser.
+The `src/public` folder contains the material that will become your public-facing About Us site. The hierarchical structure of file system folders lends itself well to representation as a graph. Web Origami includes tools that let you visualize graphs such as folders in your browser.
 
 <span class="tutorialStep"></span> In the browser preview, add `.svg` to the URL you are previewing. (Glitch users: do this in the fake address bar above the preview window. Glitch tries hard to prevent you from navigating to a page that starts with a period, so you'll need to either the type the `svg` part and then add a `.` at the beginning, or cut-and-paste the text `.svg` into the address bar.)
 
@@ -34,7 +34,7 @@ The little circles represent folders, like the `public` folder itself (on the le
 
 (Glitch users: if your window isn't large enough to see a useful portion of the diagram in the Glitch preview pane, you can open the preview into its own window by clicking the `⋮` button above the preview, then selecting **Open in new window**.)
 
-<span class="tutorialStep"></span> In the browser preview, explore the graph diagram by clicking on the little circles or boxes. (Click Back to return to the diagram.) In Graph Origami, this diagrammatic view of your project can be a useful way to visualize and explore the graph you are building.
+<span class="tutorialStep"></span> In the browser preview, explore the graph diagram by clicking on the little circles or boxes. (Click Back to return to the diagram.) In Web Origami, this diagrammatic view of your project can be a useful way to visualize and explore the graph you are building.
 
 The `public` folder graph in sitting inside a larger graph for the entire project.
 
@@ -60,12 +60,12 @@ Like the `public` folder, the graph of data in `teamData.yaml` in also sitting i
 
 ## Explorable graphs
 
-Graph Origami is designed to work with a very flexible type of graph called an _explorable graph_. An explorable graph is any structure that can do two things:
+Web Origami is designed to work with a very flexible type of graph called an _explorable graph_. An explorable graph is any structure that can do two things:
 
 1. An explorable graph can tell you the keys it wants to make public — the labels on the arrows leading to the values. In the case of the `public` folder, the keys are file names (`images`, etc.); for the team data, the keys are the array indices (0, 1, 2) and property names (`name`, `location`, etc.).
 1. You can ask an explorable graph for the value that goes with a given key. If you ask the graph for `src` folder for the `public` key, it will give you back the `public` folder as a graph. If you ask the team data graph for the `0` key, it will give you back the data for the first team member.
 
-Graph Origami _treats all explorable graphs exactly the same way_. Whatever you can do to a graph of files you can also do to a graph of data, and vice versa. For example, while many web servers let you browse through folders of files, Graph Origami lets you also browse inside data files.
+Web Origami _treats all explorable graphs exactly the same way_. Whatever you can do to a graph of files you can also do to a graph of data, and vice versa. For example, while many web servers let you browse through folders of files, Web Origami lets you also browse inside data files.
 
 <span class="tutorialStep"></span> In the address bar, navigate to `teamData.yaml` to see the team data. Now add a trailing slash to that address, so that it ends in `teamData.yaml/`.
 
@@ -105,9 +105,9 @@ Viewed this way, you may see some correspondences between the source graph and r
 - For each person, you also want to have a link on the main `index.html` page.
 - For each full-size photo in the `images` folder, you want to have a corresponding thumbnail photo in the `thumbnails` folder.
 
-You'll be able to express these correspondences directly in Graph Origami.
+You'll be able to express these correspondences directly in Web Origami.
 
-Creating things in Graph Origami means thinking about the graph you've got and the graph you want, and about how to transform the former into the latter step by step.
+Creating things in Web Origami means thinking about the graph you've got and the graph you want, and about how to transform the former into the latter step by step.
 
 &nbsp;
 

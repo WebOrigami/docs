@@ -188,7 +188,7 @@ $ ori greetings.yaml/Alice
 Hello, Alice.
 ```
 
-In Graph Origami, functions are a type of tree, so a function can also be invoked with slash syntax:
+In Web Origami, functions are a type of tree, so a function can also be invoked with slash syntax:
 
 ```console
 $ ori greet.js
@@ -216,7 +216,7 @@ https://example.com
 
 When evaluated, the value of the expression will be the response to that network request.
 
-In Graph Origami, a protocol is just a function call, so you can write your own protocols:
+In Web Origami, a protocol is just a function call, so you can write your own protocols:
 
 ```
 fn://a/b/c

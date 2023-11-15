@@ -2,7 +2,7 @@
 title: Developer co-operative
 ---
 
-The Graph Origami project is a **developer co-operative**.
+The Web Origami project is a **developer co-operative**.
 
 Only co-op members should use the project for anything beyond tire-kicking experiments and evaluations.
 

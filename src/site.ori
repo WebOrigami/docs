@@ -1,6 +1,6 @@
 {
   # This file defines the top-level virtual values in the tree used to create the
-  # Graph Origami documentation.
+  # Web Origami documentation.
 
   # The first set of formulas define a pipeline for the documentation content,
   # which is authored as a tree of markdown files in the `content` folder.
@@ -21,7 +21,7 @@
     )
   })
 
-  # Take the markdown files and inline any Graph Origami expressions contained
+  # Take the markdown files and inline any Web Origami expressions contained
   # in curly braces.
   inlined = @tree/map({ deep: @true, extensions: "md", source: withData, valueMap: @inline })
 

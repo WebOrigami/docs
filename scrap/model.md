@@ -36,7 +36,7 @@ You will define a series of computer-assisted _transformations_ to produce the r
 
 This result form is the last form of the idea that's in your hands — after you publish it, it may get transformed further by various network services. And the files you give your users are themselves processed by the user's browser to further transform the content into the pixels a user can finally perceive on their screen. But for your part in the process, the result form is the end product.
 
-Graph Origami takes its name from the paper-folding art of origami, in which you can take a flat square of paper (the source form) and apply a series of folds (the transformations) to produce an artwork (the result form).
+Web Origami takes its name from the paper-folding art of origami, in which you can take a flat square of paper (the source form) and apply a series of folds (the transformations) to produce an artwork (the result form).
 
 <figure style="align-items: center; display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(125px, 1fr)); justify-items: center;">
   <img src="/assets/heart/step1.svg">
@@ -77,7 +77,7 @@ The `src/public` folder contains some other resources:
 
 This `src/public` folder contains most of the raw materials necessary to build the About Us site. In the subsequent steps of this tutorial, you'll add more files to `src/public` and the top-level `src` folder to define the transformation that will produce the site as a result.
 
-For now, the `src` folder contains a little JavaScript file, `greet.js`, that will be used to show how Graph Origami can work with JavaScript code.
+For now, the `src` folder contains a little JavaScript file, `greet.js`, that will be used to show how Web Origami can work with JavaScript code.
 
 Your work ahead is to define the transformation of this source form into the final result form that visitors can browse.
 

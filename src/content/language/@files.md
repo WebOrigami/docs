@@ -4,7 +4,7 @@ title: "@files([dirname])"
 
 Returns an [FileTree](/async-tree/FileTree.html) representation of the current directory or (if `dirname` is supplied) subdirectory named `dirname` within the current directory.
 
-Because the Graph Origami expression language recognizes many types of file paths, you won't often need to explicitly invoke the `@files` command.
+Because the Web Origami expression language recognizes many types of file paths, you won't often need to explicitly invoke the `@files` command.
 
 For example, suppose the current folder contains a subfolder called `misc`. To display the contents of that folder in the terminal, you could write:
 

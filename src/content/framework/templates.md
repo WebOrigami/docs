@@ -3,13 +3,13 @@ title: Origami templates
 subtitle: Transform data to text
 ---
 
-Graph Origami templates let you convert turn data into HTML or other text documents through expressions embedded in text.
+Web Origami templates let you convert turn data into HTML or other text documents through expressions embedded in text.
 
 - These templates work directly on a wide range of data types, including file system folders or network resources.
 - Templates have a very small number of fundamental features that can be combined to address a wide range of scenarios.
 - You can extend what's possible in a template expression in JavaScript with essentially no configuration.
 
-_You can use Graph Origami with other template systems, but the small degree of integration code required is currently beyond the scope of this documentation._
+_You can use Web Origami with other template systems, but the small degree of integration code required is currently beyond the scope of this documentation._
 
 ## Template documents
 
@@ -289,7 +289,7 @@ $ ori blogPost.orit posts/post2.html
 ## Map trees to text
 
 It’s common to have a template generate some fragment of text for each value in a tree: an array, a set, a folder, etc.
-You can handle such cases in Graph Origami templates by calling the built-in [@map/values](/language/@map.html#values) function to map a tree’s values to text.
+You can handle such cases in Web Origami templates by calling the built-in [@map/values](/language/@map.html#values) function to map a tree’s values to text.
 
 ```console
 $ cat teamData.yaml
@@ -304,7 +304,7 @@ The `teamList.orit` file defines an outer template that includes an `<ul>` tag. 
 
 ### How maps work
 
-Graph Origami templates don't treat such maps specially. Rather, the `@map/values` function is returning a tree of HTML fragments that are concatenated into the text output.
+Web Origami templates don't treat such maps specially. Rather, the `@map/values` function is returning a tree of HTML fragments that are concatenated into the text output.
 
 In the above example, the `@map/values` function maps an array of people to HTML fragments. The transformation can be visualized like this:
 

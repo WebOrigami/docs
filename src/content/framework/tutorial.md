@@ -55,11 +55,11 @@ The page in the preview pane says: Hello
 
 ## Define a virtual file
 
-In Graph Origami, you build things from a combination of real files that are stored permanently and virtual files that are created on demand according to your instructions. These virtual "files" can be anything from a single number or text string to a typical document or media file.
+In Web Origami, you build things from a combination of real files that are stored permanently and virtual files that are created on demand according to your instructions. These virtual "files" can be anything from a single number or text string to a typical document or media file.
 
 As you build a collection of virtual files, it's helpful to be able to think about their structure as a _tree_. Colloquially speaking, a tree is the sort of boxes-with-arrows diagram you often see depicting the structure of organizations or websites.
 
-When you build a website, you're building a virtual tree of resources that will be served to the site's visitors. You can think of that virtual tree as a virtual folder hierarchy. In Graph Origami, you'll directly build this tree in one of several ways. The easiest way to define a tree is in a file with a `.ori` extension.
+When you build a website, you're building a virtual tree of resources that will be served to the site's visitors. You can think of that virtual tree as a virtual folder hierarchy. In Web Origami, you'll directly build this tree in one of several ways. The easiest way to define a tree is in a file with a `.ori` extension.
 
 <span class="tutorialStep"></span> In the `src` folder, open `site.ori`:
 
@@ -72,7 +72,7 @@ When you build a website, you're building a virtual tree of resources that will 
 This Origami file defines two things:
 
 1. A virtual tree at the project's top level. Everything in between the outermost `{` on the first line and the `}` on the last line will become part of that top-level virtual tree.
-1. A virtual file called `index.html`. Unlike most programming languages, names in Graph Origami can include periods so you can define file names with extensions. For now, the `index.html` file is defined as a simple text string.
+1. A virtual file called `index.html`. Unlike most programming languages, names in Web Origami can include periods so you can define file names with extensions. For now, the `index.html` file is defined as a simple text string.
 
 This tutorial project is already configured to serve the top-level tree defined in `site.ori`. You could configure the project to serve just part of this tree or a tree defined in some other file.
 
@@ -84,7 +84,7 @@ After a moment, the Glitch preview window should refresh to show: Hello, world!
 
 ## View your site as a tree
 
-Graph Origami lets you visualize and explore the tree of pages and other resources you are building for your website.
+Web Origami lets you visualize and explore the tree of pages and other resources you are building for your website.
 
 <span class="tutorialStep"></span> Click the **Preview** button at the bottom of the window, then click **Preview in a new window**. This will open your site in a new window (or tab).
 
@@ -104,7 +104,7 @@ The little circle represents the overall tree, and the box represents the `index
 
 ## Formulas can call JavaScript
 
-The formulas you write to define virtual files can call JavaScript. You can do a lot in Graph Origami without JavaScript, but easy access to JavaScript offers extensibility.
+The formulas you write to define virtual files can call JavaScript. You can do a lot in Web Origami without JavaScript, but easy access to JavaScript offers extensibility.
 
 <span class="tutorialStep"></span> View the file `src/greet.js`.
 
@@ -112,7 +112,7 @@ The formulas you write to define virtual files can call JavaScript. You can do a
 {{ demos/framework-intro/greet.js }}
 ```
 
-This defines a function called `greet` which, given a person's name, returns a greeting in HTML. The person's name will be set in bold. You can call this JavaScript function in a Graph Origami formula.
+This defines a function called `greet` which, given a person's name, returns a greeting in HTML. The person's name will be set in bold. You can call this JavaScript function in a Web Origami formula.
 
 **Example:** The following code defines a virtual file called `message` whose contents will be: Hello, **Alice**!
 
@@ -132,11 +132,11 @@ message = greet.js("Alice")
 
 </reveal-solution>
 
-When you call `greet.js` in a formula like this, Graph Origami searches the current [scope](/language/scope.html) for a file with that name. If it finds one, it dynamically imports that JavaScript module, and invokes the module's default export — in this case, a function that returns a greeting.
+When you call `greet.js` in a formula like this, Web Origami searches the current [scope](/language/scope.html) for a file with that name. If it finds one, it dynamically imports that JavaScript module, and invokes the module's default export — in this case, a function that returns a greeting.
 
 ## Defining the team data
 
-Data in Graph Origami projects can come from pretty much anything. This sample project stores the data for your team members in a YAML file. It could just as easily use JSON or another data file format.
+Data in Web Origami projects can come from pretty much anything. This sample project stores the data for your team members in a YAML file. It could just as easily use JSON or another data file format.
 
 <span class="tutorialStep"></span> Open the team data file in `src/teamData.yaml`:
 
@@ -174,7 +174,7 @@ You can use this slash-separated path syntax anywhere you can refer to something
 
 ## Define a template that creates text
 
-Instead of creating HTML directly in JavaScript, you can use one of many JavaScript-based template systems. For this tutorial, you'll use the [template system built into Graph Origami](templates.html).
+Instead of creating HTML directly in JavaScript, you can use one of many JavaScript-based template systems. For this tutorial, you'll use the [template system built into Web Origami](templates.html).
 
 <span class="tutorialStep"></span> **Try it:** Using the Glitch user interface, create a new file called `index.orit`: Next to the `src` folder on the left, click the `⋮` icon, then **Add File to Folder**, then type `index.orit`. This will become the template file for your index page.
 
@@ -214,7 +214,7 @@ Now when you view the site's main page, the `index.orit` template will be invoke
 
 ## Add an expression to a template
 
-Graph Origami templates, like many template systems, let you insert data into boilerplate text using placeholders marked with double curly braces `\{\{` `}}`.
+Web Origami templates, like many template systems, let you insert data into boilerplate text using placeholders marked with double curly braces `\{\{` `}}`.
 
 Inside the curly braces, you can do the same things you can in formulas in a `.ori` file: call JavaScript functions, reference real and virtual files, or extract specific data with slash-separated paths.
 
@@ -239,7 +239,7 @@ The preview now includes a paragraph: Hello, **Bob**!
 
 ## Pass data to a template
 
-When you call a Graph Origami template as a function like `index.orit()`, you can put things inside those parentheses to pass data to the template. Inside that template, you can refer to the data passed to it using an underscore (`_`).
+When you call a Web Origami template as a function like `index.orit()`, you can put things inside those parentheses to pass data to the template. Inside that template, you can refer to the data passed to it using an underscore (`_`).
 
 <span class="tutorialStep"></span> **Try it:** Update `site.ori` to pass `teamData.yaml/0/name` to the `index.orit` template.
 
@@ -280,7 +280,7 @@ There are several places in this web site where you want to take one set of thin
 
 Such situations are very common in websites and other development tasks, where you say: "For each [thing] that exists, we'll need to create a [different thing]."
 
-Whenever you have such a situation in Graph Origami, you can efficiently address it with a _map_.
+Whenever you have such a situation in Web Origami, you can efficiently address it with a _map_.
 
 A map is a many-to-many transformation: you give it a set of things (like a real folder, a virtual folder, the hierarchical tree of data in teamData.yaml, etc.) and a function. The function is a one-to-one transformation: it transforms a single existing thing into a single new thing. A map scales up a one-to-one transformation to produce a many-to-many transformation.
 
@@ -365,7 +365,7 @@ The formula you give to `@tree/map` can be arbitrarily complex.
   } }}
 </figure>
 
-A map in Graph Origami is an efficient way to create entire areas of a site. We'll also use it to create a set of people tiles for the index page.
+A map in Web Origami is an efficient way to create entire areas of a site. We'll also use it to create a set of people tiles for the index page.
 
 ## Pull in more resources
 
@@ -439,7 +439,7 @@ mapped = @tree/map({ source: tree, valueMap: =someFunction.js(_) })
 
 </reveal-solution>
 
-Because Graph Origami treats real folders and virtual folders the same, you can browse your virtual folder of thumbnails.
+Because Web Origami treats real folders and virtual folders the same, you can browse your virtual folder of thumbnails.
 
 <span class="tutorialStep"></span> Switch to the tree diagram window and refresh it to view your site's updated structure.
 
@@ -776,7 +776,7 @@ Each of the lines in `site.ori` defines some important area of the site. In a re
 
 ## Building static files
 
-You have been viewing your About Us site using a small Graph Origami server which is running in the background. But since this particular site is fundamentally static in nature, Glitch can automatically render all the pages and other necessary resources as static files. This lets Glitch serve the site faster and more cheaply; static sites on Glitch are free.
+You have been viewing your About Us site using a small Web Origami server which is running in the background. But since this particular site is fundamentally static in nature, Glitch can automatically render all the pages and other necessary resources as static files. This lets Glitch serve the site faster and more cheaply; static sites on Glitch are free.
 
 Glitch will build the static files automatically, but you can manually trigger the build process to see it in action.
 
@@ -788,7 +788,7 @@ Glitch will build the static files automatically, but you can manually trigger t
 $ npm run build
 ```
 
-This invokes a Graph Origami tool called `ori`, and instructs it to copy the contents of the entire virtual `public` tree to a real file system folder called `build`. This turns the virtual files into real files.
+This invokes a Web Origami tool called `ori`, and instructs it to copy the contents of the entire virtual `public` tree to a real file system folder called `build`. This turns the virtual files into real files.
 
 <span class="tutorialStep"></span> In the Glitch terminal, type:
 
@@ -818,16 +818,16 @@ Your site will have a URL like `https://<something>.glitch.me`.
 
 <span class="tutorialStep"></span> Open a new browser tab and navigate to that URL to see how your site will look to visitors.
 
-As long as you're working on your site, the Graph Origami server will be used to serve the content. At some point after you close the Glitch window, Glitch will rebuild the static files and stop the live server. From that point on, Glitch will serve the static files directly. After that point, the files will load much more quickly.
+As long as you're working on your site, the Web Origami server will be used to serve the content. At some point after you close the Glitch window, Glitch will rebuild the static files and stop the live server. From that point on, Glitch will serve the static files directly. After that point, the files will load much more quickly.
 
 ## Learn more
 
-This concludes the Graph Origami framework tutorial. You can continue exploring related aspects of Graph Origami:
+This concludes the Web Origami framework tutorial. You can continue exploring related aspects of Web Origami:
 
 - As you were creating the About Us site, the [Origami command-line interface](/cli) and its included web server was working behind the scenes to let you view the site during development and to copy the virtual files to real files.
 - The [Origami expression language](/language) you've been using to write formulas and template expressions has additional features not covered in this tutorial.
-- The Graph Origami framework is built on an [async-tree](/async-tree) library that can let you do everything that you did here with formulas using JavaScript instead. This can be useful in more complex projects, or if you prefer more direct control.
-- You can implement sites like this About Us site completely from scratch using the [async tree pattern](/pattern) and no library or framework at all. That approach may appeal to people who want to work as close to the metal as possible, and that pattern is also a useful reference if you want to understand how the Graph Origami framework works under the hood.
+- The Web Origami framework is built on an [async-tree](/async-tree) library that can let you do everything that you did here with formulas using JavaScript instead. This can be useful in more complex projects, or if you prefer more direct control.
+- You can implement sites like this About Us site completely from scratch using the [async tree pattern](/pattern) and no library or framework at all. That approach may appeal to people who want to work as close to the metal as possible, and that pattern is also a useful reference if you want to understand how the Web Origami framework works under the hood.
 
 &nbsp;
 
