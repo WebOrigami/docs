@@ -1,10 +1,10 @@
-- href: /framework/
-  text: Framework
-- href: /cli/
-  text: CLI
+- href: /concepts/
+  text: Concepts
 - href: /language/
-  text: Language
+  text: <span class="optional">Origami&nbsp;</span>Language
+- href: /cli/
+  text: <span class="optional">ori&nbsp;</span>CLI
 - href: /async-tree/
-  text: async-tree
+  text: <span class="optional">async-tree&nbsp;</span>Library
 - href: /pattern/
   text: Pattern

@@ -1,5 +1,5 @@
 ---
-title: Origami CLI
+title: ori CLI
 subtitle: Command-line interface for tinkering and transforming
 ---
 

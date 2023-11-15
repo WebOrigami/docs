@@ -31,10 +31,10 @@ In the same way, Web Origami lets you take content you write and transform it st
 
 Web Origami is built in a series of layers:
 
-- At the lowest level, there's a conceptual programming [pattern](/pattern/) for representing a wide variety of data types as hierarchical trees that can be easily transformed. There's no code at this level; you can use the ideas without depending on another project.
-- If you're a programmer and would like to save time and benefit from sharing code, that conceptual pattern is implemented in an [async-tree](/async-tree/) library written in JavaScript.
-- At the highest level, a [framework](/framework/) lets you concisely express transformations that create the software or other content you wish to make.
-- There is also a companion [command-line interface](/cli/) (CLI) for using the framework in a command terminal. The CLI is also useful as a general tool in its own right for working with JavaScript in the shell.
-- Both the framework and CLI make use of a small [expression language](/language/) that lets you concisely describe transformations of data using formulas similar to those in a spreadsheet.
+- At the lowest level, there's a fundamental programming [pattern](/pattern/) for representing a wide variety of data types as hierarchical trees that can be easily transformed. There's no code at this level; use the ideas without depending on another project.
+- If you're a programmer and would like to benefit from sharing code, that conceptual pattern is implemented in an [async-tree library](/async-tree/) for JavaScript programmers.
+- There is also a companion [ori command-line interface](/cli/) (CLI) for using the framework in a command terminal. The CLI is also useful as a general tool in its own right for working with JavaScript in the shell.
+- Both the framework and CLI make use of a small [Origami expression language](/language/) that lets you concisely describe transformations of data using formulas similar to those in a spreadsheet.
+- At the highest level, a [conceptual framework](/concepts/) lets you concisely express transformations that create the software or other content you wish to make.
 
 These layers are independently useful; you can work at whatever layer you prefer.

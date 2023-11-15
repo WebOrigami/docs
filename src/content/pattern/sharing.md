@@ -58,7 +58,7 @@ Most of the code we've looked at here would be subsumed by the corresponding cla
 - the specific definition of a collection of markdown content from an object, folder tree, or function (or a combination of all three)
 - the specific transformation of values identified with keys ending in `.md` to keys ending in `.html`
 
-Those things can be accomplished in very little JavaScript code. (Using the even higher-level Web Origami [framework](/framework/), you can solve the entire problem without any JavaScript code at all.)
+Those things can be accomplished in very little JavaScript code. (Using the even higher-level Web Origami [framework](/concepts/), you can solve the entire problem without any JavaScript code at all.)
 
 The general lesson of working with async trees is that many common development tasks can be viewed as the definition or transformation of trees. Viewed at the proper level of abstraction, most of those tasks are, in fact, general problems that can be solved with shared code. Using such shared code lets you focus most of your time on solving the problems that are unique to your chosen domain.
 

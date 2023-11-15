@@ -250,6 +250,10 @@ code.language-console span {
   visibility: hidden;
 }
 
+.optional {
+  display: none;
+}
+
 #navBar {
   display: flex;
   flex-wrap: wrap;
@@ -259,6 +263,7 @@ code.language-console span {
 #topNav a,
 nav a {
   text-decoration: none;
+  white-space: nowrap;
 }
 
 #topNav a:hover,
@@ -347,7 +352,11 @@ pre code.hljs {
   font-weight: bold;
 }
 
-.blocks a[href="/language/"],
+.blocks .optional {
+  display: none;
+}
+
+.blocks a[href="/concepts/"],
 .blocks a[href="/async-tree/"],
 .blocks a[href="/pattern/"] {
   grid-column: 1 / span 2;
@@ -442,6 +451,10 @@ g.node polygon[fill="none"] {
 
   #homeContainer {
     visibility: visible;
+  }
+
+  .optional {
+    display: contents;
   }
 
   #pageContent {
