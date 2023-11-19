@@ -11,7 +11,7 @@
       <h1>About Us</h1>
     </header>
     <ul class="tileGrid">
-      {{ @tree/map({ source: _, valueMap: =`
+      {{ @tree/map(_, =`
       <li class="tile">
         <a href="team/{{ _/name }}.html">
           <img class="avatar" src="thumbnails/{{ _/image }}" alt="{{ _/name }}">
@@ -19,7 +19,7 @@
           <div class="location">{{ _/location }}</div>
         </a>
       </li>
-      `}) }}
+      `) }}
     </ul>
   </body>
 </html>

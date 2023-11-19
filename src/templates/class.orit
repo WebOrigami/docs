@@ -7,6 +7,6 @@
 {{ @if _/classConstructor, =`
   {{ function.orit(_/classConstructor) }}
 `}}
-{{ @tree/map({ source: _/members, valueMap: =`
+{{ @tree/map(_/members, =`
   {{ function.orit(_) }}
-`}) }}
+`) }}

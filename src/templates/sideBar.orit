@@ -1,7 +1,7 @@
 {{ @if(_, =`
 <ul>
-  {{ @tree/map({ source: _, valueMap: =`
+  {{ @tree/map(_, =`
     <li>{{ linkCurrent.orit(_) }}</li>
-  `}) }}
+  `) }}
 </ul>
 `) }}
