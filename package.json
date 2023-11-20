@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
-    "@graphorigami/origami": "0.0.33",
+    "@graphorigami/origami": "0.0.34",
     "@graphorigami/pattern-intro": "github:GraphOrigami/pattern-intro#b5009e86",
     "@graphorigami/samples": "github:GraphOrigami/samples#b094ffca",
     "marked": "4.1.0",
