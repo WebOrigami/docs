@@ -8,7 +8,6 @@ countries:
     abbreviation: BR
   - name: China
     abbreviation: CN
-teamByName: !ori (@map/keys(demos/framework-intro/teamData.yaml, =_/name))
 siteComplete:
   index.html: <h1>About Us</h1>
   team:
@@ -295,13 +294,13 @@ Instead, you can use a built-in function called [@tree/map](/language/@tree.html
 ```
 {
   index.html = index.orit(teamData.yaml/0/name)
-  team = @tree/map({ source: teamData.yaml, valueMap: =_/name })
+  team = @tree/map(teamData.yaml, =_/name)
 }
 ```
 
-This `team` formula says: starting with the keys and values in the tree defined in `teamData.yaml`, create a new tree. The keys of the new tree will be the same as in `teamData.yaml`. The individual values from `teamData.yaml` (the data for each person) will be mapped using the small expression `=_/name`, which defines a little function.
+This `team` formula says: starting with the keys and values in the tree defined in `teamData.yaml`, create a new tree. The keys of the new tree will be the same as in `teamData.yaml`. The individual values from `teamData.yaml` (the data for each person) will be mapped using the expression `=_/name`, which defines a little function.
 
-That `valueMap` function will be called once for each value (person) in the data. Inside the function, the `_` underscore represents the person being operated on. The `/name` path will get the `name` field of that person.
+That function will be called once for each value (person) in the data. Inside the function, the `_` underscore represents the person being operated on. The `/name` path will get the `name` field of that person.
 
 <span class="tutorialStep"></span> In the tree diagram window, refresh the page to confirm that the tree now includes an `team` area with the names from `teamData.yaml`.
 
@@ -346,7 +345,7 @@ The formula you give to `@tree/map` can be arbitrarily complex.
 ```
 {
   index.html = index.orit(teamData.yaml/0/name)
-  team = @tree/map({ source: teamData.yaml, valueMap: =greet.js(_/name) })
+  team = @tree/map(teamData.yaml, =greet.js(_/name))
 }
 ```
 
@@ -369,20 +368,18 @@ A map in Web Origami is an efficient way to create entire areas of a site. We'll
 
 ## Pull in more resources
 
-The `src` folder has two real subfolders you'll want to include in your `public` tree:
+The `src` folder has two real subfolders you'll want to include in the tree for your site:
 
 - `assets` contains a stylesheet and icon
 - `images` contains sample images you can use to represent your team members
 
 You can pull a folder or file into your tree by writing its name on a line by itself.
 
-**Example:** To include a `styles` folder in the `public` tree you would write
+**Example:** To include a `styles` folder in the site tree you would write
 
 ```
 {
-  public = {
-    styles
-  }
+  styles
 }
 ```
 
@@ -393,7 +390,7 @@ You can pull a folder or file into your tree by writing its name on a line by it
 ```
 {
   index.html = index.orit(teamData.yaml/0/name)
-  team = @tree/map({ source: teamData.yaml, valueMap: =greet.js(_/name) })
+  team = @tree/map(teamData.yaml, =greet.js(_/name))
   assets
   images
 }
@@ -415,12 +412,12 @@ For each full-size image, you will want to produce a corresponding thumbnail ima
 
 In this case, the file `src/thumbnail.js` contains a small JavaScript function which, given the binary data for an image, invokes an image-editing library to generate a new image at a smaller size. This `thumbnail` function is a one-to-one transformation. You're going to use a map to apply that `thumbnail` function as a many-to-many transformation.
 
-One question: In the `@map` formula above, you passed `name` to `greet` — but what should you pass to the `thumbnail` function? You want to transform an entire image, not some specific field that belongs to it.
+One question: In the `@tree/map` formula above, you passed `name` to `greet` — but what should you pass to the `thumbnail` function? You want to transform an entire image, not some specific field that belongs to it.
 
 **Example:** To pass an entire value being mapped, you can use an underscore on its own: `_`
 
 ```
-mapped = @tree/map({ source: tree, valueMap: =someFunction.js(_) })
+mapped = @tree/map(tree, =someFunction.js(_))
 ```
 
 <span class="tutorialStep"></span> **Try it:** Switch to the Glitch editor window. In `site.ori`, update the `public` folder to define a new virtual subfolder called `thumbnails`. Using the `team` formula as a model, define `thumbnails` with a formula that uses the `@map/values` function. Use the `images` folder as the set of things to map and the `thumbnail.js` function as the one-to-one transformation. Pass an underscore (`_`) to the `thumbnail.js` function to give it the full image data.
@@ -430,10 +427,10 @@ mapped = @tree/map({ source: tree, valueMap: =someFunction.js(_) })
 ```
 {
   index.html = index.orit(teamData.yaml/0/name)
-  team = @tree/map({ source: teamData.yaml, valueMap: =greet.js(_/name) })
+  team = @tree/map(teamData.yaml, =greet.js(_/name))
   assets
   images
-  thumbnails = @tree/map({ source: images, valueMap: =thumbnail.js(_) })
+  thumbnails = @tree/map(images, =thumbnail.js(_))
 }
 ```
 
@@ -469,13 +466,11 @@ We're going to change `index.orit` so that, instead of just accepting a single p
 
 ```
 {
-  public = {
-    index.html = index.orit(teamData.yaml)
-    team = @map/values(teamData.yaml, =greet.js(_/name))
-    assets
-    images
-    thumbnails = @map/values(images, =thumbnail.js(_))
-  }
+  index.html = index.orit(teamData.yaml)
+  team = @map/values(teamData.yaml, =greet.js(_/name))
+  assets
+  images
+  thumbnails = @map/values(images, =thumbnail.js(_))
 }
 ```
 
@@ -505,9 +500,9 @@ To do this, you will use a _nested_ template: a small template inside of `index.
 **Example:** If you wanted to display paragraphs with the team member locations, you could write the following map of the input data to a nested template surrounded by backtick (`) characters:
 
 ```{{"html"}}
-\{\{ @tree/map({ source: _, valueMap: =`
+\{\{ @tree/map(_, =`
   <p>\{\{ _/location }}</p>
-`}) }}
+`) }}
 
 ```
 
@@ -519,9 +514,9 @@ The two underscore (`_`) characters here both refer to inputs — but to differe
 
 ```{{"html"}}
 <h1>About Us</hi>
-\{\{ @tree/map({ source: _, valueMap: =`
+\{\{ @tree/map(_, =`
   <li>\{\{ _/name }}</li>
-`}) }}
+`) }}
 
 ```
 
@@ -555,7 +550,7 @@ To lay the groundwork for that, you're first going to create an intermediate vir
 
 As you've seen, the top-level "file names" in `teamData.yaml` are integers, like `0` for the first person. So at the moment the `team` area pages are identified with integers too. But in your final website tree, you'd like the names of the pages in the `team` area to include the person's name, like `Alice.html`.
 
-For this, the `@tree/map` function accepts a `keyMap` parameter that works like `valueMap`, but instead of mapping the values (the file contents), it maps the keys (the file names).
+To support this, the `@tree/map` function has another form in which the second parameter isn't a single function to map values (as shown above), but a set of options. That set of options can designate multiple functions. The function you've seen so far for mapping values can be specified in the options as the `valueMap` function. That options parameter can also specify a `keyMap` function to map the _keys_ of the tree instead of the values.
 
 **Example:**
 
@@ -569,7 +564,7 @@ If you had an array of data objects about countries, you could index them by a c
     { name: "China", abbreviation: "CN" }
   ]
 
-  countriesByAbbreviation = @tree/map({ source: countries, keyMap: =_/abbreviation })
+  countriesByAbbreviation = @tree/map(countries, { keyMap: =_/abbreviation })
 }
 ```
 
@@ -580,7 +575,7 @@ This operation looks like:
     {{ svg.js countries }}
   </figure>
   <figure>
-    {{ svg.js @tree/map({ source: countries, keyMap: =_/abbreviation }) }}
+    {{ svg.js @tree/map(countries, { keyMap: =_/abbreviation }) }}
   </figure>
   <figcaption>Countries with integer keys</figcaption>
   <figcaption>Countries with abbreviation keys</figcaption>
@@ -588,21 +583,20 @@ This operation looks like:
 
 In the original `countries` definition, you could get the name of Australia with `countries/0/name`. With the mapped keys, you can get the name of Australia with `countriesByAbbreviation/AU/name`.
 
-<span class="tutorialStep"></span> **Try it:** In `site.ori`, update the `team` formula to add a `keyMap` option that will use a person's name as the key. If you'd like, you can break up the `team` formula across more than one line.
+<span class="tutorialStep"></span> **Try it:** In `site.ori`, update the `team` formula so that the second parameter is a set of options. Turn the existing `=greet.js(_/name)` expression into a `valueMap` option. Add a `keyMap` option that will use a person's name as the key. If you'd like, you can break up the `team` formula across more than one line.
 
 <reveal-solution>
 
 ```
 {
   index.html = index.orit(teamData.yaml)
-  team = @tree/map({
-    source: teamData.yaml,
+  team = @tree/map(teamData.yaml, {
     keyMap: =_/name,
     valueMap: =greet.js(_/name)
   })
   assets
   images
-  thumbnails = @tree/map({ source: images, valueMap: =thumbnail.js(_) })
+  thumbnails = @map/values(images, =thumbnail.js(_))
 }
 ```
 
@@ -646,14 +640,13 @@ keyMap: =`\{\{_/name}}.txt`
 ```
 {
   index.html = index.orit(teamData.yaml)
-  team = @tree/map({
-    source: teamData.yaml,
+  team = @tree/map(teamData.yaml, {
     keyMap: =`\{\{_/name}}.html`
     valueMap: =greet.js(_/name)
   })
   assets
   images
-  thumbnails = @tree/map({ source: images, valueMap: =thumbnail.js(_) })
+  thumbnails = @map/values(images, =thumbnail.js(_))
 }
 ```
 
@@ -680,14 +673,13 @@ The last step in building your site is creating a page template for the people i
 ```
 {
   index.html = index.orit(teamData.yaml)
-  team = @tree/map({
-    source: teamData.yaml,
+  team = @tree/map(teamData.yaml, {
     keyMap: =`\{\{_/name}}.html`
     valueMap: =person.orit(_)
   })
   assets
   images
-  thumbnails = @tree/map({ source: images, valueMap: =thumbnail.js(_) })
+  thumbnails = @map/values(images, =thumbnail.js(_))
 }
 ```
 
@@ -719,6 +711,39 @@ The only thing left to do is complete the `person.orit` template.
 
 <span class="tutorialStep"></span> In the site preview, you can now click a person tile on the index page to navigate to the page for that person.
 
+## A small simplification
+
+You can make the `@tree/map` expressions in `site.ori` slightly simpler. Whenever you are passing a function to `@tree/map` that takes a single argument like:
+
+```
+=greet.js(_/name)
+```
+
+you can simplify that to just:
+
+```
+greet.js
+```
+
+<span class="tutorialStep"></span> **Try it:** In `site.ori`, simplify the two `@tree/map` expressions. For the `team` formula, simplify the `valueMap` option so that it just passes the name of the `person.orit` template. Then simplify the `thumbnails` formula to just pass the name of the `thumbnail.js` function.
+
+<reveal-solution>
+
+```
+{
+  index.html = index.orit(teamData.yaml)
+  team = @tree/map(teamData.yaml, {
+    keyMap: =`\{\{_/name}}.html`
+    valueMap: person.orit
+  })
+  assets
+  images
+  thumbnails = @map/values(images, thumbnail.js)
+}
+```
+
+</reveal-solution>
+
 ## View the tree of the completed site
 
 <span class="tutorialStep"></span> Switch to the tree diagram window and refresh it to view your site's complete structure. You can click on the circles or boxes in that window to explore what you've made.
@@ -732,14 +757,13 @@ Stepping back, consider that you've created this entire site with a few resource
 ```
 {
   index.html = index.orit(teamData.yaml)
-  team = @tree/map({
-    source: teamData.yaml,
-    keyMap: =`{{_/name}}.html`
-    valueMap: =person.orit(_)
+  team = @tree/map(teamData.yaml, {
+    keyMap: =`\{\{_/name}}.html`
+    valueMap: person.orit
   })
   assets
   images
-  thumbnails = @tree/map({ source: images, valueMap: =thumbnail.js(_) })
+  thumbnails = @map/values(images, thumbnail.js)
 }
 ```
 
@@ -757,10 +781,9 @@ Each of the lines in `site.ori` defines some important area of the site. In a re
   index.html = index.orit(teamData.yaml)
 
   # Generate a page in the team area for each team member.
-  team = @tree/map({
-    source: teamData.yaml,
+  team = @tree/map(teamData.yaml, {
     keyMap: =`{{_/name}}.html`
-    valueMap: =person.orit(_)
+    valueMap: person.orit
   })
 
   # These are static resources
@@ -768,7 +791,7 @@ Each of the lines in `site.ori` defines some important area of the site. In a re
   images
 
   # Generate the thumbnails by reducing the full-size images.
-  thumbnails = @tree/map({ source: images, valueMap: =thumbnail.js(_) })
+  thumbnails = @tree/map(images, thumbnail.js)
 }
 ```
 

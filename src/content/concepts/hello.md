@@ -3,7 +3,7 @@ title: Hello, world
 subtitle: Everything is trees, actually
 ---
 
-If you're a designer or developer, a lot of the work you do is turning piles of one kind of content (text, images, etc.) into new piles of other content. Those piles are often organized into hierarchical structures like file system folders. You'd normally work with such content by writing code or using tools that work with folders or whatever. But, surprisingly, it turns out to be extremely productive to work at a more abstract level -- think of such structures as _trees_.
+If you're a designer or developer, a common task may be automating the conversion of piles of one kind of content (text, images, etc.) into new piles of other content. Those piles are often organized into hierarchical structures like file system folders. But it turns out to be surprisingly productive to work at a more abstract level and think of such structures as _trees_.
 
 Here is a tree with just one branch:
 
@@ -15,7 +15,7 @@ Here is a tree with just one branch:
 }}
 </figure>
 
-Some terminology: the _root_ of this tree is the circle on the left. The branch has a label or name, which we'll call a _key_, and that leads to a node or _value_. In many cases the key is a text string like "index.html", but keys could be numbers or other things. The value here also happens to be a text string ("Hello"), but values can be anything: an image, a data file, etc.
+The _root_ of this tree is the circle on the left. The branch has a label or name, which we'll call a _key_, and that leads to a node or _value_. In many cases the key is a text string like "index.html", but keys could be numbers or other things. The value here also happens to be a text string ("Hello"), but values can be anything: an image, a data file, etc.
 
 Web Origami is a conceptual framework for transforming trees. Most of time you're making stuff from other stuff, you can think about the starting point as a tree -- and often the ending point is a tree as well. Most of them it won't matter exactly how or where the original content is stored. Often all that matters are those keys and values.
 

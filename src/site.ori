@@ -15,7 +15,7 @@
     keyName: "area"
     valueMap: =@if(
       @tree/isAsyncTree(_)
-      @tree/map({ description: "withData inner", extensions: "md", valueMap: addDataToPages })(_)
+      @tree/map(_, { description: "withData inner", extensions: "md", valueMap: addDataToPages })
       =js/addData.js(_, "", area, areas, {}, client/assets/origami)
     )
   })

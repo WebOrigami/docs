@@ -1,7 +1,7 @@
 - href: index.html
   text: Overview
-- href: hello.html
-  text: Hello, world
+# - href: hello.html
+#   text: Hello, world
 - href: tutorial.html
   text: Tutorial
 # - href: model.html
