@@ -5,7 +5,7 @@ subtitle: Content creation for sites, tools, and data
 
 {{ templates/blocks.orit(_) }}
 
-Use the Web Origami framework to make digital content:
+Use Web Origami's conceptual framework to make digital content:
 
 - web sites
 - documentation

@@ -15,6 +15,6 @@ Web Origami includes the Origami expression language for:
 You can use the same Origami expression language in:
 
 - The [ori command-line tool](/cli/) to evaluate command-line arguments. This gives you considerable expressive power to invoke JavaScript utilities from the command line to, for example, traverse and manipulate files and other types of data.
-- The Web Origami [framework](/concepts/) `.ori` files that define virtual folders and files.
+- Web Origami `.ori` files that define trees, essentially virtual folders and files.
 - Web Origami [templates](/concepts/templates.html) to add dynamic content inside boilerplate text like HTML.
 - [Dynamic front matter in YAML](yaml.html) via a custom `!ori` tag.

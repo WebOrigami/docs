@@ -13,7 +13,7 @@ GitHub Codespaces is intended for people who are comfortable in a full programmi
 
 <span class="tutorialStep"></span> Create your own copy of the project by clicking the **Fork** button near the top.
 
-<span class="tutorialStep"></span> In your newly-created copy of the framework intro project, click the **Code** button, then the **Codespaces** tab, then click the button **Create codespace on main**.
+<span class="tutorialStep"></span> In your newly-created copy of the pattern intro project, click the **Code** button, then the **Codespaces** tab, then click the button **Create codespace on main**.
 
 ## Option 2: Your local coding environment
 

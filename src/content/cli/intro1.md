@@ -13,7 +13,7 @@ GitHub Codespaces is a web-based version of VS Code, a popular editor for profes
 
 <span class="tutorialStep"></span> Create your own copy of the project by clicking the **Fork** button near the top.
 
-<span class="tutorialStep"></span> In your newly-created copy of the framework intro project, click the **Code** button, then the **Codespaces** tab, then click the button **Create codespace on main**.
+<span class="tutorialStep"></span> In your newly-created copy of the Web Origami intro project, click the **Code** button, then the **Codespaces** tab, then click the button **Create codespace on main**.
 
 <span class="tutorialStep"></span> In the GitHub Codespaces terminal window, install the Web Origami command-line interface:
 
