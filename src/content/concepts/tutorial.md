@@ -31,13 +31,13 @@ siteComplete:
 
 One day your team decides:
 
-> _We need an "About Us" area for our site! The main page should list the people on our team, with thumbnail photos and links to separate pages for each person. A person's page should show their name and a full-size photo._
+> _We need an "About Us" site! The main page should list the people on our team, with thumbnail photos and links to separate pages for each person. A person's page should show their name and a full-size photo._
 
 <span class="tutorialStep"></span> Open the
 <a href="/demos/aboutUs/" target="_blank">sample About Us area</a>
-and click on a few pages.
+and click on a few pages to get a feel for the site.
 
-This tutorial will start with a few basic "Hello, world" concepts and then move on to building a small About Us site using the above site as a model.
+If you're the type of person who can write formulas in a spreadsheet like Excel, you can use Web Origami to build a site like that.
 
 ## Start
 
@@ -46,7 +46,7 @@ This tutorial will start with a few basic "Hello, world" concepts and then move 
 
 <span class="tutorialStep"></span> Click the **Remix** button (or Remix to Edit) to create your own copy of the project to work on.
 
-In the Glitch window, you will see a list of files on the left and the currently-open file (the project's ReadMe) in the center.
+You'll see a list of files on the left and the currently-open file (the project's ReadMe) in the center.
 
 <span class="tutorialStep"></span> Click the **Preview** button at the bottom of the window, then **Open Preview Pane** to open a preview pane on the right.
 
@@ -54,11 +54,11 @@ The page in the preview pane says: Hello
 
 ## Define a virtual file
 
-In Web Origami, you build things from a combination of real files that are stored permanently and virtual files that are created on demand according to your instructions. These virtual "files" can be anything from a single number or text string to a typical document or media file.
+In Web Origami, you build things from a combination of real files stored permanently and virtual files created on demand according to your instructions. These virtual "files" can be anything from a short text string to a typical document or media file.
 
-As you build a collection of virtual files, it's helpful to be able to think about their structure as a _tree_. Colloquially speaking, a tree is the sort of boxes-with-arrows diagram you often see depicting the structure of organizations or websites.
+As you build a collection of virtual files, think about their structure as a _tree_. Colloquially speaking, a tree is the sort of boxes-with-arrows diagram you often see depicting the structure of organizations or websites.
 
-When you build a website, you're building a virtual tree of resources that will be served to the site's visitors. You can think of that virtual tree as a virtual folder hierarchy. In Web Origami, you'll directly build this tree in one of several ways. The easiest way to define a tree is in a file with a `.ori` extension.
+When you build a site, you're building a virtual tree of resources that will be served to your visitors. In Web Origami, one way to build this tree is in a file with a `.ori` extension.
 
 <span class="tutorialStep"></span> In the `src` folder, open `site.ori`:
 
@@ -68,14 +68,13 @@ When you build a website, you're building a virtual tree of resources that will 
 }
 ```
 
-This Origami file defines two things:
+This Origami file a virtual tree containing one virtual file called `index.html`:
 
-1. A virtual tree at the project's top level. Everything in between the outermost `{` on the first line and the `}` on the last line will become part of that top-level virtual tree.
-1. A virtual file called `index.html`. Unlike most programming languages, names in Web Origami can include periods so you can define file names with extensions. For now, the `index.html` file is defined as a simple text string.
+- Everything in between the outermost `{` on the first line and the `}` on the last line defines the top-level virtual tree.
+- Unlike most programming languages, names in Web Origami can include periods so you can define file names with extensions.
+- For now, the `index.html` file is defined as a simple text string.
 
-This tutorial project is already configured to serve the top-level tree defined in `site.ori`. You could configure the project to serve just part of this tree or a tree defined in some other file.
-
-You can edit your site by editing this `site.ori` file.
+This tutorial project is configured to serve the top-level tree defined in `site.ori`. You can edit your site by editing this `site.ori` file.
 
 <span class="tutorialStep"></span> **Try it:** Edit the text in the formula for `index.html` to give it more content, like: Hello, world!
 
@@ -99,11 +98,11 @@ index.html = 'Hello, world!'
 
 The little circle represents the overall tree, and the box represents the `index.html` file.
 
-<span class="tutorialStep"></span> Leaving the tree diagram window open, switch back to the main Glitch window. You'll return to the tree diagram occasionally to visually confirm the structure of your evolving site.
+<span class="tutorialStep"></span> Leaving the tree diagram window open, switch back to the main Glitch window. You'll return to this tree diagram occasionally to view the structure of your evolving site.
 
 ## Formulas can call JavaScript
 
-The formulas you write to define virtual files can call JavaScript. You can do a lot in Web Origami without JavaScript, but easy access to JavaScript offers extensibility.
+The `index.html` file is currently defined with a simple formula. These formulas can also call JavaScript. You can do a lot in Web Origami without JavaScript, but easy access to JavaScript offers extensibility.
 
 <span class="tutorialStep"></span> View the file `src/greet.js`.
 
@@ -111,7 +110,7 @@ The formulas you write to define virtual files can call JavaScript. You can do a
 {{ demos/framework-intro/greet.js }}
 ```
 
-This defines a function called `greet` which, given a person's name, returns a greeting in HTML. The person's name will be set in bold. You can call this JavaScript function in a Web Origami formula.
+This defines a function called `greet` which, given a person's name, returns a greeting in HTML. The person's name will be set in bold. You can call this JavaScript function in an Origami formula.
 
 **Example:** The following code defines a virtual file called `message` whose contents will be: Hello, **Alice**!
 
@@ -135,7 +134,7 @@ When you call `greet.js` in a formula like this, Web Origami searches the curren
 
 ## Defining the team data
 
-Data in Web Origami projects can come from pretty much anything. This sample project stores the data for your team members in a YAML file. It could just as easily use JSON or another data file format.
+Data in Web Origami projects can come from pretty much anything. This sample project stores the data for your team members in a YAML file. It could just as easily use JSON, another data file format, or data sitting on a server.
 
 <span class="tutorialStep"></span> Open the team data file in `src/teamData.yaml`:
 
@@ -149,7 +148,7 @@ This defines an array of person records in YAML but _this data is too boring!_
 
 ## Formulas can extract data
 
-You can use slash-separated paths to extract information out of a tree like a file system folder or the hierarchical team data.
+You can use slash-separated paths to extract information out of a tree, whether it's a file system folder or hierarchical data like your team information.
 
 **Example:** The following defines a virtual file whose value will be the location of the third team member. (Array indexes start with zero.)
 
@@ -173,11 +172,11 @@ You can use this slash-separated path syntax anywhere you can refer to something
 
 ## Define a template that creates text
 
-Instead of creating HTML directly in JavaScript, you can use one of many JavaScript-based template systems. For this tutorial, you'll use the [template system built into Web Origami](templates.html).
+In addition to creating HTML in JavaScript, you can also use one of many JavaScript-based template systems. For this tutorial, you'll use the [template system built into Web Origami](templates.html).
 
-<span class="tutorialStep"></span> **Try it:** Using the Glitch user interface, create a new file called `index.orit`: Next to the `src` folder on the left, click the `⋮` icon, then **Add File to Folder**, then type `index.orit`. This will become the template file for your index page.
+<span class="tutorialStep"></span> **Try it:** Using the Glitch user interface, create a new file called `index.orit`. Next to the `src` folder on the left, click the `⋮` icon, then **Add File to Folder**, then type `index.orit`. This will become the template file for your index page.
 
-An Origami template in a `.orit` file (with an extra `t` for "template") can produce text content. Here you'll use it to define HTML, so in `index.orit` you can enter regular HTML; later, you'll add have the template include some live data.
+An Origami template in a `.orit` file (with an extra `t` for "template") can produce text like HTML.
 
 <span class="tutorialStep"></span> Inside the `index.orit` template, enter the following:
 
@@ -213,9 +212,9 @@ Now when you view the site's main page, the `index.orit` template will be invoke
 
 ## Add an expression to a template
 
-Web Origami templates, like many template systems, let you insert data into boilerplate text using placeholders marked with double curly braces `\{\{` `}}`.
+Web Origami templates let you insert data into boilerplate text using placeholders marked with double curly braces `\{\{` `}}`.
 
-Inside the curly braces, you can do the same things you can in formulas in a `.ori` file: call JavaScript functions, reference real and virtual files, or extract specific data with slash-separated paths.
+Inside the curly braces, you can do the same things you can in Origami formulas in a `.ori` file: call JavaScript functions, reference real and virtual files, or extract specific data with slash-separated paths.
 
 **Example:** A template can call the JavaScript function in `doStuff.js` with:
 
@@ -271,25 +270,25 @@ The preview updates to use the name you passed, like Hello, **Alice**!
 
 You're almost ready to create the site — just one more fundamental concept to cover.
 
-There are several places in this web site where you want to take one set of things and transform it to create a new set of things:
+There are several places in this web site where you want to transform one set of things and into a new set of things:
 
 - For each team member in teamData.yaml, you want to create a tile on the index page.
 - For each team member in teamData.yaml, you also want to create a page in a `team` area. For example, Alice should have a page at `team/Alice.html`.
 - For each image in the `images` folder like `van.jpg`, you want to create a corresponding thumbnail image like `thumbnails/van.jpg`.
 
-Such situations are very common in websites and other development tasks, where you say: "For each [thing] that exists, we'll need to create a [different thing]."
+Such situations are very common in websites and other development tasks: "For each [thing] that exists, we'll need to create a [different thing]."
 
-Whenever you have such a situation in Web Origami, you can efficiently address it with a _map_.
+You can address such a situation in Web Origami with a _map_.
 
-A map is a many-to-many transformation: you give it a set of things (like a real folder, a virtual folder, the hierarchical tree of data in teamData.yaml, etc.) and a function. The function is a one-to-one transformation: it transforms a single existing thing into a single new thing. A map scales up a one-to-one transformation to produce a many-to-many transformation.
+A map is a many-to-many transformation: you give it a set of things (like a real folder, a virtual folder, the hierarchical tree of data in teamData.yaml, etc.) and a function. The function is a one-to-one transformation: it transforms a single existing thing into a single new thing. A map scales up the one-to-one transformation to produce a many-to-many transformation.
 
-Earlier, you invoked the `greet` function to create a single file. That function performs a trivial one-to-one transformation of a text string (like "Our Amazing Team") to produce a new text string ("Hello, Our Amazing Team!").
+Earlier, you invoked the `greet` function to create a single file. That function performs a trivial one-to-one transformation of a text string (like "Alice") to produce a new text string ("Hello, Alice!").
 
-But let's say you want to greet a bunch of people by name. You could create individual files for each of them, but that would be repetitive and error-prone.
+If you want to greet a bunch of people by name, you could create individual files for each of them — but that would be repetitive and error-prone.
 
 Instead, you can use a built-in function called [@tree/map](/language/@tree.html#map). All built-in functions start with an `@` sign. The built-in `@tree/map` function can apply the `greet` function to all of the people at once.
 
-<span class="tutorialStep"></span> First, add the following formula for `team` to `site.ori`:
+<span class="tutorialStep"></span> Add the following formula for `team` to `site.ori`:
 
 ```
 {
@@ -332,7 +331,7 @@ In this way, `@tree/map` performs a many-to-many transformation:
       "Carol"
     ] }}
   </figure>
-  <figcaption>(Partial) tree of teamData.yaml</figcaption>
+  <figcaption>teamData.yaml</figcaption>
   <figcaption>Mapped tree of names</figcaption>
 </div>
 
@@ -364,7 +363,7 @@ The formula you give to `@tree/map` can be arbitrarily complex.
   } }}
 </figure>
 
-A map in Web Origami is an efficient way to create entire areas of a site. We'll also use it to create a set of people tiles for the index page.
+A map in Web Origami is an efficient way to create entire areas of a site. We'll also use a map to create a set of people tiles for the index page.
 
 ## Pull in more resources
 
@@ -373,7 +372,7 @@ The `src` folder has two real subfolders you'll want to include in the tree for 
 - `assets` contains a stylesheet and icon
 - `images` contains sample images you can use to represent your team members
 
-You can pull a folder or file into your tree by writing its name on a line by itself.
+You can pull a real folder or file into your tree by writing its name on a line by itself.
 
 **Example:** To include a `styles` folder in the site tree you would write
 
@@ -400,27 +399,25 @@ You can pull a folder or file into your tree by writing its name on a line by it
 
 <span class="tutorialStep"></span> Switch to tree diagram window and refresh it to see the updated site structure.
 
-Your site now includes both real and virtual files. You can continue to grow this tree into your final About Us site.
+Your site now includes both real and virtual files. You've now seen all the major concepts necessary to build the main areas of your About Us site.
 
 ## Create a virtual folder of thumbnails
 
-You've now seen all the major concepts necessary to build the actual About Us site. Let's start by using what you've seen of the `@map` function to create small thumbnail images for each team member.
+Let's use what you've seen of the `@map` function to create small thumbnail images for each team member.
 
 <span class="tutorialStep"></span> View the images in the `src/images` folder, which contains a few full-size images. Each person in `teamData.yaml` identifies one of these sample images as a profile photo.
 
-For each full-size image, you will want to produce a corresponding thumbnail image that will appear on the index page. Instead of using an image-editing app to create a real folder of thumbnail images, you can create a virtual folder of thumbnail images on demand using a map.
+For each full-size image, you want to produce a corresponding thumbnail image that will appear on the index page. Instead of using an image-editing app to create a real folder of thumbnail images, you can create a virtual folder of thumbnail images on demand using an Origami map.
 
-In this case, the file `src/thumbnail.js` contains a small JavaScript function which, given the binary data for an image, invokes an image-editing library to generate a new image at a smaller size. This `thumbnail` function is a one-to-one transformation. You're going to use a map to apply that `thumbnail` function as a many-to-many transformation.
+In this case, the file `src/thumbnail.js` contains a small JavaScript function which, given the data for an image, invokes an image-editing library to generate a new image at a smaller size. This `thumbnail` function is a one-to-one transformation. You're going to use a map to apply that `thumbnail.js` function as a many-to-many transformation.
 
-One question: In the `@tree/map` formula above, you passed `name` to `greet` — but what should you pass to the `thumbnail` function? You want to transform an entire image, not some specific field that belongs to it.
-
-**Example:** To pass an entire value being mapped, you can use an underscore on its own: `_`
+In the `@tree/map` formula above, you passed `_/name` to `greet` — but what should you pass to `thumbnail.js`? To pass an entire value being mapped, you can use an underscore on its own: `_`
 
 ```
 mapped = @tree/map(tree, =someFunction.js(_))
 ```
 
-<span class="tutorialStep"></span> **Try it:** Switch to the Glitch editor window. In `site.ori`, update the `public` folder to define a new virtual subfolder called `thumbnails`. Using the `team` formula as a model, define `thumbnails` with a formula that uses the `@map/values` function. Use the `images` folder as the set of things to map and the `thumbnail.js` function as the one-to-one transformation. Pass an underscore (`_`) to the `thumbnail.js` function to give it the full image data.
+<span class="tutorialStep"></span> **Try it:** Switch to the Glitch editor window. In `site.ori`, update the `public` folder to define a new virtual subfolder called `thumbnails`. Using the `team` formula as a model, define `thumbnails` with a formula that uses the `@tree/map` function. Use the `images` folder as the set of things to map and the `thumbnail.js` function as the one-to-one transformation. Pass an underscore (`_`) to the `thumbnail.js` function to give it the full image data.
 
 <reveal-solution>
 
@@ -450,7 +447,7 @@ The virtual `thumbnails` folder contains a set of thumbnail images _that do not 
 
 ## Incorporate input into a template
 
-Let's now flesh out the index page with real content. Your index page will need to display a tile for each member that links to their individual page.
+Your index page should display a tile for each member that links to their individual page.
 
 At the moment, the `site.ori` file is passing a single person's name to `index.orit`:
 
@@ -467,10 +464,10 @@ We're going to change `index.orit` so that, instead of just accepting a single p
 ```
 {
   index.html = index.orit(teamData.yaml)
-  team = @map/values(teamData.yaml, =greet.js(_/name))
+  team = @tree/map(teamData.yaml, =greet.js(_/name))
   assets
   images
-  thumbnails = @map/values(images, =thumbnail.js(_))
+  thumbnails = @tree/map(images, =thumbnail.js(_))
 }
 ```
 
@@ -487,7 +484,7 @@ We're going to change `index.orit` so that, instead of just accepting a single p
 
 </reveal-solution>
 
-The preview updates to show the entire contents of `teamData.yaml`. That's more data than you want to show; the next step will let you show just the portion of that data that's meaningful on an index page.
+The preview updates to show the entire contents of `teamData.yaml`. That's more data than you want to show! The next step will let you show just the data that's meaningful on an index page.
 
 ## Create a map inside a template
 
@@ -495,7 +492,7 @@ Inside a template's `\{\{` `}}` placeholders you can directly map a tree of data
 
 In `site.ori`, you've already created a map of `images` to `thumbnails`, and a map of `teamData.yaml` to a set of `team` greetings. You're now going to do the same kind of map inside the `index.ori` template. The map will translate the people in the incoming team data into a corresponding set of HTML text fragments for each person.
 
-To do this, you will use a _nested_ template: a small template inside of `index.orit`.
+To do this, you will use a _nested_ template: a small template inside of the main `index.orit` template.
 
 **Example:** If you wanted to display paragraphs with the team member locations, you could write the following map of the input data to a nested template surrounded by backtick (`) characters:
 
@@ -526,9 +523,9 @@ The preview now shows a bulleted list of names.
 
 ## A nested template can span multiple lines
 
-The text inside a backtick-delimited template can span multiple lines, so it can be as complex as you want.
+The text inside a template can be as complex as you want.
 
-<span class="tutorialStep"></span> To fill out the index page template, replace the contents of `index.orit` with:
+<span class="tutorialStep"></span> To fill out the index page template, replace the contents of `index.orit` by copying and pasting this:
 
 <clipboard-copy>
 
@@ -540,21 +537,33 @@ The text inside a backtick-delimited template can span multiple lines, so it can
 
 Functionally speaking, this is no more complex than the earlier template; it just has more elements.
 
-The index page preview now shows a tile for each team member that includes their name and location. It also shows a thumbnail image pulled from the virtual `thumbnails` folder you created earlier.
+The index page preview now shows a tile for each team member that includes their name and location. It also shows a thumbnail image pulled from the virtual `thumbnails` folder you created earlier. As far as the `<img>` tag above knows, that thumbnail is a real image — but that the image is being created on demand.
 
 ## Index the team data by person name
 
 The last phase of building your site involves fleshing out the pages in the `team` area for each person, so that `/team/Alice.html` shows the data for Alice along with a full-size image.
 
-To lay the groundwork for that, you're first going to create an intermediate virtual tree with the same data as `teamData.yaml`, but where the files are named after the people on the team.
+To lay the groundwork for that, you're going to want to change the _keys_, or names, of the team area.
 
-As you've seen, the top-level "file names" in `teamData.yaml` are integers, like `0` for the first person. So at the moment the `team` area pages are identified with integers too. But in your final website tree, you'd like the names of the pages in the `team` area to include the person's name, like `Alice.html`.
+As you've seen, the top-level keys in `teamData.yaml` are integers, like `0` for the first person. So at the moment the `team` area pages are identified with integers too. But in your final website tree, you'd like the names of the pages in the `team` area to include the person's name, like `Alice.html`.
 
-To support this, the `@tree/map` function has another form in which the second parameter isn't a single function to map values (as shown above), but a set of options. That set of options can designate multiple functions. The function you've seen so far for mapping values can be specified in the options as the `valueMap` function. That options parameter can also specify a `keyMap` function to map the _keys_ of the tree instead of the values.
+To support this, the `@tree/map` function has another form in which the second parameter isn't a single function to map values (as shown above), but a set of options. That set of options can designate multiple functions. The function you've seen so far for mapping values can be specified in the options as the `valueMap` function.
 
-**Example:**
+**Example:** Your `team` formula:
 
-If you had an array of data objects about countries, you could index them by a country code abbreviation like this:
+```
+team = @tree/map(teamData.yaml, =greet.js(_/name))
+```
+
+can be rewritten as the more verbose — but more flexible:
+
+```
+team = @tree/map(teamData.yaml, { valueMap: =greet.js(_/name) })
+```
+
+In addition to a `valueMap` function, you can also specify a `keyMap` function that will map the keys of the tree instead of the values.
+
+**Example:** If you had an array of data objects about countries, you could index their names by a country code abbreviation like this:
 
 ```
 {
@@ -564,9 +573,14 @@ If you had an array of data objects about countries, you could index them by a c
     { name: "China", abbreviation: "CN" }
   ]
 
-  countriesByAbbreviation = @tree/map(countries, { keyMap: =_/abbreviation })
+  countriesByAbbreviation = @tree/map(countries, {
+    keyMap: =_/abbreviation
+    valueMap: =_/name
+  })
 }
 ```
+
+As shown above, you can break up the `team` formula across multiple lines, separating the different options with commas and/or returns.
 
 This operation looks like:
 
@@ -575,15 +589,15 @@ This operation looks like:
     {{ svg.js countries }}
   </figure>
   <figure>
-    {{ svg.js @tree/map(countries, { keyMap: =_/abbreviation }) }}
+    {{ svg.js @tree/map(countries, { keyMap: =_/abbreviation, valueMap: =_/name }) }}
   </figure>
-  <figcaption>Countries with integer keys</figcaption>
-  <figcaption>Countries with abbreviation keys</figcaption>
+  <figcaption>Country data with integer keys</figcaption>
+  <figcaption>Country names with abbreviation keys</figcaption>
 </div>
 
-In the original `countries` definition, you could get the name of Australia with `countries/0/name`. With the mapped keys, you can get the name of Australia with `countriesByAbbreviation/AU/name`.
+In the original `countries` definition, you could get the name of Australia with `countries/0/name`. With the mapped keys, you can get the name of Australia with `countriesByAbbreviation/AU`.
 
-<span class="tutorialStep"></span> **Try it:** In `site.ori`, update the `team` formula so that the second parameter is a set of options. Turn the existing `=greet.js(_/name)` expression into a `valueMap` option. Add a `keyMap` option that will use a person's name as the key. If you'd like, you can break up the `team` formula across more than one line.
+<span class="tutorialStep"></span> **Try it:** In `site.ori`, update the `team` formula so that the second parameter is a set of options. Turn the existing `=greet.js(_/name)` expression into a `valueMap` option. Add a `keyMap` option that will use a person's name as the key.
 
 <reveal-solution>
 
@@ -596,7 +610,7 @@ In the original `countries` definition, you could get the name of Australia with
   })
   assets
   images
-  thumbnails = @map/values(images, =thumbnail.js(_))
+  thumbnails = @tree/map(images, =thumbnail.js(_))
 }
 ```
 
@@ -633,7 +647,7 @@ One way you can do that is by defining a `keyMap` that uses a tiny template. If 
 keyMap: =`\{\{_/name}}.txt`
 ```
 
-<span class="tutorialStep"></span> Update the `team` formula`s `keyMap`option to adds an`html` extension to the keys.
+<span class="tutorialStep"></span> Update the `team` formula's `keyMap` option to add a`.html` extension to the keys.
 
 <reveal-solution>
 
@@ -646,7 +660,7 @@ keyMap: =`\{\{_/name}}.txt`
   })
   assets
   images
-  thumbnails = @map/values(images, =thumbnail.js(_))
+  thumbnails = @tree/map(images, =thumbnail.js(_))
 }
 ```
 
@@ -654,7 +668,7 @@ keyMap: =`\{\{_/name}}.txt`
 
 ## Create a person template
 
-The last step in building your site is creating a page template for the people in the `team` area.
+The last step for your site is creating a page template for the people in the `team` area.
 
 <span class="tutorialStep"></span> **Try it:** In the src folder, create a new template called `person.orit`. Inside the template, create a `<h1>` heading with a `\{\{` `}}` placeholder. Inside the placeholder, enter the expression `_/name`.
 
@@ -679,7 +693,7 @@ The last step in building your site is creating a page template for the people i
   })
   assets
   images
-  thumbnails = @map/values(images, =thumbnail.js(_))
+  thumbnails = @tree/map(images, =thumbnail.js(_))
 }
 ```
 
@@ -738,7 +752,7 @@ greet.js
   })
   assets
   images
-  thumbnails = @map/values(images, thumbnail.js)
+  thumbnails = @tree/map(images, thumbnail.js)
 }
 ```
 
@@ -763,7 +777,7 @@ Stepping back, consider that you've created this entire site with a few resource
   })
   assets
   images
-  thumbnails = @map/values(images, thumbnail.js)
+  thumbnails = @tree/map(images, thumbnail.js)
 }
 ```
 
@@ -777,16 +791,16 @@ Each of the lines in `site.ori` defines some important area of the site. In a re
 
 ```
 {
-  # Generate the index page from the index.orit template.
+  # Generate the index page that shows all team members.
   index.html = index.orit(teamData.yaml)
 
-  # Generate a page in the team area for each team member.
+  # Generate a page in the team area for each individual team member.
   team = @tree/map(teamData.yaml, {
     keyMap: =`{{_/name}}.html`
     valueMap: person.orit
   })
 
-  # These are static resources
+  # Static resources
   assets
   images
 
@@ -799,9 +813,9 @@ Each of the lines in `site.ori` defines some important area of the site. In a re
 
 ## Building static files
 
-You have been viewing your About Us site using a small Web Origami server which is running in the background. But since this particular site is fundamentally static in nature, Glitch can automatically render all the pages and other necessary resources as static files. This lets Glitch serve the site faster and more cheaply; static sites on Glitch are free.
+You have been viewing your About Us site using a small Web Origami server which is running in the background. But since this particular site is fundamentally static in nature, Glitch can automatically render all the pages and other necessary resources as static files. That lets Glitch serve the site faster and more cheaply; static sites on Glitch are free.
 
-Glitch will build the static files automatically, but you can manually trigger the build process to see it in action.
+Glitch will build the static files automatically after you stop editing the site, but you can manually trigger the build process to see it in action.
 
 <span class="tutorialStep"></span> In the main Glitch editor window, click the **Terminal** button in the toolbar at the bottom of the Glitch window.
 
@@ -841,17 +855,17 @@ Your site will have a URL like `https://<something>.glitch.me`.
 
 <span class="tutorialStep"></span> Open a new browser tab and navigate to that URL to see how your site will look to visitors.
 
-As long as you're working on your site, the Web Origami server will be used to serve the content. At some point after you close the Glitch window, Glitch will rebuild the static files and stop the live server. From that point on, Glitch will serve the static files directly. After that point, the files will load much more quickly.
+While you're working on your site, the Web Origami server is used to serve the content. At some point after you close the Glitch window, Glitch will rebuild the static files and stop the live server. From that point on, Glitch will serve the static files directly and more quickly.
 
 ## Learn more
 
-This concludes the Web Origami tutorial. You can continue exploring related aspects of Web Origami:
+This concludes the Web Origami tutorial. You can continue exploring related topics:
 
 - As you were creating the About Us site, the [Origami command-line interface](/cli) and its included web server was working behind the scenes to let you view the site during development and to copy the virtual files to real files.
 - The [Origami expression language](/language) you've been using to write formulas and template expressions has additional features not covered in this tutorial.
-- The conceptual framework is built on an [async-tree](/async-tree) library that can let you do everything that you did here with formulas using JavaScript instead. This can be useful in more complex projects, or if you prefer more direct control.
-- You can implement sites like this About Us site completely from scratch using the [async tree pattern](/pattern) and no library or framework at all. That approach may appeal to people who want to work as close to the metal as possible, and that pattern is also a useful reference if you want to understand how Web Origami works under the hood.
+- The conceptual framework is built on an [async-tree](/async-tree) library that lets you do everything that you did here with formulas using JavaScript instead. This can be useful in more complex projects, or if you prefer more direct control.
+- You can implement sites completely from scratch using the [async tree pattern](/pattern) and no library or framework at all. That approach may appeal to people who want to work as close to the metal as possible, and that pattern is also a useful reference if you want to understand how Web Origami works under the hood.
 
 &nbsp;
 
-Back to [Framework](/concepts/)
+Back to [Concepts](/concepts/)
