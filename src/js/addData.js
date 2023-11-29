@@ -1,5 +1,3 @@
-import { merge, Tree } from "@graphorigami/async-tree";
-import { TextDocument } from "@graphorigami/origami";
 import chooseIcon from "./chooseIcon.js";
 import markCurrent from "./markCurrent.js";
 
@@ -12,9 +10,6 @@ export default async function addData(
   icons
 ) {
   const document = await buffer.unpack();
-  const { data } = document;
-
-  fileName = String(fileName);
 
   // HACK
   if (fileName.endsWith(".md")) {
@@ -26,20 +21,18 @@ export default async function addData(
   const areaLinks = await markCurrent(areas, areaHref);
 
   const filePath = area ? `${area}/${fileName}` : `/${fileName}`;
-  const icon = data.icon ?? (await chooseIcon(filePath, icons));
+  const icon = document.icon ?? (await chooseIcon(filePath, icons));
 
   const pageLinks = await markCurrent(pages, fileName);
 
-  const merged = merge(
-    Tree.from(data),
-    Tree.from({
+  return Object.assign(
+    {
       area,
       areaLinks,
       fileName,
       icon,
       pageLinks,
-    })
+    },
+    document
   );
-
-  return new TextDocument(document, merged, document.parent);
 }

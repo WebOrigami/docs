@@ -35,7 +35,7 @@
 {{ sideBar.orit(_/pageLinks) }}
         </nav>
         <main class="markdown-body">
-          {{ _ }}
+          {{ _/@text }}
         </main>
       </div>
     </div>
