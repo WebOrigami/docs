@@ -2,7 +2,7 @@ import {
   Tree,
   isPlainObject,
   keyMapsForExtensions,
-  mapTransform,
+  map,
 } from "@graphorigami/async-tree";
 import { Scope } from "@graphorigami/language";
 import path from "path";
@@ -89,7 +89,7 @@ class DocsTree {
         exports: exportsDocs(checker, sourceFile),
       };
     };
-    this.tree = mapTransform({
+    this.tree = map({
       deep: true,
       valueMap: mapFn,
       ...keyMapsForExtensions({
