@@ -1,6 +1,6 @@
 {{ @if(_, =`
 <ul>
-  {{ @tree/map(_, =`
+  {{ @map(_, =`
     <li>{{ linkCurrent.orit(_) }}</li>
   `) }}
 </ul>

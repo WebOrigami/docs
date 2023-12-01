@@ -286,14 +286,14 @@ Earlier, you invoked the `greet` function to create a single file. That function
 
 If you want to greet a bunch of people by name, you could create individual files for each of them — but that would be repetitive and error-prone.
 
-Instead, you can use a built-in function called [@tree/map](/language/@tree.html#map). All built-in functions start with an `@` sign. The built-in `@tree/map` function can apply the `greet` function to all of the people at once.
+Instead, you can use a built-in function called [@map](/language/@tree.html#map). All built-in functions start with an `@` sign. The built-in `@map` function can apply the `greet` function to all of the people at once.
 
 <span class="tutorialStep"></span> Add the following formula for `team` to `site.ori`:
 
 ```
 {
   index.html = index.orit(teamData.yaml/0/name)
-  team = @tree/map(teamData.yaml, =_/name)
+  team = @map(teamData.yaml, =_/name)
 }
 ```
 
@@ -314,7 +314,7 @@ That function will be called once for each value (person) in the data. Inside th
   } }}
 </figure>
 
-In this way, `@tree/map` performs a many-to-many transformation:
+In this way, `@map` performs a many-to-many transformation:
 
 <div class="sideBySide">
   <figure>
@@ -335,7 +335,7 @@ In this way, `@tree/map` performs a many-to-many transformation:
   <figcaption>Mapped tree of names</figcaption>
 </div>
 
-The formula you give to `@tree/map` can be arbitrarily complex.
+The formula you give to `@map` can be arbitrarily complex.
 
 <span class="tutorialStep"></span> **Try it**: In the Glitch editor window, in `site.ori`, update the expression `=_/name` so that, instead of just returning a `name`, it calls the `greet` function and passes in that person's name.
 
@@ -344,7 +344,7 @@ The formula you give to `@tree/map` can be arbitrarily complex.
 ```
 {
   index.html = index.orit(teamData.yaml/0/name)
-  team = @tree/map(teamData.yaml, =greet.js(_/name))
+  team = @map(teamData.yaml, =greet.js(_/name))
 }
 ```
 
@@ -389,7 +389,7 @@ You can pull a real folder or file into your tree by writing its name on a line 
 ```
 {
   index.html = index.orit(teamData.yaml/0/name)
-  team = @tree/map(teamData.yaml, =greet.js(_/name))
+  team = @map(teamData.yaml, =greet.js(_/name))
   assets
   images
 }
@@ -411,23 +411,23 @@ For each full-size image, you want to produce a corresponding thumbnail image th
 
 In this case, the file `src/thumbnail.js` contains a small JavaScript function which, given the data for an image, invokes an image-editing library to generate a new image at a smaller size. This `thumbnail` function is a one-to-one transformation. You're going to use a map to apply that `thumbnail.js` function as a many-to-many transformation.
 
-In the `@tree/map` formula above, you passed `_/name` to `greet` — but what should you pass to `thumbnail.js`? To pass an entire value being mapped, you can use an underscore on its own: `_`
+In the `@map` formula above, you passed `_/name` to `greet` — but what should you pass to `thumbnail.js`? To pass an entire value being mapped, you can use an underscore on its own: `_`
 
 ```
-mapped = @tree/map(tree, =someFunction.js(_))
+mapped = @map(tree, =someFunction.js(_))
 ```
 
-<span class="tutorialStep"></span> **Try it:** Switch to the Glitch editor window. In `site.ori`, update the `public` folder to define a new virtual subfolder called `thumbnails`. Using the `team` formula as a model, define `thumbnails` with a formula that uses the `@tree/map` function. Use the `images` folder as the set of things to map and the `thumbnail.js` function as the one-to-one transformation. Pass an underscore (`_`) to the `thumbnail.js` function to give it the full image data.
+<span class="tutorialStep"></span> **Try it:** Switch to the Glitch editor window. In `site.ori`, update the `public` folder to define a new virtual subfolder called `thumbnails`. Using the `team` formula as a model, define `thumbnails` with a formula that uses the `@map` function. Use the `images` folder as the set of things to map and the `thumbnail.js` function as the one-to-one transformation. Pass an underscore (`_`) to the `thumbnail.js` function to give it the full image data.
 
 <reveal-solution>
 
 ```
 {
   index.html = index.orit(teamData.yaml/0/name)
-  team = @tree/map(teamData.yaml, =greet.js(_/name))
+  team = @map(teamData.yaml, =greet.js(_/name))
   assets
   images
-  thumbnails = @tree/map(images, =thumbnail.js(_))
+  thumbnails = @map(images, =thumbnail.js(_))
 }
 ```
 
@@ -464,10 +464,10 @@ We're going to change `index.orit` so that, instead of just accepting a single p
 ```
 {
   index.html = index.orit(teamData.yaml)
-  team = @tree/map(teamData.yaml, =greet.js(_/name))
+  team = @map(teamData.yaml, =greet.js(_/name))
   assets
   images
-  thumbnails = @tree/map(images, =thumbnail.js(_))
+  thumbnails = @map(images, =thumbnail.js(_))
 }
 ```
 
@@ -497,7 +497,7 @@ To do this, you will use a _nested_ template: a small template inside of the mai
 **Example:** If you wanted to display paragraphs with the team member locations, you could write the following map of the input data to a nested template surrounded by backtick (`) characters:
 
 ```{{"html"}}
-\{\{ @tree/map(_, =`
+\{\{ @map(_, =`
   <p>\{\{ _/location }}</p>
 `) }}
 
@@ -511,7 +511,7 @@ The two underscore (`_`) characters here both refer to inputs — but to differe
 
 ```{{"html"}}
 <h1>About Us</hi>
-\{\{ @tree/map(_, =`
+\{\{ @map(_, =`
   <li>\{\{ _/name }}</li>
 `) }}
 
@@ -547,18 +547,18 @@ To lay the groundwork for that, you're going to want to change the _keys_, or na
 
 As you've seen, the top-level keys in `teamData.yaml` are integers, like `0` for the first person. So at the moment the `team` area pages are identified with integers too. But in your final website tree, you'd like the names of the pages in the `team` area to include the person's name, like `Alice.html`.
 
-To support this, the `@tree/map` function has another form in which the second parameter isn't a single function to map values (as shown above), but a set of options. That set of options can designate multiple functions. The function you've seen so far for mapping values can be specified in the options as the `valueMap` function.
+To support this, the `@map` function has another form in which the second parameter isn't a single function to map values (as shown above), but a set of options. That set of options can designate multiple functions. The function you've seen so far for mapping values can be specified in the options as the `valueMap` function.
 
 **Example:** Your `team` formula:
 
 ```
-team = @tree/map(teamData.yaml, =greet.js(_/name))
+team = @map(teamData.yaml, =greet.js(_/name))
 ```
 
 can be rewritten as the more verbose — but more flexible:
 
 ```
-team = @tree/map(teamData.yaml, { valueMap: =greet.js(_/name) })
+team = @map(teamData.yaml, { valueMap: =greet.js(_/name) })
 ```
 
 In addition to a `valueMap` function, you can also specify a `keyMap` function that will map the keys of the tree instead of the values.
@@ -573,7 +573,7 @@ In addition to a `valueMap` function, you can also specify a `keyMap` function t
     { name: "China", abbreviation: "CN" }
   ]
 
-  countriesByAbbreviation = @tree/map(countries, {
+  countriesByAbbreviation = @map(countries, {
     keyMap: =_/abbreviation
     valueMap: =_/name
   })
@@ -589,7 +589,7 @@ This operation looks like:
     {{ svg.js countries }}
   </figure>
   <figure>
-    {{ svg.js @tree/map(countries, { keyMap: =_/abbreviation, valueMap: =_/name }) }}
+    {{ svg.js @map(countries, { keyMap: =_/abbreviation, valueMap: =_/name }) }}
   </figure>
   <figcaption>Country data with integer keys</figcaption>
   <figcaption>Country names with abbreviation keys</figcaption>
@@ -604,13 +604,13 @@ In the original `countries` definition, you could get the name of Australia with
 ```
 {
   index.html = index.orit(teamData.yaml)
-  team = @tree/map(teamData.yaml, {
+  team = @map(teamData.yaml, {
     keyMap: =_/name,
     valueMap: =greet.js(_/name)
   })
   assets
   images
-  thumbnails = @tree/map(images, =thumbnail.js(_))
+  thumbnails = @map(images, =thumbnail.js(_))
 }
 ```
 
@@ -639,7 +639,7 @@ In the original `countries` definition, you could get the name of Australia with
 
 ## Add an HTML extension
 
-We often use extensions at the end of file names to indicate the type of data they contain. Virtual trees created with functions like `@tree/map` will often change the type of the data, so it's often useful to have such a map add, change, or remove extensions.
+We often use extensions at the end of file names to indicate the type of data they contain. Virtual trees created with functions like `@map` will often change the type of the data, so it's often useful to have such a map add, change, or remove extensions.
 
 One way you can do that is by defining a `keyMap` that uses a tiny template. If you wanted to add a `.txt` extension to all the keys, you could write:
 
@@ -654,13 +654,13 @@ keyMap: =`\{\{_/name}}.txt`
 ```
 {
   index.html = index.orit(teamData.yaml)
-  team = @tree/map(teamData.yaml, {
+  team = @map(teamData.yaml, {
     keyMap: =`\{\{_/name}}.html`
     valueMap: =greet.js(_/name)
   })
   assets
   images
-  thumbnails = @tree/map(images, =thumbnail.js(_))
+  thumbnails = @map(images, =thumbnail.js(_))
 }
 ```
 
@@ -687,13 +687,13 @@ The last step for your site is creating a page template for the people in the `t
 ```
 {
   index.html = index.orit(teamData.yaml)
-  team = @tree/map(teamData.yaml, {
+  team = @map(teamData.yaml, {
     keyMap: =`\{\{_/name}}.html`
     valueMap: =person.orit(_)
   })
   assets
   images
-  thumbnails = @tree/map(images, =thumbnail.js(_))
+  thumbnails = @map(images, =thumbnail.js(_))
 }
 ```
 
@@ -727,7 +727,7 @@ The only thing left to do is complete the `person.orit` template.
 
 ## A small simplification
 
-You can make the `@tree/map` expressions in `site.ori` slightly simpler. Whenever you are passing a function to `@tree/map` that takes a single argument like:
+You can make the `@map` expressions in `site.ori` slightly simpler. Whenever you are passing a function to `@map` that takes a single argument like:
 
 ```
 =greet.js(_/name)
@@ -739,20 +739,20 @@ you can simplify that to just:
 greet.js
 ```
 
-<span class="tutorialStep"></span> **Try it:** In `site.ori`, simplify the two `@tree/map` expressions. For the `team` formula, simplify the `valueMap` option so that it just passes the name of the `person.orit` template. Then simplify the `thumbnails` formula to just pass the name of the `thumbnail.js` function.
+<span class="tutorialStep"></span> **Try it:** In `site.ori`, simplify the two `@map` expressions. For the `team` formula, simplify the `valueMap` option so that it just passes the name of the `person.orit` template. Then simplify the `thumbnails` formula to just pass the name of the `thumbnail.js` function.
 
 <reveal-solution>
 
 ```
 {
   index.html = index.orit(teamData.yaml)
-  team = @tree/map(teamData.yaml, {
+  team = @map(teamData.yaml, {
     keyMap: =`\{\{_/name}}.html`
     valueMap: person.orit
   })
   assets
   images
-  thumbnails = @tree/map(images, thumbnail.js)
+  thumbnails = @map(images, thumbnail.js)
 }
 ```
 
@@ -771,13 +771,13 @@ Stepping back, consider that you've created this entire site with a few resource
 ```
 {
   index.html = index.orit(teamData.yaml)
-  team = @tree/map(teamData.yaml, {
+  team = @map(teamData.yaml, {
     keyMap: =`\{\{_/name}}.html`
     valueMap: person.orit
   })
   assets
   images
-  thumbnails = @tree/map(images, thumbnail.js)
+  thumbnails = @map(images, thumbnail.js)
 }
 ```
 
@@ -795,7 +795,7 @@ Each of the lines in `site.ori` defines some important area of the site. In a re
   index.html = index.orit(teamData.yaml)
 
   # Generate a page in the team area for each individual team member.
-  team = @tree/map(teamData.yaml, {
+  team = @map(teamData.yaml, {
     keyMap: =`{{_/name}}.html`
     valueMap: person.orit
   })
@@ -805,7 +805,7 @@ Each of the lines in `site.ori` defines some important area of the site. In a re
   images
 
   # Generate the thumbnails by reducing the full-size images.
-  thumbnails = @tree/map(images, thumbnail.js)
+  thumbnails = @map(images, thumbnail.js)
 }
 ```
 

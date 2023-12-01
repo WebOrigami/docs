@@ -317,7 +317,7 @@ In the above example, the `@map/values` function maps an array of people to HTML
     ] }}
   </figure>
   <figure>
-    {{ svg.js @tree/map(samples.ori/templates/teamData.yaml, =`<li>{{ name }}</li>`) }}
+    {{ svg.js @map(samples.ori/templates/teamData.yaml, =`<li>{{ name }}</li>`) }}
   </figure>
   <figcaption>Source tree of people objects</figcaption>
   <figcaption>Result tree of HTML fragments</figcaption>

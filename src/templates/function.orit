@@ -5,7 +5,7 @@
   {{ @if _/isConstructor, 'constructor'}}
 </h3>
 <ul>
-{{ @tree/map(_/parameters, =`
+{{ @map(_/parameters, =`
   <li>{{_/name}}: {{ typeList.orit(_/types) }}
     {{ @if _/description, =`
       &ndash; {{_/description}}

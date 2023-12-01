@@ -81,7 +81,7 @@ The map example above takes the original greetings tree:
 and creates a new tree where all the values are uppercase:
 
 <figure>
-{{ @svg @tree/map(samples.ori/cli/greetings.yaml, samples.ori/cli/uppercase.js) }}
+{{ @svg @map(samples.ori/cli/greetings.yaml, samples.ori/cli/uppercase.js) }}
 </figure>
 
 In this intro, we're just transforming text, but you can transform anything in bulk, including images and other binaries. If you can write a function to transform a single thing in JavaScript, you can use ori to apply that transformation to an entire tree of things.
@@ -134,7 +134,7 @@ $ ori @map/values people.yaml, greetings.yaml
     {{ @svg samples.ori/cli/greetings.yaml }}
   </figure>
   <figure>
-    {{ @svg @tree/map(samples.ori/cli/people.yaml, samples.ori/cli/greetings.yaml) }}
+    {{ @svg @map(samples.ori/cli/people.yaml, samples.ori/cli/greetings.yaml) }}
   </figure>
   <figcaption>List of people</figcaption>
   <figcaption>Greetings for everyone</figcaption>

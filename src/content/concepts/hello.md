@@ -127,7 +127,7 @@ world
 ```
 {
   images
-  thumbnails = @tree/map(images, @image/resize({ width: 200 }))
+  thumbnails = @map(images, @image/resize({ width: 200 }))
 }
 ```
 
