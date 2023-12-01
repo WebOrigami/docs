@@ -289,7 +289,7 @@ $ ori blogPost.orit posts/post2.html
 ## Map trees to text
 
 It’s common to have a template generate some fragment of text for each value in a tree: an array, a set, a folder, etc.
-You can handle such cases in Web Origami templates by calling the built-in [@map/values](/language/@map.html#values) function to map a tree’s values to text.
+You can handle such cases in Web Origami templates by calling the built-in [@map](/language/@map.html#values) function to map a tree’s values to text.
 
 ```console
 $ cat teamData.yaml
@@ -300,13 +300,13 @@ $ ori teamList.orit/
 {{ samples.ori/templates/teamList.orit/ }}
 ```
 
-The `teamList.orit` file defines an outer template that includes an `<ul>` tag. Inside that, a substitution calling `@map/values` appears, which maps the array of people in `teamData.yaml` to a set of HTML fragments using a nested template with an `<li>` tag.
+The `teamList.orit` file defines an outer template that includes an `<ul>` tag. Inside that, a substitution calling `@map` appears, which maps the array of people in `teamData.yaml` to a set of HTML fragments using a nested template with an `<li>` tag.
 
 ### How maps work
 
-Web Origami templates don't treat such maps specially. Rather, the `@map/values` function is returning a tree of HTML fragments that are concatenated into the text output.
+Web Origami templates don't treat such maps specially. Rather, the `@map` function is returning a tree of HTML fragments that are concatenated into the text output.
 
-In the above example, the `@map/values` function maps an array of people to HTML fragments. The transformation can be visualized like this:
+In the above example, the `@map` function maps an array of people to HTML fragments. The transformation can be visualized like this:
 
 <div class="sideBySide">
   <figure>

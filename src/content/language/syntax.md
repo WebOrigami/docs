@@ -270,21 +270,15 @@ You can define an unnamed lambda function with an `=` equals sign.
 
 This expression will not be evaluated immediately, but only later when explicitly invoked.
 
-For example, the [@map/values](/language/@map.html#values) built-in function can apply another function to a tree's values. To concisely define a function that will be evaluated in the context of each tree value, you can use a lambda:
+For example, the [@map](/language/@map.html) built-in function can apply another function to a tree's values and/or keys. To concisely define a function that will be evaluated in the context of each tree value, you can use a lambda:
 
 ```console
 $ cat letters.json
-{
-  "a": "The letter A",
-  "b": "The letter B",
-  "c": "The letter C"
-}
-$ cat uppercase.js
-export default (x) => x.toString().toUpperCase();
-$ ori "@map/values(letters.json, =uppercase.js(_))"
-a: THE LETTER A
-b: THE LETTER B
-c: THE LETTER C
+{{ samples.ori/cli/letters.json
+}}$ cat uppercase.js
+{{ samples.ori/cli/uppercase.js
+}}$ ori "@map(letters.json, =uppercase.js(_))"
+{{ @yaml @map samples.ori/cli/letters.json, samples.ori/cli/uppercase.js }}
 ```
 
 The `_` underscore above refers to the value being mapped, so `=uppercase.js(_)` will convert the value to uppercase.

@@ -286,7 +286,7 @@ Earlier, you invoked the `greet` function to create a single file. That function
 
 If you want to greet a bunch of people by name, you could create individual files for each of them — but that would be repetitive and error-prone.
 
-Instead, you can use a built-in function called [@map](/language/@tree.html#map). All built-in functions start with an `@` sign. The built-in `@map` function can apply the `greet` function to all of the people at once.
+Instead, you can use a built-in function called [@map](/language/@map.html). All built-in functions start with an `@` sign. The built-in `@map` function can apply the `greet` function to all of the people at once.
 
 <span class="tutorialStep"></span> Add the following formula for `team` to `site.ori`:
 

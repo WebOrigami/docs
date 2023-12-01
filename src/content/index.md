@@ -38,3 +38,5 @@ Web Origami is built in a series of layers:
 - At the highest level, a [conceptual framework](/concepts/) lets you concisely express transformations that create the software or other content you wish to make.
 
 These layers are independently useful; you can work at whatever layer you prefer.
+
+**Help this research!** Try things out in a usability test and share your feedback. Or participate in a pair programming session to collectively solve a problem you currently have with these new techniques and tools. Contact [Jan Miksovsky](https://jan.miksovsky.com/contact.html).
