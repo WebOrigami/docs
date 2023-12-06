@@ -40,7 +40,7 @@ Carol: Hello, Carol.
 ```js
 // object.js
 
-import { ObjectTree } from "@graphorigami/origami";
+import { ObjectTree } from "@weborigami/origami";
 
 // Create an async tree for an in-memory object.
 export default new ObjectTree({
@@ -62,7 +62,7 @@ Carol: Hello, Carol. [from an object]
 ```js
 // function.js
 
-import { FunctionTree } from "@graphorigami/origami";
+import { FunctionTree } from "@weborigami/origami";
 
 // Create an async tree for a function with a domain.
 export default new FunctionTree(

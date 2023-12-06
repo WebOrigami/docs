@@ -3,8 +3,8 @@ import {
   isPlainObject,
   keyMapsForExtensions,
   map,
-} from "@graphorigami/async-tree";
-import { Scope } from "@graphorigami/language";
+} from "@weborigami/async-tree";
+import { Scope } from "@weborigami/language";
 import path from "path";
 import ts from "typescript";
 

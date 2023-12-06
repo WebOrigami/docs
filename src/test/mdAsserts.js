@@ -2,7 +2,7 @@ import {
   extractFrontMatter,
   MetaTransform,
   ObjectTree,
-} from "@graphorigami/origami";
+} from "@weborigami/origami";
 import consoleAsserts from "./consoleAsserts.js";
 import mdCode from "./mdCode.js";
 

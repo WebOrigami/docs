@@ -1,4 +1,4 @@
-import { svg } from "@graphorigami/origami";
+import { svg } from "@weborigami/origami";
 
 export default async function svgWithoutLinks(
   variant,

@@ -194,7 +194,7 @@ The simplest definition of `ori.config.js` is to export the Web Origami built-in
 
 ```js
 // ori.config.js
-import { builtins } from "@graphorigami/origami";
+import { builtins } from "@weborigami/origami";
 export default builtins;
 ```
 
@@ -208,7 +208,7 @@ For example, you could rewrite `ori.config.js` to include a custom `uppercase` c
 
 ```js
 // ori.config.js
-import { builtins, MergeTree } from "@graphorigami/origami";
+import { builtins, MergeTree } from "@weborigami/origami";
 export default new MergeTree(
   {
     uppercase(s) {

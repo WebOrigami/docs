@@ -132,7 +132,7 @@ world
 ```
 
 ```js
-import { map, Tree } from "@graphorigami/async-tree";
+import { map, Tree } from "@weborigami/async-tree";
 import sharp from "sharp";
 
 export default async function () {

@@ -14,7 +14,7 @@ Create a new `ObjectTree` by passing an object or array to the constructor:
 ```js
 // object.js
 
-import { ObjectTree } from "@graphorigami/origami";
+import { ObjectTree } from "@weborigami/origami";
 
 // Wrap an object to create an async tree.
 export default new ObjectTree({

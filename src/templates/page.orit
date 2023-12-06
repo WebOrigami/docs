@@ -18,7 +18,7 @@
         <nav id="navBar">
           <a href="/">Origami</a>
 {{ areaLinks.orit(_/areaLinks) }}
-          <a href="https://github.com/GraphOrigami/origami">GitHub</a>
+          <a href="https://github.com/WebOrigami/origami">GitHub</a>
         </nav>
       </div>
       <div id="pageContent">

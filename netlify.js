@@ -1,4 +1,4 @@
-import { Tree } from "@graphorigami/async-tree";
+import { Tree } from "@weborigami/async-tree";
 
 /**
  * Expose keys.json (no initial dot) for Netlify.

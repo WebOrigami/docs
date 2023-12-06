@@ -1,5 +1,5 @@
-import { ObjectTree } from "@graphorigami/async-tree";
-import { Tree, config } from "@graphorigami/origami";
+import { ObjectTree } from "@weborigami/async-tree";
+import { Tree, config } from "@weborigami/origami";
 import assert from "assert/strict";
 
 export default async function (variant) {

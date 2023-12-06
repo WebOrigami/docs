@@ -1,5 +1,5 @@
-import { Tree } from "@graphorigami/async-tree";
-import { map } from "@graphorigami/origami";
+import { Tree } from "@weborigami/async-tree";
+import { map } from "@weborigami/origami";
 
 export default async function separatedList(list, separator, valueMap) {
   if (!list) {
