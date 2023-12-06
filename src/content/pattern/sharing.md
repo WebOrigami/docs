@@ -20,8 +20,8 @@ These async-tree library implementations are somewhat more full-featured that th
 
 The library also contains general-purpose versions of some of the tree operations in this tutorial:
 
-- [MapExtensionsTree](/async-tree/MapExtensionsTree.html) handles the general case of mapping a tree with keys of one type (`.md` for markdown files, say) to another (`.html` for HTML files). This is in turn based on a more general [MapKeysValuesTree](/async-tree/MapKeysValuesTree.html).
-- [MergeTree](/async-tree/MergeTree.html) performs a deep merge of multiple trees.
+- `map` handles the general case of mapping a tree with keys of one type (`.md` for markdown files, say) to another (`.html` for HTML files).
+- `merge` merges multiple trees.
 - [Tree](/async-tree/Tree.html) is a collection of helper functions, including a `plain` function like the one discussed in this tutorial. It resolves any async tree to a plain JavaScript object.
 
 ## Command-line tool

@@ -31,7 +31,7 @@ Web Origami gives you a high degree of power and flexibility in a very different
 
 Applying these concepts lets you create impressive results with much less work than other systems while maintaining control over all aspects of the process.
 
-The foundation of the project isn't hidden — if you want to understand things all the way down, explore the [programming pattern](/pattern), [async-tree](/async-tree) library, and [language](language) that support the high-level concepts.
+The foundation of the project isn't hidden — if you want to understand things all the way down, explore the [programming pattern](/pattern), [async-tree](/async-tree) library, and [language](/language) that support the high-level concepts.
 
 Follow the tutorial to build a simple website in Web Origami and explore each of the above concepts in turn.
 

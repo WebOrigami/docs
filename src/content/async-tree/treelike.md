@@ -6,7 +6,7 @@ Many features in the async-tree library and the [Origami expression language](/l
 
 The treelike types are, in order of priority:
 
-1. A JavaScript object that directly implements the members of the [AsyncTree](AsyncTree.html) interface.
+1. A JavaScript object that directly implements the members of the [AsyncTree interface](interface.html).
 1. A JavaScript function
 1. A JavaScript `Map` instance
 1. A JavaScript `Set` instance
