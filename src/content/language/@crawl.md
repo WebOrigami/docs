@@ -9,7 +9,7 @@ The `tree` parameter is typically a [SiteTree](/async-tree/SiteTree.html). A con
 For example, to copy the original [Space Jam](https://www.spacejam.com/1996/) website to a local folder called `snapshot`, you can write:
 
 ```console
-$ ori "@copy(@crawl(tree://www.spacejam.com/1996/), @files/snapshot)"
+$ ori "@copy(@crawl(tree://www.spacejam.com/1996/), @files/spacejam)"
 ```
 
 Crawling is a network-intensive operation, so a command to crawl a site like the (surprisingly large!) site above can take a long time to complete -- on the order of minutes.
