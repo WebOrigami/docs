@@ -13,7 +13,7 @@ In this case, the `tree` parameter is typically a [SiteTree](/async-tree/SiteTre
 For example, you can copy the original [Space Jam](https://www.spacejam.com/1996/) website to a local folder called `spacejam` via:
 
 ```console
-$ ori "@copy(@crawl(tree://www.spacejam.com/1996/), @files/spacejam)"
+$ ori "@copy @crawl(tree://www.spacejam.com/1996/), @files/spacejam"
 ```
 
 Crawling is a network-intensive operation, so a command to crawl a site like the (surprisingly large!) site above can take a long time to complete -- on the order of minutes.
@@ -25,7 +25,7 @@ If the crawl operation finds references that do not exist, it will return those 
 Give `@crawl` a reference to the `.ori` or `.js` file that defines your site's root. For example, if you define your site in a file `src/site.ori`:
 
 ```console
-$ ori "@copy(@crawl(src/site.ori), @files/crawl)
+$ ori "@copy @crawl(src/site.ori), @files/crawl"
 ```
 
 Then inspect the local file `crawl/crawl-errors.json` (if it exists) for paths that were referenced by pages in your site but which your site does not actually define.
