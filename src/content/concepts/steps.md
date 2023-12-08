@@ -37,7 +37,7 @@ One day your team decides:
 <a href="/demos/aboutUs/" target="_blank">sample About Us site</a>
 and click on a few pages to get a feel for it.
 
-If you're a person who can write formulas in a spreadsheet like Excel, you can use Web Origami to build a site like this About Us site.
+If you're a person who can write formulas in a spreadsheet, you can use Origami to build this About Us site.
 
 ## Start
 
@@ -54,11 +54,7 @@ The page in the preview pane says: Hello
 
 ## Define a virtual file
 
-In Web Origami, you build things from a combination of real files stored permanently and virtual files created on demand according to your instructions. These virtual "files" can be anything from a short text string to a typical document or media file.
-
-As you build a collection of virtual files, think about their structure as a _tree_. Colloquially speaking, a tree is the sort of boxes-with-arrows diagram you often see depicting the structure of organizations or websites.
-
-When you build a site, you're building a virtual tree of resources that will be served to your visitors. In Web Origami, one way to build this tree is in a file with a `.ori` extension.
+In Origami, you define what should go in your site in a file with a `.ori` extension.
 
 <span class="tutorialStep"></span> In the `src` folder, open `site.ori`:
 
@@ -68,13 +64,7 @@ When you build a site, you're building a virtual tree of resources that will be 
 }
 ```
 
-This Origami file defines a virtual tree containing one virtual file called `index.html`:
-
-- Everything in between the outermost `{` on the first line and the `}` on the last line defines the top-level virtual tree.
-- Unlike most programming languages, names in Web Origami can include periods so you can define file names with extensions.
-- For now, the `index.html` file is defined as a simple text string.
-
-This tutorial project is configured to serve the top-level tree defined in `site.ori`. You can edit your site by editing this `site.ori` file.
+This Origami file defines a site with one virtual file called `index.html`. Names in Web Origami can include periods so you can define files with extensions like `.html`.
 
 <span class="tutorialStep"></span> **Try it:** Edit the text in the formula for `index.html` to give it more content, like: Hello, world!
 
@@ -102,7 +92,7 @@ The little circle represents the overall tree, and the box represents the `index
 
 ## Formulas can call JavaScript
 
-The `index.html` file is currently defined with a simple formula. These formulas can also call JavaScript. You can do a lot in Web Origami without JavaScript, but easy access to JavaScript offers extensibility.
+The `index.html` file is currently defined with a simple formula. These formulas can also call JavaScript.
 
 <span class="tutorialStep"></span> View the file `src/greet.js`.
 
@@ -110,17 +100,9 @@ The `index.html` file is currently defined with a simple formula. These formulas
 {{ demos/framework-intro/greet.js }}
 ```
 
-This defines a function called `greet` which, given a person's name, returns a greeting in HTML. The person's name will be set in bold. You can call this JavaScript function in an Origami formula.
+This defines a function called `greet` which, given a person's name, returns a greeting in HTML. You can call this JavaScript function in an Origami formula.
 
-**Example:** The following code defines a virtual file called `message` whose contents will be: Hello, **Alice**!
-
-```greet
-message = greet.js("Alice")
-```
-
-<span class="tutorialStep"></span> **Try it:** In `site.ori`, update the formula for `index.html` to remove the quoted string, and instead call the function in `greet.js`. Pass the text `"world"` to the function, so that the page ends up with "world" in bold: Hello, **world**!
-
-<reveal-solution>
+<span class="tutorialStep"></span> **Try it:** In `site.ori`, update the formula for `index.html` to remove the quoted string. Instead, call the function in `greet.js` and pass the text `"world"` to the function.
 
 ```
 {
@@ -128,13 +110,11 @@ message = greet.js("Alice")
 }
 ```
 
-</reveal-solution>
-
-When you call `greet.js` in a formula like this, Web Origami searches the current [scope](/language/scope.html) for a file with that name. If it finds one, it dynamically imports that JavaScript module, and invokes the module's default export — in this case, a function that returns a greeting.
+When you call `greet.js` in a formula like this, Web Origami searches the current [scope](/language/scope.html) for a file with that name. If it finds one, it call the function defined in that JavaScript module — in this case, a function that returns a greeting.
 
 ## Defining the team data
 
-Data in Web Origami projects can come from pretty much anything. This sample project stores the data for your team members in a YAML file. It could just as easily use JSON, another data file format, or data sitting on a server.
+Data in Web Origami projects can come from pretty much anything. This sample project stores the data for your team members in a YAML file.
 
 <span class="tutorialStep"></span> Open the team data file in `src/teamData.yaml`:
 
@@ -144,31 +124,19 @@ Data in Web Origami projects can come from pretty much anything. This sample pro
 
 This defines an array of person records in YAML but _this data is too boring!_
 
-<span class="tutorialStep"></span> In `teamData.yaml`, replace the people's names with your name and the names of family or friends.
+<span class="tutorialStep"></span> In `teamData.yaml`, replace the names with your name and the names of family or friends.
 
 ## Formulas can extract data
 
 You can use slash-separated paths to extract information out of a tree, whether it's a file system folder or hierarchical data like your team information.
 
-**Example:** The following defines a virtual file whose value will be the location of the third team member. (Array indexes start with zero.)
-
-```
-carolLocation = teamData.yaml/2/location
-```
-
-You can use this slash-separated path syntax anywhere you can refer to something.
-
-<span class="tutorialStep"></span> **Try it:** In `site.ori`, update your formula for `index.html` to pass the `name` of the first team member to `greet`. The preview should show something like: Hello, **Alice**!
-
-<reveal-solution>
+<span class="tutorialStep"></span> **Try it:** In `site.ori`, update your formula for `index.html` to pass the `name` of the first team member to `greet`. (Array indexes start with zero.) The preview should show something like: Hello, **Alice**!
 
 ```
 {
   index.html = greet.js(teamData.yaml/0/name)
 }
 ```
-
-</reveal-solution>
 
 ## Define a template that creates text
 
@@ -190,23 +158,13 @@ An Origami template in a `.orit` file (with an extra `t` for "template") can pro
 
 Your `.ori` file can then invoke the template as a function, just like you invoked `greet.js`.
 
-**Example:** If you have a template `product.orit`, you can invoke it with:
-
-```
-product.html = product.orit()
-```
-
 <span class="tutorialStep"></span> **Try it:** In `site.ori`, update your `index.html` formula to remove the call to `greet.js`, and instead invoke your `index.orit` template as a function.
-
-<reveal-solution>
 
 ```
 {
   index.html = index.orit()
 }
 ```
-
-</reveal-solution>
 
 Now when you view the site's main page, the `index.orit` template will be invoked to obtain the HTML. The preview shows the heading: **About Us**
 
