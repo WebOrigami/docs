@@ -119,8 +119,7 @@ As a trivial example, you can recreate the "Hello, world!" page above by definin
 }
 ```
 
-The text enclosed by backtick characters will construct a text string. Origami will evaluate the `name` expression inside `\{\{ \}\}` double curly braces.
-This finds the nearby `name` key, and incorporates its value into the final text.
+The text enclosed by backtick characters will construct a text string. Origami evaluates the `name` expression inside `\{\{ \}\}` double curly braces. This finds the nearby `name` key, and incorporates its value into the final text.
 
 <figure>
 {{
@@ -133,7 +132,7 @@ This finds the nearby `name` key, and incorporates its value into the final text
 
 ## Tree scope is hierarchical
 
-Origami resolves a reference like `name` by walking "up" the tree towards its root. As soon as it finds that key, it uses that value.
+Origami resolves a reference like `name` by walking "up" the tree towards its root (in the diagrams, this is moving towards the left). As soon as it finds that key, it uses that value.
 
 We can illustrate this by adding a level to our little tree so that the index page is available at `about/index.html`:
 
@@ -157,7 +156,7 @@ We can illustrate this by adding a level to our little tree so that the index pa
 }}
 </figure>
 
-This produces the same "Hello, world!" message as before. When Origami sees `name` in the `index.html` formula, it looks in that local `about` area of the tree for `name`. It doesn't see a `name` there, so moves up to the tree's top level, where it does find a `name`. By default, Origami will continue walking up the folder hierarchy, looking for `name`, until it reaches the directory where the Origami server was started.
+This produces the same "Hello, world!" message as before. When Origami sees `name` in the `index.html` formula, it looks in that local `about` area of the tree for `name`. It doesn't see a `name` there, so moves up to the tree's top level, where it does find a `name`.
 
 _Key point: Tree scoping in Origami works like block scoping in many programming language — with a twist…_
 
@@ -197,7 +196,7 @@ and this will produce the _same page as before_.
 }}
 </figure>
 
-Here, when Origami looks for `name`, it doesn't find a `name` key inside the Origami file. Origami moves up into the surrounding folder and looks for `name` there. It finds the little `name` text file, so uses that file's contents as the name. So all the folders and files in your project are available in the scope of your Origami formulas.
+Here, when Origami looks for `name`, it doesn't find a `name` key inside the Origami file. Origami moves up into the surrounding folder and looks for `name` there. It finds the little `name` text file, so uses that file's contents as the name. By default, Origami will continue walking up the folder hierarchy, looking for `name`, until it reaches the directory where the Origami server was started. So all the folders and files in your project are available in the scope of your Origami formulas.
 
 _Key points: Origami expressions can directly reference files in your project, making it easy for you to incorporate files into your site. Most programming languages require you to "import" or otherwise explicitly reference files in the file system._
 
@@ -237,7 +236,7 @@ This uses Origami's tree scoping to directly reference a file. In this case, we'
 }}
 </figure>
 
-Many programming languages require you to parse data in formats like JSON. Origami includes built-in parsing for JSON and YAML files. You can easily drop in support for other parsers.
+Many programming languages require you to parse data in formats like JSON. Origami includes built-in parsing for JSON and YAML files. You can drop in support for other parsers.
 
 _Key point: Origami lets you easily read data from a data file. You can work with hierarchical data like any tree._
 
@@ -281,40 +280,40 @@ _Key point: You can quickly incorporate folders of resources like images, styles
 
 ## Turning a tree of stuff into something else
 
-```
-{
-  images
-  thumbnails = @map(images, @image/resize({ width: 200 }))
-}
-```
+As mentioned at the top, you may often find yourself having process a pile of one kind of content — text, images, etc. — into a new pile of transformed content.
+
+Suppose you want to turn a folder of markdown files into HTML. You can visualize that markdown folder as a tree:
 
 <figure>
 {{
   @svg {
-    images: {
-      image1.jpg: "[full image]"
-      image2.jpg: "[full image]"
-      image3.jpg: "[full image]"
-    }
-    thumbnails: {
-      image1.jpg: "[small image]"
-      image2.jpg: "[small image]"
-      image3.jpg: "[small image]"
+    markdown: {
+      Alice.md: "Hello, **Alice**!"
+      Bob.md: "Hello, **Bob**!"
+      Carol.md: "Hello, **Carol**!"
     }
   }
 }}
 </figure>
 
-```js
-import { map, Tree } from "@weborigami/async-tree";
-import sharp from "sharp";
+You can transform that tree of markdown files into a corresponding tree of HTML files. Origami includes a markdown-to-HTML command called [@mdHtml](/language/@mdHtml.html). That command works on a single file — but you can apply that command to all the files in the `markdown` folder using the [@map](/language/@map.html) command.
 
-export default async function () {
-  const images = await this.get("images");
-  const thumbnail = (image) => sharp(image).resize({ width: 200 }).toBuffer();
-  return Tree.from({
-    images,
-    thumbnails: map(thumbnail)(images),
-  });
+```
+{
+  html = @map(markdown, @mdHtml)
 }
 ```
+
+This produces a new tree of HTML pages which can be served:
+
+<figure>
+{{
+  @svg {
+    html: {
+      Alice.html: "Hello, <strong>Alice</strong>!"
+      Bob.html: "Hello, <strong>Bob</strong>!"
+      Carol.html: "Hello, <strong>Carol</strong>!"
+    }
+  }
+}}
+</figure>
