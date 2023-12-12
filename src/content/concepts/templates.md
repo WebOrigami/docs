@@ -221,7 +221,7 @@ $ cat contact.orit
 {{ samples.ori/templates/contact.orit }}
 ```
 
-Evaluating this embeds the contact page template, then passes its content to the overall site page template:
+Evaluating the contact page template passes its HTML fragment to the overall site page template:
 
 ```console
 $ ori contact.orit/
@@ -317,7 +317,7 @@ In the above example, the `@map` function maps an array of people to HTML fragme
     ] }}
   </figure>
   <figure>
-    {{ svg.js @map(samples.ori/templates/teamData.yaml, =`<li>{{ name }}</li>`) }}
+    {{ svg.js @map(samples.ori/templates/teamData.yaml, =`<li>{{ _/name }}</li>`) }}
   </figure>
   <figcaption>Source tree of people objects</figcaption>
   <figcaption>Result tree of HTML fragments</figcaption>
