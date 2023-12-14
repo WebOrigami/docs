@@ -70,7 +70,7 @@ And suppose that the file `site.ori` defines a tree:
 The reference to `greet` is resolved by treating the entire project as a tree:
 
 <figure>
-{{ @svg projectExample }}
+{{ svg.js projectExample }}
 </figure>
 
 When Web Origami needs to resolve the `greet.js` reference, it walks "up" this tree:

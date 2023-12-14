@@ -52,6 +52,6 @@ The virtual `public` folder contains versions of all the page fragments in the o
 
 <figure>
 {{
-  @svg @map(samples.ori/templates/fragments, samples.ori/templates/page.orit)
+  svg.js @map(samples.ori/templates/fragments, samples.ori/templates/page.orit)
 }}
 </figure>

@@ -33,8 +33,4 @@ Applying these concepts lets you create impressive results with much less work t
 
 The foundation of the project isn't hidden — if you want to understand things all the way down, explore the [programming pattern](/pattern), [async-tree](/async-tree) library, and [language](/language) that support the high-level concepts.
 
-Follow the tutorial to build a simple website in Web Origami and explore each of the above concepts in turn.
-
-&nbsp;
-
-[Start the tutorial](tutorial.html) »
+You can learn more about the basics of Origami in [Hello, world](hello.html), or follow the short [tutorial](tutorial.html) to build a simple site in Origami.

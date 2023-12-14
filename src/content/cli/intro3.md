@@ -17,7 +17,7 @@ $ ori greetings.yaml
 ori can interpret this file as the following tree:
 
 <figure>
-{{ @svg samples.ori/cli/greetings.yaml }}
+{{ svg.js samples.ori/cli/greetings.yaml }}
 </figure>
 
 The YAML data format shown above can be easier for people to read than formats like JSON. If you prefer, you can just as easily use the ubiquitous JSON format.

@@ -59,7 +59,7 @@ interface AsyncTree {
 Suppose we want to represent the small tree used in the [introduction](/cli/) to the ori command-line tool:
 
 <figure>
-{{ @svg samples.ori/cli/greetings.yaml }}
+{{ svg.js samples.ori/cli/greetings.yaml }}
 </figure>
 
 The small circle on the left is a tree node with three keys ("Alice", "Bob", "Carol") that correspond to three values ("Hello, Alice", etc.). This can be represented in the `AsyncTree` interface as:

@@ -20,19 +20,17 @@ siteComplete:
     venice.jpg: "[binary data]"
 ---
 
-Origami is a conceptual model and toolset that lets you quickly create websites and other things. This page covers the basics and introduces the three key concepts — _trees_, _scope_, and _maps_ — that make Origami unique.
+Origami lets you quickly create websites and other things. This page covers the basics and introduces the three key concepts — _trees_, _scope_, and _maps_ — that make Origami unique.
 
 ## Trees
 
-If you're a designer or developer, you often have to process a pile of one kind of content — text, images, etc. — into a new pile of transformed content. You might want to turn a bunch of markdown into HTML, or some raw data into a set of pages.
-
-That information is often organized into hierarchical structures like file system folders, but rather than focus on where or how the data is stored, it can be productive to work at a more abstract level and think of such structured content as _trees_.
+You can view many of the things you work with — folders and files, data in data files — as _trees_.
 
 Here is a tree with just one branch:
 
 <figure>
 {{
-  @svg {
+  svg.js {
     index.html: "Hello, world!"
   }
 }}
@@ -42,7 +40,7 @@ The _root_ of this tree is the circle on the left. The branch has a label or nam
 
 ## Conceptualizing websites as trees
 
-We often browse websites a single page at a time, seeing the page's URL in the address bar. But step back and consider _all_ the pages on a site as a single entity: a tree of pages and other resources.
+We often design or browse websites a single page at a time, but step back and consider _all_ the pages on a site as a tree of pages and other resources.
 
 The <a href="/demos/aboutUs/" target="_blank">sample About Us site</a> defines a small set of pages:
 
@@ -53,7 +51,7 @@ You can think about this set of pages as a tree:
 
 <figure>
 {{
-  @svg {
+  svg.js {
     index.html: "<h1>About Us</h1>"
     team: {
       Alice.html: "<h1>Alice</h1>"
@@ -64,21 +62,21 @@ You can think about this set of pages as a tree:
 }}
 </figure>
 
-This kind of diagram may clarify why programmers refer to URLs as _routes_: when you enter a URL like [team/Alice.html](/demos/aboutUs/team/Alice.html), you're picking one particular route through this map of the site's content. Conceptually speaking, the web server starts at the tree's root on the left and then follows the keys `team` and `Alice.html` through this map to find the web page it should send to your browser.
+Website creators sometimes refer to URLs as _routes_: when you enter a URL like [team/Alice.html](/demos/aboutUs/team/Alice.html), you're picking one particular route through this map of the site's content. Conceptually speaking, the web server starts at the tree's root on the left and then follows the keys `team` and `Alice.html` through this map to find the web page it should send to your browser.
 
 In addition to HTML pages, the full tree for a site also includes CSS stylesheets, image files, JavaScript files, or other resources referenced by the HTML. So the full tree for the About Us site is a little bigger:
 
 <figure>
-{{ @svg siteComplete }}
+{{ svg.js siteComplete }}
 </figure>
 
-This conceptual tree can help you envision and build a site. But in most web systems, a site's structure is only a hypothetical thing you must imagine; there is often no place where you can actually edit or visualize this tree.
+This conceptual tree can help you envision and build a site, but most web systems don't give you a way to directly edit or visualize this tree.
 
-Origami is different: you directly build this tree from various sources, and can see a direct visual representation of what you're building.
+Origami is different: you directly build this tree, often grafting together branches defined in different ways. You can see a direct visual representation of what you're building.
 
 ## Defining a simple tree
 
-The concise Origami [language](/language) is specifically defined for building sites and other things with trees. If you're a JavaScript programmer, you can also do all of this in JavaScript.
+The concise Origami [language](/language) lets you build sites and other things with trees. (If you're a JavaScript programmer, you can also do all of this in JavaScript.)
 
 In the Origami language, you define a site in a file with a name like `site.ori`. (The name is not significant; anything with the `.ori` extension will do.) If that file contains
 
@@ -92,7 +90,7 @@ that produces the tree with one branch shown earlier:
 
 <figure>
 {{
-  @svg {
+  svg.js {
     index.html: "Hello, world!"
   }
 }}
@@ -108,9 +106,9 @@ _Key points: A site's definition in Origami is extremely concise. You can immedi
 
 ## Tree scope
 
-A formula you write in Origami defines a value, like `index.html` above. Your formulas can refer to other values. Origami works out what those references mean by defining a _scope_: the set of all the names that are available for you to use.
+A formula you write in Origami defines a key and a value, like the `index.html` and text above. Those formulas can refer to other values.
 
-As a trivial example, you can recreate the "Hello, world!" page above by defining the "name" as a separate value:
+Origami works out what those references mean by defining a _scope_: the set of all the names that are available for you to use. As a trivial example, you can recreate the "Hello, world!" page above by defining the "name" as a separate value:
 
 ```
 {
@@ -119,11 +117,11 @@ As a trivial example, you can recreate the "Hello, world!" page above by definin
 }
 ```
 
-The text enclosed by backtick characters will construct a text string. Origami evaluates the `name` expression inside `\{\{ \}\}` double curly braces. This finds the nearby `name` key, and incorporates its value into the final text.
+The text enclosed by backtick characters will construct a text string. Origami evaluates the `name` reference inside `\{\{ \}\}` double curly braces. This finds the nearby `name` key, so Origami incorporates the corresponding value into the final text.
 
 <figure>
 {{
-  @svg {
+  svg.js {
     name: "world"
     index.html: "Hello, world!"
   }
@@ -132,7 +130,7 @@ The text enclosed by backtick characters will construct a text string. Origami e
 
 ## Tree scope is hierarchical
 
-Origami resolves a reference like `name` by walking "up" the tree towards its root (in the diagrams, this is moving towards the left). As soon as it finds that key, it uses that value.
+Origami resolves a reference like `name` by walking conceptually "up" the tree towards its root. (In the diagrams, this is moving towards the left.) As soon as it finds a matching key, it uses that value.
 
 We can illustrate this by adding a level to our little tree so that the index page is available at `about/index.html`:
 
@@ -147,7 +145,7 @@ We can illustrate this by adding a level to our little tree so that the index pa
 
 <figure>
 {{
-  @svg {
+  svg.js {
     name: "world"
     about: {
       index.html: "Hello, world!"
@@ -158,11 +156,11 @@ We can illustrate this by adding a level to our little tree so that the index pa
 
 This produces the same "Hello, world!" message as before. When Origami sees `name` in the `index.html` formula, it looks in that local `about` area of the tree for `name`. It doesn't see a `name` there, so moves up to the tree's top level, where it does find a `name`.
 
-_Key point: Tree scoping in Origami works like block scoping in many programming language — with a twist…_
+_Key point: Tree scoping in Origami works like block scoping in many programming languages._
 
 ## Referencing a local file
 
-The scope available in an Origami file _includes the surrounding files_. The Origami file is considered itself to be part of the larger file system tree.
+The scope available in an Origami file _includes the surrounding files_. The tree you define in an Origami file is considered to be part of the larger file system tree.
 
 Let's say the `site.ori` file is part of a folder called `myProject`:
 
@@ -186,19 +184,21 @@ We can write this in `site.ori`:
 }
 ```
 
-and this will produce the _same page as before_.
+and this will produce the same result as before:
 
 <figure>
 {{
-  @svg {
+  svg.js {
     index.html: "Hello, world!"
   }
 }}
 </figure>
 
-Here, when Origami looks for `name`, it doesn't find a `name` key inside the Origami file. Origami moves up into the surrounding folder and looks for `name` there. It finds the little `name` text file, so uses that file's contents as the name. By default, Origami will continue walking up the folder hierarchy, looking for `name`, until it reaches the directory where the Origami server was started. So all the folders and files in your project are available in the scope of your Origami formulas.
+Here, when Origami looks for `name`, it doesn't find a `name` key inside the Origami file. Origami moves up into the surrounding folder and looks for `name` there. It finds the little `name` text file, so uses that file's contents as the name.
 
-_Key points: Origami expressions can directly reference files in your project, making it easy for you to incorporate files into your site. Most programming languages require you to "import" or otherwise explicitly reference files in the file system._
+By default, Origami will continue walking up the folder hierarchy, looking for `name`, until it reaches the directory where the Origami server was started. So all the folders and files in your project are available in the scope of your Origami formulas. In contrast, most programming languages require you to "import" or otherwise explicitly reference files in the file system.
+
+_Key points: Origami expressions can directly reference files in your project, making it easy for you to incorporate files into your site._
 
 ## Data can be a tree too
 
@@ -226,11 +226,11 @@ The Origami file can incorporate that data into the `index.html` page with:
 }
 ```
 
-This uses Origami's tree scoping to directly reference a file. In this case, we're using a slash-separated path `data.json/name` to extract the `name` value from that data file. This produces the same site as before:
+This uses Origami's tree scoping to directly reference a file. In this case, we're using a slash-separated path `data.json/name` to extract the `name` value from that data file. This produces the same result as before:
 
 <figure>
 {{
-  @svg {
+  svg.js {
     index.html: "Hello, world!"
   }
 }}
@@ -238,7 +238,7 @@ This uses Origami's tree scoping to directly reference a file. In this case, we'
 
 Many programming languages require you to parse data in formats like JSON. Origami includes built-in parsing for JSON and YAML files. You can drop in support for other parsers.
 
-_Key point: Origami lets you easily read data from a data file. You can work with hierarchical data like any tree._
+_Key point: Origami lets you easily read data from a data file. You can treat hierarchical data like any tree and get things out of it with slash-separated paths._
 
 ## Including a file folder in a tree
 
@@ -252,7 +252,7 @@ myProject/
     image3.jpg
 ```
 
-You can reference this `images` folder name in the Origami file, and Origami will find it using the same tree scoping described above:
+You can reference this `images` folder name in the Origami file, and Origami will find it using the tree scoping described above:
 
 ```
 {
@@ -264,7 +264,7 @@ This creates a site that looks like:
 
 <figure>
 {{
-  @svg {
+  svg.js {
     images: {
       image1.jpg: "[binary data]"
       image2.jpg: "[binary data]"
@@ -280,13 +280,13 @@ _Key point: You can quickly incorporate folders of resources like images, styles
 
 ## Turning a tree of stuff into something else
 
-As mentioned at the top, you may often find yourself having process a pile of one kind of content — text, images, etc. — into a new pile of transformed content.
+You may often find yourself having process a pile of one kind of content — text, images, etc. — into a new collection of some other kind of content.
 
 Suppose you want to turn a folder of markdown files into HTML. You can visualize that markdown folder as a tree:
 
 <figure>
 {{
-  @svg {
+  svg.js {
     markdown: {
       Alice.md: "Hello, **Alice**!"
       Bob.md: "Hello, **Bob**!"
@@ -308,7 +308,7 @@ This produces a new tree of HTML pages which can be served:
 
 <figure>
 {{
-  @svg {
+  svg.js {
     html: {
       Alice.html: "Hello, <strong>Alice</strong>!"
       Bob.html: "Hello, <strong>Bob</strong>!"
@@ -317,3 +317,9 @@ This produces a new tree of HTML pages which can be served:
   }
 }}
 </figure>
+
+You can browse the transformed HTML immediately. No markdown-to-HTML transformation occurs until you ask for a page, so having lots of markdown documents won't slow things down.
+
+_Key point: You can efficiently transform collections of content in bulk._
+
+This covers the basics of Origami. You can try building a simple site in Origami in the short [tutorial](tutorial.html).

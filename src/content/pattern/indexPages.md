@@ -26,7 +26,7 @@ First let's write a function that returns a reasonable default index page for a 
 If the little `more` branch of our HTML tree looks like this:
 
 <figure>
-{{ @svg htmlObject/more }}
+{{ svg.js htmlObject/more }}
 </figure>
 
 Then invoking `indexPage` on this branch will return:
@@ -49,7 +49,7 @@ Using the default `indexPage` function above, let's now create a tree transform.
 If we use this to transform the `more` branch of the HTML tree, we'll get:
 
 <figure>
-{{ @svg pattern.ori/index/indexPages.js(htmlObject/more) }}
+{{ svg.js pattern.ori/index/indexPages.js(htmlObject/more) }}
 </figure>
 
 ## Incorporate the index page transform
