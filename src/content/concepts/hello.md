@@ -305,7 +305,7 @@ You can transform that tree of markdown files into a corresponding tree of HTML 
 
 ```
 {
-  Alice.html = @mdHtml(Alice.md)
+  Alice.html = @mdHtml(markdown/Alice.md)
 }
 ```
 
@@ -340,6 +340,24 @@ This turns the tree of markdown files into a tree of HTML pages:
 </figure>
 
 You can browse the transformed HTML immediately. Other programming environments have similar maps, but Origami's are "lazy" (they don't do work to create something until you ask for it), can work on deep trees (not just flat arrays), and can be applied equally to any data source.
+
+If you wanted the mapped HTML pages to be the entire site instead of just the `html` area, you could update `site.ori` to just return the map:
+
+```
+@map(markdown, @mdHtml)
+```
+
+which puts all the transformed HTML pages at the top level:
+
+<figure>
+{{
+  svg.js {
+    Alice.html: "Hello, <strong>Alice</strong>!"
+    Bob.html: "Hello, <strong>Bob</strong>!"
+    Carol.html: "Hello, <strong>Carol</strong>!"
+  }
+}}
+</figure>
 
 _Key point: You can use Origami maps to efficiently transform collections of content in bulk._
 
