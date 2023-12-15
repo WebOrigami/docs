@@ -74,7 +74,9 @@ The full tree for a site is a little bigger than what's shown above, because it 
 {{ svg.js siteComplete }}
 </figure>
 
-This conceptual tree can help you envision and build a site. Most web systems don't give you a way to directly edit or visualize such a tree. In Origami you can directly build a site's tree, grafting together branches defined in different ways. You can see a direct visual representation of the site you're building.
+This conceptual tree can help you envision and build a site. How your _users_ experience your site is a separate concern. It's up to you to decide how your pages should be linked to create the experience you want your users to have.
+
+Most web systems don't give you a way to directly edit or visualize a site's tree. In Origami you directly build your site's tree, grafting together branches defined in different ways.
 
 ## Defining a simple tree
 
