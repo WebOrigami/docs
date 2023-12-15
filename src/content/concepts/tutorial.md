@@ -1,5 +1,6 @@
 ---
 title: Create a simple site in Origami
+subtitle: A live walkthrough
 numberHeadings: true
 countries:
   - name: Australia
@@ -28,6 +29,10 @@ siteComplete:
 ---
 
 <script src="/components.js"></script>
+
+You don't need to install anything to complete this tutorial. If you prefer a conceptual introduction first, visit [Hello, world](hello.html).
+
+## Scenario
 
 One day your team decides:
 
@@ -265,24 +270,11 @@ You can address all these situations in Origami with a _map_.
 
 This formula calls a built-in function called [@map](/language/@map.html). All built-in functions start with an `@` sign.
 
-This `team` formula says: starting with the tree of structured data in `teamData.yaml`, create a new tree — essentially, a virtual folder based on the original data. The keys of the new tree will be the same as in `teamData.yaml`. The individual values from `teamData.yaml` (the data for each person) will be mapped using the expression `=_/name`, which defines a little function.
+This `team` formula says: starting with the tree of structured data in `teamData.yaml`, create a new tree — essentially, a virtual folder based on the original data. The keys of the new tree will be the same as in `teamData.yaml`.
 
-That function will be called once for each value (person) in the data. Inside the function, the `_` underscore represents the person being operated on, so `_/name` gets the `name` field of that person.
+The data for each person in `teamData.yaml` will be mapped using the expression `=_/name`. That defines a function called once for each person. The `_` underscore represents the person being operated on, so `_/name` gets the person's `name` field.
 
-<span class="tutorialStep"></span> In the tree diagram window, refresh the page to confirm that the tree now includes an `team` area with the names from `teamData.yaml`.
-
-<figure>
-  {{ svg.js {
-    index.html = "<h1>About Us</h1>"
-    team = [
-      "Alice"
-      "Bob"
-      "Carol"
-    ]
-  } }}
-</figure>
-
-In this way, `@map` performs a many-to-many transformation:
+This `@map` transforms the structured data in `teamData.yaml` to a corresponding tree of names:
 
 <div class="sideBySide">
   <figure>
@@ -299,15 +291,28 @@ In this way, `@map` performs a many-to-many transformation:
       "Carol"
     ] }}
   </figure>
-  <figcaption>teamData.yaml</figcaption>
+  <figcaption>Tree structure of teamData.yaml</figcaption>
   <figcaption>Mapped tree of names</figcaption>
 </div>
+
+<span class="tutorialStep"></span> In the tree diagram window, refresh the page to confirm that the tree now includes an `team` area with the names from `teamData.yaml`.
+
+<figure>
+  {{ svg.js {
+    index.html = "<h1>About Us</h1>"
+    team = [
+      "Alice"
+      "Bob"
+      "Carol"
+    ]
+  } }}
+</figure>
 
 ## Call a function in a map
 
 The formula you give to `@map` can be arbitrarily complex.
 
-<span class="tutorialStep"></span> **Try it**: In the Glitch editor window, in `site.ori`, update the expression `=_/name` so that, instead of just returning a `name`, it calls the `greet` function and passes in that person's name.
+<span class="tutorialStep"></span> **Try it**: In the Glitch editor window, in `site.ori`, update the expression `=_/name` so that, instead of just returning a `name`, it calls the `greet` function and passes in that person's name:
 
 <clipboard-copy>
 
