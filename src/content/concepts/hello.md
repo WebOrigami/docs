@@ -330,6 +330,26 @@ This turns the tree of markdown files into a tree of HTML pages:
 <figure>
 {{
   svg.js {
+    Alice.md: "Hello, <strong>Alice</strong>!"
+    Bob.md: "Hello, <strong>Bob</strong>!"
+    Carol.md: "Hello, <strong>Carol</strong>!"
+  }
+}}
+</figure>
+
+This isn't quite what's wanted — the values are HTML, but the keys (file names) still end in `.md`. A slightly longer `@map` expression can change both the keys and the values:
+
+```
+{
+  html = @map(markdown, { extensions: "md->html", valueMap: @mdHtml })
+}
+```
+
+which gives
+
+<figure>
+{{
+  svg.js {
     html: {
       Alice.html: "Hello, <strong>Alice</strong>!"
       Bob.html: "Hello, <strong>Bob</strong>!"
@@ -344,7 +364,7 @@ You can browse the transformed HTML immediately. Other programming environments 
 If you wanted the mapped HTML pages to be the entire site instead of just the `html` area, you could update `site.ori` to just return the map:
 
 ```
-@map(markdown, @mdHtml)
+  @map(markdown, { extensions: "md->html", valueMap: @mdHtml })
 ```
 
 which puts all the transformed HTML pages at the top level:
