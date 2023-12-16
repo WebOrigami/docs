@@ -20,15 +20,15 @@ siteComplete:
     venice.jpg: "[binary data]"
 ---
 
-Origami lets you create websites and other things. The web platform provides you a way to create invidiual web pages with HTML and CSS — but those don't give you any way to define your site's overall structure. You could use JavaScript for that, but that could be quite complex.
+Origami lets you create websites and other things. The web platform provides you a way to create invidiual web pages with HTML and CSS — but not a way to define your site's overall structure. You could use JavaScript for that, but that can be complex.
 
-Origami offers you a language to define the overall site you want. (If you're a JavaScript programmer, you can also combine what you know about JavaScript with Origami's concepts and library to more quickly and easily define a site's structure.)
+Origami gives you a language to define the site you want. (If you're a JavaScript programmer, you have the option to use Origami with JavaScript to more quickly and easily define a site's structure.)
 
-This page introduces the three key concepts — _trees_, _scope_, and _maps_ — that make Origami unique, as well as a template system with unique features. If you prefer to just dive in and try things out first, start with the [tutorial](tutorial.html).
+This page introduces the three key concepts — _trees_, _scope_, and _maps_ — that make Origami unique, along with a template system with unique features. If you prefer a hands-on approach, start with the [tutorial](tutorial.html).
 
 ## Trees
 
-You can view many of the things you work with — folders and files, data in data files — as _trees_.
+You can view many of the things you work with, such as folders and files or data in data files, as _trees_.
 
 Here is a tree with just one branch:
 
@@ -40,11 +40,11 @@ Here is a tree with just one branch:
 }}
 </figure>
 
-The _root_ of this tree is the circle on the left. The branch has a label or name, which we'll call a _key_, and that leads to a node or _value_. In many cases the key is a text string like "index.html", but keys could be numbers or other things. The value here also happens to be a text string ("Hello, world!"), but values can be anything: an image, a data file, etc.
+The _root_ of this tree is the circle on the left. The branch has a label or name, which we'll call a _key_, and that leads to a node or _value_. In many cases the key is a text string like "index.html", but it can also be a number or something else. The value here happens to be a text string ("Hello, world!"), but values can be anything: an image, a data file, etc.
 
 ## Conceptualizing websites as trees
 
-We often design or browse websites a single page at a time, but step back and consider _all_ the pages on a site as a tree of pages and other resources.
+We often design and browse websites a single page at a time, but you can step back and consider _all_ the pages on a site as a tree of pages and other resources.
 
 The <a href="/demos/aboutUs/" target="_blank">sample About Us site</a> defines a small set of pages:
 
@@ -66,17 +66,17 @@ You can think about this set of pages as a tree:
 }}
 </figure>
 
-Website creators refer to URLs as _routes_: when you enter a URL like [team/Alice.html](/demos/aboutUs/team/Alice.html), you're picking one particular route through this map of the site's content. Conceptually speaking, the web server starts at the tree's root on the left and then follows the keys `team` and `Alice.html` through this map to find the web page it should send to your browser.
+Website creators refer to URLs as _routes_: when you navigate to a URL like [team/Alice.html](/demos/aboutUs/team/Alice.html), you're picking one particular route through this map of the site's content. Conceptually speaking, the web server starts at the tree's root on the left and then follows the keys `team` and `Alice.html` through this map to find the web page it should send to your browser.
 
-The full tree for a site is a little bigger than what's shown above, because it also includes CSS stylesheets, image files, or other resources referenced by the HTML:
+The site's complete tree is a little bigger than what's shown above, because it also includes CSS stylesheets, image files, or other resources referenced by the HTML:
 
 <figure>
 {{ svg.js siteComplete }}
 </figure>
 
-This conceptual tree can help you envision and build a site. How your _users_ experience your site is a separate concern. It's up to you to decide how your pages should be linked to create the experience you want your users to have.
+This conceptual tree can help you envision and build a site. How your _users_ experience your site is a separate concern. You decide how to link your pages to create the experience you want your users to have.
 
-Most web systems don't give you a way to directly edit or visualize a site's tree. In Origami you directly build your site's tree, grafting together branches defined in different ways.
+Most web systems don't give you a way to directly edit or visualize a site's tree. In Origami you directly construct your site's tree, combining branches defined in different ways.
 
 ## Defining a simple tree
 
@@ -100,19 +100,19 @@ that produces the tree with one branch shown earlier:
 }}
 </figure>
 
-In this Origami file, everything between the `{ }` curly braces defines the keys and values of the top level of the site tree. The name `index.html` defines a key in the tree; the expression to the right of the equals sign defines the value for that key.
+In this Origami file, everything between the `{ }` curly braces defines the keys and values of the top level of the site tree. The name `index.html` is a key in this tree; the expression after the equals sign defines that key's value.
 
 File names often contain periods so, unlike many programming languages, Origami lets you include periods in a name like `index.html`.
 
 The Origami server lets you immediately browse this tree.
 
-_Key points: A site's definition in Origami is extremely concise. You can immediately interact with the site you've defined. You can visualize the site as an interactive diagram._
+_Key points: An Origami file provides a concise way to define a site. You can interact with your site immediately and view it as an interactive diagram._
 
 ## Tree scope
 
 A formula you write in Origami defines a key and a value, like the `index.html` and text above. Those formulas can refer to other values.
 
-Origami works out what those references mean by defining a _scope_: the set of all the names that are available for you to use. As a trivial example, you can recreate the "Hello, world!" page above by defining the "name" as a separate value:
+Origami determines the meaning of those references by defining a _scope_: the set of all the names available for use. As a trivial example, you can recreate the "Hello, world!" page above by defining the "name" as a separate value:
 
 ```
 {
@@ -134,9 +134,9 @@ The text enclosed by backtick characters constructs a text string. Origami evalu
 
 ## Tree scope is hierarchical
 
-Origami resolves a reference like `name` by walking from the location of the reference towards the tree's root (left, in these diagrams). As soon as Origami finds a matching key, it uses that value.
+Origami resolves a reference like `name` by searching from the location of the reference towards the tree's root (left, in these diagrams). As soon as Origami finds a matching key, it uses that value.
 
-We can see tree scope in action by adding a level to our little tree so that the index page is available at `about/index.html`:
+We can observe tree scope in action by adding a level to our little tree, making the index page available at `about/index.html`:
 
 ```
 {
@@ -158,7 +158,7 @@ We can see tree scope in action by adding a level to our little tree so that the
 }}
 </figure>
 
-This produces the same "Hello, world!" message as before. When Origami sees `name` in the `index.html` formula, it looks in that local `about` area of the tree for `name`. It doesn't see a `name` there, so moves up to the tree's top level, where it does find a `name`.
+This produces the same "Hello, world!" message as before. When Origami sees `name` in the `index.html` formula, it searches the local `about` area of the tree for `name`. It doesn't see a `name` there, so moves up to the tree's top level, where it does find a `name`.
 
 _Key point: Tree scoping in Origami works like block scoping in many programming languages._
 
@@ -166,7 +166,7 @@ _Key point: Tree scoping in Origami works like block scoping in many programming
 
 The scope available in an Origami file includes the surrounding files. The tree you define in an Origami file is considered to be part of the larger file system tree.
 
-Let's say the `site.ori` file is part of a folder called `myProject`:
+Let's say a `site.ori` file is in a folder called `myProject`:
 
 ```
 myProject/
@@ -174,7 +174,7 @@ myProject/
   site.ori
 ```
 
-In addition to `site.ori`, this folder has a file called `name` that contains the plain text:
+This folder also has a file called `name` that contains the plain text:
 
 ```
 world
@@ -198,9 +198,9 @@ to produce the same result as before:
 }}
 </figure>
 
-Here, when Origami looks for `name`, it doesn't find a `name` key inside the Origami file. Origami moves up into the surrounding folder and finds the little `name` text file there, so uses that file's contents as the name.
+Here, when Origami looks for `name`, it doesn't find a `name` key in the Origami file, so it moves up into the surrounding folder. It finds the little `name` text file there, so uses that file's contents as the name.
 
-By default, Origami will continue walking up the folder hierarchy, looking for `name`, until it reaches the directory where the Origami server was started. The folders and files in your project are available in the scope of your Origami formulas. In most programming languages, you must first "import" or otherwise explicitly load files from the file system.
+By default, Origami will continue searching up the folder hierarchy, looking for `name`, until it reaches the directory where the Origami server was started. The folders and files in your project are available in the scope of your Origami formulas. In most programming languages, you must first "import" or otherwise explicitly load files from the file system.
 
 _Key points: Origami expressions can directly reference files in your project, making it easy for you to incorporate files into your site._
 
@@ -285,9 +285,9 @@ _Key point: You can quickly incorporate folders of resources like images, styles
 
 ## Turning a tree of stuff into something else
 
-You may often find yourself creating content in one form — text, images, etc. — that you want to process into some other form before sharing it on your site.
+You may often find yourself creating content in one form — text, images, etc. — that you want to process into some other form before publishing it on your site.
 
-Suppose you want to write your site content as a folder of markdown files that you will turn into HTML. You can visualize that markdown folder as a tree:
+For instance, you might want to write your site content in a folder of markdown files that you will convert to HTML. You can visualize that markdown folder as a tree:
 
 <figure>
 {{
@@ -359,9 +359,9 @@ which gives
 }}
 </figure>
 
-You can browse the transformed HTML immediately. Other programming environments have similar maps, but Origami's are "lazy" (they don't do work to create something until you ask for it), can work on deep trees (not just flat arrays), and can be applied equally to any data source.
+You can browse the transformed HTML immediately. Other programming environments have maps too, but Origami's are "lazy", meaning they don't do work to create something until you ask for it. They can also work on deep trees, not just flat arrays, and can be applied equally to any data source.
 
-If you wanted the mapped HTML pages to be the entire site instead of just the `html` area, you could update `site.ori` to just return the map:
+If you wanted the mapped HTML pages to be the entire site instead of just the `html` area, you could update `site.ori` to return the map itself:
 
 ```
   @map(markdown, { extensions: "md->html", valueMap: @mdHtml })
@@ -383,7 +383,7 @@ _Key point: You can use Origami maps to efficiently transform collections of con
 
 ## Templates
 
-Many website creation tools use templates: text documents with placeholders to mark where data should go. You can use those template systems with Origami, but Origami also comes with a built-in template system that understands trees of files and data.
+Many website creation tools use templates: text documents with placeholders to indicate where data should go. You can use any template system with Origami, but Origami also comes with a built-in template system that understands trees of files and data.
 
 An Origami project for a blog might have a structure like:
 
@@ -497,9 +497,9 @@ Continuing the blog example above, you can define an `index.orit` template that 
 </html>
 ```
 
-Origami looks up references inside the template like `posts` using the same tree scope discussed above. Inside the `@map`, the `@key` expression returns the name of the page file like "post1.html".
+Origami looks up references like `posts` inside the template using the same tree scope discussed earlier. Inside the `@map`, the `@key` expression returns the name of the page file like "post1.html".
 
-Tree scope erases the boundary between the files outside the template and the HTML and instructions inside the template, so you can generate HTML reflecting the contents of the original `posts` folder.
+Tree scope erases the boundary between the files outside the template and the HTML and instructions inside the template, letting you generate HTML that reflects the contents of the original `posts` folder.
 
 Invoke this template to create the index page:
 
