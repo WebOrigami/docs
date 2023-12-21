@@ -31,23 +31,21 @@ jsScopeExample:
           newTotal: "[What can this see?]"
 ---
 
-## What is scope?
-
-Most Origami expressions will contain references to named functions, files, data keys, etc., which must be resolved in order to evaluate the expression. For example, consider the framework formula:
+Most Origami expressions contain references to named functions, files, data keys, etc., which must be resolved in order to evaluate the expression. For example, consider the formula:
 
 ```
 message = greet.js()
 ```
 
-Or the Origami CLI command:
+Or the ori command:
 
 ```console
 $ ori greet.js/
 ```
 
-In these examples, where does Origami look for the definition of `greet.js` function? And if `greet.js` is defined in multiple places, which definition will be used? Web Origami answers these questions by defining a _scope_ that is used to evaluate any expression.
+In these examples, where does Origami look for the definition of `greet.js` function? And if `greet.js` is defined in multiple places, which definition will be used? Origami answers these questions by defining a _scope_ that is used to evaluate any expression.
 
-## Scope in Web Origami is based on trees
+## Scope in Origami is based on trees
 
 Suppose we have a project with a file system hierarchy like:
 
@@ -73,12 +71,12 @@ The reference to `greet` is resolved by treating the entire project as a tree:
 {{ svg.js projectExample }}
 </figure>
 
-When Web Origami needs to resolve the `greet.js` reference, it walks "up" this tree:
+When Origami needs to resolve the `greet.js` reference, it walks "up" this tree:
 
-- It starts by looking for `greet.js` inside the `site.ori` file. This defines `index.html` and `name`, but not `greet.js`, so Web Origami moves up a level to the `src` folder that contains the file.
-- In the `src` folder, Web Origami _does_ find `greet.js`. It dynamically loads that module and takes its default export as `greet`. The search ends there.
-- Depending on how Web Origami was invoked, if `src` didn't define `greet.js`, Web Origami could continue walking up the file system hierarchy into the project's root folder. (See [Define a project root](#define-a-project-root).)
-- The last place Web Origami would look is the base scope, which by default is Web Origami's collection of built-in functions. (See [Define a custom base scope](#define-a-custom-base-scope).)
+- It starts by looking for `greet.js` inside the `site.ori` file. This defines `index.html` and `name`, but not `greet.js`, so Origami moves up a level to the `src` folder that contains the file.
+- In the `src` folder, Origami _does_ find `greet.js`. It dynamically loads that module and takes its default export as `greet`. The search ends there.
+- Depending on how Origami was invoked, if `src` didn't define `greet.js`, Origami could continue walking up the file system hierarchy into the project's root folder. (See [Define a project root](#define-a-project-root).)
+- The last place Origami would look is the base scope, which by default is Origami's collection of built-in functions. (See [Define a custom base scope](#define-a-custom-base-scope).)
 
 As with block scoping in programming languages (see below), in tree scoping the search only goes up the tree. If you want to go back deeper into the tree, you must make an explicit reference using paths:
 
@@ -87,7 +85,7 @@ As with block scoping in programming languages (see below), in tree scoping the 
 
 ### Like block scope in programming languages
 
-Tree scope in Web Origami is inspired by [block scope](<https://en.wikipedia.org/wiki/Scope_(computer_science)#Block_scope>) in traditional, block-oriented programming languages like JavaScript. Consider the following JavaScript sample:
+Tree scope in Origami is inspired by [block scope](<https://en.wikipedia.org/wiki/Scope_(computer_science)#Block_scope>) in traditional, block-oriented programming languages like JavaScript. Consider the following JavaScript sample:
 
 ```js
 const power = 2;
@@ -112,11 +110,11 @@ The line that defines `newTotal` can "see" the following variables in scope, eac
 - `sumSquares` and `power` are defined at the module's top level
 - `Math` and other global objects are defined by the language and the environment
 
-Scope in Web Origami works the same way, but instead of working up a hierarchy of lexical programming blocks, Web Origami scope works its way up a hierarchy of folders and data.
+Scope in Origami works the same way, but instead of working up a hierarchy of lexical programming blocks, Origami scope works its way up a hierarchy of folders and data.
 
 ## Extend the language by leveraging scope
 
-You can use this system to make new functions available to any part of Web Origami — the ori CLI, the Origami [template system](templates.html), `.ori` files to define trees, or [expressions in YAML files](yaml.html). All you need to do is make a JavaScript file available somewhere in scope.
+You can use this system to make new functions available to any part of Origami — the ori CLI, the Origami [template system](templates.html), `.ori` files to define trees, or [expressions in YAML files](yaml.html). All you need to do is make a JavaScript file available somewhere in scope.
 
 In the example above, placing a file like `greet.js` in the same folder as the `site.ori` file makes the `greet` function available to expressions in `site.ori`.
 
@@ -128,7 +126,7 @@ You can take advantage of tree scope to hide internal details. If the sample pro
 
 ## Default scope
 
-By default, Web Origami tools like the [ori](/cli) command-line interface (CLI) search in the current directory, then the collection of built-in functions.
+By default, Origami tools like the [ori](/cli) command-line interface (CLI) search in the current directory, then the collection of built-in functions.
 
 If you ask ori to evaluate an expression that includes a deeper file system path, it will search from that deeper location up to the current directory.
 
@@ -150,7 +148,7 @@ From the `src` folder, you can invoke:
 $ ori site.ori/index.html
 ```
 
-The invokes `greet`, which works because Web Origami finds `greet.js` in the current folder.
+The invokes `greet`, which works because Origami finds `greet.js` in the current folder.
 
 You can also invoke the command from the project's root:
 
@@ -158,7 +156,7 @@ You can also invoke the command from the project's root:
 $ ori src/site.ori/index.html
 ```
 
-This also works, because Web Origami works from the tree defining `index.html` up to the current folder.
+This also works, because Origami works from the tree defining `index.html` up to the current folder.
 
 ## Define a project root with ori.config.js
 
@@ -190,7 +188,7 @@ In this situation, `greet.js` is _above_ the current folder (`src`), so it's out
 
 You can fix this by defining a file called `ori.config.js` at the root level of your project. This configuration file has two roles: 1) it marks the root of your project, and 2) it defines the project's base scope.
 
-The simplest definition of `ori.config.js` is to export the Web Origami built-in functions:
+The simplest definition of `ori.config.js` is to export the Origami built-in functions:
 
 ```js
 // ori.config.js
@@ -198,7 +196,7 @@ import { builtins } from "@weborigami/origami";
 export default builtins;
 ```
 
-With such a file in place, instead of stopping its search of the file system hierarchy at the current folder, it will continue searching up to the project root. As a last resort, it will search inside the tree exported by the configuration file — here, the Web Origami built-in functions.
+With such a file in place, instead of stopping its search of the file system hierarchy at the current folder, it will continue searching up to the project root. As a last resort, it will search inside the tree exported by the configuration file — here, the Origami built-in functions.
 
 ## Define a custom base scope
 

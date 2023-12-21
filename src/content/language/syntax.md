@@ -2,7 +2,7 @@
 title: Origami language syntax
 ---
 
-The Origami expression language is mostly focused on invoking functions and traversing trees, and borrows elements of its syntax from JavaScript expressions, web URLs, and template languages.
+The Origami language is mostly focused on invoking functions and traversing trees, and borrows elements of its syntax from JavaScript expressions, web URLs, and template languages.
 
 ## Strings
 
@@ -188,7 +188,7 @@ $ ori greetings.yaml/Alice
 Hello, Alice.
 ```
 
-In Web Origami, functions are a type of tree, so a function can also be invoked with slash syntax:
+In Origami, functions are a type of tree, so a function can also be invoked with slash syntax:
 
 ```console
 $ ori greet.js
@@ -216,7 +216,7 @@ https://example.com
 
 When evaluated, the value of the expression will be the response to that network request.
 
-In Web Origami, a protocol is just a function call, so you can write your own protocols:
+In Origami, a protocol is just a function call, so you can write your own protocols:
 
 ```
 fn://a/b/c

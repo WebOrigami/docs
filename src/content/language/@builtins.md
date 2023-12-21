@@ -2,7 +2,7 @@
 title: "@builtins"
 ---
 
-`@builtins` returns a tree of the complete set of Web Origami's built-in functions.
+`@builtins` returns a tree of the complete set of Origami built-in functions.
 
 The built-in functions are already prefixed with `@` signs to reduce the chance of a name collision, but the `@builtins` tree lets you further disambiguate between a local file or function of yours whose name happens to start with a `@`.
 

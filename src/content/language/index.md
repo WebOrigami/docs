@@ -29,8 +29,8 @@ The Origami language is relatively small, because it is intended just to:
 
 You can use the same Origami language in:
 
-- Web Origami `.ori` files that define websites and other structured content.
-- Web Origami [templates](templates.html) to add dynamic content inside boilerplate text like HTML.
+- Origami `.ori` files that define websites and other structured content.
+- Origami [templates](templates.html) to add dynamic content inside boilerplate text like HTML.
 - [Dynamic front matter in YAML](yaml.html) via a custom tag.
 - The [ori command-line tool](/cli/) to evaluate command-line arguments. This gives you considerable expressive power to invoke JavaScript from the command line to, for example, traverse and manipulate files and other types of data.
 

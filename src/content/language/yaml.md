@@ -2,7 +2,7 @@
 title: Origami expressions in YAML
 ---
 
-When you load YAML files in Web Origami, any values tagged with the `!ori` YAML tag will be evaluated as Origami expressions.
+When you load YAML files in Origami, any values tagged with the `!ori` YAML tag will be evaluated as Origami expressions.
 
 Suppose `expressions.yaml` contains:
 
