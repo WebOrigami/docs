@@ -80,7 +80,7 @@ Most web systems don't give you a way to directly edit or visualize a site's tre
 
 ## Defining a simple tree
 
-The concise Origami [language](/language) lets you build sites and other things with trees.
+The concise Origami [language](/language/) lets you build sites and other things with trees.
 
 In the Origami language, you define a site in an Origami file with a name like `site.ori`. The name isn't significant; anything with the `.ori` extension will do. If an Origami file contains:
 
@@ -383,7 +383,7 @@ _Key point: You can use Origami maps to efficiently transform collections of con
 
 ## Templates
 
-Many website creation tools use templates: text documents with placeholders to indicate where data should go. You can use any template system with Origami, but Origami also comes with a built-in template system that understands trees of files and data.
+Many website creation tools use templates: text documents with placeholders to indicate where data should go. You can use any template system with Origami, but Origami also comes with a built-in [template system](templates.html) that understands trees of files and data.
 
 An Origami project for a blog might have a structure like:
 

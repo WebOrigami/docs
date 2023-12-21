@@ -1,6 +1,6 @@
 ---
 title: Origami templates
-subtitle: Transform data to text
+subtitle: Transform data and files to text
 ---
 
 Web Origami templates let you convert turn data into HTML or other text documents through expressions embedded in text.

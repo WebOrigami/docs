@@ -1,5 +1,11 @@
 - href: index.html
   text: Overview
+- href: hello.html
+  text: Hello, world
+- href: tutorial.html
+  text: Tutorial
+- href: templates.html
+  text: Templates
 - href: syntax.html
   text: Syntax
 - href: scope.html

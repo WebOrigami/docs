@@ -116,7 +116,7 @@ Scope in Web Origami works the same way, but instead of working up a hierarchy o
 
 ## Extend the language by leveraging scope
 
-You can use this system to make new functions available to any part of Web Origami — the ori CLI, the Origami [template system](/concepts/templates.html), `.ori` files to define trees, or [expressions in YAML files](yaml.html). All you need to do is make a JavaScript file available somewhere in scope.
+You can use this system to make new functions available to any part of Web Origami — the ori CLI, the Origami [template system](templates.html), `.ori` files to define trees, or [expressions in YAML files](yaml.html). All you need to do is make a JavaScript file available somewhere in scope.
 
 In the example above, placing a file like `greet.js` in the same folder as the `site.ori` file makes the `greet` function available to expressions in `site.ori`.
 

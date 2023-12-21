@@ -725,11 +725,11 @@ If you don't want to create an account, Glitch will keep the site for some time 
 
 This concludes the Origami tutorial. You can continue exploring related topics:
 
-- The [Origami expression language](/language) you used to write formulas and template expressions has additional features not covered in this tutorial.
+- The [Origami expression language](/language/) you used to write formulas and template expressions has additional features not covered in this tutorial.
 - As you were creating the About Us site, the [Origami command-line interface](/cli) and its included web server was working behind the scenes to let you view the site during development and to copy the virtual files to real files.
 - The conceptual framework is built on an [async-tree](/async-tree) library that lets you do everything that you did here with formulas using JavaScript instead.
 - You can implement sites completely from scratch using the [async tree pattern](/pattern) and no library or framework at all, an approach may appeal to people who want to work as close to the metal as possible. That pattern is also a useful reference if you want to understand how Origami works under the hood.
 
 &nbsp;
 
-Back to [Concepts](/concepts/)
+Back to [Overview](/language/)

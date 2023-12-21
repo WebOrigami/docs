@@ -8,7 +8,20 @@ fileName: index.html
 
 {{ templates/blocks.orit(_) }}
 
-Web Origami is a research project exploring ideas and tools for building a wide variety of software artifacts and digital content. The system encourages you to view creating such things as an exercise in transformation: you take your starting files, data, etc., and transform them step-by-step into a final result you can use and share.
+Web Origami is a research project exploring a set of ideas and tools to let you build a wide variety of software artifacts and digital content:
+
+- The [Origami language](/language/) lets you concisely define a website or other structured using formulas similar to those in a spreadsheet.
+- The [ori command-line interface](/cli/) (CLI) lets you use Origami expressions in a command terminal to manipulate files or get resources out of an Origami website in the command line. The CLI is also useful as a general tool in its own right for working with JavaScript in the shell.
+- The [async-tree library](/async-tree/) lets JavaScript programmers use Origami features in JavaScript applications.
+- The [conceptual pattern](/pattern/) at the foundation of it all lets you represent a wide variety of data types as trees that can be easily traversed and transformed. There's no code at this level; you can use the ideas in any project.
+
+Web Origami is intended for designers, developers, and content authors.
+
+## Introduction
+
+<iframe style="aspect-ratio: 16/9; max-width: 100%; width: 560px;" src="https://www.youtube.com/embed/H5qu0sHLbi0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+## Inspiration
 
 Web Origami takes its name from the traditional paper folding art of origami, in which you can transform a flat square of paper into something like a heart, flower, or animal.
 
@@ -25,18 +38,8 @@ Web Origami takes its name from the traditional paper folding art of origami, in
 
 Every part of the final result is present at the start; the sequence of folds transforms the initial square of paper into the artwork. The steps may be simple but the end result can be complex.
 
-In the same way, Web Origami lets you take content you write and transform it step-by-step into something to share. The system is intended for designers, developers, and content authors.
+In the same way, Web Origami lets you take content you write and transform it step-by-step into something to share.
 
-<iframe style="aspect-ratio: 16/9; max-width: 100%; width: 560px;" src="https://www.youtube.com/embed/H5qu0sHLbi0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+## Help this research!
 
-Web Origami is built in a series of layers:
-
-- At the lowest level, there's a fundamental programming [pattern](/pattern/) for representing a wide variety of data types as hierarchical trees that can be easily transformed. There's no code at this level; use the ideas without depending on another project.
-- If you're a programmer and would like to benefit from sharing code, that conceptual pattern is implemented in an [async-tree library](/async-tree/) for JavaScript programmers.
-- There is also a companion [ori command-line interface](/cli/) (CLI) for using the framework in a command terminal. The CLI is also useful as a general tool in its own right for working with JavaScript in the shell.
-- Both the framework and CLI make use of a small [Origami expression language](/language/) that lets you concisely describe transformations of data using formulas similar to those in a spreadsheet.
-- At the highest level, a [conceptual framework](/concepts/) lets you concisely express transformations that create the software or other content you wish to make.
-
-These layers are independently useful; you can work at whatever layer you prefer.
-
-**Help this research!** Try things out in a usability test and share your feedback. Or participate in a pair programming session to collectively solve a problem you currently have with these new techniques and tools. Contact [Jan Miksovsky](https://jan.miksovsky.com/contact.html).
+If you're interested in trying Web Origami in a friendly setting, participate in a guided usability test and share your feedback. Or join a pair programming session to collectively solve a problem you currently have with these new techniques and tools. Contact [Jan Miksovsky](https://jan.miksovsky.com/contact.html).

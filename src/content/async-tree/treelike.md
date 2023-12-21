@@ -2,7 +2,7 @@
 title: Treelike objects
 ---
 
-Many features in the async-tree library and the [Origami expression language](/language) built-in functions accept async trees in a variety of _treelike_ objects.
+Many features in the async-tree library and the [Origami expression language](/language/) built-in functions accept async trees in a variety of _treelike_ objects.
 
 The treelike types are, in order of priority:
 
