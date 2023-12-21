@@ -16,4 +16,4 @@ $ ori "@globs(globs.yaml)/foo.txt"
 true
 ```
 
-This can be used, for example, in conjunction with [`filter`](#filter) to filter values based on glob patterns.
+This can be used, for example, in conjunction with [`@filter`](@filter.html) to filter values based on glob patterns.
