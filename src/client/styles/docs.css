@@ -228,6 +228,15 @@ code.language-console span {
   font-weight: bold;
 }
 
+pre.step {
+  color: #555;
+}
+
+pre.step b {
+  color: black;
+  font-weight: bold;
+}
+
 /*
  * Navigation
  */

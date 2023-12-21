@@ -40,16 +40,18 @@ One day your team decides:
 
 <span class="tutorialStep"></span> Open the
 <a href="/demos/aboutUs/" target="_blank">sample About Us site</a>
-and click on a few pages to get a feel for it.
+and click on a few pages to get a feel for it. (This would typically be part of a larger site, but for illustration purposes we'll consider it a site on its own.)
 
-If you're the kind of person who can write spreadsheet formulas, you can use Origami to build that site.
+If you're the kind of person who can write spreadsheet formulas, you can use the Origami language to build that site.
 
 ## Start
 
 <span class="tutorialStep"></span> Open the
 <a href="https://glitch.com/edit/#!/origami-framework-intro" target="_blank">tutorial project on Glitch</a>, a free web-based code editor.
 
-<span class="tutorialStep"></span> Click the **Remix** button (or Remix to Edit) to create your own copy of the project to work on.
+You can use any web tool with Origami; Glitch is used here because it's free and has no setup.
+
+<span class="tutorialStep"></span> Click the **Remix** button (or Remix to Edit, either works) to create your own copy of the project.
 
 You'll see a list of files on the left and the currently-open file (the project's ReadMe) in the center.
 
@@ -57,9 +59,9 @@ You'll see a list of files on the left and the currently-open file (the project'
 
 The page in the preview pane says: Hello
 
-## Define a virtual file
+## Edit a simple page
 
-You'll define the complete set of pages and other resources your site will need in an Origami file with a `.ori` extension.
+You'll define the complete set of pages and other resources your site will need in an Origami file with a `.ori` extension. This project is configured to serve the site defined in `src/site.ori`.
 
 <span class="tutorialStep"></span> In the `src` folder, open `site.ori`:
 
@@ -69,13 +71,9 @@ You'll define the complete set of pages and other resources your site will need 
 }
 ```
 
-This Origami file defines a site with a file called `index.html`:
+Everything in between the `{ }` curly braces defines the top level of the site. For now, this defines a single thing you can think of as a file even though it's not stored anywhere. The name or _key_ for this file is "index.html". The contents or _value_ of this file is the text "Hello".
 
-- Everything in between the outermost `{` on the first line and the `}` on the last line defines the top level of the site.
-- Names in Origami can include periods so you can define file names with extensions.
-- For now, the `index.html` file is defined as a simple text string.
-
-This tutorial project is configured to serve the site defined in `site.ori`.
+You're going to work on this `site.ori` file so that it creates the About Us site. The `index.html` page will eventually become the main About Us page.
 
 <span class="tutorialStep"></span> **Try it:** Edit the text in the formula for `index.html` to give it more content, like: Hello, world!
 
@@ -99,13 +97,17 @@ index.html = 'Hello, world!'
 
 The little circle represents the overall tree, and the box represents the `index.html` file.
 
-<span class="tutorialStep"></span> Leaving the tree diagram open, switch back to the main Glitch window. You'll return to this tree diagram occasionally to view the structure of your evolving site.
+<span class="tutorialStep"></span> In the tree diagram, click the box for `index.html` to view it.
+
+<span class="tutorialStep"></span> Navigate back to the tree diagram.
+
+<span class="tutorialStep"></span> Leaving the tree diagram open, switch back to the main Glitch window. You'll return to this tree diagram occasionally to view the structure of your evolving site and to explore the individual pages.
 
 ## Formulas can call JavaScript
 
 The `index.html` file is currently defined with a simple formula. These formulas can also call JavaScript. You can do a lot in Origami without JavaScript, but easy access to JavaScript offers extensibility.
 
-<span class="tutorialStep"></span> View the file `src/greet.js`.
+<span class="tutorialStep"></span> View the file `src/greet.js`. Glitch shows only a single file at a time, so opening `greet.js` will replace `site.ori` in the editor window.
 
 ```{{'js'}}
 {{ demos/framework-intro/greet.js }}
@@ -117,11 +119,11 @@ Given a name, this function returns a greeting in HTML; the name will be set in 
 
 <clipboard-copy>
 
-```
+<pre class="step">
 {
-  index.html = greet.js("world")
+  index.html = <b>greet.js("world")</b>
 }
-```
+</pre>
 
 </clipboard-copy>
 
@@ -153,11 +155,11 @@ You can use this slash-separated path syntax anywhere you can refer to something
 
 <clipboard-copy>
 
-```
+<pre class="step">
 {
-  index.html = greet.js(teamData.yaml/0/name)
+  index.html = greet.js(<b>teamData.yaml/0/name</b>)
 }
-```
+</pre>
 
 </clipboard-copy>
 
@@ -167,7 +169,7 @@ The preview should show something like: Hello, **Alice**!
 
 In addition to creating HTML in JavaScript, you can also use one of many JavaScript-based template systems. For this tutorial, you'll use the [template system built into Origami](templates.html).
 
-<span class="tutorialStep"></span> In the `src` folder, open `index.orit`.
+<span class="tutorialStep"></span> In the `src` folder, open `index.orit`. The extra "t" in `.orit` is for "template".
 
 <clipboard-copy>
 
@@ -177,19 +179,17 @@ In addition to creating HTML in JavaScript, you can also use one of many JavaScr
 
 </clipboard-copy>
 
-An Origami template in a `.orit` file (with an extra `t` for "template") can produce text like HTML.
-
 You can call this `index.orit` template as a function, just like you invoked `greet.js`.
 
 <span class="tutorialStep"></span> **Try it:** In `site.ori`, update your `index.html` formula to remove the call to `greet.js` and instead invoke your `index.orit` template as a function.
 
 <clipboard-copy>
 
-```
+<pre class="step">
 {
-  index.html = index.orit()
+  index.html = <b>index.orit()</b>
 }
-```
+</pre>
 
 </clipboard-copy>
 
@@ -205,10 +205,10 @@ Inside the curly braces, you can do the same things you can in Origami formulas 
 
 <clipboard-copy>
 
-```html
-<h1>About Us</h1>
-\{\{ greet.js("Bob") }}
-```
+<pre class="step">
+&lt;h1>About Us&lt;/h1>
+<b>\{\{ greet.js("Bob") }}</b>
+</pre>
 
 </clipboard-copy>
 
@@ -222,24 +222,24 @@ When you call a Origami template as a function like `index.orit()`, you can put 
 
 <clipboard-copy>
 
-```
+<pre class="step">
 {
-  index.html = index.orit(teamData.yaml/0/name)
+  index.html = index.orit(<b>teamData.yaml/0/name</b>)
 }
-```
+</pre>
 
 </clipboard-copy>
 
 The preview won't change until you complete the next step.
 
-<span class="tutorialStep"></span> Next, update the `index.orit` template to make use of the name you're passing to it. In the call to `greet.js`, replace the hard-coded name with an underscore (`_`).
+<span class="tutorialStep"></span> Next, update the `index.orit` template to make use of the name you're passing to it. In the call to `greet.js`, replace the quoted name with a `_` underscore.
 
 <clipboard-copy>
 
-```html
-<h1>About Us</h1>
-<p>\{\{ greet.js(_) }}</p>
-```
+<pre class="step">
+&lt;h1>About Us&lt;/h1>
+\{\{ greet.js<b>(_)</b> }}
+</pre>
 
 </clipboard-copy>
 
@@ -249,32 +249,34 @@ The preview updates to use the name you passed, like Hello, **Alice**!
 
 There are several places in this web site where you want to transform one set of things and into a new set of things:
 
-- For each team member in teamData.yaml, you want a tile on the index page.
-- For each team member in teamData.yaml, you want a page in the `team` area.
-- For each image like `images/van.jpg`, you want a corresponding thumbnail image like `thumbnails/van.jpg`.
+1. For each team member in teamData.yaml, you want a page in the `team` area.
+1. For each team member in teamData.yaml, you want a tile on the main About Us page.
+1. For each image like `images/van.jpg`, you want a corresponding thumbnail image like `thumbnails/van.jpg`.
 
-You can address all these situations in Origami with a _map_.
+You can address all these situations in Origami with a _map_. This is a "map" in the [computer science sense of the word](<https://en.wikipedia.org/wiki/Map_(higher-order_function)>): an operation performed on every item in a collection to produce a new collection.
+
+You can think of the result of a map as a virtual folder — a set of things you can browse and work with, but which aren't stored anywhere. This is an efficient way to create an entire area of a site from existing data or files.
+
+Let's start by mapping the people defined in `teamData.yaml`: for each person, we'll create a corresponding web page. Those web pages will be the `team` area for the About Us site.
 
 <span class="tutorialStep"></span> **Try it:** Add the following formula for `team` to `site.ori`:
 
 <clipboard-copy>
 
-```
+<pre class="step">
 {
   index.html = index.orit(teamData.yaml/0/name)
-  team = @map(teamData.yaml, =_/name)
+  <b>team = @map(teamData.yaml, =_/name)</b>
 }
-```
+</pre>
 
 </clipboard-copy>
 
 This formula calls a built-in function called [@map](/language/@map.html). All built-in functions start with an `@` sign.
 
-This `team` formula says: starting with the tree of structured data in `teamData.yaml`, create a new tree — essentially, a virtual folder based on the original data. The keys of the new tree will be the same as in `teamData.yaml`.
+This `team` formula says: starting with the tree of structured data in `teamData.yaml`, create a new tree. For each person in the data, evaluate the expression `=_/name`. The `_` underscore represents the person being operated on, so the expression `_/name` gets the person's `name` field.
 
-The data for each person in `teamData.yaml` will be mapped using the expression `=_/name`. That defines a function called once for each person. The `_` underscore represents the person being operated on, so `_/name` gets the person's `name` field.
-
-This `@map` transforms the structured data in `teamData.yaml` to a corresponding tree of names:
+So the `team` formula transforms the team data into a corresponding tree of names:
 
 <div class="sideBySide">
   <figure>
@@ -299,7 +301,7 @@ This `@map` transforms the structured data in `teamData.yaml` to a corresponding
 
 <figure>
   {{ svg.js {
-    index.html = "<h1>About Us</h1>"
+    index.html = "<h1>About Us</h1> Hello…"
     team = [
       "Alice"
       "Bob"
@@ -310,18 +312,18 @@ This `@map` transforms the structured data in `teamData.yaml` to a corresponding
 
 ## Call a function in a map
 
-The formula you give to `@map` can be arbitrarily complex.
+The formula you give to `@map` can be as complex as your situation requires.
 
 <span class="tutorialStep"></span> **Try it**: In the Glitch editor window, in `site.ori`, update the expression `=_/name` so that, instead of just returning a `name`, it calls the `greet` function and passes in that person's name:
 
 <clipboard-copy>
 
-```
+<pre class="step">
 {
   index.html = index.orit(teamData.yaml/0/name)
-  team = @map(teamData.yaml, =greet.js(_/name))
+  team = @map(teamData.yaml, =<b>greet.js(_/name)</b>)
 }
-```
+</pre>
 
 </clipboard-copy>
 
@@ -338,8 +340,6 @@ The formula you give to `@map` can be arbitrarily complex.
   } }}
 </figure>
 
-A map in Origami is an efficient way to create entire areas of a site.
-
 ## Pull in more resources
 
 The `src` folder has two real subfolders you'll want to include in the tree for your site:
@@ -353,14 +353,14 @@ You can pull a real folder or file into your tree by writing its name on a line 
 
 <clipboard-copy>
 
-```
+<pre class="step">
 {
   index.html = index.orit(teamData.yaml/0/name)
   team = @map(teamData.yaml, =greet.js(_/name))
-  assets
-  images
+  <b>assets
+  images</b>
 }
-```
+</pre>
 
 </clipboard-copy>
 
@@ -374,7 +374,7 @@ Let's use the `@map` function to create small thumbnail images for each team mem
 
 <span class="tutorialStep"></span> View the images in the `src/images` folder, which contains a few full-size images. Each person in `teamData.yaml` identifies one of these sample images as a profile photo.
 
-For each full-size image, you want to produce a corresponding thumbnail image that will appear on the index page. Instead of using an image-editing app to create a real folder of thumbnail images, you can create a virtual folder of thumbnail images on demand.
+For each full-size image, you want to produce a corresponding thumbnail image that will appear on the main About Us page. Instead of using an image-editing app to create a real folder of thumbnail images, you can create a virtual folder of thumbnail images on demand.
 
 The file `src/thumbnail.js` contains a small JavaScript function which, given the data for an image, invokes an image-editing library to generate a new image at a smaller size.
 
@@ -382,15 +382,15 @@ The file `src/thumbnail.js` contains a small JavaScript function which, given th
 
 <clipboard-copy>
 
-```
+<pre class="step">
 {
   index.html = index.orit(teamData.yaml/0/name)
   team = @map(teamData.yaml, =greet.js(_/name))
   assets
   images
-  thumbnails = @map(images, thumbnail.js)
+  <b>thumbnails = @map(images, thumbnail.js)</b>
 }
-```
+</pre>
 
 </clipboard-copy>
 
@@ -398,7 +398,7 @@ This `thumbnails` formula applies the `thumbnail.js` function to each of the ima
 
 <span class="tutorialStep"></span> Switch to the tree diagram window and refresh it to view your site's updated structure.
 
-The virtual `thumbnails` folder contains a set of thumbnail images _that do not exist_ in any persistent form. They are potential images that are only created when you ask for them.
+The virtual `thumbnails` folder in the diagram contains a set of thumbnail images _that do not exist_ in any persistent form. They are potential images that are only created when you ask for them.
 
 <span class="tutorialStep"></span> In the tree diagram, click a box for a real image like `images/van.jpg` to preview it.
 
@@ -408,7 +408,7 @@ The virtual `thumbnails` folder contains a set of thumbnail images _that do not 
 
 ## Incorporate input into a template
 
-Your index page should display a tile for each member that links to their individual page.
+The main About Us page should display a tile for each member that links to their individual page.
 
 At the moment, the `site.ori` file is passing a single person's name to `index.orit`:
 
@@ -418,19 +418,19 @@ At the moment, the `site.ori` file is passing a single person's name to `index.o
 
 We're going to change `index.orit` so that, instead of just accepting a single person's name, it accepts the entire hierarchical tree of team data.
 
-<span class="tutorialStep"></span> **Try it:** Switch the Glitch editor window. Update the formula for `index.html` so that the entire `teamData.yaml` file is passed to the template.
+<span class="tutorialStep"></span> **Try it:** Switch the Glitch editor window. In `site.ori`, update the formula for `index.html` so that the entire `teamData.yaml` file is passed to the template.
 
 <clipboard-copy>
 
-```
+<pre class="step">
 {
-  index.html = index.orit(teamData.yaml)
+  index.html = index.orit(<b>teamData.yaml</b>)
   team = @map(teamData.yaml, =greet.js(_/name))
   assets
   images
   thumbnails = @map(images, thumbnail.js)
 }
-```
+</pre>
 
 </clipboard-copy>
 
@@ -438,10 +438,10 @@ We're going to change `index.orit` so that, instead of just accepting a single p
 
 <clipboard-copy>
 
-```{{"html"}}
-<h1>About Us</h1>
-\{\{ _ }}
-```
+<pre class="step">
+&lt;h1>About Us&lt;/h1>
+<b>\{\{ _ }}</b>
+</pre>
 
 </clipboard-copy>
 
@@ -449,7 +449,7 @@ The preview updates to show the entire contents of `teamData.yaml`. That's more 
 
 ## Create a map inside a template
 
-In `site.ori`, you've already created a map of `images` to `thumbnails`, and a map of `teamData.yaml` to a set of `team` greetings. You're now going to do the same kind of map inside the `index.ori` template to translate the data for the team members into a corresponding set of HTML blocks.
+In `site.ori`, you've already created a map of `images` to `thumbnails`, and a map of `teamData.yaml` to a set of `team` greetings. You're now going to do the same kind of map inside the `index.ori` template to translate the data for the team members into corresponding bits of HTML, each of which defines a card showing a person's thumbnail and name.
 
 <span class="tutorialStep"></span> Copy and paste the following into `index.orit`.
 
@@ -487,7 +487,7 @@ The text inside a template can be as complex as you want.
 
 Functionally speaking, this is no more complex than the earlier template; it just has more elements.
 
-The index page preview now shows a tile for each team member that includes their name and location. It also shows a thumbnail image pulled from the virtual `thumbnails` folder you created earlier. As far as the `<img>` tag above knows, that thumbnail is a real image — but actually that image is being created on demand.
+The preview for `index.html` now shows a tile for each team member that includes their name and location. It also shows a thumbnail image pulled from the virtual `thumbnails` folder you created earlier. As far as the `<img>` tag above knows, that thumbnail is a real image — but actually that image is being created on demand.
 
 ## Create a person template
 
@@ -509,15 +509,15 @@ This template displays a person's name in a header. You can use this in the `@ma
 
 <clipboard-copy>
 
-```
+<pre class="step">
 {
   index.html = index.orit(teamData.yaml)
-  team = @map(teamData.yaml, person.orit)
+  team = @map(teamData.yaml, <b>person.orit</b>)
   assets
   images
   thumbnails = @map(images, thumbnail.js)
 }
-```
+</pre>
 
 </clipboard-copy>
 
@@ -533,25 +533,25 @@ This template displays a person's name in a header. You can use this in the `@ma
 
 ## Use people names as file names
 
-As you've seen, the top-level keys in `teamData.yaml` are numbers, like `0` for the first person, so at the moment the `team` area pages are identified with numbers too. But in your final website tree, you'd like the names of the pages in the `team` area to include the person's name, like `Alice.html`.
+As you've seen, the top-level keys in `teamData.yaml` are numbers, like `0` for the first person, so at the moment the `team` area pages are identified with numbers too. But in your final website tree, you'd like the keys of the pages in the `team` area to include the person's name, like `Alice.html`.
 
-To support this, the `@map` function has another form in which the second parameter isn't a single thing like `greet.js` or `person.orit`, but a set of options that can designate multiple functions. The function you've seen so far for mapping values can be specified as the `valueMap` option.
+So you want to transform both the keys and values of the team data. You can do this with an expanded form of the `@map` function.
 
-<span class="tutorialStep"></span> **Try it:** In `site.ori`, update the `team` formula so that the second parameter is a set of options in `{ }` single curly braces. Turn the existing `person.orit` reference into a `valueMap` option.
+<span class="tutorialStep"></span> **Try it:** In `site.ori`, update the `team` formula so that the second parameter is a set of options in `{ }` curly braces. Turn the existing `person.orit` reference into a `valueMap` option.
 
 <clipboard-copy>
 
-```
+<pre class="step">
 {
   index.html = index.orit(teamData.yaml)
-  team = @map(teamData.yaml, {
+  team = @map(teamData.yaml, <b>{
     valueMap: person.orit
-  })
+  }</b>)
   assets
   images
   thumbnails = @map(images, thumbnail.js)
 }
-```
+</pre>
 
 </clipboard-copy>
 
@@ -559,18 +559,18 @@ To support this, the `@map` function has another form in which the second parame
 
 <clipboard-copy>
 
-```
+<pre class="step">
 {
   index.html = index.orit(teamData.yaml)
   team = @map(teamData.yaml, {
-    keyMap: =_/name
+    <b>keyMap: =_/name</b>
     valueMap: person.orit
   })
   assets
   images
   thumbnails = @map(images, thumbnail.js)
 }
-```
+</pre>
 
 </clipboard-copy>
 
@@ -603,18 +603,18 @@ We want the pages in the `team` area to end in a `.html` extension because that 
 
 <clipboard-copy>
 
-```
+<pre class="step">
 {
   index.html = index.orit(teamData.yaml)
   team = @map(teamData.yaml, {
-    keyMap: =`\{\{ _/name }}.html`
+    keyMap: =<b>`\{\{ _/name }}.html`</b>
     valueMap: person.orit
   })
   assets
   images
   thumbnails = @map(images, thumbnail.js)
 }
-```
+</pre>
 
 </clipboard-copy>
 
@@ -642,7 +642,7 @@ The only thing left to do is complete the `person.orit` template.
 
 </clipboard-copy>
 
-<span class="tutorialStep"></span> In the site preview, you can now click a person tile on the index page to navigate to the page for that person.
+<span class="tutorialStep"></span> In the site preview, you can now click a person tile on the main About Us page to navigate to the specific page for that team member.
 
 ## View the tree of the completed site
 
@@ -654,7 +654,7 @@ The site is now complete.
 {{ svg.js siteComplete }}
 </figure>
 
-Stepping back, consider that you've created this entire site with a few resources, a couple of templates, and a concise `site.ori` with a handful of formulas:
+To review, you've created this entire site with a few resources, a couple of templates, and a concise `site.ori` with a handful of formulas:
 
 <clipboard-copy>
 
@@ -675,19 +675,21 @@ Stepping back, consider that you've created this entire site with a few resource
 
 ## Building static files
 
-You have been viewing your About Us site using a small Origami server which is running in the background. But since the members of your team aren't going to change every minute, Glitch can automatically render all the pages and other necessary resources as static files. That makes the site faster — and free!
+You have been viewing your About Us site using a small Origami server running in the background. Since the members of your team aren't going to change every minute, you can turn the whole site into static files: regular files whose contents aren't expected to constantly change.
 
-Glitch will build the static files automatically after you stop editing the site, but you can manually trigger the build process to see it in action.
+Defining a site as static files is generally faster and cheaper than running a live web server. On services like Glitch, static file websites are free!
+
+Glitch will build your site's static files automatically after you stop editing the site, but you can manually trigger the build process to see it in action.
 
 <span class="tutorialStep"></span> In the main Glitch editor window, click the **Terminal** button in the toolbar at the bottom of the Glitch window.
 
-<span class="tutorialStep"></span> In the Glitch terminal, type the following command:
+<span class="tutorialStep"></span> In the Glitch terminal, type the following command. (The `$` dollar sign comes from the terminal — don't type it.)
 
 ```console
 $ npm run build
 ```
 
-This invokes a Origami tool called `ori`, and instructs it to copy the contents of the entire virtual `public` tree to a real file system folder called `build`. This turns the virtual files into real files.
+That copies everything in your running website to a real folder called `build`.
 
 <span class="tutorialStep"></span> In the Glitch terminal, type:
 
@@ -707,26 +709,26 @@ In addition to copies of the real files in the `assets` and `images` folders, th
 - A real `index.html` page with HTML that includes a tile for each team member.
 - A real `team` folder with real HTML pages for each team member.
 
-Because these static files are all in native web formats, your static site can be extremely fast. There are opportunities around the margins to make your site even faster, but this is already a good start on a performant site.
+At some point after you close the Glitch window, Glitch will rebuild and serve these static files instead of using the Origami server. Because the static files all use native web formats, your site will be extremely fast.
 
 ## View your final site
 
-<span class="tutorialStep"></span> Find your site's shareable URL by clicking **Share** button in the upper right, then copy the URL for the **Live site**.
+<span class="tutorialStep"></span> In the tree diagram window, edit the URL to remove the `!@svg` part.
 
-Your site will have a URL like `https://<something>.glitch.me`.
+This is how your site will look to visitors.
 
-<span class="tutorialStep"></span> Open a new browser tab and navigate to that URL to see how your site will look to visitors.
+If you'd like to keep your site, you can create a Glitch account. Your site will have a permanent URL like `https://<something>.glitch.me` that you can share with other people.
 
-While you're working on your site, the Origami server is used to serve the content. At some point after you close the Glitch window, Glitch will rebuild the static files and stop the live server. From that point on, Glitch will serve the static files directly and more quickly.
+If you don't want to create an account, Glitch will keep the site for some time before removing it.
 
-## Learn more
+## Done!
 
 This concludes the Origami tutorial. You can continue exploring related topics:
 
 - The [Origami expression language](/language) you used to write formulas and template expressions has additional features not covered in this tutorial.
 - As you were creating the About Us site, the [Origami command-line interface](/cli) and its included web server was working behind the scenes to let you view the site during development and to copy the virtual files to real files.
 - The conceptual framework is built on an [async-tree](/async-tree) library that lets you do everything that you did here with formulas using JavaScript instead.
-- You can implement sites completely from scratch using the [async tree pattern](/pattern) and no library or framework at all. That approach may appeal to people who want to work as close to the metal as possible, and that pattern is also a useful reference if you want to understand how Origami works under the hood.
+- You can implement sites completely from scratch using the [async tree pattern](/pattern) and no library or framework at all, an approach may appeal to people who want to work as close to the metal as possible. That pattern is also a useful reference if you want to understand how Origami works under the hood.
 
 &nbsp;
 
