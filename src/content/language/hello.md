@@ -474,7 +474,7 @@ Continuing the blog example above, you can define an `index.orit` template that 
   <body>
     <ul>
       \{\{ @map(posts, =`
-      <li><a href="pages/{{ @key }}">\{{ _/title }}</a></li>
+      <li><a href="pages/\{{ @key }}">\{{ _/title }}</a></li>
       \`) }}
     </ul>
   </body>
