@@ -2,7 +2,14 @@
 title: Origami language syntax
 ---
 
-The Origami language is mostly focused on invoking functions and traversing trees, and borrows elements of its syntax from JavaScript expressions, web URLs, and template languages.
+The Origami language is relatively small and focused on:
+
+- Defining tree structures like that of a website's pages and resources
+- Traversing paths into trees of data or files
+- Creating text content using templates
+- Invoking functions defined in other languages like JavaScript
+
+Origami borrows syntax elements from web URLs, template languages, and JavaScript expressions.
 
 ## Strings
 

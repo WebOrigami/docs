@@ -1,53 +1,24 @@
 ---
-title: Origami language
-subtitle: Use formulas to define a website or other structured content
+title: The Origami language
+subtitle: Complements HTML, CSS, and JavaScript so you can build complete websites
 ---
 
 {{ templates/blocks.orit(_) }}
 
-Use the Origami language to make digital content:
+The HTML, CSS, and JavaScript languages let you define individual web pages, but to build a complete site you also need to:
 
-- websites
-- documentation
-- data sets
-- command-line tools
+- Define the overall structure of the pages and resources for your site.
+- Reuse HTML across pages so they can be consistent and easier to make.
+- Serve those pages to your visitors.
 
-Working in Origami feels like making a spreadsheet: you define things with formulas that each yield a piece of the thing you're trying to create and build toward a final result. Like a spreadsheet, Origami is excellent for quick experiments or independent projects, but it's also just as suitable for real work; this site is created in Origami.
+The Origami language lets you do those things, rounding out the native web languages:
 
-You can learn more about the basics of Origami in [Hello, world](hello.html), or follow the short [tutorial](tutorial.html) to build a simple site in Origami.
+<figure>
+  <img src="/assets/illustrations/roles.svg" style="width: 75%;">
+</figure>
 
-## Features
+Using the Origami language, you can write a concise site definition to establish your site's structure. You can also use the language to turn data and other content into pages using templates. You can make those pages available as static files (that is, regular files that can be served cheaply or for free), or using the included Origami server, or using other servers like [Express](https://expressjs.com/).
 
-The Origami language is relatively small, because it is intended just to:
+The Origami language [syntax](syntax.html) is relatively simple and intended for people who have some experience working with HTML and CSS. Knowledge of JavaScript isn't required, although if you do know JavaScript you can do a lot with Origami.
 
-- Define tree structures, like that of a website's pages and resources
-- Traverse paths into trees of data or files
-- Create text content using templates
-- Invoke functions defined in other languages like JavaScript
-
-## Flexibility
-
-You can use the same Origami language in:
-
-- Origami `.ori` files that define websites and other structured content.
-- Origami [templates](templates.html) to add dynamic content inside boilerplate text like HTML.
-- [Dynamic front matter in YAML](yaml.html) via a custom tag.
-- The [ori command-line tool](/cli/) to evaluate command-line arguments. This gives you considerable expressive power to invoke JavaScript from the command line to, for example, traverse and manipulate files and other types of data.
-
-## Concepts
-
-Most tools for creating websites deliver power by hiding complexity from you, at the cost of inflexibility. When they offer flexibility, they do so through configuration systems that are often difficult to understand.
-
-The Origami approach gives you a both power and flexibility through a foundation of interlocking, fundamental concepts:
-
-1. **Async trees** are a convenient way think about hierarchical data, files, and other resources.
-1. **Virtual content** represents your intermediate results and your final result.
-1. **Formulas** transform your real data and files into virtual content you can browse.
-1. **Scope** determines the code and data your formulas can reference.
-1. **Templates** turn data and trees into text.
-1. **Transforms** change a tree from one form to another, processing content in bulk.
-1. **Tools** serve virtual content or copy it to static files for publishing.
-
-Applying these concepts lets you create impressive results with much less work than other systems while maintaining control over all aspects of the process.
-
-If you want to understand things all the way down, explore the [programming pattern](/pattern/), [async-tree](/async-tree/) library, and [language](/language/) that support the high-level concepts.
+Learn the basics of Origami in [Hello, world](hello.html), or follow the short [tutorial](tutorial.html) to build a simple site in Origami.
