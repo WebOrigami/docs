@@ -44,6 +44,8 @@
       aboutUs = @tree/from src/demos/aboutUs/site.ori
     }
 
+    # pagefind = @cache(js/treeIndex.js(pages), src/pagefind)
+
     # Used by Netlify
     _redirects = src/_redirects
 
