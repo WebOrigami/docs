@@ -286,8 +286,11 @@ nav a:hover {
 }
 
 #sideBar {
-  border-bottom: 1px solid var(--color-rule);
   grid-column: 1; /* Baffled as to why this is necessary. */
+}
+
+#sideBar:has(*) {
+  border-bottom: 1px solid var(--color-rule);
 }
 
 #sideBar > ul {

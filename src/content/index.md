@@ -12,7 +12,8 @@ Web Origami is a research project exploring a set of ideas and tools to let you 
 
 - The [Origami language](/language/) lets you concisely define a website or other structured using formulas similar to those in a spreadsheet.
 - The [ori command-line interface](/cli/) (CLI) lets you use Origami expressions in a command terminal to manipulate files or get resources out of an Origami website in the command line. The CLI is also useful as a general tool in its own right for working with JavaScript in the shell.
-- The [async-tree library](/async-tree/) lets JavaScript programmers use Origami features in JavaScript applications.
+- The [built-in functions](/builtins/) let you perform a number of common website development tasks in the Origami language.
+- The [async-tree library](/async-tree/) lets JavaScript programmers use core Origami features in JavaScript applications.
 - The [conceptual pattern](/pattern/) at the foundation of it all lets you represent a wide variety of data types as trees that can be easily traversed and transformed. There's no code at this level; you can use the ideas in any project.
 
 Web Origami is intended for designers, developers, and content authors.
