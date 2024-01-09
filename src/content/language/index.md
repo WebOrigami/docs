@@ -8,7 +8,8 @@ subtitle: Complements HTML, CSS, and JavaScript so you can build complete websit
 The HTML, CSS, and JavaScript languages let you define individual web pages, but to build a complete site you also need to:
 
 - Define the overall structure of the pages and resources for your site.
-- Reuse HTML across pages so they can be consistent and easier to make.
+- Process data and content into publishable forms.
+- Generate and reuse HTML across pages so they can be consistent and easier to make.
 - Serve those pages to your visitors.
 
 The Origami language and tools let you do all that, rounding out the native web languages:
