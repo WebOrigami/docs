@@ -169,31 +169,31 @@ The preview should show something like: Hello, **Alice**!
 
 In addition to creating HTML in JavaScript, you can also use one of many JavaScript-based template systems. For this tutorial, you'll use the [template system built into Origami](templates.html).
 
-<span class="tutorialStep"></span> In the `src` folder, open `index.orit`. The extra "t" in `.orit` is for "template".
+<span class="tutorialStep"></span> In the `src` folder, open `index.ori`.
 
 <clipboard-copy>
 
-```html
-<h1>About Us</h1>
+```{{"html"}}
+=`<h1>About Us</h1>`
 ```
 
 </clipboard-copy>
 
-You can call this `index.orit` template as a function, just like you invoked `greet.js`.
+You can call this `index.ori` template as a function, just like you invoked `greet.js`.
 
-<span class="tutorialStep"></span> **Try it:** In `site.ori`, update your `index.html` formula to remove the call to `greet.js` and instead invoke your `index.orit` template as a function.
+<span class="tutorialStep"></span> **Try it:** In `site.ori`, update your `index.html` formula to remove the call to `greet.js` and instead invoke your `index.ori` template as a function.
 
 <clipboard-copy>
 
 <pre class="step">
 {
-  index.html = <b>index.orit()</b>
+  index.html = <b>index.ori()</b>
 }
 </pre>
 
 </clipboard-copy>
 
-Now when you view the site's main page, the `index.orit` template will be invoked to obtain the HTML. The preview shows: **About Us**
+Now when you view the site's main page, the `index.ori` template will be invoked to obtain the HTML. The preview shows: **About Us**
 
 ## Add an expression to a template
 
@@ -201,13 +201,14 @@ Origami templates let you insert data using placeholders marked with double curl
 
 Inside the curly braces, you can do the same things you can in Origami formulas in a `.ori` file: call JavaScript functions, reference real and virtual files, or extract specific data with slash-separated paths.
 
-<span class="tutorialStep"></span> **Try it:** At the end of `index.orit`, add a `\{\{ }}` placeholder. Inside the placeholder, call the JavaScript function `greet.js` and pass it a name.
+<span class="tutorialStep"></span> **Try it:** At the end of `index.ori`, add a `\{\{ }}` placeholder. Inside the placeholder, call the JavaScript function `greet.js` and pass it a name.
 
 <clipboard-copy>
 
 <pre class="step">
-&lt;h1>About Us&lt;/h1>
+=`&lt;h1>About Us&lt;/h1>
 <b>\{\{ greet.js("Bob") }}</b>
+`
 </pre>
 
 </clipboard-copy>
@@ -216,15 +217,15 @@ The preview now includes a paragraph: Hello, **Bob**!
 
 ## Pass data to a template
 
-When you call a Origami template as a function like `index.orit()`, you can put things inside those parentheses to pass data to the template. Inside that template, you can refer to the data passed to it using an underscore (`_`).
+When you call a Origami template as a function like `index.ori()`, you can put things inside those parentheses to pass data to the template. Inside that template, you can refer to the data passed to it using an underscore (`_`).
 
-<span class="tutorialStep"></span> **Try it:** Update `site.ori` to pass `teamData.yaml/0/name` to the `index.orit` template.
+<span class="tutorialStep"></span> **Try it:** For the first step, update `site.ori` to pass `teamData.yaml/0/name` to the `index.ori` template.
 
 <clipboard-copy>
 
 <pre class="step">
 {
-  index.html = index.orit(<b>teamData.yaml/0/name</b>)
+  index.html = index.ori(<b>teamData.yaml/0/name</b>)
 }
 </pre>
 
@@ -232,13 +233,14 @@ When you call a Origami template as a function like `index.orit()`, you can put 
 
 The preview won't change until you complete the next step.
 
-<span class="tutorialStep"></span> Next, update the `index.orit` template to make use of the name you're passing to it. In the call to `greet.js`, replace the quoted name with a `_` underscore.
+<span class="tutorialStep"></span> Next, update the `index.ori` template to make use of the name you're passing to it. In the call to `greet.js`, replace the quoted name with a `_` underscore.
 
 <clipboard-copy>
 
 <pre class="step">
-&lt;h1>About Us&lt;/h1>
+=`&lt;h1>About Us&lt;/h1>
 \{\{ greet.js<b>(_)</b> }}
+`
 </pre>
 
 </clipboard-copy>
@@ -265,7 +267,7 @@ Let's start by mapping the people defined in `teamData.yaml`: for each person, w
 
 <pre class="step">
 {
-  index.html = index.orit(teamData.yaml/0/name)
+  index.html = index.ori(teamData.yaml/0/name)
   <b>team = @map(teamData.yaml, =_/name)</b>
 }
 </pre>
@@ -320,7 +322,7 @@ The formula you give to `@map` can be as complex as your situation requires.
 
 <pre class="step">
 {
-  index.html = index.orit(teamData.yaml/0/name)
+  index.html = index.ori(teamData.yaml/0/name)
   team = @map(teamData.yaml, =<b>greet.js(_/name)</b>)
 }
 </pre>
@@ -331,7 +333,7 @@ The formula you give to `@map` can be as complex as your situation requires.
 
 <figure>
   {{ svg.js {
-    index.html = "<h1>About Us</h1>"
+    index.html = "<h1>About Us</h1> Hello…"
     team = [
       "<p>Hello, <strong>Alice</strong>!</p>"
       "<p>Hello, <strong>Bob</strong>!</p>"
@@ -355,7 +357,7 @@ You can pull a real folder or file into your tree by writing its name on a line 
 
 <pre class="step">
 {
-  index.html = index.orit(teamData.yaml/0/name)
+  index.html = index.ori(teamData.yaml/0/name)
   team = @map(teamData.yaml, =greet.js(_/name))
   <b>assets
   images</b>
@@ -384,7 +386,7 @@ The file `src/thumbnail.js` contains a small JavaScript function which, given th
 
 <pre class="step">
 {
-  index.html = index.orit(teamData.yaml/0/name)
+  index.html = index.ori(teamData.yaml/0/name)
   team = @map(teamData.yaml, =greet.js(_/name))
   assets
   images
@@ -410,13 +412,13 @@ The virtual `thumbnails` folder in the diagram contains a set of thumbnail image
 
 The main About Us page should display a tile for each member that links to their individual page.
 
-At the moment, the `site.ori` file is passing a single person's name to `index.orit`:
+At the moment, the `site.ori` file is passing a single person's name to `index.ori`:
 
 ```
-  index.html = index.orit(teamData.yaml/0/name)
+  index.html = index.ori(teamData.yaml/0/name)
 ```
 
-We're going to change `index.orit` so that, instead of just accepting a single person's name, it accepts the entire hierarchical tree of team data.
+We're going to change `index.ori` so that, instead of just accepting a single person's name, it accepts the entire hierarchical tree of team data.
 
 <span class="tutorialStep"></span> **Try it:** Switch the Glitch editor window. In `site.ori`, update the formula for `index.html` so that the entire `teamData.yaml` file is passed to the template.
 
@@ -424,7 +426,7 @@ We're going to change `index.orit` so that, instead of just accepting a single p
 
 <pre class="step">
 {
-  index.html = index.orit(<b>teamData.yaml</b>)
+  index.html = index.ori(<b>teamData.yaml</b>)
   team = @map(teamData.yaml, =greet.js(_/name))
   assets
   images
@@ -434,13 +436,14 @@ We're going to change `index.orit` so that, instead of just accepting a single p
 
 </clipboard-copy>
 
-<span class="tutorialStep"></span> Next, replace the contents of the placeholder in the `index.orit` template so that, instead of calling `greet.js`, the template incorporates its entire input (`_`) into the result.
+<span class="tutorialStep"></span> Next, replace the contents of the placeholder in the `index.ori` template so that, instead of calling `greet.js`, the template incorporates its entire input (`_`) into the result.
 
 <clipboard-copy>
 
 <pre class="step">
-&lt;h1>About Us&lt;/h1>
+=`&lt;h1>About Us&lt;/h1>
 <b>\{\{ _ }}</b>
+`
 </pre>
 
 </clipboard-copy>
@@ -451,16 +454,14 @@ The preview updates to show the entire contents of `teamData.yaml`. That's more 
 
 In `site.ori`, you've already created a map of `images` to `thumbnails`, and a map of `teamData.yaml` to a set of `team` greetings. You're now going to do the same kind of map inside the `index.ori` template to translate the data for the team members into corresponding bits of HTML, each of which defines a card showing a person's thumbnail and name.
 
-<span class="tutorialStep"></span> Copy and paste the following into `index.orit`.
+<span class="tutorialStep"></span> Copy and paste the following into `index.ori`.
 
 <clipboard-copy>
 
 ```{{"html"}}
-<h1>About Us</hi>
-\{\{ @map(_, =`
-  <li>\{\{ _/name }}</li>
-`) }}
-
+=`<h1>About Us</h1>
+\{\{ @map(_, =`<li>\{\{ _/name }}</li>`) }}
+`
 ```
 
 </clipboard-copy>
@@ -475,12 +476,12 @@ The preview now shows a bulleted list of names.
 
 The text inside a template can be as complex as you want.
 
-<span class="tutorialStep"></span> **Try it:** Copy and paste this fuller template into `index.orit`:
+<span class="tutorialStep"></span> **Try it:** Copy and paste this fuller template into `index.ori`:
 
 <clipboard-copy>
 
-```html
-{{ @js/String demos/framework-intro/index.orit }}
+```{{"html"}}
+{{ @js/String demos/framework-intro/index.ori }}
 ```
 
 </clipboard-copy>
@@ -493,26 +494,26 @@ The preview for `index.html` now shows a tile for each team member that includes
 
 You can use a template for the people pages in the `team` area too.
 
-<span class="tutorialStep"></span> In the src folder, view the `person.orit` template:
+<span class="tutorialStep"></span> In the src folder, view the `person.ori` template:
 
 <clipboard-copy>
 
-```html
-<h1>\{\{ _/name }}</h1>
+```{{"html"}}
+=`<h1>\{\{ _/name }}</h1>`
 ```
 
 </clipboard-copy>
 
 This template displays a person's name in a header. You can use this in the `@map` that defines the `team` area.
 
-<span class="tutorialStep"></span> **Try it:** In `site.ori`, edit the `team` formula to replace the `=greet.js(_/name)` with `person.orit`.
+<span class="tutorialStep"></span> **Try it:** In `site.ori`, edit the `team` formula to replace the `=greet.js(_/name)` with `person.ori`.
 
 <clipboard-copy>
 
 <pre class="step">
 {
-  index.html = index.orit(teamData.yaml)
-  team = @map(teamData.yaml, <b>person.orit</b>)
+  index.html = index.ori(teamData.yaml)
+  team = @map(teamData.yaml, <b>person.ori</b>)
   assets
   images
   thumbnails = @map(images, thumbnail.js)
@@ -521,7 +522,7 @@ This template displays a person's name in a header. You can use this in the `@ma
 
 </clipboard-copy>
 
-<span class="tutorialStep"></span> Refresh the tree diagram window to see that the pages in the `team` area now use your `person.orit` template.
+<span class="tutorialStep"></span> Refresh the tree diagram window to see that the pages in the `team` area now use your `person.ori` template.
 
 <figure>
   {{ svg.js {
@@ -537,15 +538,15 @@ As you've seen, the top-level keys in `teamData.yaml` are numbers, like `0` for 
 
 So you want to transform both the keys and values of the team data. You can do this with an expanded form of the `@map` function.
 
-<span class="tutorialStep"></span> **Try it:** In `site.ori`, update the `team` formula so that the second parameter is a set of options in `{ }` curly braces. Turn the existing `person.orit` reference into a `valueMap` option.
+<span class="tutorialStep"></span> **Try it:** In `site.ori`, update the `team` formula so that the second parameter is a set of options in `{ }` curly braces. Turn the existing `person.ori` reference into a `valueMap` option.
 
 <clipboard-copy>
 
 <pre class="step">
 {
-  index.html = index.orit(teamData.yaml)
+  index.html = index.ori(teamData.yaml)
   team = @map(teamData.yaml, <b>{
-    valueMap: person.orit
+    valueMap: person.ori
   }</b>)
   assets
   images
@@ -561,10 +562,10 @@ So you want to transform both the keys and values of the team data. You can do t
 
 <pre class="step">
 {
-  index.html = index.orit(teamData.yaml)
+  index.html = index.ori(teamData.yaml)
   team = @map(teamData.yaml, {
     <b>keyMap: =_/name</b>
-    valueMap: person.orit
+    valueMap: person.ori
   })
   assets
   images
@@ -605,10 +606,10 @@ We want the pages in the `team` area to end in a `.html` extension because that 
 
 <pre class="step">
 {
-  index.html = index.orit(teamData.yaml)
+  index.html = index.ori(teamData.yaml)
   team = @map(teamData.yaml, {
     keyMap: =<b>`\{\{ _/name }}.html`</b>
-    valueMap: person.orit
+    valueMap: person.ori
   })
   assets
   images
@@ -630,14 +631,14 @@ We want the pages in the `team` area to end in a `.html` extension because that 
 
 ## Fill out the person template
 
-The only thing left to do is complete the `person.orit` template.
+The only thing left to do is complete the `person.ori` template.
 
-<span class="tutorialStep"></span> Replace the contents of `person.orit` with:
+<span class="tutorialStep"></span> Replace the contents of `person.ori` with:
 
 <clipboard-copy>
 
 ```{{"html"}}
-{{ @js/String demos/framework-intro/person.orit }}
+{{ @js/String demos/framework-intro/person.ori }}
 ```
 
 </clipboard-copy>
@@ -660,10 +661,10 @@ To review, you've created this entire site with a few resources, a couple of tem
 
 ```
 {
-  index.html = index.orit(teamData.yaml)
+  index.html = index.ori(teamData.yaml)
   team = @map(teamData.yaml, {
     keyMap: =`\{\{ _/name }}.html`
-    valueMap: person.orit
+    valueMap: person.ori
   })
   assets
   images

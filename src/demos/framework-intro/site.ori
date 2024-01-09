@@ -1,9 +1,9 @@
 {
-  index.html = index.orit(teamData.yaml)
+  index.html = index.ori(teamData.yaml)
 
   team = @map(teamData.yaml, {
     keyMap: =`{{_/name}}.html`
-    valueMap: person.orit
+    valueMap: person.ori
   })
 
   assets

@@ -11,22 +11,24 @@ Origami templates let you convert turn data into HTML or other text documents th
 
 _You can use Origami with other template systems, but the small degree of integration code required is currently beyond the scope of this documentation._
 
-## Template documents
+## Template files
 
-An Origami template document is a text file with a `.orit` extension. A template contains placeholders marked with `\{{` and `}}` curly braces that contain [Origami expressions](/language/syntax.html).
+An Origami template file is an Origami file (a text file with a `.ori` extension) defining an [Origami expressions](/language/syntax.html) that either evaluates to a text string or to a function that returns text.
+
+The most common type of Origami template is a file that defines a template literal using an = equals sign and backtick characters. Inside the backticks, placeholders marked with `\{{`and`}}` curly braces contain additional Origami expressions whose results are included in the final text:
 
 ```console
-$ cat greet.orit
-Hello, \{{ name }}.
+$ cat greet.ori
+{{ samples.ori/templates/greet.ori }}
 ```
 
 You can evaluate a template in the context of data, such as an object defined in a data file.
 
 ```console
 $ cat alice.yaml
-name: Alice Andrews
-$ ori "greet.orit(alice.yaml)"
-Hello, Alice Andrews.
+{{ samples.ori/templates/alice.yaml }}
+$ ori "greet.ori(alice.yaml)"
+{{ samples.ori/templates/greet.ori(samples.ori/templates/alice.yaml) }}
 ```
 
 ## Reference input
@@ -34,28 +36,28 @@ Hello, Alice Andrews.
 When you invoke a template as a function, you can refer to the template's input using an underscore (`_`).
 
 ```console
-$ cat heading.orit
-{{ samples.ori/templates/heading.orit }}$ ori "heading.orit('About Us')"
-{{ samples.ori/templates/heading.orit('About Us') }}
+$ cat heading.ori
+{{ samples.ori/templates/heading.ori }}$ ori "heading.ori('About Us')"
+{{ samples.ori/templates/heading.ori('About Us') }}
 ```
 
-## Reference individual files
+## Reference local files
 
 You can reference local files in Origami expressions. Depending on the situation, you may not have to pass any arguments to the template — it may be able obtain whatever it needs from its file system context.
 
 ```console
-$ cat fileRef.orit
-{{ samples.ori/templates/fileRef.orit }}$ cat copyright.txt
+$ cat fileRef.ori
+{{ samples.ori/templates/fileRef.ori }}$ cat copyright.txt
 {{ samples.ori/templates/copyright.txt }}
-$ ori "fileRef.orit()"
-{{ samples.ori/templates/fileRef.orit() }}
+$ ori "fileRef.ori()"
+{{ samples.ori/templates/fileRef.ori() }}
 ```
 
 In cases like this, where the template does not require any argument, you can avoid the need to quote parentheses by invoking the template using slash syntax:
 
 ```console
-$ ori fileRef.orit/
-{{ samples.ori/templates/fileRef.orit/ }}
+$ ori fileRef.ori/
+{{ samples.ori/templates/fileRef.ori/ }}
 ```
 
 ## Reference trees
@@ -65,10 +67,10 @@ If a template expression results in a tree such as a folder or hierarchical data
 ```console
 $ cat greetings.yaml
 {{ samples.ori/templates/greetings.yaml }}
-$ cat flatten.orit
-{{ samples.ori/templates/flatten.orit }}
-$ ori flatten.orit/
-{{ samples.ori/templates/flatten.orit/ }}
+$ cat flatten.ori
+{{ samples.ori/templates/flatten.ori }}
+$ ori flatten.ori/
+{{ samples.ori/templates/flatten.ori/ }}
 ```
 
 This feature forms the basis for more complex ones (like maps, below), but one basic use for it is to inline a set of files. For example, you might create a folder that contains a collection of HTML fragments as separate files:
@@ -83,10 +85,10 @@ $ cat fragments/a.html
 You can then reference that `fragments` folder in a template to concatenate all those HTML fragments into the output:
 
 ```console
-$ cat concat.orit
-{{ samples.ori/templates/concat.orit }}
-$ ori concat.orit/
-{{ samples.ori/templates/concat.orit/ }}
+$ cat concat.ori
+{{ samples.ori/templates/concat.ori }}
+$ ori concat.ori/
+{{ samples.ori/templates/concat.ori/ }}
 ```
 
 ## Use template expressions in any file type
@@ -118,31 +120,10 @@ $ cat teamData.yaml
   bio: After working as a manager for numerous startups over the years, I
     decided to take the plunge and start a business of my own.
 …
-$ cat teamLead.orit
-{{ samples.ori/templates/teamLead.orit }}$ ori teamLead.orit/
-{{ samples.ori/templates/teamLead.orit/ }}
+$ cat teamLead.ori
+{{ samples.ori/templates/teamLead.ori }}$ ori teamLead.ori/
+{{ samples.ori/templates/teamLead.ori/ }}
 ```
-
-## Reference network resources
-
-Since `https` and `http` URLs are valid Origami expressions, you can incorporate network content into a template’s output.
-
-```console
-$ cat net.orit
-{{ samples.ori/templates/net.orit }}$ ori net.orit/
-This content came from graphorigami.org:
-{{ samples.ori/templates/net.txt }}
-```
-
-This includes being able to traverse into data from the network. A [teamData.yaml](samples/templates/teamData.yaml) file posted on the network can be referenced as an expression and then further traversed:
-
-```console
-$ cat netData.orit
-{{ samples.ori/templates/netData.orit }}$ ori netData.orit/
-Bob lives in {{ samples.ori/templates/teamData.yaml/1/location }}.
-```
-
-You can also obtain a data file from the network, treat it as a tree, and [map the tree to text](#map-trees-to-text). This allows you to directly process network data into text in a template.
 
 ## Conditions
 
@@ -151,12 +132,12 @@ Use the built-in [@if](/language/@if.html) function to include text based on som
 The first argument to `@if` is a condition that is evaluated. If the result is truthy (not `false`, `null`, or `undefined`), the second argument to `@if` is included in the template’s text output. If the result is falsy and a third argument is provided, that third argument will be included in the output.
 
 ```console
-$ cat condition.orit
-{{ samples.ori/templates/condition.orit }}
-$ ori “condition.orit({ rating: 3 })”
-{{ samples.ori/templates/condition.orit({ rating: 3 }) }}
-$ ori “condition.orit({})”
-{{ samples.ori/templates/condition.orit({}) }}
+$ cat condition.ori
+{{ samples.ori/templates/condition.ori }}
+$ ori “condition.ori({ rating: 3 })”
+{{ samples.ori/templates/condition.ori({ rating: 3 }) }}
+$ ori “condition.ori({})”
+{{ samples.ori/templates/condition.ori({}) }}
 ```
 
 ## Call your own JavaScript functions
@@ -168,10 +149,10 @@ For example, if you have a file named `uppercase.js` in the same directory as th
 ```console
 $ cat uppercase.js
 {{ samples.ori/templates/uppercase.js }}
-$ cat callJs.orit
-{{ samples.ori/templates/callJs.orit }}
-$ ori callJs.orit/
-{{ samples.ori/templates/callJs.orit/ }}
+$ cat callJs.ori
+{{ samples.ori/templates/callJs.ori }}
+$ ori callJs.ori/
+{{ samples.ori/templates/callJs.ori/ }}
 ```
 
 If the function you invoke is asynchronous, its result will be awaited before being incorporated into the text output.
@@ -180,101 +161,67 @@ If the function you invoke is asynchronous, its result will be awaited before be
 
 One template can invoke another as a function.
 
-We can define a template `stars.orit` as a component that displays a star rating:
+We can define a template `stars.ori` as a component that displays a star rating:
 
 ```console
-$ cat stars.orit
-{{ samples.ori/templates/stars.orit }}
+$ cat stars.ori
+{{ samples.ori/templates/stars.ori }}
 ```
 
 This template repeats a ★ star character for the number of times defined in in the input value. For example, you can directly invoke and test this template, passing in a value of 3:
 
 ```console
-$ ori "stars.orit(3)"
-{{ samples.ori/templates/stars.orit(3) }}
+$ ori "stars.ori(3)"
+{{ samples.ori/templates/stars.ori(3) }}
 ```
 
-This `stars.orit` template defines a function that you can invoke inside expressions in other templates:
+This `stars.ori` template defines a function that you can invoke inside expressions in other templates:
 
 ```console
-$ cat review.orit
-{{ samples.ori/templates/review.orit }}
-$ ori review.orit/
-{{ samples.ori/templates/review.orit/ }}
+$ cat review.ori
+{{ samples.ori/templates/review.ori }}
+$ ori review.ori/
+{{ samples.ori/templates/review.ori/ }}
 ```
 
 This technique can let you define components in plain HTML and CSS.
 
 ## Wrap one template with another
 
-Another application of invoking a template as a function is to wrap the output of one template inside another. For example, you can create an overall page template for a site called `page.orit`:
+Another application of invoking a template as a function is to wrap the output of one template inside another. For example, you can create an overall page template for a site called `page.ori`:
 
 ```console
-$ cat page.orit
-{{ samples.ori/templates/page.orit }}
+$ cat page.ori
+{{ samples.ori/templates/page.ori }}
 ```
 
-A template for a specific type of page, like a `contact.orit` template for a Contact Us page, can invoke `page.orit` as a function:
+A template for a specific type of page, like a `contact.ori` template for a Contact Us page, can invoke `page.ori` as a function:
 
 ```console
-$ cat contact.orit
-{{ samples.ori/templates/contact.orit }}
+$ cat contact.ori
+{{ samples.ori/templates/contact.ori }}
 ```
 
 Evaluating the contact page template passes its HTML fragment to the overall site page template:
 
 ```console
-$ ori contact.orit/
-{{ samples.ori/templates/contact.orit/ }}
+$ ori contact.ori/
+{{ samples.ori/templates/contact.ori/ }}
 ```
 
-## Front matter
+### Processing input front matter
+
+An input document can define front matter.
 
 Both a template’s input document and the template itself can contain front matter in YAML or JSON format. The front matter is delineated with both a leading and trailing line of three hyphens (`---`), like so:
-
-```console
-$ cat front.orit
-{{ samples.ori/templates/front.orit }}
-```
-
-This template defines a `title` value as front matter and then references that value in multiple expressions. This makes it easy to update the title in a single place and have that change reflected everywhere. The front matter values are added to the scope used to evaluate the template's expressions, so the `\{\{title}}` references in the template body will find the title value.
-
-Invoking this template performs the title substitutions:
-
-```console
-$ ori front.orit/
-{{ samples.ori/templates/front.orit/ }}
-```
-
-### Front matter expressions
-
-Front matter can include Origami expressions via the `!ori` YAML tag, as discussed in [Origami expressions in YAML](/language/yaml.html). You can use this to calculate a value you want to reference multiple times in the template.
-
-```console
-$ cat banner.orit
-{{ samples.ori/templates/banner.orit }}
-$ ori banner.orit/
-{{ samples.ori/templates/banner.orit/ }}
-```
-
-### Template and input front matter
-
-Both a template and an input document can define front matter.
-
-Among other things, you can use this to have a template define a default, fallback value for a given key. A blog post template can define a default title in its own front matter. It can then use an [@or](/builtins/@or.html) statement to prefer the input's `title` property if one is defined, but if not falling back to the default title.
-
-```console
-$ ori blogPost.orit
-{{ samples.ori/templates/blogPost.orit }}
-```
 
 If a blog post defines a `title`, that title is preferred:
 
 ```console
 $ cat posts/post1.html
 {{ samples.ori/templates/posts/post1.html }}
-$ ori blogPost.orit posts/post1.html
-{{ samples.ori/templates/blogPost.orit samples.ori/templates/posts/post1.html }}
+$ ori blogPost.ori posts/post1.html
+{{ samples.ori/templates/blogPost.ori samples.ori/templates/posts/post1.html }}
 ```
 
 But if a post fails to define a `title`, the template's default title is used:
@@ -282,8 +229,8 @@ But if a post fails to define a `title`, the template's default title is used:
 ```console
 $ cat posts/post2.html
 {{ samples.ori/templates/posts/post2.html }}
-$ ori blogPost.orit posts/post2.html
-{{ samples.ori/templates/blogPost.orit samples.ori/templates/posts/post2.html }}
+$ ori blogPost.ori posts/post2.html
+{{ samples.ori/templates/blogPost.ori samples.ori/templates/posts/post2.html }}
 ```
 
 ## Map trees to text
@@ -294,13 +241,13 @@ You can handle such cases in Origami templates by calling the built-in [@map](/l
 ```console
 $ cat teamData.yaml
 {{ samples.ori/templates/teamData.yaml }}
-$ cat teamList.orit
-{{ samples.ori/templates/teamList.orit }}
-$ ori teamList.orit/
-{{ samples.ori/templates/teamList.orit/ }}
+$ cat teamList.ori
+{{ samples.ori/templates/teamList.ori }}
+$ ori teamList.ori/
+{{ samples.ori/templates/teamList.ori/ }}
 ```
 
-The `teamList.orit` file defines an outer template that includes an `<ul>` tag. Inside that, a substitution calling `@map` appears, which maps the array of people in `teamData.yaml` to a set of HTML fragments using a nested template with an `<li>` tag.
+The `teamList.ori` file defines an outer template that includes an `<ul>` tag. Inside that, a substitution calling `@map` appears, which maps the array of people in `teamData.yaml` to a set of HTML fragments using a nested template with an `<li>` tag.
 
 ### How maps work
 
@@ -339,8 +286,8 @@ post1.html post2.html
 You can create an index page that links to these files using the ambient `@key` property. This lets a link reference a file's specific file name in the `href` attribute.
 
 ```console
-$ cat blogIndex.orit
-{{ samples.ori/templates/blogIndex.orit }}
+$ cat blogIndex.ori
+{{ samples.ori/templates/blogIndex.ori }}
 ```
 
 This index page template defines a default `title` property to use if a page omits a title; see [template and input front matter](#template-and-input-front-matter) above.
@@ -348,6 +295,6 @@ This index page template defines a default `title` property to use if a page omi
 Evaluating this template produces a list of links to each post, with each `href` attribute referencing the appropriate file:
 
 ```console
-$ ori blogIndex.orit/
-{{ samples.ori/templates/blogIndex.orit/ }}
+$ ori blogIndex.ori/
+{{ samples.ori/templates/blogIndex.ori/ }}
 ```

@@ -377,8 +377,8 @@ myProject/
     post1.html
     post2.html
   src/
-    index.orit
-    post.orit
+    index.ori
+    post.ori
     site.ori
 ```
 
@@ -391,7 +391,7 @@ title: My first post
 Here's my first post!
 ```
 
-The `post.orit` file contains an Origami template that mixes HTML with `\{\{ }}` curly brace placeholders to incorporate data:
+The `post.ori` file contains an Origami template that mixes HTML with `\{\{ }}` curly brace placeholders to incorporate data:
 
 ```html
 <html>
@@ -410,7 +410,7 @@ You can call this template in the `site.ori` file:
 
 ```
 {
-  firstPost.html = page.orit(posts/post1.html)
+  firstPost.html = page.ori(posts/post1.html)
 }
 ```
 
@@ -441,7 +441,7 @@ You can apply a page template in a map to process all your posts at once:
 
 ```
 {
-  pages = @map(posts, page.orit)
+  pages = @map(posts, page.ori)
 }
 ```
 
@@ -464,7 +464,7 @@ _Key point: You can use template systems in Origami to turn files and data into 
 
 A unique feature of Origami templates is that you can use maps inside them to process a collection of documents or data into HTML. You can use this to make page elements for navigation that reflect the structure of the original content.
 
-Continuing the blog example above, you can define an `index.orit` template that will create links for each post:
+Continuing the blog example above, you can define an `index.ori` template that will create links for each post:
 
 ```html
 <html>
@@ -489,8 +489,8 @@ Invoke this template to create the index page:
 
 ```
 {
-  index.html = index.orit()
-  pages = @map(posts, page.orit)
+  index.html = index.ori()
+  pages = @map(posts, page.ori)
 }
 ```
 

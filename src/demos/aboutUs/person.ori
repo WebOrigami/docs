@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+=`<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -16,8 +15,13 @@
     <main class="person">
       <img class="avatar large" src="../images/{{ _/image }}" alt="{{ _/name }}" />
       <h2 class="name">{{ _/name }}</h2>
-      <div class="location">{{ _/location }}</div>
-      <p class="bio">{{ _/bio }}</p>
+      <div class="location">
+        {{ _/location }}
+      </div>
+      <p class="bio">
+        {{ _/bio }}
+      </p>
     </main>
   </body>
 </html>
+`

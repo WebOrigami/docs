@@ -20,25 +20,25 @@ myProject/
     c.html
 ```
 
-<span class="tutorialStep"></span> Create a page template with a name like `page.orit`. Place a `\{{ _ }}` placeholder where you want the page fragment/body to go.
+<span class="tutorialStep"></span> Create a page template with a name like `page.ori`. Place a `\{{ _ }}` placeholder where you want the page fragment/body to go.
 
 ```console
-$ cat page.orit
-{{ samples.ori/templates/page.orit }}
+$ cat page.ori
+{{ samples.ori/templates/page.ori }}
 ```
 
-You can apply this template to a single page to preview how it looks the content of a page like `a.html` will be placed inside the contents of the `page.orit` template:
+You can apply this template to a single page to preview how it looks the content of a page like `a.html` will be placed inside the contents of the `page.ori` template:
 
 ```console
-$ ori page.orit html/a.html
-{{ samples.ori/templates/page.orit samples.ori/templates/fragments/a.html }}
+$ ori page.ori html/a.html
+{{ samples.ori/templates/page.ori samples.ori/templates/fragments/a.html }}
 ```
 
-<span class="tutorialStep"></span> Create a site.ori file to define your site. This defines a virtual `public` folder that applies your `page.orit` template to all the pages in the `html` folder.
+<span class="tutorialStep"></span> Create a site.ori file to define your site. This defines a virtual `public` folder that applies your `page.ori` template to all the pages in the `html` folder.
 
 ```
 {
-  public = @map(html, page.orit)
+  public = @map(html, page.ori)
 }
 ```
 
@@ -52,6 +52,6 @@ The virtual `public` folder contains versions of all the page fragments in the o
 
 <figure>
 {{
-  svg.js @map(samples.ori/templates/fragments, samples.ori/templates/page.orit)
+  svg.js @map(samples.ori/templates/fragments, samples.ori/templates/page.ori)
 }}
 </figure>
