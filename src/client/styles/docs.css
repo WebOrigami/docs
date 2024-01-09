@@ -366,6 +366,7 @@ pre code.hljs {
 }
 
 .blocks a[href="/async-tree/"],
+.blocks a[href="/builtins/"],
 .blocks a[href="/pattern/"] {
   grid-column: 1 / span 2;
 }

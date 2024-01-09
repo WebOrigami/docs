@@ -1,7 +1,9 @@
 - href: /language/
   text: <span class="optional">Origami&nbsp;</span>Language
 - href: /cli/
-  text: <span class="optional">ori&nbsp;</span>CLI
+  text: CLI
+- href: /builtins/
+  text: Builtins
 - href: /async-tree/
   text: <span class="optional">async-tree&nbsp;</span>Library
 - href: /pattern/
