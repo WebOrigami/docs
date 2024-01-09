@@ -6,7 +6,7 @@ area: ""
 fileName: index.html
 ---
 
-{{ templates/blocks.orit(_) }}
+{{ templates/blocks.ori(_) }}
 
 Web Origami is a research project exploring a set of ideas and tools to let you build a wide variety of software artifacts and digital content:
 

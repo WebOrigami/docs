@@ -1,0 +1,4 @@
+=`<div class="blocks">
+{{ areaLinks.ori(_/areaLinks) }}
+</div>
+`

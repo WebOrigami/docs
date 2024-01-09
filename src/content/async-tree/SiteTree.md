@@ -30,4 +30,4 @@ Above, the custom `tree:` protocol retrieves the route's keys defined in the `.k
 
 The `.keys.json` file should normally not include itself in its list of keys.
 
-{{ templates/class.orit(api.ori/SiteTree.yaml/exports/0) }}
+{{ templates/class.ori(api.ori/SiteTree.yaml/exports/0) }}

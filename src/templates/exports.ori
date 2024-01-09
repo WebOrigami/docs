@@ -1,0 +1,4 @@
+=@map(_/exports, =`
+  {{ @if @equals(_/kind, 'class'), =class.ori(_) }}
+  {{ @if @equals(_/kind, 'function'), =function.ori(_) }}
+`)

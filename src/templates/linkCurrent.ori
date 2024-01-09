@@ -1,4 +1,4 @@
-{{ @if _/href,
+=@if(_/href,
   =`<a href="{{ _/href }}"{{ @if _/current, ` aria-current="page"` }}>{{ _/text }}</a>`
   =`<span class="noLink">{{ _/text }}</span>`
-}}
+)

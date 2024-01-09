@@ -1,2 +1,3 @@
-Test template
+=`Test template
 {{ areas.yaml }}
+`

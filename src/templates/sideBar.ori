@@ -1,0 +1,6 @@
+=@if(_, =`<ul>
+  {{ @map(_, =`
+    <li>{{ linkCurrent.ori(_) }}</li>
+  `) }}
+</ul>
+`)

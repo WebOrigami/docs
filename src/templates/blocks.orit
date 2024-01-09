@@ -1,3 +1,0 @@
-<div class="blocks">
-{{ areaLinks.orit(_/areaLinks) }}
-</div>

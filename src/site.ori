@@ -33,7 +33,7 @@
   # Apply the documentation page template. This injects the HTML content from
   # the previous step into the site's main page template, which adds headers and
   # navigation chrome. This step concludes the main documentation pipeline.
-  pages = @map(html, { deep: @true, extensions: "html", valueMap: templates/page.orit })
+  pages = @map(html, { deep: @true, extensions: "html", valueMap: templates/page.ori })
 
   # The `public` tree defines the final tree which is built into static pages.
   public = @tree/merge(client, pages, {

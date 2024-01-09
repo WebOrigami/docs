@@ -1,7 +1,0 @@
-{{ @if(_, =`
-<ul>
-  {{ @map(_, =`
-    <li>{{ linkCurrent.orit(_) }}</li>
-  `) }}
-</ul>
-`) }}
