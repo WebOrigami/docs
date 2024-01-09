@@ -21,6 +21,6 @@ Using the Origami language, you can write a concise site definition to establish
 
 The Origami language [syntax](syntax.html) is relatively simple and intended for people who have some experience working with HTML and CSS. Knowledge of JavaScript isn't required, although if you do know JavaScript you can do a lot with Origami.
 
-Learn the basics of Origami in [Hello, world](hello.html) »
+Read about the basics of Origami in [Hello, world](hello.html) »
 
-Or build a simple site in Origami in the [hands-on tutorial](tutorial.html) »
+Build a simple site in Origami in the [hands-on tutorial](tutorial.html) »
