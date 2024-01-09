@@ -143,14 +143,14 @@ Text templates are quoted in backticks and can contain Origami expressions insid
 $ cat pet.txt
 Fluffy
 $ cat sample.ori
-message = `I have a pet named \{\{ pet.txt }}.`
-$ ori sample.ori/message
+\`I have a pet named \{\{ pet.txt }}.`
+$ ori sample.ori/
 I have a pet named Fluffy.
 ```
 
 ## Function calls
 
-You can invoke a function with final parentheses:
+You can invoke a function with parentheses:
 
 ```
 fn(arg)
