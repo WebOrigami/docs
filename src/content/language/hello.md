@@ -393,8 +393,8 @@ Here's my first post!
 
 The `post.ori` file contains an Origami template that mixes HTML with `\{\{ }}` curly brace placeholders to incorporate data:
 
-```html
-<html>
+```{{"html"}}
+=`<html>
   <head>
     <title>\{{ _/title }}</title>
   </head>
@@ -402,6 +402,7 @@ The `post.ori` file contains an Origami template that mixes HTML with `\{\{ }}` 
     \{{ _/@text }}
   </body>
 </html>
+`
 ```
 
 You can apply this template as a function to a single post. The `_/title` expression will extract the `title` from whatever input you give to the template. The `_/@text` expression will incorporate the body of the input document.
