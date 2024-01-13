@@ -1,6 +1,6 @@
 ---
 title: Create a simple site in Origami
-subtitle: A live walkthrough
+subtitle: A hands-on walkthrough
 numberHeadings: true
 countries:
   - name: Australia
