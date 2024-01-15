@@ -133,7 +133,13 @@ You can call this template from an Origami formula.
 
 </clipboard-copy>
 
-The page ends up with "world" in bold: Hello, **world**!
+When someone visits `index.html`, Origami will now generate the HTML for it:
+
+```html
+<p>Hello, <strong>world</strong>!</p>
+```
+
+So the page ends up with "world" in bold: Hello, **world**!
 
 When you call `greet.ori` in a formula like this, Origami searches the current [scope](/language/scope.html) for that name. Origami will find the `src/greet.ori` template file and use it to create the home page.
 
@@ -209,7 +215,7 @@ Let's start by mapping the people defined in `teamData.yaml`: for each person, w
 <pre class="step">
 {
   index.html = greet.ori(teamData.yaml/0/name)
-  <b>team = @map(teamData.yaml, =_/name)</b>
+  team = <b>@map(teamData.yaml, =_/name)</b>
 }
 </pre>
 
@@ -454,7 +460,7 @@ You can use a template for the people pages in the `team` area too.
 
 This template displays a person's name in a header. You can use this in the `@map` that defines the `team` area.
 
-<span class="tutorialStep"></span> **Try it:** In `site.ori`, edit the `team` formula to replace the `=greet.js(_/name)` with `person.ori`.
+<span class="tutorialStep"></span> **Try it:** In `site.ori`, edit the `team` formula to replace the `=greet.ori(_/name)` with `person.ori`.
 
 <clipboard-copy>
 
