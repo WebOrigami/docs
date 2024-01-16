@@ -54,6 +54,8 @@
   text: "@node"
 - href: "@not.html"
   text: "@not"
+- href: "@once.html"
+  text: "@once"
 - href: "@ori.html"
   text: "@ori"
 - href: "@parse.html"

@@ -40,12 +40,6 @@ Returns a text representation of the indicated tree in the [DOT](https://treeviz
 
 If you want a basic visual representation of a tree, use the [@svg()](@svg.html) function instead. Use the `dot` function only if you want to use other DOT tools to render a tree.
 
-<a name="expand"></a>
-
-## @tree/expand(treelike)
-
-Expands any tree nodes which can be treated as [treelike object](/async-tree/treelike.html) values (e.g., YAML/JSON text) into subtrees.
-
 <a name="first"></a>
 
 ## @tree/first(treelike)
@@ -121,25 +115,6 @@ Like [merge()](#merge), but performs a deep merge: if multiple trees define valu
 ## @tree/nextKey(treelike, key)
 
 Enumerates the tree's key until `key` is found, then returns the next key in the tree.
-
-<a name="nulls"></a>
-
-## @tree/nulls(treelike)
-
-Returns a new tree with all values equal to null.
-
-```console assert: true, path: files
-$ ori greetings.yaml
-Alice: Hello, Alice.
-Bob: Hello, Bob.
-Carol: Hello, Carol.
-$ ori @tree/nulls greetings.yaml
-? Alice
-? Bob
-? Carol
-```
-
-`nulls` can be useful when you want to display the structure of a tree (especially a hierarchical tree) without concern for the actual data values.
 
 <a name="parent"></a>
 
