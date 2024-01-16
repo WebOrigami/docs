@@ -117,7 +117,7 @@ For this tutorial, you'll use the [template system built into Origami](templates
 
 This Origami template starts with an `=` equals sign and encloses some HTML with &#96; &#96; backticks.
 
-Inside the backticks, the placeholder marked with `\{\{ }}` curly braces contains an Origami expression. In this case, the `_` underscore tells Origami to insert any text passed to the template into the HTML.
+Inside the backticks, the placeholder marked with `\{\{ }}` curly braces contains an Origami expression. In this case, the `_` underscore tells Origami to insert any text passed to the template into the HTML at that point.
 
 You can call this template from an Origami formula.
 
@@ -145,7 +145,7 @@ When you call `greet.ori` in a formula like this, Origami searches the current [
 
 ## Defining the team data
 
-Data in Origami projects can come from pretty much anything. This sample project stores the data for your team members in a file format called YAML, but it could just as easily use JSON, another data file format, or data sitting on a server.
+Data in Origami projects can come from pretty much anything. This sample project stores the data for your team members in a file format called YAML, but it could just as easily use another format called JSON, or some other data file format, or data sitting on a server.
 
 <span class="tutorialStep"></span> Open the team data file in `src/teamData.yaml`:
 
@@ -224,6 +224,8 @@ Let's start by mapping the people defined in `teamData.yaml`: for each person, w
 This formula calls a built-in function called [@map](/language/@map.html). All built-in functions start with an `@` sign.
 
 This `team` formula says: starting with the tree of structured data in `teamData.yaml`, create a new tree. For each person in the data, evaluate the expression `=_/name`, which gets the `name` field of the person being operated on.
+
+If you know JavaScript: the expression `=_/name` is like an arrow function: `(_) => _.name`
 
 So the `team` formula transforms the team data into a corresponding tree of just the names:
 
@@ -375,7 +377,9 @@ You could write formulas to create a thumbnail for each image in the `images` fo
 
 </clipboard-copy>
 
-This `thumbnails` formula applies the `thumbnail.js` function to each of the images. Because Origami treats real folders and virtual folders the same, you can browse your virtual folder of thumbnails.
+This `thumbnails` formula applies the `thumbnail.js` function to each of the images. In that `@map` function, the second parameter is just the file name `thumbnail.js`, which is a shorthand for writing the longer form `=thumbnail.js(_)`
+
+Because Origami treats real folders and virtual folders the same, you can browse your virtual folder of thumbnails.
 
 <span class="tutorialStep"></span> Switch to the tree diagram window and refresh it to view your site's updated structure.
 
@@ -406,7 +410,7 @@ In `site.ori`, you've already created a map of images to thumbnails, and a map o
 The `index.ori` file defines two templates, an outer template and an inner template:
 
 - The outer template spans all lines and defines the overall page. This outer template will accept the entire collection of team data as input; that's what the `_` underscore immediately following `@map` will receive.
-- The inner, nested template is defined on the middle line as part of the `@map`. That inner template will receive a single team member at a time as input and generate a bullet item with that person's name as output.
+- The inner, nested template is defined on the middle line as part of the `@map`. That inner template will receive a single team member at a time as input; that's what the `_` underscore in `_/name` will refer to. This template generates a list item containing that person's name.
 
 <span class="tutorialStep"></span> **Try it:** In `site.ori`, update your `index.html` formula to remove the call to `greet.ori` and instead invoke the `index.ori` template, passing in the `teamData.yaml` data.
 
@@ -439,6 +443,8 @@ The text inside a template can be as complex as you want.
 ```
 
 </clipboard-copy>
+
+(Note: the last line contains a backtick character; be sure to copy that too.)
 
 Functionally speaking, this is no more complex than the earlier template; it just has more elements.
 
@@ -598,6 +604,8 @@ The only thing left to do is complete the `person.ori` template.
 ```
 
 </clipboard-copy>
+
+(Note: the last line contains a backtick character; be sure to copy that too.)
 
 <span class="tutorialStep"></span> In the site preview, you can now click a person tile on the main About Us page to navigate to the specific page for that team member.
 
