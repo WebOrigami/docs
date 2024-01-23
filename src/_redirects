@@ -1,5 +1,6 @@
 # Redirect old graphorigami.org to weborigami.org
-//graphorigami.org/ //weborigami.org/:splat 301!
+http://graphorigami.org/ http://weborigami.org/:splat 301!
+https://graphorigami.org/ https://weborigami.org/:splat 301!
 
 # netlify won't deploy a file whose name starts with a splat, preventing us from
 # deploying .keys.json files. See the `netlify` command in the root folder.
