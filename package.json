@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
-    "@weborigami/origami": "https://gitpkg.now.sh/GraphOrigami/origami/origami?e82177ab",
+    "@weborigami/origami": "https://gitpkg.now.sh/WebOrigami/origami/origami?e82177ab",
     "@weborigami/pattern-intro": "github:WebOrigami/pattern-intro#b5009e86",
     "@weborigami/samples": "github:WebOrigami/samples#1e80e060",
     "marked": "4.1.0",
@@ -11,8 +11,12 @@
     "typescript": "4.8.4",
     "yaml": "2.1.1"
   },
+  "devDependencies": {
+    "@weborigami/screenshot": "https://gitpkg.now.sh/WebOrigami/extensions/screenshot?758b8289"
+  },
   "scripts": {
     "build": "rm -r build; ori '@copy netlify.js(@tree/keysJson(src/site.ori/public)), @files/build'",
+    "screenshots": "ori @copy src/screenshots.ori, @files/src/client/assets/screenshots",
     "start": "ori @serve @watch src, =@debug src/site.ori/public"
   }
 }

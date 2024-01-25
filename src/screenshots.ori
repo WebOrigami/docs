@@ -1,0 +1,4 @@
+@map(screenshots.yaml, {
+  extensions: "→png"
+  valueMap: =package:@weborigami/screenshot(@fetch(_))
+})
