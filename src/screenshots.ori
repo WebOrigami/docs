@@ -1,4 +1,7 @@
-@map(screenshots.yaml, {
+@map(examples.yaml, {
   extensions: "→png"
-  valueMap: =package:@weborigami/screenshot(@fetch(_))
+  valueMap: =package:@weborigami/screenshot/url(_/url, {
+    height: 768
+    width: 1024
+  })
 })

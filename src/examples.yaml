@@ -1,0 +1,35 @@
+#
+# This file defines the sites that go on the Examples page.
+#
+about-us:
+  name: About Us
+  url: https://weborigami.org/demos/aboutus
+  repo: https://github.com/WebOrigami/docs/tree/main/src/demos/aboutUs
+  description: |
+    The Origami <a href="tutorial.html">tutorial</a> leads you through the creation
+    of this simple site that includes a home page and a set of pages for team
+    members generated from a data file. This example also demonstrates the use
+    of a "map" to scale full-size images to a smaller size.
+cherokee-myths:
+  name: Cherokee Myths
+  url: https://cherokee-myths.netlify.app
+  repo: https://github.com/WebOrigami/cherokee-myths
+  description: |
+    A text-focused site with a generated table of contents and full-text search.
+jan-miksovsky:
+  name: Blog
+  url: https://jan.miksovsky.com
+  description: |
+    A blog with entries organized by year, with JSON and RSS feeds.
+web-origami:
+  name: Web Origami documentation
+  url: https://weborigami.org
+  repo: https://github.com/WebOrigami/docs
+  description: |
+    The Web Origami documentation is a complex site with many features. The
+    documentation content is defined in markdown with inlined Origami
+    expressions, allowing individual documentation pages to generate SVG
+    diagrams and run code samples in order toincorporate their output. Various
+    navigation elements like a sidebar and top navigation bar are generated from
+    the content. The site also generates API documentation from JavaScript
+    source files.

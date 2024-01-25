@@ -434,6 +434,11 @@ g.node polygon[fill="none"] {
   fill: white;
 }
 
+.screenshot {
+  border: 1px solid #ddd;
+  width: 50%;
+}
+
 /*
  * Tutorial
  */
