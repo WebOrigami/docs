@@ -1,7 +1,6 @@
 ---
 title: Index pages
 functions: !ori js/codeFunctions.js(pattern.ori/index/indexPages.js)
-htmlObject: !ori pattern.ori/index/transform.js(@tree/from pattern.ori/index/object.js)
 ---
 
 Right now, the experience of browsing our tree of generated HTML is a little unsatisfying because there are no index pages — we have to know what pages exist and manually enter a valid URL.
@@ -26,13 +25,13 @@ First let's write a function that returns a reasonable default index page for a 
 If the little `more` branch of our HTML tree looks like this:
 
 <figure>
-{{ svg.js htmlObject/more }}
+{{ svg.js pattern.ori/index/htmlObject.js/more }}
 </figure>
 
 Then invoking `indexPage` on this branch will return:
 
 ```{{'html'}}
-{{ ((pattern.ori/index/indexPages.js)(htmlObject/more))/index.html }}
+{{ ((pattern.ori/index/indexPages.js)(pattern.ori/index/htmlObject.js/more))/index.html }}
 ```
 
 ## Transform a tree by adding index pages
@@ -49,7 +48,7 @@ Using the default `indexPage` function above, let's now create a tree transform.
 If we use this to transform the `more` branch of the HTML tree, we'll get:
 
 <figure>
-{{ svg.js pattern.ori/index/indexPages.js(htmlObject/more) }}
+{{ svg.js pattern.ori/index/indexPages.js(pattern.ori/index/htmlObject.js/more) }}
 </figure>
 
 ## Incorporate the index page transform
