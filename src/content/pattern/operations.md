@@ -80,9 +80,9 @@ We also take care to handle the case where multiple trees define async subtrees 
 We can update our site tree to use this new higher-level `MergeTree` operation.
 
 ```{{'js'}}
-/* src/merge/SiteTree.js */
+/* src/merge/siteTree.js */
 
-{{ pattern.ori/merge/SiteTree.js }}
+{{ pattern.ori/merge/siteTree.js }}
 ```
 
 We apply our `indexPages` transform to give the merged tree index pages.
@@ -90,7 +90,7 @@ We apply our `indexPages` transform to give the merged tree index pages.
 The site is now the deep merge of all three trees:
 
 <figure>
-{{ svg.js pattern.ori/merge/SiteTree.js }}
+{{ svg.js pattern.ori/merge/siteTree.js }}
 </figure>
 
 If you compare this to the previous step, where we treated each of the component trees as separate branches, you can see that the merged tree is flatter.

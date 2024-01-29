@@ -64,12 +64,12 @@ Finally, we start the server at a default port.
 
 ```
 
-To add a layer of flexibility, we'll serve the tree defined in a new file called `SiteTree.js`. This file exports whichever tree of transformed HTML we'd like to use, as defined in `htmlObject.js`, `htmlFiles.js`, or `htmlFn.js`. To use the files-backed tree:
+To add a layer of flexibility, we'll serve the tree defined in a new file called `siteTree.js`. This file exports whichever tree of transformed HTML we'd like to use, as defined in `htmlObject.js`, `htmlFiles.js`, or `htmlFn.js`. To use the files-backed tree:
 
 ```{{'js'}}
-/* src/deep/SiteTree.js */
+/* src/deep/siteTree.js */
 
-{{ pattern.ori/deep/SiteTree.js }}
+{{ pattern.ori/deep/siteTree.js }}
 ```
 
 ## Trying our server
@@ -115,7 +115,7 @@ This server is already pretty interesting! We've got a simple site, but can flex
 
 Each of our underlying object, file, or function-based trees has its advantages. For example, we can serve our function-based tree to browse HTML pages which are generated on demand.
 
-<span class="tutorialStep"></span> Edit `src/deep/SiteTree.js` to export the function-based tree from `htmlFn.js` instead of `htmlFiles.js`.
+<span class="tutorialStep"></span> Edit `src/deep/siteTree.js` to export the function-based tree from `htmlFn.js` instead of `htmlFiles.js`.
 
 <span class="tutorialStep"></span> Restart the server with `node serve`.
 

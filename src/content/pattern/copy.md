@@ -113,7 +113,7 @@ We're now ready to build real static files for our site by copying the virtual t
 {{ pattern.ori/set/distFiles.js }}
 ```
 
-And then create a `build.js` utility that copies the virtual tree defined in `SiteTree.js` into that real `dist` folder:
+And then create a `build.js` utility that copies the virtual tree defined in `siteTree.js` into that real `dist` folder:
 
 ```{{'js'}}
 /* src/set/build.js */
@@ -152,7 +152,7 @@ $ npx http-server dist
 Starting up http-server, serving dist
 ```
 
-(You could also temporarily hack `serve.js` to serve the tree defined by `distFiles.js` instead of `SiteTree.js`. Everything here's a tree, and you can serve any of those trees the same way.)
+(You could also temporarily hack `serve.js` to serve the tree defined by `distFiles.js` instead of `siteTree.js`. Everything here's a tree, and you can serve any of those trees the same way.)
 
 <span class="tutorialStep"></span> Browse to the static server and confirm that the static results are the same as what you can see running the dynamically-generated tree.
 

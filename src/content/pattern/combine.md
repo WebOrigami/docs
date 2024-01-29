@@ -10,12 +10,12 @@ In the course of this tutorial, we've created three parallel tree implementation
 
 Our `ObjectTree` class turns out to be a useful tool to combine the three trees of HTML pages from `htmlFiles.js`, `htmlFn.js`, and `htmlObject.js`. We take the exports from those three files, then use them as values in an object. The keys of that object will name the tree's branches — `files`, `function`, and `object` — letting us route requests into the appropriate branch with those names.
 
-We can define this combination by updating `SiteTree.js`:
+We can define this combination by updating `siteTree.js`:
 
 ```{{'js'}}
-/* src/combine/SiteTree.js */
+/* src/combine/siteTree.js */
 
-{{ pattern.ori/combine/SiteTree.js }}
+{{ pattern.ori/combine/siteTree.js }}
 ```
 
 We apply our `indexPages` transform to give the overall tree an index page. Having done that, we can drop the use of `indexPages` in the individual trees. For example, the object-backed tree in `htmlObject.js` no longer needs to define index pages:
@@ -31,7 +31,7 @@ To contrast the values coming from each branch of this tree, we can update the o
 Our combined tree is quite large:
 
 <figure>
-{{ svg.js pattern.ori/combine/SiteTree.js }}
+{{ svg.js pattern.ori/combine/siteTree.js }}
 </figure>
 
 Each of the three main branches of this tree is defined in a different way, with different pros and cons. When constructing a real site, this flexibility lets us pick the most appropriate implementation for any part of the site. And when our needs inevitably change, we can switch those implementations around without needing to change any of our surrounding infrastructure.
