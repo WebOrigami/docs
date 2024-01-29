@@ -12,7 +12,7 @@
     "yaml": "2.1.1"
   },
   "devDependencies": {
-    "@weborigami/screenshot": "0.0.2"
+    "@weborigami/screenshot": "0.0.3"
   },
   "scripts": {
     "build": "rm -r build; ori '@copy netlify.js(@tree/keysJson(src/site.ori/public)), @files/build'",
