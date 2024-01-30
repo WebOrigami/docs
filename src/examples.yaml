@@ -27,10 +27,10 @@ web-origami:
   url: https://weborigami.org
   repo: https://github.com/WebOrigami/docs
   description: |
-    The Web Origami documentation is a complex site with many features. The
-    documentation content is defined in markdown with inlined Origami
-    expressions, allowing individual documentation pages to generate SVG
-    diagrams and run code samples in order to incorporate their output. Various
-    navigation elements like a sidebar and top navigation bar are generated from
-    the structure of the content. The site also generates API documentation from
-    JavaScript source files.
+    The Web Origami documentation site itself has many features. The primary
+    content is defined in markdown with inlined Origami expressions, allowing
+    individual documentation pages to generate SVG diagrams and run code samples
+    in order to incorporate their output. Various navigation elements like a
+    sidebar and top navigation bar are generated from the structure of the
+    content. The site also generates API documentation from JavaScript source
+    files.
