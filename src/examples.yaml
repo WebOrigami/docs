@@ -1,6 +1,7 @@
-#
-# This file defines the sites that go on the Examples page.
-#
+# This file contains data about sample Origami sites. The `screenshots` script
+# generates screenshots of the given URLs, and the Examples page uses this same
+# data for information about each example.
+
 about-us:
   name: About Us
   url: https://weborigami.org/demos/aboutus
