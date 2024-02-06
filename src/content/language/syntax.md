@@ -267,9 +267,13 @@ Test project
 
 You can group expressions with `(` `)` parentheses. Command shells generally interpret parentheses, so you will need to escape them with backslashes or quote the expression you want ori to evaluate.
 
+<a name="lambdas"></a>
+
 ## Lambdas (unnamed functions)
 
-You can define an unnamed lambda function with an `=` equals sign.
+An Origami expression can define a type of unnamed function called a lambda.
+
+You can create the simplest form of a lambda function with an `=` equals sign:
 
 ```
 =expression
@@ -277,7 +281,7 @@ You can define an unnamed lambda function with an `=` equals sign.
 
 This expression will not be evaluated immediately, but only later when explicitly invoked.
 
-For example, the [@map](/language/@map.html) built-in function can apply another function to a tree's values and/or keys. To concisely define a function that will be evaluated in the context of each tree value, you can use a lambda:
+For example, the [@map](/builtins/@map.html) built-in function can apply another function to a tree's values and/or keys. To concisely define a function that will be evaluated in the context of each tree value, you can use a lambda:
 
 ```console
 $ cat letters.json
@@ -289,6 +293,26 @@ $ cat letters.json
 ```
 
 The `_` underscore above refers to the value being mapped, so `=uppercase.js(_)` will convert the value to uppercase.
+
+You can also define lambda functions with an expanded syntax using a "=>" (or the Unicode ⇒ Rightwards Double Arrow) that allows for multiple named parameters:
+
+```
+(parameter1, parameter2, parameter3, …) => expression
+```
+
+The `@map` function shown above passes the mapping function the value and key being mapped — in that order — as arguments, so the above example can be rewritten:
+
+```console
+$ ori "@map(letters.json, (description, letter) => uppercase.js(description))"
+{{ @yaml @map samples.ori/cli/letters.json, (description, letter) => samples.ori/cli/uppercase.js(description) }}
+```
+
+In this case, since the `letter` argument isn't used, it can be omitted:
+
+```console
+$ ori "@map(letters.json, (description) => uppercase.js(description))"
+{{ @yaml @map samples.ori/cli/letters.json, (description) => samples.ori/cli/uppercase.js(description) }}
+```
 
 ## Comments
 

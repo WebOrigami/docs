@@ -50,6 +50,26 @@ Available `options` include:
 - `keyMap`: A function that will be applied to the original tree's keys. See below.
 - `valueMap`: A function that will be applied to the original tree's values.
 
+## The value and key being mapped in scope
+
+The `@map` function will put the value and key being mapped into the current [scope](/language/scope.html). You can refer to the value being mapped as an `_` underscore, and the key being mapped as `@key`.
+
+The example above uses `uppercase.js` as the function that will be applied to each value. The example can also be written using a [lambda function](/language/syntax.html#lambdas):
+
+```console
+$ ori @map(greetings.yaml, =uppercase.js(_))
+{{ @yaml @map samples.ori/cli/greetings.yaml, =samples.ori/cli/uppercase.js(_) }}
+```
+
+You could pass the key being mapped instead of the value to the `uppercase.js` function:
+
+```console
+$ ori @map(greetings.yaml, =uppercase.js(@key))
+{{ @yaml @map samples.ori/cli/greetings.yaml, =samples.ori/cli/uppercase.js(@key) }}
+```
+
+The value and key being mapped are also available as function arguments; see below.
+
 <a name="keys"></a>
 
 ## Mapping keys
@@ -93,4 +113,16 @@ $ cat greetings.yaml
 {{ samples.ori/cli/greetings.yaml
 }}$ ori "@map(greetings.yaml, { extensions: '→html' })"
 {{ @yaml mappedKeys }}
+```
+
+## Value and key being mapped as function arguments
+
+As mentioned above, the `@map` function puts the value and key being mapped in scope. `@map` also passes the value being mapped, the key being mapped, and the tree being mapped as arguments to both the `valueMap` and `keyMap` functions.
+
+This lets you choose names for the value and key that are more meaningful in your context.
+
+```console
+$ ori "@map(greetings.yaml, (name, greeting) => uppercase.js(name))"
+{{ @yaml @map samples.ori/cli/greetings.yaml, (name, greeting) => samples.ori/cli/uppercase.js(name) }}$ ori "@map(greetings.yaml, (name, greeting) => uppercase.js(greeting))"
+{{ @yaml @map samples.ori/cli/greetings.yaml, (name, greeting) => samples.ori/cli/uppercase.js(greeting) }}
 ```
