@@ -5,7 +5,7 @@
   "dependencies": {
     "@weborigami/origami": "https://gitpkg.now.sh/WebOrigami/origami/origami?a81f9761",
     "@weborigami/pattern-intro": "github:WebOrigami/pattern-intro#b5009e86",
-    "@weborigami/samples": "github:WebOrigami/samples#1e80e060",
+    "@weborigami/samples": "github:WebOrigami/samples#f250dbea",
     "marked": "4.1.0",
     "sharp": "0.31.3",
     "typescript": "4.8.4",

@@ -298,3 +298,16 @@ Evaluating this template produces a list of links to each post, with each `href`
 $ ori blogIndex.ori/
 {{ samples.ori/templates/blogIndex.ori/ }}
 ```
+
+### Using named parameters
+
+As noted, you can reference the value being mapped as an `_` underscore and the key being mapped as `@key`. You can also define your own parameter names that are more meaningful to your specific situation.
+
+For example, you can rewrite the blog example above:
+
+```console
+$ ori blogIndex2.ori
+{{ samples.ori/templates/blogIndex2.ori }}
+$ ori blogIndex2.ori/
+{{ samples.ori/templates/blogIndex2.ori/ }}
+```
