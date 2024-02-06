@@ -12,8 +12,7 @@
   # Add the `area` and `fileName` properties to the documents.
   withData = @map(content, {
     description: "withData outer"
-    keyName: "area"
-    valueMap: =@if(
+    valueMap: (_, area) => @if(
       @tree/isAsyncTree(_)
       @map(_, { description: "withData inner", extensions: "md", valueMap: addDataToPages })
       =js/addData.js(_, "", area, areas, {}, client/assets/origami)
