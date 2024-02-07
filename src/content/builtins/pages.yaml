@@ -1,5 +1,7 @@
 - href: index.html
   text: Overview
+- href: "@basename.html"
+  text: "@basename"
 - href: "@builtins.html"
   text: "@builtins"
 - href: "@cache.html"
