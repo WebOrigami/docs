@@ -26,7 +26,7 @@ $ ori sample.txt
 **Get a network data file** and extract a specific value:
 
 ```
-$ ori "(https://graphorigami.org/samples/templates/teamData.yaml)/1/location"
+$ ori "(https://weborigami.org/samples/templates/teamData.yaml)/1/location"
 ```
 
 Invoke a function

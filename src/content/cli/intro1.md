@@ -31,7 +31,7 @@ $ cd src
 
 With this option, you can use whatever code editor you prefer. You will need to have [Node.js](https://nodejs.org/en/) installed.
 
-<span class="tutorialStep"></span> Clone the [Graphorigami/ori-intro](https://github.com/Graphorigami/ori-intro) repository to your own machine.
+<span class="tutorialStep"></span> Clone the [WebOrigami/ori-intro](https://github.com/WebOrigami/ori-intro) repository to your own machine.
 
 <span class="tutorialStep"></span> Open a terminal window in the project's root directory.
 

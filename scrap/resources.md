@@ -5,7 +5,7 @@ Since `https` and `http` URLs are valid Origami expressions, you can incorporate
 ```console
 $ cat net.ori
 {{ samples.ori/templates/net.ori }}$ ori net.ori/
-This content came from graphorigami.org:
+This content came from weborigami.org:
 {{ samples.ori/templates/net.txt }}
 ```
 

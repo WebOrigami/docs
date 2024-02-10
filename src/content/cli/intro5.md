@@ -99,7 +99,7 @@ You can perform a `copy` operation like the one in this example in preparation f
 <span class="tutorialStep"></span> The web site you're reading now supports viewing its contents as an async tree, so you can reference it directly in ori. For example, this site includes a route [/samples/greetings/](/samples/greetings/). You can pass that URL to ori with the custom [tree:](/language/@treeHttps.html) protocol to treat that route as an async tree, and display all the files at that route:
 
 ```console
-$ ori tree://graphorigami.org/samples/greetings/
+$ ori tree://weborigami.org/samples/greetings/
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
@@ -108,14 +108,14 @@ Carol: Hello, Carol.
 <span class="tutorialStep"></span> While the result above may look like a YAML file, each of those lines is actually coming from a separate web resource.
 
 ```console
-$ ori https://graphorigami.org/samples/greetings/Alice
+$ ori https://weborigami.org/samples/greetings/Alice
 Hello, Alice.
 ```
 
 <span class="tutorialStep"></span> ori can discover all the resources at the `/samples/greetings/` route because this server supports a simple protocol: for every route on this server, a [.keys.json](/async-tree/SiteTree.html#keysjson-files) file exists that enumerates the resources at that route.
 
 ```console
-$ ori https://graphorigami.org/samples/greetings/.keys.json
+$ ori https://weborigami.org/samples/greetings/.keys.json
 ["Alice","Bob","Carol"]
 ```
 
@@ -128,7 +128,7 @@ Making the full contents of a site more freely available might be concerning to 
 <span class="tutorialStep"></span> You can also use ori to copy a website as an async tree to local files:
 
 ```console
-$ ori @copy tree://graphorigami.org/samples/greetings/, @files/snapshot
+$ ori @copy tree://weborigami.org/samples/greetings/, @files/snapshot
 $ ls snapshot
 Alice Bob   Carol
 ```
