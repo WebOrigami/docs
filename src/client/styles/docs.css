@@ -295,7 +295,7 @@ nav a:hover {
   grid-column: 1; /* Baffled as to why this is necessary. */
 }
 
-#sideBar:has(*) {
+#sideBar:has(li) {
   border-bottom: 1px solid var(--color-rule);
 }
 
