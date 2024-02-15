@@ -12,8 +12,9 @@ subtitle: Created with the Origami language
 </a>
 <p>
 {{ _/description }}
+{{ @if(_/video, `<a href="{{ _/video }}">Video tour</a> &nbsp; `) }}
 <a href="{{ _/url }}">Visit site</a>
-{{ @if(_/repo, `&nbsp;&nbsp;<a href="{{ _/repo }}">View source</a>`) }}
+{{ @if(_/repo, ` &nbsp; <a href="{{ _/repo }}">View source</a>`) }}
 </p>
 `)
 }}
