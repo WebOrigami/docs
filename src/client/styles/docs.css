@@ -500,13 +500,16 @@ g.node polygon[fill="none"] {
   }
 
   #sideBar {
-    border-bottom: none;
     grid-column: auto;
   }
 
   #sideBar ul {
     display: block;
     padding-left: 20px;
+  }
+
+  #sideBar:has(li) {
+    border-bottom: none;
   }
 
   header h1 {
