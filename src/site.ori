@@ -5,15 +5,15 @@
   # The first set of formulas define a pipeline for the documentation content,
   # which is authored as a tree of markdown files in the `content` folder.
 
-  areas = @tree/plain(areas.yaml)
+  areas = @plain(areas.yaml)
 
-  addDataToPages = =js/addData.js(_, area, @key, areas, @tree/plain(content(area)/pages.yaml), client/assets/origami)
+  addDataToPages = =js/addData.js(_, area, @key, areas, @plain(content(area)/pages.yaml), client/assets/origami)
 
   # Add the `area` and `fileName` properties to the documents.
   withData = @map(content, {
     description: "withData outer"
     valueMap: (_, area) => @if(
-      @tree/isAsyncTree(_)
+      @isAsyncTree(_)
       @map(_, { description: "withData inner", extensions: "md", valueMap: addDataToPages })
       =js/addData.js(_, "", area, areas, {}, client/assets/origami)
     )
@@ -35,12 +35,12 @@
   pages = @map(html, { deep: @true, extensions: "html", valueMap: templates/page.ori })
 
   # The `public` tree defines the final tree which is built into static pages.
-  public = @tree/merge(client, pages, {
+  public = @merge(client, pages, {
     # This components.js "bundle" is just concatenated files
-    components.js = @tree/concat(components)
+    components.js = @concat(components)
 
     demos = {
-      aboutUs = @tree/from src/demos/aboutUs/site.ori
+      aboutUs = @tree src/demos/aboutUs/site.ori
     }
 
     # pagefind = @cache(js/treeIndex.js(pages), src/pagefind)

@@ -28,13 +28,13 @@ The library also contains general-purpose versions of some of the tree operation
 
 This tutorial demonstrated a simple `json` tool that dumps a tree's contents to the console. The Web Origami project expands this idea with its [ori](/cli) command-line interface.
 
-By default, ori displays a tree in YAML format, but can also display a tree as JSON, a table, or a diagram in SVG format. The built-in [@svg](/language/@svg.html) command is used to generate all the tree diagrams in this tutorial.
+By default, ori displays a tree in YAML format, but can also display a tree as JSON, a table, or a diagram in SVG format. The built-in [@svg](/builtins/@svg.html) command is used to generate all the tree diagrams in this tutorial.
 
 ori includes richer implementations of all the general-purpose tools shown in this tutorial:
 
-- [@serve](/language/@serve.html) command. ori's server has more features, but the basic concept remains the same: the server translates an HTTP/HTTPS request into the traversal of an async tree. ori also includes an Express middleware version that does the same thing.
-- [@tree/setDeep](/language/@tree.html#setDeep) command like the one in this tutorial. ori also includes a related [@copy](/language/@copy.html) command that adds command-line progress feedback. This can be used as the basis for a build process like the one shown in this tutorial.
-- [@mdHtml](/language/@mdHtml.html) command that transforms markdown text to the corresponding HTML.
+- [@serve](/builtins/@serve.html) command. ori's server has more features, but the basic concept remains the same: the server translates an HTTP/HTTPS request into the traversal of an async tree. ori also includes an Express middleware version that does the same thing.
+- [@setDeep](/builtins/@setDeep.html) command like the one in this tutorial. ori also includes a related [@copy](/builtins/@copy.html) command that adds command-line progress feedback. This can be used as the basis for a build process like the one shown in this tutorial.
+- [@mdHtml](/builtins/@mdHtml.html) command that transforms markdown text to the corresponding HTML.
 
 In addition to these commands, ori includes a number of other general-purpose commands for working with async trees.
 

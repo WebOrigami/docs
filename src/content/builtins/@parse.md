@@ -25,4 +25,4 @@ $ ori @parse/yaml "'[1, 2, 3]'"
 - 3
 ```
 
-This is similar to the [@tree/plain](@tree.html#plain) function, but that can only parse JSON/YAML representing trees. In contrast, the `@parse/yaml` function can handle text representing things that aren't trees, such as arrays, dates, and numbers.
+This is similar to the [@plain](@plain.html) function, but that can only parse JSON/YAML representing trees. In contrast, the `@parse/yaml` function can handle text representing things that aren't trees, such as arrays, dates, and numbers.

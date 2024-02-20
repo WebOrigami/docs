@@ -285,7 +285,7 @@ For instance, you might want to write your site content in a folder of markdown 
 }}
 </figure>
 
-You can transform that tree of markdown files into a corresponding tree of HTML files. Origami includes a markdown-to-HTML command called [@mdHtml](/language/@mdHtml.html). That command works on a single file, so you can use it to turn a single markdown file into HTML.
+You can transform that tree of markdown files into a corresponding tree of HTML files. Origami includes a markdown-to-HTML command called [@mdHtml](/builtins/@mdHtml.html). That command works on a single file, so you can use it to turn a single markdown file into HTML.
 
 ```
 {
@@ -301,7 +301,7 @@ You can transform that tree of markdown files into a corresponding tree of HTML 
 }}
 </figure>
 
-Instead of translating just one file a time, you can transform all the files in the `markdown` folder with one instruction using the [@map](/language/@map.html) command:
+Instead of translating just one file a time, you can transform all the files in the `markdown` folder with one instruction using the [@map](/builtins/@map.html) command:
 
 ```
 {

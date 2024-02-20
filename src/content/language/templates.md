@@ -93,7 +93,7 @@ $ ori concat.ori/
 
 ## Use template expressions in any file type
 
-It may be useful to embed Origami expressions inside other kinds of files, such as .html files. You can evaluate such expressions with the built-in [@inline](/language/@inline.html) function.
+It may be useful to embed Origami expressions inside other kinds of files, such as .html files. You can evaluate such expressions with the built-in [@inline](/builtins/@inline.html) function.
 
 For example, you can use this to inline resources such as stylesheets.
 
@@ -148,7 +148,7 @@ You can also obtain a data file from the network, treat it as a tree, and [map t
 
 ## Conditions
 
-Use the built-in [@if](/language/@if.html) function to include text based on some condition.
+Use the built-in [@if](/builtins/@if.html) function to include text based on some condition.
 
 The first argument to `@if` is a condition that is evaluated. If the result is truthy (not `false`, `null`, or `undefined`), the second argument to `@if` is included in the template’s text output. If the result is falsy and a third argument is provided, that third argument will be included in the output.
 
@@ -257,7 +257,7 @@ $ ori blogPost.ori posts/post2.html
 ## Map trees to text
 
 It’s common to have a template generate some fragment of text for each value in a tree: an array, a set, a folder, etc.
-You can handle such cases in Origami templates by calling the built-in [@map](/language/@map.html#values) function to map a tree’s values to text.
+You can handle such cases in Origami templates by calling the built-in [@map](/builtins/@map.html#values) function to map a tree’s values to text.
 
 ```console
 $ cat teamData.yaml

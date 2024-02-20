@@ -49,7 +49,7 @@ class FunctionTree {
 Unlike async tree classes like [ObjectTree](ObjectTree.html), an `FunctionTree` can often accept keys which it does not make public in its `keys` iterator. The sample `FunctionTree` defined above exposes only three keys ("Alice", "Bob", "Carol"), but will actually accept any key.
 
 ```console
-$ ori @tree/keys function.js/
+$ ori @keys function.js/
 - Alice
 - Bob
 - Carol

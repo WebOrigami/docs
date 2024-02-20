@@ -17,7 +17,7 @@ The strings for keys for subtrees will have a trailing `/` after them.
 
 If you ask a `SiteTree` to enumerate the keys available at its URL, it will retrieve this `.keys.json` file, then use those keys as the keys of the `SiteTree`.
 
-For example, you can use the ori [CLI](/cli) to display the complete contents of all pages at a given route using the custom [tree](/language/@treeHttps.html) or [treehttp](/language/@treeHttp.html) protocols.
+For example, you can use the ori [CLI](/cli) to display the complete contents of all pages at a given route using the custom [tree](/builtins/@treeHttps.html) or [treehttp](/builtins/@treeHttp.html) protocols.
 
 ```console
 $ ori tree://weborigami.org/samples/greetings/

@@ -60,7 +60,7 @@ HELLO, ALICE.
 
 ## Translate JSON to YAML and vice versa
 
-<span class="tutorialStep"></span> You can use ori to transform a tree from one format to another. By default, ori renders trees in YAML format, but you can ask for JSON format with the [@json](/language/@json.html) function:
+<span class="tutorialStep"></span> You can use ori to transform a tree from one format to another. By default, ori renders trees in YAML format, but you can ask for JSON format with the [@json](/builtins/@json.html) function:
 
 ```console
 $ ori greetings.yaml
@@ -68,7 +68,7 @@ $ ori greetings.yaml
 {{ @json samples.ori/cli/greetings.yaml }}
 ```
 
-<span class="tutorialStep"></span> In the other direction, you can render a JSON file as YAML with the [@yaml](/language/@yaml.html) function:
+<span class="tutorialStep"></span> In the other direction, you can render a JSON file as YAML with the [@yaml](/builtins/@yaml.html) function:
 
 ```console
 $ ori letters.json
@@ -91,17 +91,17 @@ export default function text(obj) {
 }
 ```
 
-<span class="tutorialStep"></span> You can use the built-in `@tree/plain` function to convert a YAML file to a plain JavaScript object, then pass that to the sample `text` function:
+<span class="tutorialStep"></span> You can use the built-in `@plain` function to convert a YAML file to a plain JavaScript object, then pass that to the sample `text` function:
 
 ```console
-$ ori text.js @tree/plain greetings.yaml
+$ ori text.js @plain greetings.yaml
 Hello, Alice.   Hello, Bob.     Hello, Carol.
 ```
 
 <span class="tutorialStep"></span> Or pass a parsed JSON file to your function:
 
 ```console
-$ ori text.js @tree/plain letters.json
+$ ori text.js @plain letters.json
 The letter A    The letter B    The letter C
 ```
 
@@ -145,7 +145,7 @@ $ cat greetings/Alice
 Hello, Alice.
 ```
 
-The `@files/greetings` argument indicates that [@copy](/language/@copy.html) should copy the input YAML tree to a file system tree under a folder named `greetings`. As a result, the key/value pairs in the YAML file are now individual files in a `greetings` folder.
+The `@files/greetings` argument indicates that [@copy](/builtins/@copy.html) should copy the input YAML tree to a file system tree under a folder named `greetings`. As a result, the key/value pairs in the YAML file are now individual files in a `greetings` folder.
 
 <span class="tutorialStep"></span> The important point here is that _all trees look the same to ori_. It doesn't matter whether a tree is defined in a single file like YAML, or a collection of loose files in the file system. Having unpacked the `greetings.yaml` file above, we can ask ori to display the `greetings` folder we just created:
 
@@ -162,19 +162,19 @@ The `greetings` folder and the `greetings.yaml` file both define the same tree, 
 
 ## Process a folder tree as a JavaScript object
 
-<span class="tutorialStep"></span> Because the `greetings` folder created in the above example is just another tree ori can process, you can feed it to the simple JavaScript function `text(obj)` shown earlier that displayed the text values of a plain JavaScript object.
+<span class="tutorialStep"></span> Because the `greetings` folder created in the above example is just another tree ori can process, you can feed it to the simple JavaScript `text.js` function shown earlier that displayed the text values of a plain JavaScript object.
 
 ```console
-$ ori text @tree/plain greetings
+$ ori text.js @plain greetings
 Hello, Alice.   Hello, Bob.     Hello, Carol.
 ```
 
 This connects two ideas:
 
-- A folder like `greetings` is a async tree ori can understand.
-- ori to convert any tree to a plain JavaScript object with the `@tree/plain` function.
+- A folder like `greetings` is a tree ori can understand.
+- ori can convert any tree to a plain JavaScript object with the `@plain` function.
 
-This means that you can use the `@tree/plain` function to convert a _folder_ to a plain JavaScript object too. The keys will be the file/folder names, and the values will be the file contents or folder subtrees.
+This means that you can use the `@plain` function to convert a _folder_ to a plain JavaScript object too. The keys will be the file/folder names, and the values will be the file contents or folder subtrees.
 
 Writing code to work with folder and files this way can be much easier than using Node's file system API directly. There is a performance trade-off implied by building an in-memory object to hold the file system data, but in many cases this is still very fast. And in practice it can much easier to manipulate a complete file system hierarchy as an in-memory object than working with a file system API.
 
