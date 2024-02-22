@@ -12,5 +12,7 @@
   text: Scope
 - href: yaml.html
   text: In YAML
+- href: comparison.html
+  text: JS comparison
 - href: examples.html
   text: Example sites

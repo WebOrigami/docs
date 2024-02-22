@@ -61,7 +61,7 @@ In the last command above, `Hello.md` is evaluated as a reference. In this case,
 Unlike JavaScript identifiers, it is legal to include a `.` period in a reference. Spaces and the following characters
 
 ```
-(),/:=[]\`{}#
+(){}[]<>-=,/:`"'\#→⇒
 ```
 
 must be escaped with a `\\` backslash.
