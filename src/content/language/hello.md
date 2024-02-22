@@ -8,7 +8,7 @@ siteComplete:
     Bob.html: <h1>Bob</h1>
     Carol.html: <h1>Carol</h1>
   assets:
-    personIcon.svg: <svg …
+    personIcon.svg: "<svg …"
     styles.css: "body { color: …"
   images:
     kingfisher.jpg: "[binary data]"
