@@ -13,7 +13,7 @@ Like JavaScript, Origami is a dynamic language; you do not need to specify the t
 
 - Unlike JavaScript variable declarations, defining something in Origami is implicit; you do not need to prefix a declaration with `let` or `const`.
 - In order to allow you to directly reference files by name, most file names are legal identifiers in Origami. For example, `index.html` is not a legal JavaScript identifier but is legal in Origami.
-- The following special characters must be escaped with a `\` backslash:
+- The following special characters in identifiers must be escaped with a `\\` backslash:
 
 ```
 (){}[]<>-=,/:`"'\#→⇒
@@ -36,7 +36,7 @@ Origami has signed integers and floating point numbers so that you can pass nume
 ## String literals
 
 - Strings with double quotes and single quotes are basically the same.
-- The `\` can be used inside a string to escape the next character.
+- A `\\` backslash can be used inside a string to escape the next character.
 - Origami supports template strings but uses `\{\{ }}` double curly braces to indicate placeholders in the template rather than `${ }` as in JavaScript.
 - Expressions inside an Origami template placeholder can directly return complex values like arrays, objects, or trees. Origami will perform a depth-first traversal of the result and concatenate all the values into the final string result.
 
