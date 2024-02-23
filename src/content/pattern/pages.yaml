@@ -5,7 +5,7 @@
 - href: representations.html
   text: Data representations
 - href: interface.html
-  text: Async dictionaries
+  text: Async trees
 - href: display.html
   text: Display a tree
 - href: transform.html
