@@ -18,3 +18,13 @@ subtitle: Created with the Origami language
 </p>
 `)
 }}
+
+<h2>Japan Traverse Hike ebook</h2>
+<a href="https://github.com/WebOrigami/ebook-sample">
+  <img class="screenshot" src="/assets/misc/ebookCover.jpg" alt="Book cover showing a grassy meadow with an elevated wooden pathway">
+</a>
+
+In addition to creating websites, Origami can generate other software artifacts like ebooks. This example project generates an ebook using markdown text with images.
+
+<a href="https://github.com/WebOrigami/ebook-sample/raw/main/japan-hike.epub">Download sample book</a>
+&nbsp; <a href="https://github.com/WebOrigami/ebook-sample">View source</a>

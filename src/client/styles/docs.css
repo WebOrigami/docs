@@ -436,7 +436,8 @@ g.node polygon[fill="none"] {
 
 .screenshot {
   border: 1px solid #ddd;
-  width: 50%;
+  max-height: 350px;
+  max-width: 50%;
 }
 
 /*
