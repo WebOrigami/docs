@@ -40,7 +40,7 @@
     components.js = @concat(components)
 
     demos = {
-      aboutUs = src/demos/aboutUs/site.ori/
+      aboutUs = @tree src/demos/aboutUs/site.ori
     }
 
     # pagefind = @cache(js/treeIndex.js(pages), src/pagefind)
