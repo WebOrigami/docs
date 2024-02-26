@@ -10,9 +10,9 @@ fileName: index.html
 
 This project explores a new way to build small- to medium-scale websites using a conceptual model and programming language that complement HTML and CSS.
 
-**Problem:** Creating interesting sites is hard or expensive. Standard HTML and CSS let you define individual pages, but it’s hard to efficiently create a bunch of pages or organize them into a coherent site.
+**Problem:** Creating interesting sites is hard or expensive. Standard HTML and CSS let you define individual pages, but it’s hard to efficiently create a bunch of pages and organize them into a coherent site.
 
-Corporate site hosting services offer you drag-and-drop editors but impose creative limitations and high monthly costs. You could build something from scratch — if you master a full programming language like JavaScript and a pile of industrial development tools. The web needs better ways to create real, expressive sites at low cost and without entanglements.
+Corporate site hosting services offer nice drag-and-drop editors but impose creative limitations and high monthly costs. You could build something from scratch — if you master a full programming language like JavaScript and a pile of industrial development tools. The web needs better ways to create sizable, expressive sites at low cost and without entanglements.
 
 Origami is designed for you: someone who wants to make a site for yourself or a small organization, someone who’s fine editing HTML and CSS, someone who’s not a professional programmer — or is, but wants to build sites more quickly.
 
@@ -22,7 +22,7 @@ The core idea is to describe the site you want at a high level as concisely as p
   <img src="/assets/illustrations/Site Sketch.svg">
 </figure>
 
-Then you can turn that into a small Origami program that orchestrates the creation of your site:
+then you can turn that into a small Origami program that orchestrates the creation of your site:
 
 ```
 {
@@ -37,9 +37,9 @@ Then you can turn that into a small Origami program that orchestrates the creati
 }
 ```
 
-Origami complements the standard HTML and CSS languages. It lets you describe how you want to transform your data and files into HTML and the other resources your site will need. You can create many things without complex programming, including common parts of sites like a full-text search feature, RSS feeds for blogs, and so on. You can use JavaScript to define parts of your site wherever that makes sense to you.
+Origami complements the standard HTML and CSS languages. It lets you describe how you want to transform your data and files into HTML and the other resources for your site. You can create many things without complex programming: a full-text search feature, RSS feeds for blogs, and so on. You can use JavaScript to define parts of your site wherever that makes sense to you.
 
-This high-level site definition is enough to let you immediately view and iterate on your site without complex build tools. When you’re ready to publish, Origami can turn your site into a collection of plain files you can deploy wherever you want, often for free.
+A high-level site definition is enough to let you immediately view and iterate on your site without complex build tools. When you’re ready to publish, Origami can turn your site into a collection of plain files you can deploy wherever you want, often for free.
 
 <span class="tutorialStep"></span> View some [example sites](/language/examples.html)
 
@@ -74,4 +74,4 @@ The project includes several separate but interoperable tools and ideas:
 - The [async-tree library](/async-tree/) lets JavaScript programmers use core Origami features in JavaScript applications.
 - The [conceptual pattern](/pattern/) at the foundation of it all lets you represent a wide variety of data types as trees that can be easily traversed and transformed. There's no code at this level; you can use the ideas in any project.
 
-If you're interested in trying Origami in a friendly setting, participate in a guided usability test and share your feedback. Or join a pair programming session to collectively solve a problem you currently have with these new techniques and tools. Contact [Jan Miksovsky](https://jan.miksovsky.com/contact.html).
+If you're interested in trying Origami in a friendly setting, you can participate in a guided usability test and share your feedback. Or join a pair programming session to use these new techniques and tools to collaboratively implement a site. Contact [Jan Miksovsky](https://jan.miksovsky.com/contact.html).
