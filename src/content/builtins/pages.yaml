@@ -72,6 +72,8 @@
   text: "@not"
 - href: "@once.html"
   text: "@once"
+- href: "@or.html"
+  text: "@or"
 - href: "@ori.html"
   text: "@ori"
 - href: "@parent.html"

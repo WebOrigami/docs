@@ -236,22 +236,25 @@ An input document can define front matter.
 
 Both a template’s input document and the template itself can contain front matter in YAML or JSON format. The front matter is delineated with both a leading and trailing line of three hyphens (`---`), like so:
 
-If a blog post defines a `title`, that title is preferred:
+Example: a blog post can be stored as a markdown file with front matter that defines a `title` property.
 
 ```console
 $ cat posts/post1.html
 {{ samples.ori/templates/posts/post1.html }}
-$ ori blogPost.ori posts/post1.html
-{{ samples.ori/templates/blogPost.ori samples.ori/templates/posts/post1.html }}
 ```
 
-But if a post fails to define a `title`, the template's default title is used:
+And a template can then reference this `title` property. Here the template uses the [@or](/builtins/@or.html) function to provide a default title if the input document has no `title`.
 
 ```console
-$ cat posts/post2.html
-{{ samples.ori/templates/posts/post2.html }}
-$ ori blogPost.ori posts/post2.html
-{{ samples.ori/templates/blogPost.ori samples.ori/templates/posts/post2.html }}
+$ can blogPost.ori
+{{ samples.ori/templates/blogPost.ori }}
+```
+
+Applying the template the blog post includes the document's `title` property as desired:
+
+```console
+$ ori blogPost.ori posts/post1.html
+{{ samples.ori/templates/blogPost.ori samples.ori/templates/posts/post1.html }}
 ```
 
 ## Map trees to text
@@ -316,8 +319,8 @@ This index page template defines a default `title` property to use if a page omi
 Evaluating this template produces a list of links to each post, with each `href` attribute referencing the appropriate file:
 
 ```console
-$ ori blogIndex.ori/
-{{ samples.ori/templates/blogIndex.ori/ }}
+$ ori blogIndex.ori posts
+{{ samples.ori/templates/blogIndex.ori samples.ori/templates/posts }}
 ```
 
 ### Using named parameters
