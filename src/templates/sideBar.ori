@@ -1,6 +1,6 @@
-=@if(_, =`<ul>
-  {{ @map(_, =`
-    <li>{{ linkCurrent.ori(_) }}</li>
-  `) }}
+(links) => @if(links, =`<ul>
+  ${ @map(links, (link) => `
+    <li>${ linkCurrent.ori(link) }</li>
+  `) }
 </ul>
 `)

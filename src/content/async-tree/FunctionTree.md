@@ -10,7 +10,7 @@ import { FunctionTree } from "@weborigami/origami";
 
 // Wrap an object to create an async tree.
 const tree = new FunctionTree({
-  (key) => `Hello, ${key}.`,
+  (key) => `Hello, \${key}.`,
   ["Alice", "Bob", "Carol"]
 });
 ```

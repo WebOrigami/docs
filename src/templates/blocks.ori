@@ -1,4 +1,4 @@
-=`<div class="blocks">
-{{ areaLinks.ori(_/areaLinks) }}
+(document) => `<div class="blocks">
+${ areaLinks.ori(document/areaLinks) }
 </div>
 `

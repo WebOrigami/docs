@@ -1,1 +1,1 @@
-=js/separatedList.js(_, ' | ', =_)
+(types) => js/separatedList.js(types, ' | ', =_)

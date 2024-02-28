@@ -1,4 +1,4 @@
-=@map(_/exports, =`
-  {{ @if @equals(_/kind, 'class'), =class.ori(_) }}
-  {{ @if @equals(_/kind, 'function'), =function.ori(_) }}
+(api) => @map(api/exports, (export) => `
+  ${ @if @equals(export/kind, 'class'), =class.ori(export) }
+  ${ @if @equals(export/kind, 'function'), =function.ori(export) }
 `)

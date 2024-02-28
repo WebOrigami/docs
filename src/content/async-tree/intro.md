@@ -16,7 +16,7 @@ The `samples` folder contains a JavaScript file `direct.js` that defines a tree 
 export default {
   // Get the value of a given key.
   async get(key) {
-    return `Hello, ${key}.`;
+    return `Hello, \${key}.`;
   },
 
   // Return this tree node's keys.
@@ -66,7 +66,7 @@ import { FunctionTree } from "@weborigami/origami";
 
 // Create an async tree for a function with a domain.
 export default new FunctionTree(
-  (key) => `Hello, ${key}. [from a function]`,
+  (key) => `Hello, \${key}. [from a function]`,
   ["Alice", "Bob", "Carol"]
 );
 ```

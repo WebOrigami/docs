@@ -1,4 +1,4 @@
-=`<!DOCTYPE html>
+(page) => `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -6,10 +6,10 @@
     <link rel="stylesheet" href="/styles/github-subset.css">
     <link rel="stylesheet" href="/styles/github.min.css">
     <link rel="stylesheet" href="/styles/docs.css">
-    <title>{{ _/title }}</title>
-    <link rel="icon" href="/assets/origami/{{ _/icon }}" type="image/svg+xml">
+    <title>${ page/title }</title>
+    <link rel="icon" href="/assets/origami/${ page/icon }" type="image/svg+xml">
   </head>
-  <body{{ @if(_/numberHeadings, ` class="numberHeadings"`) }}>
+  <body${ @if(page/numberHeadings, ` class="numberHeadings"`) }>
     <div id="page">
       <div id="topNav" class="pageRow">
         <div id="homeContainer">
@@ -17,25 +17,25 @@
         </div>
         <nav id="navBar">
           <a href="/">Origami</a>
-{{ areaLinks.ori(_/areaLinks) }}
+${ areaLinks.ori(page/areaLinks) }
           <a href="https://github.com/WebOrigami/origami">GitHub</a>
         </nav>
       </div>
       <div id="pageContent">
         <div id="iconContainer">
-          <img class="origami" src="/assets/origami/{{ _/icon }}">
+          <img class="origami" src="/assets/origami/${ page/icon }">
         </div>
         <header>
-          <h1>{{ _/title }}</h1>
-{{ @if(_/subtitle, =`
-          <p class="subtitle">{{ _/subtitle }}</p>
-`) }}
+          <h1>${ page/title }</h1>
+${ @if(page/subtitle, =`
+          <p class="subtitle">${ page/subtitle }</p>
+`) }
         </header>
         <nav id="sideBar">
-{{ sideBar.ori(_/pageLinks) }}
+${ sideBar.ori(page/pageLinks) }
         </nav>
         <main class="markdown-body">
-          {{ _/@text }}
+          ${ page/@text }
         </main>
       </div>
     </div>

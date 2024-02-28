@@ -68,7 +68,7 @@ The small circle on the left is a tree node with three keys ("Alice", "Bob", "Ca
 const tree = {
   // Get the value of a given key.
   async get(key) {
-    return `Hello, ${key}.`;
+    return `Hello, \${key}.`;
   },
 
   // Return this tree node's keys.
@@ -89,7 +89,7 @@ for (const key of await tree.keys()) {
   // For a given key, get the value associated with it.
   const value = await tree.get(key);
   // Display the key and value.
-  console.log(`${key}: ${value}`);
+  console.log(`\${key}: \${value}`);
 }
 ```
 

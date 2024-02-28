@@ -1,7 +1,7 @@
-# The following formulas are used by specific pages that want to inline API
-# documentation for specific classes in the async-tree library. The formula
-# creates a virtual tree of API documentation objects for the async-tree
-# library. That formula uses a custom transform called `jsApi`, based on the
-# Microsoft TypeScript compiler, which parses JavaScript source to extract type
-# information and comments.
+// The following formulas are used by specific pages that want to inline API
+// documentation for specific classes in the async-tree library. The formula
+// creates a virtual tree of API documentation objects for the async-tree
+// library. That formula uses a custom transform called `jsApi`, based on the
+// Microsoft TypeScript compiler, which parses JavaScript source to extract type
+// information and comments.
 js/jsApi.js(node_modules/@weborigami/async-tree/src)

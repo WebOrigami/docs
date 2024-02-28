@@ -1,24 +1,24 @@
-=`<h3 id="{{ _/name }}">
-  {{ @if _/static, 'static ' }}
-  {{ @if _/async, 'async '}}
-  {{ @if _/generator, '*'}}{{_/name}}({{ parameters.ori(_/parameters) }})
-  {{ @if _/isConstructor, 'constructor'}}
+(api) => `<h3 id="${ api/name }">
+  ${ @if api/static, 'static ' }
+  ${ @if api/async, 'async '}
+  ${ @if api/generator, '*'}${api/name}(${ parameters.ori(api/parameters) })
+  ${ @if api/isConstructor, 'constructor'}
 </h3>
 <ul>
-{{ @map(_/parameters, =`
-  <li>{{_/name}}: {{ typeList.ori(_/types) }}
-    {{ @if _/description, =`
-      &ndash; {{_/description}}
-    `}}
+${ @map(api/parameters, (parameter) => `
+  <li>${parameter/name}: ${ typeList.ori(parameter/types) }
+    ${ @if parameter/description, =`
+      &ndash; ${parameter/description}
+    ` }
   </li>  
-`) }}
+`) }
 </ul>
-{{ @if @not(_/isConstructor), =`
+${ @if @not(api/isConstructor), =`
 <p>
-  Returns: {{ typeList.ori(_/returnTypes) }}
+  Returns: ${ typeList.ori(api/returnTypes) }
 </p>
-`}}
+` }
 <p>
-  {{ @mdHtml _/description}}
+  ${ @mdHtml api/description}
 </p>
 `

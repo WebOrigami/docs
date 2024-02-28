@@ -199,7 +199,7 @@ In Origami, functions are a type of tree, so a function can also be invoked with
 
 ```console
 $ ori greet.js
-export default (name = "world") => `Hello, ${name}.`;
+export default (name = "world") => `Hello, \${name}.`;
 $ ori greet.js/David
 Hello, David.
 ```

@@ -21,7 +21,7 @@ export default (body) => `<!DOCTYPE html>
     </style>
   </head>
   <body>
-    ${body}
+    \${body}
   </body>
 </html>
 `;

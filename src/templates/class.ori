@@ -1,13 +1,13 @@
-=`<h2>{{_/name}} class</h2>
+(api) => `<h2>${api/name} class</h2>
 <p>
-  {{ @if _/description, =`
-    {{ @mdHtml _/description}}
-  `}}
+  ${ @if api/description, =`
+    ${ @mdHtml api/description}
+  ` }
 </p>
-{{ @if _/classConstructor, =`
-  {{ function.ori(_/classConstructor) }}
-`}}
-{{ @map(_/members, =`
-  {{ function.ori(_) }}
-`) }}
+${ @if api/classConstructor, =`
+  ${ function.ori(api/classConstructor) }
+` }
+${ @map(api/members, (member) => `
+  ${ function.ori(member) }
+`) }
 `

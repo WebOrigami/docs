@@ -37,7 +37,7 @@ In this case, ori finds that "sample.txt" is the name of a file, and reads that 
 
 ```console
 $ ori greet.js
-export default (name = "world") => `Hello, ${name}.`;
+export default (name = "world") => `Hello, \${name}.`;
 ```
 
 <span class="tutorialStep"></span> You can _invoke_ the function exported by that module by adding parentheses. Since most command-line shells interpret parentheses, you'll need to quote the expression:
@@ -95,9 +95,9 @@ The samples include a small collection of functions:
 
 ```console
 $ ori double.js
-export default (x) => `${x}${x}`;
+export default (x) => `\${x}\${x}`;
 $ ori greet.js
-export default (name = "world") => `Hello, ${name}. `;
+export default (name = "world") => `Hello, \${name}. `;
 $ ori uppercase.js
 export default (x) => x.toString().toUpperCase();
 ```
@@ -112,7 +112,7 @@ HI
 $ ori greet.js uppercase.js/there
 Hello, THERE.
 $ ori uppercase.js greet.js
-EXPORT DEFAULT (NAME = "WORLD") => `HELLO, ${NAME}. `
+EXPORT DEFAULT (NAME = "WORLD") => `HELLO, \${NAME}. `
 $ ori uppercase.js greet.js/
 HELLO, WORLD.
 $ ori double.js greet.js/everybody
@@ -131,7 +131,7 @@ HI
 $ ori "greet.js(uppercase.js('there'))"
 Hello, THERE.
 $ ori "uppercase.js(greet.js)"
-EXPORT DEFAULT (NAME = "WORLD") => `HELLO, ${NAME}. `
+EXPORT DEFAULT (NAME = "WORLD") => `HELLO, \${NAME}. `
 $ ori "uppercase.js(greet.js())"
 HELLO, WORLD.
 $ ori "double.js(greet.js('everybody'))"
