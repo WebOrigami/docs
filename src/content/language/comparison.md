@@ -125,10 +125,6 @@ This type of Origami declaration will invoke the indicated expression — here, 
 
 On difference is that the Origami example permits the `createPage` function to be `async`, while JavaScript prohibits the declaration of `async` getters.
 
-## Comments
-
-Comments in Origami start with a `#` pound sign instead of JavaScript's `//` or `/* */` syntax.
-
 ## Origami files vs JavaScript modules
 
 Any Origami file with the `.ori` extension will have its contents interpreted as an Origami expression. Unlike JavaScript, there is no need to explicitly `export` a value.

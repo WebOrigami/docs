@@ -322,6 +322,12 @@ Line comments start with `//` double slashes and extend to the end of the line:
 // This is a line comment
 ```
 
+Note: In a URL or file path (see above), Origami interprets consecutive double slashes as part of the path and _not_ a comment.
+
+```
+https://example.com/path/with/consecutive//slashes
+```
+
 Block comments are enclosed by `/* */`
 
 ```
