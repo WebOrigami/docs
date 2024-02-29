@@ -35,10 +35,12 @@ Origami has signed integers and floating point numbers so that you can pass nume
 
 ## String literals
 
-- Strings with double quotes and single quotes are basically the same.
-- A `\\` backslash can be used inside a string to escape the next character.
-- Origami supports template strings but uses `\{\{ }}` double curly braces to indicate placeholders in the template rather than `\${ }` as in JavaScript.
+- Strings with double quotes and single quotes are essentially the same.
+
+## Template literals
+
 - Expressions inside an Origami template placeholder can directly return complex values like arrays, objects, or trees. Origami will perform a depth-first traversal of the result and concatenate all the values into the final string result.
+- Origami template literals do not support JavaScript's tagged templates.
 
 ## Array and object literals
 

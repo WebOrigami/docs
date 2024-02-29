@@ -7,7 +7,7 @@ Returns a tree that can match against simple patterns or JavaScript regular expr
 For example, if you are creating a `/user` area within a site that will handle routes like `/user/[name].html`, you can use `match()` to match that pattern and return a result.
 
 ```console
-$ ori "(@match('[name].txt', =\`Hello, \{\{ name }}.\`))/Alice.txt"
+$ ori "(@match('[name].txt', =\`Hello, \$\{ name }.\`))/Alice.txt"
 Hello, Alice.
 ```
 
@@ -21,7 +21,7 @@ The `pattern` argument can take one of two forms:
 By default, the tree will have no public keys, but you can provide any [treelike object](/async-tree/treelike.html) as the `keys` argument. That tree's keys will be used as the keys for the tree returned by `match()`.
 
 ```console
-$ ori "@match '[name].txt', =\`Hello, \{\{ name }}.\`, ['Alice.txt', 'Bob.txt', 'Carol.txt']"
+$ ori "@match '[name].txt', =\`Hello, \$\{ name }.\`, ['Alice.txt', 'Bob.txt', 'Carol.txt']"
 Alice.txt: Hello, Alice.
 Bob.txt: Hello, Bob.
 Carol.txt: Hello, Carol.

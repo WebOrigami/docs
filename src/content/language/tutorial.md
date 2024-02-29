@@ -117,7 +117,7 @@ For this tutorial, you'll use the [template system built into Origami](templates
 
 This Origami template starts with an `=` equals sign and encloses some HTML with &#96; &#96; backticks.
 
-Inside the backticks, the placeholder marked with `\{\{ }}` curly braces contains an Origami expression. In this case, the `_` underscore tells Origami to insert any text passed to the template into the HTML at that point.
+Inside the backticks, the placeholder marked with `\$\{ }` curly braces contains an Origami expression. In this case, the `_` underscore tells Origami to insert any text passed to the template into the HTML at that point.
 
 You can call this template from an Origami formula.
 
@@ -397,7 +397,7 @@ The main About Us page should display a tile for each member that links to their
 =`<h1>About Us</h1>
 <ul>
   \{\{ @map(_, =`
-    <li>\{\{ _/name }}</li>
+    <li>\$\{ _/name }</li>
   `) \}\}
 </ul>
 `
@@ -459,7 +459,7 @@ You can use a template for the people pages in the `team` area too.
 <clipboard-copy>
 
 ```{{"html"}}
-=`<h1>\{\{ _/name }}</h1>`
+=`<h1>\$\{ _/name }</h1>`
 ```
 
 </clipboard-copy>
@@ -570,7 +570,7 @@ We want the pages in the `team` area to end in a `.html` extension because that 
 {
   index.html = index.ori(teamData.yaml)
   team = @map(teamData.yaml, {
-    keyMap: =<b>`\{\{ _/name }}.html`</b>
+    keyMap: =<b>`\$\{ _/name }.html`</b>
     valueMap: person.ori
   })
   assets
@@ -627,7 +627,7 @@ To review, you've created this entire site with a few resources, a couple of tem
 {
   index.html = index.ori(teamData.yaml)
   team = @map(teamData.yaml, {
-    keyMap: =`\{\{ _/name }}.html`
+    keyMap: =`\$\{ _/name }.html`
     valueMap: person.ori
   })
   assets

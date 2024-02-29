@@ -12,7 +12,7 @@ The `@js` built-in provides access to a number of Node.js modules with functions
 For example, in an Origami template you can use the `@node/process` module to include information about the development environment:
 
 ```
-Environment: \{\{ @node/process/env/NODE_ENV }}
+Environment: \$\{ @node/process/env/NODE_ENV }
 ```
 
 See also [@js](@js.html), which provides access to a number of JavaScript classes and utility functions.

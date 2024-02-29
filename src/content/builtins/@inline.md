@@ -2,15 +2,15 @@
 title: "@inline(text)"
 ---
 
-Treats `text` as an Origami template, evaluating any Origami expressions found inside `\{\{`…`}}` placeholders in the `text`. This operation preserves any front matter in the document.
+Treats `text` as an Origami template, evaluating any Origami expressions found inside `\$\{`…`}` placeholders in the `text`. This operation preserves any front matter in the document.
 
 ```console
-$ cat inline.yaml
+$ cat inline.md
 ---
 name: world
 ---
-Hello, \{\{ name }}!
-$ ori @inline inline.yaml
+Hello, \$\{ name }!
+$ ori @inline inline.md
 ---
 name: world
 ---
@@ -23,7 +23,7 @@ Among other things, you can use `@inline` to include one document in another. Fo
 $ cat page.html
 <html>
   <body>
-\{\{ fragment.html }}
+\$\{ fragment.html }
   </body>
 </html>
 $ cat fragment.html

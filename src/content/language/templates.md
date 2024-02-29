@@ -15,7 +15,7 @@ _You can use Origami with other template systems, but the small degree of integr
 
 An Origami template file is an Origami file (a text file with a `.ori` extension) defining an [Origami expressions](/language/syntax.html) that either evaluates to a text string or to a function that returns text.
 
-The most common type of Origami template is a file that defines a template literal using an = equals sign and backtick characters. Inside the backticks, placeholders marked with `\{{`and`}}` curly braces contain additional Origami expressions whose results are included in the final text:
+The most common type of Origami template is a file that defines a template literal using an = equals sign and backtick characters. Inside the backticks, placeholders marked with `\$\{ }` contain additional Origami expressions whose results are included in the final text:
 
 ```console
 $ cat greet.ori

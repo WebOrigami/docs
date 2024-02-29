@@ -137,13 +137,13 @@ The top level of a `.ori` file is treated as the contents of tree literal. The `
 
 ## Template literals
 
-Text templates are quoted in backticks and can contain Origami expressions inside `\{\{` `}}` double curly braces.
+Text templates are quoted in backticks and can contain Origami expressions inside `\$\{` `}` placeholders.
 
 ```console
 $ cat pet.txt
 Fluffy
 $ cat sample.ori
-\`I have a pet named \{\{ pet.txt }}.`
+\`I have a pet named \$\{ pet.txt }.`
 $ ori sample.ori/
 I have a pet named Fluffy.
 ```
@@ -316,10 +316,20 @@ $ ori "@map(letters.json, (description) => uppercase.js(description))"
 
 ## Comments
 
-Comments start with a `#` sharp sign and extend to the end of the line:
+Line comments start with `//` double slashes and extend to the end of the line:
 
 ```
-# This is a comment
+// This is a line comment
+```
+
+Block comments are enclosed by `/* */`
+
+```
+/*
+
+Block comment
+
+*/
 ```
 
 ## Reserved words

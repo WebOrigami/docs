@@ -99,7 +99,7 @@ Origami determines the meaning of those references by defining a _scope_: the se
 ```
 {
   name = "world"
-  index.html = `Hello, \{\{ name }}!`
+  index.html = `Hello, \$\{ name }!`
 }
 ```
 
@@ -126,7 +126,7 @@ We can observe tree scope in action by adding a level to our little tree, making
 {
   name = "world"
   about = {
-    index.html = `Hello, \{\{ name }}!`
+    index.html = `Hello, \$\{ name }!`
   }
 }
 ```
@@ -162,7 +162,7 @@ Here `site.ori` is an Origami file (indicated by the `.ori` extension) that cont
 
 ```
 {
-  index.html = `Hello, \{\{ name }}!`
+  index.html = `Hello, \$\{ name }!`
 }
 ```
 
@@ -210,7 +210,7 @@ The Origami file can incorporate that data into the `index.html` page with:
 
 ```
 {
-  index.html = `Hello, \{\{ data.json/name }}!`
+  index.html = `Hello, \$\{ data.json/name }!`
 }
 ```
 
@@ -391,7 +391,7 @@ title: My first post
 Here's my first post!
 ```
 
-The `post.ori` file contains an Origami template that mixes HTML with `\{\{ }}` curly brace placeholders to incorporate data:
+The `post.ori` file contains an Origami template that mixes HTML with `\$\{ }` placeholders to incorporate data:
 
 ```{{"html"}}
 =`<html>
