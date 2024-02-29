@@ -37,7 +37,8 @@ When you invoke a template as a function, you can refer to the template's input 
 
 ```console
 $ cat heading.ori
-${ samples.ori/templates/heading.ori }$ ori "heading.ori('About Us')"
+${ samples.ori/templates/heading.ori }
+$ ori "heading.ori('About Us')"
 ${ samples.ori/templates/heading.ori('About Us') }
 ```
 
@@ -246,7 +247,7 @@ ${ samples.ori/templates/posts/post1.html }
 And a template can then reference this `title` property. Here the template uses the [@or](/builtins/@or.html) function to provide a default title if the input document has no `title`.
 
 ```console
-$ can blogPost.ori
+$ cat blogPost.ori
 ${ samples.ori/templates/blogPost.ori }
 ```
 

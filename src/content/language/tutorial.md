@@ -119,6 +119,8 @@ This Origami template starts with an `=` equals sign and encloses some HTML with
 
 Inside the backticks, the placeholder marked with `\{\{ }}` curly braces contains an Origami expression. In this case, the `_` underscore tells Origami to insert any text passed to the template into the HTML at that point.
 
+_Note: The Origami syntax for template placeholders recently changed from `\{\{ }}` to `\$\{ }`. Current Glitch limitations prevent us from making this change in the tutorial project. For projects outside Glitch, use the newer `\$\{ }` style in templates._
+
 You can call this template from an Origami formula.
 
 <span class="tutorialStep"></span> **Try it:** In `site.ori`, update the formula for `index.html` to remove the quoted string, and instead call the `greet.ori` template and pass it the text `"world"`.
