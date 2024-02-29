@@ -9,7 +9,9 @@ The Origami language is relatively small and focused on:
 - Creating text content using templates
 - Invoking functions defined in other languages like JavaScript
 
-Origami borrows syntax elements from web URLs, template languages, and JavaScript expressions.
+Origami expression syntax generally follows JavaScript, with some [differences](comparison.html) such as: URLs, file paths, and file names are valid references; and some shorthands make it easier to type expressions in the shell when using the [CLI](/cli).
+
+Microsoft Visual Studio Code users can install the [Origami language extension](https://marketplace.visualstudio.com/items?itemName=WebOrigami.origami-vscode-extension) for syntax highlighting.
 
 ## Strings
 
