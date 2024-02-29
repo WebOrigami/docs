@@ -97,28 +97,28 @@ This leads to another way to think about async trees: async trees are software a
 
 We can now introduce a new helper function, `setDeep(target, source)`, which handles the general case of writing values from the `source` tree into the `target` tree.
 
-```{{'js'}}
+```${'js'}
 /* src/set/setDeep.js */
 
-{{ pattern.ori/set/setDeep.js }}
+${ pattern.ori/set/setDeep.js }
 ```
 
 ## Build real files from virtual content
 
 We're now ready to build real static files for our site by copying the virtual tree of HTML pages into a real file system folder. All we need to do is wrap a real folder called `distFiles` in a `FileTree`:
 
-```{{'js'}}
+```${'js'}
 /* src/set/distFiles.js */
 
-{{ pattern.ori/set/distFiles.js }}
+${ pattern.ori/set/distFiles.js }
 ```
 
 And then create a `build.js` utility that copies the virtual tree defined in `siteTree.js` into that real `dist` folder:
 
-```{{'js'}}
+```${'js'}
 /* src/set/build.js */
 
-{{ pattern.ori/set/build.js }}
+${ pattern.ori/set/build.js }
 ```
 
 <span class="tutorialStep"></span> Use this new `build` tool from inside the `src/set` directory to copy the virtual tree into files. The `set` method for `FileTree` takes care to create the target directory (`dist`), so it's fine if that directory doesn't exist when we start.
@@ -136,7 +136,7 @@ Alice.html Bob.html   Carol.html index.html more
 
 ```console
 $ node json distFiles.js
-{{ @json pattern.ori/set/htmlObject.js }}
+${ @json pattern.ori/set/htmlObject.js }
 ```
 
 We can see that we've generated HTML pages for all the markdown content, and also see that each level of this tree has an `index.html` page.

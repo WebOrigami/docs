@@ -15,10 +15,10 @@ The first thing is to recognize a URL as a tree traversal — we can treat a UR
 
 Specifically, we convert a string URL path like `/foo/bar` into an array of keys `["foo", "bar"]`.
 
-```{{'js'}}
+```${'js'}
 /* In src/deep/serve.js */
 
-{{ functions/keysFromUrl }}
+${ functions/keysFromUrl }
 ```
 
 If the path ends in a slash like `foo/`, this produces the keys `["foo", "index.html"]`.
@@ -27,10 +27,10 @@ If the path ends in a slash like `foo/`, this produces the keys `["foo", "index.
 
 We can then iteratively follow this array of keys through a deep tree to a final value:
 
-```{{'js'}}
+```${'js'}
 /* In src/deep/serve.js */
 
-{{ functions/traverse }}
+${ functions/traverse }
 ```
 
 The tree itself is acting as a web site router.
@@ -39,10 +39,10 @@ The tree itself is acting as a web site router.
 
 Putting these together, we can build a listener function that uses a tree to respond to HTTP requests.
 
-```{{'js'}}
+```${'js'}
 /* In src/deep/serve.js */
 
-{{ functions/requestListener }}
+${ functions/requestListener }
 ```
 
 This converts a request's URL into an array of keys, then returns what it finds there. If no value is found, the listener responds with 404 Not Found.
@@ -53,23 +53,23 @@ If a request returns an async tree, we redirect to an `index.html` value inside 
 
 Finally, we start the server at a default port.
 
-```{{'js'}}
+```${'js'}
 /* src/deep/serve.js */
 
-{{ functions/@prologue }}
+${ functions/@prologue }
 
 /* …Plus the above code fragments… */
 
-{{ functions/@epilogue }}
+${ functions/@epilogue }
 
 ```
 
 To add a layer of flexibility, we'll serve the tree defined in a new file called `siteTree.js`. This file exports whichever tree of transformed HTML we'd like to use, as defined in `htmlObject.js`, `htmlFiles.js`, or `htmlFn.js`. To use the files-backed tree:
 
-```{{'js'}}
+```${'js'}
 /* src/deep/siteTree.js */
 
-{{ pattern.ori/deep/siteTree.js }}
+${ pattern.ori/deep/siteTree.js }
 ```
 
 ## Trying our server

@@ -27,14 +27,14 @@ export default new ObjectTree({
 This defines a tree whose keys are the object's keys, and whose values are the object's values:
 
 <figure>
-{{ svg.js sample }}
+${ svg.js sample }
 </figure>
 
 The [ori](/ori) tool will display the contents of the resulting `ObjectTree`.
 
 ```console
 $ ori object.js/
-{{ @yaml sample }}
+${ @yaml sample }
 ```
 
-{{ templates/class.ori(api.ori/ObjectTree.yaml/exports/0) }}
+${ templates/class.ori(api.ori/ObjectTree.yaml/exports/0) }

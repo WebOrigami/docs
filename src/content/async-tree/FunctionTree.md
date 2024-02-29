@@ -57,4 +57,4 @@ $ ori function.js/David
 Hello, David.
 ```
 
-{{ templates/class.ori(api.ori/FunctionTree.yaml/exports/0) }}
+${ templates/class.ori(api.ori/FunctionTree.yaml/exports/0) }

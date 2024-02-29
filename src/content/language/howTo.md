@@ -6,8 +6,8 @@ You want all the pages on your site to share common elements: a header, navigati
 
 <span class="tutorialStep"></span> Create those pages as HTML fragments — valid HTML for just the content of the page. Example: you have a file called `a.html` that contains
 
-```{{"html"}}
-{{ samples.ori/templates/fragments/a.html }}
+```${"html"}
+${ samples.ori/templates/fragments/a.html }
 ```
 
 <span class="tutorialStep"></span> Put those HTML fragments in a folder called `html` (or `bodies`, `fragments`, etc.):
@@ -20,18 +20,18 @@ myProject/
     c.html
 ```
 
-<span class="tutorialStep"></span> Create a page template with a name like `page.ori`. Place a `\{{ _ }}` placeholder where you want the page fragment/body to go.
+<span class="tutorialStep"></span> Create a page template with a name like `page.ori`. Place a `\${ _ }` placeholder where you want the page fragment/body to go.
 
 ```console
 $ cat page.ori
-{{ samples.ori/templates/page.ori }}
+${ samples.ori/templates/page.ori }
 ```
 
 You can apply this template to a single page to preview how it looks the content of a page like `a.html` will be placed inside the contents of the `page.ori` template:
 
 ```console
 $ ori page.ori html/a.html
-{{ samples.ori/templates/page.ori samples.ori/templates/fragments/a.html }}
+${ samples.ori/templates/page.ori samples.ori/templates/fragments/a.html }
 ```
 
 <span class="tutorialStep"></span> Create a site.ori file to define your site. This defines a virtual `public` folder that applies your `page.ori` template to all the pages in the `html` folder.

@@ -6,7 +6,7 @@ area: ""
 fileName: index.html
 ---
 
-{{ templates/blocks.ori(_) }}
+${ templates/blocks.ori(\_) }
 
 This project explores a new way to build small- to medium-scale websites using a conceptual model and programming language that complement HTML and CSS.
 

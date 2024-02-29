@@ -81,7 +81,7 @@ Website creators refer to URLs as _routes_: when you navigate to a URL like [tea
 The site's complete tree is a little bigger than what's shown above, because it also includes CSS stylesheets, image files, or other resources referenced by the HTML:
 
 <figure>
-{{ svg.js siteComplete }}
+${ svg.js siteComplete }
 </figure>
 
 This conceptual tree can help you envision and build a site. The structure you pick determines the routes that will be used to access each page and resource.
@@ -103,7 +103,7 @@ Origami determines the meaning of those references by defining a _scope_: the se
 }
 ```
 
-The text enclosed by backtick characters constructs a text string. Origami evaluates the `name` reference inside the `\{\{ \}\}` double curly braces. Origami finds the nearby `name` key, so incorporates the corresponding value into the final text.
+The text enclosed by backtick characters constructs a text string. Origami evaluates the `name` reference inside the `\$\{ \}` placeholder. Origami finds the nearby `name` key, so incorporates the corresponding value into the final text.
 
 <figure>
 {{
@@ -393,13 +393,13 @@ Here's my first post!
 
 The `post.ori` file contains an Origami template that mixes HTML with `\$\{ }` placeholders to incorporate data:
 
-```{{"html"}}
+```${"html"}
 =`<html>
   <head>
-    <title>\{{ _/title }}</title>
+    <title>\${ _/title }</title>
   </head>
   <body>
-    \{{ _/@text }}
+    \${ _/@text }
   </body>
 </html>
 `
@@ -475,7 +475,7 @@ Continuing the blog example above, you can define an `index.ori` template that w
   <body>
     <ul>
       \{\{ @map(posts, =`
-      <li><a href="pages/\{{ @key }}">\{{ _/title }}</a></li>
+      <li><a href="pages/\${ @key }}">\{{ _/title }</a></li>
       \`) }}
     </ul>
   </body>

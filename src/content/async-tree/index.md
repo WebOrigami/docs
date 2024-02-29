@@ -3,7 +3,7 @@ title: async-tree
 subtitle: Library for working with asynchronous trees
 ---
 
-{{ templates/blocks.ori(_) }}
+${ templates/blocks.ori(\_) }
 
 The `async-tree` library lets you work with hierarchical data as a tree whose values may require some time to retrieve.
 

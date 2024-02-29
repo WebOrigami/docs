@@ -1,6 +1,6 @@
 ---
 title: "@map"
-mappedKeys: !ori "@map(samples.ori/cli/greetings.yaml, { keyMap: =`{{ @key }}.html` })"
+mappedKeys: !ori "@map(samples.ori/cli/greetings.yaml, { keyMap: =`${ @key }.html` })"
 ---
 
 Creates a new tree from another by applying mapping functions to the original tree's values and/or keys.
@@ -17,15 +17,15 @@ $ cat greetings.yaml
 }}$ cat uppercase.js
 {{ samples.ori/cli/uppercase.js
 }}$ ori @map(greetings.yaml, uppercase.js)
-{{ @yaml @map samples.ori/cli/greetings.yaml, samples.ori/cli/uppercase.js }}
+${ @yaml @map samples.ori/cli/greetings.yaml, samples.ori/cli/uppercase.js }
 ```
 
 <div class="sideBySide">
   <figure>
-    {{ svg.js samples.ori/cli/greetings.yaml }}
+    ${ svg.js samples.ori/cli/greetings.yaml }
   </figure>
   <figure>
-    {{ svg.js @map samples.ori/cli/greetings.yaml, samples.ori/cli/uppercase.js }}
+    ${ svg.js @map samples.ori/cli/greetings.yaml, samples.ori/cli/uppercase.js }
   </figure>
   <figcaption>Original tree</figcaption>
   <figcaption>Mapped values</figcaption>
@@ -58,14 +58,14 @@ The example above uses `uppercase.js` as the function that will be applied to ea
 
 ```console
 $ ori @map(greetings.yaml, =uppercase.js(_))
-{{ @yaml @map samples.ori/cli/greetings.yaml, =samples.ori/cli/uppercase.js(_) }}
+${ @yaml @map samples.ori/cli/greetings.yaml, =samples.ori/cli/uppercase.js(_) }
 ```
 
 You could pass the key being mapped instead of the value to the `uppercase.js` function:
 
 ```console
 $ ori @map(greetings.yaml, =uppercase.js(@key))
-{{ @yaml @map samples.ori/cli/greetings.yaml, =samples.ori/cli/uppercase.js(@key) }}
+${ @yaml @map samples.ori/cli/greetings.yaml, =samples.ori/cli/uppercase.js(@key) }
 ```
 
 The value and key being mapped are also available as function arguments; see below.
@@ -79,16 +79,16 @@ You can call `@map` with a `keyMap` option to apply a function to a tree's keys.
 ```console
 $ cat greetings.yaml
 {{ samples.ori/cli/greetings.yaml
-}}$ ori "@map(greetings.yaml, { keyMap: =`\{{ @key }}.html` })"
-{{ @yaml mappedKeys }}
+}}$ ori "@map(greetings.yaml, { keyMap: =`\${ @key }.html` })"
+${ @yaml mappedKeys }
 ```
 
 <div class="sideBySide">
   <figure>
-    {{ svg.js samples.ori/cli/greetings.yaml }}
+    ${ svg.js samples.ori/cli/greetings.yaml }
   </figure>
   <figure>
-    {{ svg.js mappedKeys }}
+    ${ svg.js mappedKeys }
   </figure>
   <figcaption>Original tree</figcaption>
   <figcaption>Mapped keys</figcaption>
@@ -112,7 +112,7 @@ So you can also write the above example as:
 $ cat greetings.yaml
 {{ samples.ori/cli/greetings.yaml
 }}$ ori "@map(greetings.yaml, { extensions: '→html' })"
-{{ @yaml mappedKeys }}
+${ @yaml mappedKeys }
 ```
 
 ## Value and key being mapped as function arguments
@@ -123,6 +123,6 @@ This lets you choose names for the value and key that are more meaningful in you
 
 ```console
 $ ori "@map(greetings.yaml, (name, greeting) => uppercase.js(name))"
-{{ @yaml @map samples.ori/cli/greetings.yaml, (name, greeting) => samples.ori/cli/uppercase.js(name) }}$ ori "@map(greetings.yaml, (name, greeting) => uppercase.js(greeting))"
-{{ @yaml @map samples.ori/cli/greetings.yaml, (name, greeting) => samples.ori/cli/uppercase.js(greeting) }}
+${ @yaml @map samples.ori/cli/greetings.yaml, (name, greeting) => samples.ori/cli/uppercase.js(name) }$ ori "@map(greetings.yaml, (name, greeting) => uppercase.js(greeting))"
+${ @yaml @map samples.ori/cli/greetings.yaml, (name, greeting) => samples.ori/cli/uppercase.js(greeting) }
 ```

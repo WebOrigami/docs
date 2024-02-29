@@ -49,10 +49,10 @@ Notes:
 
 Of the three data representations we looked at previously, the in-memory JavaScript object was perhaps the simplest, so let's first look at applying the AsyncTree interface to a JavaScript object:
 
-```{{'js'}}
+```${'js'}
 /* src/flat/object.js */
 
-{{ pattern.ori/flat/object.js }}
+${ pattern.ori/flat/object.js }
 ```
 
 This module exports an async tree that wraps the JavaScript object containing the markdown data. For now, this wrapper can only handle a flat object — later we will extend this to handle hierarchical objects.
@@ -61,10 +61,10 @@ This module exports an async tree that wraps the JavaScript object containing th
 
 The first thing we can do with this object tree is programmatically verify it implements the AsyncTree interface.
 
-```{{'js'}}
+```${'js'}
 /* src/flat/object.test.js */
 
-{{ pattern.ori/flat/object.test.js }}
+${ pattern.ori/flat/object.test.js }
 ```
 
 <span class="tutorialStep"></span> From inside the `src/flat` directory, run these tests to see that all test pass:

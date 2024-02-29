@@ -16,49 +16,49 @@ The default value will be an HTML page listing the tree's other keys as links.
 
 First let's write a function that returns a reasonable default index page for a tree that doesn't define one.
 
-```{{'js'}}
+```${'js'}
 /* In src/index/indexPages.js */
 
-{{ functions/indexPage }}
+${ functions/indexPage }
 ```
 
 If the little `more` branch of our HTML tree looks like this:
 
 <figure>
-{{ svg.js pattern.ori/index/htmlObject.js/more }}
+${ svg.js pattern.ori/index/htmlObject.js/more }
 </figure>
 
 Then invoking `indexPage` on this branch will return:
 
-```{{'html'}}
-{{ ((pattern.ori/index/indexPages.js)(pattern.ori/index/htmlObject.js/more))/index.html }}
+```${'html'}
+${ ((pattern.ori/index/indexPages.js)(pattern.ori/index/htmlObject.js/more))/index.html }
 ```
 
 ## Transform a tree by adding index pages
 
 Using the default `indexPage` function above, let's now create a tree transform. This will accept any async tree, and return a new tree with an `index.html` key.
 
-```{{'js'}}
+```${'js'}
 /* In src/index/indexPages.js */
 
-{{ functions/@prologue }}
-{{ functions/@epilogue }}
+${ functions/@prologue }
+${ functions/@epilogue }
 ```
 
 If we use this to transform the `more` branch of the HTML tree, we'll get:
 
 <figure>
-{{ svg.js pattern.ori/index/indexPages.js(pattern.ori/index/htmlObject.js/more) }}
+${ svg.js pattern.ori/index/indexPages.js(pattern.ori/index/htmlObject.js/more) }
 </figure>
 
 ## Incorporate the index page transform
 
 We can apply this `indexPages` transform on top of our object, file, and function-based HTML trees. For example, the file-based tree now looks like:
 
-```{{'js'}}
+```${'js'}
 /* src/index/htmlFiles.js */
 
-{{ pattern.ori/index/htmlFiles.js }}
+${ pattern.ori/index/htmlFiles.js }
 ```
 
 These transforms are just functions, so we can apply as many tree transforms as we want.

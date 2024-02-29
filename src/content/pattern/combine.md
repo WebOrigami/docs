@@ -12,18 +12,18 @@ Our `ObjectTree` class turns out to be a useful tool to combine the three trees 
 
 We can define this combination by updating `siteTree.js`:
 
-```{{'js'}}
+```${'js'}
 /* src/combine/siteTree.js */
 
-{{ pattern.ori/combine/siteTree.js }}
+${ pattern.ori/combine/siteTree.js }
 ```
 
 We apply our `indexPages` transform to give the overall tree an index page. Having done that, we can drop the use of `indexPages` in the individual trees. For example, the object-backed tree in `htmlObject.js` no longer needs to define index pages:
 
-```{{'js'}}
+```${'js'}
 /* src/combine/htmlObject.js */
 
-{{ pattern.ori/combine/htmlObject.js }}
+${ pattern.ori/combine/htmlObject.js }
 ```
 
 To contrast the values coming from each branch of this tree, we can update the object, files, and function trees so that they each define different names.
@@ -31,7 +31,7 @@ To contrast the values coming from each branch of this tree, we can update the o
 Our combined tree is quite large:
 
 <figure>
-{{ svg.js pattern.ori/combine/siteTree.js }}
+${ svg.js pattern.ori/combine/siteTree.js }
 </figure>
 
 Each of the three main branches of this tree is defined in a different way, with different pros and cons. When constructing a real site, this flexibility lets us pick the most appropriate implementation for any part of the site. And when our needs inevitably change, we can switch those implementations around without needing to change any of our surrounding infrastructure.

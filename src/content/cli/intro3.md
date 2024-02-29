@@ -11,13 +11,13 @@ ori is especially good at dealing with trees. More specifically, ori is designed
 
 ```console
 $ ori greetings.yaml
-{{ samples.ori/cli/greetings.yaml }}
+${ samples.ori/cli/greetings.yaml }
 ```
 
 ori can interpret this file as the following tree:
 
 <figure>
-{{ svg.js samples.ori/cli/greetings.yaml }}
+${ svg.js samples.ori/cli/greetings.yaml }
 </figure>
 
 The YAML data format shown above can be easier for people to read than formats like JSON. If you prefer, you can just as easily use the ubiquitous JSON format.
@@ -64,16 +64,16 @@ HELLO, ALICE.
 
 ```console
 $ ori greetings.yaml
-{{ samples.ori/cli/greetings.yaml }}$ ori @json greetings.yaml
-{{ @json samples.ori/cli/greetings.yaml }}
+${ samples.ori/cli/greetings.yaml }$ ori @json greetings.yaml
+${ @json samples.ori/cli/greetings.yaml }
 ```
 
 <span class="tutorialStep"></span> In the other direction, you can render a JSON file as YAML with the [@yaml](/builtins/@yaml.html) function:
 
 ```console
 $ ori letters.json
-{{ samples.ori/cli/letters.json }}$ ori @yaml letters.json
-{{ @yaml samples.ori/cli/letters.json }}
+${ samples.ori/cli/letters.json }$ ori @yaml letters.json
+${ @yaml samples.ori/cli/letters.json }
 ```
 
 The `@json` function isn't a specific YAML-to-JSON transformation; it can transform any tree to JSON text. Similarly, `@yaml` can transform any tree to YAML text.

@@ -12,18 +12,18 @@ These classes do _not_ inherit from some shared base class. Doing so is possible
 
 This class accepts a plain JavaScript object and returns a corresponding async tree:
 
-```{{'js'}}
+```${'js'}
 /* src/classes/ObjectTree.js */
 
-{{ pattern.ori/classes/ObjectTree.js }}
+${ pattern.ori/classes/ObjectTree.js }
 ```
 
 We can redefine our existing `object.js` to use this class:
 
-```{{'js'}}
+```${'js'}
 /* src/classes/object.js */
 
-{{ pattern.ori/classes/object.js }}
+${ pattern.ori/classes/object.js }
 ```
 
 We can verify that this object passes our tests, can be displayed with our `json` utility, and can be used as the basis for our markdown-to-HTML transformation.
@@ -32,20 +32,20 @@ We can verify that this object passes our tests, can be displayed with our `json
 
 The class for a files-based tree takes a directory path as input.
 
-```{{'js'}}
+```${'js'}
 /* src/classes/FileTree.js */
 
-{{ pattern.ori/classes/FileTree.js }}
+${ pattern.ori/classes/FileTree.js }
 ```
 
 ## Function tree class
 
 The constructor for a function-based tree takes a function and an array as a function domain.
 
-```{{'js'}}
+```${'js'}
 /* src/classes/FunctionTree.js */
 
-{{ pattern.ori/classes/FunctionTree.js }}
+${ pattern.ori/classes/FunctionTree.js }
 ```
 
 With these classes, we can quickly create new trees based on any object, folder, or function.

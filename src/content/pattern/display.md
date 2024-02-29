@@ -11,8 +11,8 @@ To stay as close to the platform as possible, we'll render the tree in JSON form
 
 An async tree is asynchronous, so we'll need to either traverse it asynchronously and display its values as we go, or else resolve the entire tree to a synchronous, in-memory object. We'll take the latter approach here.
 
-```{{'js'}}
-{{ functions/plain }}
+```${'js'}
+${ functions/plain }
 ```
 
 It may feel counter-productive to do work to wrap a synchronous in-memory object with the asynchronous AsyncTree interface — and then immediately unwind all those asynchronous promises to get back an in-memory object!
@@ -25,14 +25,14 @@ Note: We could make this function more efficient if we didn't `await` the result
 
 We could write a tool to statically import a specific tree we want to display, but our goal is a utility that can quickly display any tree. So let's have the tool parse a command line argument specifying the file name of a JavaScript module that exports a tree.
 
-```{{'js'}}
+```${'js'}
 /* src/flat/json.js */
 
-{{ functions/@prologue }}
+${ functions/@prologue }
 
 async function plain(tree) { /* See above */ }
 
-{{ functions/@epilogue }}
+${ functions/@epilogue }
 ```
 
 The tool dynamically imports the indicated JavaScript file and gets its default export, which is expected to be an async tree. We then use the `plain` function above to resolve the tree to an in-memory object, then render the JSON for that object to the console.
@@ -43,7 +43,7 @@ The tool dynamically imports the indicated JavaScript file and gets its default 
 
 ```console
 $ node json object.js
-{{ @json pattern.ori/flat/object.js/ }}
+${ @json pattern.ori/flat/object.js/ }
 ```
 
 &nbsp;

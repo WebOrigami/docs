@@ -289,7 +289,7 @@ $ cat letters.json
 }}$ cat uppercase.js
 {{ samples.ori/cli/uppercase.js
 }}$ ori "@map(letters.json, =uppercase.js(_))"
-{{ @yaml @map samples.ori/cli/letters.json, samples.ori/cli/uppercase.js }}
+${ @yaml @map samples.ori/cli/letters.json, samples.ori/cli/uppercase.js }
 ```
 
 The `_` underscore above refers to the value being mapped, so `=uppercase.js(_)` will convert the value to uppercase.
@@ -304,14 +304,14 @@ The `@map` function shown above passes the mapping function the value and key be
 
 ```console
 $ ori "@map(letters.json, (description, letter) => uppercase.js(description))"
-{{ @yaml @map samples.ori/cli/letters.json, (description, letter) => samples.ori/cli/uppercase.js(description) }}
+${ @yaml @map samples.ori/cli/letters.json, (description, letter) => samples.ori/cli/uppercase.js(description) }
 ```
 
 In this case, since the `letter` argument isn't used, it can be omitted:
 
 ```console
 $ ori "@map(letters.json, (description) => uppercase.js(description))"
-{{ @yaml @map samples.ori/cli/letters.json, (description) => samples.ori/cli/uppercase.js(description) }}
+${ @yaml @map samples.ori/cli/letters.json, (description) => samples.ori/cli/uppercase.js(description) }
 ```
 
 ## Comments

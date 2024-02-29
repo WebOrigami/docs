@@ -111,13 +111,13 @@ For this tutorial, you'll use the [template system built into Origami](templates
 
 <span class="tutorialStep"></span> View the file `src/greet.ori`. Glitch shows only a single file at a time, so opening `greet.ori` will replace `site.ori` in the editor window.
 
-```{{"html"}}
-{{ demos/framework-intro/greet.ori }}
+```${"html"}
+${ demos/framework-intro/greet.ori }
 ```
 
 This Origami template starts with an `=` equals sign and encloses some HTML with &#96; &#96; backticks.
 
-Inside the backticks, the placeholder marked with `\$\{ }` curly braces contains an Origami expression. In this case, the `_` underscore tells Origami to insert any text passed to the template into the HTML at that point.
+Inside the backticks, the placeholder marked with `\{\{ }}` curly braces contains an Origami expression. In this case, the `_` underscore tells Origami to insert any text passed to the template into the HTML at that point.
 
 You can call this template from an Origami formula.
 
@@ -149,8 +149,8 @@ Data in Origami projects can come from pretty much anything. This sample project
 
 <span class="tutorialStep"></span> Open the team data file in `src/teamData.yaml`:
 
-```{{"yaml"}}
-{{ demos/framework-intro/teamData.yaml }}
+```${"yaml"}
+${ demos/framework-intro/teamData.yaml }
 ```
 
 This defines an array of person records but _this data is too boring!_
@@ -329,8 +329,8 @@ For each full-size image, you want to produce a corresponding thumbnail image fo
 
 <span class="tutorialStep"></span> View the file `src/thumbnail.js`. This contains a small JavaScript function which can invoke an image-processing library to generate a small thumbnail copy of an image.
 
-```{{'js'}}
-{{ demos/framework-intro/thumbnail.js }}
+```${'js'}
+${ demos/framework-intro/thumbnail.js }
 ```
 
 <span class="tutorialStep"></span> **Try it:** In `site.ori`, add a new formula for `small.jpg` that calls `thumbnail.js` as a function and passes in the file `images/van.jpg`.
@@ -393,11 +393,11 @@ The main About Us page should display a tile for each member that links to their
 
 <clipboard-copy>
 
-```{{"html"}}
+```${"html"}
 =`<h1>About Us</h1>
 <ul>
   \{\{ @map(_, =`
-    <li>\$\{ _/name }</li>
+    <li>\{\{ _/name }}</li>
   `) \}\}
 </ul>
 `
@@ -438,8 +438,8 @@ The text inside a template can be as complex as you want.
 
 <clipboard-copy>
 
-```{{"html"}}
-{{ @js/String demos/framework-intro/index.ori }}
+```${"html"}
+${ @js/String demos/framework-intro/index.ori }
 ```
 
 </clipboard-copy>
@@ -458,8 +458,8 @@ You can use a template for the people pages in the `team` area too.
 
 <clipboard-copy>
 
-```{{"html"}}
-=`<h1>\$\{ _/name }</h1>`
+```${"html"}
+=`<h1>\{\{ _/name }}</h1>`
 ```
 
 </clipboard-copy>
@@ -570,7 +570,7 @@ We want the pages in the `team` area to end in a `.html` extension because that 
 {
   index.html = index.ori(teamData.yaml)
   team = @map(teamData.yaml, {
-    keyMap: =<b>`\$\{ _/name }.html`</b>
+    keyMap: =<b>`\{\{ _/name }}.html`</b>
     valueMap: person.ori
   })
   assets
@@ -599,8 +599,8 @@ The only thing left to do is complete the `person.ori` template.
 
 <clipboard-copy>
 
-```{{"html"}}
-{{ @js/String demos/framework-intro/person.ori }}
+```${"html"}
+${ @js/String demos/framework-intro/person.ori }
 ```
 
 </clipboard-copy>
@@ -616,7 +616,7 @@ The site is now complete.
 <span class="tutorialStep"></span> Switch to the tree diagram window and refresh it to view your site's final structure. In that diagram (not the one below) you can click on the circles or boxes to explore what you've made.
 
 <figure>
-{{ svg.js siteComplete }}
+${ svg.js siteComplete }
 </figure>
 
 To review, you've created this entire site with a few resources, a couple of templates, and a concise `site.ori` with a handful of formulas:
@@ -627,7 +627,7 @@ To review, you've created this entire site with a few resources, a couple of tem
 {
   index.html = index.ori(teamData.yaml)
   team = @map(teamData.yaml, {
-    keyMap: =`\$\{ _/name }.html`
+    keyMap: =`\{\{ _/name }}.html`
     valueMap: person.ori
   })
   assets

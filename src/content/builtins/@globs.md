@@ -9,7 +9,7 @@ Treats the keys of `tree` as simple [glob](<https://en.m.wikipedia.org/wiki/Glob
 
 ```console
 $ cat globs.yaml
-{{ samples.ori/help/globs.yaml }}
+${ samples.ori/help/globs.yaml }
 $ ori "@globs(globs.yaml)/foo.jpg"
 false
 $ ori "@globs(globs.yaml)/foo.txt"
