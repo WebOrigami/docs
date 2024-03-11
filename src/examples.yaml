@@ -11,6 +11,13 @@ about-us:
     of this simple site that includes a home page and a set of pages for team
     members generated from a data file. This example also demonstrates the use
     of a "map" to scale full-size images to a smaller size.
+all-city-someday:
+  name: All City Someday
+  url: https://all-city-someday.netlify.app
+  repo: https://github.com/WebOrigami/all-city-someday
+  description: |
+    A photo blog backed by Google Drive: photos saved to a shared Google Drive
+    folder will appear on the site.
 cat-prints-store:
   name: Cat Prints Store
   url: https://cat-prints-store.weborigami.org
