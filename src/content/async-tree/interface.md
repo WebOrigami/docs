@@ -50,7 +50,7 @@ In TypeScript, the interface looks roughly like:
 interface AsyncTree {
   get(key: any): Promise<any>;
   keys(): Promise<IterableIterator<any>>;
-  set?(key: any, value: any): Promise<void>;
+  set?(key: any, value: any): Promise<this>;
 }
 ```
 
