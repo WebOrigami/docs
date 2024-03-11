@@ -316,6 +316,32 @@ $ ori "@map(letters.json, (description) => uppercase.js(description))"
 ${ @yaml @map samples.ori/cli/letters.json, (description) => samples.ori/cli/uppercase.js(description) }
 ```
 
+## Pipe operator
+
+Origami has a pipe operator `→` (which can also be written `->`) for representing a sequence of function calls. This can be used to avoid deep call nesting.
+
+These deeply-nested function calls:
+
+```
+three(two(one(value)))
+```
+
+can be rewritten using the pipe operator:
+
+```
+value → one → two → three
+```
+
+This can be useful when applying multiple transformations of data. If an index page is generated from markdown that is then placed inside a template, you can write:
+
+```
+{
+  index.html = index.md → @mdHtml → template.ori
+}
+```
+
+to make the flow of data easier to see.
+
 ## Comments
 
 Line comments start with `//` double slashes and extend to the end of the line:
