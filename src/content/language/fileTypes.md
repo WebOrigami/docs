@@ -4,14 +4,15 @@ title: Working with file types
 
 Origami has specific knowledge of certain types of documents and files which are identified by file extension.
 
-| Type       | File extensions                                |
-| ---------- | ---------------------------------------------- |
-| JavaScript | .js<br>.mjs                                    |
-| JPEG image | .jpeg<br>.jpg                                  |
-| JSON       | .json                                          |
-| Origami    | .ori                                           |
-| Text       | .css<br>.htm<br>.html<br>.md<br>.txt<br>.xhtml |
-| YAML       | .yaml<br>.yml                                  |
+| Type        | File extensions                                |
+| :---------- | :--------------------------------------------- |
+| JavaScript  | .js<br>.mjs                                    |
+| JPEG image  | .jpeg<br>.jpg                                  |
+| JSON        | .json                                          |
+| Origami     | .ori                                           |
+| Text        | .css<br>.htm<br>.html<br>.md<br>.txt<br>.xhtml |
+| WebAssembly | .wasm                                          |
+| YAML        | .yaml<br>.yml                                  |
 
 ## Representing files
 
@@ -116,8 +117,45 @@ Hello, Bob!
 
 ## Text files
 
-UTF-8
+Text files can contain data as front matter in YAML or JSON. You can traverse into the front matter data with slash syntax.
+
+```console
+$ cat post1.md
+---
+title: The First Post
+---
+
+Here's the text of my first post.
+$ ori post1.md/title
+The First Post
+```
+
+Origami assumes that text files are encoded in [UTF-8](https://en.wikipedia.org/wiki/UTF-8).
+
+YAML front matter can [contain Origami expressions](yaml.html).
+
+## WebAssembly files
+
+You can traverse into a WebAssembly module, for example, to invoke a function defined in WebAssembly.
+
+If `add.wasm` exports a function called `add` that adds two integer arguments, then you can invoke it with:
+
+```console
+$ ori "add.wasm/add(1, 2)"
+3
+```
+
+This can give you access to functions defined in the many other languages that can be compiled to WebAssembly.
+
+WebAssembly modules run in a "sandbox" that is isolated from your computer so you can download and execute modules directly:
+
+```console
+$ ori "(https://webassembly.js.org/example-add.wasm)/add(2, 3)"
+5
+```
+
+The parentheses around the URL for a WebAssembly module cause it to be evaluated first, which downloads the module. The `/` slash after the `.wasm)` causes the downloaded module to be loaded, and the `add` obtains a function with that name from the module. The final `(2, 3)` invokes the `add` function and passes those two values to it.
 
 ## YAML files
 
-Like JSON files, you can traverse into a YAML file using slash syntax.
+Like JSON files, you can traverse into a YAML file using slash syntax. YAML front matter can [contain Origami expressions](yaml.html).
