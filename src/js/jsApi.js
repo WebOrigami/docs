@@ -1,7 +1,7 @@
 import {
   Tree,
   isPlainObject,
-  keyMapsForExtensions,
+  keyFunctionsForExtensions,
   map,
 } from "@weborigami/async-tree";
 import { Scope } from "@weborigami/language";
@@ -91,8 +91,8 @@ class DocsTree {
     };
     this.tree = map({
       deep: true,
-      valueMap: mapFn,
-      ...keyMapsForExtensions({
+      value: mapFn,
+      ...keyFunctionsForExtensions({
         sourceExtension: "js",
         resultExtension: "yaml",
       }),

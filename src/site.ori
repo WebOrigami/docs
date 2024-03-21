@@ -12,27 +12,27 @@
   // Add the `area` and `fileName` properties to the documents.
   withData = @map(content, {
     description: "withData outer"
-    valueMap: (_, area) => @if(
+    value: (_, area) => @if(
       @isAsyncTree(_)
-      @map(_, { description: "withData inner", extensions: "md", valueMap: addDataToPages })
+      @map(_, { description: "withData inner", extension: "md", value: addDataToPages })
       =js/addData.js(_, "", area, areas, {}, client/assets/origami)
     )
   })
 
   // Take the markdown files and inline any Web Origami expressions contained
   // in curly braces.
-  inlined = @map(withData, { deep: @true, extensions: "md", valueMap: @inline })
+  inlined = @map(withData, { deep: @true, extension: "md", value: @inline })
 
   // Convert the markdown (including inlined content) to HTML while preserving
   // the front matter at the top of each document. As the content is now HTML,
   // we change the file extension from `.md` to `.html`. The result is a tree of
   // HTML content; each value represents the main body of a given page.
-  html = @map(inlined, { deep: @true, extensions: "md→html", valueMap: @mdHtml })
+  html = @map(inlined, { deep: @true, extension: "md→html", value: @mdHtml })
 
   // Apply the documentation page template. This injects the HTML content from
   // the previous step into the site's main page template, which adds headers
   // and navigation chrome. This step concludes the main documentation pipeline.
-  pages = @map(html, { deep: @true, extensions: "html", valueMap: templates/page.ori })
+  pages = @map(html, { deep: @true, extension: "html", value: templates/page.ori })
 
   // The `public` tree defines the final tree which is built into static pages.
   public = @merge(client, pages, {
