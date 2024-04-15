@@ -18,6 +18,15 @@ all-city-someday:
   description: |
     A photo blog backed by Google Drive: photos saved to a shared Google Drive
     folder will appear on the site.
+aventour-expeditions:
+  name: Aventour Expeditions
+  url: https://aventour-expeditions.netlify.app
+  repo: https://github.com/WebOrigami/aventour-expeditions
+  description: |
+    A travel site for an adventure trekking company. Showcases the use of a
+    different template language (Handlebars), the transformation of markdown
+    with front matter into HTML, and the creation of an image gallery that shows
+    all the photos in a given folder.
 cat-prints-store:
   name: Cat Prints Store
   url: https://cat-prints-store.weborigami.org
