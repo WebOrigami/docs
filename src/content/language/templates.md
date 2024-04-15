@@ -9,7 +9,7 @@ Origami templates let you convert turn data into HTML or other text documents th
 - Templates have a very small number of fundamental features that can be combined to address a wide range of scenarios.
 - You can extend what's possible in a template expression in JavaScript with essentially no configuration.
 
-_You can use Origami with other template systems, but the small degree of integration code required is currently beyond the scope of this documentation._
+You can also use Origami with other template systems. For a reference example, see the [Origami Handlebars extension](https://github.com/WebOrigami/extensions/tree/main/handlebars) that defines a handler for [Handlebars](https://handlebarsjs.com) templates.
 
 ## Template files
 

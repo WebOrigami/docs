@@ -2,18 +2,6 @@
 title: Working with file types
 ---
 
-Origami has specific knowledge of certain types of documents and files which are identified by file extension.
-
-| Type        | File extensions                                |
-| :---------- | :--------------------------------------------- |
-| JavaScript  | .js<br>.mjs                                    |
-| JPEG image  | .jpeg<br>.jpg                                  |
-| JSON        | .json                                          |
-| Origami     | .ori                                           |
-| Text        | .css<br>.htm<br>.html<br>.md<br>.txt<br>.xhtml |
-| WebAssembly | .wasm                                          |
-| YAML        | .yaml<br>.yml                                  |
-
 ## Representing files
 
 The specific form a "file" takes can depend on how you reference it.
@@ -21,7 +9,7 @@ The specific form a "file" takes can depend on how you reference it.
 - When you reference a file in the file system in Origami, Origami uses a [FileTree](/async-tree/FileTree.html) to resolve the reference and return the value as a Node [Buffer](https://nodejs.org/api/buffer.html) object.
 - When you reference a file on a site via a URL, Origami uses a [SiteTree](/async-tree/SiteTree.html) to resolve the reference and return the value as a JavaScript [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
 
-## Unpacking files
+### Unpacking files
 
 Regardless of a file's representation, you can use Origami path syntax to traverse the file and work with a more meaningful representation that reflects the file's type. Origami determines how to "unpack" the file contents based on the file extension.
 
@@ -59,9 +47,23 @@ name: Fluffy
 owner: Alice
 ```
 
-See below for details on specific types of files.
+## Standard file types
 
-## JavaScript files
+Origami has built-in support for handling the following types of files.
+
+| Type        | File extensions                                |
+| :---------- | :--------------------------------------------- |
+| JavaScript  | .js<br>.mjs                                    |
+| JPEG image  | .jpeg<br>.jpg                                  |
+| JSON        | .json                                          |
+| Origami     | .ori                                           |
+| Text        | .css<br>.htm<br>.html<br>.md<br>.txt<br>.xhtml |
+| WebAssembly | .wasm                                          |
+| YAML        | .yaml<br>.yml                                  |
+
+See below for details on these types.
+
+### JavaScript files
 
 Unpacking a `.js` file returns the file's default export or, if there are multiple exports, all the exports. If that export is [treelike](/async-tree/treelike), you can traverse into that export using slash syntax.
 
@@ -80,7 +82,7 @@ $ ori data.js/a
 1
 ```
 
-## JPEG image files
+### JPEG image files
 
 JPEG images can contain metadata in [Exif](https://en.wikipedia.org/wiki/Exif) format. You can retrieve this data via slash syntax:
 
@@ -91,11 +93,11 @@ A nice photo at the beach
 
 Origami also has a small set of built-in functions called [@image](/builtins/@image.html) for resizing or reformatting images.
 
-## JSON files
+### JSON files
 
 You can traverse into a JSON file using slash syntax; see [Unpacking files](#unpacking-files) above.
 
-## Origami files
+### Origami files
 
 A file with a `.ori` extension indicates a file containing an Origami expression. If the result of that expression is [treelike](/async-tree/treelike) you can traverse into it using slash syntax.
 
@@ -115,7 +117,7 @@ $ ori greet.ori/greeting
 Hello, Bob!
 ```
 
-## Text files
+### Text files
 
 Text files can contain data as front matter in YAML or JSON. You can traverse into the front matter data with slash syntax.
 
@@ -134,7 +136,7 @@ Origami assumes that text files are encoded in [UTF-8](https://en.wikipedia.org/
 
 YAML front matter can [contain Origami expressions](yaml.html).
 
-## WebAssembly files
+### WebAssembly files
 
 You can traverse into a WebAssembly module, for example, to invoke a function defined in WebAssembly.
 
@@ -154,8 +156,50 @@ $ ori "(https://webassembly.js.org/example-add.wasm)/add(2, 3)"
 5
 ```
 
-The parentheses around the URL for a WebAssembly module cause it to be evaluated first, which downloads the module. The `/` slash after the `.wasm)` causes the downloaded module to be loaded, and the `add` obtains a function with that name from the module. The final `(2, 3)` invokes the `add` function and passes those two values to it.
+The parentheses around the URL for a WebAssembly module cause it to be evaluated first, which downloads the module. The `/` slash after the `.wasm` causes the downloaded module to be loaded, and the `add` obtains a function with that name from the module. The final `(2, 3)` invokes the `add` function and passes those two values to it.
 
-## YAML files
+### YAML files
 
 Like JSON files, you can traverse into a YAML file using slash syntax. YAML front matter can [contain Origami expressions](yaml.html).
+
+## Custom file types
+
+You can tell Origami how to handle other types of files based on their file extension.
+
+### Define a handler for a file extension
+
+Suppose your project has `.user` files that define data about users. For simplicity, let's assume the contents of a `.user` file is in plain JSON text.
+
+You can define a JavaScript file `user_handler.js`:
+
+```${"js"}
+${ samples.ori/cli/user_handler.js}
+```
+
+The `mediaType` declaration tells the Origami server to transmit any `.user` files as JSON. The `unpack` method defines how to turn the file contents into data. A file may be a `Buffer`, `ArrayBuffer`, or other data type depending on where it is stored. The `toString()` utility function in Origami converts any of those types to plain text. The `JSON.parse()` call then parses the text into data.
+
+### Add your extension handler to your Origami configuration
+
+The second step is to tell Origami to use your `user_handler.js` file to handle any `.user` files.
+
+Define a [config.ori](/cli/config.html) file at the root of your project. Inside that, define a key `user_handler` that points to the location of the `.js` file:
+
+```
+{
+  user_handler = src/user_handler.js
+}
+```
+
+With that, Origami will call your custom file handler whenever you reference a `.user` file:
+
+```console
+$ cat alice.user
+${ samples.ori/cli/alice.user }
+$ ori alice.user/
+${ @yaml @parse/json samples.ori/cli/alice.user }$ ori alice.user/name
+${ (@parse/json samples.ori/cli/alice.user)/name }
+```
+
+### Defining a handler for a template language
+
+As a reference example, the [Origami Handlebars extension](https://github.com/WebOrigami/extensions/tree/main/handlebars) defines a handler for `.hbs` files that contain [Handlebars](https://handlebarsjs.com) templates.

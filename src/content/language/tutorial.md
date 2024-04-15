@@ -107,7 +107,7 @@ The little circle represents the overall tree, and the box represents the `index
 
 The `index.html` file is currently defined with a short quoted string. You can create larger, more realistic HTML pages using _templates_. A template is a document with placeholders that will be filled with data.
 
-For this tutorial, you'll use the [template system built into Origami](templates.html), but Origami can also work with many other template systems.
+For this tutorial, you'll use the [template system built into Origami](templates.html), but Origami can also work with other template systems.
 
 <span class="tutorialStep"></span> View the file `src/greet.ori`. Glitch shows only a single file at a time, so opening `greet.ori` will replace `site.ori` in the editor window.
 
