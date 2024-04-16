@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
-    "@weborigami/origami": "0.0.47",
+    "@weborigami/origami": "0.0.48",
     "@weborigami/pattern-intro": "github:WebOrigami/pattern-intro#23e791fc",
-    "@weborigami/samples": "github:WebOrigami/samples#5867a137",
+    "@weborigami/samples": "github:WebOrigami/samples#3cff3baf",
     "marked": "4.1.0",
     "sharp": "0.31.3",
     "typescript": "4.8.4",
