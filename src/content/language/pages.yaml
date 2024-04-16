@@ -16,5 +16,7 @@
   text: In YAML
 - href: comparison.html
   text: JS comparison
+- href: config.html
+  text: Configuration
 - href: examples.html
   text: Example sites
