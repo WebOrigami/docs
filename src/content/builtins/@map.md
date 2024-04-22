@@ -1,6 +1,6 @@
 ---
 title: "@map"
-mappedKeys: !ori "@map(samples.ori/cli/greetings.yaml, { keyMap: =`${ @key }.html` })"
+mappedKeys: !ori "@map(samples.ori/cli/greetings.yaml, { key: (greeting, name) => `${ name }.html` })"
 ---
 
 Creates a new tree from another by applying mapping functions to the original tree's values and/or keys.
@@ -40,46 +40,47 @@ The mapping function is typically a JavaScript function, an Origami [lambda](/la
 In the basic form of `@map` shown above, the second parameter is some kind of mapping function that will be applied to the tree's values. You can also use an expanded form of `@map` in which the second parameter is a collection of options:
 
 ```console
-$ ori @map(greetings.yaml, { valueMap: uppercase.js })
+$ ori @map(greetings.yaml, { value: uppercase.js })
 ```
 
-Available `options` include:
+The options include:
 
 - `deep`: If `false` (the default), this only maps the top-level values in the tree. If `true`, this maps values at all levels of the tree.
-- `extensions`: See below.
-- `keyMap`: A function that will be applied to the original tree's keys. See below.
-- `valueMap`: A function that will be applied to the original tree's values.
+- `extensions`: See "Transforming extensions".
+- `inverseKey`: A function that will be applied to a result key to get back the original key. See "Inverse keys".
+- `key`: A function that will be applied to a key from the original tree to get a result key. See "Mapping keys".
+- `value`: A function that will be applied to the original tree's values.
 
-## The value and key being mapped in scope
+## The value, key, and tree being mapped
 
-The `@map` function will put the value and key being mapped into the current [scope](/language/scope.html). You can refer to the value being mapped as an `_` underscore, and the key being mapped as `@key`.
+When `@map` calls a function to map a key or value, it passes the function three arguments:
 
-The example above uses `uppercase.js` as the function that will be applied to each value. The example can also be written using a [lambda function](/language/syntax.html#lambdas):
+1. The value being mapped
+2. The key being mapped
+3. The original tree being mapped
 
-```console
-$ ori @map(greetings.yaml, =uppercase.js(_))
-${ @yaml @map samples.ori/cli/greetings.yaml, =samples.ori/cli/uppercase.js(_) }
-```
-
-You could pass the key being mapped instead of the value to the `uppercase.js` function:
+The function being called does not need to use all three arguments. The following example only needs the value, so it only defines a parameter for the first argument:
 
 ```console
-$ ori @map(greetings.yaml, =uppercase.js(@key))
-${ @yaml @map samples.ori/cli/greetings.yaml, =samples.ori/cli/uppercase.js(@key) }
+$ ori "@map(greetings.yaml, (greeting) => uppercase.js(greeting))"
+${ @yaml @map samples.ori/cli/greetings.yaml, (greeting) => samples.ori/cli/uppercase.js(greeting) }
 ```
 
-The value and key being mapped are also available as function arguments; see below.
+### Mapping keys
 
-<a name="keys"></a>
+This function wants to reference the key being mapped (a person's name). That will be passed as the second argument, so the function defines two parameters:
 
-## Mapping keys
+```console
+$ ori "@map(greetings.yaml, (greeting, name) => uppercase.js(name))"
+${ @yaml @map samples.ori/cli/greetings.yaml, (greeting, name) => samples.ori/cli/uppercase.js(name) }
+```
 
-You can call `@map` with a `keyMap` option to apply a function to a tree's keys. For example, if a tree has keys which are names like "Alice", you can map those keys to ones that end in ".html", like "Alice.html".
+A common case for mapping keys is turning some data into a file name. For example, if a tree has keys which are names like "Alice", you can map those keys to ones that end in `.html`, like `Alice.html`.
 
 ```console
 $ cat greetings.yaml
 {{ samples.ori/cli/greetings.yaml
-}}$ ori "@map(greetings.yaml, { keyMap: =`\${ @key }.html` })"
+}}$ ori "@map(greetings.yaml, { key: (greeting, name) => `\${ name }.html` })"
 ${ @yaml mappedKeys }
 ```
 
@@ -94,15 +95,27 @@ ${ @yaml mappedKeys }
   <figcaption>Mapped keys</figcaption>
 </div>
 
+### Inverse keys
+
+Generally speaking, a `@map` operation needs to be able to change an original key like "Alice" into a result key like `Alice.html` _and_ it must be able to go in the other direction. If someone asks the above mapped tree for `Bob.html`, the `@map` operation will need to change `Bob.html` into the key "Bob" in order to be able to retrieve Bob's data.
+
+To do this, you can provide an `inverseKey` function that turns a result key into an original key. As a convenience, if you do not provide your own `inverseKey` function, `@map` will provide a default `inverseKey` function for you.
+
+This default `inverseKey` function is not especially efficient, as it exhaustively maps each original key to see if the result matches what is being requested. In this example, if someone asks for `Bob.html`, the default `inverseKey` function will try mapping the original key "Alice" to `Alice.html` to see if that matches. It doesn't, so the function next tries mapping "Bob" to `Bob.html`. That does match, so it knows that the inverse of `Bob.html` is "Bob".
+
+For small maps, this default `inverseKey` function may be perfectly acceptable. For the best performance in mapping larger collections, define both the `key` and `inverseKey` functions.
+
 ## Transforming extensions
 
-The above example of changing a key's extension is very common. Mapping values often changes the type of the data, and it is useful to be able to reflect that change in type in file extensions.
+Changing a key's extension is very common. Mapping values often changes the type of the data, and it is useful to be able to reflect that change in type in file extensions.
 
 To facilitate changing extensions in a `@map`, you can supply an `extensions` option that indicates whether and how the extensions of the original tree should be changed:
 
 - `extensions: "md"` restricts the map to only apply to keys ending in `.md`
 - `extensions: "->html"` adds the `.html` extension to the keys in the result
 - `extensions: "md->html"` only applies the map to keys ending in `.md`, and adds the `.html` extension to keys in the result
+
+The `extensions` option generates a `key` and `inverseKey` functions for you. If you provide two extensions, like `"md->html"`, the `inverseKey` function will be much more efficient.
 
 In place of the `->` text, you can alternatively write a Unicode `→` Rightwards Arrow, as in `"md→html"`. You can optionally include the `.` in extensions: `{ extension: ".md" }`.
 
@@ -113,16 +126,4 @@ $ cat greetings.yaml
 {{ samples.ori/cli/greetings.yaml
 }}$ ori "@map(greetings.yaml, { extensions: '→html' })"
 ${ @yaml mappedKeys }
-```
-
-## Value and key being mapped as function arguments
-
-As mentioned above, the `@map` function puts the value and key being mapped in scope. `@map` also passes the value being mapped, the key being mapped, and the tree being mapped as arguments to both the `valueMap` and `keyMap` functions.
-
-This lets you choose names for the value and key that are more meaningful in your context.
-
-```console
-$ ori "@map(greetings.yaml, (name, greeting) => uppercase.js(name))"
-${ @yaml @map samples.ori/cli/greetings.yaml, (name, greeting) => samples.ori/cli/uppercase.js(name) }$ ori "@map(greetings.yaml, (name, greeting) => uppercase.js(greeting))"
-${ @yaml @map samples.ori/cli/greetings.yaml, (name, greeting) => samples.ori/cli/uppercase.js(greeting) }
 ```

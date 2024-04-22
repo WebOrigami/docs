@@ -7,7 +7,14 @@
 
   areas = @plain(areas.yaml)
 
-  addDataToPages = =js/addData.js(_, area, @key, areas, @plain(content(area)/pages.yaml), client/assets/origami)
+  addDataToPages = (page, name) => js/addData.js(
+    page
+    area
+    name
+    areas
+    @plain(content(area)/pages.yaml)
+    client/assets/origami
+  )
 
   // Add the `area` and `fileName` properties to the documents.
   withData = @map(content, {

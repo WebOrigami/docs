@@ -3,17 +3,17 @@ title: Example sites
 subtitle: Created with the Origami language
 ---
 
-${ @map(examples.yaml, =`
+${ @map(examples.yaml, (example, key) => `
 
-<h2>${ _/name }</h2>
-<a href="${ _/url }">
-  <img class="screenshot" src="/assets/screenshots/${ @key }.png" alt="Screenshot of ${ _/url }">
+<h2>${ example/name }</h2>
+<a href="${ example/url }">
+  <img class="screenshot" src="/assets/screenshots/${ key }.png" alt="Screenshot of ${ example/url }">
 </a>
 <p>
-${ _/description }
-${ @if(_/video, `<a href="${ _/video }">Video tour</a> &nbsp; `) }
-<a href="${ _/url }">Visit site</a>
-${ @if(_/repo, ` &nbsp; <a href="${ _/repo }">View source</a>`) }
+${ example/description }
+${ @if(example/video, `<a href="${ example/video }">Video tour</a> &nbsp; `) }
+<a href="${ example/url }">Visit site</a>
+${ @if(example/repo, ` &nbsp; <a href="${ example/repo }">View source</a>`) }
 </p>
 `) }
 

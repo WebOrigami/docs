@@ -474,15 +474,15 @@ Continuing the blog example above, you can define an `index.ori` template that w
   </head>
   <body>
     <ul>
-      \{\{ @map(posts, =`
-      <li><a href="pages/\${ @key }}">\{{ _/title }</a></li>
+      \{\{ @map(posts, (post, fileName) => `
+      <li><a href="pages/\${ fileName }}">\{{ post/title }</a></li>
       \`) }}
     </ul>
   </body>
 </html>
 ```
 
-Origami looks up references like `posts` inside the template using the same tree scope discussed earlier. Inside the `@map`, the `@key` expression returns the name of the page file like "post1.html".
+Origami looks up references like `posts` inside the template using the same tree scope discussed earlier. Inside the `@map`, the `fileName` reference returns the name of the page file like "post1.html".
 
 Tree scope erases the boundary between the files outside the template and the HTML and instructions inside the template, letting you generate HTML that reflects the contents of the original `posts` folder.
 
@@ -531,4 +531,4 @@ _Key points: Origami's built-in template system lets you create navigation eleme
 
 This covers the key unique concepts in Origami. The examples shown here are very basic, but you can apply these to create real sites.
 
-If you'd like to try building a simple site this way, try the [tutorial](tutorial.html).
+If you'd like to try building a simple site this way, try the [tutorial](tutorial.html). If you'd like to try Origami on your own machine, copy the [origami-start](https://github.com/WebOrigami/origami-start) project.

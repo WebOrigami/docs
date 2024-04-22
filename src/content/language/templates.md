@@ -15,14 +15,18 @@ You can also use Origami with other template systems. For a reference example, s
 
 An Origami template file is an Origami file (a text file with a `.ori` extension) defining an [Origami expressions](/language/syntax.html) that either evaluates to a text string or to a function that returns text.
 
-The most common type of Origami template is a file that defines a template literal using an = equals sign and backtick characters. Inside the backticks, placeholders marked with `\$\{ }` contain additional Origami expressions whose results are included in the final text:
+Origami templates come in two forms.
+
+### Shorthand form
+
+In the shorthand form, you define an Origami template literal using an `=` equals sign and backtick characters. Inside the backticks, placeholders marked with `\$\{ }` contain additional Origami expressions whose results are included in the final text:
 
 ```console
 $ cat greet.ori
 ${ samples.ori/templates/greet.ori }
 ```
 
-You can evaluate a template in the context of data, such as an object defined in a data file.
+The `_` underscore represents the template's input, so the expression `_/name` will get the `name` property of any object passed to the template:
 
 ```console
 $ cat alice.yaml
@@ -31,9 +35,9 @@ $ ori "greet.ori(alice.yaml)"
 ${ samples.ori/templates/greet.ori(samples.ori/templates/alice.yaml) }
 ```
 
-## Reference input
+### Long form with named parameters
 
-When you invoke a template as a function, you can refer to the template's input using an underscore (`_`).
+You can also define templates with a longer form in which you name the parameters to the template. This form begins with a list of named parameters in parentheses, and uses `=>` instead of a plain `=` equals sign:
 
 ```console
 $ cat heading.ori
@@ -41,6 +45,10 @@ ${ samples.ori/templates/heading.ori }
 $ ori "heading.ori('About Us')"
 ${ samples.ori/templates/heading.ori('About Us') }
 ```
+
+Here, the `text` parameter will have whatever value is passed to the template.
+
+Naming the parameter can help you document the template's expected input. This also allows you to define multiple parameters.
 
 ## Reference local files
 
@@ -299,21 +307,23 @@ Per the discussion in [Reference trees](#Reference-trees), the template concaten
 
 ### Reference the key for a value
 
-When mapping a tree (like a folder) to text, you can obtain the key (like a file name) via the ambient `@key` property.
+When `@map` calls a template, it passes three parameters: the value being mapped, the key for that value, and the overall tree being mapped. You don't have to use all the parameters.
 
-Suppose you have a folder holding some files:
+The key parameter can be useful when you are building a list or index. For example, suppose you want to build an index page for a blog, where you will write posts in a `posts` folder:
 
 ```console
 $ ls posts
 post1.html post2.html
 ```
 
-You can create an index page that links to these files using the ambient `@key` property. This lets a link reference a file's specific file name in the `href` attribute.
+You can create an index page that links to these files using the key parameter. Here, the `fileName` parameter will end up holding the name of the file being mapped:
 
 ```console
 $ cat blogIndex.ori
 ${ samples.ori/templates/blogIndex.ori }
 ```
+
+This lets a link reference a file's specific file name in the `href` attribute.
 
 This index page template defines a default `title` property to use if a page omits a title; see [template and input front matter](#template-and-input-front-matter) above.
 
@@ -322,17 +332,4 @@ Evaluating this template produces a list of links to each post, with each `href`
 ```console
 $ ori blogIndex.ori posts
 ${ samples.ori/templates/blogIndex.ori samples.ori/templates/posts }
-```
-
-### Using named parameters
-
-As noted, you can reference the value being mapped as an `_` underscore and the key being mapped as `@key`. You can also define your own parameter names that are more meaningful to your specific situation.
-
-For example, you can rewrite the blog example above:
-
-```console
-$ ori blogIndex2.ori
-${ samples.ori/templates/blogIndex2.ori }
-$ ori blogIndex2.ori/
-${ samples.ori/templates/blogIndex2.ori/ }
 ```

@@ -690,7 +690,9 @@ If you don't want to create an account, Glitch will keep the site for some time 
 
 ## Done!
 
-This concludes the Origami tutorial. You can continue exploring related topics:
+This concludes the Origami tutorial. If you'd like to try working with Origami on your own machine, you can copy the [origami-start](https://github.com/WebOrigami/origami-start) project.
+
+You can continue exploring related topics:
 
 - The [Origami expression language](/language/) you used to write formulas and template expressions has additional features not covered in this tutorial.
 - As you were creating the About Us site, the [Origami command-line interface](/cli) and its included web server was working behind the scenes to let you view the site during development and to copy the virtual files to real files.
