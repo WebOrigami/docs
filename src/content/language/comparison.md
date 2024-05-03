@@ -136,7 +136,7 @@ This JavaScript:
 export default "This file exports this message.";
 ```
 
-becomes this `message.ori` file:
+does the same thing as this `message.ori` file, which implies a default `export`:
 
 ```
 "This file exports this message."
