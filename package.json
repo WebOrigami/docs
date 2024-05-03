@@ -3,16 +3,16 @@
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
-    "@weborigami/origami": "0.0.48",
+    "@weborigami/origami": "0.0.49",
     "@weborigami/pattern-intro": "github:WebOrigami/pattern-intro#23e791fc",
     "@weborigami/samples": "github:WebOrigami/samples#6620fd67",
-    "marked": "4.1.0",
-    "sharp": "0.31.3",
-    "typescript": "4.8.4",
-    "yaml": "2.1.1"
+    "marked": "12.0.2",
+    "sharp": "0.33.3",
+    "typescript": "5.4.5",
+    "yaml": "2.4.2"
   },
   "devDependencies": {
-    "@weborigami/screenshot": "0.0.3"
+    "@weborigami/screenshot": "0.0.6"
   },
   "scripts": {
     "build": "rm -r build; ori '@copy netlify.js(@keysJson(src/site.ori/public)), @mkdir/build'",
