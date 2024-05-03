@@ -97,7 +97,7 @@ Origami requires the parenthesis around the lambda parameters; JavaScript allows
 For ease of use in a command shell with the Origami [CLI](/cli), the language also supports a shorthand lambda syntax:
 
 ```
-=fn(x)
+=fn x
 ```
 
 This avoids the need to escape the `>` greater than sign or `()` parentheses, which are typically interpreted by a shell.
@@ -125,6 +125,42 @@ This type of Origami declaration will invoke the indicated expression — here, 
 
 On difference is that the Origami example permits the `createPage` function to be `async`, while JavaScript prohibits the declaration of `async` getters.
 
-## Origami files vs JavaScript modules
+## Implied exports and imports
 
-Any Origami file with the `.ori` extension will have its contents interpreted as an Origami expression. Unlike JavaScript, there is no need to explicitly `export` a value.
+Any Origami file with the `.ori` extension will have its contents interpreted as an Origami expression. The result of this expression is implicitly exported and available from outside the file — unlike JavaScript, there is no need to explicitly `export` a value.
+
+This JavaScript:
+
+```js
+// message.js
+export default "This file exports this message.";
+```
+
+becomes this `message.ori` file:
+
+```
+"This file exports this message."
+```
+
+Likewise, because Origami [scope](scope.html) includes the surrounding files, it is not necessary to explicitly `import` values; you can directly refer to files by their names.
+
+A JavaScript file might import the above message and incorporate it into an object with:
+
+```js
+// console.js
+import message from "./message.js";
+
+export default {
+  "index.html": message,
+};
+```
+
+An Origami file could do the same thing with:
+
+```
+{
+  index.html: message.ori/
+}
+```
+
+Here the trailing `/` slash is used to get the evaluated contents of `message.ori`.
