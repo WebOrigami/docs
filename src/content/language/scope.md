@@ -122,7 +122,7 @@ In the example above, placing a file like `greet.js` in the same folder as the `
 
 Tree scope lets you use the file system structure of your project as one way to configure what's available to your own code as well as what's available to end users.
 
-You can take advantage of tree scope to hide internal details. If the sample project above publishes the contents of `site.ori`, a user will be able to browse to `index.html` — but will not be able to see `greet.js` or `ReadMe.md`.
+You can take advantage of tree scope to hide internal details. If the sample project above publishes the contents of `site.ori`, a user will be able to browse to the `index.html` page defined in that file — but the user will not be able to see `greet.js` or `ReadMe.md`.
 
 ## Default scope
 
@@ -158,7 +158,7 @@ $ ori src/site.ori/index.html
 
 This also works, because Origami works from the tree defining `index.html` up to the current folder.
 
-## Define a project root with ori.config.js
+## config.ori
 
 Let's consider what would happen in the above project if you moved `greet.js` from the `src` folder to the project root:
 
@@ -186,33 +186,42 @@ $ ori site.ori/index.html
 
 In this situation, `greet.js` is _above_ the current folder (`src`), so it's out of scope.
 
-You can fix this by defining a file called `ori.config.js` at the root level of your project. This configuration file has two roles: 1) it marks the root of your project, and 2) it defines the project's base scope.
+You can fix this by defining a file called `config.ori` at the root level of your project. This configuration file has two roles. First, it marks the root of your project. Second, any tree defined in `config.ori` becomes part of the project's base scope.
 
-The simplest definition of `ori.config.js` is to export the Origami built-in functions:
+For example, you could define `config.ori` like this:
 
 ```js
-// ori.config.js
-import { builtins } from "@weborigami/origami";
-export default builtins;
+{
+  message = "This message is defined in the Origami configuration file.";
+}
 ```
 
-With such a file in place, instead of stopping its search of the file system hierarchy at the current folder, it will continue searching up to the project root. As a last resort, it will search inside the tree exported by the configuration file — here, the Origami built-in functions.
+Then, anywhere in your project:
 
-## Define a custom base scope
+```console
+$ ori message
+This message is defined in the Origami configuration file.
+```
 
-You can make additional custom commands available throughout your project by including them in the tree exported by `ori.config.js`.
+## Accessing scope in JavaScript functions
 
-For example, you could rewrite `ori.config.js` to include a custom `uppercase` command in the base scope for your project:
+When the ori CLI calls a JavaScript function, the `this` value inside that function will be the scope defined at that point in the project. This allows a JavaScript function to use the same Origami scope mechanism inside JavaScript.
+
+For example, suppose you have a file called `sample.txt`:
+
+```txt
+${ samples.ori/cli/sample.txt }
+```
+
+A JavaScript file `accessScope.js` in that same folder (or in a subfolder) can read the current Origami scope from the functions `this` value:
 
 ```js
-// ori.config.js
-import { builtins, MergeTree } from "@weborigami/origami";
-export default new MergeTree(
-  {
-    uppercase(s) {
-      return s.toUpperCase();
-    },
-  },
-  builtins
-);
+${ samples.ori/cli/accessScope.js }
+```
+
+Evaluating this will display the file:
+
+```console
+$ ori accessScope.js/
+This is a text file.
 ```
