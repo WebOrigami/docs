@@ -20,7 +20,7 @@
   withData = @map(content, {
     description: "withData outer"
     value: (_, area) => @if(
-      @isAsyncTree(_)
+      @tree/isAsyncTree(_)
       @map(_, { description: "withData inner", extension: "md", value: addDataToPages })
       =js/addData.js(_, "", area, areas, {}, client/assets/origami)
     )
@@ -47,7 +47,7 @@
     components.js = @concat(components)
 
     demos = {
-      aboutUs = @tree src/demos/aboutUs/site.ori
+      aboutUs = src/demos/aboutUs/site.ori/
     }
 
     // pagefind = @cache(js/treeIndex.js(pages), src/pagefind)

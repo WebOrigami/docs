@@ -53,7 +53,7 @@ ${ pattern.ori/flat/htmlFn.js }
 
 ```console
 $ node json htmlFn.js
-${ @json pattern.ori/flat/transform.js @tree pattern.ori/flat/htmlFn.js }
+${ @json pattern.ori/flat/transform.js @tree/from pattern.ori/flat/htmlFn.js }
 ```
 
 We have now implemented three different ways to construct an async tree. In a bit, we'll see how they can be used together to create interesting combinations and be used for practical purposes. Before doing that, however, let's make our code a little more general-purpose and flexible.
