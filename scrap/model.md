@@ -61,8 +61,8 @@ The tutorial project includes a `src/public` folder containing the resources tha
 
 <span class="tutorialStep"></span> Open the team data file in `src/public/teamData.yaml`:
 
-```{{'yaml'}}
-{{ framework-intro/src/teamData.yaml }}
+```${'yaml'}
+${ framework-intro/src/teamData.yaml }
 ```
 
 One thing is clear: this data is too boring.

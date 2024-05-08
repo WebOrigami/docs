@@ -2,7 +2,7 @@
   index.html = index.ori(teamData.yaml)
 
   team = @map(teamData.yaml, {
-    key: (person) => `{{person/name}}.html`
+    key: (person) => `${person/name}.html`
     value: person.ori
   })
 

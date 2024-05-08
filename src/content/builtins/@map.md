@@ -13,10 +13,10 @@ In the simplest form of `@map`, you provide a tree and a function that will be a
 
 ```console
 $ cat greetings.yaml
-{{ samples.ori/cli/greetings.yaml
-}}$ cat uppercase.js
-{{ samples.ori/cli/uppercase.js
-}}$ ori @map(greetings.yaml, uppercase.js)
+${ samples.ori/cli/greetings.yaml
+}$ cat uppercase.js
+${ samples.ori/cli/uppercase.js
+}$ ori @map(greetings.yaml, uppercase.js)
 ${ @yaml @map samples.ori/cli/greetings.yaml, samples.ori/cli/uppercase.js }
 ```
 
@@ -79,8 +79,8 @@ A common case for mapping keys is turning some data into a file name. For exampl
 
 ```console
 $ cat greetings.yaml
-{{ samples.ori/cli/greetings.yaml
-}}$ ori "@map(greetings.yaml, { key: (greeting, name) => `\${ name }.html` })"
+${ samples.ori/cli/greetings.yaml
+}$ ori "@map(greetings.yaml, { key: (greeting, name) => `\${ name }.html` })"
 ${ @yaml mappedKeys }
 ```
 
@@ -123,7 +123,7 @@ So you can also write the above example as:
 
 ```console
 $ cat greetings.yaml
-{{ samples.ori/cli/greetings.yaml
-}}$ ori "@map(greetings.yaml, { extensions: '→html' })"
+${ samples.ori/cli/greetings.yaml
+}$ ori "@map(greetings.yaml, { extensions: '→html' })"
 ${ @yaml mappedKeys }
 ```

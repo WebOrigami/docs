@@ -10,7 +10,7 @@ complete:
   personIcon.svg: !ori framework-intro/src/assets/personIcon.svg
   images: !ori framework-intro/src/images
   styles.css: !ori framework-intro/src/assets/styles.css
-  team: !ori "map(teamByName, =`<h1>{{ ./name }}</h1>`, { extension: '→html' })"
+  team: !ori "map(teamByName, =`<h1>${ ./name }</h1>`, { extension: '→html' })"
   thumbnails: !ori images
 ---
 
@@ -27,7 +27,7 @@ The `src/public` folder contains the material that will become your public-facin
 You'll see the `public` folder visually represented as a graph:
 
 <figure>
-{{ svg framework-intro/src/static }}
+${ svg framework-intro/src/static }
 </figure>
 
 The little circles represent folders, like the `public` folder itself (on the left) and the `images` folder (in the middle). The boxes represent _values_ — in this case, the contents of files. The arrow labels, or _keys_, are the way the graph identifies what's what. In the case of a folder, the keys are the file names.
@@ -43,13 +43,13 @@ The `public` folder graph in sitting inside a larger graph for the entire projec
 The `teamData.yaml` data also has a hierarchical structure: it's an array of people, each of which have some properties.
 
 ```\yaml
-{{ framework-intro/src/teamData.yaml }}
+${ framework-intro/src/teamData.yaml }
 ```
 
 We can visually represent this data as a graph.
 
 <figure class="constrain">
-{{ svg client/samples/frameworkIntro/focusedteamData.yaml }}
+${ svg client/samples/frameworkIntro/focusedteamData.yaml }
 </figure>
 
 (For brevity, in this and other diagrams showing team data, we'll just show the `name` and `image` properties for each person.)
@@ -76,7 +76,7 @@ You can also explore data files with graph tools like the `.svg` tool you used a
 <span class="tutorialStep"></span> Navigate to `teamData.yaml/.svg` to view the graph of the team data, or navigate to `teamData.yaml/0/.svg` to view the graph of the data for just the first team member.
 
 <figure>
-{{ svg framework-intro/src/teamData.yaml/0 }}
+${ svg framework-intro/src/teamData.yaml/0 }
 </figure>
 
 An explorable graph can be an in-memory object, a folder tree, data in a file, dynamically-generated data, or other structured content. (You can read more about the different [graph variants](/core/variants.html) supported by Origami.)
@@ -90,7 +90,7 @@ Since you can think of any structures as a graph, you can also visualize the fin
 Let's work backward from the desired result form of the site. It might look like this:
 
 <figure>
-{{ svg complete }}
+${ svg complete }
 </figure>
 
 As discussed at the outset, we want an index page listing our team members, plus a page for each individual member, full-size photos, thumbnail-size photos, and some resources for the site's visual design.

@@ -37,11 +37,11 @@ The following Origami file defines a tiny site:
 Everything between the `{ }` curly braces creates a site _tree_ with just one branch:
 
 <figure>
-{{
+${
   svg.js {
     index.html: "Hello, world!"
   }
-}}
+}
 </figure>
 
 Some terminology: The _root_ of this tree is the circle on the left. The branch has a label or name, which we'll call a _key_, and that leads to a node or _value_. In cases like this, the key "index.html" is a text string, but a key could be a number or something else. The value here ("Hello, world!") also happens to be a string, but values can be anything: an image, a data file, etc.
@@ -64,7 +64,7 @@ Example: the small <a href="/demos/aboutUs/" target="_blank">About Us</a> site d
 You can think about this set of pages as a tree:
 
 <figure>
-{{
+${
   svg.js {
     index.html: "<h1>About Us</h1>"
     team: {
@@ -73,7 +73,7 @@ You can think about this set of pages as a tree:
       Carol.html: "<h1>Carol</h1>"
     }
   }
-}}
+}
 </figure>
 
 Website creators refer to URLs as _routes_: when you navigate to a URL like [team/Alice.html](/demos/aboutUs/team/Alice.html), you're picking one particular route through this site's tree. Conceptually speaking, the web server starts at the tree's root on the left and then follows the keys `team` and `Alice.html` to find the web page it will send to your browser.
@@ -106,12 +106,12 @@ Origami determines the meaning of those references by defining a _scope_: the se
 The text enclosed by backtick characters constructs a text string. Origami evaluates the `name` reference inside the `\$\{ \}` placeholder. Origami finds the nearby `name` key, so incorporates the corresponding value into the final text.
 
 <figure>
-{{
+${
   svg.js {
     name: "world"
     index.html: "Hello, world!"
   }
-}}
+}
 </figure>
 
 _Key point: The scope available to an Origami expression is determined by the tree structure containing the expression._
@@ -132,14 +132,14 @@ We can observe tree scope in action by adding a level to our little tree, making
 ```
 
 <figure>
-{{
+${
   svg.js {
     name: "world"
     about: {
       index.html: "Hello, world!"
     }
   }
-}}
+}
 </figure>
 
 This produces the same "Hello, world!" message as before. When Origami sees `name` in the `index.html` formula, it searches the local `about` area of the tree for `name`. It doesn't see a `name` there, so moves up to the tree's top level, where it does find a `name`.
@@ -175,11 +175,11 @@ world
 Given this arrangement, the `site.ori` file produces the same tiny site shown before:
 
 <figure>
-{{
+${
   svg.js {
     index.html: "Hello, world!"
   }
-}}
+}
 </figure>
 
 Here, when Origami looks for `name`, it doesn't find a `name` key in the Origami file, so it moves up into the surrounding folder. It finds the little `name` text file there, so uses that file's contents as the name.
@@ -217,11 +217,11 @@ The Origami file can incorporate that data into the `index.html` page with:
 This uses Origami's tree scoping to directly reference a file. In this case, we're using a slash-separated path `data.json/name` to extract the `name` value from that data file. This produces the same result as before:
 
 <figure>
-{{
+${
   svg.js {
     index.html: "Hello, world!"
   }
-}}
+}
 </figure>
 
 Many programming languages require you to parse data in formats like JSON. Origami includes built-in parsing for JSON and YAML files. You can drop in support for other parsers.
@@ -252,7 +252,7 @@ You can reference this `images` folder name in the Origami file, and Origami wil
 This creates a site that looks like:
 
 <figure>
-{{
+${
   svg.js {
     images: {
       image1.jpg: "[binary data]"
@@ -260,7 +260,7 @@ This creates a site that looks like:
       image3.jpg: "[binary data]"
     }
   }
-}}
+}
 </figure>
 
 All these images are available at URLs like `images/image1.jpg`.
@@ -274,7 +274,7 @@ You may often find yourself creating content in one form — text, images, etc. 
 For instance, you might want to write your site content in a folder of markdown files that you will convert to HTML. You can visualize that markdown folder as a tree:
 
 <figure>
-{{
+${
   svg.js {
     markdown: {
       Alice.md: "Hello, **Alice**!"
@@ -282,7 +282,7 @@ For instance, you might want to write your site content in a folder of markdown 
       Carol.md: "Hello, **Carol**!"
     }
   }
-}}
+}
 </figure>
 
 You can transform that tree of markdown files into a corresponding tree of HTML files. Origami includes a markdown-to-HTML command called [@mdHtml](/builtins/@mdHtml.html). That command works on a single file, so you can use it to turn a single markdown file into HTML.
@@ -294,11 +294,11 @@ You can transform that tree of markdown files into a corresponding tree of HTML 
 ```
 
 <figure>
-{{
+${
   svg.js {
     Alice.html: "Hello, <strong>Alice</strong>!"
   }
-}}
+}
 </figure>
 
 Instead of translating just one file a time, you can transform all the files in the `markdown` folder with one instruction using the [@map](/builtins/@map.html) command:
@@ -312,13 +312,13 @@ Instead of translating just one file a time, you can transform all the files in 
 This turns the tree of markdown files into a tree of HTML pages:
 
 <figure>
-{{
+${
   svg.js {
     Alice.md: "Hello, <strong>Alice</strong>!"
     Bob.md: "Hello, <strong>Bob</strong>!"
     Carol.md: "Hello, <strong>Carol</strong>!"
   }
-}}
+}
 </figure>
 
 This isn't quite what's wanted — the values are HTML, but the keys (file names) still end in `.md`. A slightly longer `@map` expression can change both the keys and the values:
@@ -332,7 +332,7 @@ This isn't quite what's wanted — the values are HTML, but the keys (file name
 which gives
 
 <figure>
-{{
+${
   svg.js {
     html: {
       Alice.html: "Hello, <strong>Alice</strong>!"
@@ -340,7 +340,7 @@ which gives
       Carol.html: "Hello, <strong>Carol</strong>!"
     }
   }
-}}
+}
 </figure>
 
 You can browse the transformed HTML immediately. Other programming environments have maps too, but Origami's are "lazy", meaning they don't do work to create something until you ask for it. They can also work on deep trees, not just flat arrays, and can be applied equally to any data source.
@@ -354,13 +354,13 @@ If you wanted the mapped HTML pages to be the entire site instead of just the `h
 which puts all the transformed HTML pages at the top level:
 
 <figure>
-{{
+${
   svg.js {
     Alice.html: "Hello, <strong>Alice</strong>!"
     Bob.html: "Hello, <strong>Bob</strong>!"
     Carol.html: "Hello, <strong>Carol</strong>!"
   }
-}}
+}
 </figure>
 
 _Key point: You can use Origami maps to efficiently transform collections of content in bulk._
@@ -418,11 +418,11 @@ You can call this template in the `site.ori` file:
 This produces a site with one page:
 
 <figure>
-{{
+${
   svg.js {
     firstPost.html: "<html><head><title>My First Post</title>…"
   }
-}}
+}
 </figure>
 
 where the `firstPost.html` page contains:
@@ -449,14 +449,14 @@ You can apply a page template in a map to process all your posts at once:
 This produces:
 
 <figure>
-{{
+${
   svg.js {
     pages: {
       post1.html: "…<title>My First Post</title>…"
       post2.html: "…<title>My Second Post</title>…"
     }
   }
-}}
+}
 </figure>
 
 _Key point: You can use template systems in Origami to turn files and data into text. Origami comes with a built-in template system._
@@ -474,9 +474,9 @@ Continuing the blog example above, you can define an `index.ori` template that w
   </head>
   <body>
     <ul>
-      \{\{ @map(posts, (post, fileName) => `
-      <li><a href="pages/\${ fileName }}">\{{ post/title }</a></li>
-      \`) }}
+      \${ @map(posts, (post, fileName) => `
+      <li><a href="pages/\${ fileName }">\${ post/title }</a></li>
+      \`) }
     </ul>
   </body>
 </html>
@@ -498,7 +498,7 @@ Invoke this template to create the index page:
 The site looks like:
 
 <figure>
-{{
+${
   svg.js {
     index.html: "…<title>Posts</title>…"
     pages: {
@@ -506,7 +506,7 @@ The site looks like:
       post2.html: "…<title>My Second Post</title>…"
     }
   }
-}}
+}
 </figure>
 
 and the index page will link to all the posts:

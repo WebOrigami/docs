@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>{{ _/name }}</title>
+    <title>${ _/name }</title>
     <link rel="stylesheet" href="../assets/styles.css">
   </head>
   <body>
@@ -13,13 +13,13 @@
       </header>
     </a>
     <main class="person">
-      <img class="avatar large" src="../images/{{ _/image }}" alt="{{ _/name }}" />
-      <h2 class="name">{{ _/name }}</h2>
+      <img class="avatar large" src="../images/${ _/image }" alt="${ _/name }" />
+      <h2 class="name">${ _/name }</h2>
       <div class="location">
-        {{ _/location }}
+        ${ _/location }
       </div>
       <p class="bio">
-        {{ _/bio }}
+        ${ _/bio }
       </p>
     </main>
   </body>

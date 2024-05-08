@@ -287,10 +287,10 @@ For example, the [@map](/builtins/@map.html) built-in function can apply another
 
 ```console
 $ cat letters.json
-{{ samples.ori/cli/letters.json
-}}$ cat uppercase.js
-{{ samples.ori/cli/uppercase.js
-}}$ ori "@map(letters.json, =uppercase.js(_))"
+${ samples.ori/cli/letters.json
+}$ cat uppercase.js
+${ samples.ori/cli/uppercase.js
+}$ ori "@map(letters.json, =uppercase.js(_))"
 ${ @yaml @map samples.ori/cli/letters.json, samples.ori/cli/uppercase.js }
 ```
 

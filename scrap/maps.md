@@ -30,7 +30,7 @@ markdown:
 ```
 
 <figure>
-{{ svg folder }}
+${ svg folder }
 </figure>
 
 ```console assert: true, path: files
@@ -50,5 +50,5 @@ markdown:
 ```
 
 <figure>
-{{ svg meta folder }}
+${ svg meta folder }
 </figure>

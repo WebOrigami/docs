@@ -51,7 +51,7 @@ $ ori @serve site.ori/public
 The virtual `public` folder contains versions of all the page fragments in the original `html` folder, only now those fragments have each been placed inside the standard page elements for your site.
 
 <figure>
-{{
+${
   svg.js @map(samples.ori/templates/fragments, samples.ori/templates/page.ori)
-}}
+}
 </figure>
