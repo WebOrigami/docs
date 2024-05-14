@@ -1,5 +1,7 @@
 - href: index.html
   text: Overview
+- href: "@addNextPrevious.html"
+  text: "@addNextPrevious"
 - href: "@basename.html"
   text: "@basename"
 - href: "@builtins.html"
