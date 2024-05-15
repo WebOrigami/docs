@@ -201,7 +201,7 @@ ${ samples.ori/templates/stars.ori }
 This template repeats a ★ star character for the number of times defined in in the input value. For example, you can directly invoke and test this template, passing in a value of 3:
 
 ```console
-$ ori "stars.ori(3)"
+$ ori stars.ori 3
 ${ samples.ori/templates/stars.ori(3) }
 ```
 
