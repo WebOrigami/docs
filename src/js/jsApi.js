@@ -89,14 +89,14 @@ class DocsTree {
         exports: exportsDocs(checker, sourceFile),
       };
     };
-    this.tree = map({
+    this.tree = map(treelike, {
       deep: true,
       value: mapFn,
       ...keyFunctionsForExtensions({
         sourceExtension: "js",
         resultExtension: "yaml",
       }),
-    })(Tree.from(treelike));
+    });
     this.program = program;
     this.path = docsPath;
     this.parent = null;

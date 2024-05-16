@@ -196,8 +196,8 @@ With that, Origami will call your custom file handler whenever you reference a `
 $ cat alice.user
 ${ samples.ori/cli/alice.user }
 $ ori alice.user/
-${ @yaml @parse/json samples.ori/cli/alice.user }$ ori alice.user/name
-${ (@parse/json samples.ori/cli/alice.user)/name }
+${ @yaml @jsonParse samples.ori/cli/alice.user }$ ori alice.user/name
+${ (@jsonParse samples.ori/cli/alice.user)/name }
 ```
 
 ### Defining a handler for a template language
