@@ -1,5 +1,8 @@
 - href: index.html
   text: Overview
+# - href: functional.html
+#   text: Functional forms
+- text: "Built-ins:"
 - href: "@addNextPrevious.html"
   text: "@addNextPrevious"
 - href: "@basename.html"

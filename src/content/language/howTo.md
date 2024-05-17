@@ -1,5 +1,5 @@
 ---
-title: How to define common HTML elements for many pages
+title: Define a common HTML template for multiple pages
 ---
 
 You want all the pages on your site to share common elements: a header, navigation, links to stylesheets, etc.
@@ -10,7 +10,7 @@ You want all the pages on your site to share common elements: a header, navigati
 ${ samples.ori/templates/fragments/a.html }
 ```
 
-<span class="tutorialStep"></span> Put those HTML fragments in a folder called `html` (or `bodies`, `fragments`, etc.):
+<span class="tutorialStep"></span> Put those HTML fragments in a folder called `html` (or `bodies` or `fragments`, etc.):
 
 ```
 myProject/
@@ -20,7 +20,7 @@ myProject/
     c.html
 ```
 
-<span class="tutorialStep"></span> Create a page template with a name like `page.ori`. Place a `\${ _ }` placeholder where you want the page fragment/body to go.
+<span class="tutorialStep"></span> Create an Origami template with a name like `page.ori` and give it all the elements you want to appear on every page. Place a `\${ }` placeholder where you want the page fragment/body to go.
 
 ```console
 $ cat page.ori
