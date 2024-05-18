@@ -332,7 +332,15 @@ can be rewritten using the pipe operator:
 value → one → two → three
 ```
 
-This can be useful when applying multiple transformations of data. If an index page is generated from markdown that is then placed inside a template, you can write:
+This can be useful when applying multiple transformations of data. Suppose an index page is generated from markdown and then placed inside a template:
+
+```
+{
+  index.html = template.ori(@mdHtml(index.md))
+}
+```
+
+You can rewrite the above using the pipe operator so that the flow of data reads proceeds from left to right:
 
 ```
 {
@@ -340,7 +348,9 @@ This can be useful when applying multiple transformations of data. If an index p
 }
 ```
 
-to make the flow of data easier to see.
+This may make the flow of data easier to see.
+
+A number of Origami's built-in functions have [functional forms](/builtins/functional.html) to facilitate their use in content pipelines constructed with the pipe operator.
 
 ## Comments
 
@@ -370,7 +380,19 @@ Block comment
 
 Generally speaking, the Origami expression language does not have reserved words, but:
 
-- Origami does include a number of built-in functions and values which will normally be in scope. All of them have names that start with an `@` at sign. If you can, avoid adopting names for your own functions or data members that begin with `@`.
-- A few protocols like `https:` are reserved in URLs.
+- Origami does include a number of [built-in functions](/builtins/) and values which will normally be in scope. All of them have names that start with an `@` at sign. To the extent you can, avoid adopting names for your own functions or data members that begin with `@`.
+- A few protocols like `https:` are reserved for use in URLs.
 
 Some of the Origami built-ins provide values which are normally reserved in a language, such as [@true](@true.html) and [@false](@false.html) values for true and false.
+
+## Instantiating classes
+
+For interoperability with JavaScript classes, Origami supports a `new:` syntax for creating new class instances.
+
+If the JavaScript file `User.js` exports a `User` class, then
+
+```
+new:User.js("David")
+```
+
+is equivalent to the JavaScript `new User("David")`.

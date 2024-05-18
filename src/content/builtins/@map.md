@@ -1,5 +1,5 @@
 ---
-title: "@map"
+title: "@map(treelike, options)<br>@mapFn(options)"
 mappedKeys: !ori "@map(samples.ori/cli/greetings.yaml, { key: (greeting, name) => `${ name }.html` })"
 ---
 
@@ -127,3 +127,7 @@ ${ samples.ori/cli/greetings.yaml
 }$ ori "@map(greetings.yaml, { extensions: '→html' })"
 ${ @yaml mappedKeys }
 ```
+
+## Functional form
+
+`@map` has a [functional form](functional.html) called `@mapFn` that accepts just the options argument of `@map` and returns a function that can be applied to a tree. Follow that link for an example.

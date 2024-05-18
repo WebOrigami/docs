@@ -32,9 +32,9 @@ $ ori names.yaml
 - Bob
 - Carol
 $ ori greet.js
-export default (name = "world") => `Hello, ${name}.`;
+export default (name = "world") => `Hello, \${name}.`;
 $ ori paragraph.ori
-(text) => `<p>${ text }</p>`
+(text) => `<p>\${ text }</p>`
 ```
 
 To apply one of the functions to the names, a [@map](@map.html) can be used.

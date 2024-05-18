@@ -1,5 +1,5 @@
 ---
-title: "@sort(treelike, [options])"
+title: "@sort(treelike, [options])<br>@sortFn(options)"
 ---
 
 Returns a copy of the indicated [treelike object](/async-tree/treelike.html) with the keys sorted. The sort is performed with the default lexicographic Unicode sort order provided by JavaScript's [Array.sort()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) method.
@@ -21,7 +21,18 @@ ${ @yaml @sort samples.ori/help/capitals.yaml }
   <figcaption>By default @sort sorts by key</figcaption>
 </div>
 
-If a `keyFn` parameter is supplied, this evaluates that function for each tree key to determine a sort key. The sort key must support comparison via the JavaScript `<` (less than) and `>` (greater than) operators.
+## Options
+
+The `@sort` built-in takes an optional `options` argument. This can take the form of an object containing any or all of:
+
+- `compare`. A function that compares two arguments. This uses the same definition as the JavaScript [Array sort()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#description) method. If omitted, items are converted to strings and sorted as strings.
+- `sortKey`. A function evaluated for each entry in the tree to determine a sort key. See below.
+
+As a shorthand, if you supply a function as the second argument to `@sort`, it will be used as the `sortKey` function.
+
+## Sort keys
+
+As shown in the example above, by default `@sort` sorts a tree by its keys. You can supply a `sortKey` option that returns a different value that the tree should be sorted by. This function will be called with three arguments: the value being considered, the key for that value, and the tree being sorted. You don't have to use all three arguments.
 
 ```console
 $ cat capitals.yaml
@@ -29,11 +40,21 @@ Japan: Tokyo
 Turkey: Ankara
 Australia: Canberra
 Spain: Madrid
-$ ori @sort capitals.yaml, =_
+$ ori "@sort capitals.yaml, (capital) => capital"
 Turkey: Ankara
 Australia: Canberra
 Spain: Madrid
 Japan: Tokyo
 ```
 
-The underscore in the `=_` function above refers to the value being sorted (as opposed to the key).
+## Functional form
+
+`@sort` has a [functional form](functional.html) called `@sortFn` that accepts just the options argument of `@sort` and returns a function that can be applied to a tree to sort it. This is intended for use in content pipelines.
+
+```console
+$ ori capitals.yaml → @sort
+Australia: Canberra
+Japan: Tokyo
+Spain: Madrid
+Turkey: Ankara
+```
