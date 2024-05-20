@@ -6,6 +6,12 @@ This returns a new tree that extends the values in the given tree with `nextKey`
 
 Example application of `@addNextPrevious` to a tree of strings:
 
+```console
+$ cat letters.yaml
+${ samples.ori/help/letters.yaml }$ ori @addNextPrevious letters.yaml
+${ @yaml @addNextPrevious samples.ori/help/letters.yaml }
+```
+
 <div class="sideBySide">
   <figure>
     ${ svg.js samples.ori/help/letters.yaml }
@@ -22,3 +28,5 @@ If the values in the given tree aren't plain objects, they will be transformed t
 - A value which is an AsyncTree will be resolved to a plain object.
 - A string value will become a plain object with a `@text` property containing the string.
 - Any other scalar value will become a plain object with a `@data` property containing the scalar value.
+
+See also [@paginate](@paginate.html), which groups a set of items into fixed-size pages.

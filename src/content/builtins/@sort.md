@@ -18,7 +18,7 @@ ${ @yaml @sort samples.ori/help/capitals.yaml }
     ${ svg.js @sort samples.ori/help/capitals.yaml }
   </figure>
   <figcaption>Input tree</figcaption>
-  <figcaption>By default @sort sorts by key</figcaption>
+  <figcaption>With keys sorted</figcaption>
 </div>
 
 ## Options
@@ -30,31 +30,34 @@ The `@sort` built-in takes an optional `options` argument. This can take the for
 
 As a shorthand, if you supply a function as the second argument to `@sort`, it will be used as the `sortKey` function.
 
+To reverse the sort order, apply `@sort` and then [@reverse](@reverse.html).
+
 ## Sort keys
 
 As shown in the example above, by default `@sort` sorts a tree by its keys. You can supply a `sortKey` option that returns a different value that the tree should be sorted by. This function will be called with three arguments: the value being considered, the key for that value, and the tree being sorted. You don't have to use all three arguments.
 
 ```console
 $ cat capitals.yaml
-Japan: Tokyo
-Turkey: Ankara
-Australia: Canberra
-Spain: Madrid
-$ ori "@sort capitals.yaml, (capital) => capital"
-Turkey: Ankara
-Australia: Canberra
-Spain: Madrid
-Japan: Tokyo
+${ samples.ori/help/capitals.yaml }$ ori "@sort capitals.yaml, (value, key, tree) => value"
+${ @yaml @sort samples.ori/help/capitals.yaml, (capital) => capital }
 ```
+
+<div class="sideBySide">
+  <figure>
+    ${ svg.js samples.ori/help/capitals.yaml }
+  </figure>
+  <figure>
+    ${ svg.js @sort samples.ori/help/capitals.yaml, (capital) => capital }
+  </figure>
+  <figcaption>Input tree</figcaption>
+  <figcaption>With values sorted</figcaption>
+</div>
 
 ## Functional form
 
 `@sort` has a [functional form](functional.html) called `@sortFn` that accepts just the options argument of `@sort` and returns a function that can be applied to a tree to sort it. This is intended for use in content pipelines.
 
 ```console
-$ ori capitals.yaml → @sort
-Australia: Canberra
-Japan: Tokyo
-Spain: Madrid
-Turkey: Ankara
+$ ori "capitals.yaml → @sortFn((value) => value)"
+${ @yaml(samples.ori/help/capitals.yaml → @sortFn =_) }
 ```

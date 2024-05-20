@@ -10,7 +10,7 @@ ${ templates/blocks.ori(\_) }
 
 This project explores a new way to build small- to medium-scale websites using a conceptual model and programming language that complement HTML and CSS.
 
-**Problem:** Creating interesting sites is hard or expensive. Standard HTML and CSS let you define individual pages, but it’s hard to efficiently create a bunch of pages and organize them into a coherent site.
+**Everybody has something to say,** and the web is a great place to say it, but creating interesting sites can be hard or expensive. Standard HTML and CSS let you define individual pages, but it’s hard to efficiently create a bunch of pages and organize them into a coherent site.
 
 Corporate site hosting services offer nice drag-and-drop editors but impose creative limitations and high monthly costs. You could build something from scratch — if you master a full programming language like JavaScript and a pile of industrial development tools. The web needs better ways to create sizable, expressive sites at low cost and without entanglements.
 

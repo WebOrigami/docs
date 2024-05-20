@@ -32,6 +32,8 @@ siteComplete:
 
 You don't need to install anything to complete this tutorial. If you prefer a conceptual introduction first, see [Hello, world](hello.html).
 
+_**Note:** The Glitch service that is used to host this tutorial project has had issues updating its servers so that they can run the latest version of Origami. Some notes below indicate places where the current Origami syntax has changed from what it shown._
+
 ## Scenario
 
 One day your team decides:
@@ -119,7 +121,7 @@ This Origami template starts with an `=` equals sign and encloses some HTML with
 
 Inside the backticks, the placeholder marked with `\{\{ }}` curly braces contains an Origami expression. In this case, the `_` underscore tells Origami to insert any text passed to the template into the HTML at that point.
 
-_**Note:** The Origami syntax for template placeholders recently changed from `\{\{ }}` to `\$\{ }`. Current Glitch limitations prevent us from making this change in the tutorial project. For projects outside Glitch, use the newer `\$\{ }` style in templates._
+_**Note:** The Origami syntax for template placeholders recently changed from `\{\{ }}` to `\$\{ }`. For projects outside Glitch, use the newer `\$\{ }` style in templates._
 
 You can call this template from an Origami formula.
 
@@ -538,6 +540,8 @@ This will use `person.ori` to transform values just as before.
 </pre>
 
 </clipboard-copy>
+
+_**Note:** The Origami syntax for @map recently changed. For projects outside Glitch, use `key` instead of `keyMap` and `value` instead of `valueMap`._
 
 <span class="tutorialStep"></span> Switch to the tree diagram window and refresh it to confirm that the `team` area is now using names instead of numbers:
 
