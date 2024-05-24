@@ -27,6 +27,11 @@ aventour-expeditions:
     different template language (Handlebars), the transformation of markdown
     with front matter into HTML, and the creation of an image gallery that shows
     all the photos in a given folder.
+jan-miksovsky:
+  name: Blog
+  url: https://jan.miksovsky.com
+  description: |
+    A blog with entries organized by year, with JSON and RSS feeds.
 cat-prints-store:
   name: Cat Prints Store
   url: https://cat-prints-store.weborigami.org
@@ -43,11 +48,13 @@ cherokee-myths:
   video: https://youtu.be/ym6s2VsqeYI
   description: |
     A text-focused site with a generated table of contents and full-text search.
-jan-miksovsky:
-  name: Blog
-  url: https://jan.miksovsky.com
+pondlife:
+  name: pondlife
+  url: https://pondlife.netlify.app
+  repo: https://github.com/WebOrigami/pondlife
   description: |
-    A blog with entries organized by year, with JSON and RSS feeds.
+    A sample blog built from markdown posts, with generated index pages, post
+    pages, and feeds.
 web-origami:
   name: Web Origami documentation
   url: https://weborigami.org
