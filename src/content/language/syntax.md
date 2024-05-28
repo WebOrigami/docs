@@ -139,7 +139,7 @@ The top level of a `.ori` file is treated as the contents of tree literal. The `
 
 ## Spread operator
 
-You can use `...` three periods or the single `…` ellipsis character to merge objects and trees.
+You can use `...` three periods or the single `…` ellipsis character to merge arrays, objects, and trees.
 
 ```console
 $ ori tree1.yaml
