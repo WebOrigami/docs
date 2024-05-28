@@ -60,6 +60,7 @@ Origami's syntax for constructing array and object literals is essentially the s
 - An Origami object cannot define indirect property accessors. JavaScript in contrast allows accessors defined in `[ ]` square brackets.
 - To reference a specific object value in Origami, use `/` path syntax instead of JavaScript's `.` period. If the above object is available as `obj`, then `obj/color` will be "Blue".
 - Likewise, to reference a specific array value in Origami, use `/` path syntax instead of JavaScript's `[ ]` brackets. Here `obj/values/0` will be 2.
+- Origami object literals support JavaScript [spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_object_literals), but Origami array literals do not.
 
 ## No control structures
 

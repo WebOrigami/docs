@@ -137,6 +137,40 @@ Tree literals are similar to object literals, with the differences that: a) each
 
 The top level of a `.ori` file is treated as the contents of tree literal. The `.ori` file above defines a virtual folder containing a subtree called `public` that defines `index.html`.
 
+## Spread operator
+
+You can use `...` three periods or the single `…` ellipsis character to merge objects and trees.
+
+```console
+$ ori tree1.yaml
+a: The letter A
+b: The letter B
+c: The letter C
+$ ori tree2.yaml
+c: This won't appear in the merge
+d: The letter D
+e: The letter E
+$ ori { ...tree1.yaml, ...tree2.yaml }
+a: The letter A
+b: The letter B
+c: The letter C
+d: The letter D
+e: The letter E
+```
+
+In an `.ori` file, you can use this to merge a folder into a tree that also defines individual files.
+
+```
+{
+  index.html = "Hello!"
+
+  // Merge in everything in the `assets` folder
+  …assets
+}
+```
+
+The built-in [@merge](/builtins/@merge.html) function performs this same operation as a function.
+
 ## Template literals
 
 Text templates are quoted in backticks and can contain Origami expressions inside `\$\{` `}` placeholders.

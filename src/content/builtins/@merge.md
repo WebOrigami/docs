@@ -26,4 +26,11 @@ ${ @yaml @merge samples.ori/help/merge/tree1.yaml, samples.ori/help/merge/tree2.
   <figcaption>Merged tree</figcaption>
 </div>
 
+The Origami language also supports a [spread operator](/language/syntax.html/#spread-operator) that can perform the same kind of merge using `...` three periods or the `…` ellipsis character:
+
+```console
+$ ori { ...tree1.yaml, ...tree2.yaml }
+${ @yaml @merge samples.ori/help/merge/tree1.yaml, samples.ori/help/merge/tree2.yaml }
+```
+
 The merge operation is shallow; for a deep merge operation, see [@deepMerge](@deepMerge.html).
