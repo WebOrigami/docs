@@ -143,19 +143,12 @@ You can use `...` three periods or the single `…` ellipsis character to merge 
 
 ```console
 $ ori tree1.yaml
-a: The letter A
-b: The letter B
-c: The letter C
-$ ori tree2.yaml
-c: This won't appear in the merge
-d: The letter D
-e: The letter E
-$ ori { ...tree1.yaml, ...tree2.yaml }
-a: The letter A
-b: The letter B
-c: The letter C
-d: The letter D
-e: The letter E
+${ samples.ori/help/merge/tree1.yaml }$ ori tree2.yaml
+${ samples.ori/help/merge/tree2.yaml }$ ori { ...tree1.yaml, ...tree2.yaml }
+${ @yaml {
+  ...samples.ori/help/merge/tree1.yaml
+  ...samples.ori/help/merge/tree2.yaml
+} }
 ```
 
 In an `.ori` file, you can use this to merge a folder into a tree that also defines individual files.
