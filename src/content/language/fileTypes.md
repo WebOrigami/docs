@@ -106,7 +106,7 @@ If `greet.ori` contains
 ```
 {
   name = "Bob"
-  greeting = `Hello, ${name}!`
+  greeting = `Hello, \${name}!`
 }
 ```
 

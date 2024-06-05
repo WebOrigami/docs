@@ -272,7 +272,7 @@ The following protocols are reserved:
 - `treehttp:`
 - `treehttps:`
 
-## Absolute file paths
+## File paths
 
 Paths that start with a leading `/` slash refer to absolute paths in the filesystem:
 
@@ -280,7 +280,9 @@ Paths that start with a leading `/` slash refer to absolute paths in the filesys
 /Users/alice/example.txt
 ```
 
-Like other paths that refer to files, absolute paths can traverse into data files.
+Similarly, paths that start with a leading `./` refer to relative paths, and paths that start with `../` refer to the current parent folder.
+
+Paths can traverse into files of known [file types](fileTypes.html#standard-file-types) like `.json` files:
 
 ```console
 $ ori /Users/alice/myProject/package.json

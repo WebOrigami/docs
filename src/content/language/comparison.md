@@ -36,16 +36,25 @@ Origami has signed integers and floating point numbers so that you can pass nume
 - No ternary operator
 - No nullish coalescing operator
 
+Origami could potentially support these features; so far they haven't been needed in practice.
+
 ## String literals
 
-- Strings with double quotes and single quotes are essentially the same as in JavaScript.
+Strings with double quotes and single quotes are essentially the same as in JavaScript.
 
 ## Template literals
 
-Origami template literals look like JavaScript's, but:
+Origami template literals look like JavaScript's.
 
-- Expressions inside an Origami template placeholder can directly return complex values like arrays, objects, or trees. Origami will perform a depth-first traversal of the result and concatenate all the values into the final string result.
-- Origami template literals do not support JavaScript's tagged templates.
+Expressions inside an Origami template placeholder can directly return complex values like arrays, objects, or trees. Origami will perform a depth-first traversal of the result and concatenate all the values into the final string result:
+
+```
+\`Some letters: \${["a", "b", "c"]}.\`    // Some letters: abc.
+```
+
+Origami templates will `await` an asynchronous substitution that returns a `Promise`.
+
+Origami does not support JavaScript [tagged templates](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates).
 
 ## Array and object literals
 
@@ -60,13 +69,13 @@ Origami's syntax for constructing array and object literals is very similar to J
 ```
 
 - A newline can be used as an alternative separator instead of a comma in array literals, object literals, and tree literals (below).
-- Trailing commas are allowed.
-- Origami object literals do not support quoted keys.
-- An Origami object cannot define indirect property accessors. JavaScript in contrast allows accessors defined in `[ ]` square brackets.
-- An Origami object cannot define `get` or `set` methods. (Although you can define a tree with members that behave like `get` methods; see below.)
-- To reference a specific object value in Origami, use `/` path syntax instead of JavaScript's `.` period. If the above object is available as `obj`, then `obj/color` will be "Blue".
-- Likewise, to reference a specific array value in Origami, use `/` path syntax instead of JavaScript's `[ ]` brackets. Here `obj/values/0` will be 2.
 - Origami array and object literals support JavaScript [spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_object_literals).
+- An Origami object cannot define indirect property accessors the way JavaScript can with `[ ]` [bracket notation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors#bracket_notation).
+- An Origami object cannot define `get` or `set` methods. (Although you can define a tree with members that behave like `get` methods; see below.)
+
+Because Origami identifiers (above) like `index.html` can include periods, in Origami, you must reference object properties with `/` path syntax instead of JavaScript's `.` period operator. If the above object is available as `obj`, then `obj/color` will be "Blue".
+
+Likewise, to reference a specific array value in Origami, use `/` [path syntax](syntax.html#paths) instead of JavaScript's `[ ]` brackets. Here `obj/values/0` will be 2.
 
 ## No control structures
 
@@ -111,7 +120,7 @@ This avoids the need to escape the `>` greater than sign or `()` parentheses, wh
 
 ## Tree literals
 
-For many operations, Origami converts all associative types — like arrays and objects — to an abstract tree structure. See the [AsyncTree interface](/async-tree/interface.html) for details.
+For many operations, Origami converts associative types — like arrays and objects — to an abstract tree structure. An Origami tree is like a minimalist, asynchronous JavaScript [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map). See the [AsyncTree interface](/async-tree/interface.html) for details.
 
 You can define a tree literal in Origami using a syntax that's similar to an object literal, but where keys and values are separated with `=` equal signs instead of `:` colons:
 
@@ -121,7 +130,7 @@ You can define a tree literal in Origami using a syntax that's similar to an obj
 }
 ```
 
-This type of Origami declaration will invoke the indicated expression — here, `createPage()` — whenever the value of `index.html` is retrieved. This behaves something like the JavaScript syntax for objects with `get` methods:
+This type of Origami declaration will invoke the indicated expression — here, `createPage()` — whenever the value of `index.html` is retrieved. This behaves roughly like the JavaScript syntax for objects with `get` methods:
 
 ```js
 /* JavaScript approximation of the above */
@@ -130,7 +139,7 @@ This type of Origami declaration will invoke the indicated expression — here, 
 }
 ```
 
-On difference is that the Origami example permits the `createPage` function to be `async`, while JavaScript doesn't have syntax for declaring `async` getters.
+JavaScript doesn't prevent you from having a function like `createPage` be an asynchronous function, but _does_ prevent you from explicitly marking a property getter like this as `async`. Origami tree entries like `index.html` are always presumed to be `async`.
 
 ## Implied exports and imports
 
@@ -143,18 +152,19 @@ This JavaScript:
 export default "This file exports this message.";
 ```
 
-does the same thing as this `message.ori` file, which implies a default `export`:
+does the same thing as this `message.ori` file which implies a default `export`:
 
 ```js
 // message.ori
 "This file exports this message.";
 ```
 
-Likewise, because Origami [scope](scope.html) includes the surrounding files, it is not necessary to explicitly `import` values; you can directly refer to files by their names.
+Likewise, because Origami [scope](scope.html) includes the surrounding files, it is not necessary to explicitly `import` values; you can directly reference files by their names.
 
 A JavaScript file might import the above message and incorporate it into an object with:
 
 ```js
+// site.js
 import message from "./message.js";
 
 export default {
@@ -165,6 +175,7 @@ export default {
 An Origami file could do the same thing with:
 
 ```js
+// site.ori
 {
   index.html: message.ori/
 }

@@ -2,11 +2,11 @@
 title: The AsyncTree interface
 ---
 
-The `AsyncTree` interface is a simple and flexible way to represent a wide variety of data types as trees.
+The `AsyncTree` interface is a simple and flexible way to represent a wide variety of data types as trees. It defines an asynchronous dictionary, essentially a minimalist `async` JavaScript [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), that can be nested to create trees.
 
 ## Async trees
 
-An async tree is a collection of nodes which are key/value dictionaries.
+An async tree is a collection of nodes which are key/value dictionaries, also known as an associative array.
 
 - You can ask an async tree node for its _keys_.
 - With a key, you can ask a node to give you the corresponding _value_ associated with that key.
