@@ -1,6 +1,5 @@
 ---
 title: Display a tree
-functions: !ori js/codeFunctions.js(pattern.ori/flat/json.js)
 ---
 
 Now that we've applied the AsyncTree interface to an object to create an async tree, let's write a simple tool that will display the contents of that async tree in the console.
@@ -12,7 +11,7 @@ To stay as close to the platform as possible, we'll render the tree in JSON form
 An async tree is asynchronous, so we'll need to either traverse it asynchronously and display its values as we go, or else resolve the entire tree to a synchronous, in-memory object. We'll take the latter approach here.
 
 ```${'js'}
-${ functions/plain }
+${ js/codeFunctions.js(pattern.ori/flat/json.js)/plain }
 ```
 
 It may feel counter-productive to do work to wrap a synchronous in-memory object with the asynchronous AsyncTree interface — and then immediately unwind all those asynchronous promises to get back an in-memory object!
@@ -28,11 +27,11 @@ We could write a tool to statically import a specific tree we want to display, b
 ```${'js'}
 /* src/flat/json.js */
 
-${ functions/@prologue }
+${ js/codeFunctions.js(pattern.ori/flat/json.js)/@prologue }
 
 async function plain(tree) { /* See above */ }
 
-${ functions/@epilogue }
+${ js/codeFunctions.js(pattern.ori/flat/json.js)/@epilogue }
 ```
 
 The tool dynamically imports the indicated JavaScript file and gets its default export, which is expected to be an async tree. We then use the `plain` function above to resolve the tree to an in-memory object, then render the JSON for that object to the console.

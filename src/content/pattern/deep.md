@@ -1,6 +1,5 @@
 ---
 title: Deep trees
-functions: !ori js/codeFunctions.js(pattern.ori/deep/json.js)
 ---
 
 Until now, the "trees" we've been working with are flat lists. Now that we've cleanly isolated our tree wrappers into classes, let's extend the `ObjectTree` and `FileTree` classes to support arbitrarily deep trees.
@@ -58,7 +57,7 @@ Finally, we need to update our `json` utility. That code has a function called `
 ```${'js'}
 /* Inside src/deep/json.js */
 
-${ functions/plain }
+${ js/codeFunctions.js(pattern.ori/deep/json.js)/plain }
 ```
 
 <span class="tutorialStep"></span> From inside the `src/deep` directory, display a deep `ObjectTree` or `FileTree` instance from inside the `src/deep` directory.

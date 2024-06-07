@@ -12,8 +12,6 @@
   text: Scope
 - href: fileTypes.html
   text: File types
-- href: yaml.html
-  text: In YAML
 - href: comparison.html
   text: JS comparison
 - href: config.html

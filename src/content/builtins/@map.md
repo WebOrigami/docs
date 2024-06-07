@@ -1,6 +1,5 @@
 ---
 title: "@map(treelike, options)<br>@mapFn(options)"
-mappedKeys: !ori "@map(samples.ori/cli/greetings.yaml, { key: (greeting, name) => `${ name }.html` })"
 ---
 
 Creates a new tree from another by applying mapping functions to the original tree's values and/or keys.
@@ -63,7 +62,7 @@ The function being called does not need to use all three arguments. The followin
 
 ```console
 $ ori "@map(greetings.yaml, (greeting) => uppercase.js(greeting))"
-${ @yaml @map samples.ori/cli/greetings.yaml, (greeting) => samples.ori/cli/uppercase.js(greeting) }
+${ @yaml(@map(samples.ori/cli/greetings.yaml, (greeting) => samples.ori/cli/uppercase.js(greeting))) }
 ```
 
 ### Mapping keys
@@ -72,7 +71,7 @@ This function wants to reference the key being mapped (a person's name). That wi
 
 ```console
 $ ori "@map(greetings.yaml, (greeting, name) => uppercase.js(name))"
-${ @yaml @map samples.ori/cli/greetings.yaml, (greeting, name) => samples.ori/cli/uppercase.js(name) }
+${ @yaml(@map(samples.ori/cli/greetings.yaml, (greeting, name) => samples.ori/cli/uppercase.js(name))) }
 ```
 
 A common case for mapping keys is turning some data into a file name. For example, if a tree has keys which are names like "Alice", you can map those keys to ones that end in `.html`, like `Alice.html`.
@@ -81,7 +80,7 @@ A common case for mapping keys is turning some data into a file name. For exampl
 $ cat greetings.yaml
 ${ samples.ori/cli/greetings.yaml
 }$ ori "@map(greetings.yaml, { key: (greeting, name) => `\${ name }.html` })"
-${ @yaml mappedKeys }
+${ @yaml(@map(samples.ori/cli/greetings.yaml, { key: (greeting, name) => `${ name }.html` })) }
 ```
 
 <div class="sideBySide">
@@ -89,7 +88,7 @@ ${ @yaml mappedKeys }
     ${ svg.js samples.ori/cli/greetings.yaml }
   </figure>
   <figure>
-    ${ svg.js mappedKeys }
+    ${ svg.js(@map(samples.ori/cli/greetings.yaml, { key: (greeting, name) => `${ name }.html` })) }
   </figure>
   <figcaption>Original tree</figcaption>
   <figcaption>Mapped keys</figcaption>
@@ -125,7 +124,7 @@ So you can also write the above example as:
 $ cat greetings.yaml
 ${ samples.ori/cli/greetings.yaml
 }$ ori "@map(greetings.yaml, { extensions: '→html' })"
-${ @yaml mappedKeys }
+${ @yaml(@map(samples.ori/cli/greetings.yaml, { key: (greeting, name) => `${ name }.html` })) }
 ```
 
 ## Functional form

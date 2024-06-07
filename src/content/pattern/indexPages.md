@@ -1,6 +1,5 @@
 ---
 title: Index pages
-functions: !ori js/codeFunctions.js(pattern.ori/index/indexPages.js)
 ---
 
 Right now, the experience of browsing our tree of generated HTML is a little unsatisfying because there are no index pages — we have to know what pages exist and manually enter a valid URL.
@@ -19,19 +18,19 @@ First let's write a function that returns a reasonable default index page for a 
 ```${'js'}
 /* In src/index/indexPages.js */
 
-${ functions/indexPage }
+${ js/codeFunctions.js(pattern.ori/index/indexPages.js)/indexPage }
 ```
 
 If the little `more` branch of our HTML tree looks like this:
 
 <figure>
-${ svg.js pattern.ori/index/htmlObject.js/more }
+${ svg.js pattern.ori/index/object.js/more }
 </figure>
 
 Then invoking `indexPage` on this branch will return:
 
 ```${'html'}
-${ ((pattern.ori/index/indexPages.js)(pattern.ori/index/htmlObject.js/more))/index.html }
+${ pattern.ori/index/htmlObject.js/more/index.html }
 ```
 
 ## Transform a tree by adding index pages
@@ -41,11 +40,11 @@ Using the default `indexPage` function above, let's now create a tree transform.
 ```${'js'}
 /* In src/index/indexPages.js */
 
-${ functions/@prologue }
-${ functions/@epilogue }
+${ js/codeFunctions.js(pattern.ori/index/indexPages.js)/@prologue }
+${ js/codeFunctions.js(pattern.ori/index/indexPages.js)/@epilogue }
 ```
 
-If we use this to transform the `more` branch of the HTML tree, we'll get:
+If we use this to transform the `more` branch of the HTML tree, the transformed tree now includes an `index.html` page:
 
 <figure>
 ${ svg.js pattern.ori/index/indexPages.js(pattern.ori/index/htmlObject.js/more) }

@@ -48,9 +48,9 @@ Some terminology: The _root_ of this tree is the circle on the left. The branch 
 
 File names often contain periods so, unlike many programming languages, Origami lets you include periods in a key like `index.html`.
 
-The Origami server lets you immediately browse this tree. The server can produce the kind of diagram shown above so you can confirm your site's structure and explore what you're building.
+There are a number of ways to run an Origami program like the one above. The Origami server lets you directly browse the virtual tree of resources implied by this program. The Origami [CLI](/cli) lets you extract a specific resource (like `index.html`) from the command line. You can also use the CLI to copy the virtual tree of resources into local files that you can deploy as a static site.
 
-_Key points: An Origami file provides a concise way to define a site. You can interact with your site immediately and view it as an interactive diagram._
+_Key points: An Origami file provides a concise way to define a site. You can interact with your site immediately and view it as an interactive diagram, or work with it in the command line, or build it into a static site._
 
 ## Websites as trees
 

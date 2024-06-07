@@ -134,8 +134,6 @@ The First Post
 
 Origami assumes that text files are encoded in [UTF-8](https://en.wikipedia.org/wiki/UTF-8).
 
-YAML front matter can [contain Origami expressions](yaml.html).
-
 ### WebAssembly files
 
 You can traverse into a WebAssembly module, for example, to invoke a function defined in WebAssembly.
