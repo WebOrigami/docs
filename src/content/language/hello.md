@@ -501,7 +501,7 @@ You can then invoke `index.ori` to create the index page, passing in the same se
 {
   html = @map(markdown, @mdHtml)
   public = {
-    index.html = index.ori(markdown)
+    index.html = index.ori(html)
     posts = @map(html, post.ori)
   }
 }/public
