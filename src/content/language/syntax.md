@@ -89,20 +89,20 @@ As with references (above), you can use periods in keys. Escape any special char
 }
 ```
 
-In `.ori` files, the value in a key/value pair can be an expression that will be evaluated when the tree is loaded.
+You can also put keys in single or double quotes:
 
 ```
-data = {
-  name: getName()
+{
+  "Read Me.txt": "The name for this value contains a space"
 }
 ```
 
-Command shells generally interpret curly braces, so you will need to escape them with backslashes or quote the expression you want ori to evaluate.
+In `.ori` files, the value in a key/value pair can be an expression that will be evaluated when the tree is loaded.
 
-```console
-$ ori "{ a: 1, b: 2 }"
-a: 1
-b: 2
+```
+{
+  name: getName()
+}
 ```
 
 ## Array literals
