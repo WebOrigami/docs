@@ -110,7 +110,13 @@ Origami supports a lambda function syntax similar to JavaScript's:
 
 Origami requires the parenthesis around the lambda parameters. (JavaScript allows you to omit the parenthesis for a lambda with a single parameter.)
 
-For ease of use in a command shell with the Origami [CLI](/cli), the language also supports a shorthand lambda syntax:
+Origami lambda functions are more basic that JavaScript lambda functions:
+
+- No default parameters
+- No rest parameters
+- No destructuring in parameters
+
+For ease of use in a command shell with the Origami [CLI](/cli), the Origami language supports a shorthand lambda syntax:
 
 ```
 =fn x
