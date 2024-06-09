@@ -97,7 +97,7 @@ You can also put keys in single or double quotes:
 }
 ```
 
-In `.ori` files, the value in a key/value pair can be an expression that will be evaluated when the tree is loaded.
+The value in a key/value pair will be evaluated once when the object is loaded. The following object, for example, evaluates `getName()` only once:
 
 ```
 {
