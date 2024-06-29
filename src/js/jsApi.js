@@ -3,6 +3,7 @@ import {
   isPlainObject,
   keyFunctionsForExtensions,
   map,
+  toPlainValue,
 } from "@weborigami/async-tree";
 import { Scope } from "@weborigami/language";
 import path from "path";
@@ -15,7 +16,7 @@ import ts from "typescript";
  */
 export default async function jsDocs(treelike) {
   const tree = Tree.from(treelike);
-  const plain = await Tree.plain(tree);
+  const plain = await toPlainValue(tree);
 
   const paths = sourceFilePaths(plain);
   const host = await virtualHost(plain);

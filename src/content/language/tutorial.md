@@ -443,7 +443,7 @@ The text inside a template can be as complex as you want.
 <clipboard-copy>
 
 ```${"html"}
-${ @js/String demos/framework-intro/index.ori }
+${ demos/framework-intro/index.ori }
 ```
 
 </clipboard-copy>
@@ -606,7 +606,7 @@ The only thing left to do is complete the `person.ori` template.
 <clipboard-copy>
 
 ```${"html"}
-${ @js/String demos/framework-intro/person.ori }
+${ demos/framework-intro/person.ori }
 ```
 
 </clipboard-copy>
