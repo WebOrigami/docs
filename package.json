@@ -3,13 +3,13 @@
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
-    "@weborigami/origami": "0.0.55",
+    "@weborigami/origami": "0.0.59",
     "@weborigami/pattern-intro": "github:WebOrigami/pattern-intro#23e791fc",
     "@weborigami/samples": "github:WebOrigami/samples#20816ca1",
-    "marked": "12.0.2",
-    "sharp": "0.33.3",
-    "typescript": "5.4.5",
-    "yaml": "2.4.2"
+    "marked": "13.0.1",
+    "sharp": "0.33.4",
+    "typescript": "5.5.3",
+    "yaml": "2.4.5"
   },
   "devDependencies": {
     "@weborigami/screenshot": "0.0.6"
