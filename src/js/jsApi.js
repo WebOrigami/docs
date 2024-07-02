@@ -4,6 +4,7 @@ import {
   keyFunctionsForExtensions,
   map,
   toPlainValue,
+  toString,
 } from "@weborigami/async-tree";
 import { Scope } from "@weborigami/language";
 import path from "path";
@@ -311,7 +312,7 @@ function symbolDocs(checker, symbol) {
       isClassDeclaration: classDocs,
       isFunctionDeclaration: methodDocs,
       isMethodDeclaration: methodDocs,
-      isParameterDeclaration: parameterDocs,
+      isPartOfParameterDeclaration: parameterDocs,
     };
 
     let docsFn;
@@ -371,8 +372,8 @@ async function virtualHost(plain) {
     getDefaultLibFileName: () => "",
     getNewLine: () => "\n",
     getSourceFile: (filePath) =>
-      ts.createSourceFile(filePath, String(traverse(plain, filePath))),
-    readFile: (filePath) => String(traverse(plain, filePath)),
+      ts.createSourceFile(filePath, toString(traverse(plain, filePath))),
+    readFile: (filePath) => toString(traverse(plain, filePath)),
     useCaseSensitiveFileNames: () => true,
     // writeFile: (fileName, contents) => {
     //   plain[fileName] = contents;
