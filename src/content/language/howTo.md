@@ -36,7 +36,7 @@ ${ samples.ori/templates/page.ori samples.ori/templates/fragments/a.html }
 
 <span class="tutorialStep"></span> Create a site.ori file to define your site. This defines a virtual `public` folder that applies your `page.ori` template to all the pages in the `html` folder.
 
-```
+```ori
 {
   public = @map(html, page.ori)
 }

@@ -60,7 +60,7 @@ Origami does not support JavaScript [tagged templates](https://developer.mozilla
 
 Origami's syntax for constructing array and object literals is very similar to JavaScript's:
 
-```
+```ori
 {
   color: "Blue",
   size: 20,
@@ -130,7 +130,7 @@ For many operations, Origami converts associative types — like arrays and obje
 
 You can define a tree literal in Origami using a syntax that's similar to an object literal, but where keys and values are separated with `=` equal signs instead of `:` colons:
 
-```
+```ori
 {
   index.html = createPage()
 }

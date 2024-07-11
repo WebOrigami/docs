@@ -28,7 +28,7 @@ HTML and CSS define the content inside web pages — but not how those pages are
 
 The following Origami program defines a tiny site:
 
-```
+```ori
 {
   index.html = "Hello, world!"
 }
@@ -107,7 +107,7 @@ myProject/
 
 You can reference the `images` folder name in the `site.ori` Origami file:
 
-```
+```ori
 {
   index.html = "Hello, world!"
   images
@@ -139,7 +139,7 @@ Origami includes features for defining and manipulating trees. One such feature 
 
 The above site offers a set of images via a route like `/images/image1.jpg`, but perhaps you want those images to be available at the site's root like `/image1.jpg`. You can merge the `images` folder into the top level of the site with:
 
-```
+```ori
 {
   index.html = "Hello, world!"
   ...images
@@ -174,7 +174,7 @@ Origami resolves a reference like `images` by searching up this tree scope; as s
 
 This means one Origami expression can reference the output of another. As a trivial example, you can recreate the "Hello, world!" page above by defining the "name" as a separate value:
 
-```
+```ori
 {
   name = "world"
   index.html = `Hello, \$\{ name }!`
@@ -191,7 +191,7 @@ world
 
 and keep the same reference to `name` in the Origami program:
 
-```
+```ori
 {
   index.html = `Hello, \$\{ name }!`
 }
@@ -207,7 +207,7 @@ _Key point: The tree scope available to an Origami expression is determined by t
 
 An Origami tree can define subtrees:
 
-```
+```ori
 {
   index.html = "Home page"
   about = {
@@ -259,7 +259,7 @@ ${
 
 The Origami file can incorporate that data into the `index.html` page with:
 
-```
+```ori
 {
   index.html = `Welcome to \$\{ siteInfo.json/name }!`
 }
@@ -319,7 +319,7 @@ Here the key `@text` is used to label the property holding the text of the markd
 
 You can transform this tree of markdown objects into a corresponding tree of HTML objects. Origami includes a markdown-to-HTML command called [@mdHtml](/builtins/@mdHtml.html). That command works on a single file, so you can use it to process a single blog post:
 
-```
+```ori
 {
   firstPost = @mdHtml(markdown/post1.md)
 }
@@ -340,7 +340,7 @@ ${
 
 But instead of translating just one file a time, you can arrange for all the files in the `markdown` folder to be translated to HTML by calling Origami's built-in [@map](/builtins/@map.html) function:
 
-```
+```ori
 {
   html = @map(markdown, @mdHtml)
 }
@@ -390,7 +390,7 @@ The `post.ori` file contains an Origami template that mixes HTML with `\$\{ }` p
 
 This `post.ori` template defines a function you can apply to all the HTML objects in a `@map`:
 
-```
+```ori
 {
   html = @map(markdown, @mdHtml)
   posts = @map(html, post.ori)
@@ -444,7 +444,7 @@ The blog site above includes an `html` area and a `posts` area, but the `html` a
 
 You can rearrange the `site.ori` definition to hide the `html` area:
 
-```
+```ori
 {
   html = @map(markdown, @mdHtml)
   public = {
@@ -497,7 +497,7 @@ Inside this `index.ori` template, the `@map` built-in maps each post object to a
 
 You can then invoke `index.ori` to create the index page, passing in the same set of HTML post objects used to generate the `posts` area:
 
-```
+```ori
 {
   html = @map(markdown, @mdHtml)
   public = {

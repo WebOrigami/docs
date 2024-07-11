@@ -67,7 +67,7 @@ You'll define the complete set of pages and other resources your site will need 
 
 <span class="tutorialStep"></span> In the `src` folder, open `site.ori`:
 
-```
+```ori
 {
   index.html = "Hello"
 }
@@ -629,7 +629,7 @@ To review, you've created this entire site with a few resources, a couple of tem
 
 <clipboard-copy>
 
-```
+```ori
 {
   index.html = index.ori(teamData.yaml)
   team = @map(teamData.yaml, {

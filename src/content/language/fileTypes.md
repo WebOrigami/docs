@@ -103,7 +103,7 @@ A file with a `.ori` extension indicates a file containing an Origami expression
 
 If `greet.ori` contains
 
-```
+```ori
 {
   name = "Bob"
   greeting = `Hello, \${name}!`
@@ -182,7 +182,7 @@ The second step is to tell Origami to use your `user_handler.js` file to handle 
 
 Define a [config.ori](/cli/config.html) file at the root of your project. Inside that, define a key `user_handler` that points to the location of the `.js` file:
 
-```
+```ori
 {
   user_handler = src/user_handler.js
 }

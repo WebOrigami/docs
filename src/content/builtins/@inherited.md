@@ -6,7 +6,7 @@ Gets the value of `key` which the tree inherits from its parent [scope](/languag
 
 For example, in an Origami `.ori` file, you can write:
 
-```
+```ori
 {
   public = {
     message = "Hello"

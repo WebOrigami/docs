@@ -24,7 +24,7 @@ The core idea is to describe the site you want at a high level as concisely as p
 
 then you can turn that into a small Origami program that orchestrates the creation of your site:
 
-```
+```ori
 {
   // Stylesheets, etc.
   assets

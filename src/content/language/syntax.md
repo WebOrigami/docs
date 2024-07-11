@@ -72,7 +72,7 @@ must be escaped with a `\\` backslash.
 
 Object literals are created with `{` and `}` curly braces, and contain key/value pairs:
 
-```
+```ori
 {
   name: "Alice"
   location: "Honolulu"
@@ -83,7 +83,7 @@ You can separate key/value pairs with commas, newlines, or both. Keys should not
 
 As with references (above), you can use periods in keys. Escape any special characters like spaces:
 
-```
+```ori
 {
   Read\\ Me.txt: "The name for this value contains a space"
 }
@@ -91,7 +91,7 @@ As with references (above), you can use periods in keys. Escape any special char
 
 You can also put keys in single or double quotes:
 
-```
+```ori
 {
   "Read Me.txt": "The name for this value contains a space"
 }
@@ -99,7 +99,7 @@ You can also put keys in single or double quotes:
 
 The value in a key/value pair will be evaluated once when the object is loaded. The following object, for example, evaluates `getName()` only once:
 
-```
+```ori
 {
   name: getName()
 }
@@ -127,7 +127,7 @@ As with object literals (above), you can separate array items with commas, newli
 
 Tree literals are similar to object literals, with the differences that: a) each key and value is separated with an `=` equals sign instead of a `:` colon, and b) a value defined by an expression is not evaluated until the value is requested.
 
-```
+```ori
 {
   public = {
     index.html = greet.js("world")
@@ -153,7 +153,7 @@ ${ @yaml {
 
 In an `.ori` file, you can use this to merge a folder into a tree that also defines individual files.
 
-```
+```ori
 {
   index.html = "Hello!"
 
@@ -363,7 +363,7 @@ value → one → two → three
 
 This can be useful when applying multiple transformations of data. Suppose an index page is generated from markdown and then placed inside a template:
 
-```
+```ori
 {
   index.html = template.ori(@mdHtml(index.md))
 }
@@ -371,7 +371,7 @@ This can be useful when applying multiple transformations of data. Suppose an in
 
 You can rewrite the above using the pipe operator so that the flow of data reads proceeds from left to right:
 
-```
+```ori
 {
   index.html = index.md → @mdHtml → template.ori
 }

@@ -19,7 +19,7 @@ The order of the above definitions doesn't matter; `word` could just as well com
 
 <reveal-solution>
 
-```
+```ori
 {
   public = {
     index.html = greet.js(title)
