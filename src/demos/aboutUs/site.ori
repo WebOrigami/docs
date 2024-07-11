@@ -9,5 +9,5 @@
   assets
   images
 
-  thumbnails = @map(images, =@image/resize(_, { width: 400 }))
+  thumbnails = @map(images, @image/resizeFn({ width: 400 }))
 }

@@ -6,7 +6,6 @@ import {
   toPlainValue,
   toString,
 } from "@weborigami/async-tree";
-import { Scope } from "@weborigami/language";
 import path from "path";
 import ts from "typescript";
 
@@ -28,10 +27,8 @@ export default async function jsDocs(treelike) {
 
   const program = ts.createProgram(paths, options, host);
 
-  let result = new DocsTree(tree, program);
-  if (this) {
-    result = Scope.treeWithScope(result, this);
-  }
+  const result = new DocsTree(tree, program);
+  result.parent = this;
   return result;
 }
 
