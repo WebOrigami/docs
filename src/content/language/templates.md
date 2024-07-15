@@ -21,16 +21,19 @@ Origami templates come in two forms.
 
 In the shorthand form, you define an Origami template literal using an `=` equals sign and backtick characters. Inside the backticks, placeholders marked with `\$\{ }` contain additional Origami expressions whose results are included in the final text:
 
-```console
-$ cat greet.ori
+```ori
+// greet.ori
 ${ samples.ori/templates/greet.ori }
 ```
 
 The `_` underscore represents the template's input, so the expression `_/name` will get the `name` property of any object passed to the template:
 
-```console
-$ cat alice.yaml
+```${"yaml"}
+# alice.yaml
 ${ samples.ori/templates/alice.yaml }
+```
+
+```console
 $ ori "greet.ori(alice.yaml)"
 ${ samples.ori/templates/greet.ori(samples.ori/templates/alice.yaml) }
 ```
@@ -39,9 +42,12 @@ ${ samples.ori/templates/greet.ori(samples.ori/templates/alice.yaml) }
 
 You can also define templates with a longer form in which you name the parameters to the template. This form begins with a list of named parameters in parentheses, and uses `=>` instead of a plain `=` equals sign:
 
-```console
-$ cat heading.ori
+```ori
+// heading.ori
 ${ samples.ori/templates/heading.ori }
+```
+
+```console
 $ ori "heading.ori('About Us')"
 ${ samples.ori/templates/heading.ori('About Us') }
 ```
@@ -54,10 +60,20 @@ Naming the parameter can help you document the template's expected input. This a
 
 You can reference local files in Origami expressions. Depending on the situation, you may not have to pass any arguments to the template — it may be able obtain whatever it needs from its file system context.
 
-```console
-$ cat fileRef.ori
-${ samples.ori/templates/fileRef.ori }$ cat copyright.txt
+If `copyright.txt` contains:
+
+```
 ${ samples.ori/templates/copyright.txt }
+```
+
+Then an Origami file can reference that file directly:
+
+```ori
+// fileRef.ori
+${ samples.ori/templates/fileRef.ori }
+```
+
+```console
 $ ori "fileRef.ori()"
 ${ samples.ori/templates/fileRef.ori() }
 ```
@@ -73,11 +89,17 @@ ${ samples.ori/templates/fileRef.ori/ }
 
 If a template expression results in a tree such as a folder or hierarchical data, Origami will collect the deep values of that tree, convert them to strings, then concatenate them.
 
-```console
-$ cat greetings.yaml
+```yaml
+# greetings.yaml
 ${ samples.ori/templates/greetings.yaml }
-$ cat flatten.ori
+```
+
+```ori
+// flatten.ori
 ${ samples.ori/templates/flatten.ori }
+```
+
+```console
 $ ori flatten.ori/
 ${ samples.ori/templates/flatten.ori/ }
 ```
@@ -93,9 +115,12 @@ ${ samples.ori/templates/fragments/a.html }
 
 You can then reference that `fragments` folder in a template to concatenate all those HTML fragments into the output:
 
-```console
-$ cat concat.ori
+```ori
+// concat.ori
 ${ samples.ori/templates/concat.ori }
+```
+
+```console
 $ ori concat.ori/
 ${ samples.ori/templates/concat.ori/ }
 ```
@@ -106,10 +131,18 @@ It may be useful to embed Origami expressions inside other kinds of files, such 
 
 For example, you can use this to inline resources such as stylesheets.
 
+```html
+<!-- inline.html -->
+${ samples.ori/templates/inline.html }
+```
+
+```css
+/* inline.css */
+${ samples.ori/templates/inline.css }
+```
+
 ```console
-$ cat inline.html
-${ samples.ori/templates/inline.html }$ cat inline.css
-${ samples.ori/templates/inline.css }$ ori @inline inline.html
+$ ori @inline inline.html
 ${ @inline samples.ori/templates/inline.html }
 ```
 
@@ -121,16 +154,22 @@ If the input document contains any front matter (see below), @inline preserves t
 
 Inside a template, you can use slash-separated paths to traverse into data.
 
-```console
-$ cat teamData.yaml
+```yaml
+# teamData.yaml
 - name: Alice
   image: van.jpg
   location: Honolulu
   bio: After working as a manager for numerous startups over the years, I
     decided to take the plunge and start a business of my own.
-…
-$ cat teamLead.ori
-${ samples.ori/templates/teamLead.ori }$ ori teamLead.ori/
+```
+
+```ori
+// teamLead.ori
+${ samples.ori/templates/teamLead.ori }
+```
+
+```console
+$ ori teamLead.ori/
 ${ samples.ori/templates/teamLead.ori/ }
 ```
 
@@ -138,18 +177,26 @@ ${ samples.ori/templates/teamLead.ori/ }
 
 Since `https` and `http` URLs are valid Origami expressions, you can incorporate network content into a template’s output.
 
+```ori
+// net.ori
+${ samples.ori/templates/net.ori }
+```
+
 ```console
-$ cat net.ori
-${ samples.ori/templates/net.ori }$ ori net.ori/
+$ ori net.ori/
 This content came from weborigami.org:
 ${ samples.ori/templates/net.txt }
 ```
 
 This includes being able to traverse into data from the network. A [teamData.yaml](samples/templates/teamData.yaml) file posted on the network can be referenced as an expression and then further traversed:
 
+```ori
+// netData.ori
+${ samples.ori/templates/netData.ori }
+```
+
 ```console
-$ cat netData.ori
-${ samples.ori/templates/netData.ori }$ ori netData.ori/
+$ ori netData.ori/
 Bob lives in ${ samples.ori/templates/teamData.yaml/1/location }.
 ```
 
@@ -161,9 +208,12 @@ Use the built-in [@if](/builtins/@if.html) function to include text based on som
 
 The first argument to `@if` is a condition that is evaluated. If the result is truthy (not `false`, `null`, or `undefined`), the second argument to `@if` is included in the template’s text output. If the result is falsy and a third argument is provided, that third argument will be included in the output.
 
-```console
-$ cat condition.ori
+```ori
+// condition.ori
 ${ samples.ori/templates/condition.ori }
+```
+
+```console
 $ ori “condition.ori({ rating: 3 })”
 ${ samples.ori/templates/condition.ori({ rating: 3 }) }
 $ ori “condition.ori({})”
@@ -176,11 +226,17 @@ Your template expressions can call any JavaScript in [scope](/language/scope.htm
 
 For example, if you have a file named `uppercase.js` in the same directory as the template, a template expression can reference that module's default export as `uppercase`:
 
-```console
-$ cat uppercase.js
+```js
+// uppercase.js
 ${ samples.ori/templates/uppercase.js }
-$ cat callJs.ori
+```
+
+```ori
+// callJs.ori
 ${ samples.ori/templates/callJs.ori }
+```
+
+```console
 $ ori callJs.ori/
 ${ samples.ori/templates/callJs.ori/ }
 ```
@@ -193,8 +249,8 @@ One template can invoke another as a function.
 
 We can define a template `stars.ori` as a component that displays a star rating:
 
-```console
-$ cat stars.ori
+```ori
+// stars.ori
 ${ samples.ori/templates/stars.ori }
 ```
 
@@ -207,9 +263,12 @@ ${ samples.ori/templates/stars.ori(3) }
 
 This `stars.ori` template defines a function that you can invoke inside expressions in other templates:
 
-```console
-$ cat review.ori
+```ori
+// review.ori
 ${ samples.ori/templates/review.ori }
+```
+
+```console
 $ ori review.ori/
 ${ samples.ori/templates/review.ori/ }
 ```
@@ -220,15 +279,15 @@ This technique can let you define components in plain HTML and CSS.
 
 Another application of invoking a template as a function is to wrap the output of one template inside another. For example, you can create an overall page template for a site called `page.ori`:
 
-```console
-$ cat page.ori
+```ori
+// page.ori
 ${ samples.ori/templates/page.ori }
 ```
 
 A template for a specific type of page, like a `contact.ori` template for a Contact Us page, can invoke `page.ori` as a function:
 
-```console
-$ cat contact.ori
+```ori
+// contact.ori
 ${ samples.ori/templates/contact.ori }
 ```
 
@@ -247,15 +306,15 @@ Both a template’s input document and the template itself can contain front mat
 
 Example: a blog post can be stored as a markdown file with front matter that defines a `title` property.
 
-```console
-$ cat posts/post1.html
+```html
+<!-- post1.html -->
 ${ samples.ori/templates/posts/post1.html }
 ```
 
 And a template can then reference this `title` property. Here the template uses the [@or](/builtins/@or.html) function to provide a default title if the input document has no `title`.
 
-```console
-$ cat blogPost.ori
+```ori
+// blogPost.ori
 ${ samples.ori/templates/blogPost.ori }
 ```
 
@@ -271,11 +330,17 @@ ${ samples.ori/templates/blogPost.ori samples.ori/templates/posts/post1.html }
 It’s common to have a template generate some fragment of text for each value in a tree: an array, a set, a folder, etc.
 You can handle such cases in Origami templates by calling the built-in [@map](/builtins/@map.html#values) function to map a tree’s values to text.
 
-```console
-$ cat teamData.yaml
+```${"yaml"}
+# teamData.yaml
 ${ samples.ori/templates/teamData.yaml }
-$ cat teamList.ori
+```
+
+```ori
+// teamList.ori
 ${ samples.ori/templates/teamList.ori }
+```
+
+```console
 $ ori teamList.ori/
 ${ samples.ori/templates/teamList.ori/ }
 ```
@@ -318,8 +383,8 @@ post1.html post2.html
 
 You can create an index page that links to these files using the key parameter. Here, the `fileName` parameter will end up holding the name of the file being mapped:
 
-```console
-$ cat blogIndex.ori
+```ori
+// blogIndex.ori
 ${ samples.ori/templates/blogIndex.ori }
 ```
 

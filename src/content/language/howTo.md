@@ -6,7 +6,8 @@ You want all the pages on your site to share common elements: a header, navigati
 
 <span class="tutorialStep"></span> Create those pages as HTML fragments — valid HTML for just the content of the page. Example: you have a file called `a.html` that contains
 
-```${"html"}
+```html
+<!-- a.html -->
 ${ samples.ori/templates/fragments/a.html }
 ```
 
@@ -22,8 +23,8 @@ myProject/
 
 <span class="tutorialStep"></span> Create an Origami template with a name like `page.ori` and give it all the elements you want to appear on every page. Place a `\${ }` placeholder where you want the page fragment/body to go.
 
-```console
-$ cat page.ori
+```ori
+// page.ori
 ${ samples.ori/templates/page.ori }
 ```
 
