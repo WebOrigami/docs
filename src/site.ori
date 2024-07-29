@@ -1,62 +1,22 @@
+// The top-level structure of the site
 {
-  // This file defines the top-level virtual values in the tree used to create
-  // the Web Origami documentation.
+  // Static files
+  …client
+  
+  // All generated pages
+  …data.ori/pages
 
-  // The first set of formulas define a pipeline for the documentation content,
-  // which is authored as a tree of markdown files in the `content` folder.
+  // This components.js "bundle" is just concatenated files
+  components.js = @concat(components)
 
-  areas = areas.yaml/
-
-  addDataToPages = (page, name) => js/addData.js(
-    page
-    area
-    name
-    areas
-    content(area)/pages.yaml/
-    client/assets/origami
-  )
-
-  // Add the `area` and `fileName` properties to the documents.
-  withData = @map(content, {
-    description: "withData outer"
-    value: (_, area) => @if(
-      @tree/isAsyncTree(_)
-      @map(_, { description: "withData inner", extension: "md", value: addDataToPages })
-      =js/addData.js(_, "", area, areas, @js/null, client/assets/origami)
-    )
-  })
-
-  // Take the markdown files and inline any Web Origami expressions contained
-  // in curly braces.
-  inlined = @deepMap(withData, { extension: "md", value: @inline })
-
-  // Convert the markdown (including inlined content) to HTML while preserving
-  // the front matter at the top of each document. As the content is now HTML,
-  // we change the file extension from `.md` to `.html`. The result is a tree of
-  // HTML content; each value represents the main body of a given page.
-  html = @deepMap(inlined, @mdHtml)
-
-  // Apply the documentation page template. This injects the HTML content from
-  // the previous step into the site's main page template, which adds headers
-  // and navigation chrome. This step concludes the main documentation pipeline.
-  pages = @deepMap(html, { extension: "html", value: templates/page.ori })
-
-  // The `public` tree defines the final tree which is built into static pages.
-  public = {
-    …client
-    …pages
-
-    // This components.js "bundle" is just concatenated files
-    components.js = @concat(components)
-
-    demos = {
-      // Use `.` to avoid referencing the `demos` parent here
-      aboutUs = ./demos/aboutUs/site.ori/
-    }
-
-    // Used by Netlify
-    _redirects
-
-    samples = samples.ori/
+  // Live demos
+  demos = {
+    // Use `.` to avoid referencing the `demos` parent here
+    aboutUs = ./demos/aboutUs/site.ori/
   }
+
+  // Used by Netlify
+  _redirects
+
+  samples = samples.ori/
 }
