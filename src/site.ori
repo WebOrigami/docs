@@ -50,12 +50,12 @@
     components.js = @concat(components)
 
     demos = {
-      // Use `src/` to avoid referencing the `demos` parent here
-      aboutUs = src/demos/aboutUs/site.ori/
+      // Use `.` to avoid referencing the `demos` parent here
+      aboutUs = ./demos/aboutUs/site.ori/
     }
 
     // Used by Netlify
-    _redirects = src/_redirects
+    _redirects
 
     samples = samples.ori/
   }
