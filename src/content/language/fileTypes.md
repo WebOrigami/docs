@@ -56,7 +56,7 @@ Origami has built-in support for handling the following types of files.
 | JavaScript  | .js<br>.mjs                                    |
 | JPEG image  | .jpeg<br>.jpg                                  |
 | JSON        | .json                                          |
-| Origami     | .ori                                           |
+| Origami     | .ori<br>.ori.&lt;something>                    |
 | Text        | .css<br>.htm<br>.html<br>.md<br>.txt<br>.xhtml |
 | WebAssembly | .wasm                                          |
 | YAML        | .yaml<br>.yml                                  |
@@ -105,8 +105,8 @@ If `greet.ori` contains
 
 ```ori
 {
-  name = "Bob"
-  greeting = `Hello, \${name}!`
+  name: "Bob"
+  greeting: `Hello, \${name}!`
 }
 ```
 
@@ -115,6 +115,18 @@ then you can retrieve a specific value (including any required evaluation) with:
 ```console
 $ ori greet.ori/greeting
 Hello, Bob!
+```
+
+You can add another extension after `.ori` to create a file like `bold.ori.html`. This allows you to define a file type that your editor will recognize as, say, an HTML file, and at the same time be able to treat the file as an Origami [template document](templates.html#template-documents). When you evaluate the file, any Origami expressions in `\${ }` placeholders will be replaced with their results. You can also invoke the document as a function:
+
+```html
+<!-- bold.ori.html -->
+${ samples.ori/templates/bold.ori.html }
+```
+
+```console
+$ ori "bold.ori.html('Hooray')"
+${ samples.ori/templates/bold.ori.html("Hooray") }
 ```
 
 ### Text files

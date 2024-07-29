@@ -30,7 +30,7 @@ The following Origami program defines a tiny site:
 
 ```ori
 {
-  index.html = "Hello, world!"
+  index.html: "Hello, world!"
 }
 ```
 
@@ -109,7 +109,7 @@ You can reference the `images` folder name in the `site.ori` Origami file:
 
 ```ori
 {
-  index.html = "Hello, world!"
+  index.html: "Hello, world!"
   images
 }
 ```
@@ -141,7 +141,7 @@ The above site offers a set of images via a route like `/images/image1.jpg`, but
 
 ```ori
 {
-  index.html = "Hello, world!"
+  index.html: "Hello, world!"
   ...images
 }
 ```
@@ -176,8 +176,8 @@ This means one Origami expression can reference the output of another. As a triv
 
 ```ori
 {
-  name = "world"
-  index.html = `Hello, \$\{ name }!`
+  name: "world"
+  index.html: `Hello, \$\{ name }!`
 }
 ```
 
@@ -193,7 +193,7 @@ and keep the same reference to `name` in the Origami program:
 
 ```ori
 {
-  index.html = `Hello, \$\{ name }!`
+  index.html: `Hello, \$\{ name }!`
 }
 ```
 
@@ -203,15 +203,38 @@ For this reason, Origami programs don't have to explicitly `import` the things t
 
 _Key point: The tree scope available to an Origami expression is determined by the tree structure containing the expression. Scoping in Origami works like block scoping in other programming languages but includes the surrounding file system._
 
+## Calling functions
+
+You can have an Origami expression call a JavaScript function by file name.
+
+If you have
+
+```js
+// uppercase.js
+export default (x) => x.toUpperCase();
+```
+
+then you can call that in an Origami expression:
+
+```ori
+{
+  index.html: uppercase.js("hello, world.")
+}
+```
+
+The value of `index.html` will be "HELLO, WORLD."
+
+_Key point: You can easily call JavaScript functions from Origami._
+
 ## Defining subtrees
 
 An Origami tree can define subtrees:
 
 ```ori
 {
-  index.html = "Home page"
-  about = {
-    index.html = "About page"
+  index.html: "Home page"
+  about: {
+    index.html: "About page"
   }
 }
 ```
@@ -261,7 +284,7 @@ The Origami file can incorporate that data into the `index.html` page with:
 
 ```ori
 {
-  index.html = `Welcome to \$\{ siteInfo.json/name }!`
+  index.html: `Welcome to \$\{ siteInfo.json/name }!`
 }
 ```
 
@@ -270,6 +293,20 @@ This uses tree scope to find the `siteInfo.json` file. The `/name` path tells Or
 The result is a home page that says, "Welcome to My Site".
 
 _Key point: Origami lets you easily read data from a data file. You can treat hierarchical data like any tree and get things out of it with slash-separated paths._
+
+## Recalculating a value
+
+In the example above, data will be read from `siteInfo.json` when the Origami file is loaded, and once the file is loaded, the value of `index.html` will always be the same — even if the contents of `siteInfo.json` subsequently change.
+
+You can arrange to have an Origami expression reevaluated each time a value is requested by using an `=` equal sign instead of a `:` colon.
+
+```ori
+{
+  index.html = `Welcome to \$\{ siteInfo.json/name }!`
+}
+```
+
+When serving this site with the Origami server, Origami will regenerate the text for `index.html` each time you visit the page. If you are editing `siteInfo.json` in a separate window, then changes to the data in that file will be reflected when you refresh `index.html` in your browser.
 
 ## Turning a tree of stuff into something else
 

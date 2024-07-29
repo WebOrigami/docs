@@ -28,6 +28,15 @@ You can escape characters with a `\\` backslash:
 'It\\'s great'
 ```
 
+Since command lines often process both single and double quotes, Origami also supports the use of French-style `«` and `»` guillemet quote characters:
+
+```command
+$ ori «Hello»
+Hello
+```
+
+On macOS, you can type the `«` character with Option+Backslash, and the `»` character with Option+Shift+Backslash. On Windows, you can type Alt+0171 and Alt+0187, respectively.
+
 ## Numbers
 
 On their own, integers or floating-point numbers are treated as JavaScript `Number` values.
@@ -63,7 +72,7 @@ In the last command above, `Hello.md` is evaluated as a reference. In this case,
 Unlike JavaScript identifiers, it is legal to include a `.` period in a reference. Spaces and the following characters
 
 ```
-(){}[]<>-=,/:`"'\#→⇒
+(){}[]<>-=,/:`"'«»\#→⇒
 ```
 
 must be escaped with a `\\` backslash.
@@ -85,7 +94,7 @@ As with references (above), you can use periods in keys. Escape any special char
 
 ```ori
 {
-  Read\\ Me.txt: "The name for this value contains a space"
+  Test\\ File.txt: "Sample text"
 }
 ```
 
@@ -93,7 +102,16 @@ You can also put keys in single or double quotes:
 
 ```ori
 {
-  "Read Me.txt": "The name for this value contains a space"
+  "Test File.txt": "Sample text"
+}
+```
+
+As a shorthand, you can define a property with just a key. The key will be used as a reference (above) that will look up that key in the current scope.
+
+```ori
+{
+  // Include the project's ReadMe.md file in this object
+  ReadMe.md
 }
 ```
 
@@ -104,6 +122,38 @@ The value in a key/value pair will be evaluated once when the object is loaded. 
   name: getName()
 }
 ```
+
+## Object property getters
+
+If you'd like a value to be calculated every time it's requested, you can create a property _getter_. You create a property getter in Origami by using an `=` equals sign to define the property instead of a `:` colon.
+
+```ori
+{
+  index.html = greet.js()
+}
+```
+
+This `.ori` expression defines a getter called `index.html`. Each time the object is asked for `index.html`, it will invoke the JavaScript function exported by `greet.js`.
+
+## Object nesting
+
+Objects can be deeply nested.
+
+One use for this is to define the overall structure of a website in a `.ori` file:
+
+```ori
+{
+  // Include the entire `assets` folder
+  assets
+
+  about: {
+    // Generate the index page for the "About" area
+    index.html = about.ori()
+  }
+}
+```
+
+When this file is served as a site, the user will be able to browse to `about/index.html`.
 
 ## Array literals
 
@@ -123,23 +173,9 @@ As with object literals (above), you can separate array items with commas, newli
 ]
 ```
 
-## Tree literals
-
-Tree literals are similar to object literals, with the differences that: a) each key and value is separated with an `=` equals sign instead of a `:` colon, and b) a value defined by an expression is not evaluated until the value is requested.
-
-```ori
-{
-  public = {
-    index.html = greet.js("world")
-  }
-}
-```
-
-The top level of a `.ori` file is treated as the contents of tree literal. The `.ori` file above defines a virtual folder containing a subtree called `public` that defines `index.html`.
-
 ## Spread operator
 
-You can use `...` three periods or the single `…` ellipsis character to merge arrays, objects, and trees.
+You can use `...` three periods or the single `…` ellipsis character to merge arrays and objects.
 
 ```console
 $ ori tree1.yaml
@@ -151,14 +187,14 @@ ${ @yaml {
 } }
 ```
 
-In an `.ori` file, you can use this to merge a folder into a tree that also defines individual files.
+In an `.ori` file, you can use this to merge a folder into an object that also defines individual files.
 
 ```ori
 {
-  index.html = "Hello!"
+  index.html: "Hello!"
 
-  // Merge in everything in the `assets` folder
-  …assets
+  // Merge in everything in the `styles` folder
+  …styles
 }
 ```
 
@@ -213,7 +249,7 @@ Paths are a sequence of string keys separated with `/` slashes.
 tree/with/path/to/something
 ```
 
-The head of the path, like `tree` here, is resolved as a reference. If that returns a tree, it will be traversed using the remaining keys "with", "path", "to", and "something".
+The head of the path, like `tree` here, is resolved as a reference. If that returns a treelike object, it will be traversed using the remaining keys "with", "path", "to", and "something". Treelike objects include object literals and hierarchical data in JSON and YAML files:
 
 ```console
 $ ori greetings.yaml
