@@ -22,7 +22,7 @@
     value: (_, area) => @if(
       @tree/isAsyncTree(_)
       @map(_, { description: "withData inner", extension: "md", value: addDataToPages })
-      =js/addData.js(_, "", area, areas, {}, client/assets/origami)
+      =js/addData.js(_, "", area, areas, @js/null, client/assets/origami)
     )
   })
 

@@ -23,7 +23,7 @@ export default async function addData(
   const filePath = area ? `${area}/${fileName}` : `/${fileName}`;
   const icon = document.icon ?? (await chooseIcon(filePath, icons));
 
-  const pageLinks = await markCurrent(pages, fileName);
+  const pageLinks = pages ? await markCurrent(pages, fileName) : null;
 
   return Object.assign(
     {
