@@ -170,7 +170,7 @@ The parentheses around the URL for a WebAssembly module cause it to be evaluated
 
 ### YAML files
 
-Like JSON files, you can traverse into a YAML file using slash syntax. YAML front matter can [contain Origami expressions](yaml.html).
+Like JSON files, you can traverse into a YAML file using slash syntax.
 
 ## Custom file types
 
