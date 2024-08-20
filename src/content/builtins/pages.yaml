@@ -2,6 +2,8 @@
   text: Overview
 - href: functional.html
   text: Functional forms
+- href: extensions.html
+  text: Extensions
 - text: "Built-ins:"
 - href: "@addNextPrevious.html"
   text: "@addNextPrevious"
