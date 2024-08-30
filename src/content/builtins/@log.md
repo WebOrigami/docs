@@ -2,7 +2,7 @@
 title: "@log(result, [message])"
 ---
 
-This diagnostic function logs a message to the console and then returns the indicated result.
+This diagnostic function logs a message to the console as a side effect and then returns the indicated result.
 
 ```console
 $ ori "@log(1, 'Hello')"
@@ -10,7 +10,10 @@ Hello
 1
 ```
 
-Passing an object as the message outputs it in YAML form:
+Here the first line ("Hello") is the logged message. The second line ("1") is
+the result of the function displayed by ori.
+
+You can pass an object as the message to log the object in YAML form:
 
 ```console
 $ ori @log 2, { a: 1 }
