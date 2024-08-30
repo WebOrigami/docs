@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
-    "@weborigami/origami": "0.0.64",
+    "@weborigami/origami": "https://gitpkg.vercel.app/WebOrigami/origami/origami?d37fd6e0",
     "@weborigami/pattern-intro": "github:WebOrigami/pattern-intro#23e791fc",
     "@weborigami/samples": "github:WebOrigami/samples#6cb4bff6",
     "marked": "13.0.1",
