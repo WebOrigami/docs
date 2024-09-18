@@ -18,36 +18,46 @@ A site can indicate which keys are available at a given route by supporting the 
 
 ## Example
 
-This weborigami.org site supports the JSON Keys protocol. For example, it has a route `/samples/greetings` containing some trivial files like [/samples/greetings/Alice](/samples/greetings/Alice). The server defines a JSON file at [/samples/greetings/.keys.json](/samples/greetings/.keys.json) that enumerates the names of those files:
+This weborigami.org site supports the JSON Keys protocol. For example, it has a route `/samples/greetings` containing some trivial files like [/samples/greetings/Alice](/samples/greetings/Alice). The structure of the route looks like:
 
-```json
-["Alice", "Bob", "Carol"]
+```
+samples/
+  index.html
+  greetings/
+    Alice
+    Bob
+    Carol
+    index.html
 ```
 
-The higher level route `/samples` likewise has a [/samples/.keys.json](/samples/.keys.json) file listing its keys, including the `greetings/` key:
+To expose all these files, the `/samples` route defines a [/samples/.keys.json](/samples/.keys.json) file listing its keys (the files and subfolders it contains) as a JSON array of strings:
 
 ```json
-[
-  "greetings/",
-  ... other keys ...
-]
+["greetings/", "index.html"]
 ```
 
-The information makes a site tree traversable.
+Likewise, the `/sample/greetings` route defines a JSON file at [/samples/greetings/.keys.json](/samples/greetings/.keys.json) that enumerates the names of its files:
+
+```json
+["Alice", "Bob", "Carol", "index.html"]
+```
+
+These `.keys.json` files can be viewed by users or consumed by programs so they can discover the full set of files available on the site.
 
 ## Origami support for JSON Keys
 
-The Origami [SiteTree](SiteTree.html) class supports the JSON Keys protocol. If you ask a `SiteTree` for its keys, it will retrieve this `.keys.json` file and, if this file exists, parse it and return those keys. (It will strip the trailing `/` from any keys for subtrees.)
+The Origami [SiteTree](SiteTree.html) class supports the JSON Keys protocol. If you ask a `SiteTree` for its keys, it will look for a `.keys.json` file and, if it exists, parse it and return those keys. (It will strip the trailing `/` from any keys for subtrees.)
 
-The ori [CLI](/cli) builds on this in several ways. The custom [tree](/builtins/@treeHttps.html) or [treehttp](/builtins/@treeHttp.html) protocols allow you to indicate that you want to treat a given URL as the root of a complete tree instead of a single resource.
+The ori [CLI](/cli) builds on this in several ways.
 
-The `tree:` protocol returns a tree that can be passed to any Origami builtin like [@keys](/builtins/@keys.html) that accepts a tree:
+The custom [tree](/builtins/@treeHttps.html) or [treehttp](/builtins/@treeHttp.html) protocols allow you to indicate that you want to treat a given URL as the root of a complete tree instead of a single resource. This lets the `tree:` protocol represent a tree that can be passed to any function that accepts a tree, such as the [@keys](/builtins/@keys.html) builtin:
 
 ```console
 $ ori @keys tree://weborigami.org/samples/greetings/
 - Alice
 - Bob
 - Carol
+- index.html
 ```
 
 Here the `tree:` protocol creates a `SiteTree` instance which retrieves the route's keys defined in a `.keys.json` file. The `@keys` function then asks that tree for the list of keys, which the ori CLI displays as the result of the command.
@@ -59,6 +69,15 @@ $ ori tree://weborigami.org/samples/greetings/
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
+index.html: … [HTML content of the file] …
+```
+
+Or use ori to copy the contents of a site locally:
+
+```console
+$ ori @copy tree://weborigami.org/samples/greetings/, @files/snapshot
+$ ls snapshot
+Alice      Bob        Carol      index.html
 ```
 
 ## Adding support for JSON Keys to your site
