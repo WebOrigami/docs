@@ -4,7 +4,7 @@
 
 about-us:
   name: About Us
-  url: https://weborigami.org/demos/aboutus
+  url: https://weborigami.org/demos/aboutUs/
   repo: https://github.com/WebOrigami/docs/tree/main/src/demos/aboutUs
   description: |
     The Origami <a href="tutorial.html">tutorial</a> leads you through the creation
