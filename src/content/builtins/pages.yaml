@@ -125,6 +125,8 @@
   text: "@shuffle"
 - href: "@sort.html"
   text: "@sort[Fn]"
+- href: "@static.html"
+  text: "@static"
 - href: "@stdin.html"
   text: "@stdin"
 - href: "@svg.html"

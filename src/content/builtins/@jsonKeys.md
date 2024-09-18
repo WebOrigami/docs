@@ -4,7 +4,7 @@ title: "@jsonKeys(treelike)"
 
 _Note: In Origami 0.0.64 and earlier, this function was called `@keysJson`._
 
-This function implements the [JSON Keys protocol](/async-tree/SiteTree.html#json-keys-protocol) for a tree-like structure. It generates a `.keys.json` file for each route in the tree, listing the keys available at that route.
+This function implements the [JSON Keys protocol](/async-tree/jsonKeys.html) for a tree-like structure. It generates a `.keys.json` file for each route in the tree, listing the keys available at that route.
 
 Suppose a site has the following structure:
 
@@ -31,3 +31,5 @@ index.html: Home page
 ```
 
 By including the `.keys.json` files in the static build of the site, you will make it possible for yourself and others to completely traverse the site tree using the [SiteTree](/async-tree/SiteTree.html) class and the `tree:` protocol.
+
+See also [@static](@static.html).

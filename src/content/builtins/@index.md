@@ -21,3 +21,5 @@ http://localhost:5000/path/to/something/!@index
 ```
 
 This is helpful if you need to browse or access pages or resources that aren't exposed on the page at that route.
+
+See also [@static](@static.html).

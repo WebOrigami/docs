@@ -2,6 +2,8 @@
   text: Overview
 - text: Interface
   href: interface.html
+- text: JSON Keys
+  href: jsonKeys.html
 - href: treelike.html
   text: Treelike objects
 - text: "API:"
