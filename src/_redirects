@@ -10,6 +10,29 @@
 /:a/:b/:c/:d/:e/.keys.json /:a/:b/:c/:d/:e/keys.json 200
 /:a/:b/:c/:d/:e/:f/.keys.json /:a/:b/:c/:d/:e/:f/keys.json 200
 
-# Redirect names that do not contain a dot to the same path
-# with a trailing slash.
-/:path /:path/
+# Redirect folders to the same path with a trailing slash.
+/assets /assets/
+/assets/fonts /assets/fonts/
+/assets/heart /assets/heart/
+/assets/illustrations /assets/illustrations/
+/assets/misc /assets/misc/
+/assets/origami /assets/origami/
+/assets/screenshots /assets/screenshots/
+
+/async-tree /async-tree/
+/builtins /builtins/
+/cli /cli/
+
+/demos /demos/
+/demos/aboutUs /demos/aboutUs/
+
+/language /language/
+/pattern /pattern/
+
+/samples /samples/
+/samples/cli /samples/cli/
+/samples/greetings /samples/greetings/
+/samples/help /samples/help/
+/samlpes/templates /samples/templates/
+
+/styles /styles/
