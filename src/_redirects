@@ -1,7 +1,3 @@
-# Redirect old graphorigami.org to weborigami.org
-http://graphorigami.org/* http://weborigami.org/:splat 301!
-https://graphorigami.org/* https://weborigami.org/:splat 301!
-
 # netlify won't deploy a file whose name starts with a splat, preventing us from
 # deploying .keys.json files. See the `netlify` command in the root folder.
 # Unfortunately, wildcards don't work in the middle of a route. As a workaround,
@@ -13,3 +9,7 @@ https://graphorigami.org/* https://weborigami.org/:splat 301!
 /:a/:b/:c/:d/.keys.json /:a/:b/:c/:d/keys.json 200
 /:a/:b/:c/:d/:e/.keys.json /:a/:b/:c/:d/:e/keys.json 200
 /:a/:b/:c/:d/:e/:f/.keys.json /:a/:b/:c/:d/:e/:f/keys.json 200
+
+# Redirect names that do not contain a dot to the same path
+# with a trailing slash.
+/:path /:path/
