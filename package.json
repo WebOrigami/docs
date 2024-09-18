@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
-    "@weborigami/origami": "https://gitpkg.vercel.app/WebOrigami/origami/origami?d37fd6e0",
+    "@weborigami/origami": "0.0.66-beta.1",
     "@weborigami/pattern-intro": "github:WebOrigami/pattern-intro#23e791fc",
     "@weborigami/samples": "github:WebOrigami/samples#6cb4bff6",
     "marked": "13.0.1",
@@ -15,7 +15,7 @@
     "@weborigami/screenshot": "0.0.6"
   },
   "scripts": {
-    "build": "ori '@copy netlify.js(@jsonKeys(src/site.ori)), @clean @files/build'",
+    "build": "ori '@copy netlify.js(@static(src/site.ori)), @clean @files/build'",
     "screenshots": "ori @copy src/screenshots.ori, @mkdir/src/client/assets/screenshots",
     "start": "ori @serve @watch src, =@debug src/site.ori"
   }
