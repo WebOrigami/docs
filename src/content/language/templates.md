@@ -66,23 +66,25 @@ If `copyright.txt` contains:
 ${ samples.ori/templates/copyright.txt }
 ```
 
-Then an Origami file can reference that file directly:
+Then an Origami template can reference that local file directly:
 
 ```ori
 // fileRef.ori
 ${ samples.ori/templates/fileRef.ori }
 ```
 
+Invoking the template will inline that file:
+
 ```console
 $ ori "fileRef.ori()"
 ${ samples.ori/templates/fileRef.ori() }
 ```
 
-In cases like this, where the template does not require any argument, you can avoid the need to quote parentheses by invoking the template using slash syntax:
+In cases like this, where the template does not require any argument, in the command line you can avoid the need to quote parentheses by invoking the template with a trailing slash:
 
 ```console
 $ ori fileRef.ori/
-${ samples.ori/templates/fileRef.ori/ }
+${ samples.ori/templates/fileRef.ori() }
 ```
 
 ## Reference trees
@@ -122,7 +124,7 @@ ${ samples.ori/templates/concat.ori }
 
 ```console
 $ ori concat.ori/
-${ samples.ori/templates/concat.ori/ }
+${ samples.ori/templates/concat.ori() }
 ```
 
 ## Use template expressions in any file type
@@ -166,8 +168,8 @@ ${ samples.ori/templates/inline.html }
 and then evaluate that file:
 
 ```console
-$ ori inline.ori.html
-${ samples.ori/templates/inline.ori.html/ }
+$ ori inline.ori.html/
+${ samples.ori/templates/inline.ori.html() }
 ```
 
 A template document can be called as a function with up to one argument. Inside the document, use a `_` underscore to refer to the single argument.
@@ -304,7 +306,7 @@ ${ samples.ori/templates/review.ori }
 
 ```console
 $ ori review.ori/
-${ samples.ori/templates/review.ori/ }
+${ samples.ori/templates/review.ori() }
 ```
 
 This technique can let you define components in plain HTML and CSS.
@@ -329,7 +331,7 @@ Evaluating the contact page template passes its HTML fragment to the overall sit
 
 ```console
 $ ori contact.ori/
-${ samples.ori/templates/contact.ori/ }
+${ samples.ori/templates/contact.ori() }
 ```
 
 ### Processing input front matter
@@ -376,7 +378,7 @@ ${ samples.ori/templates/teamList.ori }
 
 ```console
 $ ori teamList.ori/
-${ samples.ori/templates/teamList.ori/ }
+${ samples.ori/templates/teamList.ori() }
 ```
 
 The `teamList.ori` file defines an outer template that includes an `<ul>` tag. Inside that, a substitution calling `@map` appears, which maps the array of people in `teamData.yaml` to a set of HTML fragments using a nested template with an `<li>` tag.

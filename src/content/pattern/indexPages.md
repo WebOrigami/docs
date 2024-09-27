@@ -30,7 +30,10 @@ ${ svg.js pattern.ori/index/object.js/more }
 Then invoking `indexPage` on this branch will return:
 
 ```${'html'}
-${ pattern.ori/index/htmlObject.js/more/index.html }
+${
+  // 2024-09: Need parens; patterns intro doesn't handle trailing slashes yet
+  (pattern.ori/index/htmlObject.js/more)/index.html
+}
 ```
 
 ## Transform a tree by adding index pages

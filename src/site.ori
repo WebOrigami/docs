@@ -10,13 +10,13 @@
   components.js = @concat(components)
 
   // Live demos
-  demos = {
+  demos/ = {
     // Use `.` to avoid referencing the `demos` parent here
-    aboutUs = ./demos/aboutUs/site.ori/
+    aboutUs/ = ./demos/aboutUs/site.ori/
   }
 
   // Used by Netlify
   _redirects
 
-  samples = samples.ori/
+  samples/ = samples.ori/
 }

@@ -7,7 +7,7 @@
 ${ @if api/classConstructor, =`
   ${ function.ori(api/classConstructor) }
 ` }
-${ @map(api/members, (member) => `
+${ @map(@or(api/members, []), (member) => `
   ${ function.ori(member) }
 `) }
 `
