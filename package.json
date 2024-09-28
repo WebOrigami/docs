@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
-    "@weborigami/origami": "0.0.66-beta.1",
+    "@weborigami/origami": "0.0.66-beta.2",
+    "@weborigami/pagefind": "0.0.4",
     "@weborigami/pattern-intro": "github:WebOrigami/pattern-intro#23e791fc",
     "@weborigami/samples": "github:WebOrigami/samples#6cb4bff6",
     "marked": "13.0.1",
@@ -12,7 +13,6 @@
     "yaml": "2.4.5"
   },
   "devDependencies": {
-    "@weborigami/pagefind": "0.0.3",
     "@weborigami/screenshot": "0.0.6"
   },
   "scripts": {
