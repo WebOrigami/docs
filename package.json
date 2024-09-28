@@ -12,6 +12,7 @@
     "yaml": "2.4.5"
   },
   "devDependencies": {
+    "@weborigami/pagefind": "0.0.3",
     "@weborigami/screenshot": "0.0.6"
   },
   "scripts": {

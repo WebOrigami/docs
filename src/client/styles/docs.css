@@ -480,9 +480,10 @@ g.node polygon[fill="none"] {
   .optional {
     display: contents;
   }
-
+  
   #pageContent {
-    grid-template-columns: var(--side-nav-width) 1fr;
+    /* Given above columns for #page, not sure why we also need to specify 800px here. */
+    grid-template-columns: var(--side-nav-width) minmax(auto, 800px);
     grid-template-rows: auto 1fr;
     --grid-padding-vertical: 2rem;
   }

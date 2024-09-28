@@ -19,6 +19,7 @@
           <a href="/">Origami</a>
 ${ areaLinks.ori(page/areaLinks) }
           <a href="https://github.com/WebOrigami/origami">GitHub</a>
+          <a id="linkSearch" href="/search.html">Search</a>
         </nav>
       </div>
       <div id="pageContent">
