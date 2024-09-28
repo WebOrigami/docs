@@ -66,4 +66,4 @@ web-origami:
     in order to incorporate their output. Various navigation elements like a
     sidebar and top navigation bar are generated from the structure of the
     content. The site also generates API documentation from JavaScript source
-    files.
+    files and includes a search feature that indexes all the content.
