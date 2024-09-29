@@ -4,7 +4,8 @@
   …client
   
   // All generated pages
-  …data.ori/cached
+  // …data.ori/cached
+  …data.ori/pages
 
   // This components.js "bundle" is just concatenated files
   components.js = @concat(components)

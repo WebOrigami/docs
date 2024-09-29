@@ -13,7 +13,7 @@ A site can indicate which keys are available at a given route by supporting the 
 
 - Every route that acts as a folder can define a `.keys.json` file.
 - The contents of this file must be an array of strings in JSON format listing the keys (names) of the files and subfolders published at that route.
-- A key may end in a trailing `/` to signal that the key is for a subfolder. If the site chooses not to do this, it should redirect to a route that ends in a trailing slash (e.g., from `/foo` to `/foo/`); the redirection itself will act as the signal that the route represents a folder.
+- A key may follow the [trailing slash convention](interface.html#trailing-slash-convention) by ending in a trailing `/` slash to signal that the key is for a subfolder. If the site chooses not to do this, it should redirect to a route that ends in a trailing slash (e.g., from `/foo` to `/foo/`); the redirection itself will act as the signal that the route represents a folder.
 - The `.keys.json` file should not list its own name in the array of keys, nor should it include `"."` and `".."` entries for the folder itself and its parent.
 
 ## Example
@@ -46,26 +46,26 @@ These `.keys.json` files can be viewed by users or consumed by programs so they 
 
 ## Origami support for JSON Keys
 
-The Origami [SiteTree](SiteTree.html) class supports the JSON Keys protocol. If you ask a `SiteTree` for its keys, it will look for a `.keys.json` file and, if it exists, parse it and return those keys. (It will strip the trailing `/` from any keys for subtrees.)
+The Origami [ExplorableSiteTree](ExplorableSiteTree.html) class supports the JSON Keys protocol. If you ask a `ExplorableSiteTree` for its keys, it will look for a `.keys.json` file and, if it exists, parse it and return those keys. (It will strip the trailing `/` from any keys for subtrees.)
 
 The ori [CLI](/cli) builds on this in several ways.
 
-The custom [tree](/builtins/@treeHttps.html) or [treehttp](/builtins/@treeHttp.html) protocols allow you to indicate that you want to treat a given URL as the root of a complete tree instead of a single resource. This lets the `tree:` protocol represent a tree that can be passed to any function that accepts a tree, such as the [@keys](/builtins/@keys.html) builtin:
+Origami's custom `explore:` protocol allow you to indicate that you want to treat a given URL as the root of an [ExplorableSiteTree](ExplorableSiteTree.html) instead of a single resource. This lets you pass a site to any function that wants to enumerate the site's keys, such as the [@keys](/builtins/@keys.html) builtin:
 
 ```console
-$ ori @keys tree://weborigami.org/samples/greetings/
+$ ori @keys explore://weborigami.org/samples/greetings/
 - Alice
 - Bob
 - Carol
 - index.html
 ```
 
-Here the `tree:` protocol creates a `SiteTree` instance which retrieves the route's keys defined in a `.keys.json` file. The `@keys` function then asks that tree for the list of keys, which the ori CLI displays as the result of the command.
+Here the `explore:` protocol creates a `SiteTree` instance which retrieves the route's keys defined in a `.keys.json` file. The `@keys` function then asks that tree for the list of keys, which the ori CLI displays as the result of the command.
 
 You can also use ori to display the complete contents of all pages at a given route:
 
 ```console
-$ ori tree://weborigami.org/samples/greetings/
+$ ori explore://weborigami.org/samples/greetings/
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
@@ -75,7 +75,7 @@ index.html: … [HTML content of the file] …
 Or use ori to copy the contents of a site locally:
 
 ```console
-$ ori @copy tree://weborigami.org/samples/greetings/, @files/snapshot
+$ ori @copy explore://weborigami.org/samples/greetings/, @files/snapshot
 $ ls snapshot
 Alice      Bob        Carol      index.html
 ```

@@ -101,11 +101,52 @@ Bob: Hello, Bob.
 Carol: Hello, Carol.
 ```
 
+## Trailing slash convention
+
+Async trees can be _deep_, meaning that values in the tree may themselves be subtrees.
+
+Deep async trees with string keys have the option of following the trailing slash convention: if a key represents a subtree, the key can end in a trailing slash, like `subfolder/` in the following tree.
+
+<figure>
+${ svg.js({
+a: 1
+subfolder/: { b: 2 }
+}) }
+</figure>
+
+The specifics of the convention are:
+
+- If a trailing slash _is_ present, then the value is definitely a traversable subtree.
+- If a trailing slash is not present, the value may or may not be a subtree. That is, a tree isn't obligated to append slashes to any or all of its keys for traversable subtrees.
+
+Trailing slashes have several purposes:
+
+First, they are useful to someone looking at a list of keys. If you get the keys of a folder, for example:
+
+```console
+$ ori @keys myProject
+- README.md
+- src/
+- test/
+```
+
+The trailing slashes let you know that `src/` and `test/` represent subfolders.
+
+Second, a trailing slash is used as a signal by certain trees to save work. This is important for trees like [SiteTree](SiteTree.html), which must make potentially slow network requests to `get()` values. The trailing slash is an important indication that they can traverse into a subtree value _without_ making a network request.
+
+If the tree depicted above is a `SiteTree`, a call to `get("subfolder")` will make a network request, but a call to `get("subfolder/")` will not. The latter call will just return a new `SiteTree` instance for the indicated location. Only when a `SiteTree` is asked to `get` a key that doesn't end in a slash — or to return its `keys` — will the tree be forced to make a network request.
+
+Other trees like [ObjectTree](ObjectTree.html) can return a value quickly so they ignore trailing slashes. If the above tree represents an `ObjectTree`, then `get("a")` and `get("a/")` return the same value (even though "a" is not a subtree). Likewise, `get("subfolder")` and `get("subfolder/")` would behave the same.
+
+Third, tools can look at a trailing slash to infer intent. The Origami [language](/language) interprets the presence of a trailing slash to indicate that you're expecting to get back a traversable subtree. If the value you're working with is a file, Origami implicitly [unpacks the file](/language/fileTypes.html#unpacking-files) into data. For example, the expression `data.json` returns the raw file contents of the indicated file, but `data.json/` (with a trailing slash) parses the JSON in the file and returns the data object.
+
 ## Wrappers
 
 Instead of directly defining a class or object that implements the `AsyncTree` interface, you can make use of various wrappers that will turn something into an async tree version:
 
 - [FileTree](FileTree.html) can wrap a file system folder
 - [FunctionTree](FunctionTree.html) can wrap a JavaScript function and an optional domain
+- [Map](Map.html) can wrap a JavaScript `Map`
 - [ObjectTree](ObjectTree.html) can wrap a plain JavaScript object or array
+- [Set](Set.html) can wrap a JavaScript `Set`
 - [SiteTree](SiteTree.html) can wrap a web site
