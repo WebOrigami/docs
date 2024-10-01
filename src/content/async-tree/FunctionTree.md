@@ -6,22 +6,14 @@ subtitle: Wraps a function and a domain as an async tree
 ## Usage
 
 ```js
-import { FunctionTree } from "@weborigami/origami";
-
-// Wrap an object to create an async tree.
-const tree = new FunctionTree({
-  (key) => `Hello, \${key}.`,
-  ["Alice", "Bob", "Carol"]
-});
+${ samples.ori/help/function.js }
 ```
 
 The [ori](/ori) tool will display the contents of the resulting `FunctionTree`.
 
 ```console
 $ ori function.js/
-Alice: Hello, Alice.
-Bob: Hello, Bob.
-Carol: Hello, Carol.
+${ @yaml samples.ori/help/function.js/ }
 ```
 
 A rough implementation of the core interface methods in `FunctionTree` is:
@@ -50,11 +42,8 @@ Unlike async tree classes like [ObjectTree](ObjectTree.html), an `FunctionTree` 
 
 ```console
 $ ori @keys function.js/
-- Alice
-- Bob
-- Carol
-$ ori function.js/David
-Hello, David.
+${ @yaml @keys samples.ori/help/function.js/ }$ ori function.js/David
+${ samples.ori/help/function.js/David }
 ```
 
 ${ templates/class.ori(api.ori/FunctionTree.yaml/exports/0) }

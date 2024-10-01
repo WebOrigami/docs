@@ -6,7 +6,7 @@
     "@weborigami/origami": "0.0.66",
     "@weborigami/pagefind": "0.0.4",
     "@weborigami/pattern-intro": "github:WebOrigami/pattern-intro#23e791fc",
-    "@weborigami/samples": "github:WebOrigami/samples#1c74f39d",
+    "@weborigami/samples": "github:WebOrigami/samples#7021d2d9",
     "marked": "13.0.1",
     "sharp": "0.33.4",
     "typescript": "5.5.3",
