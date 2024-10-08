@@ -146,7 +146,7 @@ Instead of directly defining a class or object that implements the `AsyncTree` i
 
 - [FileTree](FileTree.html) can wrap a file system folder
 - [FunctionTree](FunctionTree.html) can wrap a JavaScript function and an optional domain
-- [Map](Map.html) can wrap a JavaScript `Map`
+- [MapTree](MapTree.html) can wrap a JavaScript `Map`
 - [ObjectTree](ObjectTree.html) can wrap a plain JavaScript object or array
-- [Set](Set.html) can wrap a JavaScript `Set`
+- [SetTree](SetTree.html) can wrap a JavaScript `Set`
 - [SiteTree](SiteTree.html) can wrap a web site

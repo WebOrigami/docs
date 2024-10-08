@@ -30,7 +30,7 @@ When asked for a key, the merged tree asks each of the constituent trees _in rev
   <figcaption>Merged tree</figcaption>
 </div>
 
-The Origami language also supports a [spread operator](/language/syntax.html/#spread-operator) that can perform the same kind of merge using `...` three periods or the `…` ellipsis character:
+The Origami language also supports a [spread operator](/language/syntax.html#spread-operator) that can perform the same kind of merge using `...` three periods or the `…` ellipsis character:
 
 ```console
 $ ori { ...tree1.yaml, ...tree2.yaml }

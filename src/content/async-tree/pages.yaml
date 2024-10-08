@@ -13,9 +13,13 @@
   text: FileTree
 - href: FunctionTree.html
   text: FunctionTree
+- href: MapTree.html
+  text: MapTree
 - href: ObjectTree.html
   text: ObjectTree
 - href: SiteTree.html
   text: SiteTree
+- href: SetTree.html
+  text: SetTree
 - href: Tree.html
   text: Tree
