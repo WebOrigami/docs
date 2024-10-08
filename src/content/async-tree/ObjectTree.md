@@ -30,7 +30,7 @@ This defines a tree whose keys are the object's keys, and whose values are the o
 ${ svg.js sample }
 </figure>
 
-The [ori](/ori) tool will display the contents of the resulting `ObjectTree`.
+The [ori](/cli) tool will display the contents of the resulting `ObjectTree`.
 
 ```console
 $ ori object.js/

@@ -113,8 +113,6 @@
   text: "@reverse"
 - href: "@rss.html"
   text: "@rss"
-- href: "@scope.html"
-  text: "@scope"
 - href: "@serve.html"
   text: "@serve"
 - href: "@setDeep.html"

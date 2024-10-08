@@ -9,7 +9,7 @@ subtitle: Wraps a function and a domain as an async tree
 ${ samples.ori/help/function.js }
 ```
 
-The [ori](/ori) tool will display the contents of the resulting `FunctionTree`.
+The [ori](/cli) tool will display the contents of the resulting `FunctionTree`.
 
 ```console
 $ ori function.js/

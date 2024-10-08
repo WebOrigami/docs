@@ -65,7 +65,7 @@ See below for details on these types.
 
 ### JavaScript files
 
-Unpacking a `.js` file returns the file's default export or, if there are multiple exports, all the exports. If that export is [treelike](/async-tree/treelike), you can traverse into that export using slash syntax.
+Unpacking a `.js` file returns the file's default export or, if there are multiple exports, all the exports. If that export is [treelike](/async-tree/treelike.html), you can traverse into that export using slash syntax.
 
 Example: If `data.js` contains
 
@@ -99,7 +99,7 @@ You can traverse into a JSON file using slash syntax; see [Unpacking files](#unp
 
 ### Origami files
 
-A file with a `.ori` extension indicates a file containing an Origami expression. If the result of that expression is [treelike](/async-tree/treelike) you can traverse into it using slash syntax.
+A file with a `.ori` extension indicates a file containing an Origami expression. If the result of that expression is [treelike](/async-tree/treelike.html) you can traverse into it using slash syntax.
 
 If `greet.ori` contains
 
@@ -192,7 +192,7 @@ The `mediaType` declaration tells the Origami server to transmit any `.user` fil
 
 The second step is to tell Origami to use your `user_handler.js` file to handle any `.user` files.
 
-Define a [config.ori](/cli/config.html) file at the root of your project. Inside that, define a key `user_handler` that points to the location of the `.js` file:
+Define a [config.ori](config.html) file at the root of your project. Inside that, define a key `user_handler` that points to the location of the `.js` file:
 
 ```ori
 {
