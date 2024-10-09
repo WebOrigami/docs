@@ -121,6 +121,8 @@
   text: "@shell"
 - href: "@shuffle.html"
   text: "@shuffle"
+- href: "@siteAudit.html"
+  text: "@siteAudit"
 - href: "@slash.html"
   text: "@slash"
 - href: "@sort.html"

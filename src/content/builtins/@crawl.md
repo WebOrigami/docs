@@ -2,7 +2,7 @@
 title: "@crawl(tree, [baseHref])"
 ---
 
-Crawls the indicated tree, following links and references in HTML pages, CSS stylesheets, and JavaScript files to construct and return the complete tree of reachable resources.
+Crawls the indicated tree and returns the complete tree of reachable resources. This includes following links and references in HTML pages, CSS stylesheets, and JavaScript files.
 
 ## Crawl an existing site
 
@@ -24,14 +24,8 @@ Shorthand: If the first parameter to `@crawl` is a string, it will be interprete
 $ ori @copy @crawl/example.com, @files/example
 ```
 
-## Check an Origami site for broken links
+## Broken links
 
-If the crawl operation finds references that do not exist, it will return those in a `crawl-errors.json` entry at the top level of the returned tree. You can use this to crawl a site you're creating in Origami to find broken links.
+If the crawl operation finds links to internal references that do not exist, it will return those in a `crawl-errors.json` entry at the top level of the returned tree.
 
-Give `@crawl` a reference to the `.ori` or `.js` file that defines your site's root. For example, if you define your site in a file `src/site.ori`:
-
-```console
-$ ori "@copy @crawl(src/site.ori), @files/crawl"
-```
-
-Then inspect the local file `crawl/crawl-errors.json` (if it exists) for paths that were referenced by pages in your site but which your site does not actually define.
+You can also use the related [@siteAudit](@siteAudit.html) builtin to audit a site for broken internal links.
