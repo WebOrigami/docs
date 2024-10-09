@@ -123,6 +123,38 @@ The value in a key/value pair will be evaluated once when the object is loaded. 
 }
 ```
 
+## Object properties can reference other local properties
+
+The expression that defines the value of a property can reference other properties in the same object, or any parent object, by name.
+
+```ori
+// localRef.ori
+${ samples.ori/help/localRef.ori }
+```
+
+This evaluates to:
+
+```console
+$ ori localRef.ori/
+${ @yaml samples.ori/help/localRef.ori/ }
+```
+
+This type of local reference is not possible in languages like JavaScript.
+
+Origami will avoid recursive local references. If you try to define a `name` property whose value expression refers to `name`, Origami assumes the latter refers to an inherited `name` property.
+
+```ori
+// inherited.ori
+${ samples.ori/help/inherited.ori }
+```
+
+Here the expression `\${name}` will resolve to the inherited `name` defined in the parent object.
+
+```console
+$ ori inherited.ori
+${ @yaml samples.ori/help/inherited.ori/ }
+```
+
 ## Object property getters
 
 If you'd like a value to be calculated every time it's requested, you can create a property _getter_. You create a property getter in Origami by using an `=` equals sign to define the property instead of a `:` colon.

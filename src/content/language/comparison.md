@@ -72,11 +72,29 @@ Origami's syntax for constructing array and object literals is very similar to J
 - An Origami object cannot define indirect property accessors the way JavaScript can with `[ ]` [bracket notation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors#bracket_notation).
 - An Origami object can define `get` methods (see below) but not `set` methods.
 
+### Use slash syntax to access properties
+
 Because Origami identifiers (above) like `index.html` can include periods, in Origami, you must reference object properties with `/` path syntax instead of JavaScript's `.` period operator. If the above object is available as `obj`, then `obj/color` will be "Blue".
 
 Likewise, to reference a specific array value in Origami, use `/` [path syntax](syntax.html#paths) instead of JavaScript's `[ ]` brackets. Here `obj/values/0` will be 2.
 
 When traversing objects like arrays and objects, Origami coerces them to an abstract tree structure. An Origami tree is like a minimalist, asynchronous JavaScript [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map). See the [AsyncTree interface](/async-tree/interface.html) for details.
+
+### Local property references
+
+In JavaScript, an object's own keys are not in scope.
+
+```js
+// Not allowed in JavaScript
+{
+  a: 1,
+  b: a        // a is not in scope
+}
+```
+
+But Origami [object properties can reference other local properties](syntax.html#object-properties-can-reference-other-local-properties)
+
+### Property getters
 
 Origami lets you define property getters with an abbreviated syntax that uses `=` equals signs instead of `:` colons:
 

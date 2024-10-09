@@ -31,7 +31,7 @@ Invoking `@changes` if the trees are the same returns an empty object, indicatin
 
 ```console
 $ ori @changes newTree.yaml, newTree.yaml
-${ @yaml(@changes(samples.ori/help/newTree.yaml, samples.ori/help/newTree.yaml)) }
+$
 ```
 
 ## Using `@changes` for testing static sites
