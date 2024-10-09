@@ -4,6 +4,16 @@ title: "@siteAudit(tree)"
 
 This audits the site defined by the given tree for broken internal links. It first crawls the site using [@crawl](@crawl.html), then reports back any errors.
 
+Currently, the audit only checks for links that point to internal files of the following types:
+
+- `.css`
+- `.html`
+- `.js`
+- `.xhtml`
+- `sitemap.xml`
+
+The crawler does not currently verify links to internal resources of other types, such as images. It also does not verify links to external pages and resources outside the site being audited.
+
 ## Auditing an Origami site
 
 You can give `@siteAudit` the top-level file that defines your site's root.
