@@ -53,7 +53,7 @@ Expressions inside an Origami template placeholder can directly return complex v
 
 Origami templates will `await` an asynchronous substitution that returns a `Promise`.
 
-Origami does not support JavaScript [tagged templates](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates).
+Origami supports JavaScript [tagged templates](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates): you can prefix a template with the name of a function (see functions, below).
 
 ## Array and object literals
 

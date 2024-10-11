@@ -232,19 +232,6 @@ In an `.ori` file, you can use this to merge a folder into an object that also d
 
 The built-in [@merge](/builtins/@merge.html) function performs this same operation as a function.
 
-## Template literals
-
-Text templates are quoted in backticks and can contain Origami expressions inside `\$\{` `}` placeholders.
-
-```console
-$ cat pet.txt
-Fluffy
-$ cat sample.ori
-\`I have a pet named \$\{ pet.txt }.`
-$ ori sample.ori/
-I have a pet named Fluffy.
-```
-
 ## Function calls
 
 You can invoke a function with parentheses:
@@ -361,6 +348,21 @@ $ ori /Users/alice/myProject/package.json
 $ ori /Users/alice/myProject/package.json/name
 Test project
 ```
+
+## Template literals
+
+Text templates are quoted in backticks and can contain Origami expressions inside `\$\{` `}` placeholders. The evaluated expression results will be substituted for those placeholders in the template's text output.
+
+```console
+$ cat pet.txt
+Fluffy
+$ cat sample.ori
+\`I have a pet named \$\{ pet.txt }.`
+$ ori sample.ori/
+I have a pet named Fluffy.
+```
+
+You can prefix a template literal with a function name immediately before the leading backtick. This invokes that function with the strings that make up the template's boilerplate text and a set of values to be substituted in the output. This function signature is compatible with JavaScript [tagged template functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates). See [@indent](/builtins/@indent.html) for an example of a builtin function that you can use in a tagged template.
 
 ## Grouping
 
