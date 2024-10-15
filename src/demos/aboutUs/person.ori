@@ -13,7 +13,7 @@
       </header>
     </a>
     <main class="person">
-      <img class="avatar large" src="../images/${ _/image }" alt="${ _/name }" />
+      <img class="avatar large" src="../images/${ _/image }" alt="${ _/name }">
       <h2 class="name">${ _/name }</h2>
       <div class="location">
         ${ _/location }
