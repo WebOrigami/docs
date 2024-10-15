@@ -159,3 +159,5 @@ The result is:
 ```
 
 This produces the result shown earlier.
+
+**Caution:** The lines inside these `<pre>` tags end up with leading spaces. Because `<pre>` elements preserve whitespace, the text is displayed with spaces on the left side. That's of no real consequence here, but in other cases like displaying blocks of code, whitespace can be significant. Take care when using `@indent` in conjunction with the rare HTML elements that preserve whitespace (like `<pre>` or `<textarea>`) or CSS rules (like `white-space: pre;`) that work similarly.
