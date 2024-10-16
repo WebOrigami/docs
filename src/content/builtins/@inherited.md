@@ -10,7 +10,7 @@ For example, in an Origami `.ori` file, you can write:
 {
   public = {
     message = "Hello"
-    hola = @inherited/message     # "Hola"
+    hola = @inherited/message     // "Hola"
   }
 
   message = "Hola"
