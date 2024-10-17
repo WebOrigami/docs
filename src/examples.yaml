@@ -27,11 +27,6 @@ aventour-expeditions:
     different template language (Handlebars), the transformation of markdown
     with front matter into HTML, and the creation of an image gallery that shows
     all the photos in a given folder.
-jan-miksovsky:
-  name: Blog
-  url: https://jan.miksovsky.com
-  description: |
-    A blog with entries organized by year, with JSON and RSS feeds.
 cat-prints-store:
   name: Cat Prints Store
   url: https://cat-prints-store.weborigami.org
@@ -48,6 +43,19 @@ cherokee-myths:
   video: https://youtu.be/ym6s2VsqeYI
   description: |
     A text-focused site with a generated table of contents and full-text search.
+jan-miksovsky:
+  name: Jan Miksovsky's blog
+  url: https://jan.miksovsky.com
+  description: |
+    A blog with entries organized by year, with JSON and RSS feeds.
+notes-jim-nielsen:
+  name: Jim Nielsen's Notes
+  url: https://notes.jim-nielsen.com/
+  repo: https://github.com/jimniels/notes/
+  description: |
+    Short responses to other people's writings. Reads notes from Dropbox via
+    the Origami <a href="https://github.com/WebOrigami/extensions/tree/main/dropbox">Dropbox extension</a>
+    and formats them as a single page with JSON and RSS feeds.
 pondlife:
   name: pondlife
   url: https://pondlife.netlify.app
