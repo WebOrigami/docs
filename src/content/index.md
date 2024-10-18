@@ -1,6 +1,6 @@
 ---
 title: Web Origami
-subtitle: A conceptual system and tools for creating websites, documentation, data sets, and other content
+subtitle: A language for making websites, documentation, data sets, and other content
 icon: bird.svg
 area: ""
 fileName: index.html
@@ -14,7 +14,7 @@ This project explores a new way to build small- to medium-scale websites using a
 
 Corporate site hosting services offer nice drag-and-drop editors but impose creative limitations and high monthly costs. You could build something from scratch — if you master a full programming language like JavaScript and a pile of industrial development tools. The web needs better ways to create sizable, expressive sites at low cost and without entanglements.
 
-Origami is designed for you: someone who wants to make a site for yourself or a small organization, someone who’s fine editing HTML and CSS, someone who’s not a professional programmer — or is, but wants to build sites more quickly.
+Origami is designed for you: someone who wants to make a site for yourself or a small organization, who can HTML and CSS, who’s not a professional developer — or is, but wants to build sites more quickly. Someone who wants to understand how their site actually gets made.
 
 The core idea is to describe the site you want at a high level as concisely as possible. If you can sketch your site like this:
 
