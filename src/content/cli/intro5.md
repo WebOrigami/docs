@@ -112,7 +112,7 @@ $ ori https://weborigami.org/samples/greetings/Alice
 Hello, Alice.
 ```
 
-<span class="tutorialStep"></span> ori can discover all the resources at the `/samples/greetings/` route because this server supports a simple protocol: for every route on this server, a [.keys.json](/async-tree/SiteTree.html#keysjson-files) file exists that enumerates the resources at that route.
+<span class="tutorialStep"></span> ori can discover all the resources at the `/samples/greetings/` route because this server supports a simple protocol: for every route on this server, a [.keys.json](/async-tree/jsonKeys.html) file exists that enumerates the resources at that route.
 
 ```console
 $ ori https://weborigami.org/samples/greetings/.keys.json

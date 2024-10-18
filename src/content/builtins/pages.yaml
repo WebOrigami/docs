@@ -35,6 +35,8 @@
   text: "@deepTake[Fn]"
 - href: "@deepValues.html"
   text: "@deepValues"
+- href: "@equals.html"
+  text: "@equals"
 - href: "@explore.html"
   text: "@explore"
 - href: "@false.html"

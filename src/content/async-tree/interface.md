@@ -140,6 +140,8 @@ Other trees like [ObjectTree](ObjectTree.html) can return a value quickly so the
 
 Third, tools can look at a trailing slash to infer intent. The Origami [language](/language) interprets the presence of a trailing slash to indicate that you're expecting to get back a traversable subtree. If the value you're working with is a file, Origami implicitly [unpacks the file](/language/fileTypes.html#unpacking-files) into data. For example, the expression `data.json` returns the raw file contents of the indicated file, but `data.json/` (with a trailing slash) parses the JSON in the file and returns the data object.
 
+Origami also includes a set of [@slash](/builtins/@slash.html) functions for working with trailing slashes.
+
 ## Wrappers
 
 Instead of directly defining a class or object that implements the `AsyncTree` interface, you can make use of various wrappers that will turn something into an async tree version:

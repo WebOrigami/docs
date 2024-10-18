@@ -12,23 +12,18 @@ These general principles guide the design of the Origami language itself. They a
 - Use standard formats whenever possible.
 - Avoid dependencies.
 
-### Always keep you in control
+### You are always in control
 
-- No magic black boxes.
+- No magic black boxes that guess what you probably want. Things only happen according to your instructions.
 - You should be able to understand, anticipate, and explain the effect of every line of code.
+- No enforcement of a particular file structure or build tool.
 
-### Design for consistency with the web platform
-
-For these purposes, the web platform includes Node.js.
-
-- Using a complex concept from the platform — e.g., async functions, typed arrays — is much better than a slightly simpler proprietary concept. You are learning something you can apply to every future web project.
-- No compilation or build required; all Origami code runs in Node or the browser directly. If you want a build process, you can bring your own.
-
-### Design the Origami language to complement HTML, CSS, and JavaScript
+### Complement HTML, CSS, and JavaScript instead of trying to replace them
 
 - If you know HTML and CSS but not JavaScript, the language should make sense to you.
-- If you already know JavaScript, the language should be as close to JavaScript expressions as possible.
-- If you ever encounter a situation where Origami is not sufficient, you should be able to easily invoke JavaScript.
+- If you already know JavaScript, the language is essentially JavaScript expressions with syntax for slash-delimited paths.
+- If you ever encounter a situation where Origami is not sufficient, you can easily invoke JavaScript.
+- Origami prefers using existing platform concepts directly. In advanced usage, this may mean you might encounter an unfamiliar concept from the platform — like async functions or typed arrays — but in the end that's better than a slightly simpler but proprietary concept. You are learning something you can apply to every future web project.
 
 ### Focus on creating great sites
 
