@@ -112,6 +112,74 @@ The line that defines `newTotal` can "see" the following variables in scope, eac
 
 Scope in Origami works the same way, but instead of working up a hierarchy of lexical programming blocks, Origami scope works its way up a hierarchy of folders and data.
 
+## Scope depends on location
+
+The scope used by an Origami expression depends on where that expression is defined, not how it is called.
+
+Suppose a project has the following structure:
+
+```
+src/
+  index.ori
+  site.ori
+```
+
+And the `site.ori` program defines some data:
+
+```ori
+{
+  data: {
+    title: "My site"
+  }
+  index.html = index.ori()
+}
+```
+
+where the data is of interest to the template in `index.ori`:
+
+```ori
+// Won't work
+`<h1>\${ data/title }</h1>`
+```
+
+Even though the `site.ori` program is calling `index.ori`, the scope available to `index.ori` depends on where it is defined: in the `src` folder. So that scope in that file searches, in order:
+
+- Inside `index.ori`
+- The `src` folder
+- The project's root folder
+- The project's configuration (see below)
+- The Origami built-in functions
+
+The cleanest way to make the `data` available to `index.ori` is for `site.ori` to pass it as an argument:
+
+```ori
+// site.ori
+${ samples.ori/cli/scope/site.ori }
+```
+
+which `index.ori` then accepts as a parameter:
+
+```ori
+// index.ori
+${ samples.ori/cli/scope/index.ori }
+```
+
+This produces:
+
+```console
+$ ori site.ori/index.html
+${ samples.ori/cli/scope/site.ori/index.html }
+```
+
+Another approach would be to have `index.ori` itself look for `site.ori` (which is in scope because that file is also in the `src` folder), and then extract the `data`:
+
+```ori
+// index.ori
+${ samples.ori/cli/scope/index2.ori }
+```
+
+Even though both `site.ori` and `index.ori` are referencing each other, both references will work. In some cases this approach may be appropriate, but in most cases it will be simpler to pass the data as an argument as shown above.
+
 ## Extend the language by leveraging scope
 
 You can use this system to make new functions available to any part of Origami — the ori CLI, the Origami [template system](templates.html), or `.ori` files to define trees. All you need to do is make a JavaScript file available somewhere in scope.
