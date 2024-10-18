@@ -1,5 +1,6 @@
 - href: index.html
   text: Introduction
+- text: "Tutorial:"
 - href: intro1.html
   text: Start tutorial
 - href: intro2.html
@@ -10,3 +11,6 @@
   text: Transformations
 - href: intro5.html
   text: Serving trees
+- text: "Additional topics:"
+- href: shell.html
+  text: Shell scripting
