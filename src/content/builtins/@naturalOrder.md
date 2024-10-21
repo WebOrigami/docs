@@ -8,9 +8,10 @@ For example, consider a collection of unsorted file names:
 
 ```yaml
 # unicodeSort.yaml
-file2: File Two
+file9: File Nine
+file7: File Seven
 file10: File Ten
-file1: File One
+file8: File Eight
 ```
 
 Sorting these with `@sort` sorts strings by their Unicode character values, which leads to a result that is surprising to most people:

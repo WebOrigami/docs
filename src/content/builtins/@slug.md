@@ -22,4 +22,4 @@ $ ori @slug post1.html/title
 ${ @slug samples.ori/templates/posts/post1.html/title }
 ```
 
-`@slug` does not assume a particular file extension. If you wish to add an extension, you can add one using, for example, a template literal.
+`@slug` does not assume a particular file extension. If you wish to add an extension, you can use, for example, a template literal.

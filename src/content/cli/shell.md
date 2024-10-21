@@ -14,7 +14,7 @@ ${ samples.ori/cli/list.ori }
 
 You can store this in a file called `list.ori` and mark that file as executable. The shebang directive lets you invoke this just by typing the file's name. If the file is in the current directory, for example, you can invoke it by typing `./list.ori`.
 
-If you put that `list.ori` file somewhere in your system path, then you can invoke it from any directory to, for example, generate an HTML list of that folder's contents.
+If you put that `list.ori` file somewhere in your system path, then you can invoke it from any directory to, for example, generate an HTML list of that folder's file names.
 
 ```console
 $ ls
