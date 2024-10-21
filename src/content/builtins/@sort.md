@@ -28,6 +28,8 @@ The `@sort` built-in takes an optional `options` argument. This can take the for
 - `compare`. A function that compares two arguments. This uses the same definition as the JavaScript [Array sort()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#description) method. If omitted, items are converted to strings and sorted as strings.
 - `sortKey`. A function evaluated for each entry in the tree to determine a sort key. See below.
 
+The default `compare` function sorts text strings by their Unicode character values. If you are sorting things for display to end users, consider using [@naturalOrder](@naturalOrder.html) as the `compare` function.
+
 As a shorthand, if you supply a function as the second argument to `@sort`, it will be used as the `sortKey` function.
 
 To reverse the sort order, apply `@sort` and then [@reverse](@reverse.html).

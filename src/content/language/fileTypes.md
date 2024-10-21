@@ -16,36 +16,38 @@ Regardless of a file's representation, you can use Origami path syntax to traver
 For example, suppose you have a JSON file `pet.json` containing
 
 ```json
-{
-  "name": "Fluffy",
-  "owner": "Alice"
-}
+${ samples.ori/help/pet.json }
 ```
 
 If you use the `ori` [CLI](/cli) to display this file, you will see the plain file contents:
 
 ```console
 $ ori pet.json
-{
-  "name": "Fluffy",
-  "owner": "Alice"
-}
+${ @json samples.ori/help/pet.json }
 ```
 
 You can unpack this file and traverse into its data with a slash path:
 
 ```console
 $ ori pet.json/name
-Fluffy
+${ samples.ori/help/pet.json/name }
 ```
 
 Ending a path with a slash unpacks the file and returns all the data. By default, `ori` will display it in YAML format:
 
 ```console
 $ ori pet.json/
-name: Fluffy
-owner: Alice
+${ @yaml samples.ori/help/pet.json }
 ```
+
+Most builtin functions that work on data will implicitly unpack a file in order to work on it. For example, you can hand the above JSON file directly to the [@keys](/builtins/@keys.html) function to view the keys of the data in that file, without having to append a `/` trailing slash to the `pet.json` file name:
+
+```console
+$ ori @keys pet.json
+${ @yaml @keys samples.ori/help/pet.json }
+```
+
+If you're writing Origami that works with a file and needs to explicitly unpack it, you can call the [@unpack](/builtins/@unpack.html) builtin function.
 
 ## Standard file types
 
@@ -145,6 +147,8 @@ The First Post
 ```
 
 Origami assumes that text files are encoded in [UTF-8](https://en.wikipedia.org/wiki/UTF-8).
+
+See more about [working with text documents](documents.html) in Origami.
 
 ### WebAssembly files
 

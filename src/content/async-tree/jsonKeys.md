@@ -80,6 +80,8 @@ $ ls snapshot
 Alice      Bob        Carol      index.html
 ```
 
+You can also use the [@exploreSite](/builtins/@exploreSite.html) builtin to create an explorable site for a given URL.
+
 ## Adding support for JSON Keys to your site
 
 You can apply the [@jsonKeys](/builtins/@jsonKeys.html) function to your site to define default `.keys.json` files for all your site's routes. Alternatively, you can apply the [@static](/builtins/@static.html) function to define both default `.keys.json` and `index.html` files for your site.

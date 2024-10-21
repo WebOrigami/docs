@@ -319,13 +319,7 @@ is equivalent to:
 fn('a', 'b', 'c')
 ```
 
-The following protocols are reserved:
-
-- `http:`
-- `https:`
-- `tree:`
-- `treehttp:`
-- `treehttps:`
+Origami reserves a number of [custom protocols](protocols.html).
 
 ## File paths
 
@@ -480,7 +474,7 @@ Block comment
 Generally speaking, the Origami expression language does not have reserved words, but:
 
 - Origami does include a number of [built-in functions](/builtins/) and values which will normally be in scope. All of them have names that start with an `@` at sign. To the extent you can, avoid adopting names for your own functions or data members that begin with `@`.
-- A few protocols like `https:` are reserved for use in URLs.
+- A few [protocols](protocols.html) like `https:` are reserved for use in URLs.
 
 Some of the Origami built-ins provide values which are normally reserved in a language, such as [@true](/builtins/@true.html) and [@false](/builtins/@false.html) values for true and false.
 

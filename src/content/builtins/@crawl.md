@@ -16,6 +16,12 @@ For example, you can copy the original [Space Jam](https://www.spacejam.com/1996
 $ ori "@copy @crawl(tree://www.spacejam.com/1996/), @files/spacejam"
 ```
 
+On a machine that doesn't have Origami installed, you can invoke `ori` via npm's `npx` command:
+
+```console
+$ npx ori "@copy @crawl(tree://www.spacejam.com/1996/), @files/spacejam"
+```
+
 Crawling is a network-intensive operation, so a command to crawl a site like the (surprisingly large!) site above can take a long time to complete -- on the order of minutes.
 
 ## Broken links
