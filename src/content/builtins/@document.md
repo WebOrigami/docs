@@ -40,3 +40,13 @@ ${ @yaml samples.ori/help/basho.md/ }
 ```
 
 If you have a collection of documents, some of which have data and some of which don't, you can normalize all of them to document objects by applying `@document` to each of them.
+
+```console
+$ ori @map [basho.md, hokusai.md], =@document _
+${ @yaml @map([
+  samples.ori/help/basho.md
+  samples.ori/help/hokusai.md
+], =@document(_)) }
+```
+
+All of the objects in the result are now document objects with a `@text` property.
