@@ -6,6 +6,7 @@ Generates a [slug](https://developer.mozilla.org/en-US/docs/Glossary/Slug) for t
 
 In converting the text to a slug, `@slug` will:
 
+- Convert text to lowercase
 - Convert spaces to dashes
 - Remove special characters except dashes, letters, numbers, and periods
 

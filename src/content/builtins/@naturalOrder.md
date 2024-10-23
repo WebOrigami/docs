@@ -21,7 +21,7 @@ $ ori @sort unicodeSort.yaml
 ${ @yaml @sort(samples.ori/help/unicodeSort.yaml) }
 ```
 
-The problem is that sorting by character values puts `1` before `2` — but people read a `1` and `0` as the number 10, and expect that to come after the number `2`.
+The problem is that sorting by character values puts a `1` character before a `2` — but people read a `1` and `0` as the number 10, and expect that to come after the number 9.
 
 If you would like to have strings that contain numbers sorted in (increasing) order of number value, you can pass `@naturalOrder` as the `compare` option:
 
