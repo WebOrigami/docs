@@ -184,23 +184,23 @@ You can tell Origami how to handle other types of files based on their file exte
 
 Suppose your project has `.user` files that define data about users. For simplicity, let's assume the contents of a `.user` file is in plain JSON text.
 
-You can define a JavaScript file `user_handler.js`:
+You can define a JavaScript file `user.handler.js`:
 
 ```${"js"}
-${ samples.ori/cli/user_handler.js}
+${ samples.ori/cli/user.handler.js}
 ```
 
 The `mediaType` declaration tells the Origami server to transmit any `.user` files as JSON. The `unpack` method defines how to turn the file contents into data. A file may be a `Buffer`, `ArrayBuffer`, or other data type depending on where it is stored. The `toString()` utility function in Origami converts any of those types to plain text. The `JSON.parse()` call then parses the text into data.
 
 ### Add your extension handler to your Origami configuration
 
-The second step is to tell Origami to use your `user_handler.js` file to handle any `.user` files.
+The second step is to tell Origami to use your `user.handler.js` file to handle any `.user` files.
 
-Define a [config.ori](config.html) file at the root of your project. Inside that, define a key `user_handler` that points to the location of the `.js` file:
+Define a [config.ori](config.html) file at the root of your project. Inside that, define a key `user.handler` that points to the location of the `.js` file:
 
 ```ori
 {
-  user_handler = src/user_handler.js
+  user.handler = src/user.handler.js
 }
 ```
 
