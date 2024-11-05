@@ -139,7 +139,7 @@ If you want the pages to appear at a higher level of the site, you can combine t
 
 Sometimes you want to group a set of pages into a subfolder to keep your source content organized, but have all those pages appear as if they were direct children of some other folder.
 
-For example, if you are an indie website author, you may want to create set of [slash pages](https://slashpages.net) at the top level of their site that reflect different aspects of you and your interests. You can create these pages in HTML directly (or use markdown; see the preceding section).
+For example, if you are an indie website author, you may want to create set of [slash pages](https://slashpages.net) at the top level of your site for various aspects of you and your interests. You can create these pages in HTML directly (or use markdown; see the preceding section).
 
 It may be useful to group such pages into a subfolder, but them merge them into the top level of your site so the pages have shorter URLs.
 
