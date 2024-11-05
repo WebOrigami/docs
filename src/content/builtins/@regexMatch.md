@@ -18,4 +18,4 @@ $ ori parseDate.ori "'2026-01-01 Happy New Year.md'"
 ${ samples.ori/help/parseDate.ori "2026-01-01 Happy New Year.md" }
 ```
 
-(This creates a date in U.S. Eastern time, although the date is displayed above in the time zone of the machine used build this site. The date and time are still correct for Eastern time.)
+(This creates a date in U.S. Eastern time, although the date is displayed above in the time zone of the machine used to build this site. The date and time are still correct for Eastern time.)

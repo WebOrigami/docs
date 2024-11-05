@@ -22,5 +22,7 @@
   text: Configuration
 - href: principles.html
   text: Principles
+- href: howTo.html
+  text: How To
 - href: examples.html
   text: Example sites
