@@ -8,7 +8,7 @@
     @slash/remove(areaSlash)
     name
     areas
-    content(areaSlash)/pages.yaml/
+    content/(areaSlash)/pages.yaml/
     client/assets/origami
   )
 
@@ -20,7 +20,7 @@
       @map(_, {
         description: "withData inner"
         extension: "md"
-        value: (page, name) => addDataToPages(page, name, areaSlash)
+        value: (page, name) => addDataToPages/(page, name, areaSlash)
       })
       =js/addData.js(_, "", @slash/remove(areaSlash), areas, @js/null, client/assets/origami)
     )

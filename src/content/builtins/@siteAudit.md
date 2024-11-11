@@ -27,7 +27,7 @@ ${ samples.ori/help/brokenLinks.ori }
 
 ```console
 $ ori @siteAudit brokenLinks.ori
-${ @yaml @siteAudit samples.ori/help/brokenLinks.ori }
+${ @yaml site:audit samples.ori/help/brokenLinks.ori }
 ```
 
 Here `@siteAudit` reports that `index.html` has a link to a non-existent page `b.html`.

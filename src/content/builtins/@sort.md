@@ -54,12 +54,3 @@ ${ @yaml @sort samples.ori/help/capitals.yaml, (capital) => capital }
   <figcaption>Input tree</figcaption>
   <figcaption>With values sorted</figcaption>
 </div>
-
-## Functional form
-
-`@sort` has a [functional form](functional.html) called `@sortFn` that accepts just the options argument of `@sort` and returns a function that can be applied to a tree to sort it. This is intended for use in content pipelines.
-
-```console
-$ ori "capitals.yaml → @sortFn((value) => value)"
-${ @yaml(samples.ori/help/capitals.yaml → @sortFn =_) }
-```
