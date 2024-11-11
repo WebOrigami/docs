@@ -1,0 +1,19 @@
+- href: index.html
+  text: "dev: namespace"
+- text: "&nbsp;"
+- href: breakpoint.html
+  text: breakpoint
+- href: changes.html
+  text: changes
+- href: debug.html
+  text: debug
+- href: explore.html
+  text: explore
+- href: log.html
+  text: log
+- href: serve.html
+  text: serve
+- href: svg.html
+  text: svg
+- href: watch.html
+  text: watch

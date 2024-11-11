@@ -1,0 +1,21 @@
+- href: index.html
+  text: "site: namespace"
+- text: "&nbsp;"
+- href: crawl.html
+  text: crawl
+- href: indexBuiltin.html
+  text: index
+- href: jsonKeys.html
+  text: jsonKeys
+- href: redirect.html
+  text: redirect
+- href: rss.html
+  text: rss
+- href: siteAudit.html
+  text: siteAudit
+- href: sitemap.html
+  text: sitemap
+- href: slug.html
+  text: slug
+- href: static.html
+  text: static

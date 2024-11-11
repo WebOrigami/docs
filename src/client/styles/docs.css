@@ -118,6 +118,11 @@ header h1 {
   margin: 0;
 }
 
+.supertitle {
+  font-weight: bold;
+  margin: 0;
+}
+
 .subtitle {
   font-style: italic;
   margin-top: 0;

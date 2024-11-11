@@ -1,0 +1,7 @@
+- href: index.html
+  text: "image: namespace"
+- text: "&nbsp;"
+- href: format.html
+  text: format
+- href: resize.html
+  text: resize
