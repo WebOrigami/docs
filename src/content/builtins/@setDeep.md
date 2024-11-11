@@ -1,5 +1,5 @@
 ---
-title: "@setDeep(target, source)"
+title: "setDeep(target, source)"
 ---
 
 Recursively applies updates from the `source` tree to the `target` tree.

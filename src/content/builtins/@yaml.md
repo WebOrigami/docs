@@ -1,5 +1,5 @@
 ---
-title: "@yaml(object)"
+title: "yaml(object)"
 ---
 
 Render the contents of the object in YAML format.
@@ -13,7 +13,7 @@ $ ori letters.json
   "b": "The letter B",
   "c": "The letter C"
 }
-$ ori @yaml letters.json
+$ ori yaml letters.json
 a: The letter A
 b: The letter B
 c: The letter C

@@ -16,8 +16,8 @@ siteComplete:
     Bob.html: <h1>Bob</h1>
     Carol.html: <h1>Carol</h1>
   assets:
-    personIcon.svg: "…"
-    styles.css: "…"
+    personIcon.svg: "..."
+    styles.css: "..."
   images:
     kingfisher.jpg: "[binary data]"
     van.jpg: "[binary data]"
@@ -87,7 +87,7 @@ Origami lets you visualize and explore your site as a hierarchical _tree_ of pag
 
 <span class="tutorialStep"></span> Click the **Preview** button at the bottom of the window, then click **Preview in a new window**. This will open your site in a new window (or tab).
 
-<span class="tutorialStep"></span> In the browser address bar for that new window, add `/!@svg` to the end of the URL. The new URL should look like `https://your-project-name.glitch.me/!@svg`
+<span class="tutorialStep"></span> In the browser address bar for that new window, add `/!svg` to the end of the URL. The new URL should look like `https://your-project-name.glitch.me/!svg`
 
 You'll see your site visually represented as a tree with just one branch:
 
@@ -219,13 +219,13 @@ Let's start by mapping the people defined in `teamData.yaml`: for each person, w
 <pre class="step">
 {
   index.html = greet.ori(teamData.yaml/0/name)
-  team = <b>@map(teamData.yaml, =_/name)</b>
+  team = <b>map(teamData.yaml, =_/name)</b>
 }
 </pre>
 
 </clipboard-copy>
 
-This formula calls a built-in function called [@map](/builtins/@map.html). All built-in functions start with an `@` sign.
+This formula calls a built-in function called [`map`](/builtins/map.html). All built-in functions start with an `@` sign.
 
 This `team` formula says: starting with the tree of structured data in `teamData.yaml`, create a new tree. For each person in the data, evaluate the expression `=_/name`, which gets the `name` field of the person being operated on.
 
@@ -267,7 +267,7 @@ So the `team` formula transforms the team data into a corresponding tree of just
 
 ## Use a template in a map
 
-The formula you give to `@map` can be as complex as your situation requires.
+The formula you give to `map` can be as complex as your situation requires.
 
 <span class="tutorialStep"></span> **Try it**: In the Glitch editor window, in `site.ori`, update the expression `=_/name` so that, instead of just returning a `name`, it calls the `greet.ori` template and passes in that person's name:
 
@@ -276,7 +276,7 @@ The formula you give to `@map` can be as complex as your situation requires.
 <pre class="step">
 {
   index.html = greet.ori(teamData.yaml/0/name)
-  team = @map(teamData.yaml, =<b>greet.ori(_/name)</b>)
+  team = map(teamData.yaml, =<b>greet.ori(_/name)</b>)
 }
 </pre>
 
@@ -311,7 +311,7 @@ You can pull a real folder or file into your tree by writing its name on a line 
 <pre class="step">
 {
   index.html = greet.ori(teamData.yaml/0/name)
-  team = @map(teamData.yaml, =greet.ori(_/name))
+  team = map(teamData.yaml, =greet.ori(_/name))
   <b>assets
   images</b>
 }
@@ -344,7 +344,7 @@ ${ demos/framework-intro/thumbnail.js }
 <pre class="step">
 {
   index.html = greet.ori(teamData.yaml/0/name)
-  team = @map(teamData.yaml, =greet.ori(_/name))
+  team = map(teamData.yaml, =greet.ori(_/name))
   assets
   images
   <b>small.jpg = thumbnail.js(images/van.jpg)</b>
@@ -363,7 +363,7 @@ ${ demos/framework-intro/thumbnail.js }
 
 ## Create a virtual folder of thumbnails
 
-You could write formulas to create a thumbnail for each image in the `images` folder — but the Origami `@map` function lets you define the transformation of all the images with a single line.
+You could write formulas to create a thumbnail for each image in the `images` folder — but the Origami `map` function lets you define the transformation of all the images with a single line.
 
 <span class="tutorialStep"></span> **Try it:** Switch to the Glitch editor window. In `site.ori`, delete the formula for `small.jpg` and replace it with the following `thumbnails` formula:
 
@@ -372,16 +372,16 @@ You could write formulas to create a thumbnail for each image in the `images` fo
 <pre class="step">
 {
   index.html = greet.ori(teamData.yaml/0/name)
-  team = @map(teamData.yaml, =greet.ori(_/name))
+  team = map(teamData.yaml, =greet.ori(_/name))
   assets
   images
-  <b>thumbnails = @map(images, thumbnail.js)</b>
+  <b>thumbnails = map(images, thumbnail.js)</b>
 }
 </pre>
 
 </clipboard-copy>
 
-This `thumbnails` formula applies the `thumbnail.js` function to each of the images. In that `@map` function, the second parameter is just the file name `thumbnail.js`, which is a shorthand for writing the longer form `=thumbnail.js(_)`
+This `thumbnails` formula applies the `thumbnail.js` function to each of the images. In that `map` function, the second parameter is just the file name `thumbnail.js`, which is a shorthand for writing the longer form `=thumbnail.js(_)`
 
 Because Origami treats real folders and virtual folders the same, you can browse your virtual folder of thumbnails.
 
@@ -400,7 +400,7 @@ The main About Us page should display a tile for each member that links to their
 ```${"html"}
 =`<h1>About Us</h1>
 <ul>
-  \{\{ @map(_, =`
+  \{\{ map(_, =`
     <li>\{\{ _/name }}</li>
   `) \}\}
 </ul>
@@ -413,8 +413,8 @@ In `site.ori`, you've already created a map of images to thumbnails, and a map o
 
 The `index.ori` file defines two templates, an outer template and an inner template:
 
-- The outer template spans all lines and defines the overall page. This outer template will accept the entire collection of team data as input; that's what the `_` underscore immediately following `@map` will receive.
-- The inner, nested template is defined on the middle line as part of the `@map`. That inner template will receive a single team member at a time as input; that's what the `_` underscore in `_/name` will refer to. This template generates a list item containing that person's name.
+- The outer template spans all lines and defines the overall page. This outer template will accept the entire collection of team data as input; that's what the `_` underscore immediately following `map` will receive.
+- The inner, nested template is defined on the middle line as part of the `map`. That inner template will receive a single team member at a time as input; that's what the `_` underscore in `_/name` will refer to. This template generates a list item containing that person's name.
 
 <span class="tutorialStep"></span> **Try it:** In `site.ori`, update your `index.html` formula to remove the call to `greet.ori` and instead invoke the `index.ori` template, passing in the `teamData.yaml` data.
 
@@ -423,10 +423,10 @@ The `index.ori` file defines two templates, an outer template and an inner templ
 <pre class="step">
 {
   index.html = <b>index.ori(teamData.yaml)</b>
-  team = @map(teamData.yaml, =greet.ori(_/name))
+  team = map(teamData.yaml, =greet.ori(_/name))
   assets
   images
-  thumbnails = @map(images, thumbnail.js)
+  thumbnails = map(images, thumbnail.js)
 }
 </pre>
 
@@ -468,7 +468,7 @@ You can use a template for the people pages in the `team` area too.
 
 </clipboard-copy>
 
-This template displays a person's name in a header. You can use this in the `@map` that defines the `team` area.
+This template displays a person's name in a header. You can use this in the `map` that defines the `team` area.
 
 <span class="tutorialStep"></span> **Try it:** In `site.ori`, edit the `team` formula to replace the `=greet.ori(_/name)` with `person.ori`.
 
@@ -477,10 +477,10 @@ This template displays a person's name in a header. You can use this in the `@ma
 <pre class="step">
 {
   index.html = index.ori(teamData.yaml)
-  team = @map(teamData.yaml, <b>person.ori</b>)
+  team = map(teamData.yaml, <b>person.ori</b>)
   assets
   images
-  thumbnails = @map(images, thumbnail.js)
+  thumbnails = map(images, thumbnail.js)
 }
 </pre>
 
@@ -500,7 +500,7 @@ This template displays a person's name in a header. You can use this in the `@ma
 
 As you've seen, the top-level keys in `teamData.yaml` are numbers, like `0` for the first person, so at the moment the `team` area pages are identified with numbers too. But in your final website tree, you'd like the keys in the `team` area to include the person's name, like `Alice.html`.
 
-So you want to transform both the keys and values of the team data. You can do this with an expanded form of the `@map` function.
+So you want to transform both the keys and values of the team data. You can do this with an expanded form of the `map` function.
 
 <span class="tutorialStep"></span> **Try it:** In `site.ori`, update the `team` formula so that the second parameter is a set of options in `{ }` curly braces. Turn the existing `person.ori` reference into a `valueMap` option.
 
@@ -509,12 +509,12 @@ So you want to transform both the keys and values of the team data. You can do t
 <pre class="step">
 {
   index.html = index.ori(teamData.yaml)
-  team = @map(teamData.yaml, <b>{
+  team = map(teamData.yaml, <b>{
     valueMap: person.ori
   }</b>)
   assets
   images
-  thumbnails = @map(images, thumbnail.js)
+  thumbnails = map(images, thumbnail.js)
 }
 </pre>
 
@@ -529,19 +529,19 @@ This will use `person.ori` to transform values just as before.
 <pre class="step">
 {
   index.html = index.ori(teamData.yaml)
-  team = @map(teamData.yaml, {
+  team = map(teamData.yaml, {
     <b>keyMap: =_/name</b>
     valueMap: person.ori
   })
   assets
   images
-  thumbnails = @map(images, thumbnail.js)
+  thumbnails = map(images, thumbnail.js)
 }
 </pre>
 
 </clipboard-copy>
 
-_**Note:** The Origami syntax for @map recently changed. For projects outside Glitch, use `key` instead of `keyMap` and `value` instead of `valueMap`._
+_**Note:** The Origami syntax for map recently changed. For projects outside Glitch, use `key` instead of `keyMap` and `value` instead of `valueMap`._
 
 <span class="tutorialStep"></span> Switch to the tree diagram window and refresh it to confirm that the `team` area is now using names instead of numbers:
 
@@ -575,13 +575,13 @@ We want the pages in the `team` area to end in a `.html` extension because that 
 <pre class="step">
 {
   index.html = index.ori(teamData.yaml)
-  team = @map(teamData.yaml, {
+  team = map(teamData.yaml, {
     keyMap: =<b>`\{\{ _/name }}.html`</b>
     valueMap: person.ori
   })
   assets
   images
-  thumbnails = @map(images, thumbnail.js)
+  thumbnails = map(images, thumbnail.js)
 }
 </pre>
 
@@ -632,13 +632,13 @@ To review, you've created this entire site with a few resources, a couple of tem
 ```ori
 {
   index.html = index.ori(teamData.yaml)
-  team = @map(teamData.yaml, {
+  team = map(teamData.yaml, {
     keyMap: =`\{\{ _/name }}.html`
     valueMap: person.ori
   })
   assets
   images
-  thumbnails = @map(images, thumbnail.js)
+  thumbnails = map(images, thumbnail.js)
 }
 ```
 
@@ -684,7 +684,7 @@ At some point after you close the Glitch window, Glitch will rebuild and serve t
 
 ## View your final site
 
-<span class="tutorialStep"></span> In the tree diagram window, edit the URL to remove the `!@svg` part.
+<span class="tutorialStep"></span> In the tree diagram window, edit the URL to remove the `!svg` part.
 
 This is how your site will look to visitors.
 

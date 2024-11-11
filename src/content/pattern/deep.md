@@ -65,7 +65,7 @@ ${ js/codeFunctions.js(pattern.ori/deep/json.js)/plain }
 ```console
 $ cd ../deep
 $ node json files.js
-${ @json pattern.ori/deep/files.js }
+${ json pattern.ori/deep/files.js }
 ```
 
 ## Deep transforms
@@ -82,13 +82,13 @@ ${ pattern.ori/deep/transform.js }
 
 ```console
 $ node json htmlFiles.js
-${ @json pattern.ori/deep/transform.js @tree/from pattern.ori/deep/files.js }
+${ json pattern.ori/deep/transform.js tree:from pattern.ori/deep/files.js }
 ```
 
 Visually this looks like:
 
 <figure>
-${ svg.js pattern.ori/deep/transform.js @tree/from pattern.ori/deep/files.js }
+${ svg.js pattern.ori/deep/transform.js tree:from pattern.ori/deep/files.js }
 </figure>
 
 So now we have a way of transforming an arbitrarily deep folder of markdown content into a corresponding deep tree of HTML content. We're now ready to do some interesting things with this content.

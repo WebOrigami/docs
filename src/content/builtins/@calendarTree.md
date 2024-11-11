@@ -1,5 +1,5 @@
 ---
-title: "@calendarTree(options)"
+title: "calendarTree(options)"
 ---
 
 This returns a tree structure representing years, months, and days from a start date to an end date. This is useful, for example, in generating a portion of a site that presents information for a given year, month, or day.
@@ -21,7 +21,7 @@ This produces a skeleton calendar tree with the years, months, and days for that
 
 ```console
 $ ori calendar.ori/
-${ @yaml samples.ori/help/calendar.ori/ }
+${ yaml samples.ori/help/calendar.ori/ }
 ```
 
 <figure>

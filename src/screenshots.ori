@@ -1,6 +1,6 @@
 // This Origami program consumes the information about the sample Origami sites
 // and returns a virtual folder of screenshots of those sites.
-@map(examples.yaml, {
+map(examples.yaml, {
   extension: "→png"
   value: =package:@weborigami/screenshot/url(_/url, {
     height: 768

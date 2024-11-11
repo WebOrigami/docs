@@ -1,13 +1,13 @@
 ---
-title: "@math"
+title: "math"
 ---
 
 A collection of functions for basic arithmetic. These are provided as a stopgap measure until the Origami language can handle basic math operations:
 
-- `@math/add(a, b, …)` — adds the indicated numbers
-- `@math/subtract(a, b)` — returns `a` minus `b`.
-- `@math/multiply(a, b, …)` — multiples the indicated numbers
-- `@math/divide(a, b)` — returns `a` divided by `b`.
+- `math/add(a, b, …)` — adds the indicated numbers
+- `math/subtract(a, b)` — returns `a` minus `b`.
+- `math/multiply(a, b, …)` — multiples the indicated numbers
+- `math/divide(a, b)` — returns `a` divided by `b`.
 
 Any string values passed to these functions are parsed as numbers before doing the math.
 
@@ -22,5 +22,5 @@ This outputs:
 
 ```console
 $ ori sections.ori/
-${ @yaml samples.ori/help/sections.ori/ }
+${ yaml samples.ori/help/sections.ori/ }
 ```

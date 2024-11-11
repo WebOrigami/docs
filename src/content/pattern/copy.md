@@ -50,7 +50,7 @@ And a fair bit of work for our file system-based tree:
       let stats;
       try {
         stats = await stat(destPath);
-      } catch (/** @type {any} */ error) {
+      } catch (/** type {any} */ error) {
         if (error.code === "ENOENT" /* File not found */) {
           return;
         }
@@ -136,7 +136,7 @@ Alice.html Bob.html   Carol.html index.html more
 
 ```console
 $ node json distFiles.js
-${ @json pattern.ori/set/htmlObject.js }
+${ json pattern.ori/set/htmlObject.js }
 ```
 
 We can see that we've generated HTML pages for all the markdown content, and also see that each level of this tree has an `index.html` page.

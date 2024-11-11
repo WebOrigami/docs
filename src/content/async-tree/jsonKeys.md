@@ -50,17 +50,17 @@ The Origami [ExplorableSiteTree](ExplorableSiteTree.html) class supports the JSO
 
 The ori [CLI](/cli) builds on this in several ways.
 
-Origami's custom `explore:` protocol allow you to indicate that you want to treat a given URL as the root of an [ExplorableSiteTree](ExplorableSiteTree.html) instead of a single resource. This lets you pass a site to any function that wants to enumerate the site's keys, such as the [@keys](/builtins/@keys.html) builtin:
+Origami's custom `explore:` protocol allow you to indicate that you want to treat a given URL as the root of an [ExplorableSiteTree](ExplorableSiteTree.html) instead of a single resource. This lets you pass a site to any function that wants to enumerate the site's keys, such as the [`keys`](/builtins/keys.html) builtin:
 
 ```console
-$ ori @keys explore://weborigami.org/samples/greetings/
+$ ori keys explore://weborigami.org/samples/greetings/
 - Alice
 - Bob
 - Carol
 - index.html
 ```
 
-Here the `explore:` protocol creates a `SiteTree` instance which retrieves the route's keys defined in a `.keys.json` file. The `@keys` function then asks that tree for the list of keys, which the ori CLI displays as the result of the command.
+Here the `explore:` protocol creates a `SiteTree` instance which retrieves the route's keys defined in a `.keys.json` file. The `keys` function then asks that tree for the list of keys, which the ori CLI displays as the result of the command.
 
 You can also use ori to display the complete contents of all pages at a given route:
 
@@ -75,16 +75,16 @@ index.html: … [HTML content of the file] …
 Or use ori to copy the contents of a site locally:
 
 ```console
-$ ori @copy explore://weborigami.org/samples/greetings/, @files/snapshot
+$ ori copy explore://weborigami.org/samples/greetings/, files/snapshot
 $ ls snapshot
 Alice      Bob        Carol      index.html
 ```
 
-You can also use the [@exploreSite](/builtins/@exploreSite.html) builtin to create an explorable site for a given URL.
+You can also use the [`exploreSite`](/builtins/exploreSite.html) builtin to create an explorable site for a given URL.
 
 ## Adding support for JSON Keys to your site
 
-You can apply the [@jsonKeys](/builtins/@jsonKeys.html) function to your site to define default `.keys.json` files for all your site's routes. Alternatively, you can apply the [@static](/builtins/@static.html) function to define both default `.keys.json` and `index.html` files for your site.
+You can apply the [`jsonKeys`](/builtins/jsonKeys.html) function to your site to define default `.keys.json` files for all your site's routes. Alternatively, you can apply the [`static`](/builtins/static.html) function to define both default `.keys.json` and `index.html` files for your site.
 
 ## Supporting JSON Keys on other platforms
 

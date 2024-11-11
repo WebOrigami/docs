@@ -29,7 +29,7 @@ $ ori names
 Here's some more text.
 
 ```console assert: true
-$ ori @keys names
+$ ori keys names
 - "0"
 - "1"
 - "2"

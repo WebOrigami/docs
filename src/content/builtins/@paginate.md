@@ -1,5 +1,5 @@
 ---
-title: "@paginate(treelike, count)<br>@paginateFn(count)"
+title: "paginate(treelike, count)"
 ---
 
 This returns a new tree that groups the original keys and values into "pages": fixed-size sets of items that are no bigger than `count`. A typical use for this is breaking a long list of blog posts, search results, etc., into multiple web pages.
@@ -12,8 +12,8 @@ ${ samples.ori/cli/countries.yaml }
 The above set of countries can be broken into pages of (up to) 3 items each:
 
 ```console
-$ ori @paginate countries.yaml, 3
-${ @yaml @paginate samples.ori/cli/countries.yaml, 3 }
+$ ori paginate countries.yaml, 3
+${ yaml paginate samples.ori/cli/countries.yaml, 3 }
 ```
 
 Each page includes:
@@ -26,7 +26,7 @@ Each page includes:
 
 <div class="sideBySide">
   <figure>
-    ${ svg.js @map(samples.ori/cli/countries.yaml, =`[data for ${_/name}]`) }
+    ${ svg.js map(samples.ori/cli/countries.yaml, =`[data for ${_/name}]`) }
   </figure>
   <figure>
     ${ svg.js({
@@ -39,14 +39,14 @@ Each page includes:
         nextPage: 2
         pageCount: 2
         pageNumber: 1
-        previousPage: @js/null
+        previousPage: js/null
       }
       2: {
         items: {
           3: "[data for Portugal]"
           4: "[data for Spain]"
         }
-        nextPage: @js/null
+        nextPage: js/null
         pageCount: 2
         pageNumber: 2
         previousPage: 1      
@@ -57,4 +57,4 @@ Each page includes:
   <figcaption>Grouped into pages</figcaption>
 </div>
 
-See also [@addNextPrevious](@addNextPrevious.html), which cross-links a series of items without grouping them into pages.
+See also [`addNextPrevious`](addNextPrevious.html), which cross-links a series of items without grouping them into pages.

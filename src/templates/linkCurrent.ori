@@ -1,4 +1,4 @@
-(link) => @if(link/href,
-  =`<a href="${ link/href }"${ @if link/current, ` aria-current="page"` }>${ link/text }</a>`
+(link) => if(link/href,
+  =`<a href="${ link/href }"${ if(link/current, ` aria-current="page"`) }>${ link/text }</a>`
   =`<span class="noLink">${ link/text }</span>`
 )

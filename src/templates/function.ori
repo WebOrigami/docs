@@ -1,23 +1,23 @@
-(api) => @indent`
+(api) => indent`
 <h3 id="${ api/name }">
-  ${ @if api/static, 'static ' }
-  ${ @if api/async, 'async '}
-  ${ @if api/generator, '*'}${api/name}(${ parameters.ori(api/parameters) })
-  ${ @if api/isConstructor, 'constructor'}
+  ${ if(api/static, 'static ') }
+  ${ if(api/async, 'async ') }
+  ${ if(api/generator, '*') }${api/name}(${ parameters.ori(api/parameters) })
+  ${ if(api/isConstructor, 'constructor') }
 </h3>
 <ul>
-${ @map(api/parameters, (parameter) => @indent`
+${ map(api/parameters, (parameter) => indent`
   <li>${parameter/name}: ${ typeList.ori(parameter/types) }
-    ${ @if parameter/description, =`&ndash; ${parameter/description}` }
+    ${ if(parameter/description, =`&ndash; ${parameter/description}`) }
   </li>  
 `) }
 </ul>
-${ @if @not(api/isConstructor), =@indent`
+${ if(not(api/isConstructor), =indent`
   <p>
     Returns: ${ typeList.ori(api/returnTypes) }
   </p>
-` }
+`) }
 <p>
-  ${ @mdHtml api/description}
+  ${ mdHtml(api/description) }
 </p>
 `

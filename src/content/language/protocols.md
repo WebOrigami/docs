@@ -27,8 +27,8 @@ will retrieve the HTML page at that URL and display it.
 The `new:` protocol lets you construct an instance of a JavaScript class. It expects a path to a class constructor and returns a function which will instantiate that class via the JavaScript `new` keyword.
 
 ```console
-$ ori "new:@js/Date('2025-12-31')"
-${ @yaml new:@js/Date('2025-12-31') }
+$ ori "new:Date('2025-12-31')"
+${ yaml new:Date('2025-12-31') }
 ```
 
 ## package:
@@ -40,13 +40,13 @@ This returns the default export(s) of the indicated npm package. You can then fu
 For example, if you install the Origami [screenshot](https://github.com/WebOrigami/extensions/tree/main/screenshot) extension using npm, you can invoke that extension's `url` screenshot function using the `package:` protocol:
 
 ```console
-$ ori "package:@weborigami/screenshot/url('https://example.com')" > example.png
+$ ori "package:weborigami/screenshot/url('https://example.com')" > example.png
 ```
 
 ## tree:
 
 The `tree:` protocol lets you treat a standard website as a tree. In most cases you will not be able to get the keys of that tree, but you will be able to get known resources from that tree.
 
-One use for this protocol is to create a tree that can be crawled by the [@crawl](/builtins/@crawl.html) or [@siteAudit](/builtins/@siteAudit.html) builtins. For an example, see [Auditing a live site](/builtins/@siteAudit.html#auditing-a-live-site).
+One use for this protocol is to create a tree that can be crawled by the [`crawl`](/builtins/crawl.html) or [`siteAudit`](/builtins/siteAudit.html) builtins. For an example, see [Auditing a live site](/builtins/siteAudit.html#auditing-a-live-site).
 
 The `tree:` protocol assumes a site supports HTTPS. For HTTP sites, use `treehttp:`. (If you want to emphasize the use of HTTPS, `treehttps:` is available as an alias for `tree:`.)

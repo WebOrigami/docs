@@ -1,5 +1,5 @@
 ---
-title: "@table(treelike)"
+title: "table(treelike)"
 ---
 
 Returns a basic tabular representation of the keys and values in the indicated `tree`.
@@ -39,7 +39,7 @@ $ ori languages.json
     "c": "Hola, c."
   }
 }
-$ ori @table languages.json | column -t -s$'\\t'
+$ ori table languages.json | column -t -s$'\\t'
          a            b            c
 english  Hello, a.    Hello, b.    Hello, c.
 french   Bonjour, a.  Bonjour, b.  Bonjour, c.

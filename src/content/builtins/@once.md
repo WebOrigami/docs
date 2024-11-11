@@ -1,5 +1,5 @@
 ---
-title: "@once(function)"
+title: "once(function)"
 ---
 
 Evaluates the given function once and returns the value. Subsequent invocations immediately return that value.

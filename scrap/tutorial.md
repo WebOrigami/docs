@@ -6,10 +6,10 @@ You can pass a real or virtual file to a function by name.
 
 ```
 word = "beep"
-doubled = @repeat(2, word)
+doubled = repeat(2, word)
 ```
 
-This calls a built-in [@repeat](/builtins/@repeat.html) function. (All built-in functions start with an `@` sign.) The value of `doubled` will be "beepbeep".
+This calls a built-in [`repeat`](/builtins/repeat.html) function. (All built-in functions start with an `@` sign.) The value of `doubled` will be "beepbeep".
 
 The order of the above definitions doesn't matter; `word` could just as well come after `doubled`.
 

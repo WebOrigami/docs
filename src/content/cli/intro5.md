@@ -5,7 +5,7 @@ numberHeadings: true
 
 ## Serve a tree
 
-You can serve any tree with the [@serve](/builtins/@serve.html) function. For example, the sample `site.yaml` file defines a tiny tree with two web pages:
+You can serve any tree with the [`serve`](/builtins/serve.html) function. For example, the sample `site.yaml` file defines a tiny tree with two web pages:
 
 ```console
 $ ori site.yaml
@@ -38,7 +38,7 @@ ${ svg.js samples.ori/cli/site.yaml }
 <span class="tutorialStep"></span> You can serve this tiny site directly from the file:
 
 ```console
-$ ori @serve site.yaml
+$ ori serve site.yaml
 Server running at http://localhost:5000
 ```
 
@@ -51,16 +51,16 @@ Press Ctrl+C to stop the server.
 <span class="tutorialStep"></span> You can serve any tree. To serve the current folder:
 
 ```console
-$ ori @serve .
+$ ori serve .
 Server running at http://localhost:5000
 ```
 
 This effectively lets ori work as a static file server.
 
-As a shorthand, you can omit the period (`.`). If you don't specify a tree to serve, `@serve` serves up the current folder.
+As a shorthand, you can omit the period (`.`). If you don't specify a tree to serve, `serve` serves up the current folder.
 
 ```console
-$ ori @serve
+$ ori serve
 Server running at http://localhost:5000
 ```
 
@@ -69,7 +69,7 @@ Server running at http://localhost:5000
 <span class="tutorialStep"></span> You can ask ori to serve data transformed on demand into HTML using `map` and the template we saw earlier.
 
 ```console
-$ ori "@serve @map greetings.yaml, template.js"
+$ ori "serve map greetings.yaml, template.js"
 Server running at http://localhost:5000
 ```
 
@@ -80,7 +80,7 @@ You can browse to one of the defined pages like http://localhost:5000/Alice. You
 Earlier you saw how you can transform a tree and save the results as files.
 
 ```console
-$ ori "@copy @map(greetings.yaml, template.js), @files/html"
+$ ori "copy map(greetings.yaml, template.js), files/html"
 $ ls html
 Alice   Bob     Carol
 ```
@@ -88,7 +88,7 @@ Alice   Bob     Carol
 <span class="tutorialStep"></span> If you serve the `html` folder created this way, the user experience will be the same as above, when the HTML pages were generated dynamically by `map`:
 
 ```console
-$ ori @serve html
+$ ori serve html
 Server running at http://localhost:5000
 ```
 
@@ -96,7 +96,7 @@ You can perform a `copy` operation like the one in this example in preparation f
 
 ## Inspect a live web site
 
-<span class="tutorialStep"></span> The web site you're reading now supports viewing its contents as an async tree, so you can reference it directly in ori. For example, this site includes a route `/samples/greetings/`. You can pass that URL to ori with the custom [tree:](/builtins/@treeHttps.html) protocol to treat that route as an async tree, and display all the files at that route:
+<span class="tutorialStep"></span> The web site you're reading now supports viewing its contents as an async tree, so you can reference it directly in ori. For example, this site includes a route `/samples/greetings/`. You can pass that URL to ori with the custom [tree:](/builtins/treeHttps.html) protocol to treat that route as an async tree, and display all the files at that route:
 
 ```console
 $ ori tree://weborigami.org/samples/greetings/
@@ -128,7 +128,7 @@ Making the full contents of a site more freely available might be concerning to 
 <span class="tutorialStep"></span> You can also use ori to copy a website as an async tree to local files:
 
 ```console
-$ ori @copy tree://weborigami.org/samples/greetings/, @files/snapshot
+$ ori copy tree://weborigami.org/samples/greetings/, files/snapshot
 $ ls snapshot
 Alice Bob   Carol
 ```

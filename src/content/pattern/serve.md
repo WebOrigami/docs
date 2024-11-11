@@ -55,11 +55,11 @@ Finally, we start the server at a default port.
 ```${'js'}
 /* src/deep/serve.js */
 
-${ js/codeFunctions.js(pattern.ori/deep/serve.js)/@prologue }
+${ js/codeFunctions.js(pattern.ori/deep/serve.js)/prologue }
 
 /* …Plus the above code fragments… */
 
-${ js/codeFunctions.js(pattern.ori/deep/serve.js)/@epilogue }
+${ js/codeFunctions.js(pattern.ori/deep/serve.js)/epilogue }
 
 ```
 

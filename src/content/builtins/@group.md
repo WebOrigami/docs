@@ -1,5 +1,5 @@
 ---
-title: "@group(treelike, fn)<br>@groupFn(fn)"
+title: "group(treelike, fn)"
 ---
 
 This function creates a new tree that groups values according to the result of a grouping function.
@@ -11,11 +11,11 @@ $ cat books.yaml
 ${ samples.ori/help/books.yaml }
 ```
 
-The books can then be grouped by genre. Here the `=_/genre` function is shorthand for `(book) => book/genre`. This function lets the `@group` built-in know what the books should be grouped by.
+The books can then be grouped by genre. Here the `=_/genre` function is shorthand for `(book) => book/genre`. This function lets the `group` built-in know what the books should be grouped by.
 
 ```console
-$ ori @group books.yaml, =_/genre
-${ @yaml @group samples.ori/help/books.yaml, =_/genre }
+$ ori group books.yaml, =_/genre
+${ yaml group samples.ori/help/books.yaml, =_/genre }
 ```
 
 In the result tree, the top-level keys for the groups are the individual values found in the `genre` field: "Sci-Fi", "Romance", and "Gothic". The group values are arrays containing references to all the books that included that particular genre; a single book can appear in multiple groups.
@@ -52,4 +52,4 @@ In the result tree, the top-level keys for the groups are the individual values 
   <figcaption>Grouped by genre</figcaption>
 </div>
 
-A common use for `@group` comes up anywhere content is tagged. For example, a blog with posts that can have multiple tags may want to offer a `/tags` area showing blog posts grouped by tag.
+A common use for `group` comes up anywhere content is tagged. For example, a blog with posts that can have multiple tags may want to offer a `/tags` area showing blog posts grouped by tag.

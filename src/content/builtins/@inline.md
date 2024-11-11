@@ -1,5 +1,5 @@
 ---
-title: "@inline(text)"
+title: "inline(text)"
 ---
 
 Treats `text` as an Origami template, evaluating any Origami expressions found inside `\$\{`…`}` placeholders in the `text`. This operation preserves any front matter in the document.
@@ -14,17 +14,17 @@ name: world
 Hello, \$\{ name }!
 ```
 
-Then invoking @inline with this file produces:
+Then invoking inline with this file produces:
 
 ```console
-$ ori @inline inline.md
+$ ori inline inline.md
 ---
 name: world
 ---
 Hello, world!
 ```
 
-Among other things, you can use `@inline` to include one document in another. For example, you can incorporate an HTML fragment from one document into HTML defined in another document.
+Among other things, you can use `inline` to include one document in another. For example, you can incorporate an HTML fragment from one document into HTML defined in another document.
 
 ```html
 <!-- page.html -->
@@ -41,7 +41,7 @@ Among other things, you can use `@inline` to include one document in another. Fo
 ```
 
 ```console
-$ ori @inline page.html
+$ ori inline page.html
 <html>
   <body>
     <p>Hello, world.</p>

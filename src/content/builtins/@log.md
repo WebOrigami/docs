@@ -1,11 +1,11 @@
 ---
-title: "@log(result, [message])"
+title: "log(result, [message])"
 ---
 
 This diagnostic function logs a message to the console as a side effect and then returns the indicated result.
 
 ```console
-$ ori "@log(1, 'Hello')"
+$ ori "log(1, 'Hello')"
 Hello
 1
 ```
@@ -16,20 +16,20 @@ the result of the function displayed by ori.
 You can pass an object as the message to log the object in YAML form:
 
 ```console
-$ ori @log 2, { a: 1 }
+$ ori log 2, { a: 1 }
 a: 1
 2
 ```
 
-You can also call `@log` with a single argument which will be both logged and returned.
+You can also call `log` with a single argument which will be both logged and returned.
 
-One use for `@log` is watching progress in a [@map](./@map.html):
+One use for `log` is watching progress in a [`map`](./map.html):
 
 ```ori
 // test.ori
-@map(
+map(
   ["Alice", "Bob", "Carol"]
-  (name, index) => @log(`Hello, \${name}!, `Processing \${index}`)
+  (name, index) => log(`Hello, \${name}!, `Processing \${index}`)
 )
 ```
 
@@ -45,4 +45,4 @@ Processing 2
 - Hello, Carol!
 ```
 
-See also [@breakpoint](./@breakpoint.html).
+See also [`breakpoint`](./breakpoint.html).

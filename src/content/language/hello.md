@@ -8,8 +8,8 @@ siteComplete:
     Bob.html: <h1>Bob</h1>
     Carol.html: <h1>Carol</h1>
   assets:
-    personIcon.svg: "<svg …"
-    styles.css: "body { color: …"
+    personIcon.svg: "<svg ..."
+    styles.css: "body { color: ..."
   images:
     kingfisher.jpg: "[binary data]"
     van.jpg: "[binary data]"
@@ -342,23 +342,23 @@ ${
   svg.js({
     post1.md: {
       title: "My first post"
-      @text: "Here's my *first* post!"
+      text: "Here's my *first* post!"
     }
     post2.md: {
       title: "Second post"
-      @text: "This is the *second* post."
+      text: "This is the *second* post."
     }
   })
 }
 </figure>
 
-Here the key `@text` is used to label the property holding the text of the markdown document.
+Here the key `text` is used to label the property holding the text of the markdown document.
 
-You can transform this tree of markdown objects into a corresponding tree of HTML objects. Origami includes a markdown-to-HTML command called [@mdHtml](/builtins/@mdHtml.html). That command works on a single file, so you can use it to process a single blog post:
+You can transform this tree of markdown objects into a corresponding tree of HTML objects. Origami includes a markdown-to-HTML command called [`mdHtml`](/builtins/mdHtml.html). That command works on a single file, so you can use it to process a single blog post:
 
 ```ori
 {
-  firstPost = @mdHtml(markdown/post1.md)
+  firstPost = mdHtml(markdown/post1.md)
 }
 ```
 
@@ -369,21 +369,21 @@ ${
   svg.js {
     firstPost: {
       title: "My first post"
-      @text: "Here's my <strong>first</strong> post!"
+      text: "Here's my <strong>first</strong> post!"
     }
   }
 }
 </figure>
 
-But instead of translating just one file a time, you can arrange for all the files in the `markdown` folder to be translated to HTML by calling Origami's built-in [@map](/builtins/@map.html) function:
+But instead of translating just one file a time, you can arrange for all the files in the `markdown` folder to be translated to HTML by calling Origami's built-in [`map`](/builtins/map.html) function:
 
 ```ori
 {
-  html = @map(markdown, @mdHtml)
+  html = map(markdown, mdHtml)
 }
 ```
 
-The `@map` built-in function accepts the `markdown` tree and returns a new tree in which the `@mdHtml` has been applied to each of the posts:
+The `map` built-in function accepts the `markdown` tree and returns a new tree in which the `mdHtml` has been applied to each of the posts:
 
 <figure>
 ${
@@ -391,18 +391,18 @@ ${
     html: {
       post1.html: {
         title: "My first post"
-        @text: "Here's my <strong>first</strong> post!"
+        text: "Here's my <strong>first</strong> post!"
       }
       post2.html: {
         title: "Second post"
-        @text: "This is the <strong>second</strong> post."
+        text: "This is the <strong>second</strong> post."
       }
     }
   }
 }
 </figure>
 
-When used inside a `@map`, the `@mdHtml` function translates both the keys (from `.md` names to `.html` names) and the text property (from markdown to HTML).
+When used inside a `map`, the `mdHtml` function translates both the keys (from `.md` names to `.html` names) and the text property (from markdown to HTML).
 
 ## Templates
 
@@ -419,18 +419,18 @@ The `post.ori` file contains an Origami template that mixes HTML with `\$\{ }` p
     <title>\${ post/title }</title>
   </head>
   <body>
-    \${ post/@text }
+    \${ post/text }
   </body>
 </html>
 `
 ```
 
-This `post.ori` template defines a function you can apply to all the HTML objects in a `@map`:
+This `post.ori` template defines a function you can apply to all the HTML objects in a `map`:
 
 ```ori
 {
-  html = @map(markdown, @mdHtml)
-  posts = @map(html, post.ori)
+  html = map(markdown, mdHtml)
+  posts = map(html, post.ori)
 }
 ```
 
@@ -442,16 +442,16 @@ ${
     html: {
       post1.html: {
         title: "My first post"
-        @text: "Here's my <strong>first</strong> post!"
+        text: "Here's my <strong>first</strong> post!"
       }
       post2.html: {
         title: "Second post"
-        @text: "This is the <strong>second</strong> post."
+        text: "This is the <strong>second</strong> post."
       }
     }
     posts: {
-      post1.html: "…<title>My first post</title>…"
-      post2.html: "…<title>Second post</title>…"
+      post1.html: "...<title>My first post</title>..."
+      post2.html: "...<title>Second post</title>..."
     }
   }
 }
@@ -483,9 +483,9 @@ You can rearrange the `site.ori` definition to hide the `html` area:
 
 ```ori
 {
-  html = @map(markdown, @mdHtml)
+  html = map(markdown, mdHtml)
   public = {
-    posts = @map(html, post.ori)
+    posts = map(html, post.ori)
   }
 }/public
 ```
@@ -498,8 +498,8 @@ The path `/public` at the end of the file indicates that only this `public` subt
 ${
   svg.js {
     posts: {
-      post1.html: "…<title>My first post</title>…"
-      post2.html: "…<title>Second post</title>…"
+      post1.html: "...<title>My first post</title>..."
+      post2.html: ".....<title>Second post</title>..."
     }
   }
 }
@@ -519,7 +519,7 @@ Continuing the blog example above, you can define an index page for the blog wit
   </head>
   <body>
     <ul>
-      \${ @map(html, (post, fileName) => `
+      \${ map(html, (post, fileName) => `
       <li><a href="posts/\${ fileName }">\${ post/title }</a></li>
       \`) }
     </ul>
@@ -530,16 +530,16 @@ Continuing the blog example above, you can define an index page for the blog wit
 
 The `page.ori` template above defines a function that accepts a single post. This `index.ori` template defines a function that accepts a collection of post objects.
 
-Inside this `index.ori` template, the `@map` built-in maps each post object to an HTML fragment with a list item containing a link. The link text will be the post's title; the link's destination will be the corresponding page in the `posts` area.
+Inside this `index.ori` template, the `map` built-in maps each post object to an HTML fragment with a list item containing a link. The link text will be the post's title; the link's destination will be the corresponding page in the `posts` area.
 
 You can then invoke `index.ori` to create the index page, passing in the same set of HTML post objects used to generate the `posts` area:
 
 ```ori
 {
-  html = @map(markdown, @mdHtml)
+  html = map(markdown, mdHtml)
   public = {
     index.html = index.ori(html)
-    posts = @map(html, post.ori)
+    posts = map(html, post.ori)
   }
 }/public
 ```
@@ -549,10 +549,10 @@ The site now looks like:
 <figure>
 ${
   svg.js {
-    index.html: "…<title>Blog index</title>…"
+    index.html: "...<title>Blog index</title>....."
     posts: {
-      post1.html: "…<title>My first post</title>…"
-      post2.html: "…<title>Second post</title>…"
+      post1.html: "...<title>My first post</title>..."
+      post2.html: "...<title>Second post</title>..."
     }
   }
 }

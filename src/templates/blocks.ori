@@ -1,4 +1,4 @@
-(document) => @indent`
+(document) => indent`
 <div class="blocks">
   ${ areaLinks.ori(document/areaLinks) }
 </div>

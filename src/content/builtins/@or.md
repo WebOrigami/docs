@@ -1,12 +1,12 @@
 ---
-title: "@or(...values)"
+title: "or(...values)"
 ---
 
 Returns the first truthy value: a value that isn't `false`, `null`, `undefined`, or any of the other similar values in JavaScript.
 
 This can be useful in situations like [templates](/language/templates.html) to provide a default value for a field that may or may not be present in an input document.
 
-Example: a blog post template uses `@or` to define a default title.
+Example: a blog post template uses `or` to define a default title.
 
 ```console
 $ ori blostPost.ori

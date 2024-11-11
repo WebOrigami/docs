@@ -8,7 +8,7 @@
   …data.ori/pages
 
   // This components.js "bundle" is just concatenated files
-  components.js = @concat(components)
+  components.js = concat(components)
 
   // Live demos
   demos/ = {
@@ -17,7 +17,7 @@
   }
 
   // Folder of search indexes and resources created on demand (but only once)
-  pagefind/ = @once(=package:@weborigami/pagefind(data.ori/cached))
+  pagefind/ = once(=package:@weborigami/pagefind(data.ori/cached))
 
   // Used by Netlify
   _redirects

@@ -1,5 +1,5 @@
 ---
-title: "@treeHttps(domain, [...keys])"
+title: "treeHttps(domain, [...keys])"
 ---
 
 Returns a new [SiteTree](/async-tree/SiteTree.html) for the indicated `domain`. If `keys` are supplied, this traverses the keys and returns the resulting value. This lets you retrieve resources from an existing website by treating it as a tree.
@@ -13,4 +13,4 @@ $ ori "(tree://example.com)/index.html"
 … displays contents of https://example.com/index.html …
 ```
 
-One use for `tree:` is passing a site to [@crawl](@crawl.html) to crawl a site.
+One use for `tree:` is passing a site to [`crawl`](crawl.html) to crawl a site.

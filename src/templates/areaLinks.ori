@@ -1,1 +1,1 @@
-(links) => @map(links, linkCurrent.ori)
+(links) => map(links, linkCurrent.ori)

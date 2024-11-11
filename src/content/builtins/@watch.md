@@ -1,5 +1,5 @@
 ---
-title: "@watch([treelike], [expression])"
+title: "watch([treelike], [expression])"
 ---
 
 Returns a tree that will be the result of executing the indicated `expression` in the context of the indicated `tree`.
@@ -9,9 +9,9 @@ This also watches the `tree` for `change` events. Currently, [FileTree](/async-t
 This can be used to serve a virtual folder, reevaluating its definition whenever the containing real folder changes.
 
 ```console
-$ ori @serve @watch src, =site.ori/public
+$ ori serve watch src, =site.ori/public
 ```
 
-Calling `@serve` this way will ensure that changes you make to Origami files and other data will be reflected when you refresh your browser.
+Calling `serve` this way will ensure that changes you make to Origami files and other data will be reflected when you refresh your browser.
 
-Note: `@watch` will not reload JavaScript files. If you edit any JavaScript files used in the construction of your site, you will need to restart the server to see those changes in the browser.
+Note: `watch` will not reload JavaScript files. If you edit any JavaScript files used in the construction of your site, you will need to restart the server to see those changes in the browser.

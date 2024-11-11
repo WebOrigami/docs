@@ -29,40 +29,40 @@ $ cat basho.md
 ${ samples.ori/help/basho.md }
 ```
 
-To represent text with data consistently, Origami will generally work with it as a plain object. The plain object's properties include the front matter data and an additional `@text` property with the body text.
+To represent text with data consistently, Origami will generally work with it as a plain object. The plain object's properties include the front matter data and an additional `text` property with the body text.
 
 If you ask Origami to unpack this file:
 
 ```console
 $ ori basho.md/
-${ @yaml samples.ori/help/basho.md/ }
+${ yaml samples.ori/help/basho.md/ }
 ```
 
-You can see that Origami is treating the body text as a `@text` property. In JSON format:
+You can see that Origami is treating the body text as a `text` property. In JSON format:
 
 ```console
-$ ori @json basho.md
-${ @json samples.ori/help/basho.md/ }
+$ ori json basho.md
+${ json samples.ori/help/basho.md/ }
 ```
 
-Here, the [@json](@json.html) command implicitly unpacks the document, so the trailing `/` slash is unnecessary.
+Here, the [`json`](json.html) command implicitly unpacks the document, so the trailing `/` slash is unnecessary.
 
-You can create a text document from plain text with the [@document](/builtins/@document.html) builtin.
+You can create a text document from plain text with the [`document`](/builtins/document.html) builtin.
 
 ## Working on documents with builtin functions
 
-Origami builtins that work on text, like [@inline](/builtins/@inline.html) and [@mdHtml](/builtins/@mdHtml.html), can work on both plain text documents and document objects.
+Origami builtins that work on text, like [`inline`](/builtins/inline.html) and [`mdHtml`](/builtins/mdHtml.html), can work on both plain text documents and document objects.
 
-If you give a builtin function plain text, you get back plain text. For example, `@mdHtml` transforms plain markdown text into plain HTML text:
+If you give a builtin function plain text, you get back plain text. For example, `mdHtml` transforms plain markdown text into plain HTML text:
 
 ```console
-$ ori @mdHtml hokusai.md
-${ @mdHtml samples.ori/help/hokusai.md }
+$ ori mdHtml hokusai.md
+${ mdHtml samples.ori/help/hokusai.md }
 ```
 
-If you give the builtin a document object, you get back a new document object that preserves the original front matter data as properties and a `@text` property that contains the transformed text:
+If you give the builtin a document object, you get back a new document object that preserves the original front matter data as properties and a `text` property that contains the transformed text:
 
 ```console
-$ ori @mdHtml basho.md
-${ @yaml @mdHtml samples.ori/help/basho.md/ }
+$ ori mdHtml basho.md
+${ yaml mdHtml samples.ori/help/basho.md/ }
 ```

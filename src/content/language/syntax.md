@@ -136,7 +136,7 @@ This evaluates to:
 
 ```console
 $ ori localRef.ori/
-${ @yaml samples.ori/help/localRef.ori/ }
+${ yaml samples.ori/help/localRef.ori/ }
 ```
 
 This type of local reference is not possible in languages like JavaScript.
@@ -152,7 +152,7 @@ Here the expression `\${name}` will resolve to the inherited `name` defined in t
 
 ```console
 $ ori inherited.ori
-${ @yaml samples.ori/help/inherited.ori/ }
+${ yaml samples.ori/help/inherited.ori/ }
 ```
 
 ## Object property getters
@@ -213,7 +213,7 @@ You can use `...` three periods or the single `…` ellipsis character to merge 
 $ ori tree1.yaml
 ${ samples.ori/help/merge/tree1.yaml }$ ori tree2.yaml
 ${ samples.ori/help/merge/tree2.yaml }$ ori { ...tree1.yaml, ...tree2.yaml }
-${ @yaml {
+${ yaml {
   ...samples.ori/help/merge/tree1.yaml
   ...samples.ori/help/merge/tree2.yaml
 } }
@@ -230,7 +230,7 @@ In an `.ori` file, you can use this to merge a folder into an object that also d
 }
 ```
 
-The built-in [@merge](/builtins/@merge.html) function performs this same operation as a function.
+The built-in [`merge`](/builtins/merge.html) function performs this same operation as a function.
 
 ## Function calls
 
@@ -356,7 +356,7 @@ $ ori sample.ori/
 I have a pet named Fluffy.
 ```
 
-You can prefix a template literal with a function name immediately before the leading backtick. This invokes that function with the strings that make up the template's boilerplate text and a set of values to be substituted in the output. This function signature is compatible with JavaScript [tagged template functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates). See [@indent](/builtins/@indent.html) for an example of a builtin function that you can use in a tagged template.
+You can prefix a template literal with a function name immediately before the leading backtick. This invokes that function with the strings that make up the template's boilerplate text and a set of values to be substituted in the output. This function signature is compatible with JavaScript [tagged template functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates). See [`indent`](/builtins/indent.html) for an example of a builtin function that you can use in a tagged template.
 
 ## Grouping
 
@@ -376,15 +376,15 @@ You can create the simplest form of a lambda function with an `=` equals sign:
 
 This expression will not be evaluated immediately, but only later when explicitly invoked.
 
-For example, the [@map](/builtins/@map.html) built-in function can apply another function to a tree's values and/or keys. To concisely define a function that will be evaluated in the context of each tree value, you can use a lambda:
+For example, the [`map`](/builtins/map.html) built-in function can apply another function to a tree's values and/or keys. To concisely define a function that will be evaluated in the context of each tree value, you can use a lambda:
 
 ```console
 $ cat letters.json
 ${ samples.ori/cli/letters.json
 }$ cat uppercase.js
 ${ samples.ori/cli/uppercase.js
-}$ ori "@map(letters.json, =uppercase.js(_))"
-${ @yaml @map samples.ori/cli/letters.json, samples.ori/cli/uppercase.js }
+}$ ori "map(letters.json, =uppercase.js(_))"
+${ yaml map samples.ori/cli/letters.json, samples.ori/cli/uppercase.js }
 ```
 
 The `_` underscore above refers to the value being mapped, so `=uppercase.js(_)` will convert the value to uppercase.
@@ -395,18 +395,18 @@ You can also define lambda functions with an expanded syntax using a "=>" (or th
 (parameter1, parameter2, parameter3, …) => expression
 ```
 
-The `@map` function shown above passes the mapping function the value and key being mapped — in that order — as arguments, so the above example can be rewritten:
+The `map` function shown above passes the mapping function the value and key being mapped — in that order — as arguments, so the above example can be rewritten:
 
 ```console
-$ ori "@map(letters.json, (description, letter) => uppercase.js(description))"
-${ @yaml @map samples.ori/cli/letters.json, (description, letter) => samples.ori/cli/uppercase.js(description) }
+$ ori "map(letters.json, (description, letter) => uppercase.js(description))"
+${ yaml map samples.ori/cli/letters.json, (description, letter) => samples.ori/cli/uppercase.js(description) }
 ```
 
 In this case, since the `letter` argument isn't used, it can be omitted:
 
 ```console
-$ ori "@map(letters.json, (description) => uppercase.js(description))"
-${ @yaml @map samples.ori/cli/letters.json, (description) => samples.ori/cli/uppercase.js(description) }
+$ ori "map(letters.json, (description) => uppercase.js(description))"
+${ yaml map samples.ori/cli/letters.json, (description) => samples.ori/cli/uppercase.js(description) }
 ```
 
 ## Pipe operator
@@ -429,7 +429,7 @@ This can be useful when applying multiple transformations of data. Suppose an in
 
 ```ori
 {
-  index.html = template.ori(@mdHtml(index.md))
+  index.html = template.ori(mdHtml(index.md))
 }
 ```
 
@@ -437,7 +437,7 @@ You can rewrite the above using the pipe operator so that the flow of data reads
 
 ```ori
 {
-  index.html = index.md → @mdHtml → template.ori
+  index.html = index.md → mdHtml → template.ori
 }
 ```
 
@@ -476,7 +476,7 @@ Generally speaking, the Origami expression language does not have reserved words
 - Origami does include a number of [built-in functions](/builtins/) and values which will normally be in scope. All of them have names that start with an `@` at sign. To the extent you can, avoid adopting names for your own functions or data members that begin with `@`.
 - A few [protocols](protocols.html) like `https:` are reserved for use in URLs.
 
-Some of the Origami built-ins provide values which are normally reserved in a language, such as [@true](/builtins/@true.html) and [@false](/builtins/@false.html) values for true and false.
+Some of the Origami built-ins provide values which are normally reserved in a language, such as [`true`](/builtins/true.html) and [`false`](/builtins/false.html) values for true and false.
 
 ## Instantiating classes
 

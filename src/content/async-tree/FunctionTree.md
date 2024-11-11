@@ -13,7 +13,7 @@ The [ori](/cli) tool will display the contents of the resulting `FunctionTree`.
 
 ```console
 $ ori function.js/
-${ @yaml samples.ori/help/function.js/ }
+${ yaml samples.ori/help/function.js/ }
 ```
 
 A rough implementation of the core interface methods in `FunctionTree` is:
@@ -41,8 +41,8 @@ class FunctionTree {
 Unlike async tree classes like [ObjectTree](ObjectTree.html), an `FunctionTree` can often accept keys which it does not make public in its `keys` iterator. The sample `FunctionTree` defined above exposes only three keys ("Alice", "Bob", "Carol"), but will actually accept any key.
 
 ```console
-$ ori @keys function.js/
-${ @yaml @keys samples.ori/help/function.js/ }$ ori function.js/David
+$ ori keys function.js/
+${ yaml keys samples.ori/help/function.js/ }$ ori function.js/David
 ${ samples.ori/help/function.js/David }
 ```
 

@@ -22,7 +22,7 @@ Carol: Hello, Carol.
 <span class="tutorialStep"></span> You can then treat both the base data and the greetings data as trees, and pass those to `map`, to turn the list of specific people into a list of greetings:
 
 ```console
-$ ori @map people.yaml, greetings.yaml
+$ ori map people.yaml, greetings.yaml
 - Hello, Alice.
 - Hello, Carol.
 ```
@@ -35,7 +35,7 @@ $ ori @map people.yaml, greetings.yaml
     ${ svg.js samples.ori/cli/greetings.yaml }
   </figure>
   <figure>
-    ${ svg.js @map(samples.ori/cli/people.yaml, samples.ori/cli/greetings.yaml) }
+    ${ svg.js map(samples.ori/cli/people.yaml, samples.ori/cli/greetings.yaml) }
   </figure>
   <figcaption>List of people</figcaption>
   <figcaption>Greetings for everyone</figcaption>

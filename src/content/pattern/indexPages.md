@@ -43,8 +43,8 @@ Using the default `indexPage` function above, let's now create a tree transform.
 ```${'js'}
 /* In src/index/indexPages.js */
 
-${ js/codeFunctions.js(pattern.ori/index/indexPages.js)/@prologue }
-${ js/codeFunctions.js(pattern.ori/index/indexPages.js)/@epilogue }
+${ js/codeFunctions.js(pattern.ori/index/indexPages.js)/prologue }
+${ js/codeFunctions.js(pattern.ori/index/indexPages.js)/epilogue }
 ```
 
 If we use this to transform the `more` branch of the HTML tree, the transformed tree now includes an `index.html` page:

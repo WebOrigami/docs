@@ -5,7 +5,7 @@
 
   addDataToPages = (page, name, areaSlash) => js/addData.js(
     page
-    @slash/remove(areaSlash)
+    slash/remove(areaSlash)
     name
     areas
     content/(areaSlash)/pages.yaml/
@@ -13,33 +13,33 @@
   )
 
   // Add the `area` and `fileName` properties to the documents.
-  withData = @map(content, {
+  withData = map(content, {
     description: "withData outer"
-    value: (_, areaSlash) => @if(
-      @tree/isAsyncTree(_)
-      @map(_, {
+    value: (_, areaSlash) => if(
+      tree:isAsyncTree(_)
+      map(_, {
         description: "withData inner"
         extension: "md"
         value: (page, name) => addDataToPages/(page, name, areaSlash)
       })
-      =js/addData.js(_, "", @slash/remove(areaSlash), areas, @js/null, client/assets/origami)
+      =js/addData.js(_, "", slash/remove(areaSlash), areas, null, client/assets/origami)
     )
   })
 
   // Take the markdown files and inline any Web Origami expressions contained
   // in curly braces.
-  inlined = @deepMap(withData, { extension: "md", value: @inline })
+  inlined = deepMap(withData, { extension: "md", value: inline })
 
   // Convert the markdown (including inlined content) to HTML while preserving
   // the front matter at the top of each document. As the content is now HTML,
   // we change the file extension from `.md` to `.html`. The result is a tree of
   // HTML content; each value represents the main body of a given page.
-  html = @deepMap(inlined, @mdHtml)
+  html = deepMap(inlined, mdHtml)
 
   // Apply the documentation page template. This injects the HTML content from
   // the previous step into the site's main page template, which adds headers
   // and navigation chrome. This step concludes the main documentation pipeline.
-  pages = @deepMap(html, { extension: "html", value: templates/page.ori })
+  pages = deepMap(html, { extension: "html", value: templates/page.ori })
 
-  cached = @cache(pages)
+  cached = cache(pages)
 }

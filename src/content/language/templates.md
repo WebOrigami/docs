@@ -129,7 +129,7 @@ ${ samples.ori/templates/concat.ori() }
 
 ## Use template expressions in any file type
 
-It may be useful to embed Origami expressions inside other kinds of files, such as .html files. You can evaluate such expressions with the built-in [@inline](/builtins/@inline.html) function.
+It may be useful to embed Origami expressions inside other kinds of files, such as .html files. You can evaluate such expressions with the built-in [`inline`](/builtins/inline.html) function.
 
 For example, you can use this to inline resources such as stylesheets.
 
@@ -144,13 +144,13 @@ ${ samples.ori/templates/inline.css }
 ```
 
 ```console
-$ ori @inline inline.html
-${ @inline samples.ori/templates/inline.html }
+$ ori inline inline.html
+${ inline samples.ori/templates/inline.html }
 ```
 
 Here, the `inline.html` file is acting as an Origami template, but keeps the `.html` extension so that it can be otherwise treated as an HTML file.
 
-If the input document contains any front matter (see below), @inline preserves this in the output.
+If the input document contains any front matter (see below), inline preserves this in the output.
 
 ## Template documents
 
@@ -240,9 +240,9 @@ You can also obtain a data file from the network, treat it as a tree, and [map t
 
 ## Conditions
 
-Use the built-in [@if](/builtins/@if.html) function to include text based on some condition.
+Use the built-in [`if`](/builtins/if.html) function to include text based on some condition.
 
-The first argument to `@if` is a condition that is evaluated. If the result is truthy (not `false`, `null`, or `undefined`), the second argument to `@if` is included in the template’s text output. If the result is falsy and a third argument is provided, that third argument will be included in the output.
+The first argument to `if` is a condition that is evaluated. If the result is truthy (not `false`, `null`, or `undefined`), the second argument to `if` is included in the template’s text output. If the result is falsy and a third argument is provided, that third argument will be included in the output.
 
 ```ori
 // condition.ori
@@ -347,7 +347,7 @@ Example: a blog post can be stored as a markdown file with front matter that def
 ${ samples.ori/templates/posts/post1.html }
 ```
 
-And a template can then reference this `title` property. Here the template uses the [@or](/builtins/@or.html) function to provide a default title if the input document has no `title`.
+And a template can then reference this `title` property. Here the template uses the [`or`](/builtins/or.html) function to provide a default title if the input document has no `title`.
 
 ```ori
 // blogPost.ori
@@ -364,7 +364,7 @@ ${ samples.ori/templates/blogPost.ori samples.ori/templates/posts/post1.html }
 ## Map trees to text
 
 It’s common to have a template generate some fragment of text for each value in a tree: an array, a set, a folder, etc.
-You can handle such cases in Origami templates by calling the built-in [@map](/builtins/@map.html#values) function to map a tree’s values to text.
+You can handle such cases in Origami templates by calling the built-in [`map`](/builtins/map.html#values) function to map a tree’s values to text.
 
 ```${"yaml"}
 # teamData.yaml
@@ -381,13 +381,13 @@ $ ori teamList.ori/
 ${ samples.ori/templates/teamList.ori() }
 ```
 
-The `teamList.ori` file defines an outer template that includes an `<ul>` tag. Inside that, a substitution calling `@map` appears, which maps the array of people in `teamData.yaml` to a set of HTML fragments using a nested template with an `<li>` tag.
+The `teamList.ori` file defines an outer template that includes an `<ul>` tag. Inside that, a substitution calling `map` appears, which maps the array of people in `teamData.yaml` to a set of HTML fragments using a nested template with an `<li>` tag.
 
 ### How maps work
 
-Origami templates don't treat such maps specially. Rather, the `@map` function is returning a tree of HTML fragments that are concatenated into the text output.
+Origami templates don't treat such maps specially. Rather, the `map` function is returning a tree of HTML fragments that are concatenated into the text output.
 
-In the above example, the `@map` function maps an array of people to HTML fragments. The transformation can be visualized like this:
+In the above example, the `map` function maps an array of people to HTML fragments. The transformation can be visualized like this:
 
 <div class="sideBySide">
   <figure>
@@ -398,7 +398,7 @@ In the above example, the `@map` function maps an array of people to HTML fragme
     ] }
   </figure>
   <figure>
-    ${ svg.js @map(samples.ori/templates/teamData.yaml, =`<li>${ _/name }</li>`) }
+    ${ svg.js map(samples.ori/templates/teamData.yaml, =`<li>${ _/name }</li>`) }
   </figure>
   <figcaption>Source tree of people objects</figcaption>
   <figcaption>Result tree of HTML fragments</figcaption>
@@ -408,7 +408,7 @@ Per the discussion in [Reference trees](#Reference-trees), the template concaten
 
 ### Reference the key for a value
 
-When `@map` calls a template, it passes three parameters: the value being mapped, the key for that value, and the overall tree being mapped. You don't have to use all the parameters.
+When `map` calls a template, it passes three parameters: the value being mapped, the key for that value, and the overall tree being mapped. You don't have to use all the parameters.
 
 The key parameter can be useful when you are building a list or index. For example, suppose you want to build an index page for a blog, where you will write posts in a `posts` folder:
 

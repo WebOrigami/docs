@@ -1,5 +1,5 @@
 ---
-title: "@version()"
+title: "version()"
 ---
 
 Returns the current Origami version.

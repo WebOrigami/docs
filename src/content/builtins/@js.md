@@ -1,8 +1,8 @@
 ---
-title: "@js"
+title: "js"
 ---
 
-The `@js` built-in provides access to a number of JavaScript classes and utility functions that you may find useful to call directly in Origami expressions:
+The `js` built-in provides access to a number of JavaScript classes and utility functions that you may find useful to call directly in Origami expressions:
 
 - [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
 - [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)
@@ -36,7 +36,7 @@ The `@js` built-in provides access to a number of JavaScript classes and utility
 For example, if you want to explicitly cast a value to a string in an Origami expression, you can write:
 
 ```
-text = @js/String(value)
+text = js/String(value)
 ```
 
-See also [@node](@node.html), which provides access to a number of Node.js modules.
+See also [`node`](node.html), which provides access to a number of Node.js modules.

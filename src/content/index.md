@@ -33,7 +33,7 @@ then you can turn that into a small Origami program that orchestrates the creati
   index.html = index.ori(products.yaml)
 
   // Create a page for each product
-  products = @map(products.yaml, products.ori)
+  products = map(products.yaml, products.ori)
 }
 ```
 

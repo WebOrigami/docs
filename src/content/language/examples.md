@@ -3,7 +3,7 @@ title: Example sites
 subtitle: Created with the Origami language
 ---
 
-${ @map(examples.yaml, (example, key) => `
+${ map(examples.yaml, (example, key) => `
 
 <h2>${ example/name }</h2>
 <a href="${ example/url }">
@@ -11,9 +11,9 @@ ${ @map(examples.yaml, (example, key) => `
 </a>
 <p>
 ${ example/description }
-${ @if(example/video, `<a href="${ example/video }">Video tour</a> &nbsp; `) }
+${ if(example/video, `<a href="${ example/video }">Video tour</a> &nbsp; `) }
 <a href="${ example/url }">Visit site</a>
-${ @if(example/repo, ` &nbsp; <a href="${ example/repo }">View source</a>`) }
+${ if(example/repo, ` &nbsp; <a href="${ example/repo }">View source</a>`) }
 </p>
 `) }
 

@@ -1,5 +1,5 @@
-(links) => @if(links, =@indent`<ul>
-  ${ @map(links, (link) => @indent`
+(links) => if(links, =indent`<ul>
+  ${ map(links, (link) => indent`
     <li>${ linkCurrent.ori(link) }</li>
   `) }
 </ul>

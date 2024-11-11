@@ -15,7 +15,7 @@ ${ pattern.ori/approaches/markdown/Alice.md }
 We want to end up with a corresponding collection of HTML pages, such as `Alice.html`:
 
 ```${'html'}
-${ @mdHtml pattern.ori/approaches/markdown/Alice.md }
+${ mdHtml pattern.ori/approaches/markdown/Alice.md }
 ```
 
 We will make use of a markdown-to-HTML translator, but beyond that are going to solve this problem without depending on a framework or other code. We'll essentially write everything from scratch.
@@ -39,7 +39,7 @@ We use the `fs.readFile` API to get a list of the file names that we can loop ov
 ```console
 $ cd src/approaches
 $ node files.js
-${ @yaml pattern.ori/approaches/markdown }
+${ yaml pattern.ori/approaches/markdown }
 ```
 
 ## Wait — why files?
@@ -62,7 +62,7 @@ ${ pattern.ori/approaches/object.js }
 
 ```console
 $ node object.js
-${ @yaml pattern.ori/approaches/markdown }
+${ yaml pattern.ori/approaches/markdown }
 ```
 
 This object-based approach has its own advantages. For one thing, the code is lot simpler. Being synchronous and working directly against memory, it will also be much faster. In some cases, keeping the data in a single file might also make it easier to create, edit, and manage the data as a collection. On the downside, working directly in a JavaScript file is something only someone with development experience would feel comfortable doing.
@@ -83,7 +83,7 @@ This particular function `fn` happens to be synchronous. If the function were as
 
 ```console
 $ node fn.js
-${ @yaml pattern.ori/approaches/markdown }
+${ yaml pattern.ori/approaches/markdown }
 ```
 
 ## Pros and cons

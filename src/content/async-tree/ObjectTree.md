@@ -34,7 +34,7 @@ The [ori](/cli) tool will display the contents of the resulting `ObjectTree`.
 
 ```console
 $ ori object.js/
-${ @yaml sample }
+${ yaml sample }
 ```
 
 ${ templates/class.ori(api.ori/ObjectTree.yaml/exports/0) }

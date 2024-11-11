@@ -68,9 +68,9 @@ Most sites define a consistent structure for all their pages that includes basic
 ${ samples.ori/howTo/baseTemplate/page.ori }
 ```
 
-This template expects to receive a [document object](documents.html#document-objects) that has a `title` property with the document title and a `@text` property with the body text.
+This template expects to receive a [document object](documents.html#document-objects) that has a `title` property with the document title and a `text` property with the body text.
 
-<span class="tutorialStep"></span> Create an `about.ori` template for an About page. This page will call the base `page.ori` template as a function, passing in the desired `title` and `@text` for the About page.
+<span class="tutorialStep"></span> Create an `about.ori` template for an About page. This page will call the base `page.ori` template as a function, passing in the desired `title` and `text` for the About page.
 
 ```ori
 // about.ori
@@ -118,14 +118,14 @@ ${ svg.js({
 }) }
 </figure>
 
-<span class="tutorialStep"></span> In your site definition, add a line that calls the [@map](/builtins/@map.html) to transform all the markdown files using the [@mdHtml](/builtins/@mdHtml.html) builtin.
+<span class="tutorialStep"></span> In your site definition, add a line that calls the [`map`](/builtins/map.html) to transform all the markdown files using the [`mdHtml`](/builtins/mdHtml.html) builtin.
 
 ```ori
 // site.ori
 ${ samples.ori/howTo/markdown/site.ori }
 ```
 
-The `@map` builtin will use `@mdHtml` to transform both the keys (names) and values (contents) of the markdown files: the file extension on the keys will change from `.md` to `.html`, and the values will change from markdown text to HTML.
+The `map` builtin will use `mdHtml` to transform both the keys (names) and values (contents) of the markdown files: the file extension on the keys will change from `.md` to `.html`, and the values will change from markdown text to HTML.
 
 <figure>
 ${ svg.js samples.ori/howTo/markdown/site.ori }

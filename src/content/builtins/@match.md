@@ -1,5 +1,5 @@
 ---
-title: "@match(pattern, fn, [keys])"
+title: "match(pattern, fn, [keys])"
 ---
 
 Returns a tree that can match against simple patterns or JavaScript regular expressions. This is useful in creating virtual trees.
@@ -17,7 +17,7 @@ The expression in parentheses defines a tree that matches patterns of the form `
 The `pattern` argument can take one of two forms:
 
 1. A simple pattern like `[name].html`. When used to match `Alice.html`, the `fn` function will be given an object with the matches: `{ name: "Alice" }`.
-2. A standard JavaScript [RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp) instance. One way to create a regular expression is with `@js/RegExp`; see the [@js](@js.html) built-in. If the regular expression matches, the groups that match will be passed to the `fn` function.
+2. A standard JavaScript [RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp) instance. One way to create a regular expression is with `js/RegExp`; see the [`js`](js.html) built-in. If the regular expression matches, the groups that match will be passed to the `fn` function.
 
 By default, the tree will have no public keys, but you can provide any [treelike object](/async-tree/treelike.html) as the `keys` argument. That tree's values will be used as the keys for the tree returned by `match()`.
 
@@ -25,5 +25,5 @@ By default, the tree will have no public keys, but you can provide any [treelike
 $ ori matchDomain.ori
 ${ samples.ori/templates/matchDomain.ori }
 $ ori matchDomain.ori
-${ @yaml samples.ori/templates/matchDomain.ori/ }
+${ yaml samples.ori/templates/matchDomain.ori/ }
 ```

@@ -10,7 +10,7 @@ If you use `ExplorableSiteTree` to wrap a site that supports the [JSON Keys prot
 For example, you can use the ori [CLI](/cli) to display the keys of a given site route using the custom `explore:` protocol, which returns an `ExplorableSiteTree`.
 
 ```console
-$ ori @keys explore://weborigami.org/samples/greetings/
+$ ori keys explore://weborigami.org/samples/greetings/
 - Alice
 - Bob
 - Carol

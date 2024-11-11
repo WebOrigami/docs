@@ -1,5 +1,5 @@
 ---
-title: "@equals(a, b)"
+title: "equals(a, b)"
 ---
 
 This returns `true` if `a` and `b` are [strictly equal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Strict_equality).

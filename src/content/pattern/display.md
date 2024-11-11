@@ -27,11 +27,11 @@ We could write a tool to statically import a specific tree we want to display, b
 ```${'js'}
 /* src/flat/json.js */
 
-${ js/codeFunctions.js(pattern.ori/flat/json.js)/@prologue }
+${ js/codeFunctions.js(pattern.ori/flat/json.js)/prologue }
 
 async function plain(tree) { /* See above */ }
 
-${ js/codeFunctions.js(pattern.ori/flat/json.js)/@epilogue }
+${ js/codeFunctions.js(pattern.ori/flat/json.js)/epilogue }
 ```
 
 The tool dynamically imports the indicated JavaScript file and gets its default export, which is expected to be an async tree. We then use the `plain` function above to resolve the tree to an in-memory object, then render the JSON for that object to the console.
@@ -42,7 +42,7 @@ The tool dynamically imports the indicated JavaScript file and gets its default 
 
 ```console
 $ node json object.js
-${ @json pattern.ori/flat/object.js/ }
+${ json pattern.ori/flat/object.js/ }
 ```
 
 &nbsp;

@@ -1,10 +1,10 @@
 ---
-title: "@regexMatch(text, regex)<br>@regexMatchFn(regex)"
+title: "regexMatch(text, regex)"
 ---
 
 Matches the given text against a regular expression containing [named capturing groups](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Named_capturing_group). If the expression matches, this returns the capturing groups; otherwise this returns undefined.
 
-Example: the following Origami program uses `@regexMatch` to identify parts of a date at the beginning of a string, perhaps a blog post file name.
+Example: the following Origami program uses `regexMatch` to identify parts of a date at the beginning of a string, perhaps a blog post file name.
 
 ```ori
 // parseDate.ori
