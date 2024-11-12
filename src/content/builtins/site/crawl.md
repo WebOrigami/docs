@@ -29,4 +29,4 @@ Crawling is a network-intensive operation, so a command to crawl a site like the
 
 If the crawl operation finds links to internal references that do not exist, it will return those in a `crawl-errors.json` entry at the top level of the returned tree.
 
-You can also use the related [`siteAudit`](siteAudit.html) builtin to audit a site for broken internal links.
+You can also use the related [`audit`](audit.html) builtin to audit a site for broken internal links.

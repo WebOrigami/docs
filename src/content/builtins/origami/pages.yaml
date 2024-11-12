@@ -1,6 +1,5 @@
-- href: index.html
-  text: "origami: namespace"
-- text: "&nbsp;"
+- text: "origami: namespace"
+  href: index.html
 - href: basename.html
   text: basename
 - href: builtins.html
@@ -41,3 +40,47 @@
   text: yaml
 - href: yamlParse.html
   text: yamlParse
+
+- text: "&nbsp;"
+
+- text: "All namespaces"
+- href: ../calc/
+  text: "calc:"
+- href: ../dev/
+  text: "dev:"
+- href: ../explore.html
+  text: "explore:"
+- href: ../files.html
+  text: "files:"
+- href: ../help.html
+  text: "help:"
+- href: ../http.html
+  text: "http:"
+- href: ../https.html
+  text: "https:"
+- href: ../httpstree.html
+  text: "httpstree:"
+- href: ../httptree.html
+  text: "httptree:"
+- href: ../image/
+  text: "image:"
+- href: ../inherited.html
+  text: "inherited:"
+- href: ../js.html
+  text: "js:"
+- href: ../new.html
+  text: "new:"
+- href: ../node.html
+  text: "node:"
+- href: ../origami/
+  text: "origami:"
+- href: ../package.html
+  text: "package:"
+- href: ../scope.html
+  text: "scope:"
+- href: ../site/
+  text: "site:"
+- href: ../text/
+  text: "text:"
+- href: ../tree/
+  text: "tree:"

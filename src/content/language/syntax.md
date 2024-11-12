@@ -230,7 +230,7 @@ In an `.ori` file, you can use this to merge a folder into an object that also d
 }
 ```
 
-The built-in [`merge`](/builtins/merge.html) function performs this same operation as a function.
+The built-in [`merge`](/builtins/tree/merge.html) function performs this same operation as a function.
 
 ## Function calls
 
@@ -356,7 +356,7 @@ $ ori sample.ori/
 I have a pet named Fluffy.
 ```
 
-You can prefix a template literal with a function name immediately before the leading backtick. This invokes that function with the strings that make up the template's boilerplate text and a set of values to be substituted in the output. This function signature is compatible with JavaScript [tagged template functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates). See [`indent`](/builtins/indent.html) for an example of a builtin function that you can use in a tagged template.
+You can prefix a template literal with a function name immediately before the leading backtick. This invokes that function with the strings that make up the template's boilerplate text and a set of values to be substituted in the output. This function signature is compatible with JavaScript [tagged template functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates). See [`indent`](/builtins/text/indent.html) for an example of a builtin function that you can use in a tagged template.
 
 ## Grouping
 
@@ -376,7 +376,7 @@ You can create the simplest form of a lambda function with an `=` equals sign:
 
 This expression will not be evaluated immediately, but only later when explicitly invoked.
 
-For example, the [`map`](/builtins/map.html) built-in function can apply another function to a tree's values and/or keys. To concisely define a function that will be evaluated in the context of each tree value, you can use a lambda:
+For example, the [`map`](/builtins/tree/map.html) built-in function can apply another function to a tree's values and/or keys. To concisely define a function that will be evaluated in the context of each tree value, you can use a lambda:
 
 ```console
 $ cat letters.json
@@ -443,8 +443,6 @@ You can rewrite the above using the pipe operator so that the flow of data reads
 
 This may make the flow of data easier to see.
 
-A number of Origami's built-in functions have [functional forms](/builtins/functional.html) to facilitate their use in content pipelines constructed with the pipe operator.
-
 ## Comments
 
 Line comments start with `//` double slashes and extend to the end of the line:
@@ -476,7 +474,7 @@ Generally speaking, the Origami expression language does not have reserved words
 - Origami does include a number of [built-in functions](/builtins/) and values which will normally be in scope. All of them have names that start with an `@` at sign. To the extent you can, avoid adopting names for your own functions or data members that begin with `@`.
 - A few [protocols](protocols.html) like `https:` are reserved for use in URLs.
 
-Some of the Origami built-ins provide values which are normally reserved in a language, such as [`true`](/builtins/true.html) and [`false`](/builtins/false.html) values for true and false.
+Origami's [`js:`](/builtins/js.html) namespace provides some values which are normally reserved in a language, such as `true` and `false`.
 
 ## Instantiating classes
 

@@ -5,7 +5,7 @@ supertitle: "origami:"
 
 This is a collection of functions for working with [trailing slashes](/async-tree/interface.html#trailing-slash-convention), which are commonly used in Origami keys to indicate that the value for that key is a subtree. For example, the key for a subfolder `content` may be given as `content/`.
 
-These `slash` functions can be useful when working inside a [`map`](map.html) that operates over the top level of a folder.
+These `slash` functions can be useful when working inside a [`map`](/builtins/tree/map.html) that operates over the top level of a folder.
 
 Example: The [Cherokee Myths](https://cherokee-myths.netlify.app/) sample site organizes a set of stories by topic into chapter folders. The folder for stories about birds is called "Birds". A [template that generates a table of contents](https://github.com/WebOrigami/cherokee-myths/blob/main/src/toc.ori) produces an HTML fragment for each chapter folder like:
 

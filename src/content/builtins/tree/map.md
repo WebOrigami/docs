@@ -16,7 +16,7 @@ $ cat greetings.yaml
 ${ samples.ori/cli/greetings.yaml
 }$ cat uppercase.js
 ${ samples.ori/cli/uppercase.js
-}$ ori map(greetings.yaml, uppercase.js)
+}$ ori map greetings.yaml, uppercase.js
 ${ yaml map samples.ori/cli/greetings.yaml, samples.ori/cli/uppercase.js }
 ```
 
@@ -40,7 +40,7 @@ The mapping function is typically a JavaScript function, an Origami [lambda](/la
 In the basic form of `map` shown above, the second parameter is some kind of mapping function that will be applied to the tree's values. You can also use an expanded form of `map` in which the second parameter is a collection of options:
 
 ```console
-$ ori map(greetings.yaml, { value: uppercase.js })
+$ ori map greetings.yaml, { value: uppercase.js }
 ```
 
 The options include:
@@ -127,7 +127,3 @@ ${ samples.ori/cli/greetings.yaml
 }$ ori "map(greetings.yaml, { extensions: '→html' })"
 ${ yaml(map(samples.ori/cli/greetings.yaml, { key: (greeting, name) => `${ name }.html` })) }
 ```
-
-## Functional form
-
-`map` has a [functional form](functional.html) called `mapFn` that accepts just the options argument of `map` and returns a function that can be applied to a tree. Follow that link for an example.

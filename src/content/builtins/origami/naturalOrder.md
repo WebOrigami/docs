@@ -3,7 +3,7 @@ title: "naturalOrder"
 supertitle: "origami:"
 ---
 
-Instructs the [`sort`](sort.html) builtin to use [natural sort order](https://en.wikipedia.org/wiki/Natural_sort_order) when comparing strings.
+Instructs the [`sort`](/builtins/tree/sort.html) builtin to use [natural sort order](https://en.wikipedia.org/wiki/Natural_sort_order) when comparing strings.
 
 For example, consider a collection of unsorted file names:
 

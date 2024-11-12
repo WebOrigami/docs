@@ -24,7 +24,7 @@ a: 1
 
 You can also call `log` with a single argument which will be both logged and returned.
 
-One use for `log` is watching progress in a [`map`](./map.html):
+One use for `log` is watching progress in a [`map`](/builtins/tree/map.html):
 
 ```ori
 // test.ori

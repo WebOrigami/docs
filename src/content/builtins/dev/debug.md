@@ -11,7 +11,7 @@ You can enable these features by including `debug` in the command that serves a 
 $ ori serve debug site.ori
 ```
 
-**Caution:** You should only enable debugging features for local debugging — the ability to invoke Origami commands from inside the browser (below) is far too powerful a feature to give to site visitors. Among other things, access to the [`shell`](shell.html) command would essentially provide a site visitor with a command line on the host machine.
+**Caution:** You should only enable debugging features for local debugging — the ability to invoke Origami commands from inside the browser (below) is far too powerful a feature to give to site visitors. Among other things, access to the [`shell`](/builtins/origami/shell.html) command would essentially provide a site visitor with a command line on the host machine.
 
 ## Origami commands in the browser
 

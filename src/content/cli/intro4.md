@@ -59,7 +59,7 @@ $ ori uppercase.js greetings.yaml/Alice
 HELLO, ALICE.
 ```
 
-<span class="tutorialStep"></span> You can apply that `uppercase` transformation to an entire tree with the ori's built-in [`map`](/builtins/map.html) function:
+<span class="tutorialStep"></span> You can apply that `uppercase` transformation to an entire tree with the ori's built-in [`map`](/builtins/tree/map.html) function:
 
 ```console
 $ ori map greetings.yaml, uppercase.js

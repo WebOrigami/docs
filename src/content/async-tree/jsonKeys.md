@@ -50,7 +50,7 @@ The Origami [ExplorableSiteTree](ExplorableSiteTree.html) class supports the JSO
 
 The ori [CLI](/cli) builds on this in several ways.
 
-Origami's custom `explore:` protocol allow you to indicate that you want to treat a given URL as the root of an [ExplorableSiteTree](ExplorableSiteTree.html) instead of a single resource. This lets you pass a site to any function that wants to enumerate the site's keys, such as the [`keys`](/builtins/keys.html) builtin:
+Origami's custom `explore:` protocol allow you to indicate that you want to treat a given URL as the root of an [ExplorableSiteTree](ExplorableSiteTree.html) instead of a single resource. This lets you pass a site to any function that wants to enumerate the site's keys, such as the [`keys`](/builtins/tree/keys.html) builtin:
 
 ```console
 $ ori keys explore://weborigami.org/samples/greetings/
@@ -80,11 +80,11 @@ $ ls snapshot
 Alice      Bob        Carol      index.html
 ```
 
-You can also use the [`exploreSite`](/builtins/exploreSite.html) builtin to create an explorable site for a given URL.
+You can also use the [`explore:`](/builtins/explore.html) protocol to create an explorable site for a given URL.
 
 ## Adding support for JSON Keys to your site
 
-You can apply the [`jsonKeys`](/builtins/jsonKeys.html) function to your site to define default `.keys.json` files for all your site's routes. Alternatively, you can apply the [`static`](/builtins/static.html) function to define both default `.keys.json` and `index.html` files for your site.
+You can apply the [`jsonKeys`](/builtins/site/jsonKeys.html) function to your site to define default `.keys.json` files for all your site's routes. Alternatively, you can apply the [`static`](/builtins/site/static.html) function to define both default `.keys.json` and `index.html` files for your site.
 
 ## Supporting JSON Keys on other platforms
 

@@ -40,14 +40,14 @@ $ ori pet.json/
 ${ yaml samples.ori/help/pet.json }
 ```
 
-Most builtin functions that work on data will implicitly unpack a file in order to work on it. For example, you can hand the above JSON file directly to the [`keys`](/builtins/keys.html) function to view the keys of the data in that file, without having to append a `/` trailing slash to the `pet.json` file name:
+Most builtin functions that work on data will implicitly unpack a file in order to work on it. For example, you can hand the above JSON file directly to the [`keys`](/builtins/tree/keys.html) function to view the keys of the data in that file, without having to append a `/` trailing slash to the `pet.json` file name:
 
 ```console
 $ ori keys pet.json
 ${ yaml keys samples.ori/help/pet.json }
 ```
 
-If you're writing Origami that works with a file and needs to explicitly unpack it, you can call the [`unpack`](/builtins/unpack.html) builtin function.
+If you're writing Origami that works with a file and needs to explicitly unpack it, you can call the [`unpack`](/builtins/origami/unpack.html) builtin function.
 
 ## Standard file types
 
@@ -93,7 +93,7 @@ $ ori sample.jpg/caption
 A nice photo at the beach
 ```
 
-Origami also has a small set of built-in functions called [`image`](/builtins/image.html) for resizing or reformatting images.
+Origami also has a small set of built-in functions in the [`image:`](/builtins/image/) namespace for resizing or reformatting images.
 
 ### JSON files
 

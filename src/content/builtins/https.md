@@ -1,6 +1,6 @@
 ---
-title: "https: namespace"
-subtitle: URL protocol for web resources via HTTPS
+title: "https: protocol"
+subtitle: To access an individual web resource via HTTP
 ---
 
 Fetches the HTTPS web resource at the indicated location.

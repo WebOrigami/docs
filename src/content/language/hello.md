@@ -354,7 +354,7 @@ ${
 
 Here the key `text` is used to label the property holding the text of the markdown document.
 
-You can transform this tree of markdown objects into a corresponding tree of HTML objects. Origami includes a markdown-to-HTML command called [`mdHtml`](/builtins/mdHtml.html). That command works on a single file, so you can use it to process a single blog post:
+You can transform this tree of markdown objects into a corresponding tree of HTML objects. Origami includes a markdown-to-HTML command called [`mdHtml`](/builtins/text/mdHtml.html). That command works on a single file, so you can use it to process a single blog post:
 
 ```ori
 {
@@ -375,7 +375,7 @@ ${
 }
 </figure>
 
-But instead of translating just one file a time, you can arrange for all the files in the `markdown` folder to be translated to HTML by calling Origami's built-in [`map`](/builtins/map.html) function:
+But instead of translating just one file a time, you can arrange for all the files in the `markdown` folder to be translated to HTML by calling Origami's built-in [`map`](/builtins/tree/map.html) function:
 
 ```ori
 {

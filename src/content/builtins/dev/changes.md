@@ -42,7 +42,7 @@ If you're using Origami to build a static website, your build folder represents 
 This can confirm that modifications to your site have only had the expected effects, and not broken something else somewhere unexpected.
 
 1. First, confirm your site looks the way you want.
-2. Build your project into a folder (`build`, say) using the [`copy`](copy.html#copy-to-build) command.
+2. Build your project into a folder (`build`, say) using the [`copy`](/builtins/tree/copy.html#copy-to-build) command.
 3. Copy the `build` folder to a separate folder called `baseline`.
 4. Make the modification you want to make to your site.
 5. Build the site again to update the `build` folder.

@@ -118,7 +118,7 @@ ${ svg.js({
 }) }
 </figure>
 
-<span class="tutorialStep"></span> In your site definition, add a line that calls the [`map`](/builtins/map.html) to transform all the markdown files using the [`mdHtml`](/builtins/mdHtml.html) builtin.
+<span class="tutorialStep"></span> In your site definition, add a line that calls the [`map`](/builtins/tree/map.html) to transform all the markdown files using the [`mdHtml`](/builtins/text/mdHtml.html) builtin.
 
 ```ori
 // site.ori

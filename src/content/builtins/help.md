@@ -1,5 +1,5 @@
 ---
-title: "help: namespace"
+title: "help: protocol"
 subtitle: Command line help on built-in namespaces and commands
 ---
 

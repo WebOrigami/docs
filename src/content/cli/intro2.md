@@ -159,7 +159,7 @@ $ echo This is input from the shell | ori uppercase.js stdin/
 THIS IS INPUT FROM THE SHELL
 ```
 
-Note the trailing slash in `stdin/`, which invokes the [`stdin`](/builtins/stdin.html) function to obtain the complete standard input. This lets you pipe data to a JavaScript function that accepts a simple argument instead of needing specialize the function specifically to read data from the console.
+Note the trailing slash in `stdin/`, which invokes the [`stdin`](/builtins/origami/stdin.html) function to obtain the complete standard input. This lets you pipe data to a JavaScript function that accepts a simple argument instead of needing specialize the function specifically to read data from the console.
 
 ## Writing output to a file
 

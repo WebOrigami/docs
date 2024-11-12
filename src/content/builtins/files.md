@@ -1,6 +1,6 @@
 ---
-title: "files: namespace"
-subtitle: URL protocol for file system folders and files
+title: "files: protocol"
+subtitle: To access file system folders and files
 ---
 
 Returns an [FileTree](/async-tree/FileTree.html) representation of the current directory or (if `dirname` is supplied) subdirectory named `dirname` within the current directory.
@@ -25,4 +25,4 @@ or just
 $ ori misc
 ```
 
-One situation where invoking `files` is often necessary is specifying the target of a [`copy`](copy.html) operation as a folder that does not yet exist.
+One situation where invoking `files` is often necessary is specifying the target of a [`copy`](tree/copy.html) operation as a folder that does not yet exist.

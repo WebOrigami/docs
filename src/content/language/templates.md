@@ -129,7 +129,7 @@ ${ samples.ori/templates/concat.ori() }
 
 ## Use template expressions in any file type
 
-It may be useful to embed Origami expressions inside other kinds of files, such as .html files. You can evaluate such expressions with the built-in [`inline`](/builtins/inline.html) function.
+It may be useful to embed Origami expressions inside other kinds of files, such as .html files. You can evaluate such expressions with the built-in [`inline`](/builtins/text/inline.html) function.
 
 For example, you can use this to inline resources such as stylesheets.
 
@@ -240,7 +240,7 @@ You can also obtain a data file from the network, treat it as a tree, and [map t
 
 ## Conditions
 
-Use the built-in [`if`](/builtins/if.html) function to include text based on some condition.
+Use the built-in [`if`](/builtins/calc/if.html) function to include text based on some condition.
 
 The first argument to `if` is a condition that is evaluated. If the result is truthy (not `false`, `null`, or `undefined`), the second argument to `if` is included in the template’s text output. If the result is falsy and a third argument is provided, that third argument will be included in the output.
 
@@ -347,7 +347,7 @@ Example: a blog post can be stored as a markdown file with front matter that def
 ${ samples.ori/templates/posts/post1.html }
 ```
 
-And a template can then reference this `title` property. Here the template uses the [`or`](/builtins/or.html) function to provide a default title if the input document has no `title`.
+And a template can then reference this `title` property. Here the template uses the [`or`](/builtins/calc/or.html) function to provide a default title if the input document has no `title`.
 
 ```ori
 // blogPost.ori
@@ -364,7 +364,7 @@ ${ samples.ori/templates/blogPost.ori samples.ori/templates/posts/post1.html }
 ## Map trees to text
 
 It’s common to have a template generate some fragment of text for each value in a tree: an array, a set, a folder, etc.
-You can handle such cases in Origami templates by calling the built-in [`map`](/builtins/map.html#values) function to map a tree’s values to text.
+You can handle such cases in Origami templates by calling the built-in [`map`](/builtins/tree/map.html#values) function to map a tree’s values to text.
 
 ```${"yaml"}
 # teamData.yaml

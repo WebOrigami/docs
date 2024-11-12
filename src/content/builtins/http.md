@@ -1,6 +1,6 @@
 ---
-title: "http: namespace"
-subtitle: URL protocol for web resources via HTTP
+title: "http: protocol"
+subtitle: To access an individual web resource via HTTP
 ---
 
 Fetches the HTTP web resource at the indicated location.

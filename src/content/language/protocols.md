@@ -47,6 +47,6 @@ $ ori "package:weborigami/screenshot/url('https://example.com')" > example.png
 
 The `tree:` protocol lets you treat a standard website as a tree. In most cases you will not be able to get the keys of that tree, but you will be able to get known resources from that tree.
 
-One use for this protocol is to create a tree that can be crawled by the [`crawl`](/builtins/crawl.html) or [`siteAudit`](/builtins/siteAudit.html) builtins. For an example, see [Auditing a live site](/builtins/siteAudit.html#auditing-a-live-site).
+One use for this protocol is to create a tree that can be crawled by the [`crawl`](/builtins/site/crawl.html) or [`audit`](/builtins/site/audit.html) builtins. For an example, see [Auditing a live site](/builtins/site/audit.html#auditing-a-live-site).
 
 The `tree:` protocol assumes a site supports HTTPS. For HTTP sites, use `treehttp:`. (If you want to emphasize the use of HTTPS, `treehttps:` is available as an alias for `tree:`.)

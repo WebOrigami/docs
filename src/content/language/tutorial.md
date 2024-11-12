@@ -225,7 +225,7 @@ Let's start by mapping the people defined in `teamData.yaml`: for each person, w
 
 </clipboard-copy>
 
-This formula calls a built-in function called [`map`](/builtins/map.html). All built-in functions start with an `@` sign.
+This formula calls a built-in function called [`map`](/builtins/tree/map.html). All built-in functions start with an `@` sign.
 
 This `team` formula says: starting with the tree of structured data in `teamData.yaml`, create a new tree. For each person in the data, evaluate the expression `=_/name`, which gets the `name` field of the person being operated on.
 

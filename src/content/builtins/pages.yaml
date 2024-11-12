@@ -2,7 +2,10 @@
   text: Builtins overview
 - href: extensions.html
   text: Extensions
+
 - text: "&nbsp;"
+
+- text: "All namespaces"
 - href: calc/
   text: "calc:"
 - href: dev/

@@ -46,4 +46,4 @@ See also [`node`](node.html), which provides access to a number of Node.js modul
 
 The `js:fetch()` function wraps the basic [fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) so that it returns an [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer). This can be fed directly to Origami functions that accept files.
 
-See also [`post`](post.html).
+See also [`post`](origami/post.html).
