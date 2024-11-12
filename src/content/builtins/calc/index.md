@@ -20,3 +20,7 @@ This outputs:
 $ ori sections.ori/
 ${ yaml samples.ori/help/sections.ori/ }
 ```
+
+## Commands by name
+
+${ commandList.ori/calc }

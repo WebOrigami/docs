@@ -1,0 +1,18 @@
+sort(
+  flatMap.js(node_modules/@weborigami/origami/src/help/help.yaml, (help, namespace) =>
+    if(
+      help/commands
+      =map(help/commands, (commandHelp, command) => {
+        args: commandHelp/args
+        description: commandHelp/description
+        namespace
+        url: if(
+          help/collection
+          =`/builtins/${ namespace }.html`
+          =`/builtins/${ namespace }/${ command }.html`
+        )
+      })
+    )
+  )
+  { compare: naturalOrder }
+)

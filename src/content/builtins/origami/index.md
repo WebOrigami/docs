@@ -1,4 +1,8 @@
 ---
 title: "origami: namespace"
-subtitle: Perform general Origami language functions
+subtitle: General Origami language functions
 ---
+
+## Commands by name
+
+${ commandList.ori/origami }

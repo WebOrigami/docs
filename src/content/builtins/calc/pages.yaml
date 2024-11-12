@@ -20,43 +20,44 @@
 - text: "&nbsp;"
 
 - text: "All namespaces"
-- href: ../calc/
+  href: /builtins
+- href: /builtins/calc/
   text: "calc:"
-- href: ../dev/
+- href: /builtins/dev/
   text: "dev:"
-- href: ../explore.html
+- href: /builtins/explore.html
   text: "explore:"
-- href: ../files.html
+- href: /builtins/files.html
   text: "files:"
-- href: ../help.html
+- href: /builtins/help.html
   text: "help:"
-- href: ../http.html
+- href: /builtins/http.html
   text: "http:"
-- href: ../https.html
+- href: /builtins/https.html
   text: "https:"
-- href: ../httpstree.html
+- href: /builtins/httpstree.html
   text: "httpstree:"
-- href: ../httptree.html
+- href: /builtins/httptree.html
   text: "httptree:"
-- href: ../image/
+- href: /builtins/image/
   text: "image:"
-- href: ../inherited.html
+- href: /builtins/inherited.html
   text: "inherited:"
-- href: ../js.html
+- href: /builtins/js.html
   text: "js:"
-- href: ../new.html
+- href: /builtins/new.html
   text: "new:"
-- href: ../node.html
+- href: /builtins/node.html
   text: "node:"
-- href: ../origami/
+- href: /builtins/origami/
   text: "origami:"
-- href: ../package.html
+- href: /builtins/package.html
   text: "package:"
-- href: ../scope.html
+- href: /builtins/scope.html
   text: "scope:"
-- href: ../site/
+- href: /builtins/site/
   text: "site:"
-- href: ../text/
+- href: /builtins/text/
   text: "text:"
-- href: ../tree/
+- href: /builtins/tree/
   text: "tree:"
