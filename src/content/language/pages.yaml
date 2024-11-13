@@ -14,8 +14,6 @@
   text: File types
 - href: documents.html
   text: Documents
-- href: protocols.html
-  text: Protocols
 - href: comparison.html
   text: JS comparison
 - href: config.html
