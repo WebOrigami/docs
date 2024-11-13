@@ -24,6 +24,8 @@
   text: regexMatch
 - href: repeat.html
   text: repeat
+- href: replaceExtension.html
+  text: replaceExtension
 - href: shell.html
   text: shell
 - href: slash.html
@@ -32,6 +34,8 @@
   text: stdin
 - href: string.html
   text: string
+- href: toFunction.html
+  text: toFunction
 - href: unpack.html
   text: unpack
 - href: version.html

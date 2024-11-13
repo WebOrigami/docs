@@ -2,12 +2,14 @@
   href: index.html
 - href: addNextPrevious.html
   text: addNextPrevious
+- href: assign.html
+  text: assign
 - href: cache.html
   text: cache
 - href: calendar.html
   text: calendar
-- href: clean.html
-  text: clean
+- href: clear.html
+  text: clear
 - href: concat.html
   text: concat
 - href: copy.html
@@ -22,24 +24,44 @@
   text: deepTake
 - href: deepValues.html
   text: deepValues
+- href: defineds.html
+  text: defineds
+- href: entries.html
+  text: entries
 - href: filter.html
   text: filter
 - href: first.html
   text: first
-- href: fnTree.html
-  text: fnTree
+- href: forEach.html
+  text: forEach
+- href: from.html
+  text: from
+- href: fromFn.html
+  text: fromFn
 - href: globs.html
   text: globs
 - href: group.html
   text: group
+- href: has.html
+  text: has
 - href: inners.html
   text: inners
+- href: isAsyncMutableTree.html
+  text: isAsyncMutableTree
+- href: isAsyncTree.html
+  text: isAsyncTree
+- href: isTraversable.html
+  text: isTraversable
+- href: isTreelike.html
+  text: isTreelike
 - href: keys.html
   text: keys
 - href: length.html
   text: length
 - href: map.html
   text: map
+- href: mapReduce.html
+  text: mapReduce
 - href: match.html
   text: match
 - href: merge.html
@@ -48,8 +70,12 @@
   text: paginate
 - href: parent.html
   text: parent
+- href: paths.html
+  text: paths
 - href: plain.html
   text: plain
+- href: remove.html
+  text: remove
 - href: reverse.html
   text: reverse
 - href: setDeep.html
@@ -60,6 +86,12 @@
   text: sort
 - href: take.html
   text: take
+- href: traverse.html
+  text: traverse
+- href: traverseOrThrow.html
+  text: traverseOrThrow
+- href: traversePath.html
+  text: traversePath
 - href: tree.html
   text: tree
 - href: values.html

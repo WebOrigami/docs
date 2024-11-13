@@ -36,10 +36,10 @@ ${ https://raw.githubusercontent.com/WebOrigami/origami-start/refs/heads/main/sr
 This project defines `build` script that issues the following [ori](/cli) command:
 
 ```console
-$ ori copy src/site.ori, clean files/build
+$ ori copy src/site.ori, clear files/build
 ```
 
-This command cleans out the contents of a folder called `build` (creating it if necessary), then copies the virtual contents described by `site.ori` into that `build` folder. The `build` folder will end up with a single file called `index.html` containing "Hello!"
+This command clears out the contents of a folder called `build` (creating it if necessary), then copies the virtual contents described by `site.ori` into that `build` folder. The `build` folder will end up with a single file called `index.html` containing "Hello!"
 
 ```console
 $ ls build

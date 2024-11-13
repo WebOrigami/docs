@@ -1,5 +1,5 @@
 ---
-title: "fnTree(fn, [domain])"
+title: fromFn(fn, [domain])
 supertitle: "tree:"
 ---
 
