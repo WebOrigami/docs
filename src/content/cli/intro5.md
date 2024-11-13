@@ -99,7 +99,7 @@ You can perform a `copy` operation like the one in this example in preparation f
 <span class="tutorialStep"></span> The web site you're reading now supports viewing its contents as an async tree, so you can reference it directly in ori. For example, this site includes a route `/samples/greetings/`. You can pass that URL to ori with the custom [httpstree:](/builtins/httpstree.html) protocol to treat that route as an async tree, and display all the files at that route:
 
 ```console
-$ ori tree://weborigami.org/samples/greetings/
+$ ori httpstree://weborigami.org/samples/greetings/
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
@@ -128,7 +128,7 @@ Making the full contents of a site more freely available might be concerning to 
 <span class="tutorialStep"></span> You can also use ori to copy a website as an async tree to local files:
 
 ```console
-$ ori copy tree://weborigami.org/samples/greetings/, files/snapshot
+$ ori copy httpstree://weborigami.org/samples/greetings/, files/snapshot
 $ ls snapshot
 Alice Bob   Carol
 ```
@@ -147,8 +147,6 @@ This concludes the ori introduction. As you've seen, ori is useful for
 - capturing function output to files
 - working with trees defined in JSON/YAML files, the file system, or web sites
 - serving trees to a web browser
-
-_Reviewer's note: Feel free to experiment further with ori if you'd like, but understand that it's a research project and will undergo further change. Anyone interested in using it should be in contact with [Jan Miksovsky](https://jan.miksovsky.com/contact.html), and at this stage should be prepared to participate in the project at some level beyond just filing bug reports and expecting those bugs to be fixed._
 
 &nbsp;
 

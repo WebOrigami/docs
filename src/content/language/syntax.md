@@ -297,30 +297,6 @@ $ ori greet.js/
 Hello, world.
 ```
 
-## URLs and protocols
-
-URLs that start with a protocol like `https:` or `http:` are valid expressions:
-
-```
-https://example.com
-```
-
-When evaluated, the value of the expression will be the response to that network request.
-
-In Origami, a protocol is just a function call, so you can write your own protocols:
-
-```
-fn://a/b/c
-```
-
-is equivalent to:
-
-```
-fn('a', 'b', 'c')
-```
-
-Origami reserves a number of [custom protocols](protocols.html).
-
 ## File paths
 
 Paths that start with a leading `/` slash refer to absolute paths in the filesystem:
@@ -342,6 +318,72 @@ $ ori /Users/alice/myProject/package.json
 $ ori /Users/alice/myProject/package.json/name
 Test project
 ```
+
+You can reference folder or file by name without any special leading character; such names will be resolved in [scope](scope.html). Example: if a project contains a folder called `src`, then the following are equivalent:
+
+```console
+$ ori ./src
+$ ori src
+```
+
+Inside an Origami program, if you have a local variable that has the same name as a folder in scope, and you want to explicitly reference the folder instead of the variable, you can use the [`files:`](/builtins/files.html) protocol.
+
+## Namespaces
+
+Origami organizes its [built-in functions and objects](/builtins) into namespaces: groups of things with a name. These names end in a colon.
+
+Some namespaces like [`https:`](/builtins/https.html) act like protocols in URLs:
+
+```
+https://example.com
+```
+
+The result of this URL will be the contents of the data at the indicated internet location.
+
+In addition to `https:` and `http:`, Origami has some custom protocols like [`files:`](/builtins/files.html).
+
+Other namespaces like [`dev:`](/builtins/dev.html) and [`tree:`](/builtins/tree.html) act as containers for functions and objects built into Origami. For example, the `tree:` namespace contains a function called [`tree:plain`](/builtins/tree/plain.html) that converts a tree to a plain JavaScript object.
+
+## Shorthand for builtin functions
+
+For faster typing in the command line and for more concise code generally, Origami allows built-in functions like `tree:plain` to be called in a shorthand form like `plain` that omits the namespace.
+
+This means the following commands are equivalent:
+
+```console
+$ ori tree:copy src/site.ori, tree:clear ./build
+$ ori copy src/site.ori, clear ./build
+```
+
+To distinguish between builtin function names and your own function names, the Origami parser enforces the following rule for the names of functions: if a function name contains only letters and numbers, it is taken to refer to a builtin. This rule applies to the names of functions:
+
+- invoked with parentheses
+- invoked with spaces that represent implicit parentheses
+- invoked as a tagged template (see template literals, below)
+
+Examples:
+
+- `map(markdown, page.ori)` — `map` is taken as a shorthand for the [`tree:map`](/builtins/tree/map.html) because `map` is only letters and appears before parentheses.
+- `yaml package.json` — `yaml` is a shorthand (for [`origami:yaml`](/builtins/origami/yaml.html)) because it's only letters and appears in the function position. The parentheses are implicit; it's the same as `yaml(package.json)`.
+- `uppercase.js(sample.txt)` — `uppercase.js` is not a builtin name because it contains a period.
+- `mdHtml("Hello")` — `mdHtml` is a shorthand (for [`text:mdHtml`](/builtins/text/mdHtml.html)).
+- `mdHtml/Hello` — `mdHtml` isn't immediately assumed to be a shorthand because it's being called with slash syntax (see Paths, above). The reference `mdHtml` will be resolved in [scope](scope.html). If a folder exists called "mdHtml", the reference will resolve to that folder, not the builtin, but if there is nothing else in scope called "mdHtml", then `mdHtml` will ultimately resolve to the builtin.
+
+In the last example, using a slash path prevented `mdHtml` from being immediately taken as the name of a builtin. In some cases you may have a local variable that contains a function, and the variable's name is only letters and numbers, such that it will be assumed to be a shorthand for a builtin function. If you want the name to reference the local variable in a function call, append a `/` slash to the name:
+
+```ori
+// Call `fn` as a function even though its name looks like a shorthand
+(fn) => fn/()
+```
+
+Alternatively, place parentheses around the name:
+
+```ori
+// Another way to call `fn` as a function
+(fn) => (fn)()
+```
+
+Both techniques cause the `fn` reference to be treated as a regular scope reference. In both cases the reference will find the local `fn` parameter, which can then be invoked as a function.
 
 ## Template literals
 

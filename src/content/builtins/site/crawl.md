@@ -9,18 +9,18 @@ Crawls the indicated tree and returns the complete tree of reachable resources. 
 
 You can use `crawl` to crawl an existing website and copy the resulting crawled tree for local inspection.
 
-In this case, the `tree` parameter is typically a [SiteTree](/async-tree/SiteTree.html). A convenient way to wrap an existing site is with the `tree` protocol (or `treehttp` for non-secure HTTP sites) in a URL.
+In this case, the `tree` parameter is typically a [SiteTree](/async-tree/SiteTree.html). A convenient way to wrap an existing site is with the `httpstree` protocol (or `httptree` for non-secure HTTP sites) in a URL.
 
 For example, you can copy the original [Space Jam](https://www.spacejam.com/1996/) website to a local folder called `spacejam` via:
 
 ```console
-$ ori "copy crawl(tree://www.spacejam.com/1996/), files/spacejam"
+$ ori "copy crawl(httpstree://www.spacejam.com/1996/), files:spacejam"
 ```
 
 On a machine that doesn't have Origami installed, you can invoke `ori` via npm's `npx` command:
 
 ```console
-$ npx ori "copy crawl(tree://www.spacejam.com/1996/), files/spacejam"
+$ npx ori "copy crawl(httpstree://www.spacejam.com/1996/), files:spacejam"
 ```
 
 Crawling is a network-intensive operation, so a command to crawl a site like the (surprisingly large!) site above can take a long time to complete -- on the order of minutes.
