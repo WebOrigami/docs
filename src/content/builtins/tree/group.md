@@ -1,5 +1,5 @@
 ---
-title: "group(treelike, fn)"
+title: group(tree, fn)
 supertitle: "tree:"
 ---
 

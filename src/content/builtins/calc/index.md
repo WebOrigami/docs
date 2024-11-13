@@ -7,20 +7,6 @@ A collection of functions for basic math and logic. These are provided as a stop
 
 Any string values passed to the math functions are parsed as numbers before doing the math.
 
-Example: Arrays in Origami (and JavaScript) use zero-based indices. If you wanted to add 1 to these indices to create a numbered list of strings, you could do:
-
-```ori
-// sections.ori
-${ samples.ori/help/sections.ori }
-```
-
-This outputs:
-
-```console
-$ ori sections.ori/
-${ yaml samples.ori/help/sections.ori/ }
-```
-
 ## Commands by name
 
 ${ commandList.ori/calc }

@@ -1,5 +1,5 @@
 ---
-title: "slug(text)"
+title: slug(text)
 supertitle: "site:"
 ---
 

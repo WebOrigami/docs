@@ -1,5 +1,5 @@
 ---
-title: "shuffle(treelike)"
+title: shuffle(tree)
 supertitle: "tree:"
 ---
 

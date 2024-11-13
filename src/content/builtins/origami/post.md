@@ -1,5 +1,5 @@
 ---
-title: "post(url, data)"
+title: post(url, data)
 supertitle: "origami:"
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "debug(treelike)"
+title: debug(tree)
 supertitle: "dev:"
 ---
 

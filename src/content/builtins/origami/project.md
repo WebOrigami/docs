@@ -1,5 +1,5 @@
 ---
-title: "project()"
+title: project()
 supertitle: "origami:"
 ---
 

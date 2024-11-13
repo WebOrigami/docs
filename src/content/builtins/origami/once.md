@@ -1,5 +1,5 @@
 ---
-title: "once(function)"
+title: once(function)
 supertitle: "origami:"
 ---
 

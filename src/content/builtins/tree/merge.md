@@ -1,5 +1,5 @@
 ---
-title: "merge(...treelikes)"
+title: merge(...trees)
 supertitle: "tree:"
 ---
 

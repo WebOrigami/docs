@@ -1,5 +1,5 @@
 ---
-title: "crawl(tree, [baseHref])"
+title: crawl(tree, [baseHref])
 supertitle: "site:"
 ---
 

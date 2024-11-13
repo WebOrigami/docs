@@ -1,5 +1,5 @@
 ---
-title: "json(object)"
+title: json(object)
 supertitle: "origami:"
 ---
 
@@ -9,13 +9,6 @@ The ori tool uses YAML as its default output format, so you can use the `json` f
 
 ```console assert: true, path: files
 $ ori greetings.yaml
-Alice: Hello, Alice.
-Bob: Hello, Bob.
-Carol: Hello, Carol.
-$ ori json greetings.yaml
-{
-  "Alice": "Hello, Alice.",
-  "Bob": "Hello, Bob.",
-  "Carol": "Hello, Carol."
-}
+${ samples.ori/cli/greetings.yaml }$ ori json greetings.yaml
+${ json samples.ori/cli/greetings.yaml }
 ```

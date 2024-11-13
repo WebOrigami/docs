@@ -1,5 +1,5 @@
 ---
-title: "deepMerge(...treelikes)"
+title: deepMerge(...trees)
 supertitle: "tree:"
 ---
 

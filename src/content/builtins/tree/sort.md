@@ -1,5 +1,5 @@
 ---
-title: "sort(treelike, [options])"
+title: sort(tree, [options])
 supertitle: "tree:"
 ---
 

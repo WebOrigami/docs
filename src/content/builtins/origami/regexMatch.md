@@ -1,5 +1,5 @@
 ---
-title: "regexMatch(text, regex)"
+title: regexMatch(text, regex)
 supertitle: "origami:"
 ---
 

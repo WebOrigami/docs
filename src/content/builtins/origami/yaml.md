@@ -1,5 +1,5 @@
 ---
-title: "yaml(object)"
+title: yaml(object)
 supertitle: "origami:"
 ---
 

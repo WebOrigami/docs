@@ -1,5 +1,5 @@
 ---
-title: "match(pattern, fn, [keys])"
+title: match(pattern, fn, [keys])
 supertitle: "tree:"
 ---
 

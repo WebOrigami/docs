@@ -103,7 +103,7 @@ HELLO, ALICE.
 <span class="tutorialStep"></span> You can transform a tree and save the results as files.
 
 ```console
-$ ori "copy map(greetings.yaml, template.js), files/html"
+$ ori "copy map(greetings.yaml, template.js), files:html"
 $ ls html
 Alice   Bob     Carol
 ```

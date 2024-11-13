@@ -80,7 +80,7 @@ You can browse to one of the defined pages like http://localhost:5000/Alice. You
 Earlier you saw how you can transform a tree and save the results as files.
 
 ```console
-$ ori "copy map(greetings.yaml, template.js), files/html"
+$ ori "copy map(greetings.yaml, template.js), files:html"
 $ ls html
 Alice   Bob     Carol
 ```
@@ -128,7 +128,7 @@ Making the full contents of a site more freely available might be concerning to 
 <span class="tutorialStep"></span> You can also use ori to copy a website as an async tree to local files:
 
 ```console
-$ ori copy httpstree://weborigami.org/samples/greetings/, files/snapshot
+$ ori copy httpstree://weborigami.org/samples/greetings/, files:snapshot
 $ ls snapshot
 Alice Bob   Carol
 ```

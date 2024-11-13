@@ -1,5 +1,5 @@
 ---
-title: "serve([treelike], [port])"
+title: serve([tree], [port])
 supertitle: "dev:"
 ---
 

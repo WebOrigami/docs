@@ -1,5 +1,5 @@
 ---
-title: "explore"
+title: explore
 supertitle: "dev:"
 ---
 

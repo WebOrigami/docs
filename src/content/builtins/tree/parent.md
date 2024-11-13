@@ -1,5 +1,5 @@
 ---
-title: "parent(treelike)"
+title: parent(tree)
 supertitle: "tree:"
 ---
 

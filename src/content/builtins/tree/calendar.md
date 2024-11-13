@@ -1,5 +1,5 @@
 ---
-title: "calendar(options)"
+title: calendar(options)
 supertitle: "tree:"
 ---
 

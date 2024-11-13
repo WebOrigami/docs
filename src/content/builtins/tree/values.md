@@ -1,5 +1,5 @@
 ---
-title: "values([treelike])"
+title: values([tree])
 supertitle: "tree:"
 ---
 

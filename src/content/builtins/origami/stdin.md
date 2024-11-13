@@ -1,5 +1,5 @@
 ---
-title: "stdin()"
+title: stdin()
 supertitle: "origami:"
 ---
 

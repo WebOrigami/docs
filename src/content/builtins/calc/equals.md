@@ -1,5 +1,5 @@
 ---
-title: "equals(a, b)"
+title: equals(a, b)
 supertitle: "calc:"
 ---
 

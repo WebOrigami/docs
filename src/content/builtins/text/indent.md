@@ -1,5 +1,5 @@
 ---
-title: "indent(strings, ...values)"
+title: indent(strings, ...values)
 supertitle: "text:"
 ---
 

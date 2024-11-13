@@ -1,5 +1,5 @@
 ---
-title: "map(treelike, options)"
+title: map(tree, options)
 supertitle: "tree:"
 ---
 

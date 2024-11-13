@@ -1,5 +1,5 @@
 ---
-title: "svg(treelike)"
+title: svg(tree)
 supertitle: "dev:"
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "or(...values)"
+title: or(...values)
 supertitle: "calc:"
 ---
 

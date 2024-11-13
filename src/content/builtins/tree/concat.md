@@ -1,5 +1,5 @@
 ---
-title: "concat(...objs)"
+title: concat(...objs)
 supertitle: "tree:"
 ---
 

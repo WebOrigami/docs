@@ -1,5 +1,5 @@
 ---
-title: "watch([treelike], [expression])"
+title: watch([tree], [expression])
 supertitle: "dev:"
 ---
 

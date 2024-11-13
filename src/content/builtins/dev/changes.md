@@ -1,5 +1,5 @@
 ---
-title: "changes(oldTree, newTree)"
+title: changes(oldTree, newTree)
 supertitle: "dev:"
 ---
 

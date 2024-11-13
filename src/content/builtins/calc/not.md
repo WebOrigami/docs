@@ -1,5 +1,5 @@
 ---
-title: "not(value)"
+title: not(value)
 supertitle: "calc:"
 ---
 

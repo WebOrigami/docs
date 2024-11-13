@@ -1,5 +1,5 @@
 ---
-title: "jsonKeys(treelike)"
+title: jsonKeys(tree)
 supertitle: "site:"
 ---
 
@@ -29,6 +29,6 @@ index.html: Home page
 .keys.json: '["about/","index.html"]'
 ```
 
-By including the `.keys.json` files in the static build of the site, you will make it possible for yourself and others to completely traverse the site tree using the [SiteTree](/async-tree/SiteTree.html) class and the [`httstree:`](/builtins/httpstree.html) protocol.
+By including the `.keys.json` files in the static build of the site, you will make it possible for yourself and others to completely traverse the site tree using the [SiteTree](/async-tree/SiteTree.html) class and the [`httpstree:`](/builtins/httpstree.html) protocol.
 
 See also [`static`](static.html).

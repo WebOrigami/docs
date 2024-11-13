@@ -1,5 +1,5 @@
 ---
-title: "index([treelike])"
+title: index([tree])
 supertitle: "site:"
 ---
 

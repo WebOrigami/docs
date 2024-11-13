@@ -1,5 +1,5 @@
 ---
-title: "addNextPrevious(treelike)"
+title: addNextPrevious(tree)
 supertitle: "tree:"
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "paginate(treelike, count)"
+title: paginate(tree, count)
 supertitle: "tree:"
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "deepReverse(treelike)"
+title: deepReverse(tree)
 supertitle: "tree:"
 ---
 

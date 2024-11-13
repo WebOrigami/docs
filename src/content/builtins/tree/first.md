@@ -1,5 +1,5 @@
 ---
-title: "first(treelike)"
+title: first(tree)
 supertitle: "tree:"
 ---
 

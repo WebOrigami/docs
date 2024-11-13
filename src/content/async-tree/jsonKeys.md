@@ -75,7 +75,7 @@ index.html: … [HTML content of the file] …
 Or use ori to copy the contents of a site locally:
 
 ```console
-$ ori copy explore://weborigami.org/samples/greetings/, files/snapshot
+$ ori copy explore://weborigami.org/samples/greetings/, files:snapshot
 $ ls snapshot
 Alice      Bob        Carol      index.html
 ```

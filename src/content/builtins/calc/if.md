@@ -1,5 +1,5 @@
 ---
-title: "if(condition, trueValue, [falseValue])"
+title: if(condition, trueValue, [falseValue])
 supertitle: "calc:"
 ---
 

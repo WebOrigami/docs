@@ -1,5 +1,5 @@
 ---
-title: "sitemap(treelike, host)"
+title: sitemap(tree, host)
 supertitle: "site:"
 ---
 

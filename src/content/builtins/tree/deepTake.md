@@ -1,5 +1,5 @@
 ---
-title: "deepTake(treelike, count)"
+title: deepTake(tree, count)
 supertitle: "tree:"
 ---
 

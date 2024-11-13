@@ -1,5 +1,5 @@
 ---
-title: "filter(tree, filter)"
+title: filter(tree, filter)
 supertitle: "tree:"
 ---
 

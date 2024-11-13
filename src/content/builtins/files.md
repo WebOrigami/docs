@@ -10,7 +10,7 @@ Because the Origami language recognizes many types of file paths, you won't ofte
 For example, suppose the current folder contains a subfolder called `misc`. To display the contents of that folder in the terminal, you could write:
 
 ```console
-$ ori files/misc
+$ ori files:misc
 ```
 
 But you can also write:

@@ -1,5 +1,5 @@
 ---
-title: "inline(text)"
+title: inline(text)
 supertitle: "text:"
 ---
 
@@ -10,7 +10,6 @@ If `inline.md` contains:
 ```md
 ---
 name: world
-supertitle: "text:"
 ---
 
 Hello, \$\{ name }!

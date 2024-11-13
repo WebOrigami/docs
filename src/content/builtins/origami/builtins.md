@@ -1,10 +1,14 @@
 ---
-title: "builtins"
+title: builtins
 supertitle: "origami:"
 ---
 
 `builtins` returns a tree of the complete set of Origami built-in functions.
 
-The built-in functions are already prefixed with `@` signs to reduce the chance of a name collision, but the `builtins` tree lets you further disambiguate between a local file or function of yours whose name happens to start with a `@`.
+Because all builtins are always in scope, it's unlikely you will need to reference `builtins` directly.
 
-For example, if your project happens to contain a folder called `map`, then using `map` in a local formula will reference the local folder instead of the `map` built-in function. To reference the built-in `map`, you can write `builtins/map`.
+One theoretical use for `builtins` would be if you have a string holding the name of a desired builtin and want to obtain the corresponding function. E.g., you can obtain a reference to the [`keys`](/builtins/tree/keys.html) builtin with:
+
+```
+builtins("keys")
+```

@@ -1,5 +1,5 @@
 ---
-title: "slash"
+title: slash
 supertitle: "origami:"
 ---
 

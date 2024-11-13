@@ -1,5 +1,5 @@
 ---
-title: "unpack(data)"
+title: unpack(data)
 supertitle: "origami:"
 ---
 

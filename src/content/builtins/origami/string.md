@@ -1,5 +1,5 @@
 ---
-title: "string(value)"
+title: string(value)
 supertitle: "origami:"
 ---
 

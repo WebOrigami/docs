@@ -1,5 +1,5 @@
 ---
-title: "naturalOrder"
+title: naturalOrder
 supertitle: "origami:"
 ---
 

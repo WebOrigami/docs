@@ -1,5 +1,5 @@
 ---
-title: "static(treelike)"
+title: static(tree)
 supertitle: "site:"
 ---
 

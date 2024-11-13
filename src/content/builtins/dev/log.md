@@ -1,5 +1,5 @@
 ---
-title: "log(result, [message])"
+title: log(result, [message])
 supertitle: "dev:"
 ---
 

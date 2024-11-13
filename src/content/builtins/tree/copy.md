@@ -1,5 +1,5 @@
 ---
-title: "copy(sourceTree, targetTree)"
+title: copy(sourceTree, targetTree)
 supertitle: "tree:"
 ---
 
@@ -12,14 +12,14 @@ $ cat greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
-$ ori copy greetings.yaml, files/greetings
+$ ori copy greetings.yaml, files:greetings
 $ ls greetings
 Alice   Bob     Carol
 $ cat greetings/Alice
 Hello, Alice.
 ```
 
-The `files/greetings` argument indicates that `copy` should copy the input YAML tree to a file system tree under a folder named `greetings`. As a result, the key/value pairs in the YAML file are now individual files in a `greetings` folder.
+The `files:greetings` argument indicates that `copy` should copy the input YAML tree to a file system tree under a folder named `greetings`. As a result, the key/value pairs in the YAML file are now individual files in a `greetings` folder.
 
 The `targetTree` must support a `set` method. The two types of trees defined in the [async-tree](/async-tree) library that provides such support are [ObjectTree](/async-tree/ObjectTree.html) and [FileTree](/async-tree/FileTree.html). Only the latter provides persistent effects, so `copy` is typically used to copy the values from the source tree into file system files.
 
@@ -36,7 +36,7 @@ ${ https://raw.githubusercontent.com/WebOrigami/origami-start/refs/heads/main/sr
 This project defines `build` script that issues the following [ori](/cli) command:
 
 ```console
-$ ori copy src/site.ori, clear files/build
+$ ori copy src/site.ori, clear files:build
 ```
 
 This command clears out the contents of a folder called `build` (creating it if necessary), then copies the virtual contents described by `site.ori` into that `build` folder. The `build` folder will end up with a single file called `index.html` containing "Hello!"

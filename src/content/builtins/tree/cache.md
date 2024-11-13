@@ -1,5 +1,5 @@
 ---
-title: "cache(tree, [cache], [filter])"
+title: cache(tree, [cache], [filter])
 supertitle: "tree:"
 ---
 

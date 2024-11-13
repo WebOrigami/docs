@@ -1,5 +1,5 @@
 ---
-title: "deepMap(treelike, options)"
+title: deepMap(tree, options)
 supertitle: "tree:"
 ---
 

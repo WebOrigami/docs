@@ -1,5 +1,5 @@
 ---
-title: "inners(treelike)"
+title: inners(tree)
 supertitle: "tree:"
 ---
 

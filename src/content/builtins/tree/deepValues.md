@@ -1,5 +1,5 @@
 ---
-title: "deepValues(treelike)"
+title: deepValues(tree)
 supertitle: "tree:"
 ---
 

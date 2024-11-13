@@ -1,5 +1,5 @@
 ---
-title: "repeat(count, obj)"
+title: repeat(count, obj)
 supertitle: "origami:"
 ---
 

@@ -12,7 +12,11 @@ For example, this Origami function accepts a tree and displays the keys of that 
 ${ samples.ori/cli/list.ori }
 ```
 
-You can store this in a file called `list.ori` and mark that file as executable. The shebang directive lets you invoke this just by typing the file's name. If the file is in the current directory, for example, you can invoke it by typing `./list.ori`.
+You can store this in a file called `list.ori` and mark that file as executable.
+
+The shebang directive is the first line of the file and starts with `#!`. This lets you invoke this just by typing the file's name.
+
+If the file is in the current directory, for example, you can invoke it by typing `./list.ori`.
 
 If you put that `list.ori` file somewhere in your system path, then you can invoke it from any directory to, for example, generate an HTML list of that folder's file names.
 

@@ -1,5 +1,5 @@
 ---
-title: "setDeep(target, source)"
+title: setDeep(target, source)
 supertitle: "tree:"
 ---
 

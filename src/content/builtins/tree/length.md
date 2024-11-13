@@ -1,5 +1,5 @@
 ---
-title: "length(treelike)"
+title: length(tree)
 supertitle: "tree:"
 ---
 

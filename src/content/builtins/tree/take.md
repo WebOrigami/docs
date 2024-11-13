@@ -1,5 +1,5 @@
 ---
-title: "take(treelike, count)"
+title: take(tree, count)
 supertitle: "tree:"
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "document(text, [data])<br>document(object)"
+title: document(text, [data])<br>document(object)
 supertitle: "text:"
 ---
 
