@@ -124,8 +124,7 @@ As an expression language, Origami does not include any of JavaScript's control 
 Function calls in Origami look similar to functions in JavaScript:
 
 ```
-myFunction()
-fn(a, b, c)
+add(1, 2)
 ```
 
 To use Origami to call a function defined in a JavaScript file, you must use the JavaScript file's name, including the `.js` (or `.mjs`) extension:

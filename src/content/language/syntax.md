@@ -342,7 +342,11 @@ The result of this URL will be the contents of the data at the indicated interne
 
 In addition to `https:` and `http:`, Origami has some custom protocols like [`files:`](/builtins/files.html).
 
-Other namespaces like [`dev:`](/builtins/dev.html) and [`tree:`](/builtins/tree.html) act as containers for functions and objects built into Origami. For example, the `tree:` namespace contains a function called [`tree:plain`](/builtins/tree/plain.html) that converts a tree to a plain JavaScript object.
+Other namespaces like [`dev:`](/builtins/dev.html) and [`tree:`](/builtins/tree.html) act as containers for functions and objects built into Origami. For example, the `tree:` namespace contains a function called [`tree:plain`](/builtins/tree/plain.html) that converts a tree (of markdown files, say) to a plain JavaScript object.
+
+```
+tree:plain(markdown)
+```
 
 ## Shorthand for builtin functions
 
@@ -508,15 +512,6 @@ Block comment
 
 */
 ```
-
-## Reserved words
-
-Generally speaking, the Origami expression language does not have reserved words, but:
-
-- Origami does include a number of [built-in functions](/builtins/) and values which will normally be in scope. All of them have names that start with an `@` at sign. To the extent you can, avoid adopting names for your own functions or data members that begin with `@`.
-- A few [protocols](protocols.html) like `https:` are reserved for use in URLs.
-
-Origami's [`js:`](/builtins/js.html) namespace provides some values which are normally reserved in a language, such as `true` and `false`.
 
 ## Instantiating classes
 

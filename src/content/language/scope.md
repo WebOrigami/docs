@@ -192,84 +192,14 @@ Tree scope lets you use the file system structure of your project as one way to 
 
 You can take advantage of tree scope to hide internal details. If the sample project above publishes the contents of `site.ori`, a user will be able to browse to the `index.html` page defined in that file — but the user will not be able to see `greet.js` or `ReadMe.md`.
 
-## Default scope
+## Project configuration
 
-By default, Origami tools like the [ori](/cli) command-line interface (CLI) search in the current directory, then the collection of built-in functions.
+Origami's scope includes all folders from the current folder up to the project root. The root folder is determined by:
 
-If you ask ori to evaluate an expression that includes a deeper file system path, it will search from that deeper location up to the current directory.
+- The closest folder in the hierarchy that contains an Origami `config.ori` file. See [Configuration](configuration.html) for details.
+- The closest folder in the hierarchy that contains a Node.js `package.json` file.
 
-To use that same folder tree as an example:
-
-```
-package.json
-ReadMe.md
-src/
-  assets/
-    image1.jpg
-  greet.js
-  site.ori
-```
-
-From the `src` folder, you can invoke:
-
-```console
-$ ori site.ori/index.html
-```
-
-The invokes `greet`, which works because Origami finds `greet.js` in the current folder.
-
-You can also invoke the command from the project's root:
-
-```console
-$ ori src/site.ori/index.html
-```
-
-This also works, because Origami works from the tree defining `index.html` up to the current folder.
-
-## config.ori
-
-Let's consider what would happen in the above project if you moved `greet.js` from the `src` folder to the project root:
-
-```
-greet.js
-package.json
-ReadMe.md
-src/
-  assets/
-    image1.jpg
-  site.ori
-```
-
-In this situation, you'd still be able to issue the command from the project root:
-
-```console
-$ ori src/site.ori/index.html
-```
-
-But what you couldn't do is this command from inside the `src` folder:
-
-```console
-$ ori site.ori/index.html
-```
-
-In this situation, `greet.js` is _above_ the current folder (`src`), so it's out of scope.
-
-You can fix this by defining a file called `config.ori` at the root level of your project. This configuration file has two roles. First, it marks the root of your project. Second, any tree defined in `config.ori` becomes part of the project's base scope.
-
-For example, you could define `config.ori` like this:
-
-```js
-{
-  message = "This message is defined in the Origami configuration file.";
-}
-```
-
-Then, anywhere in your project:
-
-```console
-$ ori message
-This message is defined in the Origami configuration file.
-```
+If neither of these files exists, then the current folder is taken to be the project root.
 
 ## Accessing scope in JavaScript functions
 
