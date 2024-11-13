@@ -342,7 +342,7 @@ The result of this URL will be the contents of the data at the indicated interne
 
 In addition to `https:` and `http:`, Origami has some custom protocols like [`files:`](/builtins/files.html).
 
-Other namespaces like [`dev:`](/builtins/dev.html) and [`tree:`](/builtins/tree.html) act as containers for functions and objects built into Origami. For example, the `tree:` namespace contains a function called [`tree:plain`](/builtins/tree/plain.html) that converts a tree (of markdown files, say) to a plain JavaScript object.
+Other namespaces like [`dev:`](/builtins/dev/) and [`tree:`](/builtins/tree/) act as containers for functions and objects built into Origami. For example, the `tree:` namespace contains a function called [`tree:plain`](/builtins/tree/plain.html) that converts a tree (of markdown files, say) to a plain JavaScript object.
 
 ```
 tree:plain(markdown)

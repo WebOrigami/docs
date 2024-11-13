@@ -196,7 +196,7 @@ The `mediaType` declaration tells the Origami server to transmit any `.user` fil
 
 The second step is to tell Origami to use your `user.handler.js` file to handle any `.user` files.
 
-Define a [config.ori](config.html) file at the root of your project. Inside that, define a key `user.handler` that points to the location of the `.js` file:
+Define a [config.ori](configuration.html) file at the root of your project. Inside that, define a key `user.handler` that points to the location of the `.js` file:
 
 ```ori
 {

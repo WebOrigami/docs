@@ -121,7 +121,7 @@ The specifics of the convention are:
 
 Trailing slashes have several purposes:
 
-First, they are useful to someone looking at a list of keys. If you get the keys of a folder, for example:
+First, they are useful to someone looking at a list of keys. Origami's [`keys`](/builtins/tree/keys.html) command, for example, will display the keys in a folder:
 
 ```console
 $ ori keys myProject
