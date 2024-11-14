@@ -2,6 +2,8 @@
   href: index.html
 - href: add.html
   text: add
+- href: and.html
+  text: and
 - href: divide.html
   text: divide
 - href: equals.html
