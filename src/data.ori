@@ -5,7 +5,7 @@
 
   withData = deepMap(content, {
     extension: "md"
-    value: (buffer, key, tree) => js/addData.js(buffer, key, areas, tree/pages.yaml, client/assets/origami)
+    value: (buffer, key, tree) => js/addData.js(buffer, key, areas, tree, tree/pages.yaml, client/assets/origami)
   })
 
   // Take the markdown files and inline any Web Origami expressions contained

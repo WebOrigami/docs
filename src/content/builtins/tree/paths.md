@@ -3,12 +3,10 @@ title: paths(tree)
 supertitle: "tree:"
 ---
 
-Returns slash-separated paths for all values in the tree.
+Returns an array of slash-separated paths for all values in the tree.
 
 ```console
 $ ori greetings.yaml
-${ samples.ori/help/greetings.yaml }$ ori paths from greetings.yaml, { deep: true }
-${ yaml paths from samples.ori/help/greetings.yaml, { deep: true } }
+${ samples.ori/help/greetings.yaml }$ ori paths greetings.yaml
+${ yaml paths samples.ori/help/greetings.yaml }
 ```
-
-For the time being, YAML files are treated as shallow trees, so to get the paths of the YAML file as a deep tree, it's necessary to call [`from`](from.html) with the `deep` option set to `true`.

@@ -1,8 +1,16 @@
-import { documentObject } from "@weborigami/origami";
+import { scope } from "@weborigami/async-tree";
+import { documentObject, toString } from "@weborigami/origami";
 import chooseIcon from "./chooseIcon.js";
 import markCurrent from "./markCurrent.js";
 
-export default async function addData(buffer, fileName, areas, pages, icons) {
+export default async function addData(
+  buffer,
+  fileName,
+  areas,
+  tree,
+  pages,
+  icons
+) {
   const object = await documentObject(buffer);
 
   // HACK
@@ -10,12 +18,14 @@ export default async function addData(buffer, fileName, areas, pages, icons) {
     fileName = `${fileName.slice(0, -3)}.html`;
   }
 
-  // area = String(area);
-  const area = "";
-
-  // const areaHref = `/${area}/`;
-  // const areaLinks = await markCurrent(areas, areaHref);
-  const areaLinks = areas;
+  let areaLinks;
+  const area = await scope(tree).get("area");
+  if (area) {
+    const areaHref = `/${toString(area)}/`;
+    areaLinks = await markCurrent(areas, areaHref);
+  } else {
+    areaLinks = areas;
+  }
 
   const filePath = area ? `${area}/${fileName}` : `/${fileName}`;
   const icon = object.icon ?? (await chooseIcon(filePath, icons));
