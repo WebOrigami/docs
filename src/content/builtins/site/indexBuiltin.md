@@ -9,7 +9,7 @@ This built-in function is implicitly included when you use the [`serve`](/builti
 
 For example, in an Origami `.ori` file you can write:
 
-```
+```ori
 public = {
   listing.html = index(public)
 }
