@@ -1,6 +1,6 @@
 ---
 title: Web Origami
-subtitle: A language for making websites, documentation, data sets, and other content
+subtitle: A language for making websites where you can understand how they're made
 icon: bird.svg
 area: ""
 fileName: index.html
@@ -8,7 +8,7 @@ fileName: index.html
 
 ${ templates/blocks.ori(\_) }
 
-This project explores a new way to build small- to medium-scale websites using a conceptual model and programming language that complement HTML and CSS.
+Origami is a new programming language that complements HTML and CSS for making small- to medium-scale websites.
 
 **Everybody has something to say,** and the web is a great place to say it, but creating interesting sites can be hard or expensive. Standard HTML and CSS let you define individual pages, but it’s hard to efficiently create a bunch of pages and organize them into a coherent site.
 
@@ -37,9 +37,9 @@ then you can turn that into a small Origami program that orchestrates the creati
 }
 ```
 
-Origami complements the standard HTML and CSS languages. It lets you describe how you want to transform your data and files into HTML and the other resources for your site. You can create many things without complex programming: a full-text search feature, RSS feeds for blogs, and so on. You can use JavaScript to define parts of your site wherever that makes sense to you.
+Origami lets you describe how you want to transform your data and files into HTML and the other resources for your site. You can create many things without complex programming: a full-text search feature, RSS feeds for blogs, and so on. You don't need to know JavaScript, but if you do, you can use it to easily extend what you can do in Origami.
 
-A high-level site definition is enough to let you immediately view and iterate on your site without complex build tools. When you’re ready to publish, Origami can turn your site into a collection of plain files you can deploy wherever you want, often for free.
+A high-level site definition is enough to let you immediately view and iterate on your site without complex build tools. When you’re ready to publish, Origami turns your site into a collection of plain files you can deploy wherever you want, often for free.
 
 <span class="tutorialStep"></span> View some [example sites](/language/examples.html)
 
@@ -47,7 +47,7 @@ A high-level site definition is enough to let you immediately view and iterate o
 
 <span class="tutorialStep"></span> Make a small site in the [tutorial](/language/tutorial.html)
 
-## Inspiration
+## Building websites through transformation
 
 Web Origami takes its name from the traditional paper folding art of origami, in which you can transform a flat square of paper into an artwork.
 
@@ -64,7 +64,7 @@ Web Origami takes its name from the traditional paper folding art of origami, in
 
 The steps may be simple but the end result can be complex and beautiful. In the same way, Origami lets you transform your content into something to share.
 
-## Parts of the project
+## Aspects
 
 The project includes several separate but interoperable tools and ideas:
 
