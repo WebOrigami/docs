@@ -9,15 +9,15 @@ The Origami language includes a number of functions that you can call from Origa
 ## Namespaces and protocols
 
 <ul>
-${ map(node_modules/@weborigami/origami/src/help/help.yaml, (help, namespace) => indent`
+${ map(node_modules/@weborigami/origami/src/help/help.yaml, (help, namespaceSlash) => indent`
   <li>
     <a href="${
       if(
         or(help/collection, not(help/commands))
-        =`${ namespace }.html`
-        namespace
+        =`${ slash/remove(namespaceSlash) }.html`
+        namespaceSlash
       )
-    }">${ namespace }:</a>
+    }">${ slash/remove(namespaceSlash) }:</a>
     ${ help/description }
   </li>
 `) }

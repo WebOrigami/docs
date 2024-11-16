@@ -37,4 +37,4 @@ $ ori object.js/
 ${ yaml sample }
 ```
 
-${ templates/class.ori(api.ori/ObjectTree.yaml/exports/0) }
+${ templates/class.ori(api.ori/drivers/ObjectTree.yaml/exports/0) }

@@ -22,7 +22,7 @@
   pages = deepMap(html, { extension: "html", value: templates/page.ori })
 
   cached = if(
-    log(equals(node:process/env/NODE_ENV, "production"))
+    equals(node:process/env/NODE_ENV, "production")
     cache(pages) // Cache the pages in production
     pages // Dev
   )

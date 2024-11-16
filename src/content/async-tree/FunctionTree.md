@@ -46,4 +46,4 @@ ${ yaml keys samples.ori/help/function.js/ }$ ori function.js/David
 ${ samples.ori/help/function.js/David }
 ```
 
-${ templates/class.ori(api.ori/FunctionTree.yaml/exports/0) }
+${ templates/class.ori(api.ori/drivers/FunctionTree.yaml/exports/0) }
