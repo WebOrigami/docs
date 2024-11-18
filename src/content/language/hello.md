@@ -81,7 +81,7 @@ Website creators refer to URLs as _routes_: when you navigate to a URL like [tea
 The site's complete tree is a little bigger than what's shown above, because it also includes CSS stylesheets, image files, or other resources referenced by the HTML:
 
 <figure>
-${ svg.js siteComplete }
+${ svg.js _/siteComplete }
 </figure>
 
 This conceptual tree can help you envision and build a site. The structure you pick determines the routes that will be used to access each page and resource.

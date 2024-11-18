@@ -2,13 +2,13 @@
 // the markdown in the `content` folder.
 {
   withData = deepMap(content, {
-    extension: "md"
+    extension: ".md"
     value: (buffer, key, tree) => js/addData.js(buffer, key, areas.yaml/, tree, tree/pages.yaml, client/assets/origami)
   })
 
   // Take the markdown files and inline any Web Origami expressions contained
   // in curly braces.
-  inlined = deepMap(withData, { extension: "md", value: inline })
+  inlined = deepMap(withData, { extension: ".md", value: inline })
 
   // Convert the markdown (including inlined content) to HTML while preserving
   // the front matter at the top of each document. As the content is now HTML,
@@ -19,7 +19,7 @@
   // Apply the documentation page template. This injects the HTML content from
   // the previous step into the site's main page template, which adds headers
   // and navigation chrome. This step concludes the main documentation pipeline.
-  pages = deepMap(html, { extension: "html", value: templates/page.ori })
+  pages = deepMap(html, { extension: ".html", value: templates/page.ori })
 
   cached = if(
     equals(node:process/env/NODE_ENV, "production")

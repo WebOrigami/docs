@@ -61,14 +61,14 @@ src/
 
 And suppose that the file `site.ori` defines a tree:
 
-```${'yaml'}
-${ site.ori }
+```ori
+${ _/site.ori }
 ```
 
 The reference to `greet` is resolved by treating the entire project as a tree:
 
 <figure>
-${ svg.js projectExample }
+${ svg.js _/projectExample }
 </figure>
 
 When Origami needs to resolve the `greet.js` reference, it walks "up" this tree:

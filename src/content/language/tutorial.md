@@ -622,7 +622,7 @@ The site is now complete.
 <span class="tutorialStep"></span> Switch to the tree diagram window and refresh it to view your site's final structure. In that diagram (not the one below) you can click on the circles or boxes to explore what you've made.
 
 <figure>
-${ svg.js siteComplete }
+${ svg.js _/siteComplete }
 </figure>
 
 To review, you've created this entire site with a few resources, a couple of templates, and a concise `site.ori` with a handful of formulas:

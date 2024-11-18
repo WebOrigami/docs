@@ -92,8 +92,8 @@ class DocsTree {
       deep: true,
       value: mapFn,
       ...keyFunctionsForExtensions({
-        sourceExtension: "js",
-        resultExtension: "yaml",
+        sourceExtension: ".js",
+        resultExtension: ".yaml",
       }),
     });
     this.program = program;
