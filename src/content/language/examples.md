@@ -3,11 +3,11 @@ title: Example sites
 subtitle: Created with the Origami language
 ---
 
-${ map(examples.yaml, (example, key) => `
+${ map(examples.yaml, (example, keySlash) => `
 
 <h2>${ example/name }</h2>
 <a href="${ example/url }">
-  <img class="screenshot" src="/assets/screenshots/${ key }.png" alt="Screenshot of ${ example/url }">
+  <img class="screenshot" src="/assets/screenshots/${ slash/remove(keySlash) }.png" alt="Screenshot of ${ example/url }">
 </a>
 <p>
 ${ example/description }

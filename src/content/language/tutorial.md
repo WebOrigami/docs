@@ -22,22 +22,22 @@ If you're the kind of person who can write spreadsheet formulas, you can use the
 
 ## Start
 
-You can run this tutorial on GitHub Codespaces, which uses a web-based version of VS Code, a popular editor for professional software developers. Codespaces is a fee-based service, but free GitHub accounts include a monthly amount of free use of Codespaces. As an alternative, you can also clone the project locally and use whatever code editor you prefer.
+You can run this tutorial on GitHub Codespaces a popular editor for professional software developers that uses a web-based version of Microsoft Visual Studio Code. Basic GitHub accounts include some free use of Codespaces. As an alternative, you can clone the project locally and use whatever code editor you prefer.
 
 <span class="tutorialStep"></span> Open the
-<a href="https://github.com/WebOrigami/framework-intro" target="_blank">introduction on GitHub</a>.
+<a href="https://github.com/WebOrigami/language-intro" target="_blank">introduction on GitHub</a>.
 
 <span class="tutorialStep"></span> Create your own copy of the project by clicking the **Fork** button near the top.
 
-<span class="tutorialStep"></span> In your newly-created copy of the pattern intro project, click the **Code** button, then the **Codespaces** tab, then click the button **Create codespace on main**.
+<span class="tutorialStep"></span> In your newly-created copy of the pattern intro project, click the **Code** button, then the **Codespaces** tab, then click **Create codespace on main** or the `+` button.
 
-You'll see a list of files on the left.
+A VS Code project editor will start. Eventually you'll see a list of files on the left.
 
-<span class="tutorialStep"></span> Click the **Run and Debug** button (▷) in the left bar. This will start the small Origami server.
+<span class="tutorialStep"></span> Click the **Run and Debug** button (▷) in the left bar, then **▷ Launch via npm**. This will start the small Origami server.
 
 <span class="tutorialStep"></span> A notification should appear saying, "Your application running on port 5000 is available." Click the **Open in Browser** button to open the running tutorial site in a separate window tab.
 
-You're going to be switching back and forth between these two browser windows. Let's call them the Code window and the Preview window. (In a moment you'll open a third window.)
+You're going to be switching back and forth between these two browser windows. Let's call the first one the Code window and the new one the Preview window. (In a moment you'll open a third window.)
 
 The page in the Preview window should say: Hello
 
@@ -85,7 +85,9 @@ Let's refer to this browser window as the Tree Diagram window.
 
 <span class="tutorialStep"></span> Click the browser's Back button to navigate back to the main tree diagram.
 
-<span class="tutorialStep"></span> You'll return to the Tree Diagram window occasionally to view the structure of your evolving site and to explore the individual pages. For now, switch back to the Code window.
+You'll return to the Tree Diagram window occasionally to view the structure of your evolving site and to explore the individual pages.
+
+<span class="tutorialStep"></span> Switch back to the Code window.
 
 ## Use a template to create text
 
@@ -123,7 +125,7 @@ When someone visits `index.html`, Origami will now generate the HTML for it:
 <p>Hello, <strong>world</strong>!</p>
 ```
 
-So the page ends up with "world" in bold: Hello, **world**!
+<span class="tutorialStep"></span> Refresh the Preview window to confirm the page now has "world" in bold: Hello, **world**!
 
 When you call `greet.ori` in a formula like this, Origami searches the current [scope](/language/scope.html) for that name. Origami will find the `src/greet.ori` template file and use it to create the home page.
 
@@ -131,7 +133,7 @@ When you call `greet.ori` in a formula like this, Origami searches the current [
 
 Data in Origami projects can come from pretty much anything. This sample project stores the data for your team members in a file format called YAML, but it could just as easily use another format called JSON, or some other data file format, or data sitting on a server.
 
-<span class="tutorialStep"></span> Open the team data file in `src/teamData.yaml`:
+<span class="tutorialStep"></span> In the Code window, open the team data file in `src/teamData.yaml`:
 
 ```${"yaml"}
 ${ demos/framework-intro/teamData.yaml }
@@ -163,7 +165,7 @@ Refresh the Preview window to see something like: Hello, **Alice**!
 
 You can incorporate folders and other sources of hierarchical data into your site's tree. For example, you can include all the data in `teamData.yaml` into a browsable part of your site.
 
-<span class="tutorialStep"></span> **Try it:** Update `site.ori` to add a formula that defines `team` as equal to `teamData.yaml/` (with a trailing slash):
+<span class="tutorialStep"></span> **Try it:** In the Code window, update `site.ori` to add a formula that defines `team` as equal to `teamData.yaml/` (with a trailing slash):
 
 <clipboard-copy>
 
@@ -176,7 +178,9 @@ You can incorporate folders and other sources of hierarchical data into your sit
 
 </clipboard-copy>
 
-<span class="tutorialStep"></span> In the Tree Diagram window, refresh the page to confirm that the tree now includes an `team` area with all the data from `teamData.yaml`. But for the `team` area to be useful, you'll need to transform that raw data into presentable HTML.
+<span class="tutorialStep"></span> In the Tree Diagram window, refresh the page to confirm that the tree now includes an `team` area with all the data from `teamData.yaml` as navigable parts of the site.
+
+But for the `team` area to actually be useful, you'll need to transform that raw data into presentable HTML.
 
 ## Creating a virtual folder with a map
 
@@ -199,7 +203,7 @@ Let's start by mapping the people defined in `teamData.yaml`: for each person, w
 <pre class="step">
 {
   index.html = greet.ori(teamData.yaml/0/name)
-  team = <b>map(teamData.yaml, =_/name)</b>
+  team = <b>map(teamData.yaml, (person) => person/name)</b>
 }
 </pre>
 
@@ -207,9 +211,9 @@ Let's start by mapping the people defined in `teamData.yaml`: for each person, w
 
 This formula calls a built-in function called [`map`](/builtins/tree/map.html). All built-in functions start with an `@` sign.
 
-This `team` formula says: starting with the tree of structured data in `teamData.yaml`, create a new tree. For each person in the data, evaluate the expression `=_/name`, which gets the `name` field of the person being operated on.
+This `team` formula says: starting with the tree of structured data in `teamData.yaml`, create a new tree. For each person in the data, evaluate the expression `person/name`, which gets the `name` field of the person being operated on.
 
-If you know JavaScript: the expression `=_/name` is like an arrow function: `(_) => _.name`
+If you know JavaScript, such a function is the same as a JavaScript arrow function.
 
 So the `team` formula transforms the team data into a corresponding tree of just the names:
 
@@ -222,11 +226,11 @@ So the `team` formula transforms the team data into a corresponding tree of just
     ] }
   </figure>
   <figure>
-    ${ svg.js [
-      "Alice"
-      "Bob"
-      "Carol"
-    ] }
+    ${ svg.js {
+      0/: "Alice"
+      1/: "Bob"
+      2/: "Carol"
+    } }
   </figure>
   <figcaption>Tree structure of teamData.yaml</figcaption>
   <figcaption>Mapped tree of names</figcaption>
@@ -236,12 +240,12 @@ So the `team` formula transforms the team data into a corresponding tree of just
 
 <figure>
   ${ svg.js {
-    index.html = "<p>Hello, <strong>Alice</strong>!</p>"
-    team = [
-      "Alice"
-      "Bob"
-      "Carol"
-    ]
+    index.html: "<p>Hello, <strong>Alice</strong>!</p>"
+    team = {
+      0/: "Alice"
+      1/: "Bob"
+      2/: "Carol"
+    }
   } }
 </figure>
 
@@ -249,14 +253,14 @@ So the `team` formula transforms the team data into a corresponding tree of just
 
 The formula you give to `map` can be as complex as your situation requires.
 
-<span class="tutorialStep"></span> **Try it**: In the Code window, in `site.ori`, update the expression `=_/name` so that, instead of just returning a `name`, it calls the `greet.ori` template and passes in that person's name:
+<span class="tutorialStep"></span> **Try it**: In the Code window, in `site.ori`, update the `team` formula so that, instead of just returning a `name`, it calls the `greet.ori` template and passes in that person's name:
 
 <clipboard-copy>
 
 <pre class="step">
 {
   index.html = greet.ori(teamData.yaml/0/name)
-  team = map(teamData.yaml, =<b>greet.ori(_/name)</b>)
+  team = map(teamData.yaml, (person) => <b>greet.ori(person/name)</b>)
 }
 </pre>
 
@@ -267,11 +271,11 @@ The formula you give to `map` can be as complex as your situation requires.
 <figure>
   ${ svg.js {
     index.html = "<p>Hello, <strong>Alice</strong>!</p>"
-    team = [
-      "<p>Hello, <strong>Alice</strong>!</p>"
-      "<p>Hello, <strong>Bob</strong>!</p>"
-      "<p>Hello, <strong>Carol</strong>!</p>"
-    ]
+    team = {
+      0/: "<p>Hello, <strong>Alice</strong>!</p>"
+      1/: "<p>Hello, <strong>Bob</strong>!</p>"
+      2/: "<p>Hello, <strong>Carol</strong>!</p>"
+    }
   } }
 </figure>
 
@@ -317,7 +321,7 @@ For each full-size image, you want to produce a corresponding thumbnail image fo
 ${ demos/framework-intro/thumbnail.js }
 ```
 
-<span class="tutorialStep"></span> **Try it:** In `site.ori`, add a new formula for `small.jpg` that calls `thumbnail.js` as a function and passes in the file `images/van.jpg`.
+<span class="tutorialStep"></span> **Try it:** In `site.ori`, add a new formula for `small.jpg` that calls `thumbnail.js` as a function and passes in the individual file `images/van.jpg`.
 
 <clipboard-copy>
 
@@ -361,7 +365,7 @@ You could write formulas to create a thumbnail for each image in the `images` fo
 
 </clipboard-copy>
 
-This `thumbnails` formula applies the `thumbnail.js` function to each of the images. In that `map` function, the second parameter is just the file name `thumbnail.js`, which is a shorthand for writing the longer form `=thumbnail.js(_)`
+This `thumbnails` formula applies the `thumbnail.js` function to each of the images. In that `map` function, the second parameter is just the file name `thumbnail.js`, which is a shorthand for writing the longer form `(x) => thumbnail.js(x)`
 
 Because Origami treats real folders and virtual folders the same, you can browse your virtual folder of thumbnails.
 
@@ -396,7 +400,7 @@ The `index.ori` file defines two templates, an outer template and an inner templ
 - The outer template spans all lines and defines the overall page. This outer template will accept the entire collection of people data as input.
 - The inner, nested template is defined on the middle line as part of the `map`. That inner template will receive a single person at a time as input. This template generates a list item containing that person's name.
 
-<span class="tutorialStep"></span> **Try it:** In `site.ori`, update your `index.html` formula to remove the call to `greet.ori` and instead invoke the `index.ori` template, passing in the `teamData.yaml` data.
+<span class="tutorialStep"></span> **Try it:** In `site.ori`, update your `index.html` formula to remove the call to `greet.ori` and instead invoke the `index.ori` template, passing in the list of people in `teamData.yaml`.
 
 <clipboard-copy>
 
@@ -432,13 +436,13 @@ ${ demos/framework-intro/index.ori }
 
 Functionally speaking, this is no more complex than the earlier template; it just has more elements.
 
-The Preview window for `index.html` now shows a tile for each team member that includes their name and location. It also shows a thumbnail image pulled from the virtual `thumbnails` folder you created earlier. As far as the `<img>` tag above knows, that thumbnail is a real image — but actually you're creating that image on demand.
+<span class="tutorialStep"></span> Refresh the Preview window to see a tile for each team member that includes their name and location. It also shows a thumbnail image pulled from the virtual `thumbnails` folder you created earlier. As far as the `<img>` tag above knows, that thumbnail is a real image — but actually you're creating that image on demand.
 
 ## Use a person template
 
 You can use a template for the people pages in the `team` area too.
 
-<span class="tutorialStep"></span> In the `src` folder, view the `person.ori` template:
+<span class="tutorialStep"></span> In the Code window, view the `src/person.ori` template:
 
 <clipboard-copy>
 
@@ -450,7 +454,7 @@ You can use a template for the people pages in the `team` area too.
 
 This template displays a person's name in a header. You can use this in the `map` that defines the `team` area.
 
-<span class="tutorialStep"></span> **Try it:** In `site.ori`, edit the `team` formula to replace the `=greet.ori(_/name)` with `person.ori`.
+<span class="tutorialStep"></span> **Try it:** In `site.ori`, edit the `team` formula to replace the `(person) => greet.ori(person/name)` expression with `person.ori`.
 
 <clipboard-copy>
 
@@ -470,9 +474,9 @@ This template displays a person's name in a header. You can use this in the `map
 
 <figure>
   ${ svg.js {
-    0: "<h1>Alice</h1>"
-    1: "<h1>Bob</h1>"
-    2: "<h1>Carol</h1>"
+    0/: "<h1>Alice</h1>"
+    1/: "<h1>Bob</h1>"
+    2/: "<h1>Carol</h1>"
   } }
 </figure>
 
@@ -521,15 +525,15 @@ This will use `person.ori` to transform values just as before.
 
 </clipboard-copy>
 
-<span class="tutorialStep"></span> Switch to the tree diagram window and refresh it to confirm that the `team` area is now using names instead of numbers:
+<span class="tutorialStep"></span> Refresh the Tree Diagram window to confirm that the `team` area is now using names instead of numbers:
 
 <div class="sideBySide">
   <figure>
-    ${ svg.js [
-      "<p>Hello, <strong>Alice</strong>!<p>"
-      "<p>Hello, <strong>Bob</strong>!<p>"
-      "<p>Hello, <strong>Carol</strong>!<p>"
-    ] }
+    ${ svg.js {
+      0/: "<p>Hello, <strong>Alice</strong>!<p>"
+      1/: "<p>Hello, <strong>Bob</strong>!<p>"
+      2/: "<p>Hello, <strong>Carol</strong>!<p>"
+    } }
   </figure>
   <figure>
     ${ svg.js {
@@ -565,7 +569,7 @@ We want the pages in the `team` area to end in a `.html` extension because that 
 
 </clipboard-copy>
 
-<span class="tutorialStep"></span> Switch to the Tree Diagram window and refresh it to confirm that the `team` pages now have names that end in `.html`:
+<span class="tutorialStep"></span> Refresh the Tree Diagram window to confirm that the `team` pages now have names that end in `.html`:
 
 <figure>
   ${ svg.js {
@@ -638,7 +642,7 @@ $ npm run build
 
 That copies all the virtual files defined inside `site.ori` into a real folder called `build`.
 
-<span class="tutorialStep"></span> In the files Explorer, click the `build` folder on the left side of the Code window and view the files it contains.
+<span class="tutorialStep"></span> On the left side of the Code window, expand the `build` folder in the list of files on the left and view the files it contains.
 
 In addition to copies of the real files in the `assets` and `images` folders, the `build` folder now contains real copies of all the virtual files you defined in `site.ori`:
 
@@ -655,6 +659,7 @@ This concludes the Origami tutorial. If you'd like to try working with Origami o
 You can continue exploring related topics:
 
 - The [Origami expression language](/language/) you used to write formulas and template expressions has additional features not covered in this tutorial.
+- View some [examples of Origami sites](examples.html).
 - As you were creating the About Us site, the [Origami command-line interface](/cli) and its included web server was working behind the scenes to let you view the site during development and to copy the virtual files to real files.
 - The conceptual framework is built on an [async-tree](/async-tree) library that lets you do everything that you did here with formulas using JavaScript instead.
 - You can implement sites completely from scratch using the [async tree pattern](/pattern) and no library or framework at all, an approach may appeal to people who want to work as close to the metal as possible. That pattern is also a useful reference if you want to understand how Origami works under the hood.
