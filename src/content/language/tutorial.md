@@ -2,37 +2,11 @@
 title: Create a simple site in Origami
 subtitle: A hands-on walkthrough
 numberHeadings: true
-countries:
-  - name: Australia
-    abbreviation: AU
-  - name: Brazil
-    abbreviation: BR
-  - name: China
-    abbreviation: CN
-siteComplete:
-  index.html: <h1>About Us</h1>
-  team:
-    Alice.html: <h1>Alice</h1>
-    Bob.html: <h1>Bob</h1>
-    Carol.html: <h1>Carol</h1>
-  assets:
-    personIcon.svg: "..."
-    styles.css: "..."
-  images:
-    kingfisher.jpg: "[binary data]"
-    van.jpg: "[binary data]"
-    venice.jpg: "[binary data]"
-  thumbnails:
-    kingfisher.jpg: "[binary data]"
-    van.jpg: "[binary data]"
-    venice.jpg: "[binary data]"
 ---
 
 <script src="/components.js"></script>
 
-You don't need to install anything to complete this tutorial. If you prefer a conceptual introduction first, see [Hello, world](hello.html).
-
-_**Note:** The Glitch service that is used to host this tutorial project has had issues updating its servers so that they can run the latest version of Origami. Some notes below indicate places where the current Origami syntax has changed from what it shown._
+This tutorial walks you through the basics of Origami in a simple, live project. If you prefer a conceptual introduction first, see [Hello, world](hello.html).
 
 ## Scenario
 
@@ -48,24 +22,30 @@ If you're the kind of person who can write spreadsheet formulas, you can use the
 
 ## Start
 
+You can run this tutorial on GitHub Codespaces, which uses a web-based version of VS Code, a popular editor for professional software developers. Codespaces is a fee-based service, but free GitHub accounts include a monthly amount of free use of Codespaces. As an alternative, you can also clone the project locally and use whatever code editor you prefer.
+
 <span class="tutorialStep"></span> Open the
-<a href="https://glitch.com/edit/#!/origami-framework-intro" target="_blank">tutorial project on Glitch</a>, a free web-based code editor.
+<a href="https://github.com/WebOrigami/framework-intro" target="_blank">introduction on GitHub</a>.
 
-You can use any web tool with Origami; Glitch is used here because it's free and has no setup.
+<span class="tutorialStep"></span> Create your own copy of the project by clicking the **Fork** button near the top.
 
-<span class="tutorialStep"></span> Click the **Remix** button (or Remix to Edit, either works) to create your own copy of the project.
+<span class="tutorialStep"></span> In your newly-created copy of the pattern intro project, click the **Code** button, then the **Codespaces** tab, then click the button **Create codespace on main**.
 
-You'll see a list of files on the left and the currently-open file (the project's ReadMe) in the center.
+You'll see a list of files on the left.
 
-<span class="tutorialStep"></span> Click the **Preview** button at the bottom of the window, then **Open Preview Pane** to open a preview pane on the right.
+<span class="tutorialStep"></span> Click the **Run and Debug** button (▷) in the left bar. This will start the small Origami server.
 
-The page in the preview pane says: Hello
+<span class="tutorialStep"></span> A notification should appear saying, "Your application running on port 5000 is available." Click the **Open in Browser** button to open the running tutorial site in a separate window tab.
+
+You're going to be switching back and forth between these two browser windows. Let's call them the Code window and the Preview window. (In a moment you'll open a third window.)
+
+The page in the Preview window should say: Hello
 
 ## Edit a simple page
 
 You'll define the complete set of pages and other resources your site will need in an Origami file with a `.ori` extension. This project is configured to serve the site defined in `src/site.ori`.
 
-<span class="tutorialStep"></span> In the `src` folder, open `site.ori`:
+<span class="tutorialStep"></span> In the Code window, click the code Explorer (an icon with two overlapping documents) in the left bar. Expand the `src` folder and open `site.ori`:
 
 ```ori
 {
@@ -79,15 +59,15 @@ You're going to work on this `site.ori` file so that it creates the About Us sit
 
 <span class="tutorialStep"></span> **Try it:** Edit the quoted text in the formula for `index.html` to give it more content, like: Hello, world!
 
-After a moment, the Glitch preview window should refresh to show: Hello, world!
+The code editor will auto-save the text.
+
+<span class="tutorialStep"></span> In the Preview window, refresh the page to see: Hello, world!
 
 ## View your site as a tree
 
 Origami lets you visualize and explore your site as a hierarchical _tree_ of pages and other resources.
 
-<span class="tutorialStep"></span> Click the **Preview** button at the bottom of the window, then click **Preview in a new window**. This will open your site in a new window (or tab).
-
-<span class="tutorialStep"></span> In the browser address bar for that new window, add `/!svg` to the end of the URL. The new URL should look like `https://your-project-name.glitch.me/!svg`
+<span class="tutorialStep"></span> Open the Preview window, copy its URL, then open a new tab, and paste in that URL. Add `/!svg` to the end of the URL. The new URL should now look like `https://your-project-name.app.github.dev/!svg`. Press Return.
 
 You'll see your site visually represented as a tree with just one branch:
 
@@ -99,11 +79,13 @@ index.html = 'Hello, world!'
 
 The little circle represents the overall tree, and the box represents the `index.html` file.
 
-<span class="tutorialStep"></span> In the tree diagram, click the box for `index.html` to view it.
+Let's refer to this browser window as the Tree Diagram window.
 
-<span class="tutorialStep"></span> Navigate back to the tree diagram.
+<span class="tutorialStep"></span> In the Tree Diagram window, click the box for `index.html` to view it.
 
-<span class="tutorialStep"></span> Leaving the tree diagram open, switch back to the main Glitch window. You'll return to this tree diagram occasionally to view the structure of your evolving site and to explore the individual pages.
+<span class="tutorialStep"></span> Click the browser's Back button to navigate back to the main tree diagram.
+
+<span class="tutorialStep"></span> You'll return to the Tree Diagram window occasionally to view the structure of your evolving site and to explore the individual pages. For now, switch back to the Code window.
 
 ## Use a template to create text
 
@@ -111,17 +93,15 @@ The `index.html` file is currently defined with a short quoted string. You can c
 
 For this tutorial, you'll use the [template system built into Origami](templates.html), but Origami can also work with other template systems.
 
-<span class="tutorialStep"></span> View the file `src/greet.ori`. Glitch shows only a single file at a time, so opening `greet.ori` will replace `site.ori` in the editor window.
+<span class="tutorialStep"></span> View the file `src/greet.ori`.
 
 ```${"html"}
 ${ demos/framework-intro/greet.ori }
 ```
 
-This Origami template starts with an `=` equals sign and encloses some HTML with &#96; &#96; backticks.
+This template defines a function: something that accepts input and produces output. In this case, the function in `greet.ori` accepts a name and returns an HTML greeting that incorporates that name.
 
-Inside the backticks, the placeholder marked with `\{\{ }}` curly braces contains an Origami expression. In this case, the `_` underscore tells Origami to insert any text passed to the template into the HTML at that point.
-
-_**Note:** The Origami syntax for template placeholders recently changed from `\{\{ }}` to `\$\{ }`. For projects outside Glitch, use the newer `\$\{ }` style in templates._
+Inside the &#96; &#96; backticks, the placeholder marked with `$\{ }` curly braces contains an Origami expression. In this placeholder, the `name` reference tells Origami to insert the `name` passed to the template into the HTML at that point.
 
 You can call this template from an Origami formula.
 
@@ -177,7 +157,7 @@ In Origami you can use slash-separated paths to extract information out of any h
 
 </clipboard-copy>
 
-The preview should show something like: Hello, **Alice**!
+Refresh the Preview window to see something like: Hello, **Alice**!
 
 ## Incorporate data into your site's tree
 
@@ -196,7 +176,7 @@ You can incorporate folders and other sources of hierarchical data into your sit
 
 </clipboard-copy>
 
-<span class="tutorialStep"></span> In the tree diagram window, refresh the page to confirm that the tree now includes an `team` area with all the data from `teamData.yaml`. But for the `team` area to be useful, you'll need to transform that raw data into presentable HTML.
+<span class="tutorialStep"></span> In the Tree Diagram window, refresh the page to confirm that the tree now includes an `team` area with all the data from `teamData.yaml`. But for the `team` area to be useful, you'll need to transform that raw data into presentable HTML.
 
 ## Creating a virtual folder with a map
 
@@ -212,7 +192,7 @@ You can think of the result of a map as a virtual folder — a set of things yo
 
 Let's start by mapping the people defined in `teamData.yaml`: for each person, we'll create a tiny page in the `team` area.
 
-<span class="tutorialStep"></span> **Try it:** In the Glitch editor window, update the formula in `site.ori` for `team` to:
+<span class="tutorialStep"></span> **Try it:** In the Code window, update the formula in `site.ori` for `team` to:
 
 <clipboard-copy>
 
@@ -252,7 +232,7 @@ So the `team` formula transforms the team data into a corresponding tree of just
   <figcaption>Mapped tree of names</figcaption>
 </div>
 
-<span class="tutorialStep"></span> In the tree diagram window, refresh the page to confirm that the tree now includes an `team` area with the names from `teamData.yaml`.
+<span class="tutorialStep"></span> In the Tree Diagram window, refresh the page to confirm that the tree now includes an `team` area with the names from `teamData.yaml`.
 
 <figure>
   ${ svg.js {
@@ -269,7 +249,7 @@ So the `team` formula transforms the team data into a corresponding tree of just
 
 The formula you give to `map` can be as complex as your situation requires.
 
-<span class="tutorialStep"></span> **Try it**: In the Glitch editor window, in `site.ori`, update the expression `=_/name` so that, instead of just returning a `name`, it calls the `greet.ori` template and passes in that person's name:
+<span class="tutorialStep"></span> **Try it**: In the Code window, in `site.ori`, update the expression `=_/name` so that, instead of just returning a `name`, it calls the `greet.ori` template and passes in that person's name:
 
 <clipboard-copy>
 
@@ -282,7 +262,7 @@ The formula you give to `map` can be as complex as your situation requires.
 
 </clipboard-copy>
 
-<span class="tutorialStep"></span> In the tree diagram window, refresh the page to see the updated `team` area.
+<span class="tutorialStep"></span> In the Tree Diagram window, refresh the page to see the updated `team` area.
 
 <figure>
   ${ svg.js {
@@ -319,7 +299,7 @@ You can pull a real folder or file into your tree by writing its name on a line 
 
 </clipboard-copy>
 
-<span class="tutorialStep"></span> Switch to tree diagram window and refresh it to see the updated site structure.
+<span class="tutorialStep"></span> Switch to Tree Diagram window and refresh it to see the updated site structure.
 
 Your site now includes both real files (the assets and images) and virtual files (the greetings in the `team` area).
 
@@ -327,7 +307,7 @@ Your site now includes both real files (the assets and images) and virtual files
 
 You can do a lot in Origami without JavaScript, but JavaScript programmers can extend Origami with JavaScript. We'll briefly look at that; you won't need to know JavaScript to complete this step.
 
-<span class="tutorialStep"></span> In the Glitch editor window, view the images in the `src/images` folder. Each person in `teamData.yaml` identifies one of these full-size images as a profile photo.
+<span class="tutorialStep"></span> In the Code window, view the images in the `src/images` folder. Each person in `teamData.yaml` identifies one of these full-size images as a profile photo.
 
 For each full-size image, you want to produce a corresponding thumbnail image for the main About Us page. Instead of using an image-editing app to create a real folder of thumbnail images, you can create virtual thumbnail images on demand.
 
@@ -353,19 +333,19 @@ ${ demos/framework-intro/thumbnail.js }
 
 </clipboard-copy>
 
-<span class="tutorialStep"></span> Switch to the tree diagram window and refresh it.
+<span class="tutorialStep"></span> Switch to the Tree Diagram window and refresh it.
 
 <span class="tutorialStep"></span> In the tree diagram, click the box for the real image in `images/van.jpg` to preview it.
 
-<span class="tutorialStep"></span> Navigate back to the diagram and click the box for `small.jpg` to see the same image at a smaller size. The formula you created above produces this thumbnail on demand.
+<span class="tutorialStep"></span> Navigate back to the main diagram and click the box for `small.jpg` to see the same image at a smaller size. The formula you created above produces this thumbnail on demand.
 
-<span class="tutorialStep"></span> Navigate back to the tree diagram.
+<span class="tutorialStep"></span> Navigate back to the main diagram.
 
 ## Create a virtual folder of thumbnails
 
 You could write formulas to create a thumbnail for each image in the `images` folder — but the Origami `map` function lets you define the transformation of all the images with a single line.
 
-<span class="tutorialStep"></span> **Try it:** Switch to the Glitch editor window. In `site.ori`, delete the formula for `small.jpg` and replace it with the following `thumbnails` formula:
+<span class="tutorialStep"></span> **Try it:** Switch to the Code window. In `site.ori`, delete the formula for `small.jpg` and replace it with the following `thumbnails` formula:
 
 <clipboard-copy>
 
@@ -385,7 +365,7 @@ This `thumbnails` formula applies the `thumbnail.js` function to each of the ima
 
 Because Origami treats real folders and virtual folders the same, you can browse your virtual folder of thumbnails.
 
-<span class="tutorialStep"></span> Switch to the tree diagram window and refresh it to view your site's updated structure.
+<span class="tutorialStep"></span> Switch to the Tree Diagram window and refresh it to view your site's updated structure.
 
 The virtual `thumbnails` folder in the diagram now contains a set of thumbnail images that _do not exist_ in any persistent form. They are potential images. If you click on one, it will be created at that moment.
 
@@ -393,16 +373,16 @@ The virtual `thumbnails` folder in the diagram now contains a set of thumbnail i
 
 The main About Us page should display a tile for each member that links to their individual page.
 
-<span class="tutorialStep"></span> In the `src` folder, open `index.ori`. This template will form the basis of the final home page.
+<span class="tutorialStep"></span> In the Code window, open `src/index.ori`. This template will form the basis of the final home page.
 
 <clipboard-copy>
 
 ```${"html"}
-=`<h1>About Us</h1>
+(people) => `<h1>About Us</h1>
 <ul>
-  \{\{ map(_, =`
-    <li>\{\{ _/name }}</li>
-  `) \}\}
+  $\{ map(people, (person) => `
+    <li>$\{ person/name }</li>
+  `) }
 </ul>
 `
 ```
@@ -413,8 +393,8 @@ In `site.ori`, you've already created a map of images to thumbnails, and a map o
 
 The `index.ori` file defines two templates, an outer template and an inner template:
 
-- The outer template spans all lines and defines the overall page. This outer template will accept the entire collection of team data as input; that's what the `_` underscore immediately following `map` will receive.
-- The inner, nested template is defined on the middle line as part of the `map`. That inner template will receive a single team member at a time as input; that's what the `_` underscore in `_/name` will refer to. This template generates a list item containing that person's name.
+- The outer template spans all lines and defines the overall page. This outer template will accept the entire collection of people data as input.
+- The inner, nested template is defined on the middle line as part of the `map`. That inner template will receive a single person at a time as input. This template generates a list item containing that person's name.
 
 <span class="tutorialStep"></span> **Try it:** In `site.ori`, update your `index.html` formula to remove the call to `greet.ori` and instead invoke the `index.ori` template, passing in the `teamData.yaml` data.
 
@@ -432,7 +412,7 @@ The `index.ori` file defines two templates, an outer template and an inner templ
 
 </clipboard-copy>
 
-The preview now shows: the heading **About Us** and a bulleted list of names.
+<span class="tutorialStep"></span> Refresh the Preview window to see the heading **About Us** and a bulleted list of names.
 
 ## A nested template can span multiple lines
 
@@ -452,18 +432,18 @@ ${ demos/framework-intro/index.ori }
 
 Functionally speaking, this is no more complex than the earlier template; it just has more elements.
 
-The preview for `index.html` now shows a tile for each team member that includes their name and location. It also shows a thumbnail image pulled from the virtual `thumbnails` folder you created earlier. As far as the `<img>` tag above knows, that thumbnail is a real image — but actually that image is being created on demand.
+The Preview window for `index.html` now shows a tile for each team member that includes their name and location. It also shows a thumbnail image pulled from the virtual `thumbnails` folder you created earlier. As far as the `<img>` tag above knows, that thumbnail is a real image — but actually you're creating that image on demand.
 
 ## Use a person template
 
 You can use a template for the people pages in the `team` area too.
 
-<span class="tutorialStep"></span> In the src folder, view the `person.ori` template:
+<span class="tutorialStep"></span> In the `src` folder, view the `person.ori` template:
 
 <clipboard-copy>
 
 ```${"html"}
-=`<h1>\{\{ _/name }}</h1>`
+(person) => `<h1>$\{ person/name }</h1>`
 ```
 
 </clipboard-copy>
@@ -486,7 +466,7 @@ This template displays a person's name in a header. You can use this in the `map
 
 </clipboard-copy>
 
-<span class="tutorialStep"></span> Refresh the tree diagram window to see that the pages in the `team` area now use your `person.ori` template.
+<span class="tutorialStep"></span> Refresh the Tree Diagram window to see that the pages in the `team` area now use your `person.ori` template.
 
 <figure>
   ${ svg.js {
@@ -502,7 +482,7 @@ As you've seen, the top-level keys in `teamData.yaml` are numbers, like `0` for 
 
 So you want to transform both the keys and values of the team data. You can do this with an expanded form of the `map` function.
 
-<span class="tutorialStep"></span> **Try it:** In `site.ori`, update the `team` formula so that the second parameter is a set of options in `{ }` curly braces. Turn the existing `person.ori` reference into a `valueMap` option.
+<span class="tutorialStep"></span> **Try it:** In the Code window, edit `site.ori` and its `team` formula so that the second parameter is a set of options in `{ }` curly braces. Turn the existing `person.ori` reference into a `value` option.
 
 <clipboard-copy>
 
@@ -510,7 +490,7 @@ So you want to transform both the keys and values of the team data. You can do t
 {
   index.html = index.ori(teamData.yaml)
   team = map(teamData.yaml, <b>{
-    valueMap: person.ori
+    value: person.ori
   }</b>)
   assets
   images
@@ -522,7 +502,7 @@ So you want to transform both the keys and values of the team data. You can do t
 
 This will use `person.ori` to transform values just as before.
 
-<span class="tutorialStep"></span> Now add a `keyMap` option that will change the keys (names) of the team pages:
+<span class="tutorialStep"></span> Now add a `key` option that will change the keys (names) of the team pages:
 
 <clipboard-copy>
 
@@ -530,8 +510,8 @@ This will use `person.ori` to transform values just as before.
 {
   index.html = index.ori(teamData.yaml)
   team = map(teamData.yaml, {
-    <b>keyMap: =_/name</b>
-    valueMap: person.ori
+    <b>key: (person) => person/name</b>
+    value: person.ori
   })
   assets
   images
@@ -540,8 +520,6 @@ This will use `person.ori` to transform values just as before.
 </pre>
 
 </clipboard-copy>
-
-_**Note:** The Origami syntax for map recently changed. For projects outside Glitch, use `key` instead of `keyMap` and `value` instead of `valueMap`._
 
 <span class="tutorialStep"></span> Switch to the tree diagram window and refresh it to confirm that the `team` area is now using names instead of numbers:
 
@@ -566,9 +544,9 @@ _**Note:** The Origami syntax for map recently changed. For projects outside Gli
 
 ## Add an HTML extension
 
-We want the pages in the `team` area to end in a `.html` extension because that helps indicate the type of data the files contain. One way you can do that in an Origami map is defining a `keyMap` with a small template.
+We want the pages in the `team` area to end in a `.html` extension because that helps indicate the type of data the files contain. One way you can do that in an Origami map is defining a `key` with a small template.
 
-<span class="tutorialStep"></span> In `site.ori`, update the `team` formula's `keyMap` option to add a`.html` extension to the keys.
+<span class="tutorialStep"></span> In `site.ori`, update the `team` formula's `key` option to add a`.html` extension to the keys.
 
 <clipboard-copy>
 
@@ -576,8 +554,8 @@ We want the pages in the `team` area to end in a `.html` extension because that 
 {
   index.html = index.ori(teamData.yaml)
   team = map(teamData.yaml, {
-    keyMap: =<b>`\{\{ _/name }}.html`</b>
-    valueMap: person.ori
+    key: (person) => <b>`$\{ person/name }.html`</b>
+    value: person.ori
   })
   assets
   images
@@ -587,7 +565,7 @@ We want the pages in the `team` area to end in a `.html` extension because that 
 
 </clipboard-copy>
 
-<span class="tutorialStep"></span> Switch to the tree diagram window and refresh it to confirm that the `team` pages now have names that end in `.html`:
+<span class="tutorialStep"></span> Switch to the Tree Diagram window and refresh it to confirm that the `team` pages now have names that end in `.html`:
 
 <figure>
   ${ svg.js {
@@ -613,16 +591,16 @@ ${ demos/framework-intro/person.ori }
 
 (Note: the last line contains a backtick character; be sure to copy that too.)
 
-<span class="tutorialStep"></span> In the site preview, you can now click a person tile on the main About Us page to navigate to the specific page for that team member.
+<span class="tutorialStep"></span> In the Preview window, you can now click a person tile on the main About Us page to navigate to the specific page for that team member.
 
 ## View the tree of the completed site
 
 The site is now complete.
 
-<span class="tutorialStep"></span> Switch to the tree diagram window and refresh it to view your site's final structure. In that diagram (not the one below) you can click on the circles or boxes to explore what you've made.
+<span class="tutorialStep"></span> Switch to the Tree Diagram window and refresh it to view your site's final structure. In that diagram (not the one below) you can click on the circles or boxes to explore what you've made.
 
 <figure>
-${ svg.js _/siteComplete }
+${ svg.js tutorialSite.yaml }
 </figure>
 
 To review, you've created this entire site with a few resources, a couple of templates, and a concise `site.ori` with a handful of formulas:
@@ -633,8 +611,8 @@ To review, you've created this entire site with a few resources, a couple of tem
 {
   index.html = index.ori(teamData.yaml)
   team = map(teamData.yaml, {
-    keyMap: =`\{\{ _/name }}.html`
-    valueMap: person.ori
+    key: (person) => `$\{ person/name }.html`
+    value: person.ori
   })
   assets
   images
@@ -648,31 +626,19 @@ To review, you've created this entire site with a few resources, a couple of tem
 
 You have been viewing your About Us site using a small Origami server running in the background. Since the members of your team aren't going to change every minute, you can turn the whole site into static files: regular files whose contents aren't expected to constantly change.
 
-Defining a site as static files is generally faster and cheaper than running a live web server. On services like Glitch, static file websites are free!
+Publishing a site as static files is faster and cheaper than running a live web server.
 
-Glitch will build your site's static files automatically after you stop editing the site, but you can manually trigger the build process to see it in action.
+<span class="tutorialStep"></span> In the Code window, click on the Terminal area at the bottom of page.
 
-<span class="tutorialStep"></span> In the main Glitch editor window, click the **Terminal** button in the toolbar at the bottom of the Glitch window.
-
-<span class="tutorialStep"></span> In the Glitch terminal, type the following command. (The `$` dollar sign comes from the terminal — don't type it.)
+<span class="tutorialStep"></span> In the Terminal, type the following command. (The `$` dollar sign comes from the terminal — don't type it.)
 
 ```console
 $ npm run build
 ```
 
-That copies everything in your running website to a real folder called `build`.
+That copies all the virtual files defined inside `site.ori` into a real folder called `build`.
 
-<span class="tutorialStep"></span> In the Glitch terminal, type:
-
-```console
-$ refresh
-```
-
-This refreshes the files shown in the main portion of the Glitch window.
-
-<span class="tutorialStep"></span> Close the Glitch terminal.
-
-<span class="tutorialStep"></span> Click the `build` folder on the left side of the Glitch window and view the files it contains.
+<span class="tutorialStep"></span> In the files Explorer, click the `build` folder on the left side of the Code window and view the files it contains.
 
 In addition to copies of the real files in the `assets` and `images` folders, the `build` folder now contains real copies of all the virtual files you defined in `site.ori`:
 
@@ -680,17 +646,7 @@ In addition to copies of the real files in the `assets` and `images` folders, th
 - A real `index.html` page with HTML that includes a tile for each team member.
 - A real `team` folder with real HTML pages for each team member.
 
-At some point after you close the Glitch window, Glitch will rebuild and serve these static files instead of using the Origami server. Because the static files all use native web formats, your site will be extremely fast.
-
-## View your final site
-
-<span class="tutorialStep"></span> In the tree diagram window, edit the URL to remove the `!svg` part.
-
-This is how your site will look to visitors.
-
-If you'd like to keep your site, you can create a Glitch account. Your site will have a permanent URL like `https://<something>.glitch.me` that you can share with other people.
-
-If you don't want to create an account, Glitch will keep the site for some time before removing it.
+Because these are regular "static" files, you can host these on many different web hosting services to publish your site. Web hosting is beyond the scope of this tutorial, but one sample web host that's well suited for hosting static files is [Netlify](https://www.netlify.com/). For small projects with modest traffic, static file hosting on Netlify is often free.
 
 ## Done!
 

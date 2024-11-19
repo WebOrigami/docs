@@ -1,0 +1,16 @@
+index.html: <h1>About Us</h1>
+team:
+  Alice.html: <h1>Alice</h1>
+  Bob.html: <h1>Bob</h1>
+  Carol.html: <h1>Carol</h1>
+assets:
+  personIcon.svg: "..."
+  styles.css: "..."
+images:
+  kingfisher.jpg: "[binary data]"
+  van.jpg: "[binary data]"
+  venice.jpg: "[binary data]"
+thumbnails:
+  kingfisher.jpg: "[binary data]"
+  van.jpg: "[binary data]"
+  venice.jpg: "[binary data]"
