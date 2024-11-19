@@ -6,6 +6,8 @@
   text: builtins
 - href: config.html
   text: config
+- href: extension.html
+  text: extension
 - href: json.html
   text: json
 - href: jsonParse.html
@@ -24,8 +26,6 @@
   text: regexMatch
 - href: repeat.html
   text: repeat
-- href: replaceExtension.html
-  text: replaceExtension
 - href: shell.html
   text: shell
 - href: slash.html

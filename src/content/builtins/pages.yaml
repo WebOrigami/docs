@@ -1,44 +1,44 @@
 - text: "All namespaces"
   href: index.html
-- href: /builtins/calc/
+- href: calc/
   text: "calc:"
-- href: /builtins/dev/
+- href: dev/
   text: "dev:"
-- href: /builtins/explore.html
+- href: explore.html
   text: "explore:"
-- href: /builtins/files.html
+- href: files.html
   text: "files:"
-- href: /builtins/help.html
+- href: help.html
   text: "help:"
-- href: /builtins/http.html
+- href: http.html
   text: "http:"
-- href: /builtins/https.html
+- href: https.html
   text: "https:"
-- href: /builtins/httpstree.html
+- href: httpstree.html
   text: "httpstree:"
-- href: /builtins/httptree.html
+- href: httptree.html
   text: "httptree:"
-- href: /builtins/image/
+- href: image/
   text: "image:"
-- href: /builtins/inherited.html
+- href: inherited.html
   text: "inherited:"
-- href: /builtins/js.html
+- href: js.html
   text: "js:"
-- href: /builtins/new.html
+- href: new.html
   text: "new:"
-- href: /builtins/node.html
+- href: node.html
   text: "node:"
-- href: /builtins/origami/
+- href: origami/
   text: "origami:"
-- href: /builtins/package.html
+- href: package.html
   text: "package:"
-- href: /builtins/scope.html
+- href: scope.html
   text: "scope:"
-- href: /builtins/site/
+- href: site/
   text: "site:"
-- href: /builtins/text/
+- href: text/
   text: "text:"
-- href: /builtins/tree/
+- href: tree/
   text: "tree:"
 
 - text: "&nbsp;"

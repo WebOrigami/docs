@@ -111,19 +111,19 @@ Changing a key's extension is very common. Mapping values often changes the type
 
 To facilitate changing extensions in a `map`, you can supply an `extensions` option that indicates whether and how the extensions of the original tree should be changed:
 
-- `extensions: "md"` restricts the map to only apply to keys ending in `.md`
-- `extensions: "->html"` adds the `.html` extension to the keys in the result
-- `extensions: "md->html"` only applies the map to keys ending in `.md`, and adds the `.html` extension to keys in the result
+- `extensions: ".md"` restricts the map to only apply to keys ending in `.md`
+- `extensions: "->.html"` adds the `.html` extension to the keys in the result
+- `extensions: ".md->.html"` only applies the map to keys ending in `.md`, and adds the `.html` extension to keys in the result
 
-The `extensions` option generates a `key` and `inverseKey` functions for you. If you provide two extensions, like `"md->html"`, the `inverseKey` function will be much more efficient.
-
-In place of the `->` text, you can alternatively write a Unicode `→` Rightwards Arrow, as in `"md→html"`. You can optionally include the `.` in extensions: `{ extension: ".md" }`.
+The `extensions` option generates a `key` and `inverseKey` functions for you. If you provide two extensions, like `".md->.html"`, the `inverseKey` function will be much more efficient.
 
 So you can also write the above example as:
 
 ```console
 $ cat greetings.yaml
 ${ samples.ori/cli/greetings.yaml
-}$ ori "map(greetings.yaml, { extensions: '→html' })"
+}$ ori "map(greetings.yaml, { extensions: '→.html' })"
 ${ yaml(map(samples.ori/cli/greetings.yaml, { key: (greeting, name) => `${ name }.html` })) }
 ```
+
+When mapping file extensions as shown above, trailing slashes are generally ignored. However, you can supply a trailing slash as an extension if you want to explicitly map, for example, folder keys that end in trailing slashes. For example, `"/→.json"` would map a folder key like "data/" to "data.json".
