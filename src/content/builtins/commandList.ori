@@ -1,9 +1,8 @@
 (namespace) => indent`
   <div style="display: grid; gap: 0.25em 1em; grid-template-columns: auto auto 1fr;">
   ${ map(commands.ori, (commandHelp, commandSlash) =>
-    if(
-      or(equals(namespace, ""), equals(namespace, commandHelp/namespace))
-      =indent`
+    namespace === "" || namespace === commandHelp/namespace
+    ? indent`
         <div>
           <span style="color: #bbb;">${ commandHelp/namespace }:</span>
         </div>
@@ -16,7 +15,7 @@
           ${ commandHelp/description }
         </div>
       `
-    )
+    : ""
   ) }
   </div>
 `

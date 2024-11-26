@@ -21,9 +21,7 @@
   // and navigation chrome. This step concludes the main documentation pipeline.
   pages = deepMap(html, { extension: ".html", value: templates/page.ori })
 
-  cached = if(
-    equals(node:process/env/NODE_ENV, "production")
-    cache(pages) // Cache the pages in production
-    pages // Dev
-  )
+  cached = node:process/env/NODE_ENV === "production"
+    ? cache(pages) // Cache the pages in production
+    : pages // Dev
 }

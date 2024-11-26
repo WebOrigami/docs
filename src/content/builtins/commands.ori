@@ -1,18 +1,15 @@
 sort(
   flatMap.js(node_modules/@weborigami/origami/src/help/help.yaml, (help, namespaceSlash) =>
-    if(
-      help/commands
-      =map(help/commands, (commandHelp, commandSlash) => {
-        args: commandHelp/args
-        description: commandHelp/description
-        namespace: slash/remove(namespaceSlash)
-        url: if(
-          help/collection
-          =`/builtins/${ slash/remove(namespaceSlash) }.html`
-          =`/builtins/${ namespaceSlash }${ slash/remove(commandSlash) }.html`
-        )
-      })
-    )
+    help/commands
+      ? map(help/commands, (commandHelp, commandSlash) => {
+          args: commandHelp/args
+          description: commandHelp/description
+          namespace: slash/remove(namespaceSlash)
+          url: help/collection
+            ? `/builtins/${ slash/remove(namespaceSlash) }.html`
+            : `/builtins/${ namespaceSlash }${ slash/remove(commandSlash) }.html`
+        })
+      : undefined
   )
   { compare: naturalOrder }
 )

@@ -1,23 +1,25 @@
 (api) => indent`
-<h3 id="${ api/name }">
-  ${ if(api/static, 'static ') }
-  ${ if(api/async, 'async ') }
-  ${ if(api/generator, '*') }${api/name}(${ parameters.ori(api/parameters) })
-  ${ if(api/isConstructor, 'constructor') }
-</h3>
-<ul>
-${ map(api/parameters, (parameter) => indent`
-  <li>${parameter/name}: ${ typeList.ori(parameter/types) }
-    ${ if(parameter/description, =`&ndash; ${parameter/description}`) }
-  </li>  
-`) }
-</ul>
-${ if(not(api/isConstructor), =indent`
+  <h3 id="${ api/name }">
+    ${ api/static ? "static " : "" }
+    ${ api/async ? "async " : "" }
+    ${ api/generator ? "*" : "" }${ api/name }(${ parameters.ori(api/parameters) })
+    ${ api/isConstructor ? "constructor" : "" }
+  </h3>
+  <ul>
+  ${ map(api/parameters, (parameter) => indent`
+    <li>${parameter/name}: ${ typeList.ori(parameter/types) }
+      ${ parameter/description ? `&ndash; ${parameter/description}` : "" }
+    </li>  
+  `) }
+  </ul>
+  ${ not(api/isConstructor)
+    ? indent`
+      <p>
+        Returns: ${ typeList.ori(api/returnTypes) }
+      </p>
+    `
+    : "" }
   <p>
-    Returns: ${ typeList.ori(api/returnTypes) }
+    ${ mdHtml(api/description) }
   </p>
-`) }
-<p>
-  ${ mdHtml(api/description) }
-</p>
 `

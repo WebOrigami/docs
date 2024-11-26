@@ -1,14 +1,10 @@
 (api) => indent`
-<h2>${api/name} class</h2>
-<p>
-  ${ if(api/description, =indent`
-    ${ mdHtml(api/description) }
+  <h2>${api/name} class</h2>
+  <p>
+    ${ api/description ? mdHtml(api/description) : "" }
+  </p>
+  ${ api/classConstructor ? function.ori(api/classConstructor) : "" }
+  ${ map(api/members ?? [], (member) => indent`
+    ${ function.ori(member) }
   `) }
-</p>
-${ if(api/classConstructor, =indent`
-  ${ function.ori(api/classConstructor) }
-`) }
-${ map(or(api/members, []), (member) => indent`
-  ${ function.ori(member) }
-`) }
 `
