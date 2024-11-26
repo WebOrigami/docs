@@ -2,20 +2,10 @@
   href: index.html
 - href: add.html
   text: add
-- href: and.html
-  text: and
 - href: divide.html
   text: divide
-- href: equals.html
-  text: equals
-- href: if.html
-  text: if
 - href: multiply.html
   text: multiply
-- href: not.html
-  text: not
-- href: or.html
-  text: or
 - href: subtract.html
   text: subtract
 
