@@ -11,9 +11,9 @@ ${ map(examples.yaml, (example, keySlash) => `
 </a>
 <p>
 ${ example/description }
-${ if(example/video, `<a href="${ example/video }">Video tour</a> &nbsp; `) }
+${ example/video ? `<a href="${ example/video }">Video tour</a> &nbsp; ` : "" }
 <a href="${ example/url }">Visit site</a>
-${ if(example/repo, ` &nbsp; <a href="${ example/repo }">View source</a>`) }
+${ example/repo ? ` &nbsp; <a href="${ example/repo }">View source</a>` : "" }
 </p>
 `) }
 

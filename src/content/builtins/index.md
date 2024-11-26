@@ -12,11 +12,9 @@ The Origami language includes a number of functions that you can call from Origa
 ${ map(node_modules/@weborigami/origami/src/help/help.yaml, (help, namespaceSlash) => indent`
   <li>
     <a href="${
-      if(
-        or(help/collection, not(help/commands))
-        =`${ slash/remove(namespaceSlash) }.html`
-        namespaceSlash
-      )
+      help/collection ?? !help/commands
+        ? `${ slash/remove(namespaceSlash) }.html`
+        : namespaceSlash
     }">${ slash/remove(namespaceSlash) }:</a>
     ${ help/description }
   </li>

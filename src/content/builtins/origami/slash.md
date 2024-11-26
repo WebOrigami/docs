@@ -34,7 +34,7 @@ Returns true if the key ends in a trailing slash. If the key is not a string, th
 
 ```console
 $ ori "slash/has('file.txt')"
-${ if(slash/has('file.txt'), "true", "false") }
+${ slash/has('file.txt') ? "true" : "false" }
 $ ori "slash/has('folder/')"
 ${ slash/has('folder/') }
 ```
