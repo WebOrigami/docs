@@ -240,14 +240,22 @@ You can also obtain a data file from the network, treat it as a tree, and [map t
 
 ## Conditions
 
-Use the built-in [`if`](/builtins/calc/if.html) function to include text based on some condition.
+If your template should output one thing or another depending on a condition, you can use the conditional operator.The general form looks like:
 
-The first argument to `if` is a condition that is evaluated. If the result is truthy (not `false`, `null`, or `undefined`), the second argument to `if` is included in the template’s text output. If the result is falsy and a third argument is provided, that third argument will be included in the output.
+```
+<condition> ? <result if true> : <result if false>
+```
+
+The condition will be evaluated and the appropriate result will be returned.
+
+For example, this template accepts a `input` argument that may or may not have a `rating` property. The template uses the conditional operator.
 
 ```ori
 // condition.ori
 ${ samples.ori/templates/condition.ori }
 ```
+
+If the `input` does have a rating, the template shows the rating, otherwise it shows "Not yet rated".
 
 ```console
 $ ori “condition.ori({ rating: 3 })”
@@ -255,6 +263,14 @@ ${ samples.ori/templates/condition.ori({ rating: 3 }) }
 $ ori “condition.ori({})”
 ${ samples.ori/templates/condition.ori({}) }
 ```
+
+A particularly kind of condition that often arises in templates is providing a default value for some field that might not exist in the template. For that particular kind of condition, you can use a "nullish coalescing operator" whose general form is:
+
+```
+<thing that might not exist> ?? <default result>
+```
+
+If the thing exists, the template will output that, otherwise it will output the default result. For an example, see "Processing input front matter" below.
 
 ## Call your own JavaScript functions
 
@@ -347,7 +363,7 @@ Example: a blog post can be stored as a markdown file with front matter that def
 ${ samples.ori/templates/posts/post1.html }
 ```
 
-And a template can then reference this `title` property. Here the template uses the [`or`](/builtins/calc/or.html) function to provide a default title if the input document has no `title`.
+And a template can then reference this `title` property. Here the template uses the `??` operator to provide a default title if the input document has no `title`.
 
 ```ori
 // blogPost.ori
@@ -359,6 +375,13 @@ Applying the template the blog post includes the document's `title` property as 
 ```console
 $ ori blogPost.ori posts/post1.html
 ${ samples.ori/templates/blogPost.ori samples.ori/templates/posts/post1.html }
+```
+
+If the template is applied to a post that has no `title`, the default title is used:
+
+```console
+$ ori blogPost.ori posts/post2.html
+${ samples.ori/templates/blogPost.ori samples.ori/templates/posts/post2.html }
 ```
 
 ## Map trees to text

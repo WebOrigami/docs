@@ -10,6 +10,8 @@
   text: Syntax
 - href: scope.html
   text: Scope
+- href: Operators.html
+  text: Operators
 - href: fileTypes.html
   text: File types
 - href: documents.html

@@ -18,7 +18,7 @@ Like JavaScript, Origami is a dynamic language; you do not need to specify the t
 - The following special characters in identifiers must be escaped with a `\\` backslash:
 
 ```
-(){}[]<>-=,/:`"'\#→⇒
+(){}[]<>?!&|-=,/:`"'\#→⇒
 ```
 
 - Web URLs like `https://example.com` are valid references in Origami.
@@ -27,15 +27,41 @@ Like JavaScript, Origami is a dynamic language; you do not need to specify the t
 
 ## Basic numbers but no math
 
-Origami has signed integers and floating point numbers so that you can pass numeric values to functions. Beyond that, Origami does not currently support:
+Origami has signed integers and floating point numbers so that you can pass numeric values to functions.
 
-- No binary, octal, hex, exponential notation
-- No math operators
-- No logical operators
-- No comparison operators
-- No bitwise operators
-- No ternary operator
-- No nullish coalescing operator
+Origami does not yet support binary, octal, hex, or exponential notation.
+
+## Supported operators
+
+Origami supports the following JavaScript operators:
+
+- Conditional (ternary) operator `a ? b : c`
+- Logical AND `&&`
+- Logical OR `||`
+- Logical NOT `!`
+- Equality `==`
+- Inequality `!=`
+- Strict equality `===`
+- Strict inequality `!==`
+- Nullish coalescing operator `a && b`
+
+Origami does not currently support:
+
+- Member access via `.`
+- Optional chaining `x?.y`
+- Computed member access `x[y]`
+- Math operators
+- Bitwise operators
+
+Because Origami only supports expressions and not statements, it does not support:
+
+- Postfix and prefix operators `++`, `--`
+- Assignment operators `=`, `+=`, `-=`, etc.
+- Comma operator
+
+Instead of JavaScript's `new` operator, Origami has a [`new:`](/builtins/new.html) protocol.
+
+Origami has implicit imports (see below), so does not have JavaScript's `import()` operator.
 
 ## String literals
 
