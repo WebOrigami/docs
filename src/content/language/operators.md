@@ -11,6 +11,7 @@ Origami introduces some operators of its own. The following table indicates thei
 | Group                                                       | `(x)`                         | n/a           |
 | [Protocol with path](syntax.html#namespaces)                | `https://example.com/about`   | left-to-right |
 | Function call                                               | `x(y)`                        | n/a           |
+| Path                                                        | `x/y/z`                       | n/a           |
 | Tagged template                                             | `` x`y` ``                    | n/a           |
 | Logical NOT                                                 | `!x`                          | n/a           |
 | Equality                                                    | `x == y`                      | left-to-right |
