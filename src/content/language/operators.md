@@ -4,7 +4,7 @@ title: Operator precedence
 
 Origami is a dialect of JavaScript expressions so closely follows [JavaScript operator precedence](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_precedence).
 
-Origami introduces some operators of its own. The following table indicates their precedence relative to the standard JavaScript operators.
+Origami introduces some operators of its own. The following table lists the standard JavaScript operators and the Origami operators from highest precedence to lowest.
 
 | Operator                                                    | Example                       | Associativity |
 | :---------------------------------------------------------- | :---------------------------- | :------------ |
@@ -27,3 +27,7 @@ Origami introduces some operators of its own. The following table indicates thei
 | [Implicit parentheses](syntax.html#function-calls)          | `x y`                         | right-to-left |
 | [Shorthand function](syntax.html#lambdas-unnamed-functions) | `=x`                          | right-to-left |
 | [Pipe](syntax.html#pipe-operator)                           | `x -> y`                      | left-to-right |
+
+An operator’s precedence determines how the Origami parser handles expressions that have more than one possible interpretation.
+
+Example: `a -> b => c` could be interpreted as `a -> (b => c)` or `(a -> b) => c`. Origami uses the former interpretation, because the arrow operator has a higher precedence than Origami pipe operator.
