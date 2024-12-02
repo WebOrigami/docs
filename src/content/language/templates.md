@@ -266,7 +266,7 @@ ${ samples.ori/templates/condition.ori({}) }
 
 A particularly kind of condition that often arises in templates is providing a default value for some field that might not exist in the template. For that particular kind of condition, you can use a "nullish coalescing operator" whose general form is:
 
-```
+```ori
 <thing that might not exist> ?? <default result>
 ```
 
