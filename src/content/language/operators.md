@@ -68,3 +68,5 @@ package - lock.json
 ```
 
 would subtract the value of `lock.json` from the value of `package`.
+
+Along the same lines, Origami uses the `/` to delineate keys in a path like `foo/bar`. If you want to use `/` to do division, you must put a space around it: `foo / bar`.

@@ -79,7 +79,7 @@ In the last command above, `Hello.md` is evaluated as a reference. In this case,
 Unlike JavaScript identifiers, it is legal to include a `.` period in a reference. Spaces and the following characters
 
 ```
-(){}[]<>?!=,/:`"'«»\\→⇒
+(){}[]<>?!=,/:`"'«»\\→⇒…
 ```
 
 must be escaped with a `\\` backslash or in quotes.
@@ -102,7 +102,7 @@ Or you can search the current [scope](scope.html) with the [scope:](/builtins/sc
 scope:("foo bar")
 ```
 
-A reference that's entirely numeric digits also requires special handling or it will be treated as a number. For example, you might have folders named by year like `2025`. To force Origami to treat that as a reference, you can write:
+A reference that's entirely numeric digits also requires special handling or it will be treated as a number. For example, you might have folders organized by year with names like `2025`. To force Origami to treat that as a reference, you can write:
 
 ```
 scope:2025

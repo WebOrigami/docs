@@ -345,6 +345,16 @@ pre code.hljs {
   padding: 0;
 }
 
+/* Approximate more recent GitHub styling for inline code */
+code:not(pre code) {
+  background-color: var(--color-canvas-subtle);
+  border-radius: 6px;
+  font-size: 85%;
+  margin: 0;
+  padding: .2em .4em;
+  white-space: break-spaces;
+}
+
 /*
  * Architecture block diagram
  */
