@@ -29,7 +29,14 @@ Like JavaScript, Origami is a dynamic language; you do not need to specify the t
 
 Origami has signed integers and floating point numbers so that you can pass numeric values to functions.
 
-Origami does not yet support binary, octal, hex, or exponential notation.
+Origami does not yet support binary, octal, hexadecimal, or exponential notation. You can obtain such numbers of invoking the JavaScript [Number](/builtins/js.html) function and passing it a string. One way to do that is with slash syntax:
+
+```console
+$ ori Number/0xf
+${ Number/0xf }
+$ ori Number/1e2
+${ Number/1e2 }
+```
 
 ## Supported operators
 
