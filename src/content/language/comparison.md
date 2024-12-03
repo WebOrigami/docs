@@ -33,7 +33,7 @@ Origami does not yet support binary, octal, hex, or exponential notation.
 
 ## Supported operators
 
-Origami supports the following JavaScript operators:
+Origami supports the following JavaScript [operators](operators.html):
 
 - Conditional (ternary) operator `a ? b : c`
 - Logical AND `&&`
@@ -44,20 +44,21 @@ Origami supports the following JavaScript operators:
 - Strict equality `===`
 - Strict inequality `!==`
 - Nullish coalescing operator `a && b`
+- Math operators `+` `-` `*` `/` `%` `**`
+- Bitwise operators `&` `|` `^` `~`
+- Shift operators `<<` `>>` `>>>`
+- Comma operator `,`
 
 Origami does not currently support:
 
 - Member access via `.`
 - Optional chaining `x?.y`
 - Computed member access `x[y]`
-- Math operators
-- Bitwise operators
 
 Because Origami only supports expressions and not statements, it does not support:
 
 - Postfix and prefix operators `++`, `--`
 - Assignment operators `=`, `+=`, `-=`, etc.
-- Comma operator
 
 Instead of JavaScript's `new` operator, Origami has a [`new:`](/builtins/new.html) protocol.
 

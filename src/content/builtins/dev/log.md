@@ -46,4 +46,14 @@ Processing 2
 - Hello, Carol!
 ```
 
+You can also use the `,` comma operator to place a `log` expression before some other expression. The value of second expression will be returned. The above example can be rewritten using the comma operator:
+
+```ori
+// test.ori
+map(
+  ["Alice", "Bob", "Carol"]
+  (name, index) => (log(`Processing \${index}`), `Hello, \${name}!`)
+)
+```
+
 See also [`breakpoint`](./breakpoint.html).
