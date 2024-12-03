@@ -103,8 +103,6 @@
 
 - text: "All namespaces"
   href: /builtins
-- href: /builtins/calc/
-  text: "calc:"
 - href: /builtins/dev/
   text: "dev:"
 - href: /builtins/explore.html

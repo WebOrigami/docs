@@ -1,7 +1,5 @@
 - text: "All namespaces"
   href: index.html
-- href: calc/
-  text: "calc:"
 - href: dev/
   text: "dev:"
 - href: explore.html
