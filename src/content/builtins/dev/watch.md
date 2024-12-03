@@ -10,7 +10,7 @@ This also watches the `tree` for `change` events. Currently, [FileTree](/async-t
 This can be used to serve a virtual folder, reevaluating its definition whenever the containing real folder changes.
 
 ```console
-$ ori serve watch src, =site.ori/public
+$ ori serve watch src, =debug src/site.ori
 ```
 
 Calling `serve` this way will ensure that changes you make to Origami files and other data will be reflected when you refresh your browser.
