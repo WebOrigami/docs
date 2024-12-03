@@ -4,6 +4,8 @@ title: Operators
 
 Origami is a dialect of JavaScript expressions so closely follows [JavaScript operator precedence](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_precedence).
 
+## Operator precedence
+
 Origami introduces some operators of its own, listed here alongside the standard JavaScript operators. Operators are listed in order from highest precedence to lowest precedence.
 
 | Operator                                                    | Example                       | Associativity |
@@ -48,3 +50,21 @@ Origami introduces some operators of its own, listed here alongside the standard
 An operator’s precedence determines how the Origami parser handles expressions that have more than one possible interpretation.
 
 Example: `a -> b => c` could be interpreted as `a -> (b => c)` or `(a -> b) => c`. Origami uses the former interpretation, because the arrow operator has a higher precedence than Origami pipe operator.
+
+## Spaces required for certain operators
+
+Note: Origami allows the characters `%`, `&`, `+`, `-`, and `^` in [references](syntax.html#references). To use those characters as operators, put spaces around the character.
+
+For example, minus signs often appear in file names as hyphens, so:
+
+```
+package-lock.json
+```
+
+refers to a file called `package-lock.json`. If you really intended to perform subtraction, put spaces around the minus sign:
+
+```
+package - lock.json
+```
+
+would subtract the value of `lock.json` from the value of `package`.

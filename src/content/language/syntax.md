@@ -54,6 +54,13 @@ years/2023
 
 searches in the `years` tree for the key "2023".
 
+If you have a string that you want to convert to a number, use the [`Number`](/builtins/js.html) builtin function. Like any function, you can call it with parentheses or a slash:
+
+```
+Number("123")   // the number 123
+Number/123      // the number 123
+```
+
 ## References
 
 Unquoted character sequences will be evaluated in the current [scope](scope.html) to find, for example, a file or other tree value with the indicated name.
@@ -72,10 +79,34 @@ In the last command above, `Hello.md` is evaluated as a reference. In this case,
 Unlike JavaScript identifiers, it is legal to include a `.` period in a reference. Spaces and the following characters
 
 ```
-(){}[]<>-=,/:`"'«»\#→⇒
+(){}[]<>?!=,/:`"'«»\\→⇒
 ```
 
-must be escaped with a `\\` backslash.
+must be escaped with a `\\` backslash or in quotes.
+
+Example: If you have a file with a space like `foo bar`, you could reference it with
+
+```
+foo\\ bar
+```
+
+If you know the file's in a particular folder, such as the current directory, you could also use:
+
+```
+./("foo bar")
+```
+
+Or you can search the current [scope](scope.html) with the [scope:](/builtins/scope.html) protocol:
+
+```
+scope:("foo bar")
+```
+
+A reference that's entirely numeric digits also requires special handling or it will be treated as a number. For example, you might have folders named by year like `2025`. To force Origami to treat that as a reference, you can write:
+
+```
+scope:2025
+```
 
 ## Object literals
 
@@ -403,6 +434,8 @@ I have a pet named Fluffy.
 ```
 
 You can prefix a template literal with a function name immediately before the leading backtick. This invokes that function with the strings that make up the template's boilerplate text and a set of values to be substituted in the output. This function signature is compatible with JavaScript [tagged template functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates). See [`indent`](/builtins/text/indent.html) for an example of a builtin function that you can use in a tagged template.
+
+Also see [Templates](templates.html) for more about using templates to generate HTML and other text formats.
 
 ## Grouping
 
