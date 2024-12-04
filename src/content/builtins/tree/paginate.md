@@ -40,14 +40,14 @@ Each page includes:
         nextPage: 2
         pageCount: 2
         pageNumber: 1
-        previousPage: js/null
+        previousPage: null
       }
       2: {
         items: {
           3: "[data for Portugal]"
           4: "[data for Spain]"
         }
-        nextPage: js/null
+        nextPage: null
         pageCount: 2
         pageNumber: 2
         previousPage: 1      
