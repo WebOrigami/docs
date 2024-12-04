@@ -25,11 +25,11 @@ Like JavaScript, Origami is a dynamic language; you do not need to specify the t
 - File paths like `/Users/alice/myProject/data.json` are valid references in Origami.
 - [Scope](scope.html) in Origami is defined more broadly than in JavaScript. Code in a JavaScript module can only reference things outside the module via explicit `import` statements. Origami expressions can implicitly reference anything within a project.
 
-## Basic numbers but no math
+## Basic numbers
 
-Origami has signed integers and floating point numbers so that you can pass numeric values to functions.
+Origami has integers and floating point numbers so that you can pass numeric values to functions.
 
-Origami does not yet support binary, octal, hexadecimal, or exponential notation. You can obtain such numbers of invoking the JavaScript [Number](/builtins/js.html) function and passing it a string. One way to do that is with slash syntax:
+Origami does not support binary, octal, hexadecimal numeric literals, nor does it support exponential notation. All those forms require a mixture of numbers and alphabetic characters and so might actually be identifiers (above). These forms of numbers rarely come up in the creation of websites, but if necessary you can produce such numbers by the JavaScript [Number](/builtins/js.html) function and passing it a string. One concise way to do that is with slash syntax:
 
 ```console
 $ ori Number/0xf
