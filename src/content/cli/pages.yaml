@@ -1,5 +1,7 @@
 - href: index.html
   text: Introduction
+- href: installing.html
+  text: Installing
 - text: "Tutorial:"
 - href: intro1.html
   text: Start tutorial

@@ -25,3 +25,5 @@ The Origami language [syntax](syntax.html) is relatively simple and intended for
 Read about the basics of Origami in [Hello, world](hello.html) »
 
 Build a simple site in Origami in the [hands-on tutorial](tutorial.html) »
+
+Try Origami in the command line using the [Origami CLI](/cli) »

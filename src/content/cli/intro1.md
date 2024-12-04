@@ -18,7 +18,7 @@ GitHub Codespaces is a web-based version of VS Code, a popular editor for profes
 <span class="tutorialStep"></span> In the GitHub Codespaces terminal window, install the ori command-line interface:
 
 ```console
-$ npm install -g weborigami/origami
+$ npm install --global @weborigami/origami
 ```
 
 <span class="tutorialStep"></span> Change to the `src` directory:
@@ -38,7 +38,7 @@ With this option, you can use whatever code editor you prefer. You will need to 
 <span class="tutorialStep"></span> Install the ori command-line interface:
 
 ```console
-$ npm install -g weborigami/origami
+$ npm install --global @weborigami/origami
 ```
 
 <span class="tutorialStep"></span> Change to the `src` directory:
