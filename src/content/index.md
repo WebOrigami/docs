@@ -74,4 +74,6 @@ The project includes several separate but interoperable tools and ideas:
 - The [async-tree library](/async-tree/) lets JavaScript programmers use core Origami features in JavaScript applications.
 - The [conceptual pattern](/pattern/) at the foundation of it all lets you represent a wide variety of data types as trees that can be easily traversed and transformed. There's no code at this level; you can use the ideas in any project.
 
-If you're interested in trying Origami in a friendly setting, you can participate in a guided usability test and share your feedback. Or join a pair programming session to use these new techniques and tools to collaboratively implement a site. Contact [Jan Miksovsky](https://jan.miksovsky.com/contact.html).
+If you'd like to ask questions, visit the [Web Origami room](https://matrix.to/#/%23weborigami:envs.net) on [Matrix](https://matrix.org).
+
+If you're interested in trying Origami in a friendly setting, you can participate in a guided playtest and share your feedback. Or join a pair programming session to use these new techniques and tools to collaboratively implement a site. Contact [Jan Miksovsky](https://jan.miksovsky.com/contact.html).
