@@ -5,8 +5,9 @@ subtitle: Suggestions for common tasks
 
 [Define a shared header, footer, or side bar](#topNav)<br>
 [Define a base page template](#baseTemplate)<br>
-[Transform a folder of markdown into HTML](#markdown)<br>
+[Transform a folder of markdown into HTML](#transform-markdown-folder)<br>
 [Merge one folder into another](#spread)<br>
+[Add an index page to a folder created with a map](#transform-with-index)
 
 <a name="topNav"></a>
 
@@ -93,7 +94,7 @@ ${ samples.ori/howTo/baseTemplate/site.ori/about.html }
 
 As a site grows, the base page template can become quite large. For clarity, it can be helpful to separate out pieces of the base template into separate files. For example, if the top navigation area gets complex, you can separate it into a separate top navigation template; see the preceding section.
 
-<a name="markdown"></a>
+<a name="transform-markdown-folder"></a>
 
 ## Transform a folder of markdown into HTML
 
@@ -184,3 +185,42 @@ ${ svg.js samples.ori/howTo/slashPages/siteSpread.ori }
 </figure>
 
 With this, all the pages are directly available at the root of the site and URLs like `/now.html`.
+
+<a name="transform-with-index"></a>
+
+## Add an index page to a folder created with a map
+
+Suppose you have a folder of posts you're create with [`map`](/builtins/tree/map.html), perhaps to [transform a folder of markdown into HTML](#transform-markdown-folder), and you want the resulting virtual folder of HTML to have its own `index.html` page. You can use the same [spread operator](syntax.html#spread-operator) shown above.
+
+In this situation, you're going to be using your transformed markdown twice: once to create the HTML pages in the `pages` area, and a second time for the index page for the `pages` area. To make your `map` reusable, define it in a separate file called `data.ori`
+
+```ori
+// data.ori
+${ samples.ori/howTo/markdownIndex/data.ori }
+```
+
+Now create a basic index page template in `pagesIndex.ori`:
+
+```ori
+// pagesIndex.ori
+${ samples.ori/howTo/markdownIndex/pagesIndex.ori }
+```
+
+Then define a `site.ori` formula to create the `pages` area. This expression will use the spread operator to incorporate all the individual pages. To that set of pages, the `index.html` formula will create the index page, passing the set of individual pages to the `pagesIndex.ori` template.
+
+```ori
+// site.ori
+${ samples.ori/howTo/markdownIndex/site.ori }
+```
+
+To visualize this operation: `data.ori` defines a tree that looks like this.
+
+<figure>
+${ svg.js samples.ori/howTo/markdownIndex/data.ori }
+</figure>
+
+The `pages` definition in `site.ori` includes all of that, plus the additional `index.html` page:
+
+<figure>
+${ svg.js samples.ori/howTo/markdownIndex/site.ori/pages }
+</figure>
