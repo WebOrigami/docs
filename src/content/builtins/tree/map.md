@@ -109,20 +109,20 @@ For small maps, this default `inverseKey` function may be perfectly acceptable. 
 
 Changing a key's extension is very common. Mapping values often changes the type of the data, and it is useful to be able to reflect that change in type in file extensions.
 
-To facilitate changing extensions in a `map`, you can supply an `extensions` option that indicates whether and how the extensions of the original tree should be changed:
+To facilitate changing extensions in a `map`, you can supply an `extension` option that indicates whether and how the extensions of the original tree should be changed:
 
-- `extensions: ".md"` restricts the map to only apply to keys ending in `.md`
-- `extensions: "->.html"` adds the `.html` extension to the keys in the result
-- `extensions: ".md->.html"` only applies the map to keys ending in `.md`, and adds the `.html` extension to keys in the result
+- `extension: ".md"` restricts the map to only apply to keys ending in `.md`
+- `extension: "->.html"` adds the `.html` extension to the keys in the result
+- `extension: ".md->.html"` only applies the map to keys ending in `.md`, and adds the `.html` extension to keys in the result
 
-The `extensions` option generates a `key` and `inverseKey` functions for you. If you provide two extensions, like `".md->.html"`, the `inverseKey` function will be much more efficient.
+The `extension` option generates a `key` and `inverseKey` functions for you. If you provide two extensions, like `".md->.html"`, the `inverseKey` function will be much more efficient.
 
 So you can also write the above example as:
 
 ```console
 $ cat greetings.yaml
 ${ samples.ori/cli/greetings.yaml
-}$ ori "map(greetings.yaml, { extensions: '→.html' })"
+}$ ori "map(greetings.yaml, { extension: '→.html' })"
 ${ yaml(map(samples.ori/cli/greetings.yaml, { key: (greeting, name) => `${ name }.html` })) }
 ```
 
