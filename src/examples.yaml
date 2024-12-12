@@ -63,6 +63,12 @@ pondlife:
   description: |
     A sample blog built from markdown posts, with generated index pages, post
     pages, and feeds.
+valerocks:
+  name: vale.rocks
+  url: https://vale.rocks/
+  repo: https://github.com/DeclanChidlow/vale.rocks
+  description: |
+    The personal site of Declan Chidlow, including a blog and a portfolio.
 web-origami:
   name: Web Origami documentation
   url: https://weborigami.org
