@@ -1,10 +1,6 @@
 ---
 title: ObjectTree
 subtitle: Wraps a plain JavaScript object or array as an async tree
-sample:
-  Alice: Hello, Alice.
-  Bob: Hello, Bob.
-  Carol: Hello, Carol.
 ---
 
 ## Usage
@@ -27,14 +23,20 @@ export default new ObjectTree({
 This defines a tree whose keys are the object's keys, and whose values are the object's values:
 
 <figure>
-${ svg.js _/sample }
+${ svg.js({
+  Alice: "Hello, Alice."
+  Bob: "Hello, Bob."
+  Carol: "Hello, Carol."
+}) }
 </figure>
 
 The [ori](/cli) tool will display the contents of the resulting `ObjectTree`.
 
 ```console
 $ ori object.js/
-${ yaml _/sample }
+Alice: Hello, Alice.
+Bob: Hello, Bob.
+Carol: Hello, Carol.
 ```
 
 ${ templates/class.ori(api.ori/drivers/ObjectTree.yaml/exports/0) }

@@ -1,34 +1,6 @@
 ---
 title: Scope
 subtitle: How references in Origami expressions are resolved
-projectExample:
-  package.json: |
-    { "name": "Sample" }
-  ReadMe.md: About this project
-  src:
-    assets:
-      image1.jpg: "[binary data]"
-    greet.js: export default function greet() ...
-    site.ori: |
-      index.html = greet.js(name)
-      name = 'Alice'
-site.ori: |
-  index.html = greet.js(name)
-  name = 'Alice'
-jsScopeExample:
-  Math:
-    pow: "[function]"
-  "[module]":
-    power: 2
-    sumSquares: "[function]"
-    "[function body]":
-      n: 3
-      total: "0"
-      "[for]":
-        i: 1
-        "[for body]":
-          squared: 1
-          newTotal: "[What can this see?]"
 ---
 
 Most Origami expressions contain references to named functions, files, data keys, etc., which must be resolved in order to evaluate the expression. For example, consider the formula:
@@ -62,13 +34,29 @@ src/
 And suppose that the file `site.ori` defines a tree:
 
 ```ori
-${ _/site.ori }
+{
+  index.html = greet.js(name)
+  name = "Alice"
+}
 ```
 
 The reference to `greet` is resolved by treating the entire project as a tree:
 
 <figure>
-${ svg.js _/projectExample }
+${ svg.js(yamlParse(`
+  package.json: |
+    { "name": "Sample" }
+  ReadMe.md: About this project
+  src:
+    assets:
+      image1.jpg: "[binary data]"
+    greet.js: export default function greet() ...
+    site.ori: |
+      {
+        index.html = greet.js(name)
+        name = "Alice"
+      }
+`)) }
 </figure>
 
 When Origami needs to resolve the `greet.js` reference, it walks "up" this tree:

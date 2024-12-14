@@ -1,23 +1,6 @@
 ---
 title: Hello, world
 subtitle: The concepts that make Origami unique
-siteComplete:
-  index.html: <h1>About Us</h1>
-  team:
-    Alice.html: <h1>Alice</h1>
-    Bob.html: <h1>Bob</h1>
-    Carol.html: <h1>Carol</h1>
-  assets:
-    personIcon.svg: "<svg ..."
-    styles.css: "body { color: ..."
-  images:
-    kingfisher.jpg: "[binary data]"
-    van.jpg: "[binary data]"
-    venice.jpg: "[binary data]"
-  thumbnails:
-    kingfisher.jpg: "[binary data]"
-    van.jpg: "[binary data]"
-    venice.jpg: "[binary data]"
 ---
 
 The Origami language lets you concisely define the structure of a website. This page introduces three key concepts — _trees_, _tree scope_, and _maps_ — and a template system that make the language unique. If you prefer a hands-on approach, start with the [tutorial](tutorial.html).
@@ -81,7 +64,24 @@ Website creators refer to URLs as _routes_: when you navigate to a URL like [tea
 The site's complete tree is a little bigger than what's shown above, because it also includes CSS stylesheets, image files, or other resources referenced by the HTML:
 
 <figure>
-${ svg.js _/siteComplete }
+${ svg.js(yamlParse(`
+  index.html: <h1>About Us</h1>
+  team:
+    Alice.html: <h1>Alice</h1>
+    Bob.html: <h1>Bob</h1>
+    Carol.html: <h1>Carol</h1>
+  assets:
+    personIcon.svg: "<svg ..."
+    styles.css: "body { color: ..."
+  images:
+    kingfisher.jpg: "[binary data]"
+    van.jpg: "[binary data]"
+    venice.jpg: "[binary data]"
+  thumbnails:
+    kingfisher.jpg: "[binary data]"
+    van.jpg: "[binary data]"
+    venice.jpg: "[binary data]"
+`)) }
 </figure>
 
 This conceptual tree can help you envision and build a site. The structure you pick determines the routes that will be used to access each page and resource.
