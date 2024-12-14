@@ -42,7 +42,7 @@ The tool dynamically imports the indicated JavaScript file and gets its default 
 
 ```console
 $ node json object.js
-${ json pattern.ori/flat/object.js/ }
+${ json(pattern.ori/flat/object.js/) + "\n" }
 ```
 
 &nbsp;

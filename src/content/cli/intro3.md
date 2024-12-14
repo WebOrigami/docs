@@ -64,15 +64,17 @@ HELLO, ALICE.
 
 ```console
 $ ori greetings.yaml
-${ samples.ori/cli/greetings.yaml }$ ori json greetings.yaml
-${ json samples.ori/cli/greetings.yaml }
+${ samples.ori/cli/greetings.yaml }
+$ ori json greetings.yaml
+${ json(samples.ori/cli/greetings.yaml) + "\n" }
 ```
 
 <span class="tutorialStep"></span> In the other direction, you can render a JSON file as YAML with the [`yaml`](/builtins/origami/yaml.html) function:
 
 ```console
 $ ori letters.json
-${ samples.ori/cli/letters.json }$ ori yaml letters.json
+${ samples.ori/cli/letters.json }
+$ ori yaml letters.json
 ${ yaml samples.ori/cli/letters.json }
 ```
 
@@ -95,14 +97,14 @@ export default function text(obj) {
 
 ```console
 $ ori text.js greetings.yaml/
-${ samples.ori/cli/text.js samples.ori/cli/greetings.yaml/ }
+${ samples.ori/cli/text.js(samples.ori/cli/greetings.yaml/) + "\n" }
 ```
 
 <span class="tutorialStep"></span> Or pass a parsed JSON file to your function:
 
 ```console
 $ ori text.js letters.json/
-${ samples.ori/cli/text.js samples.ori/cli/letters.json/ }
+${ samples.ori/cli/text.js(samples.ori/cli/letters.json/) + "\n" }
 ```
 
 Separating the parsing from your function like this lets you keep your function as general as possible.
@@ -168,7 +170,7 @@ A folder's values will be file buffers, while `text.js` is expecting strings. To
 
 ```console
 $ ori text.js plain greetings
-${ samples.ori/cli/text.js samples.ori/cli/greetings.yaml/ }
+${ samples.ori/cli/text.js(samples.ori/cli/greetings.yaml/) + "\n" }
 ```
 
 This connects two ideas:

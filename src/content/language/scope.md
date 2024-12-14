@@ -168,7 +168,7 @@ This produces:
 
 ```console
 $ ori site.ori/index.html
-${ samples.ori/cli/scope/site.ori/index.html }
+${ samples.ori/cli/scope/site.ori/index.html + "\n" }
 ```
 
 Another approach would be to have `index.ori` itself look for `site.ori` (which is in scope because that file is also in the `src` folder), and then extract the `data`:

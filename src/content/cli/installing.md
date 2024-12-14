@@ -36,7 +36,7 @@ A typical Origami website project will exist in a folder containing a `package.j
 <span class="tutorialStep"></span> Inside the folder create a file called `package.json` and paste in the following:
 
 ```json
-${ package.json.ori/ }
+${ package.ori.json() }
 ```
 
 Update the `name` field to reflect the name of your project.

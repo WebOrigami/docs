@@ -23,14 +23,14 @@ If you use the `ori` [CLI](/cli) to display this file, you will see the plain fi
 
 ```console
 $ ori pet.json
-${ json samples.ori/help/pet.json }
+${ json(samples.ori/help/pet.json) + "\n" }
 ```
 
 You can unpack this file and traverse into its data with a slash path:
 
 ```console
 $ ori pet.json/name
-${ samples.ori/help/pet.json/name }
+${ samples.ori/help/pet.json/name + "\n" }
 ```
 
 Ending a path with a slash unpacks the file and returns all the data. By default, `ori` will display it in YAML format:
@@ -210,8 +210,9 @@ With that, Origami will call your custom file handler whenever you reference a `
 $ cat alice.user
 ${ samples.ori/cli/alice.user }
 $ ori alice.user/
-${ yaml jsonParse samples.ori/cli/alice.user }$ ori alice.user/name
-${ (jsonParse samples.ori/cli/alice.user)/name }
+${ yaml jsonParse samples.ori/cli/alice.user }
+$ ori alice.user/name
+${ (jsonParse samples.ori/cli/alice.user)/name + "\n" }
 ```
 
 ### Defining a handler for a template language

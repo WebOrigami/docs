@@ -9,7 +9,7 @@ Reverses the order of keys in the tree.
 $ cat letters.yaml
 ${ samples.ori/help/letters.yaml }
 $ ori reverse letters.yaml
-${ yaml reverse samples.ori/help/letters.yaml }
+${ yaml(reverse samples.ori/help/letters.yaml) + "\n" }
 ```
 
 <div class="sideBySide">

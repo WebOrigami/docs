@@ -23,9 +23,9 @@ Returns the given key, adding a trailing slash if it doesn't already have one. I
 
 ```console
 $ ori "slash/add('folder')"
-${ slash/add('folder/') }
+${ slash/add('folder/') + "\n" }
 $ ori "slash/add('folder/')"
-${ slash/add('folder/') }
+${ slash/add('folder/') + "\n" }
 ```
 
 ## has(key)
@@ -34,9 +34,9 @@ Returns true if the key ends in a trailing slash. If the key is not a string, th
 
 ```console
 $ ori "slash/has('file.txt')"
-${ slash/has('file.txt') ? "true" : "false" }
+${ (slash/has('file.txt') ? "true" : "false") + "\n" }
 $ ori "slash/has('folder/')"
-${ slash/has('folder/') }
+${ slash/has('folder/') + "\n" }
 ```
 
 ## remove(key)
@@ -45,9 +45,9 @@ Returns the given key, removing a trailing slash if it has one. If the key is no
 
 ```console
 $ ori "slash/remove('file.txt')"
-${ slash/remove('file.text') }
+${ slash/remove('file.text') + "\n" }
 $ ori "slash/remove('folder/')"
-${ slash/remove('folder/') }
+${ slash/remove('folder/') + "\n" }
 ```
 
 ## toggle(key, [force])
@@ -56,20 +56,20 @@ Given only a key, this will add a trailing slash if the key doesn't have one or 
 
 ```console
 $ ori "slash/toggle('data')"
-${ slash/toggle('data') }
+${ slash/toggle('data') + "\n" }
 $ ori "slash/toggle('data/')"
-${ slash/toggle('data/') }
+${ slash/toggle('data/') + "\n" }
 $ ori "slash/toggle('data', true)"
-${ slash/toggle('data', true) }
+${ slash/toggle('data', true) + "\n" }
 $ ori "slash/toggle('data/', false)"
-${ slash/toggle('data/', false) }
+${ slash/toggle('data/', false) + "\n" }
 ```
 
 This can be useful for having one key add or remove a trailing slash to match a second key.
 
 ```console
 $ ori "slash/toggle('a', slash/has('b'))"
-${ slash/toggle('a', slash/has('b')) }
+${ slash/toggle('a', slash/has('b')) + "\n" }
 $ ori "slash/toggle('a', slash/has('b/'))"
-${ slash/toggle('a', slash/has('b/')) }
+${ slash/toggle('a', slash/has('b/')) + "\n" }
 ```

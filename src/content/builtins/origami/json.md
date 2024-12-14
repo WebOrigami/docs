@@ -10,5 +10,5 @@ The ori tool uses YAML as its default output format, so you can use the `json` f
 ```console assert: true, path: files
 $ ori greetings.yaml
 ${ samples.ori/cli/greetings.yaml }$ ori json greetings.yaml
-${ json samples.ori/cli/greetings.yaml }
+${ json(samples.ori/cli/greetings.yaml) + "\n" }
 ```

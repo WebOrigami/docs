@@ -33,9 +33,9 @@ Origami does not support binary, octal, hexadecimal numeric literals, nor does i
 
 ```console
 $ ori Number/0xf
-${ Number/0xf }
+${ Number/0xf + "\n" }
 $ ori Number/1e2
-${ Number/1e2 }
+${ Number/1e2 + "\n" }
 ```
 
 ## Supported operators

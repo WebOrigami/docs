@@ -42,8 +42,9 @@ Unlike async tree classes like [ObjectTree](ObjectTree.html), an `FunctionTree` 
 
 ```console
 $ ori keys function.js/
-${ yaml keys samples.ori/help/function.js/ }$ ori function.js/David
-${ samples.ori/help/function.js/David }
+${ yaml keys samples.ori/help/function.js/ }
+$ ori function.js/David
+${ samples.ori/help/function.js/David + "\n" }
 ```
 
 ${ templates/class.ori(api.ori/drivers/FunctionTree.yaml/exports/0) }

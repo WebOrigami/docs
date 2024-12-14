@@ -42,7 +42,7 @@ You can see that Origami is treating the body text as a `text` property. In JSON
 
 ```console
 $ ori json basho.md
-${ json samples.ori/help/basho.md/ }
+${ json(samples.ori/help/basho.md) + "\n" }
 ```
 
 Here, the [`json`](/builtins/origami/json.html) command implicitly unpacks the document, so the trailing `/` slash is unnecessary.

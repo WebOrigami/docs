@@ -16,5 +16,5 @@ then calling `sitemap` generates:
 
 ```console
 $ ori sitemap tinySite.ori, "'https://mysite.org'"
-${ sitemap(samples.ori/help/tinySite.ori, "https://mysite.org" )}
+${ sitemap(samples.ori/help/tinySite.ori, "https://mysite.org" ) }
 ```

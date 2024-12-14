@@ -65,7 +65,7 @@ ${ js/codeFunctions.js(pattern.ori/deep/json.js)/plain }
 ```console
 $ cd ../deep
 $ node json files.js
-${ json pattern.ori/deep/files.js }
+${ json(pattern.ori/deep/files.js) + "\n" }
 ```
 
 ## Deep transforms
@@ -82,7 +82,7 @@ ${ pattern.ori/deep/transform.js }
 
 ```console
 $ node json htmlFiles.js
-${ json pattern.ori/deep/transform.js tree:from pattern.ori/deep/files.js }
+${ json(pattern.ori/deep/transform.js(tree:from pattern.ori/deep/files.js)) + "\n" }
 ```
 
 Visually this looks like:

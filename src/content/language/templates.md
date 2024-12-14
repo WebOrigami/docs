@@ -35,7 +35,7 @@ ${ samples.ori/templates/alice.yaml }
 
 ```console
 $ ori "greet.ori(alice.yaml)"
-${ samples.ori/templates/greet.ori(samples.ori/templates/alice.yaml) }
+${ samples.ori/templates/greet.ori(samples.ori/templates/alice.yaml) + "\n" }
 ```
 
 ### Long form with named parameters
@@ -49,7 +49,7 @@ ${ samples.ori/templates/heading.ori }
 
 ```console
 $ ori "heading.ori('About Us')"
-${ samples.ori/templates/heading.ori('About Us') }
+${ samples.ori/templates/heading.ori('About Us') + "\n" }
 ```
 
 Here, the `text` parameter will have whatever value is passed to the template.
@@ -63,7 +63,7 @@ You can reference local files in Origami expressions. Depending on the situation
 If `copyright.txt` contains:
 
 ```
-${ samples.ori/templates/copyright.txt }
+${ string(samples.ori/templates/copyright.txt) + "\n" }
 ```
 
 Then an Origami template can reference that local file directly:
@@ -77,14 +77,14 @@ Invoking the template will inline that file:
 
 ```console
 $ ori "fileRef.ori()"
-${ samples.ori/templates/fileRef.ori() }
+${ samples.ori/templates/fileRef.ori() + "\n" }
 ```
 
 In cases like this, where the template does not require any argument, in the command line you can avoid the need to quote parentheses by invoking the template with a trailing slash:
 
 ```console
 $ ori fileRef.ori/
-${ samples.ori/templates/fileRef.ori() }
+${ samples.ori/templates/fileRef.ori() + "\n" }
 ```
 
 ## Reference trees
@@ -103,7 +103,7 @@ ${ samples.ori/templates/flatten.ori }
 
 ```console
 $ ori flatten.ori/
-${ samples.ori/templates/flatten.ori/ }
+${ samples.ori/templates/flatten.ori/ + "\n" }
 ```
 
 This feature forms the basis for more complex ones (like maps, below), but one basic use for it is to inline a set of files. For example, you might create a folder that contains a collection of HTML fragments as separate files:
@@ -145,7 +145,7 @@ ${ samples.ori/templates/inline.css }
 
 ```console
 $ ori inline inline.html
-${ inline samples.ori/templates/inline.html }
+${ inline(samples.ori/templates/inline.html) }
 ```
 
 Here, the `inline.html` file is acting as an Origami template, but keeps the `.html` extension so that it can be otherwise treated as an HTML file.
@@ -206,7 +206,7 @@ ${ samples.ori/templates/teamLead.ori }
 
 ```console
 $ ori teamLead.ori/
-${ samples.ori/templates/teamLead.ori/ }
+${ samples.ori/templates/teamLead.ori/ + "\n" }
 ```
 
 ## Reference network resources
@@ -259,9 +259,9 @@ If the `input` does have a rating, the template shows the rating, otherwise it s
 
 ```console
 $ ori “condition.ori({ rating: 3 })”
-${ samples.ori/templates/condition.ori({ rating: 3 }) }
+${ samples.ori/templates/condition.ori({ rating: 3 }) + "\n" }
 $ ori “condition.ori({})”
-${ samples.ori/templates/condition.ori({}) }
+${ samples.ori/templates/condition.ori({}) + "\n" }
 ```
 
 A particularly kind of condition that often arises in templates is providing a default value for some field that might not exist in the template. For that particular kind of condition, you can use a "nullish coalescing operator" whose general form is:
@@ -290,7 +290,7 @@ ${ samples.ori/templates/callJs.ori }
 
 ```console
 $ ori callJs.ori/
-${ samples.ori/templates/callJs.ori/ }
+${ samples.ori/templates/callJs.ori/ + "\n" }
 ```
 
 If the function you invoke is asynchronous, its result will be awaited before being incorporated into the text output.
@@ -310,7 +310,7 @@ This template repeats a ★ star character for the number of times defined in in
 
 ```console
 $ ori stars.ori 3
-${ samples.ori/templates/stars.ori(3) }
+${ samples.ori/templates/stars.ori(3) + "\n" }
 ```
 
 This `stars.ori` template defines a function that you can invoke inside expressions in other templates:
@@ -322,7 +322,7 @@ ${ samples.ori/templates/review.ori }
 
 ```console
 $ ori review.ori/
-${ samples.ori/templates/review.ori() }
+${ samples.ori/templates/review.ori() + "\n" }
 ```
 
 This technique can let you define components in plain HTML and CSS.

@@ -10,7 +10,7 @@ For example, if you are creating a `/user` area within a site that will handle r
 ```console
 $ ori match.ori
 ${ samples.ori/templates/match.ori }$ ori match.ori/user/Alice.html
-${ samples.ori/templates/match.ori/user/Alice.html }
+${ samples.ori/templates/match.ori/user/Alice.html + "\n" }
 ```
 
 The expression in parentheses defines a tree that matches patterns of the form `[name].html`. This tree is then used to obtain a value for the key `Alice.html`. Since that matches, the `match()` generates a result — here, using a template.
@@ -26,5 +26,5 @@ By default, the tree will have no public keys, but you can provide any [treelike
 $ ori matchDomain.ori
 ${ samples.ori/templates/matchDomain.ori }
 $ ori matchDomain.ori
-${ yaml samples.ori/templates/matchDomain.ori/ }
+${ yaml(samples.ori/templates/matchDomain.ori/) + "\n" }
 ```

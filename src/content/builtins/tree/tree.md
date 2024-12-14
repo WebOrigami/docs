@@ -9,7 +9,7 @@ For example, `Tree` exposes a method `isTreelike` that tests whether a given obj
 
 ```console
 $ ori tree:isTreelike 5
-${ string tree:isTreelike(5) }
+${ tree:isTreelike(5) + "\n" }
 $ ori tree:isTreelike { name: "Alice" }
-${ tree:isTreelike({ name: "Alice" }) }
+${ tree:isTreelike({ name: "Alice" }) + "\n" }
 ```

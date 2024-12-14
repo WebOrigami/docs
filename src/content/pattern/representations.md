@@ -9,7 +9,7 @@ Let's use the async tree pattern to tackle a small, common development task:
 <span class="tutorialStep"></span> View the files in the `src/approaches/markdown` folder, which contains some trivial markdown files. For example, `Alice.md`, contains:
 
 ```${'md'}
-${ pattern.ori/approaches/markdown/Alice.md }
+${ string(pattern.ori/approaches/markdown/Alice.md) + "\n" }
 ```
 
 We want to end up with a corresponding collection of HTML pages, such as `Alice.html`:

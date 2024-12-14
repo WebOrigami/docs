@@ -14,7 +14,7 @@ export default function codeFunctions(source) {
 
   const functions = {};
 
-  functions["@prologue"] = code.slice(0, matches[0].index).trim();
+  functions["@prologue"] = code.slice(0, matches[0].index).trim() + "\n";
 
   for (const match of matches) {
     functions[match.groups.name] = match[0];
@@ -22,9 +22,8 @@ export default function codeFunctions(source) {
 
   const lastMatch = matches[matches.length - 1];
   if (lastMatch) {
-    functions["@epilogue"] = code
-      .slice(lastMatch.index + lastMatch[0].length)
-      .trim();
+    functions["@epilogue"] =
+      code.slice(lastMatch.index + lastMatch[0].length).trim() + "\n";
   }
 
   return functions;

@@ -2,5 +2,4 @@
   <div class="blocks">
     ${ areaLinks.ori(areaLinks) }
   </div>
-
 `
