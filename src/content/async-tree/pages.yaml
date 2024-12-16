@@ -7,6 +7,8 @@
 - href: treelike.html
   text: Treelike objects
 - text: "API:"
+- href: BrowserFileTree.html
+  text: BrowserFileTree
 - href: ExplorableSiteTree.html
   text: ExplorableSiteTree
 - href: FileTree.html
