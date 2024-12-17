@@ -56,6 +56,10 @@ Here, the `text` parameter will have whatever value is passed to the template.
 
 Naming the parameter can help you document the template's expected input. This also allows you to define multiple parameters.
 
+### Template documents
+
+If a template is long and mostly text, it may be more convenient for you to define it as a [template document](templateDocuments.html).
+
 ## Reference local files
 
 You can reference local files in Origami expressions. Depending on the situation, you may not have to pass any arguments to the template — it may be able obtain whatever it needs from its file system context.
@@ -151,40 +155,6 @@ ${ inline(samples.ori/templates/inline.html) }
 Here, the `inline.html` file is acting as an Origami template, but keeps the `.html` extension so that it can be otherwise treated as an HTML file.
 
 If the input document contains any front matter (see below), inline preserves this in the output.
-
-## Template documents
-
-To facilitate inlining, you can also define Origami _template documents_. These are files identified with multiple extensions, where the second-to-last extension is `.ori`, like `index.ori.html` or `about.ori.md`.
-
-When you ask Origami to evaluate such a file, it will implicitly inline the results of any Origami expressions inside the file.
-
-This means you can rename the above `inline.html` file to `inline.ori.html`:
-
-```html
-<!-- inline.ori.html -->
-${ samples.ori/templates/inline.html }
-```
-
-and then evaluate that file:
-
-```console
-$ ori inline.ori.html/
-${ samples.ori/templates/inline.ori.html() }
-```
-
-A template document can be called as a function with up to one argument. Inside the document, use a `_` underscore to refer to the single argument.
-
-```html
-<!-- bold.ori.html -->
-${ samples.ori/templates/bold.ori.html }
-```
-
-```console
-$ ori "bold.ori.html('Hooray')"
-${ samples.ori/templates/bold.ori.html("Hooray") }
-```
-
-Substitutions inside a template document are full Origami expressions so, among other things, they can reference other template documents.
 
 ## Traverse into data
 

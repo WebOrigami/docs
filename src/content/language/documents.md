@@ -22,14 +22,14 @@ ${ samples.ori/help/hokusai.md/ }
 
 ## Document objects
 
-To include additional data in text documents, you can include it as "front matter" in JSON or YAML format at the top of the document, enclosed in lines of `---` three hyphens:
+To include additional data in text documents, you can include it as "front matter" in YAML or JSON format at the top of the document, enclosed in lines of `---` three hyphens:
 
 ```console
 $ cat basho.md
 ${ samples.ori/help/basho.md }
 ```
 
-To represent text with data consistently, Origami will generally work with it as a plain object. The plain object's properties include the front matter data and an additional `text` property with the body text.
+To represent text with data consistently, Origami will generally work with it as a plain object. The plain object's properties include the front matter data and an additional `@text` property with the body text.
 
 If you ask Origami to unpack this file:
 
@@ -38,7 +38,7 @@ $ ori basho.md/
 ${ yaml samples.ori/help/basho.md/ }
 ```
 
-You can see that Origami is treating the body text as a `text` property. In JSON format:
+You can see that Origami is treating the body text as a `@text` property. In JSON format:
 
 ```console
 $ ori json basho.md
@@ -48,6 +48,31 @@ ${ json(samples.ori/help/basho.md) + "\n" }
 Here, the [`json`](/builtins/origami/json.html) command implicitly unpacks the document, so the trailing `/` slash is unnecessary.
 
 You can create a text document from plain text with the [`document`](/builtins/text/document.html) builtin.
+
+## Origami front matter
+
+You can also write an Origami expression in a document's front matter.
+
+Origami uses the following heuristic to determine whether your document's front matter is YAML/JSON or Origami:
+
+- Find the first character in the front matter that's not whitespace, a letter, a number, or whitespace.
+- If this character is `(`, `.`, `/`, or `{`, then the front matter is parsed as an Origami expression.
+- Otherwise, the front matter is parsed as YAML/JSON.
+
+Example: the file `timestamp.md` contains:
+
+```
+${ samples.ori/help/timestamp.md }
+```
+
+The first relevant character in the front matter is a `{`, so the front matter is parsed as an Origami expression. The body of the document is attached to the result as a `@text` property.
+
+```console
+$ ori timestamp.md/
+${ yaml(samples.ori/help/timestamp.md) + "\n" }
+```
+
+This technique can be used to attach complex data to a document.
 
 ## Working on documents with builtin functions
 

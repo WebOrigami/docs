@@ -123,12 +123,12 @@ You can add another extension after `.ori` to create a file like `bold.ori.html`
 
 ```html
 <!-- bold.ori.html -->
-${ samples.ori/templates/bold.ori.html }
+${ samples.ori/templateDocuments/bold.ori.html }
 ```
 
 ```console
 $ ori "bold.ori.html('Hooray')"
-${ samples.ori/templates/bold.ori.html("Hooray") }
+${ samples.ori/templateDocuments/bold.ori.html("Hooray") }
 ```
 
 ### Text files

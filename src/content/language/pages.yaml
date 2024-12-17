@@ -6,6 +6,8 @@
   text: Tutorial
 - href: templates.html
   text: Templates
+- href: templateDocuments.html
+  text: Template documents
 - href: syntax.html
   text: Syntax
 - href: scope.html
