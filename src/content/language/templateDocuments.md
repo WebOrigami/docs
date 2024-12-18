@@ -3,16 +3,18 @@ title: Origami template documents
 subtitle: Text files with embedded Origami expressions
 ---
 
-For long [templates](templates.html) that are primarily boilerplate text, you can define the template as a _template document_. Such a text file is identified with two extensions, where the second-to-last extension is `.ori`, like `index.ori.html` or `about.ori.md`.
+Template documents represent a middle ground between [documents](documents.html) that can contain some data in front matter and Origami files that contain [templates](templates.html).
 
-When you ask Origami to evaluate such a file, it will implicitly inline the results of any Origami expressions inside the file.
+- A template document file is identified with two extensions, where the second-to-last extension is `.ori`, like `index.ori.html` or `about.ori.md`.
+- When you ask Origami to evaluate such a file, it will implicitly inline the results of any Origami expressions inside the file.
+
+A template document is appropriate when you have a long template that may need portions of embedded or attached code. (For brevity, some of the samples shown below have very short templates.)
 
 ## Example
 
 This template document is called `inline.ori.html`:
 
 ```html
-<!-- inline.ori.html -->
 ${ samples.ori/templateDocuments/inline.ori.html }
 ```
 
@@ -68,7 +70,9 @@ Example: a website defines its "About" page as a template document called `about
 ${ samples.ori/templateDocuments/baseTemplate/about.ori.html }
 ```
 
-The front matter of this document is an Origami expression that will be evaluated and returned as the result of the template document. In this case, the expression invokes the template's body text via `@template`, then passes that to a base page template defined separately:
+The front matter of this document is an Origami expression that will be evaluated and returned as the result of the template document.
+
+In this case, the expression invokes the template's body text via `@template`, then passes that to a base `page.ori.html` template defined separately:
 
 ```html
 ${ samples.ori/templateDocuments/baseTemplate/page.ori.html }
