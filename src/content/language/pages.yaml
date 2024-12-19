@@ -26,5 +26,7 @@
   text: Principles
 - href: howTo.html
   text: How To
+- href: devTools.html
+  text: Development tools
 - href: examples.html
   text: Example sites
