@@ -20,8 +20,4 @@
   // the previous step into the site's main page template, which adds headers
   // and navigation chrome. This step concludes the main documentation pipeline.
   pages = deepMap(html, { extension: ".html", value: templates/page.ori })
-
-  cached = node:process/env/NODE_ENV === "production"
-    ? cache(pages) // Cache the pages in production
-    : pages // Dev
 }

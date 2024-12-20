@@ -1,10 +1,17 @@
+// Get pages from data pipeline
+data.ori/pages/
+
+→ (pages) => node:process/env/NODE_ENV === "production"
+    ? cache(pages) // Cache the pages in production
+    : pages // Dev
+
 // The top-level structure of the site
-{
+→ (pages) => {
   // Static files
   …client
   
   // All generated pages
-  …data.ori/cached
+  …pages
 
   // This components.js "bundle" is just concatenated files
   components.js = concat(components)
@@ -16,7 +23,7 @@
   }
 
   // Folder of search indexes and resources created on demand (but only once)
-  pagefind/ = once(=package://@weborigami/pagefind(data.ori/cached))
+  pagefind/ = once(=package://@weborigami/pagefind(pages))
 
   // Used by Netlify
   _redirects
