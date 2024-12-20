@@ -16,7 +16,7 @@
     "@weborigami/screenshot": "0.0.6"
   },
   "scripts": {
-    "build": "NODE_ENV=production ori 'copy netlify.js(static(src/site.ori)), clear files:build'",
+    "build": "ori 'copy netlify.js(static(src/site.ori)), clear files:build'",
     "screenshots": "ori copy src/screenshots.ori, src/client/assets/screenshots",
     "start": "ori serve watch src, =debug src/site.ori"
   }
