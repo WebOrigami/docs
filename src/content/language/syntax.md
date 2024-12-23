@@ -61,6 +61,12 @@ Number("123")   // the number 123
 Number/123      // the number 123
 ```
 
+You can do basic math with the `+`, `-`, `*` (multiplication), `/` (division), `%` (remainder) operations. In order to let characters like `-` appear in references — see below —, spaces are _required_ around math operators.
+
+```
+1 + 1
+```
+
 ## References
 
 Unquoted character sequences will be evaluated in the current [scope](scope.html) to find, for example, a file or other tree value with the indicated name.
@@ -76,7 +82,7 @@ Hello, world.
 
 In the last command above, `Hello.md` is evaluated as a reference. In this case, it finds the local file, `Hello.md`, so ori displays the contents of that file.
 
-Unlike JavaScript identifiers, it is legal to include a `.` period in a reference. Spaces and the following characters
+Unlike JavaScript identifiers, it is legal to include characters like a `.` period or a `-` (hyphen) in reference. Spaces and the following characters
 
 ```
 (){}[]<>?!=,/:`"'«»\\→⇒…

@@ -56,6 +56,8 @@ Origami supports the following JavaScript [operators](operators.html):
 - Shift operators `<<` `>>` `>>>`
 - Comma operator `,`
 
+In order to let characters like `-` appear in references — see below —, spaces are _required_ around the math operators.
+
 Origami does not currently support:
 
 - Member access via `.`
