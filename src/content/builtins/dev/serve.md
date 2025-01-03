@@ -13,3 +13,5 @@ Server running at http://localhost:5000
 ```
 
 The server translates requests for a web route like `a/b/c` into a traversal of the tree, traversing the keys `a`, `b`, and `c`, then returning the value from that point in the tree.
+
+Note: Instead of using Origami's built-in server, you can also use Origami as middleware for server frameworks such as [Express](https://expressjs.com/). This allows you to define a tree of site resources using Origami, then incorporate that into your server as the site's top level or a branch of site. See [express-demo](https://github.com/WebOrigami/express-demo) for an example.
