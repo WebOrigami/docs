@@ -1,0 +1,24 @@
+---
+title: regExpKeys(tree)
+supertitle: "tree:"
+---
+
+Treats the string keys of `tree` as [regular expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions).
+
+```ori
+// regExpKeys.ori
+${ samples.ori/help/regExpKeys.ori }
+```
+
+This can be used to match against the regular expressions:
+
+```console
+$ ori regExpKeys.ori/abc
+${ yaml samples.ori/help/regExpKeys.ori/abc }
+$ ori regExpKeys.ori/123
+${ yaml samples.ori/help/regExpKeys.ori/123 }
+$ ori regExpKeys.ori/__
+${ yaml samples.ori/help/regExpKeys.ori/__ }
+```
+
+You can use `regExpKeys` with [`tree:filter`](filter.html#filter-with-globs-and-regular-expressions) to filter values based on regular expression matches.

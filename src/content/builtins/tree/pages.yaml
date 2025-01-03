@@ -12,6 +12,8 @@
   text: clear
 - href: concat.html
   text: concat
+- href: constant.html
+  text: constant
 - href: copy.html
   text: copy
 - href: deepMap.html
@@ -38,8 +40,8 @@
   text: from
 - href: fromFn.html
   text: fromFn
-- href: globs.html
-  text: globs
+- href: globKeys.html
+  text: globKeys
 - href: group.html
   text: group
 - href: has.html
@@ -74,6 +76,8 @@
   text: paths
 - href: plain.html
   text: plain
+- href: regExpKeys.html
+  text: regExpKeys
 - href: remove.html
   text: remove
 - href: reverse.html
