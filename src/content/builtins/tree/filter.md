@@ -45,7 +45,3 @@ This flips the logic of `filter`: instead of only allowing truthy values in, thi
 ## Filter with globs and regular expressions
 
 You can use `filter` in conjunction with [`tree:globKeys`](globKeys.html) and [`tree:regExpKeys`](regExpKeys.html).
-
-```ori
-${ samples.ori/help/filterGlobs.ori }
-```
