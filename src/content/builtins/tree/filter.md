@@ -26,7 +26,7 @@ Above, `b` and `c/e` have been filtered from the `source` tree because those do 
 
 ## Default value
 
-You can influence the result of a filter operation by defining a default value for the filter tree using [tree:constant](constant.html#set-a-default-value).
+You can influence the result of a filter operation by [defining a default value](/language/idioms.html#define-a-default-value) for the filter tree using a shorthand function or [tree:constant](constant.html#set-a-default-value).
 
 ```ori
 // filterDefault.ori

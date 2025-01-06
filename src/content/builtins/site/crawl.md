@@ -3,7 +3,9 @@ title: crawl(tree, [baseHref])
 supertitle: "site:"
 ---
 
-Crawls the indicated tree and returns the complete tree of reachable resources. This includes following links and references in HTML pages, CSS stylesheets, and JavaScript files.
+Crawls the indicated live site and returns the complete tree of reachable resources. This includes following links and references in HTML pages, CSS stylesheets, and JavaScript files.
+
+(If you already have a specific set of known resources you want to fetch from a site, you can [extract specific resources from a site](/language/idioms.html#extract-specific-resources-from-a-site).)
 
 ## Crawl an existing site
 

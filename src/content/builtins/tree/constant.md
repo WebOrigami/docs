@@ -23,20 +23,22 @@ ${ yaml samples.ori/help/constant.ori/a/b/c }
 
 ## Set a default value
 
-One use for `constant` is to set a default value for a tree using the [spread operator](/language/syntax.html#spread-operator):
+One use for `constant` is to [define a default value for a tree](/language/idioms.html#define-a-default-value) using [`tree:deepMerge`](deepMerge.html).
 
 ```ori
-// default.ori
-${ samples.ori/help/default.ori }
+// deepDefault.ori
+${ samples.ori/help/deepDefault.ori }
 ```
 
-The `...` spread operator merges in the `constant` tree so that it will serve as a backstop for any key not found in the set of explicitly-defined keys. Since `constant` returns a value for any key, this idiom has the effect of setting a default value for the merged tree.
+This provides the default value of zero for any level of the tree:
 
 ```console
-$ ori default.ori/a
-${ yaml samples.ori/help/default.ori/a }
-$ ori default.ori/x
-${ yaml samples.ori/help/default.ori/x }
+$ ori deepDefault.ori/a
+${ yaml(samples.ori/help/deepDefault.ori/a) }
+$ ori deepDefault.ori/x
+${ yaml(samples.ori/help/deepDefault.ori/x) }
+$ ori deepDefault.ori/b/c
+${ yaml(samples.ori/help/deepDefault.ori/b/c) }
+$ ori deepDefault.ori/b/y
+${ yaml(samples.ori/help/deepDefault.ori/b/y) }
 ```
-
-If you want to set a default value for a deep tree, instead of the spread operator use [`tree:deepMerge`](deepMerge.html) to merge the `constant` tree with the desired deep tree.
