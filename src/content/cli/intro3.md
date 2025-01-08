@@ -88,9 +88,7 @@ Suppose you have a focused function that does something with a flat, plain objec
 
 ```console
 $ ori text.js
-export default function text(obj) {
-  return Object.values(obj).join("\\t");
-}
+${ samples.ori/cli/text.js }
 ```
 
 <span class="tutorialStep"></span> If you append a `/` slash to the name of the YAML file, Origami will [unpack](/language/fileTypes.html#unpacking-files) into a plain JavaScript object. You can then pass that object to the sample `text.js` function:
