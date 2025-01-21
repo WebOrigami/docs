@@ -204,6 +204,31 @@ If you'd like a value to be calculated every time it's requested, you can create
 
 This `.ori` expression defines a getter called `index.html`. Each time the object is asked for `index.html`, it will invoke the JavaScript function exported by `greet.js`.
 
+## Non-enumerable properties
+
+Object keys in parentheses like `(x)` are not [enumerable](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Enumerability_and_ownership_of_properties). They will not be included in a list of the object's keys, which means they will generally not be included when the object is copied or displayed.
+
+One use for non-enumerable properties is in calculating a value that will be used in more than one place.
+
+```ori
+// hidden.ori
+${ samples.ori/help/hidden.ori }
+```
+
+Here, the declaration of the `company` property is in parentheses, so it is non-enumerable. It can be referenced by other object properties, but will not be included in the object's keys. This means it won't be shown when the object is displayed:
+
+```console
+$ ori hidden.ori/
+${ yaml samples.ori/help/hidden.ori/ }
+```
+
+Marking a property as non-enumerable only affects whether it is included in the object's list of keys; a non-enumerable property is still accessible if one knows the property name:
+
+```console
+$ ori hidden.ori/company
+${ yaml samples.ori/help/hidden.ori/company }
+```
+
 ## Object nesting
 
 Objects can be deeply nested.
