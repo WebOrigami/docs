@@ -12,6 +12,8 @@ The HTML, CSS, and JavaScript languages let you define individual web pages, but
 - Generate and reuse HTML across pages so they can be consistent and easier to make.
 - Serve those pages to your visitors.
 
+## Concept
+
 The Origami language and tools let you do all that, rounding out the native web languages:
 
 <figure>
@@ -22,7 +24,15 @@ Using the Origami language, you can write a concise site definition to establish
 
 The Origami language [syntax](syntax.html) is relatively simple and intended for people who have some experience working with HTML and CSS. Knowledge of JavaScript isn't required, although if you do know JavaScript you can do a lot with Origami.
 
-Read about the basics of Origami in [Hello, world](hello.html) »
+## Starting points
+
+A short motion comic introduces the language:
+
+<a href="https://origami-comics.netlify.app">
+	<img src="/assets/illustrations/comic.png" alt="Comic panel with the text ‘Intro to Origami’ with a bright explosion behind it in the style of classic comic book covers">
+</a>
+
+You can read about the basics of Origami in [Hello, world](hello.html) »
 
 Build a simple site in Origami in the [hands-on tutorial](tutorial.html) »
 
