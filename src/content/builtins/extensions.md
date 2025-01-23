@@ -10,6 +10,7 @@ These extensions include tree drivers so you can work with additional storage sy
 - [dropbox](https://github.com/WebOrigami/extensions/tree/main/dropbox): A tree driver for the [Dropbox](https://dropbox.com) cloud storage service.
 - [gdrive](https://github.com/WebOrigami/extensions/tree/main/gdrive): A tree driver for the [Google Drive](https://drive.google.com) cloud storage service.
 - [epub](https://github.com/WebOrigami/extensions/tree/main/epub): Tree drivers for EPUB e-book files.
+- [esbuild](https://github.com/WebOrigami/extensions/tree/main/esbuild): Bundles JavaScript, TypeScript, and other resources from any async tree.
 - [gist](https://github.com/WebOrigami/extensions/tree/main/gist): A tree driver for [GitHub gists](https://docs.github.com/en/get-started/writing-on-github/editing-and-sharing-content-with-gists)
 - [handlebars](https://github.com/WebOrigami/extensions/tree/main/handlebars): An extension handler for the `.hbs` extension used by [Handlebars](https://handlebarsjs.com/) template language; allows you to invoke a Handlebars template as a function in an Origami site or in the command line.
 - [instagram](https://github.com/WebOrigami/extensions/tree/main/instagram): A tree driver for the [Instagram Basic Display API](https://developers.facebook.com/docs/instagram-basic-display-api).
