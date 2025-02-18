@@ -48,6 +48,12 @@ jan-miksovsky:
   url: https://jan.miksovsky.com
   description: |
     A blog with entries organized by year, with JSON and RSS feeds.
+nick-simson:
+  name: Nick Simson's personal site
+  url: https://nicksimson.com
+  repo: https://github.com/nsmsn/dotcom
+  description: |
+    Blog, notes, and numerous slash pages for topics like books, radio, and records.
 notes-jim-nielsen:
   name: Jim Nielsen's Notes
   url: https://notes.jim-nielsen.com/
