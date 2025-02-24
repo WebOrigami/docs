@@ -26,3 +26,17 @@ $ ori misc
 ```
 
 One situation where invoking `files` is often necessary is specifying the target of a [`copy`](tree/copy.html) operation as a folder that does not yet exist.
+
+## Root directory
+
+If you want to reference the root directory with the `files:` protocol, start the path with _three_ slashes. E.g., to list the names of the contents of `/etc`:
+
+```
+$ ori keys files:///etc
+```
+
+As noted above, you can also just use the file path:
+
+```
+$ ori keys /etc
+```
