@@ -105,6 +105,10 @@ This default `inverseKey` function is not especially efficient, as it exhaustive
 
 For small maps, this default `inverseKey` function may be perfectly acceptable. For the best performance in mapping larger collections, define both the `key` and `inverseKey` functions.
 
+## Keys in deep maps
+
+A deep tree can indicate whether a key is for a subtree by [ending the key with a trailing slash](https://weborigami.org/async-tree/interface.html#trailing-slash-convention). In a deep map (a map where the `deep` option is set), all keys for subtrees are left alone; the `key` or `inverseKey` functions (or the `extension` option described below) are not applied.
+
 ## Transforming extensions
 
 Changing a key's extension is very common. Mapping values often changes the type of the data, and it is useful to be able to reflect that change in type in file extensions.
@@ -112,8 +116,9 @@ Changing a key's extension is very common. Mapping values often changes the type
 To facilitate changing extensions in a `map`, you can supply an `extension` option that indicates whether and how the extensions of the original tree should be changed:
 
 - `extension: ".md"` restricts the map to only apply to keys ending in `.md`
-- `extension: "->.html"` adds the `.html` extension to the keys in the result
+- `extension: "->.html"` adds the `.html` extension to all keys
 - `extension: ".md->.html"` only applies the map to keys ending in `.md`, and adds the `.html` extension to keys in the result
+- `extension: ".json→"` only applies the map to `.json`files, removing the`.json` extension from their names
 
 The `extension` option generates a `key` and `inverseKey` functions for you. If you provide two extensions, like `".md->.html"`, the `inverseKey` function will be much more efficient.
 
