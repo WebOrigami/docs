@@ -6,22 +6,17 @@ subtitle: Created with the Origami language
 ${ map(examples.yaml, (example, keySlash) => `
 
 <h2>${ example/name }</h2>
-<a href="${ example/url }">
-  <img class="screenshot" src="/assets/screenshots/${ slash/remove(keySlash) }.png" alt="Screenshot of ${ example/url }">
+<a href="${ example/url ?? example/repo }">
+  <img class="screenshot" src="${
+    example/image ??
+    `/assets/screenshots/${ slash/remove(keySlash) }.png`
+  }" alt="Screenshot">
 </a>
 <p>
 ${ example/description }
 ${ example/video ? `<a href="${ example/video }">Video tour</a> &nbsp; ` : "" }
-<a href="${ example/url }">Visit site</a>
-${ example/repo ? ` &nbsp; <a href="${ example/repo }">View source</a>` : "" }
+${ example/url ? `<a href="${ example/url }">Visit site</a>` : "" }
+${ example/url && example/repo ? ` &nbsp; ` : "" }
+${ example/repo ? `<a href="${ example/repo }">View source</a>` : "" }
 </p>
 `) }
-
-<h2>Japan Traverse Hike ebook</h2>
-<a href="https://github.com/WebOrigami/japan-hike-ebook">
-  <img class="screenshot" src="/assets/misc/ebookCover.jpg" alt="Book cover showing a grassy meadow with an elevated wooden pathway">
-</a>
-
-In addition to creating websites, Origami can generate other software artifacts like ebooks. This example project generates an ebook using markdown text with images.
-
-<a href="https://github.com/WebOrigami/japan-hike-ebook">View source</a>

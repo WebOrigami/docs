@@ -48,6 +48,14 @@ jan-miksovsky:
   url: https://jan.miksovsky.com
   description: |
     A blog with entries organized by year, with JSON and RSS feeds.
+japan-hike:
+  name: Japan Traverse Hike ebook
+  repo: https://github.com/WebOrigami/japan-hike-ebook
+  image: /assets/misc/ebookCover.jpg
+  description: |
+    In addition to creating websites, Origami can generate other software
+    artifacts like ebooks. This example project generates an ebook using
+    markdown text with images.
 nick-simson:
   name: Nick Simson's personal site
   url: https://nicksimson.com
@@ -87,3 +95,12 @@ web-origami:
     sidebar and top navigation bar are generated from the structure of the
     content. The site also generates API documentation from JavaScript source
     files and includes a search feature that indexes all the content.
+wesl:
+  name: WESL documentation site
+  url: https://wesl-lang.dev
+  repo: https://github.com/wgsl-tooling-wg/website
+  description: |
+    The documentation site for the WebGPU Shading Language (WESL). The site's
+    Origami definition pulls markdown content from GitHub repositories for the
+    WESL specification and an accompanying wiki, adding navigation and a search
+    feature.

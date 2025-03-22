@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
-    "@weborigami/origami": "0.2.8",
-    "@weborigami/pagefind": "0.0.4",
+    "@weborigami/origami": "0.2.9",
+    "@weborigami/pagefind": "0.0.5",
     "@weborigami/pattern-intro": "github:WebOrigami/pattern-intro#23e791fc",
     "@weborigami/samples": "github:WebOrigami/samples#90a0c4e2",
     "marked": "13.0.1",
