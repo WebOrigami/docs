@@ -10,7 +10,15 @@ Template documents represent a middle ground between [documents](documents.html)
 
 A template document is appropriate when you have a long template that may need portions of embedded or attached code. (For brevity, some of the samples shown below have very short templates.)
 
-## Example
+There are three different kinds of template documents:
+
+1. Text with embedded substitutions
+2. Body text with YAML front matter
+3. Body text with Origami front matter
+
+These largely work the same, but with some differences described below.
+
+## Text with embedded substitutions
 
 This template document is called `inline.ori.html`:
 
@@ -18,23 +26,27 @@ This template document is called `inline.ori.html`:
 ${ samples.ori/templateDocuments/inline.ori.html }
 ```
 
-Substitutions inside a template document are full Origami expressions so, among other things, they can reference other documents. In this case, the above template includes an embedded Origami expression that references a separate file, `inline.css`:
+Substitutions inside a template document are full Origami expressions so, among other things, they can reference other documents. The above template includes an embedded Origami expression that references a separate file, `inline.css`.
 
 ```css
 /* inline.css */
 ${ samples.ori/templateDocuments/inline.css }
 ```
 
-If you have ask Origami to evaluate `inline.ori.html`, it will return the text with the results of all expressions inline:
+The result of the `inline.ori.html` template is a function that returns a string. (The function can accept a single parameter; see below.)
+
+If you have ask Origami to evaluate the template, it will call that function and return the resulting text. The text will contain the results of all the expressions in the document.
+
+In this example, evaluating the function inlines the referenced CSS file:
 
 ```console
 $ ori inline.ori.html/
 ${ samples.ori/templateDocuments/inline.ori.html() }
 ```
 
-## Accepting an argument
+### Accepting an argument
 
-By default, a template document can be called as a function with one argument referenced with a `_` underscore.
+By default, a template document like this can be called as a function with one argument referenced with a `_` underscore.
 
 ```html
 <!-- bold.ori.html -->
@@ -48,21 +60,36 @@ $ ori "bold.ori.html('Hooray')"
 ${ samples.ori/templateDocuments/bold.ori.html("Hooray") }
 ```
 
-## Front matter
+Such templates behave like simple components. You can use them decompose the construction of complex documents into smaller pieces that are easier to understand.
 
-Like other text documents, a template document can include [front matter](documents.html#document-objects) at the top of the document, enclosed in lines of `---` three hyphens.
+## Body text with YAML front matter
 
-By default, front matter is treated as YAML (including JSON). This can be used to define additional data. The template's body text will be evaluated and added to the data as a `@text` property.
+Like other text [documents](documents.html), a template document can include YAML front matter at the top of the document, enclosed in lines of `---` three hyphens.
 
-Alternatively, front matter can be an [Origami expression](documents.html#origami-front-matter). This will generally be a function, function call, or an object literal; see below for examples.
+Suppose `shopping.ori.html` contains:
 
-## Defining the value of the template document
+```html
+${ samples.ori/templateDocuments/shopping.ori.html }
+```
 
-By default, the result of invoking a template document will be template's body text with the values of all embedded Origami expressions inlined.
+The front matter is treated as [YAML](https://en.wikipedia.org/wiki/YAML). This can be used to define additional data — here, a list.
 
-You can arrange for some other result by placing an Origami expression in the document's front matter. If Origami front matter is present, that will be evaluated and returned as the result of invoking the template document.
+The front matter data is available to expressions in the body text, so the expression in the body text can reference the `list`:
 
-Within this front matter, you can invoke the template's body text as `@template`.
+```console
+$ ori shopping.ori.html/
+${ yaml samples.ori/templateDocuments/shopping.ori.html/ }
+```
+
+The result of the template is a plain object containing all of the front matter data, plus a `@text` property with the result of evaluating the body text.
+
+## Body text with Origami front matter
+
+Alternatively, front matter can be an [Origami expression](documents.html#origami-front-matter) that returns a function, function call, object literal, etc.
+
+### Defining the value of the template document
+
+If Origami front matter is present, that will be evaluated and returned as the result of invoking the template document. Within this front matter, you can invoke the template's body text as `@template`.
 
 Example: a website defines its "About" page as a template document called `about.ori.html`:
 
@@ -85,7 +112,26 @@ $ ori about.ori.html/
 ${ samples.ori/templateDocuments/baseTemplate/about.ori.html/ }
 ```
 
-## Returning a function
+### Returning an object
+
+Sometimes a template is primarily body text but the result should include some calculated data.
+
+This can be achieved using the above principle of placing an Origami expression in the front matter. In this case, the front matter can define an object using an [object literal](syntax.html#object-literals).
+
+If `calcs.ori.md` contains:
+
+```ori
+${ samples.ori/templateDocuments/calcs.ori.md }
+```
+
+then invoking this returns an object:
+
+```console
+$ ori calcs.ori.md/
+${ yaml(samples.ori/templateDocuments/calcs.ori.md/) }
+```
+
+### Returning a function
 
 To define your template document as a more complex function — e.g., one that accepts multiple arguments, or that calls other functions — define a function in the front matter.
 
@@ -102,26 +148,7 @@ $ ori "link.ori.html('https://weborigami.org', 'Web Origami')"
 ${ samples.ori/templateDocuments/link.ori.html('https://weborigami.org', 'Web Origami') + "\n" }
 ```
 
-## Returning an object
-
-Sometimes a template is primarily body text but the result should include some calculated data.
-
-This can be achieved using the above principle of placing an Origami expression in the front matter. In this case, the front matter can define an object using an [object literal](syntax.html#object-literals).
-
-If `calcs.ori.md` contains:
-
-```ori
-${ samples.ori/templateDocuments/calcs.ori.md }
-```
-
-then invoking this returns an object:
-
-```console
-$ ori calcs.ori.md
-${ yaml(samples.ori/templateDocuments/calcs.ori.md/) }
-```
-
-## Behavior within a `map`
+### Behavior within a `map`
 
 When used inside a [`tree:map`](/builtins/tree/map.html) function, a template document will provide a default `key` function to the map. This `key` function will add the template document's last extension to keys in the map's output.
 
@@ -151,4 +178,4 @@ ${ yaml(
 ) }
 ```
 
-You can override this behavior by providing a `key` function to the map.
+You can override this behavior by explicitly providing a `key` option to `tree:map`.
