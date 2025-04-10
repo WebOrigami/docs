@@ -1,7 +1,7 @@
 import {
   Tree,
+  extensionKeyFunctions,
   isPlainObject,
-  keyFunctionsForExtensions,
   map,
   toPlainValue,
   toString,
@@ -91,10 +91,7 @@ class DocsTree {
     this.tree = map(treelike, {
       deep: true,
       value: mapFn,
-      ...keyFunctionsForExtensions({
-        sourceExtension: ".js",
-        resultExtension: ".yaml",
-      }),
+      ...extensionKeyFunctions(".js", ".yaml"),
     });
     this.program = program;
     this.path = docsPath;
