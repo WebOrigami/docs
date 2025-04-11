@@ -7,7 +7,7 @@ Render the contents of the object in [YAML](https://en.wikipedia.org/wiki/YAML) 
 
 The ori tool uses YAML as its default output format, so you won't often need to invoke the `yaml` function yourself from the command line. One occasion to use it would be to convert a JSON file to YAML.
 
-```console assert: true, path: files
+```console
 $ ori letters.json
 {
   "a": "The letter A",

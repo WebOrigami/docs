@@ -20,7 +20,7 @@ $ cat Alice.md
 Hello, **Alice**.
 ```
 
-```console assert: true, path: files
+```console
 $ ori folder
 html: !ori map(markdown, mdHtml, extension='md->html')
 markdown:
@@ -33,7 +33,7 @@ markdown:
 ${ svg folder }
 </figure>
 
-```console assert: true, path: files
+```console
 $ ori meta folder
 html:
   Alice.html: |
