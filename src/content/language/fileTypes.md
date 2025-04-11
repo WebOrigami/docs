@@ -55,6 +55,7 @@ Origami has built-in support for handling the following types of files.
 
 | Type        | File extensions                                |
 | :---------- | :--------------------------------------------- |
+| CSV         | .csv                                           |
 | JavaScript  | .js<br>.mjs                                    |
 | JPEG image  | .jpeg<br>.jpg                                  |
 | JSON        | .json                                          |
@@ -64,6 +65,25 @@ Origami has built-in support for handling the following types of files.
 | YAML        | .yaml<br>.yml                                  |
 
 See below for details on these types.
+
+### CSV files
+
+Origami can unpack a `.csv` file as containing [comma-separated values](https://en.wikipedia.org/wiki/Comma-separated_values). The first row is assumed to be a header row with property names. Values containing commas can be quoted. Quotes can be escaped as double-quotes.
+
+If `catBreeds.csv` contains:
+
+```csv
+${ samples.ori/help/catBreeds.csv }
+```
+
+then this can be unpacked to an array of objects:
+
+```console
+$ ori catBreeds.csv/
+${ yaml samples.ori/help/catBreeds.csv }
+```
+
+For formatting an array of objects as CSV, see [`origami:csv`](/builtins/origami/csv.html).
 
 ### JavaScript files
 
