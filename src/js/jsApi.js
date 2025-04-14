@@ -1,14 +1,14 @@
 import {
-  Tree,
-  extensionKeyFunctions,
+  extension,
   isPlainObject,
   map,
   toPlainValue,
   toString,
+  trailingSlash,
+  Tree,
 } from "@weborigami/async-tree";
-import path from "path";
+import path from "node:path";
 import ts from "typescript";
-
 /**
  * Extracts the documentation from the given JavaScript source tree. This uses
  * the TypeScript compiler to parse the source file, and returns information
@@ -27,7 +27,7 @@ export default async function jsDocs(treelike) {
 
   const program = ts.createProgram(paths, options, host);
 
-  const result = new DocsTree(tree, program);
+  const result = docsTree(tree, program);
   result.parent = this;
   return result;
 }
@@ -76,43 +76,44 @@ function classDocs(checker, symbol) {
   return result;
 }
 
-class DocsTree {
-  constructor(treelike, program, docsPath = "") {
-    const mapFn = (sourceValue, sourceKey, tree) => {
-      const filePath = `${this.path}/${sourceKey}`;
-      const sourceFile = this.program.getSourceFile(filePath);
-      const checker = this.program.getTypeChecker();
-      const name = path.basename(sourceKey, ".js");
-      return {
-        name,
-        exports: exportsDocs(checker, sourceFile),
-      };
-    };
-    this.tree = map(treelike, {
-      deep: true,
-      value: mapFn,
-      ...extensionKeyFunctions(".js", ".yaml"),
-    });
-    this.program = program;
-    this.path = docsPath;
-    this.parent = null;
-  }
+// Given a tree of source files, return a tree of documentation objects
+function docsTree(sourceTree, program, docsPath = "") {
+  // We'd like to use a deep map with extensions, but we have to do special
+  // handling to construct paths, so we handle the deep behavior ourselves
+  return map(sourceTree, {
+    inverseKey: (resultKey) =>
+      extension.match(resultKey, ".yaml")
+        ? extension.replace(resultKey, ".yaml", ".js")
+        : trailingSlash.has(resultKey)
+        ? resultKey
+        : undefined,
 
-  async get(key) {
-    let value = await this.tree.get(key);
-    if (Tree.isAsyncTree(value)) {
-      value = Reflect.construct(this.constructor, [
-        value,
-        this.program,
-        `${this.path}/${key}`,
-      ]);
-    }
-    return value;
-  }
+    key: (sourceKey) =>
+      extension.match(sourceKey, ".js")
+        ? extension.replace(sourceKey, ".js", ".yaml")
+        : trailingSlash.has(sourceKey)
+        ? sourceKey
+        : undefined,
 
-  async keys() {
-    return this.tree.keys();
-  }
+    value: (sourceValue, sourceKey) => {
+      const sourcePath = `${trailingSlash.add(docsPath)}${trailingSlash.remove(
+        sourceKey
+      )}`;
+      if (Tree.isAsyncTree(sourceValue)) {
+        // Folder; add the key to the path
+        return docsTree(sourceValue, program, sourcePath);
+      } else {
+        // Single .js file
+        const sourceFile = program.getSourceFile(sourcePath);
+        const checker = program.getTypeChecker();
+        const name = path.basename(sourceKey, ".js");
+        return {
+          name,
+          exports: exportsDocs(checker, sourceFile),
+        };
+      }
+    },
+  });
 }
 
 /**
