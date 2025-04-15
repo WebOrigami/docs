@@ -64,6 +64,8 @@
   text: map
 - href: mapReduce.html
   text: mapReduce
+- href: mask.html
+  text: mask
 - href: match.html
   text: match
 - href: merge.html

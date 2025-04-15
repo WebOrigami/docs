@@ -17,11 +17,11 @@ $ ori "globKeys(globKeys.yaml)/foo.txt"
 true
 ```
 
-## Filtering
+## Masking
 
-`globKeys` can be used in conjunction with [`tree:filter`](filter.html#filter-with-globs-and-regular-expressions) to filter values based on glob patterns.
+`globKeys` can be used in conjunction with [`tree:mask`](mask.html#mask-with-globs-and-regular-expressions) to include or include values based on glob patterns.
 
-This Origami function accepts a tree, then applies a `filter` using `globKeys` to return just the values whose keys have image file extensions:
+This Origami function accepts a tree, then applies a `mask` using `globKeys` to return just the values whose keys have image file extensions:
 
 ```ori
 // images.ori
@@ -36,7 +36,7 @@ This would typically be applied to a tree of files, but for demonstration purpos
 ${ samples.ori/help/files.yaml }
 ```
 
-Applying the filter to the data gives:
+Applying the mask to the data gives:
 
 ```console
 $ ori images.ori files.yaml

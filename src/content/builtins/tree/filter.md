@@ -1,47 +1,38 @@
 ---
-title: filter(source, filter)
+title: filter(tree, options)
 supertitle: "tree:"
 ---
 
-This returns the tree that results from applying the `filter` tree to the `source` tree, preserving only keys that exist in `filter` and have a [truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) value.
+Applies a filter operation to a tree, returning only those values that pass a `test` function.
 
-Suppose `filter.ori` contains:
+The `options` parameter can be either a function that will be used as the `test` function or a dictionary of options:
+
+- `deep`: a boolean (default: false) indicating whether the filter should be applied deeply
+- `test`: a function to use to test values for inclusion
+
+The `test` function will be called with the `value`, `key`, and `tree` of each key/value in the tree. The `test` function should return a [truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) result if the value should be included in the result of the `filter` operation.
+
+See also [`tree:mask`](mask.html).
+
+## Example
+
+The `filter` operation can be used, for example, to filter a set of blog posts and return only published blog posts — those with a false or missing `draft` property. This would commonly be applied to a set of post files, but for illustration purposes can be applied to a small data set in a YAML file:
+
+```yaml
+# posts.yaml
+${ samples.ori/help/filter/posts.yaml }
+```
+
+The filter operation returns `true` if the `draft` property is missing or `false`:
 
 ```ori
-// filter.ori
-
-${ samples.ori/help/filter.ori }
+// published.ori
+${ samples.ori/help/filter/published.ori }
 ```
 
-Invoking this returns the filtered result:
+Applying this to the posts returns just the published posts:
 
 ```console
-$ ori filter.ori/
-${ yaml(samples.ori/help/filter.ori/) }
+$ ori published.ori/
+${ yaml samples.ori/help/filter/published.ori/ }
 ```
-
-If the `filter` tree does not specify a value for a given key, the result of asking for that value will be `undefined`, which is a falsy value. This means it is not normally necessary to specify `false` values in the filter tree.
-
-Above, `b` and `c/e` have been filtered from the `source` tree because those do paths do not lead to truthy values in the `filter` tree.
-
-## Default value
-
-You can influence the result of a filter operation by [defining a default value](/language/idioms.html#define-a-default-value) for the filter tree using a shorthand function or [tree:constant](constant.html#set-a-default-value).
-
-```ori
-// filterDefault.ori
-${ samples.ori/help/filterDefault.ori }
-```
-
-The above defines a filter where the default value is `true`, so all keys and values in the `source` tree will come through the filter unless specifically overridden with a falsy value.
-
-```console
-$ ori filterDefault.ori/
-${ yaml(samples.ori/help/filterDefault.ori/) }
-```
-
-This flips the logic of `filter`: instead of only allowing truthy values in, this `filter` excludes falsy values.
-
-## Filter with globs and regular expressions
-
-You can use `filter` in conjunction with [`tree:globKeys`](globKeys.html) and [`tree:regExpKeys`](regExpKeys.html).
