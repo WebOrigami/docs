@@ -105,14 +105,17 @@ Origami's syntax for constructing array and object literals is very similar to J
 
 - A newline can be used as an alternative separator instead of a comma in array literals, object literals, and tree literals (below).
 - Origami array and object literals support JavaScript [spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_object_literals).
-- An Origami object cannot define indirect property accessors the way JavaScript can with `[ ]` [bracket notation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors#bracket_notation).
 - An Origami object can define `get` methods (see below) but not `set` methods.
 
 ### Use slash syntax to access properties
 
-Because Origami identifiers (above) like `index.html` can include periods, in Origami, you must reference object properties with `/` path syntax instead of JavaScript's `.` period operator. If the above object is available as `obj`, then `obj/color` will be "Blue".
+JavaScript lets you access properties with the `.` operator, but the period is a legal character in Origami identifiers like `index.html` (see above). So you'll need to access properties using slightly different syntax in Origami.
 
-Likewise, to reference a specific array value in Origami, use `/` [path syntax](syntax.html#paths) instead of JavaScript's `[ ]` brackets. Here `obj/values/0` will be 2.
+Suppose you have an Origami reference to a JSON document like `package.json`, and you want to extract the `name` property from it. You can use any of the following:
+
+- `(package.json).name` — Put the `.name` property reference immediately after a closing parenthesis
+- `package.json .name` — Put a space before the `.name` property reference (a space before a `.` property reference is legal JavaScript syntax)
+- `package.json/name` — Use Origami's `/` path syntax
 
 When traversing objects like arrays and objects, Origami coerces them to an abstract tree structure. An Origami tree is like a minimalist, asynchronous JavaScript [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map). See the [AsyncTree interface](/async-tree/interface.html) for details.
 

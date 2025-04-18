@@ -160,6 +160,30 @@ The value in a key/value pair will be evaluated once when the object is loaded. 
 }
 ```
 
+## Object properties
+
+There are several ways to reference the property of an object.
+
+Suppose `alice.ori` contains:
+
+```ori
+// alice.ori
+{
+  name: "Alice"
+  location: "Honolulu"
+}
+```
+
+You can reference the "name" property of this file in several ways:
+
+- `alice.ori/name` — Origami `/` path syntax; see Paths below
+- `(alice.ori).name` — Put the `.name` reference after a closing parenthesis
+- `alice.ori .name` — Put the `.name` reference after whitespace
+- `alice.ori["name"]` — Use the string `"name"` in brackets
+- `alice.ori("name")` — Treat the object as a function
+
+Note that you can use the JavaScript-style `.` operator to get a property value — but because periods are legal in Origami names, one thing you _can't_ do is put the `.name` immediately after `alice.ori`: `alice.ori.name` would be interpreted as a single file name.
+
 ## Object properties can reference other local properties
 
 The expression that defines the value of a property can reference other properties in the same object, or any parent object, by name.
