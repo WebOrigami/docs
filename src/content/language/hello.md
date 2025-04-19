@@ -21,9 +21,9 @@ We can think of a site as a _tree_ of resources. The `{ }` curly braces and thei
 
 <figure>
 ${
-  svg.js {
+  svg.js({
     index.html: "Hello, world!"
-  }
+  })
 }
 </figure>
 
@@ -48,14 +48,14 @@ You can think about this set of pages as a tree:
 
 <figure>
 ${
-  svg.js {
+  svg.js({
     index.html: "<h1>About Us</h1>"
     team: {
       Alice.html: "<h1>Alice</h1>"
       Bob.html: "<h1>Bob</h1>"
       Carol.html: "<h1>Carol</h1>"
     }
-  }
+  })
 }
 </figure>
 
@@ -118,14 +118,14 @@ This creates a site that looks like:
 
 <figure>
 ${
-  svg.js {
+  svg.js({
     index.html: "Hello, world!"
     images: {
       image1.jpg: "[binary data]"
       image2.jpg: "[binary data]"
       image3.jpg: "[binary data]"
     }
-  }
+  })
 }
 </figure>
 
@@ -150,12 +150,12 @@ This creates a site that looks like:
 
 <figure>
 ${
-  svg.js {
+  svg.js({
     index.html: "Hello, world!"
     image1.jpg: "[binary data]"
     image2.jpg: "[binary data]"
     image3.jpg: "[binary data]"
-  }
+  })
 }
 </figure>
 
@@ -243,12 +243,12 @@ which produces the following site:
 
 <figure>
 ${
-  svg.js {
+  svg.js({
     index.html: "Home page"
     about: {
       index.html: "About page"
     }
-  }
+  })
 }
 </figure>
 
@@ -274,9 +274,9 @@ This defines a little tree:
 
 <figure>
 ${
-  svg.js {
+  svg.js({
     name: "My Site"
-  }
+  })
 }
 </figure>
 
@@ -366,12 +366,12 @@ This produces a tree with one post object whose text is in HTML:
 
 <figure>
 ${
-  svg.js {
+  svg.js({
     firstPost: {
       title: "My first post"
       @text: "Here's my <strong>first</strong> post!"
     }
-  }
+  })
 }
 </figure>
 
@@ -387,7 +387,7 @@ The `map` built-in function accepts the `markdown` tree and returns a new tree i
 
 <figure>
 ${
-  svg.js {
+  svg.js({
     html: {
       post1.html: {
         title: "My first post"
@@ -398,7 +398,7 @@ ${
         @text: "This is the <strong>second</strong> post."
       }
     }
-  }
+  })
 }
 </figure>
 
@@ -438,7 +438,7 @@ This adds a `posts` area to the site:
 
 <figure>
 ${
-  svg.js {
+  svg.js({
     html: {
       post1.html: {
         title: "My first post"
@@ -453,7 +453,7 @@ ${
       post1.html: "...<title>My first post</title>..."
       post2.html: "...<title>Second post</title>..."
     }
-  }
+  })
 }
 </figure>
 
@@ -496,12 +496,12 @@ The path `/public` at the end of the file indicates that only this `public` subt
 
 <figure>
 ${
-  svg.js {
+  svg.js({
     posts: {
       post1.html: "...<title>My first post</title>..."
       post2.html: ".....<title>Second post</title>..."
     }
-  }
+  })
 }
 </figure>
 
@@ -548,13 +548,13 @@ The site now looks like:
 
 <figure>
 ${
-  svg.js {
+  svg.js({
     index.html: "...<title>Blog index</title>....."
     posts: {
       post1.html: "...<title>My first post</title>..."
       post2.html: "...<title>Second post</title>..."
     }
-  }
+  })
 }
 </figure>
 

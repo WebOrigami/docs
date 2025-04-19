@@ -384,11 +384,11 @@ In the above example, the `map` function maps an array of people to HTML fragmen
 
 <div class="sideBySide">
   <figure>
-    ${ svg.js [
+    ${ svg.js([
       { name: "Alice" },
       { name: "Bob" },
       { name: "Carol" }
-    ] }
+    ]) }
   </figure>
   <figure>
     ${ svg.js map(samples.ori/templates/teamData.yaml, =`<li>${ _/name }</li>`) }
