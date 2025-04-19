@@ -1,8 +1,6 @@
 ---
-title: map(treelike, options)
+title: map(tree, options)
 subtitle: Transform the keys and/or values of a tree
 ---
 
-JavaScript function behind the [`tree:map`](/builtins/tree/map.html) builtin.
-
-${ templates/function.ori(api.ori/operations/map.yaml/exports/0) }
+JavaScript function underlying the [`tree:map`](/builtins/tree/map.html) builtin, with the same parameters and effects.

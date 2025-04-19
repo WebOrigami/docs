@@ -7,8 +7,12 @@
 - href: treelike.html
   text: Treelike objects
 - text: "API:"
+- href: addNextPrevious.html
+  text: addNextPrevious
 - href: BrowserFileTree.html
   text: BrowserFileTree
+- href: concatTrees.html
+  text: concatTrees
 - href: ExplorableSiteTree.html
   text: ExplorableSiteTree
 - href: FileTree.html
@@ -21,6 +25,10 @@
   text: MapTree
 - href: ObjectTree.html
   text: ObjectTree
+- href: paginate.html
+  text: paginate
+- href: reverse.html
+  text: reverse
 - href: SiteTree.html
   text: SiteTree
 - href: SetTree.html

@@ -1,9 +1,9 @@
 ---
-title: paginate(tree, count)
+title: paginate(tree, [size])
 supertitle: "tree:"
 ---
 
-This returns a new tree that groups the original keys and values into "pages": fixed-size sets of items that are no bigger than `count`. A typical use for this is breaking a long list of blog posts, search results, etc., into multiple web pages.
+This returns a new tree that groups the original keys and values into "pages": fixed-size sets of items that are no bigger than `size` (default: 10). A typical use for this is breaking a long list of blog posts, search results, etc., into multiple web pages.
 
 ```console
 $ cat countries.yaml
