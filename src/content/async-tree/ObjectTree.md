@@ -1,5 +1,5 @@
 ---
-title: ObjectTree
+title: ObjectTree class
 subtitle: Wraps a plain JavaScript object or array as an async tree
 ---
 

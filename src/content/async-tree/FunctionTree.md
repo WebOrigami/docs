@@ -1,5 +1,5 @@
 ---
-title: FunctionTree
+title: FunctionTree class
 subtitle: Wraps a function and a domain as an async tree
 ---
 

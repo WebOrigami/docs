@@ -1,5 +1,5 @@
 ---
-title: FileTree
+title: FileTree class
 subtitle: Wraps a file system directory as an async tree
 ---
 

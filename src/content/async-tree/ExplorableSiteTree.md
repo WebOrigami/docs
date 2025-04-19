@@ -1,5 +1,5 @@
 ---
-title: ExplorableSiteTree
+title: ExplorableSiteTree class
 subtitle: A site that exposes its keys so it can be traversed
 ---
 

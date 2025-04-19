@@ -1,5 +1,5 @@
 ---
-title: BrowserFileTree
+title: BrowserFileTree class
 subtitle: Wraps a local directory as an async tree
 ---
 

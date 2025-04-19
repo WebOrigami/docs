@@ -1,5 +1,5 @@
 ---
-title: SetTree
+title: SetTree class
 subtitle: Wraps a JavaScript Set as an async tree
 ---
 
