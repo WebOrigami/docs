@@ -29,8 +29,8 @@ const tree = {
   // Iterate over this tree node's keys.
   async keys() { ... }
 
-  // Optional: set the value of a given key.
-  async set(key, value) { ... }
+  // Optional: a reference to the parent of this tree node
+  parent
 }
 ```
 
@@ -44,13 +44,25 @@ Some notes on the JavaScript shown above:
 
 - An async tree's `get` method is expected to return `undefined` if the key is not present in the tree.
 
+- An async tree doesn't have to define a `parent` property, but if it does it must be an `AsyncTree` instance or `null`.
+
 In TypeScript, the interface looks roughly like:
 
 ```ts
-interface AsyncTree {
+export default interface AsyncTree {
   get(key: any): Promise<any>;
-  keys(): Promise<IterableIterator<any>>;
-  set?(key: any, value: any): Promise<this>;
+  keys(): Promise<Iterable<any>>;
+  parent?: AsyncTree | null;
+}
+```
+
+## Mutable async trees
+
+Mutable async trees like [FileTree](FileTree.html) and [ObjectTree](ObjectTree.html) support an extended interface with additional `set` method:
+
+```ts
+export default interface AsyncMutableTree extends AsyncTree {
+  set(key: any, value: any): Promise<this>;
 }
 ```
 
@@ -152,3 +164,11 @@ Instead of directly defining a class or object that implements the `AsyncTree` i
 - [ObjectTree](ObjectTree.html) can wrap a plain JavaScript object or array
 - [SetTree](SetTree.html) can wrap a JavaScript `Set`
 - [SiteTree](SiteTree.html) can wrap a web site
+
+## Converting to and from async trees
+
+The functions exposed by the `async-tree` library that accept a tree accept any [treelike object](treelike.html), and will generally convert them to an `AsyncTree` instance before working with them. The same goes for the [Origami built-in functions](/builtins).
+
+If you want to explicitly cast a treelike object to an `AsyncTree`, you can call [`Tree.from()`](Tree.html#from).
+
+To convert an `AsyncTree` to a plain JavaScript object, call [`Tree.plain()`](Tree.html#plain).
