@@ -3,7 +3,7 @@ title: ObjectTree class
 subtitle: Wraps a plain JavaScript object or array as an async tree
 ---
 
-## Usage
+## JavaScript usage
 
 Create a new `ObjectTree` by passing an object or array to the constructor:
 
@@ -38,5 +38,7 @@ Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
 ```
+
+## API
 
 ${ templates/class.ori(api.ori/drivers/ObjectTree.yaml/exports/0) }

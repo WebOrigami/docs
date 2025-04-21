@@ -28,7 +28,7 @@ Try Origami in the command line using the [Origami CLI](/cli) »
 
 ## Concept
 
-The Origami language and tools let you do all that, rounding out the native web languages:
+The Origami language and tools round out the native web languages:
 
 <figure>
   <img src="/assets/illustrations/roles.svg" style="width: 75%;">

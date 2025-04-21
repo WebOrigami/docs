@@ -10,7 +10,7 @@ By default, JavaScript templates don't perform useful work on inputs that are ob
 The `deepText` tagged template function can be called to concatenate the values of a [treelike object](treelike.html) such as a plain JavaScript object:
 
 ```js
-${ samples.ori/js/messages.js }
+${ samples.ori/js/deepText.js }
 ```
 
 Since `deepText` is a tagged template function, it is followed immediately by a backtick instead of an opening parenthesis. Also note the use of `await`, since `deepText` is an asynchronous function.
@@ -18,6 +18,6 @@ Since `deepText` is a tagged template function, it is followed immediately by a 
 The above module exports this string:
 
 ```
-${ samples.ori/js/messages.js/ }
+${ samples.ori/js/deepText.js/ }
 
 ```
