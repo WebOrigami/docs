@@ -1,0 +1,19 @@
+// Transform a single markdown document to a finel page
+(buffer, key, tree) =>
+  // Parse markdown file and add data
+  js/addData.js(buffer, key, areas.yaml/, tree, tree/pages.yaml, client/assets/origami)
+
+  // Inline Origami expressions
+  → inline
+
+  // Convert to HTML
+  → mdHtml
+
+  // Add header links
+  → ={
+    ..._
+    @text: js/headerLinks.js(_/@text)
+  }
+
+  // Apply page template
+  → templates/page.ori

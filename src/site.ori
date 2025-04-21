@@ -1,9 +1,9 @@
-// Get pages from data pipeline
-data.ori/pages/
+// Transform all the content documents into HTML pages
+deepMap(content, { extension: ".md→.html", value: transform.ori })
 
 → (pages) => node:process/env/NODE_ENV === "production"
     ? cache(pages) // Cache the pages in production
-    : pages // Dev
+    : pages // No caching in development
 
 // The top-level structure of the site
 → (pages) => {
