@@ -16,8 +16,13 @@
   // HTML content; each value represents the main body of a given page.
   html = deepMap(inlined, mdHtml)
 
+  headerLinks = deepMap(html, ={
+    ..._
+    @text: js/headerLinks.js(_/@text)
+  })
+
   // Apply the documentation page template. This injects the HTML content from
   // the previous step into the site's main page template, which adds headers
   // and navigation chrome. This step concludes the main documentation pipeline.
-  pages = deepMap(html, { extension: ".html", value: templates/page.ori })
+  pages = deepMap(headerLinks, { extension: ".html", value: templates/page.ori })
 }
