@@ -11,8 +11,8 @@
   text: addNextPrevious
 - href: BrowserFileTree.html
   text: BrowserFileTree
-- href: concatTrees.html
-  text: concatTrees
+- href: deepText.html
+  text: deepText
 - href: ExplorableSiteTree.html
   text: ExplorableSiteTree
 - href: FileTree.html

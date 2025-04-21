@@ -1,5 +1,5 @@
 ---
-title: concatTrees
+title: deepText
 subtitle: Tagged template function to concatenate the deep values of trees
 ---
 
@@ -7,17 +7,17 @@ This JavaScript function exposes the basic behavior of Origami [templates](/lang
 
 By default, JavaScript templates don't perform useful work on inputs that are objects, rendering objects unhelpfully as `"[object Object]"`.
 
-The `concatTrees` tagged template function can be called to concatenate the values of a treelike object such as, here, plain JavaScript object:
+The `deepText` tagged template function can be called to concatenate the values of a [treelike object](treelike.html) such as a plain JavaScript object:
 
 ```js
-${ samples.ori/js/concatNames.js }
+${ samples.ori/js/messages.js }
 ```
 
-Since `concatTrees` is a tagged template function, it is followed immediately by a backtick instead of an opening parenthesis. Also note the use of `await`: `concatTrees` is an asynchronous function.
+Since `deepText` is a tagged template function, it is followed immediately by a backtick instead of an opening parenthesis. Also note the use of `await`, since `deepText` is an asynchronous function.
 
 The above module exports this string:
 
 ```
-${ samples.ori/js/concatNames.js/ }
+${ samples.ori/js/messages.js/ }
 
 ```
