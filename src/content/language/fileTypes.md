@@ -61,6 +61,7 @@ Origami has built-in support for handling the following types of files.
 | JSON        | .json                                          |
 | Origami     | .ori<br>.ori.&lt;something>                    |
 | Text        | .css<br>.htm<br>.html<br>.md<br>.txt<br>.xhtml |
+| TypeScript  | .ts                                            |
 | WebAssembly | .wasm                                          |
 | YAML        | .yaml<br>.yml                                  |
 
@@ -169,6 +170,10 @@ The First Post
 Origami assumes that text files are encoded in [UTF-8](https://en.wikipedia.org/wiki/UTF-8).
 
 See more about [working with text documents](documents.html) in Origami.
+
+## TypeScript files
+
+If you are running Node v23.6.0 or later, Origami can load TypeScript `.ts` files the same as `.js` files (above). This only strips out type information; it does not support using any TypeScript-specific language transformations.
 
 ### WebAssembly files
 
