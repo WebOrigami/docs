@@ -12,6 +12,8 @@ Origami introduces some operators of its own, listed here alongside the standard
 | :---------------------------------------------------------- | :---------------------------- | :------------ |
 | Group                                                       | `(x)`                         | n/a           |
 | [Protocol with path](syntax.html#namespaces)                | `https://example.com/about`   | left-to-right |
+| Member access                                               | `x.y`                         | left-to-right |
+| Computed member access                                      | `x[y]`                        | n/a           |
 | Function call                                               | `x(y)`                        | n/a           |
 | Path                                                        | `x/y/z`                       | n/a           |
 | Tagged template                                             | `` x`y` ``                    | n/a           |
