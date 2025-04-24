@@ -194,7 +194,7 @@ This content came from weborigami.org:
 ${ samples.ori/templates/net.txt }
 ```
 
-This includes being able to traverse into data from the network. A [teamData.yaml](samples/templates/teamData.yaml) file posted on the network can be referenced as an expression and then further traversed:
+This includes being able to traverse into data from the network. A [teamData.yaml](/samples/templates/teamData.yaml) file posted on the network can be referenced as an expression and then further traversed:
 
 ```ori
 // netData.ori
