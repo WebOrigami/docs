@@ -125,4 +125,4 @@ language:
   index.html: [contents of language/index.html]
 ```
 
-This technique is useful when you know the set of resources you want to fetch. If you don't know what resources the site provides, the [`site:crawl`](/builtins/site/crawl.html) builtin can return the complete publicly-reachable set of resources.
+This technique is useful when you know the set of resources you want to fetch. If you don't know what resources the site provides, the [`dev:crawl`](/builtins/dev/crawl.html) builtin can return the complete publicly-reachable set of resources.

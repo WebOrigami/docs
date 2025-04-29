@@ -1,9 +1,13 @@
 - text: "dev: namespace"
   href: index.html
+- href: audit.html
+  text: audit
 - href: breakpoint.html
   text: breakpoint
 - href: changes.html
   text: changes
+- href: crawl.html
+  text: crawl
 - href: debug.html
   text: debug
 - href: explore.html

@@ -1,9 +1,9 @@
 ---
 title: audit(tree)
-supertitle: "site:"
+supertitle: "dev:"
 ---
 
-This audits the site defined by the given tree for broken internal links. It first crawls the site using the same crawler as [`site:crawl`](crawl.html); see that page for details on what kinds of files and references are crawled.
+This audits the site defined by the given tree for broken internal links. It first crawls the site using the same crawler as [`dev:crawl`](crawl.html); see that page for details on what kinds of files and references are crawled.
 
 - The audit only verifies links to internal pages and resources. It does not verify links to external pages and resources, i.e., outside the site being audited.
 - The audit process currently ignores errors. If, when attempting to retrieve a given resource, an error is generated, that resource will be skipped.
@@ -24,7 +24,7 @@ ${ samples.ori/help/brokenLinks.ori }
 
 ```console
 $ ori audit brokenLinks.ori
-${ yaml site:audit samples.ori/help/brokenLinks.ori }
+${ yaml audit samples.ori/help/brokenLinks.ori }
 ```
 
 Here `audit` reports that `index.html` has a link to a non-existent page `b.html`.

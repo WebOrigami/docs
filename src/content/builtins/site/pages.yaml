@@ -1,9 +1,5 @@
 - text: "site: namespace"
   href: index.html
-- href: audit.html
-  text: audit
-- href: crawl.html
-  text: crawl
 - href: indexBuiltin.html
   text: index
 - href: jsonKeys.html

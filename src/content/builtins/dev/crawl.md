@@ -1,6 +1,6 @@
 ---
 title: crawl(tree, [baseHref])
-supertitle: "site:"
+supertitle: "dev:"
 ---
 
 Crawls the indicated live site and returns the complete tree of reachable resources.
@@ -27,7 +27,7 @@ $ npx ori "copy crawl(httpstree://www.spacejam.com/1996/), files:spacejam"
 
 Crawling is a network-intensive operation, so a command to crawl a site like the (surprisingly large!) site above can take a long time to complete -- on the order of minutes.
 
-### Starting points
+## Starting points
 
 A crawl begins by looking for any of:
 
@@ -38,11 +38,11 @@ A crawl begins by looking for any of:
 
 From these starting points, the crawler will follow links to additional resources.
 
-### Broken links
+## Broken links
 
 If the crawl operation finds links to internal references that do not exist, it will return those in a `crawl-errors.json` entry at the top level of the returned tree.
 
-If you just want to check a site for broken links, see the related [`site:audit`](audit.html) builtin.
+If you just want to check a site for broken links, see the related [`dev:audit`](audit.html) builtin.
 
 ## Supported reference types
 
@@ -57,14 +57,15 @@ The crawler analyzes the following types of files:
 
 In HTML, the crawler finds references to other pages and resources by examining:
 
-- `href` attributes in elements: `<a>`, `<area>`, `<image>`, `<filter>`, `<link>`, `<mpath>`, `<pattern>`, `<use>`. (The crawler currently cannot find paths in SVG elements with mixed-case names: `<feImage>`, `<linearGradient>`, `<radialGradient>`, or `<textPath>`.)
-- `src` attributes in elements: `<audio>`, `<embed>`, `<frame>`, `<iframe>`, `<img>`, `<input>`, `<script>`, `<source>`, `<track>`, `<video>`
-- `srcset` attributes of `<img>` and `<source>` elements
-- `poster` attributes of `<video>` elements
-- `data` attributes of `<object>` elements
-- `background` attributes of `<body>` elements
-- `content` attributes of `<meta>` elements with a `property` attribute ending in `:image` (like `og:image`)
-- CSS in `<style>` elements or `style` attributes
+- `href` attribute in elements: `<a>`, `<area>`, `<image>`, `<filter>`, `<link>`, `<mpath>`, `<pattern>`, `<use>`. (The crawler currently cannot find paths in SVG elements with mixed-case names: `<feImage>`, `<linearGradient>`, `<radialGradient>`, or `<textPath>`.)
+- `src` attribute in elements: `<audio>`, `<embed>`, `<frame>`, `<iframe>`, `<img>`, `<input>`, `<script>`, `<source>`, `<track>`, `<video>`
+- `srcset` attribute in `<img>` and `<source>` elements
+- `poster` attribute in `<video>` elements
+- `data` attribute in `<object>` elements
+- `background` deprecated attribute in elements: `<body>`, `<table>`, `<td>`, `<th>`
+- `longdesc` deprecated attribute in `<img>` elements
+- `content` attribute in `<meta>` elements with a `property` attribute ending in `:image` (like `og:image`)
+- CSS in `<style>` elements or `style` attribute
 - JavaScript in `<script>` elements with a `type` attribute of `"module"`
 
 In JavaScript, the crawler finds references in:
