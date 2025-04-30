@@ -15,19 +15,19 @@ This audits the site defined by the given tree for broken internal links. It fir
 
 You can give `audit` the top-level file that defines your site's root.
 
-Example: a `brokenLinks.ori` file contains a tiny site with an `index.html` page that links to pages `a.html` and `b.html`:
+Example: a file contains a tiny site with an `index.html` page that links to page `a.html` that links to `b.html`:
 
 ```ori
-// brokenLinks.ori
-${ samples.ori/help/brokenLinks.ori }
+// missingPage.ori
+${ samples.ori/help/missingPage.ori }
 ```
 
 ```console
-$ ori audit brokenLinks.ori
-${ yaml audit samples.ori/help/brokenLinks.ori }
+$ ori audit missingPage.ori
+${ yaml audit samples.ori/help/missingPage.ori }
 ```
 
-Here `audit` reports that `index.html` has a link to a non-existent page `b.html`.
+Here `audit` reports that `a.html` has a link to a non-existent page `b.html`.
 
 Because Origami treats all trees equally, you can also audit a folder of HTML pages. For example, if you're using `copy` to [build your site](/builtins/tree/copy.html#copy-to-build), you could audit the build output folder:
 
