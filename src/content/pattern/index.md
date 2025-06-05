@@ -3,7 +3,7 @@ title: The async tree pattern
 subtitle: A flexible way to work with objects, files, files, web resources, and more
 ---
 
-${ templates/blocks.ori(areaLinks) }
+${ templates/blocks.jse(areaLinks) }
 
 The async tree pattern helps you tackle complex development tasks. You represent data as asynchronous trees and envision your project's final output as the result of tree transformations.
 

@@ -14,14 +14,14 @@ Suppose `mask.ori` contains:
 ```ori
 // mask.ori
 
-${ samples.ori/help/mask.ori }
+${ samples.jse/help/mask.ori }
 ```
 
 Invoking this returns the masked result:
 
 ```console
 $ ori mask.ori/
-${ yaml(samples.ori/help/mask.ori/) }
+${ yaml(samples.jse/help/mask.ori/) }
 ```
 
 If the `mask` tree does not specify a value for a given key, the result of asking for that value will be `undefined`, which is a falsy value. This means it is not normally necessary to specify `false` values in the mask tree.
@@ -34,14 +34,14 @@ You can influence the result of a mask operation by [defining a default value](/
 
 ```ori
 // maskDefault.ori
-${ samples.ori/help/maskDefault.ori }
+${ samples.jse/help/maskDefault.ori }
 ```
 
 The above defines a mask where the default value is `true`, so all keys and values in the `source` tree will come through the mask unless specifically overridden with a falsy value.
 
 ```console
 $ ori maskDefault.ori/
-${ yaml(samples.ori/help/maskDefault.ori/) }
+${ yaml(samples.jse/help/maskDefault.ori/) }
 ```
 
 This flips the logic of `mask`: instead of only allowing truthy values in, this `mask` excludes falsy values.

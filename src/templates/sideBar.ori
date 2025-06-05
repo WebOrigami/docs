@@ -1,9 +1,0 @@
-(links) => links
-  ? indent`
-    <ul>
-      ${ map(links, (link) => indent`
-        <li>${ linkCurrent.ori(link) }</li>
-      `) }
-    </ul>
-  `
-  : ""

@@ -19,12 +19,12 @@ Example: a file contains a tiny site with an `index.html` page that links to pag
 
 ```ori
 // missingPage.ori
-${ samples.ori/help/missingPage.ori }
+${ samples.jse/help/missingPage.ori }
 ```
 
 ```console
 $ ori audit missingPage.ori
-${ yaml audit samples.ori/help/missingPage.ori }
+${ yaml audit samples.jse/help/missingPage.ori }
 ```
 
 Here `audit` reports that `a.html` has a link to a non-existent page `b.html`.

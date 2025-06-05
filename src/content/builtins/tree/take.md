@@ -7,16 +7,16 @@ Returns a copy of the given tree, with the additional restriction that the new t
 
 ```console
 $ cat letters.yaml
-${ samples.ori/help/letters.yaml }$ ori take letters.yaml, 2
-${ yaml take samples.ori/help/letters.yaml, 2 }
+${ samples.jse/help/letters.yaml }$ ori take letters.yaml, 2
+${ yaml take samples.jse/help/letters.yaml, 2 }
 ```
 
 <div class="sideBySide">
   <figure>
-    ${ svg.js samples.ori/help/letters.yaml }
+    ${ svg.js samples.jse/help/letters.yaml }
   </figure>
   <figure>
-    ${ svg.js take samples.ori/help/letters.yaml, 2 }
+    ${ svg.js take samples.jse/help/letters.yaml, 2 }
   </figure>
   <figcaption>Input tree</figcaption>
   <figcaption>Result</figcaption>

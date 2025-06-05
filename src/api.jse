@@ -4,4 +4,4 @@
 // library. That formula uses a custom transform called `jsApi`, based on the
 // Microsoft TypeScript compiler, which parses JavaScript source to extract type
 // information and comments.
-js/jsApi.js(node_modules/@weborigami/async-tree/src)
+<js/jsApi.js>(<node_modules/@weborigami/async-tree/src>)

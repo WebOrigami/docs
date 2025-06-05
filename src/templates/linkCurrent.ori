@@ -1,3 +1,0 @@
-(link) => link/href
-  ? `<a href="${ link/href }"${ link/current ? ` aria-current="page"` : "" }>${ link/text }</a>`
-  : `<span class="noLink">${ link/text }</span>`

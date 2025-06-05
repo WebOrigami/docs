@@ -9,35 +9,35 @@ If `hokusai.md` contains plain text:
 
 ```console
 $ ori hokusai.md
-${ samples.ori/help/hokusai.md }
+${ samples.jse/help/hokusai.md }
 ```
 
 then invoking `document` on it returns a plain object with the original body text as a `text` property:
 
 ```console
 $ ori document hokusai.md
-${ yaml document samples.ori/help/hokusai.md }
+${ yaml document samples.jse/help/hokusai.md }
 ```
 
 You can also attach data:
 
 ```console
 $ ori document hokusai.md, { author: "'Katsushika Hokusai'" }
-${ yaml document samples.ori/help/hokusai.md, { author: "Katsushika Hokusai" } }
+${ yaml document samples.jse/help/hokusai.md, { author: "Katsushika Hokusai" } }
 ```
 
 If you have a text document with data in front matter:
 
 ```console
 $ ori basho.md
-${ samples.ori/help/basho.md }
+${ samples.jse/help/basho.md }
 ```
 
 Then calling `document` on it returns a plain object with the front matter data as properties, plus the body text as a `text` property:
 
 ```console
 $ ori document basho.md
-${ yaml samples.ori/help/basho.md/ }
+${ yaml samples.jse/help/basho.md/ }
 ```
 
 If you have a collection of documents, some of which have data and some of which don't, you can normalize all of them to document objects by applying `document` to each of them.
@@ -45,8 +45,8 @@ If you have a collection of documents, some of which have data and some of which
 ```console
 $ ori map [basho.md, hokusai.md], =document _
 ${ yaml map([
-  samples.ori/help/basho.md
-  samples.ori/help/hokusai.md
+  samples.jse/help/basho.md
+  samples.jse/help/hokusai.md
 ], =document(_)) }
 ```
 

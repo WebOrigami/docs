@@ -1,0 +1,19 @@
+(api) => Tree.indent`
+  <ul>
+  ${ Tree.map(api.parameters, (parameter) => Tree.indent`
+    <li>${parameter.name}: ${ <typeList.jse>(parameter.types) }
+      ${ parameter.description ? `&ndash; ${parameter.description}` : "" }
+    </li>  
+  `) }
+  </ul>
+  ${ !api.isConstructor
+    ? Tree.indent`
+      <p>
+        Returns: ${ <typeList.jse>(api.returnTypes) }
+      </p>
+    `
+    : "" }
+  <p>
+    ${ Origami.mdHtml(api.description) }
+  </p>
+`

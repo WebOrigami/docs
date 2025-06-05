@@ -11,21 +11,21 @@ A YAML file contains the following tree:
 
 ```yaml
 # oldTree.yaml
-${ samples.ori/help/oldTree.yaml }
+${ samples.jse/help/oldTree.yaml }
 ```
 
 The file is copied and then modified to produce:
 
 ```yaml
 # newTree.yaml
-${ samples.ori/help/newTree.yaml }
+${ samples.jse/help/newTree.yaml }
 ```
 
 Calling `changes` indicates what values have changed:
 
 ```console
 $ ori changes oldTree.yaml, newTree.yaml
-${ yaml(changes(samples.ori/help/oldTree.yaml, samples.ori/help/newTree.yaml)) }
+${ yaml(changes(samples.jse/help/oldTree.yaml, samples.jse/help/newTree.yaml)) }
 ```
 
 Invoking `changes` if the trees are the same returns an empty object, indicating nothing has changed:

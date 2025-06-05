@@ -1,4 +1,4 @@
-(page) => indent`
+(page) => Tree.indent`
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="/styles/github-subset.css">
     <link rel="stylesheet" href="/styles/github.min.css">
     <link rel="stylesheet" href="/styles/docs.css">
-    <title>${ page/title }</title>
-    <link rel="icon" href="/assets/origami/${ page/icon }" type="image/svg+xml">
+    <title>${ page.title }</title>
+    <link rel="icon" href="/assets/origami/${ page.icon }" type="image/svg+xml">
   </head>
-  <body${ page/numberHeadings ? ` class="numberHeadings"` : "" }>
+  <body${ page.numberHeadings ? ` class="numberHeadings"` : "" }>
     <div id="page">
       <div id="topNav" class="pageRow">
         <div id="homeContainer">
@@ -18,35 +18,35 @@
         </div>
         <nav id="navBar">
           <a href="/">Origami</a>
-          ${ page/areaLinks ? areaLinks.ori(page/areaLinks) : "" }
+          ${ page.areaLinks ? <areaLinks.jse>(page.areaLinks) : "" }
           <a href="https://github.com/WebOrigami/origami">GitHub</a>
           <a id="linkSearch" href="/search.html">Search</a>
         </nav>
       </div>
       <div id="pageContent">
         <div id="iconContainer">
-          <img class="origami" src="/assets/origami/${ page/icon }">
+          <img class="origami" src="/assets/origami/${ page.icon }">
         </div>
         <header>
-          ${ page/supertitle
-            ? indent`
-              <p class="supertitle">${ page/supertitle }</p>
+          ${ page.supertitle
+            ? Tree.indent`
+              <p class="supertitle">${ page.supertitle }</p>
             `
             : ""
           }
-          <h1>${ page/title }</h1>
-          ${ page/subtitle
-            ? indent`
-              <p class="subtitle">${ page/subtitle }</p>
+          <h1>${ page.title }</h1>
+          ${ page.subtitle
+            ? Tree.indent`
+              <p class="subtitle">${ page.subtitle }</p>
             `
             : ""
           }
         </header>
         <nav id="sideBar">
-          ${ sideBar.ori(page/pageLinks) }
+          ${ <sideBar.jse>(page.pageLinks) }
         </nav>
         <main class="markdown-body">
-${ page/@text }
+${ page._body }
         </main>
       </div>
     </div>

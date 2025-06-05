@@ -142,28 +142,28 @@ The cleanest way to make the `data` available to `index.ori` is for `site.ori` t
 
 ```ori
 // site.ori
-${ samples.ori/cli/scope/site.ori }
+${ samples.jse/cli/scope/site.ori }
 ```
 
 which `index.ori` then accepts as a parameter:
 
 ```ori
 // index.ori
-${ samples.ori/cli/scope/index.ori }
+${ samples.jse/cli/scope/index.ori }
 ```
 
 This produces:
 
 ```console
 $ ori site.ori/index.html
-${ samples.ori/cli/scope/site.ori/index.html + "\n" }
+${ samples.jse/cli/scope/site.ori/index.html + "\n" }
 ```
 
 Another approach would be to have `index.ori` itself look for `site.ori` (which is in scope because that file is also in the `src` folder), and then extract the `data`:
 
 ```ori
 // index.ori
-${ samples.ori/cli/scope/index2.ori }
+${ samples.jse/cli/scope/index2.ori }
 ```
 
 Even though both `site.ori` and `index.ori` are referencing each other, both references will work. In some cases this approach may be appropriate, but in most cases it will be simpler to pass the data as an argument as shown above.
@@ -196,13 +196,13 @@ When the ori CLI calls a JavaScript function, the `this` value inside that funct
 For example, suppose you have a file called `sample.txt`:
 
 ```txt
-${ samples.ori/cli/sample.txt }
+${ samples.jse/cli/sample.txt }
 ```
 
 A JavaScript file `accessScope.js` in that same folder (or in a subfolder) can read the current Origami scope from the functions `this` value:
 
 ```js
-${ samples.ori/cli/accessScope.js }
+${ samples.jse/cli/accessScope.js }
 ```
 
 Evaluating this will display the file:

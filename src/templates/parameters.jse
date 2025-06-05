@@ -1,0 +1,3 @@
+(parameters) => <js/separatedList.js>(parameters, ", ", (parameter) => Tree.indent`
+  ${ parameter.optional ? "[" : "" }${ parameter.name }${ parameter.optional ? "]" : "" }
+`)

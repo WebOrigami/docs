@@ -1,0 +1,1 @@
+(links) => Tree.map(links, <linkCurrent.jse>)

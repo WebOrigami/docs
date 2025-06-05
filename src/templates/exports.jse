@@ -1,0 +1,12 @@
+(api) => Tree.map(api.exports, (export) => Tree.indent`
+  ${ export.kind === "class" ?  <class.jse>(export) : "" }
+  ${ export.kind === "function" ? Tree.indent`
+    <h3 id="${ export.name }">
+      ${ export.static ? "static " : "" }
+      ${ export.async ? "async " : "" }
+      ${ export.generator ? "*" : "" }${ export.name }(${ <parameters.jse>(export.parameters) })
+      ${ export.isConstructor ? "constructor" : "" }
+    </h3>
+    ${ <function.jse>(export) }
+  ` : "" }
+`)

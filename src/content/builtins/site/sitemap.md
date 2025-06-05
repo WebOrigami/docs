@@ -9,12 +9,12 @@ Example: if `tinySite.ori` contains:
 
 ```ori
 // tinySite.ori
-${ samples.ori/help/tinySite.ori }
+${ samples.jse/help/tinySite.ori }
 ```
 
 then calling `sitemap` generates:
 
 ```console
 $ ori sitemap tinySite.ori, "'https://mysite.org'"
-${ sitemap(samples.ori/help/tinySite.ori, "https://mysite.org" ) }
+${ sitemap(samples.jse/help/tinySite.ori, "https://mysite.org" ) }
 ```

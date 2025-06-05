@@ -7,18 +7,18 @@ Treats the string keys of `tree` as [regular expressions](https://developer.mozi
 
 ```ori
 // regExpKeys.ori
-${ samples.ori/help/regExpKeys.ori }
+${ samples.jse/help/regExpKeys.ori }
 ```
 
 This can be used to match against the regular expressions:
 
 ```console
 $ ori regExpKeys.ori/abc
-${ yaml samples.ori/help/regExpKeys.ori/abc }
+${ yaml samples.jse/help/regExpKeys.ori/abc }
 $ ori regExpKeys.ori/123
-${ yaml samples.ori/help/regExpKeys.ori/123 }
+${ yaml samples.jse/help/regExpKeys.ori/123 }
 $ ori regExpKeys.ori/__
-${ yaml samples.ori/help/regExpKeys.ori/__ }
+${ yaml samples.jse/help/regExpKeys.ori/__ }
 ```
 
 You can use `regExpKeys` with [`tree:mask`](mask.html#mask-with-globs-and-regular-expressions) to mask values based on regular expression matches.

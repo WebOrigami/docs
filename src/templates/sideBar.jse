@@ -1,0 +1,9 @@
+(links) => links
+  ? Tree.indent`
+    <ul>
+      ${ Tree.map(links, (link) => Tree.indent`
+        <li>${ <linkCurrent.jse>(link) }</li>
+      `) }
+    </ul>
+  `
+  : ""

@@ -1,3 +1,0 @@
-(parameters) => js/separatedList.js(parameters, ", ", (parameter) => indent`
-  ${ parameter/optional ? "[" : "" }${ parameter/name }${ parameter/optional ? "]" : "" }
-`)

@@ -16,7 +16,7 @@ It is unlikely you will want to call this function directly. (The function's cal
 To look at an example, let's imagine a small set of text files that each a bit of multi-line text:
 
 ```
-${ samples.ori/help/pond.txt }
+${ samples.jse/help/pond.txt }
 ```
 
 You want to format each file as a set of pre-formatted quotes. You write some interwoven Origami and HTML, using newlines and indentation to clarify the nesting:
@@ -24,7 +24,7 @@ You want to format each file as a set of pre-formatted quotes. You write some in
 ```ori
 // quote.ori
 
-${ samples.ori/help/quote.ori }
+${ samples.jse/help/quote.ori }
 ```
 
 This indentation lets you see that the outer code is Origami with nested layers inside it: an HTML `<section>`, a nested Origami `map` inside that, and finally Origami to inline the text file's contents.
@@ -32,7 +32,7 @@ This indentation lets you see that the outer code is Origami with nested layers 
 By default Origami includes all template whitespace as is, so the above outputs:
 
 ```${"html"}
-${ samples.ori/help/quote.ori/ }
+${ samples.jse/help/quote.ori/ }
 ```
 
 The above is syntactically valid HTML but includes some undesired newlines, more indentation than is wanted, and some lines of text are _not_ indented when we want them to be.
@@ -57,7 +57,7 @@ A cicada’s voice.
 If you prefer to adjust the whitespace included in a template to improve legibility, you can invoke the `indent` builtin immediately before the outer and inner templates:
 
 ```ori
-${ samples.ori/help/quoteIndent.ori }
+${ samples.jse/help/quoteIndent.ori }
 ```
 
 Note that `indent` appears immediately before the opening backticks: although this is calling a function, there are no parentheses like in a typical function call.
@@ -65,7 +65,7 @@ Note that `indent` appears immediately before the opening backticks: although th
 The output of this is:
 
 ```${"html"}
-${ samples.ori/help/quoteIndent.ori/ }
+${ samples.jse/help/quoteIndent.ori/ }
 ```
 
 This is both easier to read and more correct in its end-user visible result:

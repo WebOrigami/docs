@@ -190,14 +190,14 @@ The expression that defines the value of a property can reference other properti
 
 ```ori
 // localRef.ori
-${ samples.ori/help/localRef.ori }
+${ samples.jse/help/localRef.ori }
 ```
 
 This evaluates to:
 
 ```console
 $ ori localRef.ori/
-${ yaml samples.ori/help/localRef.ori/ }
+${ yaml samples.jse/help/localRef.ori/ }
 ```
 
 This type of local reference is not possible in languages like JavaScript.
@@ -206,14 +206,14 @@ Origami will avoid recursive local references. If you try to define a `name` pro
 
 ```ori
 // inherited.ori
-${ samples.ori/help/inherited.ori }
+${ samples.jse/help/inherited.ori }
 ```
 
 Here the expression `\${name}` will resolve to the inherited `name` defined in the parent object.
 
 ```console
 $ ori inherited.ori
-${ yaml samples.ori/help/inherited.ori/ }
+${ yaml samples.jse/help/inherited.ori/ }
 ```
 
 ## Object property getters
@@ -236,21 +236,21 @@ One use for non-enumerable properties is in calculating a value that will be use
 
 ```ori
 // hidden.ori
-${ samples.ori/help/hidden.ori }
+${ samples.jse/help/hidden.ori }
 ```
 
 Here, the declaration of the `company` property is in parentheses, so it is non-enumerable. It can be referenced by other object properties, but will not be included in the object's keys. This means it won't be shown when the object is displayed:
 
 ```console
 $ ori hidden.ori/
-${ yaml samples.ori/help/hidden.ori/ }
+${ yaml samples.jse/help/hidden.ori/ }
 ```
 
 Marking a property as non-enumerable only affects whether it is included in the object's list of keys; a non-enumerable property is still accessible if one knows the property name:
 
 ```console
 $ ori hidden.ori/company
-${ yaml samples.ori/help/hidden.ori/company }
+${ yaml samples.jse/help/hidden.ori/company }
 ```
 
 ## Object nesting
@@ -297,11 +297,11 @@ You can use `...` three periods or the single `…` ellipsis character to merge 
 
 ```console
 $ ori tree1.yaml
-${ samples.ori/help/merge/tree1.yaml }$ ori tree2.yaml
-${ samples.ori/help/merge/tree2.yaml }$ ori { ...tree1.yaml, ...tree2.yaml }
+${ samples.jse/help/merge/tree1.yaml }$ ori tree2.yaml
+${ samples.jse/help/merge/tree2.yaml }$ ori { ...tree1.yaml, ...tree2.yaml }
 ${ yaml {
-  ...samples.ori/help/merge/tree1.yaml
-  ...samples.ori/help/merge/tree2.yaml
+  ...samples.jse/help/merge/tree1.yaml
+  ...samples.jse/help/merge/tree2.yaml
 } }
 ```
 
@@ -514,11 +514,11 @@ For example, the [`map`](/builtins/tree/map.html) built-in function can apply an
 
 ```console
 $ cat letters.json
-${ samples.ori/cli/letters.json
+${ samples.jse/cli/letters.json
 }$ cat uppercase.js
-${ samples.ori/cli/uppercase.js
+${ samples.jse/cli/uppercase.js
 }$ ori "map(letters.json, =uppercase.js(_))"
-${ yaml map samples.ori/cli/letters.json, samples.ori/cli/uppercase.js }
+${ yaml map samples.jse/cli/letters.json, samples.jse/cli/uppercase.js }
 ```
 
 The `_` underscore above refers to the value being mapped, so `=uppercase.js(_)` will convert the value to uppercase.
@@ -533,14 +533,14 @@ The `map` function shown above passes the mapping function the value and key bei
 
 ```console
 $ ori "map(letters.json, (description, letter) => uppercase.js(description))"
-${ yaml map samples.ori/cli/letters.json, (description, letter) => samples.ori/cli/uppercase.js(description) }
+${ yaml map samples.jse/cli/letters.json, (description, letter) => samples.jse/cli/uppercase.js(description) }
 ```
 
 In this case, since the `letter` argument isn't used, it can be omitted:
 
 ```console
 $ ori "map(letters.json, (description) => uppercase.js(description))"
-${ yaml map samples.ori/cli/letters.json, (description) => samples.ori/cli/uppercase.js(description) }
+${ yaml map samples.jse/cli/letters.json, (description) => samples.jse/cli/uppercase.js(description) }
 ```
 
 ## Pipe operator

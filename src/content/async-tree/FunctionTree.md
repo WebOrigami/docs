@@ -6,14 +6,14 @@ subtitle: Wraps a function and a domain as an async tree
 ## Usage
 
 ```js
-${ samples.ori/help/function.js }
+${ samples.jse/help/function.js }
 ```
 
 The [ori](/cli) tool will display the contents of the resulting `FunctionTree`.
 
 ```console
 $ ori function.js/
-${ yaml samples.ori/help/function.js/ }
+${ yaml samples.jse/help/function.js/ }
 ```
 
 A rough implementation of the core interface methods in `FunctionTree` is:
@@ -42,9 +42,9 @@ Unlike async tree classes like [ObjectTree](ObjectTree.html), an `FunctionTree` 
 
 ```console
 $ ori keys function.js/
-${ yaml keys samples.ori/help/function.js/ }
+${ yaml keys samples.jse/help/function.js/ }
 $ ori function.js/David
-${ samples.ori/help/function.js/David + "\n" }
+${ samples.jse/help/function.js/David + "\n" }
 ```
 
-${ templates/class.ori(api.ori/drivers/FunctionTree.yaml/exports/0) }
+${ templates/class.jse(api.jse/drivers/FunctionTree.yaml/exports/0) }
