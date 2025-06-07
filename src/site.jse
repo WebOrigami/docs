@@ -18,7 +18,7 @@ Tree.deepMap(<content>, { extension: ".md→.html", value: <transform.jse> })
 
   // Live demos
   demos/ = {
-    aboutUs/ = <src/demos/aboutUs/site.jse/>
+    aboutUs/ = <demos/aboutUs/site.jse/>
   }
 
   // Folder of search indexes and resources created on demand (but only once)
