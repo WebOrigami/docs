@@ -105,16 +105,16 @@ myProject/
   site.ori
 ```
 
-You can reference the `images` folder name in the `site.ori` Origami file:
+You can reference the `images` folder name in the `site.ori` Origami file with a _path_. Origami treats text inside `< >` angle brackets as a path to the surrounding file system or larger internet.
 
 ```ori
 {
   index.html: "Hello, world!"
-  images
+  <images>
 }
 ```
 
-This creates a site that looks like:
+The data in the `images` folder will be added to the tree using the folder or file name at the end of the path (here, `images`). This creates a site that looks like:
 
 <figure>
 ${
@@ -142,7 +142,7 @@ The above site offers a set of images via a route like `/images/image1.jpg`, but
 ```ori
 {
   index.html: "Hello, world!"
-  ...images
+  ...<images>
 }
 ```
 
@@ -218,7 +218,7 @@ then you can call that in an Origami expression:
 
 ```ori
 {
-  index.html: uppercase.js("hello, world.")
+  index.html: <uppercase.js>("hello, world.")
 }
 ```
 
@@ -284,15 +284,15 @@ The Origami file can incorporate that data into the `index.html` page with:
 
 ```ori
 {
-  index.html: `Welcome to \$\{ siteInfo.json/name }!`
+  index.html: `Welcome to \$\{ <siteInfo.json>.name }!`
 }
 ```
 
-This uses tree scope to find the `siteInfo.json` file. The `/name` path tells Origami that it should parse the `siteInfo.json` file, and the `.json` extension lets Origami know it should parse the file as JSON. Origami includes built-in parsing for JSON and YAML files; you can drop in support for other parsers.
+This uses tree scope to find the `siteInfo.json` file. The `.name` reference tells Origami that it should parse the `siteInfo.json` file, and the `.json` extension lets Origami know it should parse the file as JSON. Origami includes built-in parsing for JSON and YAML files; you can drop in support for other parsers.
 
 The result is a home page that says, "Welcome to My Site".
 
-_Key point: Origami lets you easily read data from a data file. You can treat hierarchical data like any tree and get things out of it with slash-separated paths._
+_Key point: Origami lets you easily read data from a data file._
 
 ## Recalculating a value
 
@@ -302,7 +302,7 @@ You can arrange to have an Origami expression reevaluated each time a value is r
 
 ```ori
 {
-  index.html = `Welcome to \$\{ siteInfo.json/name }!`
+  index.html = `Welcome to \$\{ <siteInfo.json>.name }!`
 }
 ```
 
@@ -354,11 +354,11 @@ ${
 
 Here the key `@text` is used to label the property holding the text of the markdown document.
 
-You can transform this tree of markdown objects into a corresponding tree of HTML objects. Origami includes a markdown-to-HTML command called [`mdHtml`](/builtins/text/mdHtml.html). That command works on a single file, so you can use it to process a single blog post:
+You can transform this tree of markdown objects into a corresponding tree of HTML objects. Origami includes a markdown-to-HTML command called [`Origami.mdHtml`](/builtins/text/mdHtml.html). That command works on a single file, so you can use it to process a single blog post:
 
 ```ori
 {
-  firstPost = mdHtml(markdown/post1.md)
+  firstPost = Origami.mdHtml(<markdown/post1.md>)
 }
 ```
 
@@ -375,11 +375,11 @@ ${
 }
 </figure>
 
-But instead of translating just one file a time, you can arrange for all the files in the `markdown` folder to be translated to HTML by calling Origami's built-in [`map`](/builtins/tree/map.html) function:
+But instead of translating just one file a time, you can arrange for all the files in the `markdown` folder to be translated to HTML by calling Origami's built-in [`Tree.map`](/builtins/tree/map.html) function:
 
 ```ori
 {
-  html = map(markdown, mdHtml)
+  html = Tree.map(<markdown>, Origami.mdHtml)
 }
 ```
 
@@ -391,18 +391,18 @@ ${
     html: {
       post1.html: {
         title: "My first post"
-        @text: "Here's my <strong>first</strong> post!"
+        _body: "Here's my <strong>first</strong> post!"
       }
       post2.html: {
         title: "Second post"
-        @text: "This is the <strong>second</strong> post."
+        _body: "This is the <strong>second</strong> post."
       }
     }
   })
 }
 </figure>
 
-When used inside a `map`, the `mdHtml` function translates both the keys (from `.md` names to `.html` names) and the `@text` property (from markdown to HTML).
+When used inside a `map`, the `mdHtml` function translates both the keys (from `.md` names to `.html` names) and the `_body` property (from markdown to HTML).
 
 ## Templates
 
@@ -416,10 +416,10 @@ The `post.ori` file contains an Origami template that mixes HTML with `\$\{ }` p
 (post) => `<!DOCTYPE html>
 <html>
   <head>
-    <title>\${ post/title }</title>
+    <title>\${ post.title }</title>
   </head>
   <body>
-    \${ post/text }
+    \${ post._body }
   </body>
 </html>
 `
@@ -429,8 +429,8 @@ This `post.ori` template defines a function you can apply to all the HTML object
 
 ```ori
 {
-  html = map(markdown, mdHtml)
-  posts = map(html, post.ori)
+  html = Tree.map(<markdown>, Origami.mdHtml)
+  posts = Tree.map(html, <post.ori>)
 }
 ```
 
@@ -442,11 +442,11 @@ ${
     html: {
       post1.html: {
         title: "My first post"
-        text: "Here's my <strong>first</strong> post!"
+        _body: "Here's my <strong>first</strong> post!"
       }
       post2.html: {
         title: "Second post"
-        text: "This is the <strong>second</strong> post."
+        _body: "This is the <strong>second</strong> post."
       }
     }
     posts: {
@@ -483,16 +483,16 @@ You can rearrange the `site.ori` definition to hide the `html` area:
 
 ```ori
 {
-  html = map(markdown, mdHtml)
+  html = Tree.map(<markdown>, Origami.mdHtml)
   public = {
-    posts = map(html, post.ori)
+    posts = Tree.map(html, <post.ori>)
   }
-}/public
+}.public
 ```
 
 This defines a `public` subtree containing everything that should be publicly visible. Inside the `public` subtree, Origami's tree scope (discussed above) lets the `posts` formula reference the `html` branch defined at the top level of the file. Since the `html` branch is outside the `public` area, it behaves like a private variable inside the file.
 
-The path `/public` at the end of the file indicates that only this `public` subtree should be returned as the result of evaluating `site.ori`. So the blog site now only has a `posts` area:
+The `.public` reference at the end of the file indicates that only this `public` subtree should be returned as the result of evaluating `site.ori`. So the blog site now only has a `posts` area:
 
 <figure>
 ${
@@ -519,8 +519,8 @@ Continuing the blog example above, you can define an index page for the blog wit
   </head>
   <body>
     <ul>
-      \${ map(html, (post, fileName) => `
-      <li><a href="posts/\${ fileName }">\${ post/title }</a></li>
+      \${ Tree.map(html, (post, fileName) => `
+      <li><a href="posts/\${ fileName }">\${ post.title }</a></li>
       \`) }
     </ul>
   </body>
@@ -536,12 +536,12 @@ You can then invoke `index.ori` to create the index page, passing in the same se
 
 ```ori
 {
-  html = map(markdown, mdHtml)
+  html = Tree.map(<markdown>, Origami.mdHtml)
   public = {
-    index.html = index.ori(html)
-    posts = map(html, post.ori)
+    index.html = <index.ori>(html)
+    posts = Tree.map(html, <post.ori>)
   }
-}/public
+}.public
 ```
 
 The site now looks like:
