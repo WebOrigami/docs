@@ -39,29 +39,14 @@ On macOS, you can type the `«` character with Option+Backslash, and the `»` ch
 
 ## Numbers
 
-On their own, integers or floating-point numbers are treated as JavaScript `Number` values.
+Integers or floating-point numbers are treated as JavaScript `Number` values.
 
 ```
 42
 3.14159
 ```
 
-Numbers that appear in paths are treated as strings:
-
-```
-years/2023
-```
-
-searches in the `years` tree for the key "2023".
-
-If you have a string that you want to convert to a number, use the [`Number`](/builtins/js.html) builtin function. Like any function, you can call it with parentheses or a slash:
-
-```
-Number("123")   // the number 123
-Number/123      // the number 123
-```
-
-You can do basic math with the `+`, `-`, `*` (multiplication), `/` (division), `%` (remainder) operations. In order to let characters like `-` appear in references — see below —, spaces are _required_ around math operators.
+You can do basic math with the `+`, `-`, `*` (multiplication), `/` (division), `%` (remainder) operations.
 
 ```
 1 + 1
@@ -190,14 +175,14 @@ The expression that defines the value of a property can reference other properti
 
 ```ori
 // localRef.ori
-${ samples.jse/help/localRef.ori }
+${ <samples.jse/help/localRef.jse> }
 ```
 
 This evaluates to:
 
 ```console
 $ ori localRef.ori/
-${ yaml samples.jse/help/localRef.ori/ }
+${ Origami.yaml(<samples.jse/help/localRef.jse/>) }
 ```
 
 This type of local reference is not possible in languages like JavaScript.
@@ -206,14 +191,14 @@ Origami will avoid recursive local references. If you try to define a `name` pro
 
 ```ori
 // inherited.ori
-${ samples.jse/help/inherited.ori }
+${ <samples.jse/help/inherited.jse> }
 ```
 
 Here the expression `\${name}` will resolve to the inherited `name` defined in the parent object.
 
 ```console
 $ ori inherited.ori
-${ yaml samples.jse/help/inherited.ori/ }
+${ Origami.yaml(<samples.jse/help/inherited.jse/>) }
 ```
 
 ## Object property getters
@@ -222,7 +207,7 @@ If you'd like a value to be calculated every time it's requested, you can create
 
 ```ori
 {
-  index.html = greet.js()
+  index.html = <greet.js>()
 }
 ```
 
@@ -236,21 +221,21 @@ One use for non-enumerable properties is in calculating a value that will be use
 
 ```ori
 // hidden.ori
-${ samples.jse/help/hidden.ori }
+${ <samples.jse/help/hidden.jse> }
 ```
 
 Here, the declaration of the `company` property is in parentheses, so it is non-enumerable. It can be referenced by other object properties, but will not be included in the object's keys. This means it won't be shown when the object is displayed:
 
 ```console
 $ ori hidden.ori/
-${ yaml samples.jse/help/hidden.ori/ }
+${ Origami.yaml(<samples.jse/help/hidden.jse/>) }
 ```
 
 Marking a property as non-enumerable only affects whether it is included in the object's list of keys; a non-enumerable property is still accessible if one knows the property name:
 
 ```console
 $ ori hidden.ori/company
-${ yaml samples.jse/help/hidden.ori/company }
+${ Origami.yaml(<samples.jse/help/hidden.jse/company>) }
 ```
 
 ## Object nesting
@@ -266,7 +251,7 @@ One use for this is to define the overall structure of a website in a `.ori` fil
 
   about: {
     // Generate the index page for the "About" area
-    index.html = about.ori()
+    index.html = <about.ori>()
   }
 }
 ```
@@ -297,12 +282,12 @@ You can use `...` three periods or the single `…` ellipsis character to merge 
 
 ```console
 $ ori tree1.yaml
-${ samples.jse/help/merge/tree1.yaml }$ ori tree2.yaml
-${ samples.jse/help/merge/tree2.yaml }$ ori { ...tree1.yaml, ...tree2.yaml }
-${ yaml {
-  ...samples.jse/help/merge/tree1.yaml
-  ...samples.jse/help/merge/tree2.yaml
-} }
+${ <samples.jse/help/merge/tree1.yaml> }$ ori tree2.yaml
+${ <samples.jse/help/merge/tree2.yaml> }$ ori { ...tree1.yaml, ...tree2.yaml }
+${ Origami.yaml({
+  ...<samples.jse/help/merge/tree1.yaml>
+  ...<samples.jse/help/merge/tree2.yaml>
+}) }
 ```
 
 In an `.ori` file, you can use this to merge a folder into an object that also defines individual files.
@@ -312,7 +297,7 @@ In an `.ori` file, you can use this to merge a folder into an object that also d
   index.html: "Hello!"
 
   // Merge in everything in the `styles` folder
-  …styles
+  ...<styles>
 }
 ```
 
@@ -428,53 +413,6 @@ The result of this URL will be the contents of the data at the indicated interne
 
 In addition to `https:` and `http:`, Origami has some custom protocols like [`files:`](/builtins/files.html).
 
-Other namespaces like [`dev:`](/builtins/dev/) and [`tree:`](/builtins/tree/) act as containers for functions and objects built into Origami. For example, the `tree:` namespace contains a function called [`tree:plain`](/builtins/tree/plain.html) that converts a tree (of markdown files, say) to a plain JavaScript object.
-
-```
-tree:plain(markdown)
-```
-
-## Shorthand for builtin functions
-
-For faster typing in the command line and for more concise code generally, Origami allows built-in functions like `tree:plain` to be called in a shorthand form like `plain` that omits the namespace.
-
-This means the following commands are equivalent:
-
-```console
-$ ori tree:copy src/site.ori, tree:clear ./build
-$ ori copy src/site.ori, clear ./build
-```
-
-To distinguish between builtin function names and your own function names, the Origami parser enforces the following rule for the names of functions: if a function name contains only letters and numbers, it is taken to refer to a builtin. This rule applies to the names of functions:
-
-- invoked with parentheses
-- invoked with spaces that represent implicit parentheses
-- invoked as a tagged template (see template literals, below)
-
-Examples:
-
-- `map(markdown, page.ori)` — `map` is taken as a shorthand for the [`tree:map`](/builtins/tree/map.html) because `map` is only letters and appears before parentheses.
-- `yaml package.json` — `yaml` is a shorthand (for [`origami:yaml`](/builtins/origami/yaml.html)) because it's only letters and appears in the function position. The parentheses are implicit; it's the same as `yaml(package.json)`.
-- `uppercase.js(sample.txt)` — `uppercase.js` is not a builtin name because it contains a period.
-- `mdHtml("Hello")` — `mdHtml` is a shorthand (for [`text:mdHtml`](/builtins/text/mdHtml.html)).
-- `mdHtml/Hello` — `mdHtml` isn't immediately assumed to be a shorthand because it's being called with slash syntax (see Paths, above). The reference `mdHtml` will be resolved in [scope](scope.html). If a folder exists called "mdHtml", the reference will resolve to that folder, not the builtin, but if there is nothing else in scope called "mdHtml", then `mdHtml` will ultimately resolve to the builtin.
-
-In the last example, using a slash path prevented `mdHtml` from being immediately taken as the name of a builtin. In some cases you may have a local variable that contains a function, and the variable's name is only letters and numbers, such that it will be assumed to be a shorthand for a builtin function. If you want the name to reference the local variable in a function call, append a `/` slash to the name:
-
-```ori
-// Call `fn` as a function even though its name looks like a shorthand
-(fn) => fn/()
-```
-
-Alternatively, place parentheses around the name:
-
-```ori
-// Another way to call `fn` as a function
-(fn) => (fn)()
-```
-
-Both techniques cause the `fn` reference to be treated as a regular scope reference. In both cases the reference will find the local `fn` parameter, which can then be invoked as a function.
-
 ## Template literals
 
 Text templates are quoted in backticks and can contain Origami expressions inside `\$\{` `}` placeholders. The evaluated expression results will be substituted for those placeholders in the template's text output.
@@ -500,47 +438,26 @@ You can group expressions with `(` `)` parentheses. Command shells generally int
 
 ## Lambdas (unnamed functions)
 
-An Origami expression can define a type of unnamed function called a lambda.
+An Origami expression can define a type of unnamed function called a _lambda_.
 
-You can create the simplest form of a lambda function with an `=` equals sign:
-
-```
-=expression
-```
-
-This expression will not be evaluated immediately, but only later when explicitly invoked.
-
-For example, the [`map`](/builtins/tree/map.html) built-in function can apply another function to a tree's values and/or keys. To concisely define a function that will be evaluated in the context of each tree value, you can use a lambda:
-
-```console
-$ cat letters.json
-${ samples.jse/cli/letters.json
-}$ cat uppercase.js
-${ samples.jse/cli/uppercase.js
-}$ ori "map(letters.json, =uppercase.js(_))"
-${ yaml map samples.jse/cli/letters.json, samples.jse/cli/uppercase.js }
-```
-
-The `_` underscore above refers to the value being mapped, so `=uppercase.js(_)` will convert the value to uppercase.
-
-You can also define lambda functions with an expanded syntax using a "=>" (or the Unicode ⇒ Rightwards Double Arrow) that allows for multiple named parameters:
+You can define lambda functions using a "=>" (or the Unicode ⇒ Rightwards Double Arrow) and any number of parameters:
 
 ```
 (parameter1, parameter2, parameter3, …) => expression
 ```
 
-The `map` function shown above passes the mapping function the value and key being mapped — in that order — as arguments, so the above example can be rewritten:
+This expression will not be evaluated immediately, but only later when explicitly invoked.
 
-```console
-$ ori "map(letters.json, (description, letter) => uppercase.js(description))"
-${ yaml map samples.jse/cli/letters.json, (description, letter) => samples.jse/cli/uppercase.js(description) }
-```
-
-In this case, since the `letter` argument isn't used, it can be omitted:
+For example, the [`map`](/builtins/tree/map.html) built-in function can apply another function to a tree's values and/or keys. To define a function that will be evaluated in the context of each tree value, you can use a lambda:
 
 ```console
 $ ori "map(letters.json, (description) => uppercase.js(description))"
-${ yaml map samples.jse/cli/letters.json, (description) => samples.jse/cli/uppercase.js(description) }
+${ Origami.yaml(
+  Tree.map(
+    <samples.jse/cli/letters.json>
+    (description) => <samples.jse/cli/uppercase.js>(description)
+  )
+) }
 ```
 
 ## Pipe operator
@@ -563,7 +480,7 @@ This can be useful when applying multiple transformations of data. Suppose an in
 
 ```ori
 {
-  index.html = template.ori(mdHtml(index.md))
+  index.html = <template.ori>(Origami.mdHtml(<index.md>))
 }
 ```
 
@@ -571,7 +488,7 @@ You can rewrite the above using the pipe operator so that the flow of data reads
 
 ```ori
 {
-  index.html = index.md → mdHtml → template.ori
+  index.html = <index.md> → Origami.mdHtml → <template.ori>
 }
 ```
 
@@ -588,7 +505,7 @@ Line comments start with `//` double slashes and extend to the end of the line:
 Note: In a URL or file path (see above), Origami interprets consecutive double slashes as part of the path and _not_ a comment.
 
 ```
-https://example.com/path/with/consecutive//slashes
+<https://example.com/path/with/consecutive//slashes>
 ```
 
 Block comments are enclosed by `/* */`
@@ -603,12 +520,12 @@ Block comment
 
 ## Instantiating classes
 
-For interoperability with JavaScript classes, Origami supports a `new:` syntax for creating new class instances.
+For interoperability with JavaScript classes, Origami supports a `new` syntax for creating new class instances.
 
 If the JavaScript file `User.js` exports a `User` class, then
 
 ```
-new:User.js("David")
+new <User.js>("David")
 ```
 
 is equivalent to the JavaScript `new User("David")`.
