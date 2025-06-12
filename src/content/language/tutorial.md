@@ -72,7 +72,7 @@ Origami lets you visualize and explore your site as a hierarchical _tree_ of pag
 You'll see your site visually represented as a tree with just one branch:
 
 <figure>
-${ svg.js({
+${ <svg.js>({
 index.html = 'Hello, world!'
 }) }
 </figure>
@@ -98,7 +98,7 @@ For this tutorial, you'll use the [template system built into Origami](templates
 <span class="tutorialStep"></span> View the file `src/greet.ori`.
 
 ```${"html"}
-${ demos/framework-intro/greet.jse }
+${ <demos/framework-intro/greet.jse> }
 ```
 
 This template defines a function: something that accepts input and produces output. In this case, the function in `greet.ori` accepts a name and returns an HTML greeting that incorporates that name.
@@ -136,7 +136,7 @@ Data in Origami projects can come from pretty much anything. This sample project
 <span class="tutorialStep"></span> In the Code window, open the team data file in `src/teamData.yaml`:
 
 ```${"yaml"}
-${ demos/framework-intro/teamData.yaml }
+${ <demos/framework-intro/teamData.yaml> }
 ```
 
 This defines an array of person records but _this data is too boring!_
@@ -219,14 +219,14 @@ So the `team` formula transforms the team data into a corresponding tree of just
 
 <div class="sideBySide">
   <figure>
-    ${ svg.js([
+    ${ <svg.js>([
       { name: "Alice", image: "kingfisher.jpg" }
       { name: "Bob", image: "beach.jpg" }
       { name: "Carol", image: "venice.jpg" }
     ]) }
   </figure>
   <figure>
-    ${ svg.js({
+    ${ <svg.js>({
       0/: "Alice"
       1/: "Bob"
       2/: "Carol"
@@ -239,7 +239,7 @@ So the `team` formula transforms the team data into a corresponding tree of just
 <span class="tutorialStep"></span> In the Tree Diagram window, refresh the page to confirm that the tree now includes an `team` area with the names from `teamData.yaml`.
 
 <figure>
-  ${ svg.js({
+  ${ <svg.js>({
     index.html: "<p>Hello, <strong>Alice</strong>!</p>"
     team = {
       0/: "Alice"
@@ -269,7 +269,7 @@ The formula you give to `map` can be as complex as your situation requires.
 <span class="tutorialStep"></span> In the Tree Diagram window, refresh the page to see the updated `team` area.
 
 <figure>
-  ${ svg.js({
+  ${ <svg.js>({
     index.html = "<p>Hello, <strong>Alice</strong>!</p>"
     team = {
       0/: "<p>Hello, <strong>Alice</strong>!</p>"
@@ -318,7 +318,7 @@ For each full-size image, you want to produce a corresponding thumbnail image fo
 <span class="tutorialStep"></span> View the file `src/thumbnail.js`. This contains a small JavaScript function which can invoke an image-processing library to generate a small thumbnail copy of an image.
 
 ```${'js'}
-${ demos/framework-intro/thumbnail.js }
+${ <demos/framework-intro/thumbnail.js> }
 ```
 
 <span class="tutorialStep"></span> **Try it:** In `site.ori`, add a new formula for `small.jpg` that calls `thumbnail.js` as a function and passes in the individual file `images/van.jpg`.
@@ -427,7 +427,7 @@ The text inside a template can be as complex as you want.
 <clipboard-copy>
 
 ```${"html"}
-${ demos/framework-intro/index.jse }
+${ <demos/framework-intro/index.jse> }
 ```
 
 </clipboard-copy>
@@ -473,7 +473,7 @@ This template displays a person's name in a header. You can use this in the `map
 <span class="tutorialStep"></span> Refresh the Tree Diagram window to see that the pages in the `team` area now use your `person.ori` template.
 
 <figure>
-  ${ svg.js({
+  ${ <svg.js>({
     0/: "<h1>Alice</h1>"
     1/: "<h1>Bob</h1>"
     2/: "<h1>Carol</h1>"
@@ -529,14 +529,14 @@ This will use `person.ori` to transform values just as before.
 
 <div class="sideBySide">
   <figure>
-    ${ svg.js({
+    ${ <svg.js>({
       0/: "<p>Hello, <strong>Alice</strong>!<p>"
       1/: "<p>Hello, <strong>Bob</strong>!<p>"
       2/: "<p>Hello, <strong>Carol</strong>!<p>"
     }) }
   </figure>
   <figure>
-    ${ svg.js({
+    ${ <svg.js>({
       Alice: "<p>Hello, <strong>Alice</strong>!<p>"
       Bob: "<p>Hello, <strong>Bob</strong>!<p>"
       Carol: "<p>Hello, <strong>Carol</strong>!<p>"
@@ -572,7 +572,7 @@ We want the pages in the `team` area to end in a `.html` extension because that 
 <span class="tutorialStep"></span> Refresh the Tree Diagram window to confirm that the `team` pages now have names that end in `.html`:
 
 <figure>
-  ${ svg.js({
+  ${ <svg.js>({
     Alice.html: "<p>Hello, <strong>Alice</strong>!<p>"
     Bob.html: "<p>Hello, <strong>Bob</strong>!<p>"
     Carol.html: "<p>Hello, <strong>Carol</strong>!<p>"
@@ -588,7 +588,7 @@ The only thing left to do is complete the `person.ori` template.
 <clipboard-copy>
 
 ```${"html"}
-${ demos/framework-intro/person.jse }
+${ <demos/framework-intro/person.jse> }
 ```
 
 </clipboard-copy>
@@ -604,7 +604,7 @@ The site is now complete.
 <span class="tutorialStep"></span> Switch to the Tree Diagram window and refresh it to view your site's final structure. In that diagram (not the one below) you can click on the circles or boxes to explore what you've made.
 
 <figure>
-${ svg.js tutorialSite.yaml }
+${ <svg.js>(<tutorialSite.yaml>) }
 </figure>
 
 To review, you've created this entire site with a few resources, a couple of templates, and a concise `site.ori` with a handful of formulas:

@@ -21,7 +21,7 @@ We can think of a site as a _tree_ of resources. The `{ }` curly braces and thei
 
 <figure>
 ${
-  svg.js({
+  <svg.js>({
     index.html: "Hello, world!"
   })
 }
@@ -48,7 +48,7 @@ You can think about this set of pages as a tree:
 
 <figure>
 ${
-  svg.js({
+  <svg.js>({
     index.html: "<h1>About Us</h1>"
     team: {
       Alice.html: "<h1>Alice</h1>"
@@ -64,7 +64,7 @@ Website creators refer to URLs as _routes_: when you navigate to a URL like [tea
 The site's complete tree is a little bigger than what's shown above, because it also includes CSS stylesheets, image files, or other resources referenced by the HTML:
 
 <figure>
-${ svg.js(yamlParse(`
+${ <svg.js>(Origami.yamlParse(`
   index.html: <h1>About Us</h1>
   team:
     Alice.html: <h1>Alice</h1>
@@ -118,7 +118,7 @@ The data in the `images` folder will be added to the tree using the folder or fi
 
 <figure>
 ${
-  svg.js({
+  <svg.js>({
     index.html: "Hello, world!"
     images: {
       image1.jpg: "[binary data]"
@@ -150,7 +150,7 @@ This creates a site that looks like:
 
 <figure>
 ${
-  svg.js({
+  <svg.js>({
     index.html: "Hello, world!"
     image1.jpg: "[binary data]"
     image2.jpg: "[binary data]"
@@ -243,7 +243,7 @@ which produces the following site:
 
 <figure>
 ${
-  svg.js({
+  <svg.js>({
     index.html: "Home page"
     about: {
       index.html: "About page"
@@ -274,7 +274,7 @@ This defines a little tree:
 
 <figure>
 ${
-  svg.js({
+  <svg.js>({
     name: "My Site"
   })
 }
@@ -339,7 +339,7 @@ You can visualize this `markdown` folder as a tree of data objects that are smal
 
 <figure>
 ${
-  svg.js({
+  <svg.js>({
     post1.md: {
       title: "My first post"
       @text: "Here's my *first* post!"
@@ -366,7 +366,7 @@ This produces a tree with one post object whose text is in HTML:
 
 <figure>
 ${
-  svg.js({
+  <svg.js>({
     firstPost: {
       title: "My first post"
       @text: "Here's my <strong>first</strong> post!"
@@ -387,7 +387,7 @@ The `map` built-in function accepts the `markdown` tree and returns a new tree i
 
 <figure>
 ${
-  svg.js({
+  <svg.js>({
     html: {
       post1.html: {
         title: "My first post"
@@ -438,7 +438,7 @@ This adds a `posts` area to the site:
 
 <figure>
 ${
-  svg.js({
+  <svg.js>({
     html: {
       post1.html: {
         title: "My first post"
@@ -496,7 +496,7 @@ The `.public` reference at the end of the file indicates that only this `public`
 
 <figure>
 ${
-  svg.js({
+  <svg.js>({
     posts: {
       post1.html: "...<title>My first post</title>..."
       post2.html: ".....<title>Second post</title>..."
@@ -548,7 +548,7 @@ The site now looks like:
 
 <figure>
 ${
-  svg.js({
+  <svg.js>({
     index.html: "...<title>Blog index</title>....."
     posts: {
       post1.html: "...<title>My first post</title>..."
