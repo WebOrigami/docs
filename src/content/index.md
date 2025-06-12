@@ -6,7 +6,7 @@ area: ""
 fileName: index.html
 ---
 
-${ templates/blocks.jse(areaLinks) }
+${ <templates/blocks.jse>(areaLinks) }
 
 Origami is a new programming language that complements HTML and CSS for making small- to medium-scale websites.
 
@@ -27,13 +27,13 @@ then you can turn that into a small Origami program that orchestrates the creati
 ```ori
 {
   // Stylesheets, etc.
-  assets
+  <assets>
 
   // Create a home page listing all the products
-  index.html = index.ori(products.yaml)
+  index.html = <index.ori>(<products.yaml>)
 
   // Create a page for each product
-  products = map(products.yaml, products.ori)
+  products = Tree.map(<products.yaml>, <products.ori>)
 }
 ```
 

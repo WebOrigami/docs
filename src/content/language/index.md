@@ -3,7 +3,7 @@ title: The Origami language
 subtitle: Complements HTML, CSS, and JavaScript so you can build complete websites
 ---
 
-${ templates/blocks.jse(areaLinks) }
+${ <templates/blocks.jse>(areaLinks) }
 
 The HTML, CSS, and JavaScript languages let you define individual web pages, but to build a complete site you also need to:
 

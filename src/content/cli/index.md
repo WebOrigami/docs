@@ -3,7 +3,7 @@ title: ori CLI
 subtitle: Command-line interface for tinkering and transforming
 ---
 
-${ templates/blocks.jse(areaLinks) }
+${ <templates/blocks.jse>(areaLinks) }
 
 The Origami CLI, called `ori`, is a command line tool that lets you:
 
