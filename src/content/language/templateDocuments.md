@@ -23,14 +23,14 @@ These largely work the same, but with some differences described below.
 This template document is called `inline.ori.html`:
 
 ```html
-${ samples.jse/templateDocuments/inline.ori.html }
+${ <samples.jse/templateDocuments/inline.jse.html> }
 ```
 
 Substitutions inside a template document are full Origami expressions so, among other things, they can reference other documents. The above template includes an embedded Origami expression that references a separate file, `inline.css`.
 
 ```css
 /* inline.css */
-${ samples.jse/templateDocuments/inline.css }
+${ <samples.jse/templateDocuments/inline.css> }
 ```
 
 The result of the `inline.ori.html` template is a function that returns a string. (The function can accept a single parameter; see below.)
@@ -41,7 +41,7 @@ In this example, evaluating the function inlines the referenced CSS file:
 
 ```console
 $ ori inline.ori.html/
-${ samples.jse/templateDocuments/inline.ori.html() }
+${ <samples.jse/templateDocuments/inline.jse.html/> }
 ```
 
 ### Accepting an argument
@@ -50,14 +50,14 @@ By default, a template document like this can be called as a function with one a
 
 ```html
 <!-- bold.ori.html -->
-${ samples.jse/templateDocuments/bold.ori.html }
+${ <samples.jse/templateDocuments/bold.jse.html> }
 ```
 
 When called as a function, any value passed to this template will be incorporated into the output:
 
 ```console
 $ ori "bold.ori.html('Hooray')"
-${ samples.jse/templateDocuments/bold.ori.html("Hooray") }
+${ <samples.jse/templateDocuments/bold.jse.html>("Hooray") }
 ```
 
 Such templates behave like simple components. You can use them decompose the construction of complex documents into smaller pieces that are easier to understand.
@@ -69,7 +69,7 @@ Like other text [documents](documents.html), a template document can include YAM
 Suppose `shopping.ori.html` contains:
 
 ```html
-${ samples.jse/templateDocuments/shopping.ori.html }
+${ <samples.jse/templateDocuments/shopping.jse.html> }
 ```
 
 The front matter is treated as [YAML](https://en.wikipedia.org/wiki/YAML). This can be used to define additional data — here, a list.
@@ -78,7 +78,7 @@ The front matter data is available to expressions in the body text, so the expre
 
 ```console
 $ ori shopping.ori.html/
-${ yaml samples.jse/templateDocuments/shopping.ori.html/ }
+${ Origami.yaml(<samples.jse/templateDocuments/shopping.jse.html/>) }
 ```
 
 The result of the template is a plain object containing all of the front matter data, plus a `@text` property with the result of evaluating the body text.
@@ -89,27 +89,27 @@ Alternatively, front matter can be an [Origami expression](documents.html#origam
 
 ### Defining the value of the template document
 
-If Origami front matter is present, that will be evaluated and returned as the result of invoking the template document. Within this front matter, you can invoke the template's body text as `@template`.
+If Origami front matter is present, that will be evaluated and returned as the result of invoking the template document. Within this front matter, you can invoke the template's body text as `_template`.
 
 Example: a website defines its "About" page as a template document called `about.ori.html`:
 
 ```html
-${ samples.jse/templateDocuments/baseTemplate/about.ori.html }
+${ <samples.jse/templateDocuments/baseTemplate/about.jse.html> }
 ```
 
 The front matter of this document is an Origami expression that will be evaluated and returned as the result of the template document.
 
-In this case, the expression invokes the template's body text via `@template`, then passes that to a base `page.ori.html` template defined separately:
+In this case, the expression invokes the template's body text via `_template`, then passes that to a base `page.ori.html` template defined separately:
 
 ```html
-${ samples.jse/templateDocuments/baseTemplate/page.ori.html }
+${ <samples.jse/templateDocuments/baseTemplate/page.jse.html> }
 ```
 
 When you ask for the value of `about.ori.html`, that in turn calls `page.ori.html`:
 
 ```console
 $ ori about.ori.html/
-${ samples.jse/templateDocuments/baseTemplate/about.ori.html/ }
+${ <samples.jse/templateDocuments/baseTemplate/about.jse.html/> }
 ```
 
 ### Returning an object
@@ -121,14 +121,14 @@ This can be achieved using the above principle of placing an Origami expression 
 If `calcs.ori.md` contains:
 
 ```ori
-${ samples.jse/templateDocuments/calcs.ori.md }
+${ <samples.jse/templateDocuments/calcs.jse.md> }
 ```
 
 then invoking this returns an object:
 
 ```console
 $ ori calcs.ori.md/
-${ yaml(samples.jse/templateDocuments/calcs.ori.md/) }
+${ Origami.yaml(<samples.jse/templateDocuments/calcs.jse.md/>) }
 ```
 
 ### Returning a function
@@ -138,14 +138,14 @@ To define your template document as a more complex function — e.g., one that 
 This `link.ori.html` template accepts `href` and `text` parameters to return an HTML link:
 
 ```html
-${ samples.jse/templateDocuments/link.ori.html }
+${ <samples.jse/templateDocuments/link.jse.html> }
 ```
 
 The value of the `href` and `link` parameters are in scope for expressions in the template body.
 
 ```console
-$ ori "link.ori.html('https://weborigami.org', 'Web Origami')"
-${ samples.jse/templateDocuments/link.ori.html('https://weborigami.org', 'Web Origami') + "\n" }
+$ ori "link.jse.html('https://weborigami.org', 'Web Origami')"
+${ <samples.jse/templateDocuments/link.jse.html>('https://weborigami.org', 'Web Origami') + "\n" }
 ```
 
 ### Behavior within a `map`
@@ -156,24 +156,24 @@ For example, this template is called `movie.ori.html`, so it will add `.html` to
 
 ```html
 <!-- movie.ori.html -->
-${ samples.jse/templateDocuments/movies/movie.ori.html }
+${ <samples.jse/templateDocuments/movies/movie.jse.html> }
 ```
 
 When applied to this data:
 
 ```yaml
 # movies.yaml
-${ samples.jse/templateDocuments/movies/movies.yaml }
+${ <samples.jse/templateDocuments/movies/movies.yaml> }
 ```
 
 the values will end up with `.html` extensions:
 
 ```console
 $ ori map movies.yaml, movie.ori.html
-${ yaml(
-  map(
-    samples.jse/templateDocuments/movies/movies.yaml
-    samples.jse/templateDocuments/movies/movie.ori.html
+${ Origami.yaml(
+  Tree.map(
+    <samples.jse/templateDocuments/movies/movies.yaml>
+    <samples.jse/templateDocuments/movies/movie.jse.html>
   )
 ) }
 ```
