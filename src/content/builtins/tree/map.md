@@ -22,10 +22,10 @@ ${ yaml map samples.jse/cli/greetings.yaml, samples.jse/cli/uppercase.js }
 
 <div class="sideBySide">
   <figure>
-    ${ svg.js samples.jse/cli/greetings.yaml }
+    ${ <svg.js>(<samples.jse/cli/greetings.yaml>) }
   </figure>
   <figure>
-    ${ svg.js map samples.jse/cli/greetings.yaml, samples.jse/cli/uppercase.js }
+    ${ <svg.js> map samples.jse/cli/greetings.yaml, samples.jse/cli/uppercase.js }
   </figure>
   <figcaption>Original tree</figcaption>
   <figcaption>Mapped values</figcaption>
@@ -86,7 +86,7 @@ ${ yaml(map(samples.jse/cli/greetings.yaml, { key: (greeting, name) => `${ name 
 
 <div class="sideBySide">
   <figure>
-    ${ svg.js samples.jse/cli/greetings.yaml }
+    ${ <svg.js>(<samples.jse/cli/greetings.yaml>) }
   </figure>
   <figure>
     ${ <svg.js>(map(samples.jse/cli/greetings.yaml, { key: (greeting, name) => `${ name }.html` })) }

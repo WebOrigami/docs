@@ -9,8 +9,8 @@ If you have two trees:
 
 ```console
 $ cat tree1.yaml
-${ samples.jse/help/merge/tree1.yaml }$ cat tree2.yaml
-${ samples.jse/help/merge/tree2.yaml }
+${ <samples.jse/help/merge/tree1.yaml> }$ cat tree2.yaml
+${ <samples.jse/help/merge/tree2.yaml> }
 ```
 
 You can merge them into a single tree:
@@ -26,7 +26,7 @@ When asked for a key, the merged tree asks each of the constituent trees _in rev
 
 <div class="sideBySide">
   <figure>
-    ${ svg.js merge samples.jse/help/merge/tree1.yaml, samples.jse/help/merge/tree2.yaml }
+    ${ <svg.js> merge samples.jse/help/merge/tree1.yaml, samples.jse/help/merge/tree2.yaml }
   </figure>
   <figcaption>Merged tree</figcaption>
 </div>

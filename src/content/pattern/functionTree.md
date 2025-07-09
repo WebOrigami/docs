@@ -11,7 +11,7 @@ To create a function-based tree, we'll need two things: 1) a function that can p
 ```${'js'}
 /* src/flat/fn.js */
 
-${ pattern.jse/flat/fn.js }
+${ <pattern.jse/flat/fn.js> }
 ```
 
 Because the AsyncTree interface supports asynchronous functions by default, we could just as easily have the core `fn` function here be an `async` function that, for example, retrieved a resource from a server.
@@ -46,7 +46,7 @@ We can apply our markdown-to-HTML transformation to this virtual tree to create 
 ```${'js'}
 /* src/flat/htmlFn.js */
 
-${ pattern.jse/flat/htmlFn.js }
+${ <pattern.jse/flat/htmlFn.js> }
 ```
 
 <span class="tutorialStep"></span> View the HTML translation of the markdown files in the virtual tree implied by the function.

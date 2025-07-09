@@ -9,7 +9,7 @@ Origami language syntax allows you to include add a [shebang](<https://en.wikipe
 For example, this Origami function accepts a tree and displays the keys of that tree in an HTML list:
 
 ```ori
-${ samples.jse/cli/list.ori }
+${ <samples.jse/cli/list.ori> }
 ```
 
 You can store this in a file called `list.ori` and mark that file as executable.

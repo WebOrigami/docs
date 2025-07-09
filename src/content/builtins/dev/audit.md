@@ -19,7 +19,7 @@ Example: a file contains a tiny site with an `index.html` page that links to pag
 
 ```ori
 // missingPage.ori
-${ samples.jse/help/missingPage.ori }
+${ <samples.jse/help/missingPage.ori> }
 ```
 
 ```console

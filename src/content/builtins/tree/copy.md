@@ -30,7 +30,7 @@ Building a static site in Origami is typically a matter of defining the site in 
 Example: the [origami-start](https://github.com/WebOrigami/origami-start) project defines a simple [site.ori](https://github.com/WebOrigami/origami-start/blob/main/src/site.ori) file:
 
 ```ori
-${ https://raw.githubusercontent.com/WebOrigami/origami-start/refs/heads/main/src/site.ori }
+${ <https://raw.githubusercontent.com/WebOrigami/origami-start/refs/heads/main/src/site.ori> }
 ```
 
 This project defines `build` script that issues the following [ori](/cli) command:

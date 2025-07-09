@@ -14,7 +14,7 @@ In converting the text to a slug, `slug` will:
 Example: if `post1.html` contains:
 
 ```html
-${ samples.jse/templates/posts/post1.html }
+${ <samples.jse/templates/posts/post1.html> }
 ```
 
 Then the `title` can converted to a slug with:

@@ -9,7 +9,7 @@ Example: the following Origami program uses `regexMatch` to identify parts of a 
 
 ```ori
 // parseDate.ori
-${ samples.jse/help/parseDate.ori }
+${ <samples.jse/help/parseDate.ori> }
 ```
 
 When applied to a file name that contains a date:

@@ -5,4 +5,4 @@ subtitle: Format and resize images
 
 ## Commands by name
 
-${ commandList.ori/image }
+${ <commandList.ori/image> }

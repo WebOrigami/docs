@@ -100,7 +100,7 @@ We can now introduce a new helper function, `setDeep(target, source)`, which han
 ```${'js'}
 /* src/set/setDeep.js */
 
-${ pattern.jse/set/setDeep.js }
+${ <pattern.jse/set/setDeep.js> }
 ```
 
 ## Build real files from virtual content
@@ -110,7 +110,7 @@ We're now ready to build real static files for our site by copying the virtual t
 ```${'js'}
 /* src/set/distFiles.js */
 
-${ pattern.jse/set/distFiles.js }
+${ <pattern.jse/set/distFiles.js> }
 ```
 
 And then create a `build.js` utility that copies the virtual tree defined in `siteTree.js` into that real `dist` folder:
@@ -118,7 +118,7 @@ And then create a `build.js` utility that copies the virtual tree defined in `si
 ```${'js'}
 /* src/set/build.js */
 
-${ pattern.jse/set/build.js }
+${ <pattern.jse/set/build.js> }
 ```
 
 <span class="tutorialStep"></span> Use this new `build` tool from inside the `src/set` directory to copy the virtual tree into files. The `set` method for `FileTree` takes care to create the target directory (`dist`), so it's fine if that directory doesn't exist when we start.

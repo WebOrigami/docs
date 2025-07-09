@@ -27,7 +27,7 @@ Before tackling the translation of markdown to HTML, let's first solve a simpler
 ```${'js'}
 /* src/approaches/files.js */
 
-${ pattern.jse/approaches/files.js }
+${ <pattern.jse/approaches/files.js> }
 ```
 
 Here we use the promise-based flavor of Node's [fs](https://nodejs.org/api/fs.html) API, as it avoids blocking the main thread and makes it easy to work with the results.
@@ -55,7 +55,7 @@ If the set of markdown files is really so trivial, we could decide to load the d
 ```${'js'}
 /* src/approaches/object.js */
 
-${ pattern.jse/approaches/object.js }
+${ <pattern.jse/approaches/object.js> }
 ```
 
 <span class="tutorialStep"></span> Verify that this object approach produces the same output:
@@ -74,7 +74,7 @@ The particular markdown content here is so rigidly formulaic, we could write a J
 ```${'js'}
 /* src/approaches/fn.js */
 
-${ pattern.jse/approaches/fn.js }
+${ <pattern.jse/approaches/fn.js> }
 ```
 
 This particular function `fn` happens to be synchronous. If the function were asynchronous, we would switch the `for` loop to a `for await` loop, and `await` the function result.

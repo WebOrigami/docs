@@ -9,7 +9,7 @@ For example, if you are creating a `/user` area within a site that will handle r
 
 ```console
 $ ori match.ori
-${ samples.jse/templates/match.ori }$ ori match.ori/user/Alice.html
+${ <samples.jse/templates/match.ori> }$ ori match.ori/user/Alice.html
 ${ samples.jse/templates/match.ori/user/Alice.html + "\n" }
 ```
 
@@ -24,7 +24,7 @@ By default, the tree will have no public keys, but you can provide any [treelike
 
 ```console
 $ ori matchDomain.ori
-${ samples.jse/templates/matchDomain.ori }
+${ <samples.jse/templates/matchDomain.ori> }
 $ ori matchDomain.ori
 ${ yaml(samples.jse/templates/matchDomain.ori/) + "\n" }
 ```

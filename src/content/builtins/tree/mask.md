@@ -14,7 +14,7 @@ Suppose `mask.ori` contains:
 ```ori
 // mask.ori
 
-${ samples.jse/help/mask.ori }
+${ <samples.jse/help/mask.ori> }
 ```
 
 Invoking this returns the masked result:
@@ -34,7 +34,7 @@ You can influence the result of a mask operation by [defining a default value](/
 
 ```ori
 // maskDefault.ori
-${ samples.jse/help/maskDefault.ori }
+${ <samples.jse/help/maskDefault.ori> }
 ```
 
 The above defines a mask where the default value is `true`, so all keys and values in the `source` tree will come through the mask unless specifically overridden with a falsy value.

@@ -7,7 +7,7 @@ This returns a deep tree that returns the indicated `value` for any path.
 
 ```ori
 // constant.ori
-${ samples.jse/help/constant.ori }
+${ <samples.jse/help/constant.ori> }
 ```
 
 This always returns the value 1 for any path:
@@ -27,7 +27,7 @@ One use for `constant` is to [define a default value for a tree](/language/idiom
 
 ```ori
 // deepDefault.ori
-${ samples.jse/help/deepDefault.ori }
+${ <samples.jse/help/deepDefault.ori> }
 ```
 
 This provides the default value of zero for any level of the tree:

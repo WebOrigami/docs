@@ -7,7 +7,7 @@ Treats the string keys of `tree` as [regular expressions](https://developer.mozi
 
 ```ori
 // regExpKeys.ori
-${ samples.jse/help/regExpKeys.ori }
+${ <samples.jse/help/regExpKeys.ori> }
 ```
 
 This can be used to match against the regular expressions:

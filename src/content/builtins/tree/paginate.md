@@ -7,7 +7,7 @@ This returns a new tree that groups the original keys and values into "pages": f
 
 ```console
 $ cat countries.yaml
-${ samples.jse/cli/countries.yaml }
+${ <samples.jse/cli/countries.yaml> }
 ```
 
 The above set of countries can be broken into pages of (up to) 3 items each:
@@ -27,7 +27,7 @@ Each page includes:
 
 <div class="sideBySide">
   <figure>
-    ${ svg.js Tree.map(samples.jse/cli/countries.yaml, =`[data for ${_/name}]`) }
+    ${ <svg.js>(<Tree.map(samples.jse/cli/countries.yaml,>) =`[data for ${_/name}]`) }
   </figure>
   <figure>
     ${ <svg.js>({

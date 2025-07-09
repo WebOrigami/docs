@@ -11,14 +11,14 @@ A YAML file contains the following tree:
 
 ```yaml
 # oldTree.yaml
-${ samples.jse/help/oldTree.yaml }
+${ <samples.jse/help/oldTree.yaml> }
 ```
 
 The file is copied and then modified to produce:
 
 ```yaml
 # newTree.yaml
-${ samples.jse/help/newTree.yaml }
+${ <samples.jse/help/newTree.yaml> }
 ```
 
 Calling `changes` indicates what values have changed:

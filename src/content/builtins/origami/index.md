@@ -5,4 +5,4 @@ subtitle: General Origami language functions
 
 ## Commands by name
 
-${ commandList.ori/origami }
+${ <commandList.ori/origami> }

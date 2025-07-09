@@ -15,7 +15,7 @@ Example: A site wants to define `year/month/day` routes for a given time range. 
 
 ```ori
 // calendar.ori
-${ samples.jse/help/calendar.ori }
+${ <samples.jse/help/calendar.ori> }
 ```
 
 This produces a skeleton calendar tree with the years, months, and days for that time range:
@@ -26,7 +26,7 @@ ${ yaml samples.jse/help/calendar.ori/ }
 ```
 
 <figure>
-${ svg.js samples.jse/help/calendar.ori/ }
+${ <svg.js>(<samples.jse/help/calendar.ori/>) }
 </figure>
 
 When served, this would allow someone to browse to the page for a given date using a route like `/2025/03/03`.

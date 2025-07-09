@@ -12,10 +12,10 @@ In our markdown-to-HTML transformation, we will create a virtual tree of HTML co
 
 <div class="sideBySide split2to3">
   <figure>
-    ${ svg.js pattern.jse/flat/object.js }
+    ${ <svg.js>(<pattern.jse/flat/object.js>) }
   </figure>
   <figure>
-    ${ svg.js pattern.jse/flat/htmlObject.js }
+    ${ <svg.js>(<pattern.jse/flat/htmlObject.js>) }
   </figure>
   <figcaption>Tree of markdown content</figcaption>
   <figcaption>Virtual tree of HTML</figcaption>
@@ -95,7 +95,7 @@ We can now verify that our transform is working as expected by adapting the same
 ```${'js'}
 /* src/flat/transform.test.js */
 
-${ pattern.jse/flat/transform.test.js }
+${ <pattern.jse/flat/transform.test.js> }
 ```
 
 <span class="tutorialStep"></span> From inside the `src/flat` directory, run the transform tests:
@@ -115,7 +115,7 @@ We can bake the transform and the object together to create a final HTML tree.
 ```${'js'}
 /* src/flat/htmlObject.js */
 
-${ pattern.jse/flat/htmlObject.js }
+${ <pattern.jse/flat/htmlObject.js> }
 ```
 
 You can think of this `transform` function as a function that takes a tree of markdown and returns a virtual tree of HTML. But keep in mind that the virtual tree is actually asynchronous. The `transform` function does not do any substantive work when it is called above.

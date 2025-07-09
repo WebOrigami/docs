@@ -83,7 +83,7 @@ We can test this file tree, once again copying-and-pasting the tests used for th
 ```${'js'}
 /* src/flat/files.test.js */
 
-${ pattern.jse/flat/files.test.js }
+${ <pattern.jse/flat/files.test.js> }
 ```
 
 <span class="tutorialStep"></span> Run these tests to see that all test pass:
@@ -123,7 +123,7 @@ Since our folder is now available to us in tree form, we can convert its markdow
 ```${'js'}
 /* src/flat/htmlFiles.js */
 
-${ pattern.jse/flat/htmlFiles.js }
+${ <pattern.jse/flat/htmlFiles.js> }
 ```
 
 <span class="tutorialStep"></span> View the HTML translation of the markdown files in the `markdown` folder.

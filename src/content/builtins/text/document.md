@@ -9,7 +9,7 @@ If `hokusai.md` contains plain text:
 
 ```console
 $ ori hokusai.md
-${ samples.jse/help/hokusai.md }
+${ <samples.jse/help/hokusai.md> }
 ```
 
 then invoking `document` on it returns a plain object with the original body text as a `text` property:
@@ -30,7 +30,7 @@ If you have a text document with data in front matter:
 
 ```console
 $ ori basho.md
-${ samples.jse/help/basho.md }
+${ <samples.jse/help/basho.md> }
 ```
 
 Then calling `document` on it returns a plain object with the front matter data as properties, plus the body text as a `text` property:

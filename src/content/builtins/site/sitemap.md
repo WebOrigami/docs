@@ -9,7 +9,7 @@ Example: if `tinySite.ori` contains:
 
 ```ori
 // tinySite.ori
-${ samples.jse/help/tinySite.ori }
+${ <samples.jse/help/tinySite.ori> }
 ```
 
 then calling `sitemap` generates:

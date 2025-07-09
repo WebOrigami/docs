@@ -9,7 +9,7 @@ For example, suppose the data for a set of books includes a `genre` field that c
 
 ```console
 $ cat books.yaml
-${ samples.jse/help/books.yaml }
+${ <samples.jse/help/books.yaml> }
 ```
 
 The books can then be grouped by genre. Here the `=_/genre` function is shorthand for `(book) => book/genre`. This function lets the `group` built-in know what the books should be grouped by.

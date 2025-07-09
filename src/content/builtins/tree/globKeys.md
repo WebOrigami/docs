@@ -11,7 +11,7 @@ Treats the keys of `tree` as simple [glob](<https://en.m.wikipedia.org/wiki/Glob
 
 ```console
 $ cat globKeys.yaml
-${ samples.jse/help/globKeys.yaml }$ ori "globKeys(globKeys.yaml)/foo.jpg"
+${ <samples.jse/help/globKeys.yaml> }$ ori "globKeys(globKeys.yaml)/foo.jpg"
 false
 $ ori "globKeys(globKeys.yaml)/foo.txt"
 true
@@ -26,14 +26,14 @@ This Origami function accepts a tree, then applies a `mask` using `globKeys` to 
 ```ori
 // images.ori
 
-${ samples.jse/help/images.ori }
+${ <samples.jse/help/images.ori> }
 ```
 
 This would typically be applied to a tree of files, but for demonstration purposes a YAML file can simulate a small set of files:
 
 ```yaml
 # files.yaml
-${ samples.jse/help/files.yaml }
+${ <samples.jse/help/files.yaml> }
 ```
 
 Applying the mask to the data gives:
