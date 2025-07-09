@@ -41,4 +41,4 @@ Carol: Hello, Carol.
 
 ## API
 
-${ templates/class.jse(api.jse/drivers/ObjectTree.yaml/exports/0) }
+${ <templates/class.jse>(<api.jse/drivers/ObjectTree.yaml/exports/0>) }
