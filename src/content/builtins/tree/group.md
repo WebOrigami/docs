@@ -23,7 +23,7 @@ In the result tree, the top-level keys for the groups are the individual values 
 
 <div class="sideBySide">
   <figure>
-    ${ svg.js([
+    ${ <svg.js>([
       "[data for 1984]"
       "[data for Pride and Prejudice]"
       "[data for Jane Eyre]"
@@ -32,7 +32,7 @@ In the result tree, the top-level keys for the groups are the individual values 
     ]) }
   </figure>
   <figure>
-    ${ svg.js({
+    ${ <svg.js>({
       Sci-Fi: [
         "[data for 1984]"
         "[data for Frankenstein]"

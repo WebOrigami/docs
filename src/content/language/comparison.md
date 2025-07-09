@@ -32,10 +32,10 @@ Origami has integers and floating point numbers so that you can pass numeric val
 Origami does not support binary, octal, hexadecimal numeric literals, nor does it support exponential notation. All those forms require a mixture of numbers and alphabetic characters and so might actually be identifiers (above). These forms of numbers rarely come up in the creation of websites, but if necessary you can produce such numbers by the JavaScript [Number](/builtins/js.html) function and passing it a string. One concise way to do that is with slash syntax:
 
 ```console
-$ ori Number/0xf
-${ Number/0xf + "\n" }
-$ ori Number/1e2
-${ Number/1e2 + "\n" }
+$ ori "Number('0xf')"
+${ Number("0xf") + "\n" }
+$ ori "Number('1e2')"
+${ Number("1e2") + "\n" }
 ```
 
 ## Supported operators

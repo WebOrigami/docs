@@ -27,10 +27,10 @@ Each page includes:
 
 <div class="sideBySide">
   <figure>
-    ${ svg.js map(samples.jse/cli/countries.yaml, =`[data for ${_/name}]`) }
+    ${ svg.js Tree.map(samples.jse/cli/countries.yaml, =`[data for ${_/name}]`) }
   </figure>
   <figure>
-    ${ svg.js({
+    ${ <svg.js>({
       1: {
         items: [
           "[data for France]"

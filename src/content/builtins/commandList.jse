@@ -1,0 +1,21 @@
+(namespace) => Tree.indent`
+  <div style="display: grid; gap: 0.25em 1em; grid-template-columns: auto auto 1fr;">
+    ${ Tree.map(<commands.ori>, (commandHelp, commandSlash) =>
+      namespace === "" || namespace === commandHelp.namespace
+        ? indent`
+            <div>
+              <span style="color: #bbb;">${ commandHelp.namespace }:</span>
+            </div>
+            <div>
+              <a href="${ commandHelp/url }">${
+                Origami.slash.remove(commandSlash)
+              }</a><span style="color: #bbb;">${ commandHelp.args ?? "" }</span>
+            </div>
+            <div>
+              ${ commandHelp.description }
+            </div>
+          `
+        : ""
+    ) }
+  </div>
+`

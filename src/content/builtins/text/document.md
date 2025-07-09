@@ -44,7 +44,7 @@ If you have a collection of documents, some of which have data and some of which
 
 ```console
 $ ori map [basho.md, hokusai.md], =document _
-${ yaml map([
+${ yaml Tree.map([
   samples.jse/help/basho.md
   samples.jse/help/hokusai.md
 ], =document(_)) }

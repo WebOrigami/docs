@@ -1,0 +1,15 @@
+Tree.sort(
+  <flatMap.js>(<node_modules/@weborigami/origami/src/help/help.yaml>, (help, namespaceSlash) =>
+    help.commands
+      ? Tree.map(help.commands, (commandHelp, commandSlash) => {
+          args: commandHelp.args
+          description: commandHelp.description
+          namespace: Origami.slash.remove(namespaceSlash)
+          url: help.collection
+            ? `/builtins/${ Origami.slash.remove(namespaceSlash) }.html`
+            : `/builtins/${ namespaceSlash }${ Origami.slash.remove(commandSlash) }.html`
+        })
+      : undefined
+  )
+  { compare: naturalOrder }
+)

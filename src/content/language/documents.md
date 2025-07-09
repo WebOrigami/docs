@@ -10,14 +10,14 @@ Some text files contain just plain text, like this markdown file:
 
 ```console
 $ ori hokusai.md
-${ samples.jse/help/hokusai.md }
+${ <samples.jse/help/hokusai.md> }
 ```
 
 If you ask Origami to [unpack](fileTypes.html#unpacking-files) this file by appending a slash, it returns the plain text as is:
 
 ```console
 $ ori hokusai.md/
-${ samples.jse/help/hokusai.md/ }
+${ <samples.jse/help/hokusai.md/> }
 ```
 
 ## Document objects
@@ -26,7 +26,7 @@ To include additional data in text documents, you can include it as "front matte
 
 ```console
 $ cat basho.md
-${ samples.jse/help/basho.md }
+${ <samples.jse/help/basho.md> }
 ```
 
 To represent text with data consistently, Origami will generally work with it as a plain object. The plain object's properties include the front matter data and an additional `@text` property with the body text.
@@ -35,14 +35,14 @@ If you ask Origami to unpack this file:
 
 ```console
 $ ori basho.md/
-${ yaml samples.jse/help/basho.md/ }
+${ Origami.yaml(<samples.jse/help/basho.md/>) }
 ```
 
 You can see that Origami is treating the body text as a `@text` property. In JSON format:
 
 ```console
 $ ori json basho.md
-${ json(samples.jse/help/basho.md) + "\n" }
+${ Tree.json(<samples.jse/help/basho.md>) + "\n" }
 ```
 
 Here, the [`json`](/builtins/origami/json.html) command implicitly unpacks the document, so the trailing `/` slash is unnecessary.
@@ -62,14 +62,14 @@ Origami uses the following heuristic to determine whether your document's front 
 Example: the file `timestamp.md` contains:
 
 ```
-${ samples.jse/help/timestamp.md }
+${ <samples.jse/help/timestamp.md> }
 ```
 
 The first relevant character in the front matter is a `{`, so the front matter is parsed as an Origami expression. The body of the document is attached to the result as a `@text` property.
 
 ```console
 $ ori timestamp.md/
-${ yaml(samples.jse/help/timestamp.md) + "\n" }
+${ Origami.yaml(<samples.jse/help/timestamp.md>) + "\n" }
 ```
 
 This technique can be used to attach complex data to a document.
@@ -82,12 +82,12 @@ If you give a builtin function plain text, you get back plain text. For example,
 
 ```console
 $ ori mdHtml hokusai.md
-${ mdHtml samples.jse/help/hokusai.md }
+${ Origami.mdHtml(<samples.jse/help/hokusai.md>) }
 ```
 
 If you give the builtin a document object, you get back a new document object that preserves the original front matter data as properties and a `text` property that contains the transformed text:
 
 ```console
 $ ori mdHtml basho.md
-${ yaml mdHtml samples.jse/help/basho.md/ }
+${ Origami.yaml(Origami.mdHtml(<samples.jse/help/basho.md/>)) }
 ```

@@ -9,18 +9,18 @@ The Origami language includes a number of functions that you can call from Origa
 ## Namespaces and protocols
 
 <ul>
-${ map(node_modules/@weborigami/origami/src/help/help.yaml, (help, namespaceSlash) => indent`
+${ Tree.map(<node_modules/@weborigami/origami/src/help/help.yaml>, (help, namespaceSlash) => indent`
   <li>
     <a href="${
-      help/collection ?? !help/commands
-        ? `${ slash/remove(namespaceSlash) }.html`
+      help.collection ?? !help.commands
+        ? `${ Origami.slash.remove(namespaceSlash) }.html`
         : namespaceSlash
-    }">${ slash/remove(namespaceSlash) }:</a>
-    ${ help/description }
+    }">${ Origami.slash.remove(namespaceSlash) }:</a>
+    ${ help.description }
   </li>
 `) }
 </ul>
 
 ## Functions and objects by name
 
-${ commandList.ori("") }
+${ <commandList.ori>("") }

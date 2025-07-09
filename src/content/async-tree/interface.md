@@ -120,7 +120,7 @@ Async trees can be _deep_, meaning that values in the tree may themselves be sub
 Deep async trees with string keys have the option of following the trailing slash convention: if a key represents a subtree, the key can end in a trailing slash, like `subfolder/` in the following tree.
 
 <figure>
-${ svg.js({
+${ <svg.js>({
 a: 1
 subfolder/: { b: 2 }
 }) }

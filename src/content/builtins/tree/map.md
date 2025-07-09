@@ -89,7 +89,7 @@ ${ yaml(map(samples.jse/cli/greetings.yaml, { key: (greeting, name) => `${ name 
     ${ svg.js samples.jse/cli/greetings.yaml }
   </figure>
   <figure>
-    ${ svg.js(map(samples.jse/cli/greetings.yaml, { key: (greeting, name) => `${ name }.html` })) }
+    ${ <svg.js>(map(samples.jse/cli/greetings.yaml, { key: (greeting, name) => `${ name }.html` })) }
   </figure>
   <figcaption>Original tree</figcaption>
   <figcaption>Mapped keys</figcaption>
