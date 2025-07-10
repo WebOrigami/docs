@@ -9,7 +9,7 @@ The Origami language includes a number of functions that you can call from Origa
 ## Namespaces and protocols
 
 <ul>
-${ Tree.map(<node_modules/@weborigami/origami/src/help/help.yaml>, (help, namespaceSlash) => indent`
+${ Tree.map(<node_modules/@weborigami/origami/src/help/help.yaml>, (help, namespaceSlash) => Tree.indent`
   <li>
     <a href="${
       help.collection ?? !help.commands
@@ -23,4 +23,4 @@ ${ Tree.map(<node_modules/@weborigami/origami/src/help/help.yaml>, (help, namesp
 
 ## Functions and objects by name
 
-${ <commandList.ori>("") }
+${ <commandList.jse>("") }

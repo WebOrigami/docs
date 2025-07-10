@@ -10,21 +10,21 @@ This behaves the same as the [path.extname()](https://nodejs.org/api/path.html#p
 
 ```console
 $ ori "extension/extname('foo.html')"
-${ extension/extname('foo.html') + "\n" }
+${ Origami.extension.extname('foo.html') + "\n" }
 ```
 
 `extname` ignores trailing slashes:
 
 ```console
 $ ori "extension/extname('https://example.com/data.json/')"
-${ extension/extname('https://example.com/data.json/') + "\n" }
+${ Origami.extension.extname('https://example.com/data.json/') + "\n" }
 ```
 
 If a file has multiple extensions, `extname` returns just the last one:
 
 ```console
 $ ori "extension/extname('index.ori.html')"
-${ extension/extname('index.ori.html') + "\n" }
+${ Origami.extension.extname('index.ori.html') + "\n" }
 ```
 
 ## match(key, ext)
@@ -33,9 +33,9 @@ If the `key` ends in the given extension, this returns the base name without the
 
 ```console
 $ ori "extension/match('index.md', '.html')"
-${ extension/match('index.md', '.html') + "\n" }
+${ Origami.extension.match('index.md', '.html') + "\n" }
 $ ori "extension/match('index.html', '.html')"
-${ extension/match('index.html', '.html') + "\n" }
+${ Origami.extension.match('index.html', '.html') + "\n" }
 ```
 
 Trailing slashes are ignored for this comparison.
@@ -44,7 +44,7 @@ Trailing slashes are ignored for this comparison.
 
 ```console
 $ ori "extension/match('index.ori.html', '.ori.html')"
-${ extension/match('index.ori.html', '.ori.html') + "\n" }
+${ Origami.extension.match('index.ori.html', '.ori.html') + "\n" }
 ```
 
 ## replace(key, ext1, ext2)
@@ -53,7 +53,7 @@ Return `key` with the extension `ext1` (if it exists) replaced by extension `ext
 
 ```console
 $ ori "extension/replace('index.md', '.md', '.html')"
-${ extension/replace('index.md', '.md', '.html') + "\n" }
+${ Origami.extension.replace('index.md', '.md', '.html') + "\n" }
 ```
 
 Like `match`, `replace` supports multi-part extensions like `.ori.html`.

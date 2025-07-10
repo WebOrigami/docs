@@ -16,7 +16,7 @@ The books can then be grouped by genre. Here the `=_/genre` function is shorthan
 
 ```console
 $ ori group books.yaml, =_/genre
-${ yaml group samples.jse/help/books.yaml, =_/genre }
+${ Origami.yaml(Tree.group(<samples.jse/help/books.yaml>, (book) => book.genre)) }
 ```
 
 In the result tree, the top-level keys for the groups are the individual values found in the `genre` field: "Sci-Fi", "Romance", and "Gothic". The group values are arrays containing references to all the books that included that particular genre; a single book can appear in multiple groups.

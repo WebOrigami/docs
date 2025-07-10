@@ -24,5 +24,5 @@ To obtain this sample from the data, you can use the `scope:` protocol as a func
 
 ```console
 $ ori "scope:(poets.yaml/Basho/sample)"
-${ samples.jse/help(samples.jse/help/poets.yaml/Basho/sample) }
+${ <samples.jse/help>(<samples.jse/help/poets.yaml/Basho/sample>) }
 ```

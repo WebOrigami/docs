@@ -34,5 +34,5 @@ Applying this to the posts returns just the published posts:
 
 ```console
 $ ori published.ori/
-${ yaml samples.jse/help/filter/published.ori/ }
+${ Origami.yaml(<samples.jse/help/filter/published.ori/>) }
 ```

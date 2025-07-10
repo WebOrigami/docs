@@ -10,5 +10,5 @@ The ori tool uses YAML as its default output format, so you can use the `json` f
 ```console
 $ ori greetings.yaml
 ${ <samples.jse/cli/greetings.yaml> }$ ori json greetings.yaml
-${ json(samples.jse/cli/greetings.yaml) + "\n" }
+${ Tree.json(<samples.jse/cli/greetings.yaml>) + "\n" }
 ```

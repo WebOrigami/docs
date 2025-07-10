@@ -40,5 +40,5 @@ Applying the mask to the data gives:
 
 ```console
 $ ori images.ori files.yaml
-${ yaml(samples.jse/help/images.ori(samples.jse/help/files.yaml)) }
+${ Origami.yaml(<samples.jse/help/images.ori>(<samples.jse/help/files.yaml>)) }
 ```

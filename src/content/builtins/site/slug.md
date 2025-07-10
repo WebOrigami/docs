@@ -21,7 +21,7 @@ Then the `title` can converted to a slug with:
 
 ```console
 $ ori slug post1.html/title
-${ slug(samples.jse/templates/posts/post1.html/title) + "\n" }
+${ Origami.slug(<samples.jse/templates/posts/post1.html/title>) + "\n" }
 ```
 
 `slug` does not assume a particular file extension. If you wish to add an extension, you can use, for example, a template literal.

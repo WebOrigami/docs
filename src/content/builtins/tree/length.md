@@ -7,6 +7,6 @@ Returns the number of objects in the given tree.
 
 ```console
 $ ori capitals.yaml
-${ yaml samples.jse/help/capitals.yaml }$ ori length capitals.yaml
-${ length(samples.jse/help/capitals.yaml) + "\n" }
+${ Origami.yaml(<samples.jse/help/capitals.yaml>) }$ ori length capitals.yaml
+${ Tree.length(<samples.jse/help/capitals.yaml>) + "\n" }
 ```

@@ -13,7 +13,7 @@ For example, if you want to fully specify a reference the [`json`](/builtins/ori
 
 ```console
 $ ori help:json
-${ help:json }
+${ Origami.help("json") }
 ```
 
 This shows that the `json` command is in the [`origami:`](/builtins/origami) namespace.

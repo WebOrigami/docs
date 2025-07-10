@@ -14,11 +14,11 @@ This always returns the value 1 for any path:
 
 ```console
 $ ori constant.ori/a
-${ yaml samples.jse/help/constant.ori/a }
+${ Origami.yaml(<samples.jse/help/constant.ori/a>) }
 $ ori constant.ori/b
-${ yaml samples.jse/help/constant.ori/b }
+${ Origami.yaml(<samples.jse/help/constant.ori/b>) }
 $ ori constant.ori/a/b/c
-${ yaml samples.jse/help/constant.ori/a/b/c }
+${ Origami.yaml(<samples.jse/help/constant.ori/a/b/c>) }
 ```
 
 ## Set a default value
@@ -34,11 +34,11 @@ This provides the default value of zero for any level of the tree:
 
 ```console
 $ ori deepDefault.ori/a
-${ yaml(samples.jse/help/deepDefault.ori/a) }
+${ Origami.yaml(<samples.jse/help/deepDefault.ori/a>) }
 $ ori deepDefault.ori/x
-${ yaml(samples.jse/help/deepDefault.ori/x) }
+${ Origami.yaml(<samples.jse/help/deepDefault.ori/x>) }
 $ ori deepDefault.ori/b/c
-${ yaml(samples.jse/help/deepDefault.ori/b/c) }
+${ Origami.yaml(<samples.jse/help/deepDefault.ori/b/c>) }
 $ ori deepDefault.ori/b/y
-${ yaml(samples.jse/help/deepDefault.ori/b/y) }
+${ Origami.yaml(<samples.jse/help/deepDefault.ori/b/y>) }
 ```

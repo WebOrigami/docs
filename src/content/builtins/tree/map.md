@@ -13,11 +13,11 @@ In the simplest form of `map`, you provide a tree and a function that will be ap
 
 ```console
 $ cat greetings.yaml
-${ samples.jse/cli/greetings.yaml
+${ <samples.jse/cli/greetings.yaml>
 }$ cat uppercase.js
-${ samples.jse/cli/uppercase.js
+${ <samples.jse/cli/uppercase.js>
 }$ ori map greetings.yaml, uppercase.js
-${ yaml map samples.jse/cli/greetings.yaml, samples.jse/cli/uppercase.js }
+${ Origami.yaml(Tree.map(<samples.jse/cli/greetings.yaml>, <samples.jse/cli/uppercase.js>)) }
 ```
 
 <div class="sideBySide">
@@ -25,7 +25,7 @@ ${ yaml map samples.jse/cli/greetings.yaml, samples.jse/cli/uppercase.js }
     ${ <svg.js>(<samples.jse/cli/greetings.yaml>) }
   </figure>
   <figure>
-    ${ <svg.js> map samples.jse/cli/greetings.yaml, samples.jse/cli/uppercase.js }
+    ${ <svg.js>(Tree.map(<samples.jse/cli/greetings.yaml>, <samples.jse/cli/uppercase.js>)) }
   </figure>
   <figcaption>Original tree</figcaption>
   <figcaption>Mapped values</figcaption>
@@ -63,7 +63,7 @@ The function being called does not need to use all three arguments. The followin
 
 ```console
 $ ori "map(greetings.yaml, (greeting) => uppercase.js(greeting))"
-${ yaml(map(samples.jse/cli/greetings.yaml, (greeting) => samples.jse/cli/uppercase.js(greeting))) }
+${ Origami.yaml(Tree.map(<samples.jse/cli/greetings.yaml>, (greeting) => <samples.jse/cli/uppercase.js>(greeting))) }
 ```
 
 ### Mapping keys
@@ -72,16 +72,16 @@ This function wants to reference the key being mapped (a person's name). That wi
 
 ```console
 $ ori "map(greetings.yaml, (greeting, name) => uppercase.js(name))"
-${ yaml(map(samples.jse/cli/greetings.yaml, (greeting, name) => samples.jse/cli/uppercase.js(name))) }
+${ Origami.yaml(Tree.map(<samples.jse/cli/greetings.yaml>, (greeting, name) => <samples.jse/cli/uppercase.js>(name))) }
 ```
 
 A common case for mapping keys is turning some data into a file name. For example, if a tree has keys which are names like "Alice", you can map those keys to ones that end in `.html`, like `Alice.html`.
 
 ```console
 $ cat greetings.yaml
-${ samples.jse/cli/greetings.yaml
+${ <samples.jse/cli/greetings.yaml>
 }$ ori "map(greetings.yaml, { key: (greeting, name) => `\${ name }.html` })"
-${ yaml(map(samples.jse/cli/greetings.yaml, { key: (greeting, name) => `${ name }.html` })) }
+${ Origami.yaml(Tree.map(<samples.jse/cli/greetings.yaml>, { key: (greeting, name) => `${ name }.html` })) }
 ```
 
 <div class="sideBySide">
@@ -89,7 +89,7 @@ ${ yaml(map(samples.jse/cli/greetings.yaml, { key: (greeting, name) => `${ name 
     ${ <svg.js>(<samples.jse/cli/greetings.yaml>) }
   </figure>
   <figure>
-    ${ <svg.js>(map(samples.jse/cli/greetings.yaml, { key: (greeting, name) => `${ name }.html` })) }
+    ${ <svg.js>(Tree.map(<samples.jse/cli/greetings.yaml>, { key: (greeting, name) => `${ name }.html` })) }
   </figure>
   <figcaption>Original tree</figcaption>
   <figcaption>Mapped keys</figcaption>
@@ -126,9 +126,9 @@ So you can also write the above example as:
 
 ```console
 $ cat greetings.yaml
-${ samples.jse/cli/greetings.yaml
+${ <samples.jse/cli/greetings.yaml>
 }$ ori "map(greetings.yaml, { extension: '→.html' })"
-${ yaml(map(samples.jse/cli/greetings.yaml, { key: (greeting, name) => `${ name }.html` })) }
+${ Origami.yaml(Tree.map(<samples.jse/cli/greetings.yaml>, { key: (greeting, name) => `${ name }.html` })) }
 ```
 
 When mapping file extensions as shown above, trailing slashes are generally ignored. However, you can supply a trailing slash as an extension if you want to explicitly map, for example, folder keys that end in trailing slashes. For example, `"/→.json"` would map a folder key like "data/" to "data.json".

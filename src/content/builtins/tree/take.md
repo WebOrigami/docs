@@ -8,7 +8,7 @@ Returns a copy of the given tree, with the additional restriction that the new t
 ```console
 $ cat letters.yaml
 ${ <samples.jse/help/letters.yaml> }$ ori take letters.yaml, 2
-${ yaml take samples.jse/help/letters.yaml, 2 }
+${ Origami.yaml(Tree.take(<samples.jse/help/letters.yaml>, 2)) }
 ```
 
 <div class="sideBySide">
@@ -16,7 +16,7 @@ ${ yaml take samples.jse/help/letters.yaml, 2 }
     ${ <svg.js>(<samples.jse/help/letters.yaml>) }
   </figure>
   <figure>
-    ${ <svg.js> take samples.jse/help/letters.yaml, 2 }
+    ${ <svg.js>(Tree.take(<samples.jse/help/letters.yaml>, 2)) }
   </figure>
   <figcaption>Input tree</figcaption>
   <figcaption>Result</figcaption>

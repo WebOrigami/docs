@@ -17,7 +17,7 @@ You can merge them into a single tree:
 
 ```console
 $ ori merge tree1.yaml, tree2.yaml
-${ yaml merge samples.jse/help/merge/tree1.yaml, samples.jse/help/merge/tree2.yaml }
+${ Origami.yaml(Tree.merge(<samples.jse/help/merge/tree1.yaml>, <samples.jse/help/merge/tree2.yaml>)) }
 ```
 
 The keys of the merged tree are the unique keys of the constituent trees in the order the trees are given.
@@ -26,7 +26,7 @@ When asked for a key, the merged tree asks each of the constituent trees _in rev
 
 <div class="sideBySide">
   <figure>
-    ${ <svg.js> merge samples.jse/help/merge/tree1.yaml, samples.jse/help/merge/tree2.yaml }
+    ${ <svg.js>(Tree.merge(<samples.jse/help/merge/tree1.yaml>, <samples.jse/help/merge/tree2.yaml>)) }
   </figure>
   <figcaption>Merged tree</figcaption>
 </div>
@@ -35,10 +35,10 @@ The Origami language also supports a [spread operator](/language/syntax.html#spr
 
 ```console
 $ ori { ...tree1.yaml, ...tree2.yaml }
-${ yaml {
-  ...samples.jse/help/merge/tree1.yaml
-  ...samples.jse/help/merge/tree2.yaml
-} }
+${ Origami.yaml({
+  ...<samples.jse/help/merge/tree1.yaml>
+  ...<samples.jse/help/merge/tree2.yaml>
+}) }
 ```
 
 The merge operation is shallow; for a deep merge operation, see [`deepMerge`](deepMerge.html).

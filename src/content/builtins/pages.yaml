@@ -20,10 +20,6 @@
   text: "image:"
 - href: inherited.html
   text: "inherited:"
-- href: js.html
-  text: "js:"
-- href: new.html
-  text: "new:"
 - href: node.html
   text: "node:"
 - href: origami/

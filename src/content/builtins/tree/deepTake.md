@@ -8,7 +8,7 @@ Traverses deeply inside the tree, returning the first `count` values. This is es
 ```console
 $ cat greetings.yaml
 ${ <samples.jse/help/greetings.yaml> }$ ori deepTake greetings.yaml, 5
-${ yaml deepTake samples.jse/help/greetings.yaml, 5 }
+${ Origami.yaml(Tree.deepTake(<samples.jse/help/greetings.yaml>, 5)) }
 ```
 
 <div class="sideBySide">
@@ -16,7 +16,7 @@ ${ yaml deepTake samples.jse/help/greetings.yaml, 5 }
     ${ <svg.js>(<samples.jse/help/greetings.yaml>) }
   </figure>
   <figure>
-    ${ <svg.js> deepTake samples.jse/help/greetings.yaml, 5 }
+    ${ <svg.js>(Tree.deepTake(<samples.jse/help/greetings.yaml>, 5)) }
   </figure>
   <figcaption>Input tree</figcaption>
   <figcaption>Result</figcaption>

@@ -5,4 +5,4 @@ subtitle: Manipulate text
 
 ## Commands by name
 
-${ <commandList.ori/text> }
+${ <commandList.jse/text> }

@@ -8,7 +8,7 @@ Return the in-order exterior values of the tree as a flat array. This is a deep 
 ```console
 $ cat greetings.yaml
 ${ <samples.jse/help/greetings.yaml> }$ ori deepValues greetings.yaml
-${ yaml deepValues samples.jse/help/greetings.yaml }
+${ Origami.yaml(Tree.deepValues(<samples.jse/help/greetings.yaml>)) }
 ```
 
 <div class="sideBySide">
@@ -16,7 +16,7 @@ ${ yaml deepValues samples.jse/help/greetings.yaml }
     ${ <svg.js>(<samples.jse/help/greetings.yaml>) }
   </figure>
   <figure>
-    ${ <svg.js> deepValues samples.jse/help/greetings.yaml }
+    ${ <svg.js>(Tree.deepValues(<samples.jse/help/greetings.yaml>)) }
   </figure>
   <figcaption>Input tree</figcaption>
   <figcaption>Result</figcaption>

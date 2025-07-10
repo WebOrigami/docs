@@ -1,8 +1,8 @@
 (namespace) => Tree.indent`
   <div style="display: grid; gap: 0.25em 1em; grid-template-columns: auto auto 1fr;">
-    ${ Tree.map(<commands.ori>, (commandHelp, commandSlash) =>
+    ${ Tree.map(<commands.jse>, (commandHelp, commandSlash) =>
       namespace === "" || namespace === commandHelp.namespace
-        ? indent`
+        ? Tree.indent`
             <div>
               <span style="color: #bbb;">${ commandHelp.namespace }:</span>
             </div>

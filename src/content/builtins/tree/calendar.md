@@ -22,7 +22,7 @@ This produces a skeleton calendar tree with the years, months, and days for that
 
 ```console
 $ ori calendar.ori/
-${ yaml samples.jse/help/calendar.ori/ }
+${ Origami.yaml(<samples.jse/help/calendar.ori/>) }
 ```
 
 <figure>

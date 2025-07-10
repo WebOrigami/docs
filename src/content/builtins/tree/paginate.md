@@ -14,7 +14,7 @@ The above set of countries can be broken into pages of (up to) 3 items each:
 
 ```console
 $ ori paginate countries.yaml, 3
-${ yaml paginate samples.jse/cli/countries.yaml, 3 }
+${ Origami.yaml(Tree.paginate(<samples.jse/cli/countries.yaml>, 3)) }
 ```
 
 Each page includes:
@@ -27,7 +27,7 @@ Each page includes:
 
 <div class="sideBySide">
   <figure>
-    ${ <svg.js>(<Tree.map(samples.jse/cli/countries.yaml,>) =`[data for ${_/name}]`) }
+    ${ <svg.js>(Tree.map(<samples.jse/cli/countries.yaml>, (country) => `[data for ${country.name}]`)) }
   </figure>
   <figure>
     ${ <svg.js>({

@@ -10,7 +10,7 @@ Example application of `addNextPrevious` to a tree of strings:
 ```console
 $ cat letters.yaml
 ${ <samples.jse/help/letters.yaml> }$ ori addNextPrevious letters.yaml
-${ yaml addNextPrevious samples.jse/help/letters.yaml }
+${ Origami.yaml(Tree.addNextPrevious(<samples.jse/help/letters.yaml>)) }
 ```
 
 <div class="sideBySide">
@@ -18,7 +18,7 @@ ${ yaml addNextPrevious samples.jse/help/letters.yaml }
     ${ <svg.js>(<samples.jse/help/letters.yaml>) }
   </figure>
   <figure>
-    ${ <svg.js> addNextPrevious samples.jse/help/letters.yaml }
+    ${ <svg.js>(Tree.addNextPrevious(<samples.jse/help/letters.yaml>)) }
   </figure>
   <figcaption>Input tree</figcaption>
   <figcaption>Result of addNextPrevious</figcaption>

@@ -24,7 +24,7 @@ ${ <samples.jse/help/missingPage.ori> }
 
 ```console
 $ ori audit missingPage.ori
-${ yaml audit samples.jse/help/missingPage.ori }
+${ Origami.yaml(Origami.audit(<samples.jse/help/missingPage.ori>)) }
 ```
 
 Here `audit` reports that `a.html` has a link to a non-existent page `b.html`.

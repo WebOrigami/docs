@@ -10,8 +10,8 @@ These `slash` functions can be useful when working inside a [`map`](/builtins/tr
 Example: The [Cherokee Myths](https://cherokee-myths.netlify.app/) sample site organizes a set of stories by topic into chapter folders. The folder for stories about birds is called "Birds". A [template that generates a table of contents](https://github.com/WebOrigami/cherokee-myths/blob/main/src/toc.ori) produces an HTML fragment for each chapter folder like:
 
 ```
-map(stories, (chapterStories, chapterKey) => `
-  <h2>`\${ slash/remove(chapterKey) }</h2>
+Tree.map(stories, (chapterStories, chapterKey) => `
+  <h2>`\${ Origami.slash.remove(chapterKey) }</h2>
 `)
 ```
 
@@ -23,9 +23,9 @@ Returns the given key, adding a trailing slash if it doesn't already have one. I
 
 ```console
 $ ori "slash/add('folder')"
-${ slash/add('folder/') + "\n" }
+${ Origami.slash.add('folder/') + "\n" }
 $ ori "slash/add('folder/')"
-${ slash/add('folder/') + "\n" }
+${ Origami.slash.add('folder/') + "\n" }
 ```
 
 ## has(key)
@@ -34,9 +34,9 @@ Returns true if the key ends in a trailing slash. If the key is not a string, th
 
 ```console
 $ ori "slash/has('file.txt')"
-${ (slash/has('file.txt') ? "true" : "false") + "\n" }
+${ (Origami.slash.has('file.txt') ? "true" : "false") + "\n" }
 $ ori "slash/has('folder/')"
-${ slash/has('folder/') + "\n" }
+${ Origami.slash.has('folder/') + "\n" }
 ```
 
 ## remove(key)
@@ -45,9 +45,9 @@ Returns the given key, removing a trailing slash if it has one. If the key is no
 
 ```console
 $ ori "slash/remove('file.txt')"
-${ slash/remove('file.text') + "\n" }
+${ Origami.slash.remove('file.text') + "\n" }
 $ ori "slash/remove('folder/')"
-${ slash/remove('folder/') + "\n" }
+${ Origami.slash.remove('folder/') + "\n" }
 ```
 
 ## toggle(key, [force])
@@ -56,20 +56,20 @@ Given only a key, this will add a trailing slash if the key doesn't have one or 
 
 ```console
 $ ori "slash/toggle('data')"
-${ slash/toggle('data') + "\n" }
+${ Origami.slash.toggle('data') + "\n" }
 $ ori "slash/toggle('data/')"
-${ slash/toggle('data/') + "\n" }
+${ Origami.slash.toggle('data/') + "\n" }
 $ ori "slash/toggle('data', true)"
-${ slash/toggle('data', true) + "\n" }
+${ Origami.slash.toggle('data', true) + "\n" }
 $ ori "slash/toggle('data/', false)"
-${ slash/toggle('data/', false) + "\n" }
+${ Origami.slash.toggle('data/', false) + "\n" }
 ```
 
 This can be useful for having one key add or remove a trailing slash to match a second key.
 
 ```console
 $ ori "slash/toggle('a', slash/has('b'))"
-${ slash/toggle('a', slash/has('b')) + "\n" }
+${ Origami.slash.toggle('a', Origami.slash.has('b')) + "\n" }
 $ ori "slash/toggle('a', slash/has('b/'))"
-${ slash/toggle('a', slash/has('b/')) + "\n" }
+${ Origami.slash.toggle('a', Origami.slash.has('b/')) + "\n" }
 ```
