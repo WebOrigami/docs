@@ -57,7 +57,7 @@ Finally, we need to update our `json` utility. That code has a function called `
 ```${'js'}
 /* Inside src/deep/json.js */
 
-${ js/codeFunctions.js(pattern.jse/deep/json.js)/plain }
+${ <js/codeFunctions.js>(<pattern.jse/deep/json.js>).plain }
 ```
 
 <span class="tutorialStep"></span> From inside the `src/deep` directory, display a deep `ObjectTree` or `FileTree` instance from inside the `src/deep` directory.
@@ -65,7 +65,7 @@ ${ js/codeFunctions.js(pattern.jse/deep/json.js)/plain }
 ```console
 $ cd ../deep
 $ node json files.js
-${ json(pattern.jse/deep/files.js) + "\n" }
+${ Tree.json(<pattern.jse/deep/files.js>) + "\n" }
 ```
 
 ## Deep transforms
@@ -82,13 +82,13 @@ ${ <pattern.jse/deep/transform.js> }
 
 ```console
 $ node json htmlFiles.js
-${ json(pattern.jse/deep/transform.js(tree:from pattern.jse/deep/files.js)) + "\n" }
+${ Tree.json(<pattern.jse/deep/transform.js>(Tree.from(<pattern.jse/deep/files.js>))) + "\n" }
 ```
 
 Visually this looks like:
 
 <figure>
-${ <svg.js>(<pattern.jse/deep/transform.js>) tree:from pattern.jse/deep/files.js }
+${ <svg.js>(<pattern.jse/deep/transform.js>(Tree.from(<pattern.jse/deep/files.js>))) }
 </figure>
 
 So now we have a way of transforming an arbitrarily deep folder of markdown content into a corresponding deep tree of HTML content. We're now ready to do some interesting things with this content.

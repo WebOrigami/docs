@@ -102,7 +102,7 @@ $ node files.test.js
 
 ```console
 $ node json files.js
-${ json(pattern.jse/flat/files.js) + "\n" }
+${ Tree.json(<pattern.jse/flat/files.js>) + "\n" }
 ```
 
 That's a single chunk of data now — but the keys of that object came from a directory listing, and each of those values is content from a separate file!
@@ -111,7 +111,7 @@ That's a single chunk of data now — but the keys of that object came from a d
 
 ```console
 $ node json object.js
-${ json(pattern.jse/flat/object.js) + "\n" }
+${ Tree.json(<pattern.jse/flat/object.js>) + "\n" }
 ```
 
 The critical bit here is that the `json` utility required no modification to work with the new files-based tree. We wrote the `json` utility to work with async trees, and the folder is just another async tree.
@@ -130,7 +130,7 @@ ${ <pattern.jse/flat/htmlFiles.js> }
 
 ```console
 $ node json htmlFiles.js
-${ json(pattern.jse/flat/htmlFiles.js) + "\n" }
+${ Tree.json(<pattern.jse/flat/htmlFiles.js>) + "\n" }
 ```
 
 The transform function can accept any tree of markdown content, so we can switch between our object and folder tree implementations at will. If we wanted to read the markdown content from a CMS, we could create a tree implementation backed by the CMS, then directly apply the unmodified transform function to that tree.
