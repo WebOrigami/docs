@@ -7,7 +7,7 @@
               <span style="color: #bbb;">${ commandHelp.namespace }:</span>
             </div>
             <div>
-              <a href="${ commandHelp/url }">${
+              <a href="${ commandHelp.url }">${
                 Origami.slash.remove(commandSlash)
               }</a><span style="color: #bbb;">${ commandHelp.args ?? "" }</span>
             </div>
