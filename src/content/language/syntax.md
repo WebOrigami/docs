@@ -4,12 +4,11 @@ title: Origami expression syntax
 
 Origami is an extension of JavaScript expressions that facilitates:
 
-- Defining tree structures like that of a website's pages and resources
-- Traversing paths into trees of data or files
+- Defining tree structures like a website's pages and resources
+- Traversing paths into data or files
 - Creating text content using templates
-- Invoking functions defined in JavaScript or Web Assembly modules
 
-Origami expression syntax generally follows JavaScript, with some [differences](comparison.html) such as: URLs, file paths, and file names are valid references; and some shorthands make it easier to type expressions in the shell when using the [CLI](/cli).
+Origami expression syntax is largely the same as JavaScript's, with some [differences](comparison.html) including support for loading content and data from files and network resources. The Origami [CLI](/cli) supports some optional [shell shorthands](#shell-shorthand) to make it easier to type evaluate expressions in a terminal.
 
 Microsoft Visual Studio Code users can install the [Origami language extension](https://marketplace.visualstudio.com/items?itemName=WebOrigami.origami-vscode-extension) for syntax highlighting.
 
@@ -315,7 +314,7 @@ THIS IS A TEXT FILE.
 
 ## Paths
 
-Paths are a sequence of string keys separated with `/` slashes.
+Paths are a sequence of string keys separated with `/` slashes and enclosed in `< >` angle brackets:
 
 ```ori
 <folder/path/to/file.txt>
@@ -332,7 +331,7 @@ $ ori greetings.yaml/Alice
 Hello, Alice.
 ```
 
-## File paths
+### File paths
 
 Paths that start with a leading `/` slash refer to absolute paths in the filesystem:
 
@@ -342,40 +341,36 @@ Paths that start with a leading `/` slash refer to absolute paths in the filesys
 
 Similarly, paths that start with a leading `./` refer to relative paths, and paths that start with `../` refer to the current parent folder.
 
-Paths can traverse into files of known [file types](fileTypes.html#standard-file-types) like `.json` files:
+Paths can traverse into files of known [file types](fileTypes.html#standard-file-types) like `.json` files.
 
-```console
-$ ori /Users/alice/myProject/package.json
+If a `package.json` file contains
+
+```json
 {
   "name": "Test project",
   "type": "module"
 }
-$ ori /Users/alice/myProject/package.json/name
-Test project
 ```
 
-You can reference folder or file by name without any special leading character; such names will be resolved in [scope](scope.html). Example: if a project contains a folder called `src`, then the following are equivalent:
+then the expression
 
-```console
-$ ori ./src
-$ ori src
+```ori
+<package.json/name>
 ```
 
-Inside an Origami program, if you have a local variable that has the same name as a folder in scope, and you want to explicitly reference the folder instead of the variable, you can use the [`files:`](/builtins/files.html) protocol.
+returns the string "Test project".
 
-## Namespaces
+You can reference folder or file by name without any special leading character; such names will be resolved in [scope](scope.html). Example: if a project contains a folder called `src`, then `<./src>` and `<src>` both reference the folder.
 
-Origami organizes its [built-in functions and objects](/builtins) into namespaces: groups of things with a name. These names end in a colon.
+### URLs
 
-Some namespaces like [`https:`](/builtins/https.html) act like protocols in URLs:
+You can also use URLs in an Origami path:
 
-```
-https://example.com
+```ori
+<https://example.com>
 ```
 
 The result of this URL will be the contents of the data at the indicated internet location.
-
-In addition to `https:` and `http:`, Origami has some custom protocols like [`files:`](/builtins/files.html).
 
 ## Template literals
 
@@ -482,7 +477,7 @@ Block comment
 */
 ```
 
-## Shorthand syntax
+## Shell shorthand
 
 When you use the Origami [CLI](/cli) to evaluate an Origami expression, Origami supports additional shorthand syntax to reduce typing and avoid conflicts with the way shells typically parse text.
 
@@ -497,15 +492,9 @@ Hello
 
 On macOS, you can type the `«` character with Option+Backslash, and the `»` character with Option+Shift+Backslash. On Windows, you can type Alt+0171 and Alt+0187, respectively.
 
-### Implicit paths
+### Implied paths
 
-Origami lets you reference files with `<path>` syntax like
-
-```
-<src/assets/styles.css>
-```
-
-But since both `<` and `>` have special meaning in the shell, you must quote or escape those:
+Since both `<` and `>` have special meaning in the shell, you must quote or escape those to use Origami's `<path>` syntax:
 
 ```console
 $ ori "<src/assets/styles.css>"
@@ -517,18 +506,19 @@ To avoid the need for such quoting, the CLI can recognize slash-separated paths 
 $ ori src/assets/styles.css
 ```
 
-The CLI must make some accommodations to interpret paths like this. In normal Origami a `.` period is used to access an object property, but in the shell a `.` can appear in a file name.
+The CLI must make some accommodations to interpret paths like this. In normal Origami a `.` period is used to access an object property, but in shell shorthand a `.` is generally interpreted as part of a file name. In the following command:
 
 ```console
 $ ori data.json
 ```
 
-The CLI will recognize `data.json` as a single file name. If you wanted to access a property from that file, you must either:
+the CLI will recognize `data.json` as a single file name. If you want to access a property from that file, use any of the following:
 
-1. Quote the command: `ori "<data.json>.name"`
+1. Quote the command and put the path in angle brackets: `ori "<data.json>.name"`
 2. Use slash syntax: `ori data.json/name`
+3. Put a space before the property reference: `ori data.json .name`
 
-Along the same lines, the CLI interprets a `/` as a path separator, not a division operation. If you want to evaluate a division expression in the shell, you must put spaces around the slash:
+Along the same lines, the CLI interprets a `/` as a path separator, so if you want to evaluate a division expression in the shell, you must put spaces around the `/` operator:
 
 ```
 $ ori 8 / 2
@@ -546,7 +536,7 @@ $ ori "uppercase.js(sample.txt)"
 THIS IS A TEXT FILE.
 ```
 
-To avoiding having to quote the parentheses, you can write the above as:
+To avoiding having to quote the parentheses, you can rewrite this in shell shorthand:
 
 ```console
 $ ori uppercase.js sample.txt

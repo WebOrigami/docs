@@ -229,12 +229,16 @@ img.origami {
  */
 
 pre {
-  padding: 16px;
   overflow: auto;
   font-size: 85%;
   line-height: 1.45;
   background-color: var(--color-canvas-subtle);
   border-radius: 6px;
+  padding: 16px;
+}
+td pre {
+  margin: 0;
+  padding: 0;
 }
 
 pre,
@@ -363,12 +367,20 @@ pre code.hljs {
 }
 
 /* Approximate more recent GitHub styling for inline code */
-code:not(pre code) {
+code {
   background-color: var(--color-canvas-subtle);
+  white-space: nowrap;
+}
+code:not(pre code) {
   border-radius: 6px;
   font-size: 85%;
   margin: 0;
   padding: .2em .4em;
+}
+pre code {
+  white-space: pre-wrap;
+}
+p code {
   white-space: break-spaces;
 }
 

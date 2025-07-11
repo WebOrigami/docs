@@ -3,31 +3,132 @@ title: JavaScript comparison
 subtitle: Differences between Origami and JavaScript expressions
 ---
 
-If you're familiar with JavaScript, you can think of Origami as **JavaScript expressions plus paths**.
+If you're familiar with JavaScript, Origami is essentially **JavaScript expressions plus paths**.
 
-Origami also includes some minor adaptations that make it easier to define sites with expressions. An optional set of shortcuts are available when invoking Origami expressions from a command line.
+It also includes some minor adaptations that make it easier to define sites with expressions. An optional set of [shell shorthand](syntax.html#shell-shorthand) features are available when invoking Origami expressions from a command line.
 
-This page enumerates the differences between Origami and JavaScript expressions.
+This table summarizes the differences between Origami and JavaScript expressions:
+
+<table>
+  <tr>
+    <th align="left"><b>Origami</b></th>
+    <th align="left"><b>Equivalent JavaScript and notes</b></th>
+  </tr>
+  <tr>
+    <td><code>&lt;data.json></code></td>
+    <td>
+      <code>await fs.readFile("data.json")</code>
+      <p>A path in angle brackets can load a file.</p>
+    </td>
+  </tr>
+  <tr>
+    <td><code>&lt;data.json>.name</code></td>
+    <td>
+      <code>JSON.parse(await fs.readFile("data.json")).name</code>
+      <p>Traversing into a file implicitly parses it.</p>
+    </td>
+  </tr>
+  <tr>
+    <td><code>&lt;https://example.com></code></td>
+    <td>
+      <code>await fetch("https://example.com)</code>
+      <p>A path can also fetch network resources.</p>
+    </td>
+  </tr>
+  <tr>
+    <td><code>"hello"</code></td>
+    <td>
+      <code>export default "hello";</code>
+      <p>An Origami file implicitly exports the value of its top-level expression.</p>
+    </td>
+  </tr>
+  <tr>
+    <td><code>fn(a, b)</code></td>
+    <td>
+      <code>await fn(await a, await b)</code>
+      <p>All functions and values are potentially async.</p>
+    </td>
+  </tr>
+  <tr>
+    <td><code>{ a: 1, b: a }</code></td>
+    <td>
+      <pre><code>const a = 1;
+const object = {
+  a,
+  b: a
+};
+</code></pre>
+      <p>An object's properties can reference its other properties.</p>
+    </td>
+  </tr>
+  <tr>
+    <td><code>{ a = fn() }</code></td>
+    <td>
+      <code>{ get a() { return fn(); } }</code>
+      <p>Define a getter with an equals sign.</p>
+    </td>
+  </tr>
+  <tr>
+    <td><code>{ (a): 1 }</code></td>
+    <td>
+      <pre><code>Object.defineProperty(object, "a", {
+  configurable: true,
+  enumerable: false,
+  value: 1,
+  writable: true
+});</code></pre>
+      <p>A property name in parentheses makes it non-enumerable.</p>
+    </td>
+  </tr>
+  <tr>
+    <td><code>() => { a: 1 }</code></td>
+    <td>
+      <code>() => ({ a: 1 })</code>
+      <p>A function can directly return an object without parentheses.</p>
+    </td>
+  </tr>
+  <tr>
+    <td><pre><code>{
+  index.html: "Hi"
+}</code></pre></td>
+    <td><pre><code>{
+  "index.html": "Hi"
+}</code></pre>
+      <p>Object keys generally don't have to be quoted.</p>
+    </td>
+  </tr>
+  <tr>
+    <td><code>a → b → c</code></td>
+    <td>
+      <code>c(b(a))</code>
+      <p>Pipe operator may clarify order of function calls.</p>
+    </td>
+  </tr>
+  <tr>
+    <td><pre><code>{
+  a: 1
+  b: 2
+}
+</code></pre></td>
+    <td><pre><code>{
+  a: 1,
+  b: 2
+}
+</code></pre>
+      <p>Newlines can be used as separators in arrays, objects, and parameters.</p>
+    </td>
+  </tr>
+</table>
 
 ## Identifiers and references
 
-Like JavaScript, Origami is a dynamic language; you do not need to specify the type of something when defining it.
-
-- Unlike JavaScript variable declarations (which are statements, not expressions), defining something in Origami is implicit; you do not need to prefix a declaration with `let` or `const`.
-- In order to allow you to directly reference files by name, most file names are legal identifiers in Origami. For example, `index.html` is not a legal JavaScript identifier but is legal in Origami.
-- The following special characters in identifiers must be escaped with a `\\` backslash:
-
-```
-(){}[]<>?!&|-=,/:`"'\#→⇒
-```
-
-- Web URLs like `https://example.com` are valid references in Origami.
-- File paths like `/Users/alice/myProject/data.json` are valid references in Origami.
-- [Scope](scope.html) in Origami is defined more broadly than in JavaScript. Code in a JavaScript module can only reference things outside the module via explicit `import` statements. Origami expressions can implicitly reference anything within a project.
+Like JavaScript, Origami is a dynamic language; you do not need to specify the type of something when defining it. Unlike JavaScript variable declarations (which are statements, not expressions), defining something in Origami is implicit; you do not need to prefix a declaration with `let` or `const`.
 
 ## Numbers
 
-Origami supports integers and floating point numbers. It does not yet support binary, octal, hexadecimal numeric literals, nor does it support exponential notation. These forms of numbers rarely come up in the creation of websites, but if necessary you can produce such numbers by calling the JavaScript [Number](/builtins/js.html) function and passing it a string:
+Origami supports integers and floating point numbers.
+
+Origami does not yet support binary, octal, hexadecimal numeric literals, nor does it support exponential notation. These forms of numbers rarely come up in the creation of websites, but if necessary you can pass them to the JavaScript [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) function:
 
 ```console
 $ ori "Number('0xf')"
@@ -36,38 +137,18 @@ $ ori "Number('1e2')"
 ${ Number("1e2") + "\n" }
 ```
 
-## Supported operators
+## Operators
 
-Origami supports the following JavaScript [operators](operators.html):
+Origami supports nearly all JavaScript [operators](operators.html), but does not currently support:
 
-- Conditional (ternary) operator `a ? b : c`
-- Logical AND `&&`
-- Logical OR `||`
-- Logical NOT `!`
-- Equality `==`
-- Inequality `!=`
-- Strict equality `===`
-- Strict inequality `!==`
-- Nullish coalescing operator `a ?? b`
-- Math operators `+` `-` `*` `/` `%` `**`
-- Bitwise operators `&` `|` `^` `~`
-- Shift operators `<<` `>>` `>>>`
-- Comma operator `,`
-
-In order to let characters like `-` appear in references — see below —, spaces are _required_ around the math operators.
-
-Origami does not currently support:
-
-- Member access via `.`
 - Optional chaining `x?.y`
-- Computed member access `x[y]`
 
-Because Origami only supports expressions and not statements, it does not support:
+Because Origami only supports expressions and not statements, it does not support operators with side effects like:
 
 - Postfix and prefix operators `++`, `--`
 - Assignment operators `=`, `+=`, `-=`, etc.
 
-Origami has implicit imports (see below), so does not have JavaScript's `import()` operator.
+Instead of JavaScript's `import()` operator, use a `<path>` literal (below).
 
 ## String literals
 
@@ -87,33 +168,56 @@ Origami templates will `await` asynchronous values that return a `Promise`.
 
 Origami supports JavaScript [tagged templates](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates): you can prefix a template with the name of a function (see functions, below).
 
-## Array and object literals
+## Implied exports
 
-Origami's syntax for constructing array and object literals is very similar to JavaScript's:
+Evaluating any Origami file with the `.ori` extension returns an evaluation of the file's top-level expression — unlike JavaScript, there is no need to explicitly `export` a value.
+
+This `message.ori` file evaluates to a string:
 
 ```ori
+// message.ori
+"This file exports this message."
+```
+
+It is equivalent to this JavaScript:
+
+```js
+// message.js
+export default "This file exports this message.";
+```
+
+## Path literals
+
+Likewise, because Origami [scope](scope.html) includes the surrounding files, it is not necessary to explicitly `import` values; you can directly reference files by their names.
+
+A JavaScript file might import the above message and incorporate it into an object with:
+
+```js
+// site.js
+import message from "./message.js";
+
+export default {
+  "index.html": message,
+};
+```
+
+An Origami file could do the same thing with:
+
+```ori
+// site.ori
 {
-  color: "Blue",
-  size: 20,
-  values: [2, 4, 6]
+  index.html: <message.ori/>
 }
 ```
 
-- A newline can be used as an alternative separator instead of a comma in array literals, object literals, and tree literals (below).
-- Origami array and object literals support JavaScript [spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_object_literals).
-- An Origami object can define `get` methods (see below) but not `set` methods.
+Here the trailing `/` slash is used to get the evaluated contents of `message.ori`.
 
-### Use slash syntax to access properties
+## Array and object literals
 
-JavaScript lets you access properties with the `.` operator, but the period is a legal character in Origami identifiers like `index.html` (see above). So you'll need to access properties using slightly different syntax in Origami.
+Origami's syntax for constructing array and object literals is essentially the same as JavaScript.
 
-Suppose you have an Origami reference to a JSON document like `package.json`, and you want to extract the `name` property from it. You can use any of the following:
-
-- `(package.json).name` — Put the `.name` property reference immediately after a closing parenthesis
-- `package.json .name` — Put a space before the `.name` property reference (a space before a `.` property reference is legal JavaScript syntax)
-- `package.json/name` — Use Origami's `/` path syntax
-
-When traversing objects like arrays and objects, Origami coerces them to an abstract tree structure. An Origami tree is like a minimalist, asynchronous JavaScript [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map). See the [AsyncTree interface](/async-tree/interface.html) for details.
+- A newline can be used as an alternative separator instead of a comma in arrays, function parameters, and object literals.
+- An Origami object can define `get` methods (see property getters, below) but not `set` methods.
 
 ### Local property references
 
@@ -162,10 +266,10 @@ Function calls in Origami work like JavaScript:
 add(1, 2)
 ```
 
-To use Origami to call a function defined in a JavaScript file, you must use the JavaScript file's name, including the `.js` (or `.mjs`) extension:
+You can call a function defined in a JavaScript file by importing with a `<path>` and then invoking it:
 
 ```
-greet.js("Alice")
+<greet.js>("Alice")
 ```
 
 Origami assumes that any function might be `async`, so implicitly uses `await` when calling them.
@@ -174,58 +278,14 @@ The Origami language runtime itself is written in JavaScript, so types such as n
 
 ## Lambda functions
 
-Origami supports a lambda function syntax similar to JavaScript's:
+Origami supports JavaScript's lambda function syntax:
 
 ```
 (x) => fn(x)
 ```
 
-Origami requires the parenthesis around the lambda parameters. (JavaScript allows you to omit the parenthesis for a lambda with a single parameter.)
-
-Origami lambda functions are more basic that JavaScript lambda functions:
+Origami lambda functions are currently more limited than JavaScript's:
 
 - No default parameters
 - No rest parameters
-- No destructuring in parameters
-
-## Implied exports and imports
-
-Any Origami file with the `.ori` extension will have its contents interpreted as an Origami expression. The result of this expression is implicitly exported and available from outside the file — unlike JavaScript, there is no need to explicitly `export` a value.
-
-This JavaScript:
-
-```js
-// message.js
-export default "This file exports this message.";
-```
-
-does the same thing as this `message.ori` file which implies a default `export`:
-
-```js
-// message.ori
-"This file exports this message.";
-```
-
-Likewise, because Origami [scope](scope.html) includes the surrounding files, it is not necessary to explicitly `import` values; you can directly reference files by their names.
-
-A JavaScript file might import the above message and incorporate it into an object with:
-
-```js
-// site.js
-import message from "./message.js";
-
-export default {
-  "index.html": message,
-};
-```
-
-An Origami file could do the same thing with:
-
-```js
-// site.ori
-{
-  index.html: message.ori/
-}
-```
-
-Here the trailing `/` slash is used to get the evaluated contents of `message.ori`.
+- No parameter destructuring
