@@ -1,7 +1,7 @@
 // Transform all the content documents into HTML pages
 Tree.deepMap(<content>, { extension: ".md→.html", value: <transform.jse> })
 
-→ (pages) => <node:process/env/NODE_ENV> === "production"
+→ (pages) => <node:process>.env.NODE_ENV === "production"
     ? Tree.cache(pages) // Cache the pages in production
     : pages // No caching in development
 

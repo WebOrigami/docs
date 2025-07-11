@@ -5,7 +5,7 @@ subtitle: Differences between Origami and JavaScript expressions
 
 If you're familiar with JavaScript, you can think of Origami as **JavaScript expressions plus paths**.
 
-Origami also includes some minor adaptations that make it easier for you to type expressions in a command line.
+Origami also includes some minor adaptations that make it easier to define sites with expressions. An optional set of shortcuts are available when invoking Origami expressions from a command line.
 
 This page enumerates the differences between Origami and JavaScript expressions.
 
@@ -25,11 +25,9 @@ Like JavaScript, Origami is a dynamic language; you do not need to specify the t
 - File paths like `/Users/alice/myProject/data.json` are valid references in Origami.
 - [Scope](scope.html) in Origami is defined more broadly than in JavaScript. Code in a JavaScript module can only reference things outside the module via explicit `import` statements. Origami expressions can implicitly reference anything within a project.
 
-## Basic numbers
+## Numbers
 
-Origami has integers and floating point numbers so that you can pass numeric values to functions.
-
-Origami does not support binary, octal, hexadecimal numeric literals, nor does it support exponential notation. All those forms require a mixture of numbers and alphabetic characters and so might actually be identifiers (above). These forms of numbers rarely come up in the creation of websites, but if necessary you can produce such numbers by the JavaScript [Number](/builtins/js.html) function and passing it a string. One concise way to do that is with slash syntax:
+Origami supports integers and floating point numbers. It does not yet support binary, octal, hexadecimal numeric literals, nor does it support exponential notation. These forms of numbers rarely come up in the creation of websites, but if necessary you can produce such numbers by calling the JavaScript [Number](/builtins/js.html) function and passing it a string:
 
 ```console
 $ ori "Number('0xf')"
@@ -50,7 +48,7 @@ Origami supports the following JavaScript [operators](operators.html):
 - Inequality `!=`
 - Strict equality `===`
 - Strict inequality `!==`
-- Nullish coalescing operator `a && b`
+- Nullish coalescing operator `a ?? b`
 - Math operators `+` `-` `*` `/` `%` `**`
 - Bitwise operators `&` `|` `^` `~`
 - Shift operators `<<` `>>` `>>>`
@@ -69,8 +67,6 @@ Because Origami only supports expressions and not statements, it does not suppor
 - Postfix and prefix operators `++`, `--`
 - Assignment operators `=`, `+=`, `-=`, etc.
 
-Instead of JavaScript's `new` operator, Origami has a [`new:`](/builtins/new.html) protocol.
-
 Origami has implicit imports (see below), so does not have JavaScript's `import()` operator.
 
 ## String literals
@@ -87,7 +83,7 @@ Expressions inside an Origami template placeholder can directly return complex v
 \`Some letters: \${["a", "b", "c"]}.\`    // Some letters: abc.
 ```
 
-Origami templates will `await` an asynchronous substitution that returns a `Promise`.
+Origami templates will `await` asynchronous values that return a `Promise`.
 
 Origami supports JavaScript [tagged templates](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates): you can prefix a template with the name of a function (see functions, below).
 
@@ -160,7 +156,7 @@ As an expression language, Origami does not include any of JavaScript's control 
 
 ## Function calls
 
-Function calls in Origami look similar to functions in JavaScript:
+Function calls in Origami work like JavaScript:
 
 ```
 add(1, 2)
@@ -191,14 +187,6 @@ Origami lambda functions are more basic that JavaScript lambda functions:
 - No default parameters
 - No rest parameters
 - No destructuring in parameters
-
-For ease of use in a command shell with the Origami [CLI](/cli), the Origami language supports a shorthand lambda syntax:
-
-```
-=fn x
-```
-
-This avoids the need to escape the `>` greater than sign or `()` parentheses, which are typically interpreted by a shell.
 
 ## Implied exports and imports
 

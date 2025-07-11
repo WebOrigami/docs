@@ -1,13 +1,13 @@
 ---
-title: Origami language syntax
+title: Origami expression syntax
 ---
 
-The Origami language is relatively small and focused on:
+Origami is an extension of JavaScript expressions that facilitates:
 
 - Defining tree structures like that of a website's pages and resources
 - Traversing paths into trees of data or files
 - Creating text content using templates
-- Invoking functions defined in other languages like JavaScript
+- Invoking functions defined in JavaScript or Web Assembly modules
 
 Origami expression syntax generally follows JavaScript, with some [differences](comparison.html) such as: URLs, file paths, and file names are valid references; and some shorthands make it easier to type expressions in the shell when using the [CLI](/cli).
 
@@ -27,15 +27,6 @@ You can escape characters with a `\\` backslash:
 ```
 'It\\'s great'
 ```
-
-Since command lines often process both single and double quotes, Origami also supports the use of French-style `«` and `»` guillemet quote characters:
-
-```command
-$ ori «Hello»
-Hello
-```
-
-On macOS, you can type the `«` character with Option+Backslash, and the `»` character with Option+Shift+Backslash. On Windows, you can type Alt+0171 and Alt+0187, respectively.
 
 ## Numbers
 
@@ -322,24 +313,15 @@ $ ori "uppercase.js(sample.txt)"
 THIS IS A TEXT FILE.
 ```
 
-To make it easier for you to invoke functions in the command line, Origami expressions also let you use implicit parentheses for function calls. For example, the above can also be written as:
-
-```console
-$ ori uppercase.js sample.txt
-THIS IS A TEXT FILE.
-```
-
-In some situations, you can also avoid the need for parentheses by using a `/` slash; see below.
-
 ## Paths
 
 Paths are a sequence of string keys separated with `/` slashes.
 
-```
-tree/with/path/to/something
+```ori
+<folder/path/to/file.txt>
 ```
 
-The head of the path, like `tree` here, is resolved as a reference. If that returns a treelike object, it will be traversed using the remaining keys "with", "path", "to", and "something". Treelike objects include object literals and hierarchical data in JSON and YAML files:
+The head of the path, like `folder` here, is resolved as a reference. If that returns a treelike object, it will be traversed using the remaining keys "path", "to", and "file.txt". Treelike objects include object literals and hierarchical data in JSON and YAML files:
 
 ```console
 $ ori greetings.yaml
@@ -350,30 +332,12 @@ $ ori greetings.yaml/Alice
 Hello, Alice.
 ```
 
-In Origami, functions are a type of tree, so a function can also be invoked with slash syntax:
-
-```console
-$ ori greet.js
-export default (name = "world") => `Hello, \${name}.`;
-$ ori greet.js/David
-Hello, David.
-```
-
-A function call using a slash like this lets you avoid having to quote parentheses in the command line.
-
-If the `greet.js` function here is invoked with a trailing slash, that invokes the function with an `undefined` value for the `name` parameter. In this example, `greet` then uses a default name:
-
-```console
-$ ori greet.js/
-Hello, world.
-```
-
 ## File paths
 
 Paths that start with a leading `/` slash refer to absolute paths in the filesystem:
 
 ```
-/Users/alice/example.txt
+</Users/alice/example.txt>
 ```
 
 Similarly, paths that start with a leading `./` refer to relative paths, and paths that start with `../` refer to the current parent folder.
@@ -518,14 +482,87 @@ Block comment
 */
 ```
 
-## Instantiating classes
+## Shell mode shortcuts
 
-For interoperability with JavaScript classes, Origami supports a `new` syntax for creating new class instances.
+When you use the Origami [CLI](/cli) to evaluate an Origami expression, Origami offers a few additional syntax shortcuts.
 
-If the JavaScript file `User.js` exports a `User` class, then
+### Guillemet strings
 
+Since command lines often process both single and double quotes, Origami also supports the use of French-style `«` and `»` guillemet quote characters:
+
+```console
+$ ori «Hello»
+Hello
 ```
-new <User.js>("David")
+
+On macOS, you can type the `«` character with Option+Backslash, and the `»` character with Option+Shift+Backslash. On Windows, you can type Alt+0171 and Alt+0187, respectively.
+
+### Implicit parentheses for function arguments
+
+To make it easier for you to invoke functions in the command line, the CLI lets you use implicit parentheses for function calls.
+
+For example, the above discussion of calling functions used this example:
+
+```console
+$ ori "uppercase.js(sample.txt)"
+THIS IS A TEXT FILE.
 ```
 
-is equivalent to the JavaScript `new User("David")`.
+To avoiding having to quote the parentheses, you can write the above as:
+
+```console
+$ ori uppercase.js sample.txt
+THIS IS A TEXT FILE.
+```
+
+In some situations, you can also avoid the need for parentheses by using a `/` slash; see below.
+
+### Shorthand functions
+
+The Origami CLI supports a shorthand syntax for defining a function with a single `_` parameter.
+
+In normal Origami you could find a function that takes a single argument like this:
+
+```ori
+(_) => fn(_)
+```
+
+In the command you line you would need to escape both the `>` greater than sign and the `()` parentheses to avoid having the shell itself interpret those. As a convenience, the Origami CLI lets you shorten the above to:
+
+```ori
+=fn _
+```
+
+### Invoking functions with slash syntax
+
+In Origami, functions are a type of tree, so a function can also be invoked with slash syntax. This isn't shorthand syntax, but an emergent behavior of Origami that can be particularly useful in the shell.
+
+As an example, suppose you have a JavaScript function that accepts a `name` parameter.
+
+```console
+$ ori greet.js
+export default (name = "world") => `Hello, \${name}.`;
+```
+
+To pass a string value for that parameter, you must escape the use of parentheses in the function call:
+
+```console
+$ ori "greet.js('David')"
+Hello, David.
+```
+
+A function call using a slash like this lets you avoid having to quote parentheses:
+
+```console
+$ ori greet.js/David
+Hello, David.
+```
+
+If the `greet.js` function here is invoked with a trailing slash, that invokes the function with an `undefined` value for the `name` parameter:
+
+```console
+$ ori greet.js/
+Hello, world.
+```
+
+This use of slash syntax to invoke a function isn't limited to the command line; it works in Origami `<path>` expressions too.
