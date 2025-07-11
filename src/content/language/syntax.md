@@ -395,7 +395,7 @@ You can group expressions with `(` `)` parentheses. Command shells generally int
 
 <a name="lambdas"></a>
 
-## Lambdas (unnamed functions)
+## Lambda functions
 
 An Origami expression can define a type of unnamed function called a _lambda_.
 

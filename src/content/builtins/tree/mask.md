@@ -5,7 +5,7 @@ supertitle: "Tree."
 
 This returns the tree that results from applying the `mask` tree to the `source` tree, preserving only keys that exist in `mask` and have a [truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) value.
 
-See also [`tree:filter`](filter.html).
+See also [`Tree.filter`](filter.html).
 
 ## Example
 
@@ -30,7 +30,7 @@ Above, `b` and `c/e` have been masked from the `source` tree because those do pa
 
 ## Default value
 
-You can influence the result of a mask operation by [defining a default value](/language/idioms.html#define-a-default-value) for the mask tree using a shorthand function or [tree:constant](constant.html#set-a-default-value).
+You can influence the result of a mask operation by [defining a default value](/language/idioms.html#define-a-default-value) for the mask tree using a shorthand function or [Tree.constant](constant.html#set-a-default-value).
 
 ```ori
 // maskDefault.ori
@@ -48,4 +48,4 @@ This flips the logic of `mask`: instead of only allowing truthy values in, this 
 
 ## Mask with globs and regular expressions
 
-You can use `mask` in conjunction with [`tree:globKeys`](globKeys.html) and [`tree:regExpKeys`](regExpKeys.html).
+You can use `mask` in conjunction with [`Tree.globKeys`](globKeys.html) and [`Tree.regExpKeys`](regExpKeys.html).

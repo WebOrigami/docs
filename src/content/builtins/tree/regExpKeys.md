@@ -21,4 +21,4 @@ $ ori regExpKeys.ori/__
 ${ Origami.yaml(<samples.jse/help/regExpKeys.ori/__>) }
 ```
 
-You can use `regExpKeys` with [`tree:mask`](mask.html#mask-with-globs-and-regular-expressions) to mask values based on regular expression matches.
+You can use `regExpKeys` with [`Tree.mask`](mask.html#mask-with-globs-and-regular-expressions) to mask values based on regular expression matches.

@@ -42,71 +42,71 @@ ${ Origami.yaml(<samples.jse/help/private.ori>) }
 
 ## Define a default value
 
-You can define a default value for a tree using the [spread operator](syntax.html#spread-operator) with a [shorthand function](syntax.html#lambdas-unnamed-functions):
+You can define a default value for a tree using the [spread operator](syntax.html#spread-operator) with a [lambda function](syntax.html#lambda-functions):
 
 ```ori
-// deepDefault.ori
-${ <samples.jse/help/default.ori> }
+// default.ori
+${ <samples.jse/help/default.jse> }
 ```
 
 This tree returns the indicated value for any defined key, and zero for anything else:
 
 ```console
 $ ori default.ori/a
-${ Origami.yaml(<samples.jse/help/default.ori/a>) }
+${ Origami.yaml(<samples.jse/help/default.jse/a>) }
 $ ori default.ori/b
-${ Origami.yaml(<samples.jse/help/default.ori/b>) }
+${ Origami.yaml(<samples.jse/help/default.jse/b>) }
 $ ori default.ori/x
-${ Origami.yaml(<samples.jse/help/default.ori/x>) }
+${ Origami.yaml(<samples.jse/help/default.jse/x>) }
 ```
 
 This works as follows:
 
-- The `=0` syntax defines a function that returns zero for any input.
+- The `() => 0` syntax defines a function that returns zero for any input.
 - The `...` spread operator merges that function into the tree.
-- Merging the `=0` function into the tree implicitly turns it into a tree: asking this tree for a key will call the indicated function, which will return zero.
+- Merging the function into the tree implicitly turns it into a tree: asking this tree for a key will call the indicated function, which will return zero.
 - The merged tree ends up combining two trees: 1) the tree defined by the `=0` function, and 2) the tree of the explicitly defined keys and values.
 
 When asked to get a key, the merged tree starts by consulting the _second_ tree (of explicit keys/values). If the tree has a value, that will be returned. Otherwise, the merged tree consults the first tree (the function).
 
-The idiom as written above is suitable for shallow trees: the `...` spread operator does a shallow merge, and the `=0` function defines a shallow tree.
+The idiom as written above is suitable for shallow trees: the `...` spread operator does a shallow merge, and the `() => 0` function defines a shallow tree.
 
-You can adapt this idiom to provide a default value for deep trees using the [`tree:deepMerge`](/builtins/tree/deepMerge.html) function to do the merge and the [`tree:constant`](/builtins/tree/constant.html) builtin to define the default value.
+You can adapt this idiom to provide a default value for deep trees using the [`Tree.deepMerge`](/builtins/tree/deepMerge.html) function to do the merge and the [`Tree.constant`](/builtins/tree/constant.html) builtin to define the default value.
 
 ```ori
 // deepDefault.ori
-${ <samples.jse/help/deepDefault.ori> }
+${ <samples.jse/help/deepDefault.jse> }
 ```
 
 This provides the default value of zero for any level of the tree:
 
 ```console
 $ ori deepDefault.ori/a
-${ Origami.yaml(<samples.jse/help/deepDefault.ori/a>) }
+${ Origami.yaml(<samples.jse/help/deepDefault.jse/a>) }
 $ ori deepDefault.ori/x
-${ Origami.yaml(<samples.jse/help/deepDefault.ori/x>) }
+${ Origami.yaml(<samples.jse/help/deepDefault.jse/x>) }
 $ ori deepDefault.ori/b/c
-${ Origami.yaml(<samples.jse/help/deepDefault.ori/b/c>) }
+${ Origami.yaml(<samples.jse/help/deepDefault.jse/b/c>) }
 $ ori deepDefault.ori/b/y
-${ Origami.yaml(<samples.jse/help/deepDefault.ori/b/y>) }
+${ Origami.yaml(<samples.jse/help/deepDefault.jse/b/y>) }
 ```
 
 One use for this is to provide a default "Not found" page for a dynamic site:
 
 ```ori
-${ <samples.jse/help/notFound.ori> }
+${ <samples.jse/help/notFound.jse> }
 ```
 
 ## Extract specific resources from a site
 
 The [`httpstree:`](/builtins/httpstree.html) protocol lets you treat a live website as a tree. Since sites don't generally make their keys (routes) available, you can only use such a tree to obtain values at known routes.
 
-That said, if you know the routes you want to extract from a site, you can combine `httpstree:` with [`tree:deepMerge`](/builtins/tree/deepMerge.html) to extract those specific routes.
+That said, if you know the routes you want to extract from a site, you can combine `httpstree:` with [`Tree.deepMerge`](/builtins/tree/deepMerge.html) to extract those specific routes.
 
 ```ori
 // extract.ori
 
-${ <samples.jse/help/extract.ori> }
+${ <samples.jse/help/extract.jse> }
 ```
 
 This merges two trees together:

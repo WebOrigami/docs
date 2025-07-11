@@ -12,7 +12,7 @@ The `options` parameter can be either a function that will be used as the `test`
 
 The `test` function will be called with the `value`, `key`, and `tree` of each key/value in the tree. The `test` function should return a [truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) result if the value should be included in the result of the `filter` operation.
 
-See also [`tree:mask`](mask.html).
+See also [`Tree.mask`](mask.html).
 
 ## Example
 

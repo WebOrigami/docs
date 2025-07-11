@@ -19,7 +19,7 @@ true
 
 ## Masking
 
-`globKeys` can be used in conjunction with [`tree:mask`](mask.html#mask-with-globs-and-regular-expressions) to include or include values based on glob patterns.
+`globKeys` can be used in conjunction with [`Tree.mask`](mask.html#mask-with-globs-and-regular-expressions) to include or include values based on glob patterns.
 
 This Origami function accepts a tree, then applies a `mask` using `globKeys` to return just the values whose keys have image file extensions:
 

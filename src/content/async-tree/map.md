@@ -3,7 +3,7 @@ title: map(tree, options)
 subtitle: Transform the keys and/or values of a tree
 ---
 
-JavaScript function underlying the [`tree:map`](/builtins/tree/map.html) builtin, with the same parameters and effects. See that page for complete details.
+JavaScript function underlying the [`Tree.map`](/builtins/tree/map.html) builtin, with the same parameters and effects. See that page for complete details.
 
 ## JavaScript usage
 

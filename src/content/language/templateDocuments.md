@@ -150,7 +150,7 @@ ${ <samples.jse/templateDocuments/link.jse.html>('https://weborigami.org', 'Web 
 
 ### Behavior within a `map`
 
-When used inside a [`tree:map`](/builtins/tree/map.html) function, a template document will provide a default `key` function to the map. This `key` function will add the template document's last extension to keys in the map's output.
+When used inside a [`Tree.map`](/builtins/tree/map.html) function, a template document will provide a default `key` function to the map. This `key` function will add the template document's last extension to keys in the map's output.
 
 For example, this template is called `movie.ori.html`, so it will add `.html` to keys in a map.
 
@@ -178,4 +178,4 @@ ${ Origami.yaml(
 ) }
 ```
 
-You can override this behavior by explicitly providing a `key` option to `tree:map`.
+You can override this behavior by explicitly providing a `key` option to `Tree.map`.
