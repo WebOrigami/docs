@@ -1,6 +1,6 @@
 ---
 title: copy(sourceTree, targetTree)
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 Traverses the `sourceTree` and writes all values into the `targetTree`.

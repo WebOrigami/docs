@@ -1,6 +1,6 @@
 ---
 title: take(tree, count)
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 Returns a copy of the given tree, with the additional restriction that the new tree's `keys` method will return only (at most) the first `count` keys.

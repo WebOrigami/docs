@@ -1,6 +1,6 @@
 ---
 title: regExpKeys(tree)
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 Treats the string keys of `tree` as [regular expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions).

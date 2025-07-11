@@ -1,6 +1,6 @@
 ---
 title: setDeep(target, source)
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 Recursively applies updates from the `source` tree to the `target` tree.

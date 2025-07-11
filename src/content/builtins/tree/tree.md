@@ -1,6 +1,6 @@
 ---
 title: "tree:"
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 This is a collection of functions for working with asynchronous trees, directly exposing the methods of the [Tree](/async-tree/Tree.html) object in the [async-tree](/async-tree) library.

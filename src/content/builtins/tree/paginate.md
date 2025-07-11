@@ -1,6 +1,6 @@
 ---
 title: paginate(tree, [size])
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 This returns a new tree that groups the original keys and values into "pages": fixed-size sets of items that are no bigger than `size` (default: 10). A typical use for this is breaking a long list of blog posts, search results, etc., into multiple web pages.

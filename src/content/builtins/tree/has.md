@@ -1,6 +1,6 @@
 ---
 title: has(tree, key)
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 Returns true if the tree has a value for the given key.

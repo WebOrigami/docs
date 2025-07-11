@@ -1,6 +1,6 @@
 ---
 title: group(tree, fn)
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 This function creates a new tree that groups values according to the result of a grouping function.

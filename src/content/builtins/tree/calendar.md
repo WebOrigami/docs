@@ -1,6 +1,6 @@
 ---
 title: calendar(options)
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 This returns a tree structure representing years, months, and days from a start date to an end date. This is useful, for example, in generating a portion of a site that presents information for a given year, month, or day.
@@ -15,18 +15,18 @@ Example: A site wants to define `year/month/day` routes for a given time range. 
 
 ```ori
 // calendar.ori
-${ <samples.jse/help/calendar.ori> }
+${ <samples.jse/help/calendar.jse> }
 ```
 
 This produces a skeleton calendar tree with the years, months, and days for that time range:
 
 ```console
 $ ori calendar.ori/
-${ Origami.yaml(<samples.jse/help/calendar.ori/>) }
+${ Origami.yaml(<samples.jse/help/calendar.jse/>) }
 ```
 
 <figure>
-${ <svg.js>(<samples.jse/help/calendar.ori/>) }
+${ <svg.js>(<samples.jse/help/calendar.jse/>) }
 </figure>
 
 When served, this would allow someone to browse to the page for a given date using a route like `/2025/03/03`.

@@ -1,6 +1,6 @@
 ---
 title: fromFn(fn, [domain])
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 Returns a [FunctionTree](/async-tree/FunctionTree.html) for the given function and optional domain.

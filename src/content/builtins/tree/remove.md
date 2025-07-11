@@ -1,6 +1,6 @@
 ---
 title: remove(tree, key)
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 Removes the value for the given key from the specific node of the tree.

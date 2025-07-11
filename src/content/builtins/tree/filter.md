@@ -1,6 +1,6 @@
 ---
 title: filter(tree, options)
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 Applies a filter operation to a tree, returning only those values that pass a `test` function.

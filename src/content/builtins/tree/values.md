@@ -1,6 +1,6 @@
 ---
 title: values([tree])
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 Returns an array of the top-level values in the tree.

@@ -1,6 +1,6 @@
 ---
 title: from(obj, [options])
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 Attempts to cast the indicated object to an async tree.

@@ -1,6 +1,6 @@
 ---
 title: deepTake(tree, count)
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 Traverses deeply inside the tree, returning the first `count` values. This is essentially a deep version of [`take`](take.html) or a constrained version of [`deepValues`](deepValues.html).

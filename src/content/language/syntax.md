@@ -482,9 +482,9 @@ Block comment
 */
 ```
 
-## Shell mode shortcuts
+## Shorthand syntax
 
-When you use the Origami [CLI](/cli) to evaluate an Origami expression, Origami offers a few additional syntax shortcuts.
+When you use the Origami [CLI](/cli) to evaluate an Origami expression, Origami supports additional shorthand syntax to reduce typing and avoid conflicts with the way shells typically parse text.
 
 ### Guillemet strings
 
@@ -497,11 +497,49 @@ Hello
 
 On macOS, you can type the `«` character with Option+Backslash, and the `»` character with Option+Shift+Backslash. On Windows, you can type Alt+0171 and Alt+0187, respectively.
 
+### Implicit paths
+
+Origami lets you reference files with `<path>` syntax like
+
+```
+<src/assets/styles.css>
+```
+
+But since both `<` and `>` have special meaning in the shell, you must quote or escape those:
+
+```console
+$ ori "<src/assets/styles.css>"
+```
+
+To avoid the need for such quoting, the CLI can recognize slash-separated paths without the need to enclose them in angle brackets:
+
+```console
+$ ori src/assets/styles.css
+```
+
+The CLI must make some accommodations to interpret paths like this. In normal Origami a `.` period is used to access an object property, but in the shell a `.` can appear in a file name.
+
+```console
+$ ori data.json
+```
+
+The CLI will recognize `data.json` as a single file name. If you wanted to access a property from that file, you must either:
+
+1. Quote the command: `ori "<data.json>.name"`
+2. Use slash syntax: `ori data.json/name`
+
+Along the same lines, the CLI interprets a `/` as a path separator, not a division operation. If you want to evaluate a division expression in the shell, you must put spaces around the slash:
+
+```
+$ ori 8 / 2
+4
+```
+
 ### Implicit parentheses for function arguments
 
 To make it easier for you to invoke functions in the command line, the CLI lets you use implicit parentheses for function calls.
 
-For example, the above discussion of calling functions used this example:
+For example, the above discussion of calling functions uses this example:
 
 ```console
 $ ori "uppercase.js(sample.txt)"
@@ -516,22 +554,6 @@ THIS IS A TEXT FILE.
 ```
 
 In some situations, you can also avoid the need for parentheses by using a `/` slash; see below.
-
-### Shorthand functions
-
-The Origami CLI supports a shorthand syntax for defining a function with a single `_` parameter.
-
-In normal Origami you could find a function that takes a single argument like this:
-
-```ori
-(_) => fn(_)
-```
-
-In the command you line you would need to escape both the `>` greater than sign and the `()` parentheses to avoid having the shell itself interpret those. As a convenience, the Origami CLI lets you shorten the above to:
-
-```ori
-=fn _
-```
 
 ### Invoking functions with slash syntax
 
@@ -566,3 +588,21 @@ Hello, world.
 ```
 
 This use of slash syntax to invoke a function isn't limited to the command line; it works in Origami `<path>` expressions too.
+
+### Shorthand functions
+
+The Origami CLI supports a shorthand syntax for defining a function with a single `_` parameter.
+
+In normal Origami you define a function that takes a single argument like this:
+
+```ori
+(x) => fn(x)
+```
+
+In the command you line you would need to escape both the `>` greater than sign and the `()` parentheses to avoid having the shell itself interpret those. As a convenience, the Origami CLI lets you shorten the above to:
+
+```ori
+=fn _
+```
+
+The function's single parameter will be available as `_`.

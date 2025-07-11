@@ -1,6 +1,6 @@
 ---
 title: defineds(tree)
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 Returns only the defined (not `undefined`) values in the tree.

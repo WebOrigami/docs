@@ -1,6 +1,6 @@
 ---
 title: assign(target, source)
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 Apply the key/values pairs from the source tree to the target tree.

@@ -1,6 +1,6 @@
 ---
 title: map(tree, options)
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 Creates a new tree from another by applying mapping functions to the original tree's values and/or keys.

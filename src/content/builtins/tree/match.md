@@ -1,6 +1,6 @@
 ---
 title: match(pattern, fn, [keys])
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 Returns a tree that can match against simple patterns or JavaScript regular expressions. This is useful in creating virtual trees.

@@ -1,6 +1,6 @@
 ---
 title: keys([tree])
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 Returns an array of the top-level keys in the indicated tree.

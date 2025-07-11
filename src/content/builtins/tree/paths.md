@@ -1,6 +1,6 @@
 ---
 title: paths(tree)
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 Returns an array of slash-separated paths for all values in the tree.

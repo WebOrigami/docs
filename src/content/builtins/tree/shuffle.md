@@ -1,6 +1,6 @@
 ---
 title: shuffle(tree)
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 Returns a new tree with the original `tree` keys randomly shuffled.

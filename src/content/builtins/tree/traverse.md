@@ -1,6 +1,6 @@
 ---
 title: traverse(tree, ...keys)
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 Return the value at the corresponding path of keys.

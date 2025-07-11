@@ -1,6 +1,6 @@
 ---
 title: concat(...objs)
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 Converts the indicated objects to strings, then returns the concatenated strings.

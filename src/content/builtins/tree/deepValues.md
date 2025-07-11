@@ -1,6 +1,6 @@
 ---
 title: deepValues(tree)
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 Return the in-order exterior values of the tree as a flat array. This is a deep version of the [`values`](values.html) built-in function.

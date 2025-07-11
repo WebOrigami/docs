@@ -1,6 +1,6 @@
 ---
 title: length(tree)
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 Returns the number of objects in the given tree.

@@ -1,6 +1,6 @@
 ---
 title: clear(tree)
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 This removes all values from the given tree and then returns the empty tree.

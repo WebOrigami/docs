@@ -1,6 +1,6 @@
 ---
 title: mapReduce(tree, mapFn, reduceFn)
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 Maps and reduces a tree to a single value.

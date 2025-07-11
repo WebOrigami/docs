@@ -1,6 +1,6 @@
 ---
 title: constant(value)
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 This returns a deep tree that returns the indicated `value` for any path.

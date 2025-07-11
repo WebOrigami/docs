@@ -1,6 +1,6 @@
 ---
 title: mask(tree, mask)
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 This returns the tree that results from applying the `mask` tree to the `source` tree, preserving only keys that exist in `mask` and have a [truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) value.

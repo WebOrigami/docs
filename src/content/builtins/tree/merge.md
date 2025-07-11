@@ -1,6 +1,6 @@
 ---
 title: merge(...trees)
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 Returns a tree that is the result of merging the indicated trees.

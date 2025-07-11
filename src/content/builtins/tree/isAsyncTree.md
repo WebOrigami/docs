@@ -1,6 +1,6 @@
 ---
 title: isAsyncTree(obj)
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 Returns true if the indicated object supports the [AsyncTree interface](/async-tree/interface.html).

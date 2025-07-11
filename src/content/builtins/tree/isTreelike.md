@@ -1,6 +1,6 @@
 ---
 title: isTreelike(obj)
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 Returns true if the indicated object can be directly treated as an asynchronous tree.

@@ -1,6 +1,6 @@
 ---
 title: reverse(tree)
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 Reverses the order of keys in the tree.

@@ -1,6 +1,6 @@
 ---
 title: globKeys(tree)
-supertitle: "tree:"
+supertitle: "Tree."
 ---
 
 Treats the keys of `tree` as simple [glob](<https://en.m.wikipedia.org/wiki/Glob_(programming)>) patterns. The following patterns are supported:
