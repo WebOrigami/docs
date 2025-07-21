@@ -342,17 +342,17 @@ ${
   <svg.js>({
     post1.md: {
       title: "My first post"
-      @text: "Here's my *first* post!"
+      _body: "Here's my *first* post!"
     }
     post2.md: {
       title: "Second post"
-      @text: "This is the *second* post."
+      _body: "This is the *second* post."
     }
   })
 }
 </figure>
 
-Here the key `@text` is used to label the property holding the text of the markdown document.
+Here the key `_body` is used to label the property holding the text of the markdown document.
 
 You can transform this tree of markdown objects into a corresponding tree of HTML objects. Origami includes a markdown-to-HTML command called [`Origami.mdHtml`](/builtins/text/mdHtml.html). That command works on a single file, so you can use it to process a single blog post:
 
@@ -369,7 +369,7 @@ ${
   <svg.js>({
     firstPost: {
       title: "My first post"
-      @text: "Here's my <strong>first</strong> post!"
+      _body: "Here's my <strong>first</strong> post!"
     }
   })
 }

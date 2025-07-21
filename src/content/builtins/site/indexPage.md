@@ -1,5 +1,5 @@
 ---
-title: index([tree])
+title: indexPage([tree])
 supertitle: "site:"
 ---
 
@@ -11,14 +11,14 @@ For example, in an Origami `.ori` file you can write:
 
 ```ori
 public = {
-  listing.html = index(public)
+  listing.html = Tree.indexPage(public)
 }
 ```
 
-In conjunction with [`debug`](/builtins/dev/debug.html), you can invoke `index` from the browser address bar to obtain a listing of the contents of that point in the site's tree:
+In conjunction with [`debug`](/builtins/dev/debug.html), you can invoke `indexPage` from the browser address bar to obtain a listing of the contents of that point in the site's tree:
 
 ```
-http://localhost:5000/path/to/something/!index
+http://localhost:5000/path/to/something/!indexPage
 ```
 
 This is helpful if you need to browse or access pages or resources that aren't exposed on the page at that route.

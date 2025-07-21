@@ -26,7 +26,7 @@ This Origami function accepts a tree, then applies a `mask` using `globKeys` to 
 ```ori
 // images.ori
 
-${ <samples.jse/help/images.ori> }
+${ <samples.jse/help/images.jse> }
 ```
 
 This would typically be applied to a tree of files, but for demonstration purposes a YAML file can simulate a small set of files:
@@ -40,5 +40,5 @@ Applying the mask to the data gives:
 
 ```console
 $ ori images.ori files.yaml
-${ Origami.yaml(<samples.jse/help/images.ori>(<samples.jse/help/files.yaml>)) }
+${ Origami.yaml(<samples.jse/help/images.jse>(<samples.jse/help/files.yaml>)) }
 ```

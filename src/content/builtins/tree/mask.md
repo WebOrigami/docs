@@ -14,14 +14,14 @@ Suppose `mask.ori` contains:
 ```ori
 // mask.ori
 
-${ <samples.jse/help/mask.ori> }
+${ <samples.jse/help/mask.jse> }
 ```
 
 Invoking this returns the masked result:
 
 ```console
 $ ori mask.ori/
-${ Origami.yaml(<samples.jse/help/mask.ori/>) }
+${ Origami.yaml(<samples.jse/help/mask.jse/>) }
 ```
 
 If the `mask` tree does not specify a value for a given key, the result of asking for that value will be `undefined`, which is a falsy value. This means it is not normally necessary to specify `false` values in the mask tree.
@@ -34,14 +34,14 @@ You can influence the result of a mask operation by [defining a default value](/
 
 ```ori
 // maskDefault.ori
-${ <samples.jse/help/maskDefault.ori> }
+${ <samples.jse/help/maskDefault.jse> }
 ```
 
 The above defines a mask where the default value is `true`, so all keys and values in the `source` tree will come through the mask unless specifically overridden with a falsy value.
 
 ```console
 $ ori maskDefault.ori/
-${ Origami.yaml(<samples.jse/help/maskDefault.ori/>) }
+${ Origami.yaml(<samples.jse/help/maskDefault.jse/>) }
 ```
 
 This flips the logic of `mask`: instead of only allowing truthy values in, this `mask` excludes falsy values.

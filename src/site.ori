@@ -1,0 +1,31 @@
+// Transform all the content documents into HTML pages
+Tree.deepMap(content/, { extension: ".md→.html", value: transform.ori })
+
+→ (pages) => (node:process).env.NODE_ENV === "production"
+    ? Tree.cache(pages) // Cache the pages in production
+    : pages // No caching in development
+
+// The top-level structure of the site
+→ (pages) => {
+  // Static files
+  ...client/
+  
+  // All generated pages
+  ...pages
+
+  // This components.js "bundle" is just concatenated files
+  components.js = Tree.concat(components/)
+
+  // Live demos
+  demos/ = {
+    aboutUs/ = demos/aboutUs/site.ori/
+  }
+
+  // Folder of search indexes and resources created on demand (but only once)
+  pagefind/ = Origami.once(() => package:@weborigami/pagefind(pages))
+
+  // Used by Netlify
+  file:_redirects
+
+  samples/ = samples.ori/
+}

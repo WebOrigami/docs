@@ -1,7 +1,7 @@
 - text: "site: namespace"
   href: index.html
-- href: indexBuiltin.html
-  text: index
+- href: indexPage.html
+  text: indexPage
 - href: jsonKeys.html
   text: jsonKeys
 - href: redirect.html

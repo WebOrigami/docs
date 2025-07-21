@@ -227,9 +227,9 @@ So the `team` formula transforms the team data into a corresponding tree of just
   </figure>
   <figure>
     ${ <svg.js>({
-      0/: "Alice"
-      1/: "Bob"
-      2/: "Carol"
+      "0/": "Alice"
+      "1/": "Bob"
+      "2/": "Carol"
     }) }
   </figure>
   <figcaption>Tree structure of teamData.yaml</figcaption>
@@ -242,9 +242,9 @@ So the `team` formula transforms the team data into a corresponding tree of just
   ${ <svg.js>({
     index.html: "<p>Hello, <strong>Alice</strong>!</p>"
     team = {
-      0/: "Alice"
-      1/: "Bob"
-      2/: "Carol"
+      "0/": "Alice"
+      "1/": "Bob"
+      "2/": "Carol"
     }
   }) }
 </figure>
@@ -272,9 +272,9 @@ The formula you give to `map` can be as complex as your situation requires.
   ${ <svg.js>({
     index.html = "<p>Hello, <strong>Alice</strong>!</p>"
     team = {
-      0/: "<p>Hello, <strong>Alice</strong>!</p>"
-      1/: "<p>Hello, <strong>Bob</strong>!</p>"
-      2/: "<p>Hello, <strong>Carol</strong>!</p>"
+      "0/": "<p>Hello, <strong>Alice</strong>!</p>"
+      "1/": "<p>Hello, <strong>Bob</strong>!</p>"
+      "2/": "<p>Hello, <strong>Carol</strong>!</p>"
     }
   }) }
 </figure>
@@ -474,9 +474,9 @@ This template displays a person's name in a header. You can use this in the `map
 
 <figure>
   ${ <svg.js>({
-    0/: "<h1>Alice</h1>"
-    1/: "<h1>Bob</h1>"
-    2/: "<h1>Carol</h1>"
+    "0/": "<h1>Alice</h1>"
+    "1/": "<h1>Bob</h1>"
+    "2/": "<h1>Carol</h1>"
   }) }
 </figure>
 
@@ -530,9 +530,9 @@ This will use `person.ori` to transform values just as before.
 <div class="sideBySide">
   <figure>
     ${ <svg.js>({
-      0/: "<p>Hello, <strong>Alice</strong>!<p>"
-      1/: "<p>Hello, <strong>Bob</strong>!<p>"
-      2/: "<p>Hello, <strong>Carol</strong>!<p>"
+      "0/": "<p>Hello, <strong>Alice</strong>!<p>"
+      "1/": "<p>Hello, <strong>Bob</strong>!<p>"
+      "2/": "<p>Hello, <strong>Carol</strong>!<p>"
     }) }
   </figure>
   <figure>

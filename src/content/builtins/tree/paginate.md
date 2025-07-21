@@ -31,7 +31,7 @@ Each page includes:
   </figure>
   <figure>
     ${ <svg.js>({
-      1: {
+      "1": {
         items: [
           "[data for France]"
           "[data for Greece]"
@@ -42,10 +42,10 @@ Each page includes:
         pageNumber: 1
         previousPage: null
       }
-      2: {
+      "2": {
         items: {
-          3: "[data for Portugal]"
-          4: "[data for Spain]"
+          "3": "[data for Portugal]"
+          "4": "[data for Spain]"
         }
         nextPage: null
         pageCount: 2

@@ -14,30 +14,30 @@ As a trivial example, this program defines a site whose `index.html` includes a 
 
 ```ori
 // public.ori
-${ <samples.jse/help/public.ori> }
+${ <samples.jse/help/public.jse> }
 ```
 
 Along with `index.html`, this tree will expose the `name` value:
 
 ```console
 $ ori public.ori/
-${ Origami.yaml(<samples.jse/help/public.ori>) }
+${ Origami.yaml(<samples.jse/help/public.jse>) }
 ```
 
 But if you don't want the `name` value to be exposed, you can move the portion of the tree you _do_ want to expose into a `public` subtree, and then arrange to return only that subtree:
 
 ```ori
 // private.ori
-${ <samples.jse/help/private.ori> }
+${ <samples.jse/help/private.jse> }
 ```
 
 This program effectively defines a [closure](<https://en.wikipedia.org/wiki/Closure_(computer_programming)>): inside the `public` subtree, the `name` property is available for use in calculations.
 
-The `/public` at the end of the program returns only the `public` subtree, so the internal `name` value is not available externally:
+The `.public` at the end of the program returns only the `public` subtree, so the internal `name` value is not available externally:
 
 ```console
 $ ori private.ori/
-${ Origami.yaml(<samples.jse/help/private.ori>) }
+${ Origami.yaml(<samples.jse/help/private.jse>) }
 ```
 
 ## Define a default value
