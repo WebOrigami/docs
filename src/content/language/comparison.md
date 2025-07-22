@@ -189,18 +189,32 @@ The above heuristics are generally accurate enough to correctly identify file pa
 
 By default Origami assumes that a path references the local file system. The head of the path (above, `src`) will be located using Origami [scope](scope.html). The remainder of the path will be used to traverse from that point to the indicated file.
 
-You can also use a URL as a path:
+Angle brackets are also useful if your path includes spaces or other characters that aren't valid in JavaScript identifiers:
+
+```ori
+<markdown/My File with Spaces (and Parens).md>
+```
+
+Although Origami can always recognize URLs that start with a protocol, you can also put a URL in angle brackets:
 
 ```ori
 <https://example.com>
 ```
 
-A path returns the raw contents of the indicated file. For a file path, this will be a [Uint8Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)); for a URL this will be an [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
+### Result of a path
+
+A path returns the raw contents of the indicated file. For a file path, this will be a [Uint8Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array). For a URL, this will be an [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
 
 Origami has built-in handlers that can parse the contents of common [file types](http://localhost:5000/language/fileTypes.html) such as JSON and markdown with front matter; see that page for details. This allows you to, for example, obtain your project's version number from its `package.json` file via:
 
+```ori
+(package.json).version
 ```
-<package.json>.version
+
+Or you can download a file and extract data from it:
+
+```ori
+(https://example.com/data.json).users[0].name
 ```
 
 ## Numbers
