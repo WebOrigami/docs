@@ -127,67 +127,54 @@ When evaluating Origami expressions on the command line, some additional [shell 
 
 ## Path literals
 
-You can directly place file paths and URLs directly in Origami expressions:
+You can directly place file names, file paths, and URLs directly in Origami expressions:
 
 ```ori
 Origami.mdHtml(ReadMe.md)
 ```
 
-Origami recognizes that `ReadMe.md` is a local file path and that `Origami.mdHtml` is a reference to the `mdHtml` property of the builtin `Origami` global object, so this passes the indicated file to Origami's builtin [`mdHtml`](/builtins/text/mdHtml.html) function.
+This expression passes the `ReadMe.md` file to Origami's builtin [`mdHtml`](/builtins/text/mdHtml.html) function.
 
-Origami identifies potential paths by looking for sequences of names that may contain periods, and where the names may be joined with slashes.
+The period in `Origami.mdHtml` is standard JavaScript syntax for property access, but the period in `ReadMe.md` is just a character in a file name. Origami determines how to parse the period with a heuristic.
 
-In some cases, Origami can unambiguously recognize a path. If a sequence starts with a protocol, it's a URL: `https://example.com`. If a sequence doesn't start with a protocol but ends with a trailing slash, it's a path to a local folder: `src/assets/`.
+### File name heuristic
 
-### Heuristics
+- In any expression `a.b.c`, Origami looks at the first part: `a`. If that is the name of a local or global variable (where local variables have priority over globals), Origami treats the `a` as a reference to that variable, and the `.b` and `.c` as property access.
+- If there's a local variable whose entire name is `a.b.c` (see [property keys with periods](#property-keys-with-periods)), Origami treats this as a reference to that local variable.
+- Otherwise Origami treats the name `a.b.c` as a reference to a local file or folder that will be located using Origami [scope](scope.html).
 
-But for something like `x/y.z`, Origami has to decide:
+In the example above, `Origami` is a global. In addition to the [standard JavaScript built-in objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects), Origami defines just two globals itself: `Origami` and `Tree`. Here `Origami.mdHtml` gets the `mdHtml` property of the global `Origami` object.
 
-- Is this a standard JavaScript expression dividing `x` by the object property `y.z`?
-- Or is this a file system path to a folder `x` containing a file `y.z`?
+In the example there are no local variables, and there is no global variable `ReadMe`, so Origami treats `ReadMe.md` as the name of a local file or folder.
 
-Origami answers this question with heuristics that leverage its knowledge of which global and local variables are defined. In addition to the [standard JavaScript built-in objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects), Origami defines two globals itself: `Origami` and `Tree`. You define local variables yourself whenever you create a function with named parameters or an object with property keys (see below).
+Origami allows the JavaScript math symbols `+`, `-`, `*`, and `~` to appear in a name: e.g., `package-lock.json`. To invoke a binary math operator, add spaces around it; see [Operators](#operators).
 
-**Step 1:** Look at the initial segment before the first slash (or if there's no slash, the whole sequence). If there is a local or global variable with that exact name, the whole sequence is a JavaScript expression.
+### Paths
 
-Example:
-
-```ori
-{
-  number.txt: "42"
-  parsed: parseInt(number.txt)
-}
-```
-
-Here the function call argument is `number.txt`. Because there's a local variable with that exact name, this sequence refers to that local variable. This will take precedence over any file system file called `number.txt`.
-
-**Step 2:** If the first segment contains a period, take portion that segment before the first period. If there's a local or global variable with that name, the whole sequence is a JavaScript expression.
-
-Example:
+A sequence of characters with slashes is treated as a _path_.
 
 ```ori
-Math.PI/2
+package.json/name
 ```
 
-Here Origami looks at the initial portion of the `Math.PI` segment, which begins with `Math`. That matches the name of the global [`Math`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math) object, so the whole sequence is interpreted as a regular JavaScript expression dividing pi by 2.
+In a path, the first part of the path (here, `package.json`) will _always_ be treated as a single name. If that name doesn't match a local variable, Origami assumes it's the name of a local file or folder.
 
-Step 3: If none of the above apply, the whole sequence is interpreted as a local file path.
+- A path beginning with `~/` will be taken as a reference to the user's home directory.
+- A path can't start with a slash. (In Origami, a sequence like `/test/` is a standard JavaScript regular expression.) If you want to reference an absolute path, use angle brackets (below).
 
-```ori
-feed.json
-```
+### URLs
 
-There is no local or global variable called `feed.json` or `feed`, so the sequence `feed.json` will be interpreted as a file path.
+If a sequence starts with a scheme (protocol) and a colon, Origami treats it as a URL: `https://example.com`.
 
 ### Angle brackets
 
-The above heuristics are generally accurate enough to correctly identify file paths and URLs. You can explicitly define a path or URL by enclosing it in `< >` angle brackets:
+You can explicitly define a path or URL by enclosing it in `< >` angle brackets:
 
 ```ori
 <src/data.json>
 ```
 
-By default Origami assumes that a path references the local file system. The head of the path (above, `src`) will be located using Origami [scope](scope.html). The remainder of the path will be used to traverse from that point to the indicated file.
+The first part of the path (here, `src`) will be resolved using Origami scope; the rest of the path keys will be used to traverse across folders and data to retrieve a final value.
 
 Angle brackets are also useful if your path includes spaces or other characters that aren't valid in JavaScript identifiers:
 
@@ -201,9 +188,12 @@ Although Origami can always recognize URLs that start with a protocol, you can a
 <https://example.com>
 ```
 
-### Result of a path
+### Result of a path literal
 
-A path returns the raw contents of the indicated file. For a file path, this will be a [Uint8Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array). For a URL, this will be an [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
+A path returns the raw contents of the indicated file.
+
+- For a file name or path, this will be a [Uint8Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array).
+- For a URL, this will be an [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
 
 Origami has built-in handlers that can parse the contents of common [file types](http://localhost:5000/language/fileTypes.html) such as JSON and markdown with front matter; see that page for details. This allows you to, for example, obtain your project's version number from its `package.json` file via:
 
@@ -246,16 +236,25 @@ Origami supports JavaScript [tagged templates](https://developer.mozilla.org/en-
 
 ## Operators
 
-Origami supports nearly all JavaScript [operators](operators.html), but does not currently support:
+Origami supports nearly all JavaScript [operators](operators.html), but does not currently support the optional chaining operator `x?.y`.
 
-- Optional chaining `x?.y`
+Origami requires spaces around binary math operators:
+
+- `x + y`
+- `x - y`
+- `x * y`
+- `x / y`
+
+Without the spaces, Origami interprets a slash as part of a path: `x/y` is a path. Similarly, math operators without surrounding spaces are treated as part of a file name: `package-lock.json` is a file name, not a subtraction operation.
+
+Spaces are not required around unary operators: `-foo` negates the value of `-foo`. If you mean to reference a local file, put the name in angle brackets: `<-foo>`.
 
 Because Origami only supports expressions and not statements, it does not support operators with side effects like:
 
 - Postfix and prefix operators `++`, `--`
 - Assignment operators `=`, `+=`, `-=`, etc.
 
-Instead of JavaScript's `import()` operator, use a `<path>` literal (below).
+Instead of JavaScript's `import()` operator, use a path literal (above).
 
 ## Implied exports
 
@@ -336,7 +335,7 @@ Function calls in Origami work like JavaScript:
 add(1, 2)
 ```
 
-You can call a function defined in a JavaScript file by importing it with a path and then invoking it. You can do this with an implicit path:
+You can call a function defined in a JavaScript file by referencing its file name and then invoking it with parentheses:
 
 ```ori
 greet.js("Alice")
@@ -348,7 +347,7 @@ or with an explicit path in angle brackets:
 <greet.js>("Alice")
 ```
 
-Origami assumes that any function might be `async`, so implicitly uses `await` when calling them.
+Origami assumes that any function might be asynchronous, so implicitly uses `await` when calling all functions.
 
 The Origami language runtime itself is written in JavaScript, so types such as numbers, strings, and objects are actually the same as in JavaScript. E.g., if you pass an Origami object to a JavaScript function, the value will be a regular JavaScript object.
 
