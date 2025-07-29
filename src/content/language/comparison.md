@@ -5,30 +5,39 @@ subtitle: Differences between Origami and JavaScript expressions
 
 If you're familiar with JavaScript, Origami is essentially **JavaScript expressions plus paths**. It also includes some minor adaptations that make it easier to define sites with expressions.
 
+# Quick reference
+
 <table>
   <tr>
     <th align="left"><b>Origami</b></th>
     <th align="left"><b>Equivalent JavaScript and notes</b></th>
   </tr>
   <tr>
-    <td><code>data.json</code></td>
+    <td><code>src/data.json</code></td>
     <td>
-      <code>await fs.readFile("data.json")</code>
-      <p>A file path in source code reads that file.</p>
+      <code>await fs.readFile("src/data.json")</code>
+      <p>A file name or path in source code reads that file.</p>
     </td>
   </tr>
   <tr>
-    <td><code>&lt;my-file.txt></code></td>
+    <td><code>3 / 2</code></td>
     <td>
-      <code>await fs.readFile("my-file.txt")</code>
-      <p>Use angle brackets if a path contains spaces or JS operators.</p>
+      <code>3 / 2</code> or <code>3/2</code>
+      <p>Slashes are used for paths; put spaces around them for division.</p>
+    </td>
+  </tr>
+  <tr>
+    <td><code>&lt;My File.txt></code></td>
+    <td>
+      <code>await fs.readFile("My File.txt")</code>
+      <p>Use angle brackets if a path contains spaces, parentheses, quotes, etc.</p>
     </td>
   </tr>
   <tr>
     <td><code>(data.json).name</code></td>
     <td>
       <code>JSON.parse(await fs.readFile("data.json")).name</code>
-      <p>Traversing into a file implicitly parses it.</p>
+      <p>Reading data out of a file implicitly parses it.</p>
     </td>
   </tr>
   <tr>
@@ -53,7 +62,10 @@ If you're familiar with JavaScript, Origami is essentially **JavaScript expressi
     </td>
   </tr>
   <tr>
-    <td><code>{ a: 1, b: a }</code></td>
+    <td><pre><code>{
+  a: 1,
+  b: a
+}</code></pre></td>
     <td>
       <pre><code>const a = 1;
 const object = {
@@ -65,14 +77,22 @@ const object = {
     </td>
   </tr>
   <tr>
-    <td><code>{ a = fn() }</code></td>
+    <td><pre><code>{
+  a = fn()
+}</code></pre></td>
     <td>
-      <code>{ get a() { return fn(); } }</code>
+      <pre><code>{
+  get a() {
+    return fn();
+  }
+}</code></pre>
       <p>Define a getter with an equals sign.</p>
     </td>
   </tr>
   <tr>
-    <td><code>{ (a): 1 }</code></td>
+    <td><pre><code>{
+  (a): 1
+}</code></pre></td>
     <td>
       <pre><code>Object.defineProperty(object, "a", {
   configurable: true,
@@ -101,7 +121,7 @@ const object = {
     <td><code>() => { a: 1 }</code></td>
     <td>
       <code>() => ({ a: 1 })</code>
-      <p>A function can directly return an object without parentheses.</p>
+      <p>A function can directly return an object without surrounding parentheses.</p>
     </td>
   </tr>
   <tr>
@@ -111,14 +131,14 @@ const object = {
     <td><pre><code>{
   "index.html": "Hi"
 }</code></pre>
-      <p>Object keys which are file names don't have to be quoted.</p>
+      <p>Object keys can be file names without having to be quoted.</p>
     </td>
   </tr>
   <tr>
     <td><code>a → b → c</code></td>
     <td>
       <code>c(b(a))</code>
-      <p>The pipe operator may clarify the order of function calls.</p>
+      <p>The pipe operator lets left-to-right order indicate the order of evaluation.</p>
     </td>
   </tr>
 </table>
@@ -135,17 +155,17 @@ Origami.mdHtml(ReadMe.md)
 
 This expression passes the `ReadMe.md` file to Origami's builtin [`mdHtml`](/builtins/text/mdHtml.html) function.
 
-The period in `Origami.mdHtml` is standard JavaScript syntax for property access, but the period in `ReadMe.md` is just a character in a file name. Origami determines how to parse the period with a heuristic.
-
 ### File name heuristic
 
-- In any expression `a.b.c`, Origami looks at the first part: `a`. If that is the name of a local or global variable (where local variables have priority over globals), Origami treats the `a` as a reference to that variable, and the `.b` and `.c` as property access.
+The period in `Origami.mdHtml` above is standard JavaScript syntax for property access, but the period in `ReadMe.md` is just a character in a file name. Origami determines how to parse the period with a heuristic:
+
+- In a sequence `a.b.c`, Origami looks at the part before the first period: `a`. If that is the name of a local variable, Origami treats the `a` as a reference to that variable, and the `.b` and `.c` as property access. Next Origami considers whether `a` is the name of a global variable, and if so the `a` references that global variable.
 - If there's a local variable whose entire name is `a.b.c` (see [property keys with periods](#property-keys-with-periods)), Origami treats this as a reference to that local variable.
 - Otherwise Origami treats the name `a.b.c` as a reference to a local file or folder that will be located using Origami [scope](scope.html).
 
 In the example above, `Origami` is a global. In addition to the [standard JavaScript built-in objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects), Origami defines just two globals itself: `Origami` and `Tree`. Here `Origami.mdHtml` gets the `mdHtml` property of the global `Origami` object.
 
-In the example there are no local variables, and there is no global variable `ReadMe`, so Origami treats `ReadMe.md` as the name of a local file or folder.
+In this example Origami treats `ReadMe.md` as the name of a local file or folder because there are no local variables and there is no global variable called `ReadMe`.
 
 Origami allows the JavaScript math symbols `+`, `-`, `*`, and `~` to appear in a name: e.g., `package-lock.json`. To invoke a binary math operator, add spaces around it; see [Operators](#operators).
 
@@ -157,10 +177,10 @@ A sequence of characters with slashes is treated as a _path_.
 package.json/name
 ```
 
-In a path, the first part of the path (here, `package.json`) will _always_ be treated as a single name. If that name doesn't match a local variable, Origami assumes it's the name of a local file or folder.
+In a path, the first part of the path (here, `package.json`) will _always_ be treated as a single name. If that name matches a local variable, then the path will be evaluated using that variable as the start. Otherwise Origami assumes the path starts with the name of a local file or folder.
 
 - A path beginning with `~/` will be taken as a reference to the user's home directory.
-- A path can't start with a slash. (In Origami, a sequence like `/test/` is a standard JavaScript regular expression.) If you want to reference an absolute path, use angle brackets (below).
+- If you want to reference an absolute path that starts with a slash, use angle brackets (below). This avoids conflict with JavaScript's regular expression syntax: `/test/`.
 
 ### URLs
 
@@ -207,11 +227,17 @@ Or you can download a file and extract data from it:
 (https://example.com/data.json).users[0].name
 ```
 
+You can also use angle brackets for this:
+
+```ori
+<https://example.com/data.json>.users[0].name
+```
+
 ## Numbers
 
 Origami supports integers and floating point numbers.
 
-Origami does not yet support binary, octal, hexadecimal numeric literals, nor does it support exponential notation. These forms of numbers rarely come up in the creation of websites, but if necessary you can pass them to the JavaScript [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) function:
+Origami does not yet support binary, octal, hexadecimal numeric literals, nor does it support exponential notation. If necessary you can create such numbers with the JavaScript [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) function:
 
 ```ori
 Number('0xf')     // ${ Number("0xf") }
@@ -247,7 +273,7 @@ Origami requires spaces around binary math operators:
 
 Without the spaces, Origami interprets a slash as part of a path: `x/y` is a path. Similarly, math operators without surrounding spaces are treated as part of a file name: `package-lock.json` is a file name, not a subtraction operation.
 
-Spaces are not required around unary operators: `-foo` negates the value of `-foo`. If you mean to reference a local file, put the name in angle brackets: `<-foo>`.
+Spaces are not required around unary operators: `-foo` negates the value of `foo`. If you mean to reference a local file that starts with a hyphen, put the name in angle brackets: `<-foo>`.
 
 Because Origami only supports expressions and not statements, it does not support operators with side effects like:
 
