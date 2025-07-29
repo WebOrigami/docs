@@ -157,10 +157,10 @@ This expression passes the `ReadMe.md` file to Origami's builtin [`mdHtml`](/bui
 
 ### File name heuristic
 
-The period in `Origami.mdHtml` above is standard JavaScript syntax for property access, but the period in `ReadMe.md` is just a character in a file name. Origami determines how to parse the period with a heuristic:
+The period in `Origami.mdHtml` above is standard JavaScript syntax for property access, but the period in `ReadMe.md` is just a character in a file name. Origami uses the following heuristic to determine how to interpret a period:
 
 - In a sequence `a.b.c`, Origami looks at the part before the first period: `a`. If that is the name of a local variable, Origami treats the `a` as a reference to that local variable, and the `.b` and `.c` as property access.
-- Next Origami considers whether `a` is the name of a global variable. If so, the `a` references that global variable and the `.b` and `.c` as property access.
+- Next Origami considers whether `a` is the name of a global variable. If so, the `a` references that global variable and the `.b` and `.c` are property access.
 - If there's a local variable whose entire name is `a.b.c` (see [property keys with periods](#property-keys-with-periods)), Origami treats this as a reference to that local variable.
 - Otherwise Origami treats the name `a.b.c` as a reference to a local file or folder that will be located using Origami [scope](scope.html).
 
