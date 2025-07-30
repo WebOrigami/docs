@@ -3,7 +3,9 @@ title: JavaScript comparison
 subtitle: Differences between Origami and JavaScript expressions
 ---
 
-If you're familiar with JavaScript, Origami is essentially **JavaScript expressions plus paths**. It also includes some minor adaptations that make it easier to define sites with expressions.
+If you're familiar with JavaScript, Origami is essentially **JavaScript expressions plus paths**. It also includes minor adaptations that make it easier to define sites with expressions.
+
+Origami language features are generally opt-in; you don't have to use them, and can write JavaScript expressions however you'd prefer. Origami does enforce one stylistic rule: you have to put spaces around math operators. Most JavaScript developers (and most code formatters) already do that, and in turns out that sites don't typically require extensive math in their construction.
 
 # Quick reference
 

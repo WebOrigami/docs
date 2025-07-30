@@ -9,10 +9,10 @@ Origami introduces some operators of its own, listed here alongside the standard
 | Operator                                                 | Example                       | Associativity |
 | :------------------------------------------------------- | :---------------------------- | :------------ |
 | Group                                                    | `(x)`                         | n/a           |
+| [Path](syntax.html#paths)                                | `x/y/z`                       | left-to-right |
 | Member access                                            | `x.y`                         | left-to-right |
 | Computed member access                                   | `x[y]`                        | n/a           |
 | Function call                                            | `x(y)`                        | n/a           |
-| [Path](syntax.html#paths)                                | `<x/y/z>`                     | n/a           |
 | Tagged template                                          | `` x`y` ``                    | n/a           |
 | Logical NOT                                              | `!x`                          | n/a           |
 | Bitwise NOT                                              | `~x`                          | n/a           |
