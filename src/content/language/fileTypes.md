@@ -140,11 +140,13 @@ $ ori greet.ori/greeting
 Hello, Bob!
 ```
 
-You can add another extension after `.ori` to create a file like `bold.ori.html`. This allows you to define a file type that your editor will recognize as, say, an HTML file, and at the same time be able to treat the file as an Origami [template document](templates.html#template-documents). When you evaluate the file, any Origami expressions in `\${ }` placeholders will be replaced with their results. You can also invoke the document as a function:
+You can add another extension after `.ori` to create a file like `bold.ori.html`. This allows you to define a file type that your editor will recognize as, say, an HTML file, and at the same time be able to treat the file as an Origami [template document](templates.html#template-documents). When you evaluate the file, any Origami expressions in `\${ }` placeholders will be replaced with their results.
+
+You can also invoke the document as a function with one argument that will be available as the variable `_`:
 
 ```html
 <!-- bold.ori.html -->
-${<samples.jse/templateDocuments/bold.ori.html> }
+${ <samples.jse/templateDocuments/bold.jse.html> }
 ```
 
 ```console

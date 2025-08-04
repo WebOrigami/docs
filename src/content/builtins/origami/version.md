@@ -7,5 +7,5 @@ Returns the current Origami version.
 
 ```console
 $ ori version
-${ version + "\n" }
+${ Origami.version + "\n" }
 ```
