@@ -1,4 +1,4 @@
-- text: "origami: namespace"
+- text: Origami commands
   href: index.html
 - href: basename.html
   text: basename
@@ -6,12 +6,24 @@
   text: builtins
 - href: config.html
   text: config
+- href: document.html
+  text: document
 - href: extension.html
   text: extension
+- href: image.html
+  text: image
+- href: indexPage.html
+  text: indexPage
+- href: inline.html
+  text: inline
 - href: json.html
   text: json
+- href: jsonKeys.html
+  text: jsonKeys
 - href: jsonParse.html
   text: jsonParse
+- href: mdHtml.html
+  text: mdHtml
 - href: naturalOrder.html
   text: naturalOrder
 - href: once.html
@@ -22,14 +34,22 @@
   text: post
 - href: project.html
   text: project
-- href: regexMatch.html
-  text: regexMatch
+- href: redirect.html
+  text: redirect
 - href: repeat.html
   text: repeat
+- href: rss.html
+  text: rss
 - href: shell.html
   text: shell
+- href: sitemap.html
+  text: sitemap
 - href: slash.html
   text: slash
+- href: slug.html
+  text: slug
+- href: static.html
+  text: static
 - href: stdin.html
   text: stdin
 - href: string.html
@@ -47,43 +67,13 @@
 
 - text: "&nbsp;"
 
-- text: "All namespaces"
-  href: /builtins
-- href: /builtins/dev/
-  text: "dev:"
-- href: /builtins/explore.html
-  text: "explore:"
-- href: /builtins/files.html
-  text: "files:"
-- href: /builtins/help.html
-  text: "help:"
-- href: /builtins/http.html
-  text: "http:"
-- href: /builtins/https.html
-  text: "https:"
-- href: /builtins/httpstree.html
-  text: "httpstree:"
-- href: /builtins/httptree.html
-  text: "httptree:"
-- href: /builtins/image/
-  text: "image:"
-- href: /builtins/inherited.html
-  text: "inherited:"
-- href: /builtins/js.html
-  text: "js:"
-- href: /builtins/new.html
-  text: "new:"
-- href: /builtins/node.html
-  text: "node:"
-- href: /builtins/origami/
-  text: "origami:"
-- href: /builtins/package.html
-  text: "package:"
-- href: /builtins/scope.html
-  text: "scope:"
-- href: /builtins/site/
-  text: "site:"
-- href: /builtins/text/
-  text: "text:"
-- href: /builtins/tree/
-  text: "tree:"
+- href: /builtins
+  text: "All namespaces"
+- href: /builtins/Dev/
+  text: Dev
+- href: /builtins/Origami/
+  text: Origami
+- href: /builtins/Protocol/
+  text: Protocol
+- href: /builtins/Tree/
+  text: Tree

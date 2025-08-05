@@ -1,0 +1,27 @@
+- text: Protocols
+  href: index.html
+- href: explore.html
+  text: explore
+- href: files.html
+  text: files
+- href: http.html
+  text: http
+- href: https.html
+  text: https
+- href: node.html
+  text: node
+- href: package.html
+  text: package
+
+- text: "&nbsp;"
+
+- href: /builtins
+  text: All namespaces
+- href: /builtins/Dev/
+  text: Dev
+- href: /builtins/Origami/
+  text: Origami
+- href: /builtins/Protocol/
+  text: Protocol
+- href: /builtins/Tree/
+  text: Tree

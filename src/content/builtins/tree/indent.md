@@ -1,6 +1,6 @@
 ---
 title: indent(strings, ...values)
-supertitle: "text:"
+supertitle: "Tree."
 ---
 
 The `indent` function normalizes indentation in template output.
@@ -86,9 +86,9 @@ This is both easier to read and more correct in its end-user visible result:
 Let's step through how `indent` processes templates. To focus on the HTML output we'll look at just the templates and drop the spaces in the Origami code. To make the remaining whitespace visible, we'll use · dot characters for spaces and ↵ characters for newlines:
 
 ```
-indent`↵
+Tree.indent`↵
 ··<section>↵
-····\${·Tree.map(files,(file)=>indent`↵
+····\${·Tree.map(files,(file)=>Tree.indent`↵
 ······<pre>↵
 ········\${file}↵
 ······</pre>↵
@@ -102,8 +102,8 @@ The `indent` calls proceed as follows:
 **Step 1:** Remove the leading newline from the outer and inner templates:
 
 ```
-indent`··<section>↵
-····\${·Tree.map(files,(file)=>indent`······<pre>↵
+Tree.indent`··<section>↵
+····\${·Tree.map(files,(file)=>Tree.indent`······<pre>↵
 ········\${file}↵
 ······</pre>↵
 ····`)·}↵
@@ -116,8 +116,8 @@ indent`··<section>↵
 **Step 3:** Remove the base indentation from all lines of the template. Here this shifts the entire block of text in the outer template left by two spaces. The inner `<pre>` template now has a base indentation of four spaces, so those lines will be shifted left by a total of four spaces.
 
 ```
-indent`<section>↵
-··\${·Tree.map(files,(file)=>indent`··<pre>↵
+Tree.indent`<section>↵
+··\${·Tree.map(files,(file)=>Tree.indent`··<pre>↵
 ····\${file}↵
 ··</pre>↵
 ··`)·}↵
@@ -132,8 +132,8 @@ indent`<section>↵
 **Step 5:** Now that the desired block indentation is known, remove it from each line inside the block placeholder. Also remove the whitespace before each block placeholder and the newline immediately following each block placeholder.
 
 ```
-indent`<section>↵
-\${Tree.map(files,(file)=>indent`<pre>↵
+Tree.indent`<section>↵
+\${Tree.map(files,(file)=>Tree.indent`<pre>↵
 \${file}</pre>↵`)}</section>↵
 `
 ```
