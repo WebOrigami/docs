@@ -1,13 +1,10 @@
 (namespace) => Tree.indent`
-  <div style="display: grid; gap: 0.25em 1em; grid-template-columns: auto auto 1fr;">
-    ${ Tree.map(<commands.jse>, (commandHelp, commandSlash) =>
+  <div style="display: grid; gap: 0.25em 1em; grid-template-columns: auto 1fr;">
+    ${ Tree.map(commands.jse, (commandHelp, commandSlash) =>
       namespace === "" || namespace === commandHelp.namespace
         ? Tree.indent`
             <div>
-              <span style="color: #bbb;">${ commandHelp.namespace }:</span>
-            </div>
-            <div>
-              <a href="${ commandHelp.url }">${
+              <span style="color: #bbb;">${ commandHelp.namespace }.</span><a href="${ commandHelp.url }">${
                 Origami.slash.remove(commandSlash)
               }</a><span style="color: #bbb;">${ commandHelp.args ?? "" }</span>
             </div>
