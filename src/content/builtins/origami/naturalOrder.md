@@ -19,7 +19,7 @@ Sorting these with `sort` sorts strings by their Unicode character values, which
 
 ```console
 $ ori sort unicodeSort.yaml
-${ Origami.yaml(Tree.sort(<samples.jse/help/unicodeSort.yaml>)) }
+${ Origami.yaml(Tree.sort(samples.jse/help/unicodeSort.yaml)) }
 ```
 
 The problem is that sorting by character values puts a `1` character before a `7` — but people read a `1` and `0` as the number 10, and expect that to come after the number 9.
@@ -28,5 +28,5 @@ If you would like to have strings that contain numbers sorted in (increasing) or
 
 ```console
 $ ori sort unicodeSort.yaml, { compare: naturalOrder }
-${ Origami.yaml(Tree.sort(<samples.jse/help/unicodeSort.yaml>, { compare: naturalOrder })) }
+${ Origami.yaml(Tree.sort(samples.jse/help/unicodeSort.yaml, { compare: naturalOrder })) }
 ```

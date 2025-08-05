@@ -5,7 +5,7 @@ title: The AsyncTree interface
 The last section noted that, in the context of our markdown-to-HTML problem, it's possible to conceptualize the markdown content as a tree:
 
 <figure>
-  ${ <svg.js>({
+  ${ svg.js({
     Alice.md: "Hello, **Alice**.",
     Bob.md: "Hello, **Bob**.",
     Carol.md: "Hello, **Carol**.",
@@ -52,7 +52,7 @@ Of the three data representations we looked at previously, the in-memory JavaScr
 ```${'js'}
 /* src/flat/object.js */
 
-${ <pattern.jse/flat/object.js> }
+${ pattern.jse/flat/object.js }
 ```
 
 This module exports an async tree that wraps the JavaScript object containing the markdown data. For now, this wrapper can only handle a flat object — later we will extend this to handle hierarchical objects.
@@ -64,7 +64,7 @@ The first thing we can do with this object tree is programmatically verify it im
 ```${'js'}
 /* src/flat/object.test.js */
 
-${ <pattern.jse/flat/object.test.js> }
+${ pattern.jse/flat/object.test.js }
 ```
 
 <span class="tutorialStep"></span> From inside the `src/flat` directory, run these tests to see that all test pass:

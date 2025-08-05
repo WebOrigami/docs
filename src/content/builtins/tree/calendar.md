@@ -15,18 +15,18 @@ Example: A site wants to define `year/month/day` routes for a given time range. 
 
 ```ori
 // calendar.ori
-${ <samples.jse/help/calendar.jse> }
+${ samples.jse/help/calendar.jse }
 ```
 
 This produces a skeleton calendar tree with the years, months, and days for that time range:
 
 ```console
 $ ori calendar.ori/
-${ Origami.yaml(<samples.jse/help/calendar.jse/>) }
+${ Origami.yaml(samples.jse/help/calendar.jse/) }
 ```
 
 <figure>
-${ <svg.js>(<samples.jse/help/calendar.jse/>) }
+${ svg.js(samples.jse/help/calendar.jse/) }
 </figure>
 
 When served, this would allow someone to browse to the page for a given date using a route like `/2025/03/03`.

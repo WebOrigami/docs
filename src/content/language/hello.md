@@ -64,7 +64,7 @@ Website creators refer to URLs as _routes_: when you navigate to a URL like [tea
 The site's complete tree is a little bigger than what's shown above, because it also includes CSS stylesheets, image files, or other resources referenced by the HTML:
 
 <figure>
-${ <svg.js>(Origami.yamlParse(`
+${ svg.js(Origami.yamlParse(`
   index.html: <h1>About Us</h1>
   team:
     Alice.html: <h1>Alice</h1>

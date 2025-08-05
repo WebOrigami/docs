@@ -7,14 +7,14 @@ This returns a new tree that groups the original keys and values into "pages": f
 
 ```console
 $ cat countries.yaml
-${ <samples.jse/cli/countries.yaml> }
+${ samples.jse/cli/countries.yaml }
 ```
 
 The above set of countries can be broken into pages of (up to) 3 items each:
 
 ```console
 $ ori paginate countries.yaml, 3
-${ Origami.yaml(Tree.paginate(<samples.jse/cli/countries.yaml>, 3)) }
+${ Origami.yaml(Tree.paginate(samples.jse/cli/countries.yaml, 3)) }
 ```
 
 Each page includes:
@@ -27,10 +27,10 @@ Each page includes:
 
 <div class="sideBySide">
   <figure>
-    ${ <svg.js>(Tree.map(<samples.jse/cli/countries.yaml>, (country) => `[data for ${country.name}]`)) }
+    ${ svg.js(Tree.map(samples.jse/cli/countries.yaml, (country) => `[data for ${country.name}]`)) }
   </figure>
   <figure>
-    ${ <svg.js>({
+    ${ svg.js({
       "1": {
         items: [
           "[data for France]"

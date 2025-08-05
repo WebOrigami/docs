@@ -5,4 +5,4 @@ subtitle: Work with trees
 
 ## Commands by name
 
-${ <commandList.jse/tree> }
+${ commandList.jse/tree }

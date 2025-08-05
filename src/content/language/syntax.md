@@ -165,14 +165,14 @@ The expression that defines the value of a property can reference other properti
 
 ```ori
 // localRef.ori
-${ <samples.jse/help/localRef.jse> }
+${ samples.jse/help/localRef.jse }
 ```
 
 This evaluates to:
 
 ```console
 $ ori localRef.ori/
-${ Origami.yaml(<samples.jse/help/localRef.jse/>) }
+${ Origami.yaml(samples.jse/help/localRef.jse/) }
 ```
 
 This type of local reference is not possible in languages like JavaScript.
@@ -181,14 +181,14 @@ Origami will avoid recursive local references. If you try to define a `name` pro
 
 ```ori
 // inherited.ori
-${ <samples.jse/help/inherited.jse> }
+${ samples.jse/help/inherited.jse }
 ```
 
 Here the expression `\${name}` will resolve to the inherited `name` defined in the parent object.
 
 ```console
 $ ori inherited.ori
-${ Origami.yaml(<samples.jse/help/inherited.jse/>) }
+${ Origami.yaml(samples.jse/help/inherited.jse/) }
 ```
 
 ## Object property getters
@@ -211,21 +211,21 @@ One use for non-enumerable properties is in calculating a value that will be use
 
 ```ori
 // hidden.ori
-${ <samples.jse/help/hidden.jse> }
+${ samples.jse/help/hidden.jse }
 ```
 
 Here, the declaration of the `company` property is in parentheses, so it is non-enumerable. It can be referenced by other object properties, but will not be included in the object's keys. This means it won't be shown when the object is displayed:
 
 ```console
 $ ori hidden.ori/
-${ Origami.yaml(<samples.jse/help/hidden.jse/>) }
+${ Origami.yaml(samples.jse/help/hidden.jse/) }
 ```
 
 Marking a property as non-enumerable only affects whether it is included in the object's list of keys; a non-enumerable property is still accessible if one knows the property name:
 
 ```console
 $ ori hidden.ori/company
-${ Origami.yaml(<samples.jse/help/hidden.jse/company>) }
+${ Origami.yaml(samples.jse/help/hidden.jse/company) }
 ```
 
 ## Object nesting
@@ -272,8 +272,8 @@ You can use `...` three periods or the single `…` ellipsis character to merge 
 
 ```console
 $ ori tree1.yaml
-${ <samples.jse/help/merge/tree1.yaml> }$ ori tree2.yaml
-${ <samples.jse/help/merge/tree2.yaml> }$ ori { ...tree1.yaml, ...tree2.yaml }
+${ samples.jse/help/merge/tree1.yaml }$ ori tree2.yaml
+${ samples.jse/help/merge/tree2.yaml }$ ori { ...tree1.yaml, ...tree2.yaml }
 ${ Origami.yaml({
   ...<samples.jse/help/merge/tree1.yaml>
   ...<samples.jse/help/merge/tree2.yaml>

@@ -71,7 +71,7 @@ export default interface AsyncMutableTree extends AsyncTree {
 Suppose we want to represent the small tree used in the [introduction](/cli/) to the ori command-line tool:
 
 <figure>
-${ <svg.js>(<samples.jse/cli/greetings.yaml>) }
+${ svg.js(samples.jse/cli/greetings.yaml) }
 </figure>
 
 The small circle on the left is a tree node with three keys ("Alice", "Bob", "Carol") that correspond to three values ("Hello, Alice", etc.). This can be represented in the `AsyncTree` interface as:
@@ -120,7 +120,7 @@ Async trees can be _deep_, meaning that values in the tree may themselves be sub
 Deep async trees with string keys have the option of following the trailing slash convention: if a key represents a subtree, the key can end in a trailing slash, like `subfolder/` in the following tree.
 
 <figure>
-${ <svg.js>({
+${ svg.js({
 a: 1
 subfolder/: { b: 2 }
 }) }

@@ -5,4 +5,4 @@ subtitle: Format and resize images
 
 ## Commands by name
 
-${ <commandList.jse/image> }
+${ commandList.jse/image }

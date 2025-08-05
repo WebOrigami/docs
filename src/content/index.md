@@ -6,7 +6,7 @@ area: ""
 fileName: index.html
 ---
 
-${ <templates/blocks.jse>(areaLinks) }
+${ templates/blocks.jse(areaLinks) }
 
 Origami is a new programming language that complements HTML and CSS for making small- to medium-scale websites.
 

@@ -7,18 +7,18 @@ This returns a deep tree that returns the indicated `value` for any path.
 
 ```ori
 // constant.ori
-${ <samples.jse/help/constant.jse> }
+${ samples.jse/help/constant.jse }
 ```
 
 This always returns the value 1 for any path:
 
 ```console
 $ ori constant.ori/a
-${ Origami.yaml(<samples.jse/help/constant.jse/a>) }
+${ Origami.yaml(samples.jse/help/constant.jse/a) }
 $ ori constant.ori/b
-${ Origami.yaml(<samples.jse/help/constant.jse/b>) }
+${ Origami.yaml(samples.jse/help/constant.jse/b) }
 $ ori constant.ori/a/b/c
-${ Origami.yaml(<samples.jse/help/constant.jse/a/b/c>) }
+${ Origami.yaml(samples.jse/help/constant.jse/a/b/c) }
 ```
 
 ## Set a default value
@@ -27,18 +27,18 @@ One use for `constant` is to [define a default value for a tree](/language/idiom
 
 ```ori
 // deepDefault.ori
-${ <samples.jse/help/deepDefault.jse> }
+${ samples.jse/help/deepDefault.jse }
 ```
 
 This provides the default value of zero for any level of the tree:
 
 ```console
 $ ori deepDefault.ori/a
-${ Origami.yaml(<samples.jse/help/deepDefault.jse/a>) }
+${ Origami.yaml(samples.jse/help/deepDefault.jse/a) }
 $ ori deepDefault.ori/x
-${ Origami.yaml(<samples.jse/help/deepDefault.jse/x>) }
+${ Origami.yaml(samples.jse/help/deepDefault.jse/x) }
 $ ori deepDefault.ori/b/c
-${ Origami.yaml(<samples.jse/help/deepDefault.jse/b/c>) }
+${ Origami.yaml(samples.jse/help/deepDefault.jse/b/c) }
 $ ori deepDefault.ori/b/y
-${ Origami.yaml(<samples.jse/help/deepDefault.jse/b/y>) }
+${ Origami.yaml(samples.jse/help/deepDefault.jse/b/y) }
 ```

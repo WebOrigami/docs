@@ -7,18 +7,18 @@ Treats the string keys of `tree` as [regular expressions](https://developer.mozi
 
 ```ori
 // regExpKeys.ori
-${ <samples.jse/help/regExpKeys.ori> }
+${ samples.jse/help/regExpKeys.jse }
 ```
 
 This can be used to match against the regular expressions:
 
 ```console
 $ ori regExpKeys.ori/abc
-${ Origami.yaml(<samples.jse/help/regExpKeys.ori/abc>) }
+${ Origami.yaml(samples.jse/help/regExpKeys.jse/abc) }
 $ ori regExpKeys.ori/123
-${ Origami.yaml(<samples.jse/help/regExpKeys.ori/123>) }
+${ Origami.yaml(samples.jse/help/regExpKeys.jse/123) }
 $ ori regExpKeys.ori/__
-${ Origami.yaml(<samples.jse/help/regExpKeys.ori/__>) }
+${ Origami.yaml(samples.jse/help/regExpKeys.jse/__) }
 ```
 
 You can use `regExpKeys` with [`Tree.mask`](mask.html#mask-with-globs-and-regular-expressions) to mask values based on regular expression matches.

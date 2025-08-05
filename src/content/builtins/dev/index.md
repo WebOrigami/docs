@@ -5,4 +5,4 @@ subtitle: Develop and debug Origami projects
 
 ## Commands by name
 
-${ <commandList.jse/dev> }
+${ commandList.jse/dev }

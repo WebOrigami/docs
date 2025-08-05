@@ -16,35 +16,35 @@ Regardless of a file's representation, you can use Origami path syntax to traver
 For example, suppose you have a JSON file `pet.json` containing
 
 ```json
-${ <samples.jse/help/pet.json> }
+${ samples.jse/help/pet.json }
 ```
 
 If you use the `ori` [CLI](/cli) to display this file, you will see the plain file contents:
 
 ```console
 $ ori pet.json
-${ Tree.json(<samples.jse/help/pet.json>) + "\n" }
+${ Tree.json(samples.jse/help/pet.json) + "\n" }
 ```
 
 You can unpack this file and traverse into its data with a slash path:
 
 ```console
 $ ori pet.json/name
-${ <samples.jse/help/pet.json/name> + "\n" }
+${ samples.jse/help/pet.json/name + "\n" }
 ```
 
 Ending a path with a slash unpacks the file and returns all the data. By default, `ori` will display it in YAML format:
 
 ```console
 $ ori pet.json/
-${ Origami.yaml(<samples.jse/help/pet.json>) }
+${ Origami.yaml(samples.jse/help/pet.json) }
 ```
 
 Most builtin functions that work on data will implicitly unpack a file in order to work on it. For example, you can hand the above JSON file directly to the [`keys`](/builtins/tree/keys.html) function to view the keys of the data in that file, without having to append a `/` trailing slash to the `pet.json` file name:
 
 ```console
 $ ori keys pet.json
-${ Origami.yaml(Tree.keys(<samples.jse/help/pet.json>)) }
+${ Origami.yaml(Tree.keys(samples.jse/help/pet.json)) }
 ```
 
 If you're writing Origami that works with a file and needs to explicitly unpack it, you can call the [`unpack`](/builtins/origami/unpack.html) builtin function.
@@ -74,14 +74,14 @@ Origami can unpack a `.csv` file as containing [comma-separated values](https://
 If `catBreeds.csv` contains:
 
 ```csv
-${ <samples.jse/help/catBreeds.csv> }
+${ samples.jse/help/catBreeds.csv }
 ```
 
 then this can be unpacked to an array of objects:
 
 ```console
 $ ori catBreeds.csv/
-${ Origami.yaml(<samples.jse/help/catBreeds.csv>) }
+${ Origami.yaml(samples.jse/help/catBreeds.csv) }
 ```
 
 For formatting an array of objects as CSV, see [`origami:csv`](/builtins/origami/csv.html).
@@ -146,12 +146,12 @@ You can also invoke the document as a function with one argument that will be av
 
 ```html
 <!-- bold.ori.html -->
-${ <samples.jse/templateDocuments/bold.jse.html> }
+${ samples.jse/templateDocuments/bold.jse.html }
 ```
 
 ```console
 $ ori "bold.ori.html('Hooray')"
-${ <samples.jse/templateDocuments/bold.jse.html>("Hooray") }
+${ samples.jse/templateDocuments/bold.jse.html("Hooray") }
 ```
 
 ### Text files
@@ -214,7 +214,7 @@ Suppose your project has `.user` files that define data about users. For simplic
 You can define a JavaScript file `user.handler.js`:
 
 ```${"js"}
-${ <samples.jse/cli/user.handler.js> }
+${ samples.jse/cli/user.handler.js }
 ```
 
 The `mediaType` declaration tells the Origami server to transmit any `.user` files as JSON. The `unpack` method defines how to turn the file contents into data. A file may be a `Buffer`, `ArrayBuffer`, or other data type depending on where it is stored. The `toString()` utility function in Origami converts any of those types to plain text. The `JSON.parse()` call then parses the text into data.
@@ -235,11 +235,11 @@ With that, Origami will call your custom file handler whenever you reference a `
 
 ```console
 $ cat alice.user
-${ <samples.jse/cli/alice.user> }
+${ samples.jse/cli/alice.user }
 $ ori alice.user/
-${ Origami.yaml(Origami.jsonParse(<samples.jse/cli/alice.user>)) }
+${ Origami.yaml(Origami.jsonParse(samples.jse/cli/alice.user)) }
 $ ori alice.user/name
-${ Origami.jsonParse(<samples.jse/cli/alice.user>).name + "\n" }
+${ Origami.jsonParse(samples.jse/cli/alice.user).name + "\n" }
 ```
 
 ### Defining a handler for a template language

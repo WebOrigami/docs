@@ -19,12 +19,12 @@ Example: a file contains a tiny site with an `index.html` page that links to pag
 
 ```ori
 // missingPage.ori
-${ <samples.jse/help/missingPage.jse> }
+${ samples.jse/help/missingPage.jse }
 ```
 
 ```console
 $ ori audit missingPage.ori
-${ Origami.yaml(Origami.audit(<samples.jse/help/missingPage.jse>)) }
+${ Origami.yaml(Origami.audit(samples.jse/help/missingPage.jse)) }
 ```
 
 Here `audit` reports that `a.html` has a link to a non-existent page `b.html`.

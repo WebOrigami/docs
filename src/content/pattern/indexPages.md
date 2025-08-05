@@ -18,13 +18,13 @@ First let's write a function that returns a reasonable default index page for a 
 ```${'js'}
 /* In src/index/indexPages.js */
 
-${ <js/codeFunctions.js>(<pattern.jse/index/indexPages.js>).indexPage }
+${ js/codeFunctions.js(pattern.jse/index/indexPages.js).indexPage }
 ```
 
 If the little `more` branch of our HTML tree looks like this:
 
 <figure>
-${ <svg.js>(<pattern.jse/index/object.js/more>) }
+${ svg.js(pattern.jse/index/object.js/more) }
 </figure>
 
 Then invoking `indexPage` on this branch will return:
@@ -43,14 +43,14 @@ Using the default `indexPage` function above, let's now create a tree transform.
 ```${'js'}
 /* In src/index/indexPages.js */
 
-${ <js/codeFunctions.js>(<pattern.jse/index/indexPages.js>)["@prologue"] }
-${ <js/codeFunctions.js>(<pattern.jse/index/indexPages.js>)["@epilogue"] }
+${ js/codeFunctions.js(pattern.jse/index/indexPages.js)["@prologue"] }
+${ js/codeFunctions.js(pattern.jse/index/indexPages.js)["@epilogue"] }
 ```
 
 If we use this to transform the `more` branch of the HTML tree, the transformed tree now includes an `index.html` page:
 
 <figure>
-${ <svg.js>(<pattern.jse/index/indexPages.js>(<pattern.jse/index/htmlObject.js/more>)) }
+${ svg.js(<pattern.jse/index/indexPages.js>(pattern.jse/index/htmlObject.js/more)) }
 </figure>
 
 ## Incorporate the index page transform
@@ -60,7 +60,7 @@ We can apply this `indexPages` transform on top of our object, file, and functio
 ```${'js'}
 /* src/index/htmlFiles.js */
 
-${ <pattern.jse/index/htmlFiles.js> }
+${ pattern.jse/index/htmlFiles.js }
 ```
 
 These transforms are just functions, so we can apply as many tree transforms as we want.
