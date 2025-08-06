@@ -96,7 +96,7 @@ You can perform a `copy` operation like the one in this example in preparation f
 
 ## Inspect a live web site
 
-<span class="tutorialStep"></span> The web site you're reading now supports viewing its contents as an async tree, so you can reference it directly in ori. For example, this site includes a route `/samples/greetings/`. You can pass that URL to ori with the custom [httpstree:](/builtins/httpstree.html) protocol to treat that route as an async tree, and display all the files at that route:
+<span class="tutorialStep"></span> The web site you're reading now supports viewing its contents as an async tree, so you can reference it directly in ori. For example, this site includes a route `/samples/greetings/`. You can pass that URL to ori with the custom [httpstree:](/builtins/Protocol/httpstree.html) protocol to treat that route as an async tree, and display all the files at that route:
 
 ```console
 $ ori httpstree://weborigami.org/samples/greetings/

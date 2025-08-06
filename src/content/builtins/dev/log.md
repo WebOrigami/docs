@@ -30,7 +30,7 @@ One use for `log` is watching progress in a [`map`](/builtins/tree/map.html):
 // test.ori
 map(
   ["Alice", "Bob", "Carol"]
-  (name, index) => log(`Hello, \${name}!, `Processing \${index}`)
+  (name, index) => Dev.log(`Hello, \${name}!, `Processing \${index}`)
 )
 ```
 
@@ -52,7 +52,7 @@ You can also use the `,` comma operator to place a `log` expression before some 
 // test.ori
 map(
   ["Alice", "Bob", "Carol"]
-  (name, index) => (log(`Processing \${index}`), `Hello, \${name}!`)
+  (name, index) => (Dev.log(`Processing \${index}`), `Hello, \${name}!`)
 )
 ```
 

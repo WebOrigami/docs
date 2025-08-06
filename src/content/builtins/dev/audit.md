@@ -3,7 +3,7 @@ title: audit(tree)
 supertitle: "Dev."
 ---
 
-This audits the site defined by the given tree for broken internal links. It first crawls the site using the same crawler as [`dev:crawl`](crawl.html); see that page for details on what kinds of files and references are crawled.
+This audits the site defined by the given tree for broken internal links. It first crawls the site using the same crawler as [`crawl`](crawl.html); see that page for details on what kinds of files and references are crawled.
 
 - The audit only verifies links to internal pages and resources. It does not verify links to external pages and resources, i.e., outside the site being audited.
 - The audit process currently ignores errors. If, when attempting to retrieve a given resource, an error is generated, that resource will be skipped.
@@ -18,13 +18,13 @@ You can give `audit` the top-level file that defines your site's root.
 Example: a file contains a tiny site with an `index.html` page that links to page `a.html` that links to `b.html`:
 
 ```ori
-// missingPage.ori
-${ samples.jse/help/missingPage.jse }
+// hasMissingPage.ori
+${ samples.jse/help/hasMissingPage.jse }
 ```
 
 ```console
-$ ori audit missingPage.ori
-${ Origami.yaml(Origami.audit(samples.jse/help/missingPage.jse)) }
+$ ori audit hasMissingPage.ori
+${ Origami.yaml(Dev.audit(samples.jse/help/hasMissingPage.jse)) }
 ```
 
 Here `audit` reports that `a.html` has a link to a non-existent page `b.html`.
@@ -39,7 +39,7 @@ Auditing a site directly (via the `.ori` example above) lets you audit it withou
 
 ## Auditing a live site
 
-Using Origami's [`httpstree:`](/builtins/httpstree.html) protocol, you can treat a live site as a traversable tree that `audit` can audit.
+Using Origami's [`httpstree:`](/builtins/Protocol/httpstree.html) protocol, you can treat a live site as a traversable tree that `audit` can audit.
 
 Example: The venerable [Space Jam](https://www.spacejam.com/1996/) web site has hundreds of pages which, despite being written by hand, contain very few broken internal links. As of this writing (April 2025), an audit of that site produces the following:
 

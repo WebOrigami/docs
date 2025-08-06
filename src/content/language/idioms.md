@@ -99,7 +99,7 @@ ${ samples.jse/help/notFound.jse }
 
 ## Extract specific resources from a site
 
-The [`httpstree:`](/builtins/httpstree.html) protocol lets you treat a live website as a tree. Since sites don't generally make their keys (routes) available, you can only use such a tree to obtain values at known routes.
+The [`httpstree:`](/builtins/Protocol/httpstree.html) protocol lets you treat a live website as a tree. Since sites don't generally make their keys (routes) available, you can only use such a tree to obtain values at known routes.
 
 That said, if you know the routes you want to extract from a site, you can combine `httpstree:` with [`Tree.deepMerge`](/builtins/tree/deepMerge.html) to extract those specific routes.
 

@@ -6,6 +6,8 @@
   text: breakpoint
 - href: changes.html
   text: changes
+- href: clear.html
+  text: clear
 - href: copy.html
   text: copy
 - href: crawl.html
@@ -14,6 +16,8 @@
   text: debug
 - href: explore.html
   text: explore
+- href: keys.html
+  text: keys
 - href: log.html
   text: log
 - href: serve.html
