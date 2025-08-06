@@ -12,7 +12,7 @@ Converts the indicated objects to strings, then returns the concatenated strings
 To concatenate two strings:
 
 ```console
-$ ori "concat 'foo', 'bar'"
+$ ori "Tree.concat 'foo', 'bar'"
 foobar
 ```
 
@@ -23,6 +23,6 @@ $ cat greetings.yaml
 Alice: Hello, Alice.
 Bob: Hello, Bob.
 Carol: Hello, Carol.
-$ ori concat greetings.yaml
+$ ori Tree.concat greetings.yaml
 Hello, Alice.Hello, Bob.Hello, Carol.
 ```

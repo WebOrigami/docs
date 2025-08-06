@@ -21,7 +21,7 @@ Suppose a site has the following structure:
 Applying the `jsonKeys` function to this tree will add the `.keys.json` files at all levels:
 
 ```console
-$ ori jsonKeys site.ori
+$ ori Origami.jsonKeys site.ori
 about:
   index.html: About Us
   .keys.json: '["index.html"]'

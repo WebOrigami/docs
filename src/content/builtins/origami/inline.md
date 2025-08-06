@@ -18,7 +18,7 @@ Hello, \$\{ name }!
 Then invoking inline with this file produces:
 
 ```console
-$ ori inline inline.md
+$ ori Origami.inline inline.md
 ---
 name: world
 ---
@@ -42,7 +42,7 @@ Among other things, you can use `inline` to include one document in another. For
 ```
 
 ```console
-$ ori inline page.html
+$ ori Origami.inline page.html
 <html>
   <body>
     <p>Hello, world.</p>

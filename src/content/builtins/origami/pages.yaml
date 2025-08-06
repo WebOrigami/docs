@@ -16,8 +16,6 @@
   text: indexPage
 - href: inline.html
   text: inline
-- href: json.html
-  text: json
 - href: jsonKeys.html
   text: jsonKeys
 - href: jsonParse.html
@@ -50,16 +48,12 @@
   text: slug
 - href: static.html
   text: static
-- href: stdin.html
-  text: stdin
 - href: string.html
   text: string
 - href: toFunction.html
   text: toFunction
 - href: unpack.html
   text: unpack
-- href: version.html
-  text: version
 - href: yaml.html
   text: yaml
 - href: yamlParse.html

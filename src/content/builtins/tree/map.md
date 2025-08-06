@@ -16,7 +16,7 @@ $ cat greetings.yaml
 ${ samples.jse/cli/greetings.yaml
 }$ cat uppercase.js
 ${ samples.jse/cli/uppercase.js
-}$ ori map greetings.yaml, uppercase.js
+}$ ori Tree.map greetings.yaml, uppercase.js
 ${ Origami.yaml(Tree.map(<samples.jse/cli/greetings.yaml>, samples.jse/cli/uppercase.js)) }
 ```
 
@@ -40,7 +40,7 @@ The mapping function is typically a JavaScript function, an Origami [lambda](/la
 In the basic form of `map` shown above, the second parameter is some kind of mapping function that will be applied to the tree's values. You can also use an expanded form of `map` in which the second parameter is a collection of options:
 
 ```console
-$ ori map greetings.yaml, { value: uppercase.js }
+$ ori Tree.map greetings.yaml, { value: uppercase.js }
 ```
 
 The options include:
@@ -62,7 +62,7 @@ When `map` calls a function to map a key or value, it passes the function three 
 The function being called does not need to use all three arguments. The following example only needs the value, so it only defines a parameter for the first argument:
 
 ```console
-$ ori "map(greetings.yaml, (greeting) => uppercase.js(greeting))"
+$ ori "Tree.map(greetings.yaml, (greeting) => uppercase.js(greeting))"
 ${ Origami.yaml(Tree.map(<samples.jse/cli/greetings.yaml>, (greeting) => samples.jse/cli/uppercase.js(greeting))) }
 ```
 
@@ -71,7 +71,7 @@ ${ Origami.yaml(Tree.map(<samples.jse/cli/greetings.yaml>, (greeting) => samples
 This function wants to reference the key being mapped (a person's name). That will be passed as the second argument, so the function defines two parameters:
 
 ```console
-$ ori "map(greetings.yaml, (greeting, name) => uppercase.js(name))"
+$ ori "Tree.map(greetings.yaml, (greeting, name) => uppercase.js(name))"
 ${ Origami.yaml(Tree.map(<samples.jse/cli/greetings.yaml>, (greeting, name) => samples.jse/cli/uppercase.js(name))) }
 ```
 
@@ -80,7 +80,7 @@ A common case for mapping keys is turning some data into a file name. For exampl
 ```console
 $ cat greetings.yaml
 ${ samples.jse/cli/greetings.yaml
-}$ ori "map(greetings.yaml, { key: (greeting, name) => `\${ name }.html` })"
+}$ ori "Tree.map(greetings.yaml, { key: (greeting, name) => `\${ name }.html` })"
 ${ Origami.yaml(Tree.map(samples.jse/cli/greetings.yaml, { key: (greeting, name) => `${ name }.html` })) }
 ```
 
@@ -127,7 +127,7 @@ So you can also write the above example as:
 ```console
 $ cat greetings.yaml
 ${ samples.jse/cli/greetings.yaml
-}$ ori "map(greetings.yaml, { extension: '→.html' })"
+}$ ori "Tree.map(greetings.yaml, { extension: '→.html' })"
 ${ Origami.yaml(Tree.map(samples.jse/cli/greetings.yaml, { key: (greeting, name) => `${ name }.html` })) }
 ```
 

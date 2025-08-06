@@ -11,9 +11,9 @@ Treats the keys of `tree` as simple [glob](<https://en.m.wikipedia.org/wiki/Glob
 
 ```console
 $ cat globKeys.yaml
-${ samples.jse/help/globKeys.yaml }$ ori "globKeys(globKeys.yaml)/foo.jpg"
+${ samples.jse/help/globKeys.yaml }$ ori "Tree.globKeys(globKeys.yaml)/foo.jpg"
 false
-$ ori "globKeys(globKeys.yaml)/foo.txt"
+$ ori "Tree.globKeys(globKeys.yaml)/foo.txt"
 true
 ```
 

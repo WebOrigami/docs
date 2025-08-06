@@ -6,8 +6,6 @@ supertitle: "Origami."
 Returns an array of size `count` filled with copies of the given `obj`.
 
 ```console
-$ ori repeat 3, "'Hello'"
-- Hello
-- Hello
-- Hello
+$ ori Origami.repeat 3, "'Hello'"
+${ Origami.yaml(Origami.repeat(3, "Hello")) }
 ```

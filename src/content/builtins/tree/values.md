@@ -7,7 +7,7 @@ Returns an array of the top-level values in the tree.
 
 ```console
 $ cat letters.yaml
-${ samples.jse/help/letters.yaml }$ ori values letters.yaml
+${ samples.jse/help/letters.yaml }$ ori Tree.values letters.yaml
 ${ Origami.yaml(Tree.values(samples.jse/help/letters.yaml)) }
 ```
 

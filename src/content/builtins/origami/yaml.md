@@ -14,7 +14,7 @@ $ ori letters.json
   "b": "The letter B",
   "c": "The letter C"
 }
-$ ori yaml letters.json
+$ ori Origami.yaml letters.json
 a: The letter A
 b: The letter B
 c: The letter C

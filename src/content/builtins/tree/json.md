@@ -1,6 +1,6 @@
 ---
 title: json(object)
-supertitle: "Origami."
+supertitle: "Tree."
 ---
 
 Render the contents of the object in JSON format.
@@ -9,6 +9,6 @@ The ori tool uses YAML as its default output format, so you can use the `json` f
 
 ```console
 $ ori greetings.yaml
-${ samples.jse/cli/greetings.yaml }$ ori json greetings.yaml
+${ samples.jse/cli/greetings.yaml }$ ori Tree.json greetings.yaml
 ${ Tree.json(samples.jse/cli/greetings.yaml) + "\n" }
 ```

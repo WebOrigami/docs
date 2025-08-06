@@ -56,6 +56,8 @@
   text: isTraversable
 - href: isTreelike.html
   text: isTreelike
+- href: json.html
+  text: json
 - href: keys.html
   text: keys
 - href: length.html
@@ -100,8 +102,6 @@
   text: traverseOrThrow
 - href: traversePath.html
   text: traversePath
-- href: tree.html
-  text: tree
 - href: values.html
   text: values
 

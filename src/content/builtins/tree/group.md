@@ -15,7 +15,7 @@ ${ samples.jse/help/books.yaml }
 The books can then be grouped by genre. Here the `=_/genre` function is shorthand for `(book) => book/genre`. This function lets the `group` built-in know what the books should be grouped by.
 
 ```console
-$ ori group books.yaml, =_.genre
+$ ori Tree.group books.yaml, =_.genre
 ${ Origami.yaml(Tree.group(samples.jse/help/books.yaml, (book) => book.genre)) }
 ```
 

@@ -15,14 +15,14 @@ ${ samples.jse/help/hokusai.md }
 then invoking `document` on it returns a plain object with the original body text as a `text` property:
 
 ```console
-$ ori document hokusai.md
+$ ori Origami.document hokusai.md
 ${ Origami.yaml(Origami.document(samples.jse/help/hokusai.md)) }
 ```
 
 You can also attach data:
 
 ```console
-$ ori document hokusai.md, { author: "'Katsushika Hokusai'" }
+$ ori Origami.document hokusai.md, { author: "'Katsushika Hokusai'" }
 ${ Origami.yaml(Origami.document(samples.jse/help/hokusai.md, { author: "Katsushika Hokusai" })) }
 ```
 
@@ -36,7 +36,7 @@ ${ samples.jse/help/basho.md }
 Then calling `document` on it returns a plain object with the front matter data as properties, plus the body text as a `text` property:
 
 ```console
-$ ori document basho.md
+$ ori Origami.document basho.md
 ${ Origami.yaml(samples.jse/help/basho.md/) }
 ```
 

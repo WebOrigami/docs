@@ -11,7 +11,7 @@ For example, in an Origami `.ori` file you can write:
 
 ```ori
 public = {
-  listing.html = Tree.indexPage(public)
+  listing.html = Origami.indexPage(public)
 }
 ```
 

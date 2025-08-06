@@ -15,6 +15,6 @@ ${ samples.jse/help/tinySite.jse }
 then calling `sitemap` generates:
 
 ```console
-$ ori sitemap tinySite.ori, "'https://mysite.org'"
+$ ori Origami.sitemap tinySite.ori, "'https://mysite.org'"
 ${ Origami.sitemap(samples.jse/help/tinySite.jse, "https://mysite.org") }
 ```

@@ -13,7 +13,7 @@ ${ samples.jse/help/catBreeds.yaml }
 ```
 
 ```console
-$ ori csv catBreeds.yaml
+$ ori Origami.csv catBreeds.yaml
 ${ Origami.csv(samples.jse/help/catBreeds.yaml) }
 ```
 

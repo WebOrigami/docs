@@ -7,7 +7,7 @@ Returns a copy of the given tree, with the additional restriction that the new t
 
 ```console
 $ cat letters.yaml
-${ samples.jse/help/letters.yaml }$ ori take letters.yaml, 2
+${ samples.jse/help/letters.yaml }$ ori Tree.take letters.yaml, 2
 ${ Origami.yaml(Tree.take(samples.jse/help/letters.yaml, 2)) }
 ```
 

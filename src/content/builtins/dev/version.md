@@ -1,11 +1,11 @@
 ---
 title: version()
-supertitle: "Origami."
+supertitle: "Dev."
 ---
 
 Returns the current Origami version.
 
 ```console
 $ ori version
-${ Origami.version + "\n" }
+${ Dev.version + "\n" }
 ```

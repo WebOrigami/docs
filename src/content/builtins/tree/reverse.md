@@ -8,7 +8,7 @@ Reverses the order of keys in the tree.
 ```console
 $ cat letters.yaml
 ${ samples.jse/help/letters.yaml }
-$ ori reverse letters.yaml
+$ ori Tree.reverse letters.yaml
 ${ Origami.yaml(Tree.reverse(samples.jse/help/letters.yaml)) + "\n" }
 ```
 

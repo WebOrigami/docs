@@ -10,10 +10,8 @@ You will generally only need to call `jsonParse` in cases where you are obtainin
 To parse a quoted argument on the command line:
 
 ```console
-$ ori yamlParse "'[1, 2, 3]'"
-- 1
-- 2
-- 3
+$ ori "Origami.yamlParse('[1, 2, 3]')"
+${ Origami.yaml(Origami.yamlParse('[1, 2, 3]')) }
 ```
 
 To convert something to YAML format, see [`yaml`](yaml.html). See also [`jsonParse`](jsonParse.html), which is focused on parsing JSON.

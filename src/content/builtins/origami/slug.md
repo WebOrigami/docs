@@ -20,7 +20,7 @@ ${ samples.jse/templates/posts/post1.html }
 Then the `title` can converted to a slug with:
 
 ```console
-$ ori slug post1.html/title
+$ ori Origami.slug post1.html/title
 ${ Origami.slug(samples.jse/templates/posts/post1.html/title) + "\n" }
 ```
 

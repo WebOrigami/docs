@@ -13,7 +13,7 @@ ${ samples.jse/cli/countries.yaml }
 The above set of countries can be broken into pages of (up to) 3 items each:
 
 ```console
-$ ori paginate countries.yaml, 3
+$ ori Tree.paginate countries.yaml, 3
 ${ Origami.yaml(Tree.paginate(samples.jse/cli/countries.yaml, 3)) }
 ```
 

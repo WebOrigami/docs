@@ -22,8 +22,12 @@
   text: log
 - href: serve.html
   text: serve
+- href: stdin.html
+  text: stdin
 - href: svg.html
   text: svg
+- href: version.html
+  text: version
 - href: watch.html
   text: watch
 

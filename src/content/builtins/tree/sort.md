@@ -7,7 +7,7 @@ Returns a copy of the indicated [treelike object](/async-tree/treelike.html) wit
 
 ```console
 $ cat capitals.yaml
-${ samples.jse/help/capitals.yaml }$ ori sort capitals.yaml
+${ samples.jse/help/capitals.yaml }$ ori Tree.sort capitals.yaml
 ${ Origami.yaml(Tree.sort(samples.jse/help/capitals.yaml)) }
 ```
 
@@ -41,7 +41,7 @@ As shown in the example above, by default `sort` sorts a tree by its keys. You c
 
 ```console
 $ cat capitals.yaml
-${ samples.jse/help/capitals.yaml }$ ori "sort capitals.yaml, (value, key, tree) => value"
+${ samples.jse/help/capitals.yaml }$ ori "Tree.sort capitals.yaml, (value, key, tree) => value"
 ${ Origami.yaml(Tree.sort(samples.jse/help/capitals.yaml, (capital) => capital)) }
 ```
 

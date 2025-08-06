@@ -8,6 +8,6 @@ Treats the text of its argument as [markdown](https://github.github.com/gfm/) (G
 Any front matter in the markdown will be preserved at the top of the HTML output.
 
 ```console
-$ ori "mdHtml('# Hello, world')"
+$ ori "Origami.mdHtml('# Hello, world')"
 ${ Origami.mdHtml('# Hello, world') }
 ```

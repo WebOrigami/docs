@@ -16,7 +16,7 @@ ${ samples.jse/help/merge/tree2.yaml }
 You can merge them into a single tree:
 
 ```console
-$ ori merge tree1.yaml, tree2.yaml
+$ ori Tree.merge tree1.yaml, tree2.yaml
 ${ Origami.yaml(Tree.merge(<samples.jse/help/merge/tree1.yaml>, samples.jse/help/merge/tree2.yaml)) }
 ```
 
