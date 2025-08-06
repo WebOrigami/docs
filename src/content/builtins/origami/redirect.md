@@ -1,6 +1,6 @@
 ---
 title: redirect(url, [options])
-supertitle: "site:"
+supertitle: "Origami."
 ---
 
 This redirects to the indicated URL.

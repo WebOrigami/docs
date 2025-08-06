@@ -1,6 +1,6 @@
 ---
 title: svg(tree)
-supertitle: "dev:"
+supertitle: "Dev."
 ---
 
 Returns a Scalable Vector Graphics [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG) text describing a two-dimensional visual representation of the indicated tree, which can be any [treelike object](/async-tree/treelike.html).

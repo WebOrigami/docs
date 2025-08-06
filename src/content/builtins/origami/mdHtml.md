@@ -1,6 +1,6 @@
 ---
 title: mdHtml(markdown)
-supertitle: "text:"
+supertitle: "Origami."
 ---
 
 Treats the text of its argument as [markdown](https://github.github.com/gfm/) (GitHub-flavored) and translates it to HTML.

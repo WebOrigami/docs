@@ -1,6 +1,6 @@
 ---
 title: once(function)
-supertitle: "origami:"
+supertitle: "Origami."
 ---
 
 Evaluates the given function once and returns the value. Subsequent invocations immediately return that value.

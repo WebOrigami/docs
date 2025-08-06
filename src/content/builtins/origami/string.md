@@ -1,6 +1,6 @@
 ---
 title: string(value)
-supertitle: "origami:"
+supertitle: "Origami."
 ---
 
 Returns the value, coerced to a string.

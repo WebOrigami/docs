@@ -1,6 +1,6 @@
 ---
 title: inline(text)
-supertitle: "text:"
+supertitle: "Origami."
 ---
 
 Treats `text` as an Origami template, evaluating any Origami expressions found inside `\$\{`…`}` placeholders in the `text`. This operation preserves any front matter in the document.

@@ -1,6 +1,6 @@
 ---
 title: explore
-supertitle: "dev:"
+supertitle: "Dev."
 ---
 
 Returns a web page that lets you explore the scope at a current point in a tree.

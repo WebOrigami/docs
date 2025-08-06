@@ -1,4 +1,4 @@
-- text: "Dev commands"
+- text: Dev commands
   href: index.html
 - href: audit.html
   text: audit
@@ -26,7 +26,7 @@
 - text: "&nbsp;"
 
 - href: /builtins
-  text: "All namespaces"
+  text: All namespaces
 - href: /builtins/Dev/
   text: Dev
 - href: /builtins/Origami/

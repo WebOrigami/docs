@@ -1,6 +1,6 @@
 ---
 title: yamlParse(text)
-supertitle: "origami:"
+supertitle: "Origami."
 ---
 
 Parses the indicated text as JSON or [YAML](https://en.wikipedia.org/wiki/YAML). The parsed plain JavaScript object is returned or, if the parse fails, this returns `undefined`.

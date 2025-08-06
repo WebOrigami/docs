@@ -1,6 +1,6 @@
 ---
 title: indexPage([tree])
-supertitle: "site:"
+supertitle: "Origami."
 ---
 
 Returns a default `index.html` page for the indicated tree. This will contain links for each of the tree's keys.

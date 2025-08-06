@@ -1,6 +1,6 @@
 ---
 title: log(result, [message])
-supertitle: "dev:"
+supertitle: "Dev."
 ---
 
 This diagnostic function logs a message to the console as a side effect and then returns the indicated result.

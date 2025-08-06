@@ -1,6 +1,6 @@
 ---
 title: crawl(tree, [baseHref])
-supertitle: "dev:"
+supertitle: "Dev."
 ---
 
 Crawls the indicated live site and returns the complete tree of reachable resources.

@@ -1,6 +1,6 @@
 ---
 title: serve([tree], [port])
-supertitle: "dev:"
+supertitle: "Dev."
 ---
 
 Starts a local web server to serve the contents of `tree`.

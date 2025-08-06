@@ -1,6 +1,6 @@
 ---
 title: config
-supertitle: "origami:"
+supertitle: "Origami."
 ---
 
 This returns the [scope](/language/scope.html) for the current Origami project, including the values defined in any Origami [configuration](/language/configuration.html) file.

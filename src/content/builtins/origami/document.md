@@ -1,6 +1,6 @@
 ---
 title: document(text, [data])<br>document(object)
-supertitle: "text:"
+supertitle: "Origami."
 ---
 
 You can explicitly convert a plain [text document](/language/documents.html) to a document object by passing it to the `document` function.

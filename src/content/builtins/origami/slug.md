@@ -1,6 +1,6 @@
 ---
 title: slug(text)
-supertitle: "site:"
+supertitle: "Origami."
 ---
 
 Generates a [slug](https://developer.mozilla.org/en-US/docs/Glossary/Slug) for the given text. This is commonly done to convert, for example, a blog page title into an ID for that post.

@@ -1,6 +1,6 @@
 ---
 title: stdin()
-supertitle: "origami:"
+supertitle: "Origami."
 ---
 
 Returns the complete contents of the standard input stream. This lets you pipe data into JavaScript functions:

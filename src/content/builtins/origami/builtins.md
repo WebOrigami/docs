@@ -1,6 +1,6 @@
 ---
 title: builtins
-supertitle: "origami:"
+supertitle: "Origami."
 ---
 
 `builtins` returns a tree of the complete set of Origami built-in functions.

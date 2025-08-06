@@ -1,6 +1,6 @@
 ---
 title: project()
-supertitle: "origami:"
+supertitle: "Origami."
 ---
 
 This returns the root of the current Origami project. The root is found by walking up the filesystem folder hierarchy from the current working directory, searching for the first folder that contains an [config.ori](/language/scope.html#configori) file. That folder, if found, is returned as the result of `project()`. If no such folder is found, the current working directory is returned.

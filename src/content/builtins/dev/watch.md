@@ -1,6 +1,6 @@
 ---
 title: watch([tree], [expression])
-supertitle: "dev:"
+supertitle: "Dev."
 ---
 
 Returns a tree that will be the result of executing the indicated `expression` in the context of the indicated `tree`.

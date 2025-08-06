@@ -1,6 +1,6 @@
 ---
 title: yaml(object)
-supertitle: "origami:"
+supertitle: "Origami."
 ---
 
 Render the contents of the object in [YAML](https://en.wikipedia.org/wiki/YAML) format.

@@ -1,6 +1,6 @@
 ---
 title: unpack(data)
-supertitle: "origami:"
+supertitle: "Origami."
 ---
 
 Origami trees such as file system folders or sites will return values as raw data. Origami can implicitly [unpack such files](/language/fileTypes.html#unpacking-files) based on the file's extension.

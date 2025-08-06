@@ -1,6 +1,6 @@
 ---
 title: jsonKeys(tree)
-supertitle: "site:"
+supertitle: "Origami."
 ---
 
 This function implements the [JSON Keys protocol](/async-tree/jsonKeys.html) for a tree-like structure. It generates a `.keys.json` file for each route in the tree, listing the keys available at that route.

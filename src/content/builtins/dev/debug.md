@@ -1,6 +1,6 @@
 ---
 title: debug(tree)
-supertitle: "dev:"
+supertitle: "Dev."
 ---
 
 Adds features to the indicated tree that facilitate debugging in the browser.

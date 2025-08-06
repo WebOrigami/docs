@@ -1,6 +1,6 @@
 ---
 title: repeat(count, obj)
-supertitle: "origami:"
+supertitle: "Origami."
 ---
 
 Returns an array of size `count` filled with copies of the given `obj`.
