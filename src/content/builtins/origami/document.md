@@ -43,7 +43,7 @@ ${ Origami.yaml(samples.jse/help/basho.md/) }
 If you have a collection of documents, some of which have data and some of which don't, you can normalize all of them to document objects by applying `document` to each of them.
 
 ```console
-$ ori map [basho.md, hokusai.md], =document _
+$ ori Tree.map [basho.md, hokusai.md], =Origami.document _
 ${ Origami.yaml(Tree.map([
   <samples.jse/help/basho.md>
   <samples.jse/help/hokusai.md>

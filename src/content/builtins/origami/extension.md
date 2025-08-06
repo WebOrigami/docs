@@ -1,5 +1,6 @@
 ---
 title: extension
+supertitle: "Origami."
 ---
 
 This is a collection of functions for working with file extensions.
@@ -9,21 +10,21 @@ This is a collection of functions for working with file extensions.
 This behaves the same as the [path.extname()](https://nodejs.org/api/path.html#pathextnamepath) in Node.js. It returns the extension of the given file name or path.
 
 ```console
-$ ori "extension/extname('foo.html')"
+$ ori "Origami.extension.extname('foo.html')"
 ${ Origami.extension.extname('foo.html') + "\n" }
 ```
 
 `extname` ignores trailing slashes:
 
 ```console
-$ ori "extension/extname('https://example.com/data.json/')"
+$ ori "Origami.extension.extname('https://example.com/data.json/')"
 ${ Origami.extension.extname('https://example.com/data.json/') + "\n" }
 ```
 
 If a file has multiple extensions, `extname` returns just the last one:
 
 ```console
-$ ori "extension/extname('index.ori.html')"
+$ ori "Origami.extension.extname('index.ori.html')"
 ${ Origami.extension.extname('index.ori.html') + "\n" }
 ```
 
@@ -32,9 +33,9 @@ ${ Origami.extension.extname('index.ori.html') + "\n" }
 If the `key` ends in the given extension, this returns the base name without the extension; otherwise this returns `null`.
 
 ```console
-$ ori "extension/match('index.md', '.html')"
+$ ori "Origami.extension.match('index.md', '.html')"
 ${ Origami.extension.match('index.md', '.html') + "\n" }
-$ ori "extension/match('index.html', '.html')"
+$ ori "Origami.extension.match('index.html', '.html')"
 ${ Origami.extension.match('index.html', '.html') + "\n" }
 ```
 
@@ -43,7 +44,7 @@ Trailing slashes are ignored for this comparison.
 `match` supports a more liberal interpretation of "extension" than `extname` does. A file name like `index.ori.html` ends in a multi-part extension. `extname` will return just the last `.html` part, but `match` can be used to match against the full multi-part `.ori.html` extension.
 
 ```console
-$ ori "extension/match('index.ori.html', '.ori.html')"
+$ ori "Origami.extension.match('index.ori.html', '.ori.html')"
 ${ Origami.extension.match('index.ori.html', '.ori.html') + "\n" }
 ```
 
@@ -52,7 +53,7 @@ ${ Origami.extension.match('index.ori.html', '.ori.html') + "\n" }
 Return `key` with the extension `ext1` (if it exists) replaced by extension `ext2`. If `key` doesn't end in the extension, it is returned unchanged.
 
 ```console
-$ ori "extension/replace('index.md', '.md', '.html')"
+$ ori "Origami.extension.replace('index.md', '.md', '.html')"
 ${ Origami.extension.replace('index.md', '.md', '.html') + "\n" }
 ```
 

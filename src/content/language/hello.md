@@ -430,7 +430,7 @@ This `post.ori` template defines a function you can apply to all the HTML object
 ```ori
 {
   html = Tree.map(<markdown>, Origami.mdHtml)
-  posts = Tree.map(html, <post.ori>)
+  posts = Tree.map(html, post.ori)
 }
 ```
 
@@ -485,7 +485,7 @@ You can rearrange the `site.ori` definition to hide the `html` area:
 {
   html = Tree.map(<markdown>, Origami.mdHtml)
   public = {
-    posts = Tree.map(html, <post.ori>)
+    posts = Tree.map(html, post.ori)
   }
 }.public
 ```
@@ -538,8 +538,8 @@ You can then invoke `index.ori` to create the index page, passing in the same se
 {
   html = Tree.map(<markdown>, Origami.mdHtml)
   public = {
-    index.html = <index.ori>(html)
-    posts = Tree.map(html, <post.ori>)
+    index.html = index.ori(html)
+    posts = Tree.map(html, post.ori)
   }
 }.public
 ```

@@ -241,7 +241,7 @@ One use for this is to define the overall structure of a website in a `.ori` fil
 
   about: {
     // Generate the index page for the "About" area
-    index.html = <about.ori>()
+    index.html = about.ori()
   }
 }
 ```
@@ -439,7 +439,7 @@ This can be useful when applying multiple transformations of data. Suppose an in
 
 ```ori
 {
-  index.html = <template.ori>(Origami.mdHtml(<index.md>))
+  index.html = template.ori(Origami.mdHtml(index.md))
 }
 ```
 
@@ -447,7 +447,7 @@ You can rewrite the above using the pipe operator so that the flow of data reads
 
 ```ori
 {
-  index.html = <index.md> → Origami.mdHtml → <template.ori>
+  index.html = index.md → Origami.mdHtml → template.ori
 }
 ```
 

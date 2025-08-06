@@ -2,10 +2,10 @@
   href: index.html
 - href: basename.html
   text: basename
-- href: builtins.html
-  text: builtins
 - href: config.html
   text: config
+- href: csv.html
+  text: csv
 - href: document.html
   text: document
 - href: extension.html

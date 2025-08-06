@@ -30,10 +30,10 @@ then you can turn that into a small Origami program that orchestrates the creati
   <assets>
 
   // Create a home page listing all the products
-  index.html = <index.ori>(<products.yaml>)
+  index.html = index.ori(products.yaml)
 
   // Create a page for each product
-  products = Tree.map(<products.yaml>, <products.ori>)
+  products = Tree.map(products.yaml, products.ori)
 }
 ```
 

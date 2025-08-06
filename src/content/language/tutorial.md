@@ -107,13 +107,13 @@ Inside the &#96; &#96; backticks, the placeholder marked with `$\{ }` curly brac
 
 You can call this template from an Origami formula. Origami lets one file reference another using a _path_ inside `< >` angle brackets.
 
-<span class="tutorialStep"></span> **Try it:** In `site.ori`, update the formula for `index.html` to remove the quoted string, and instead reference the `greet.ori` template name inside `< >` angle brackets. Call this template as a function and pass it the text `"world"`.
+<span class="tutorialStep"></span> **Try it:** In `site.ori`, update the formula for `index.html` to remove the quoted string, and instead reference the `greet.ori` template name. Call this template as a function and pass it the text `"world"`.
 
 <clipboard-copy>
 
 <pre class="step">
 {
-  index.html = <b>&lt;greet.ori>("world")</b>
+  index.html = <b>greet.ori("world")</b>
 }
 </pre>
 
@@ -153,7 +153,7 @@ In Origami you can use slash-separated paths to extract information out of any h
 
 <pre class="step">
 {
-  index.html = &lt;greet.ori>(<b>&lt;teamData.yaml>[0].name</b>)
+  index.html = &lt;greet.ori>(<b>teamData.yaml[0].name</b>)
 }
 </pre>
 
@@ -171,7 +171,7 @@ You can incorporate folders and other sources of hierarchical data into your sit
 
 <pre class="step">
 {
-  index.html = &lt;greet.ori>(&lt;teamData.yaml>[0].name)
+  index.html = &lt;greet.ori>(teamData.yaml[0].name)
   <b>team = &lt;teamData.yaml/></b>
 }
 </pre>
@@ -202,8 +202,8 @@ Let's start by mapping the people defined in `teamData.yaml`: for each person, w
 
 <pre class="step">
 {
-  index.html = &lt;greet.ori>(&lt;teamData.yaml>[0].name)
-  team = <b>Tree.map(&lt;teamData.yaml>, (person) => person.name)</b>
+  index.html = &lt;greet.ori>(teamData.yaml[0].name)
+  team = <b>Tree.map(teamData.yaml, (person) => person.name)</b>
 }
 </pre>
 
@@ -259,8 +259,8 @@ The formula you give to `map` can be as complex as your situation requires.
 
 <pre class="step">
 {
-  index.html = &lt;greet.ori>(&lt;teamData.yaml>[0].name)
-  team = Tree.map(&lt;teamData.yaml>, (person) => <b>&lt;greet.ori>(person.name)</b>)
+  index.html = &lt;greet.ori>(teamData.yaml[0].name)
+  team = Tree.map(teamData.yaml, (person) => <b>greet.ori(person.name)</b>)
 }
 </pre>
 
@@ -294,10 +294,10 @@ You can pull a real folder or file into your tree by writing a `<path>` on a lin
 
 <pre class="step">
 {
-  index.html = &lt;greet.ori>(&lt;teamData.yaml>[0].name)
-  team = Tree.map(&lt;teamData.yaml>, (person) => &lt;greet.ori>(person.name))
-  <b>&lt;assets>
-  &lt;images></b>
+  index.html = &lt;greet.ori>(teamData.yaml[0].name)
+  team = Tree.map(teamData.yaml, (person) => &lt;greet.ori>(person.name))
+  <b>assets
+  images</b>
 }
 </pre>
 
@@ -327,11 +327,11 @@ ${ demos/framework-intro/thumbnail.js }
 
 <pre class="step">
 {
-  index.html = &lt;greet.ori>(&lt;teamData.yaml>[0].name)
-  team = Tree.map(&lt;teamData.yaml>, (person) => &lt;greet.ori>(person.name))
-  &lt;assets>
-  &lt;images>
-  <b>small.jpg = &lt;thumbnail.js>(&lt;images/van.jpg>)</b>
+  index.html = &lt;greet.ori>(teamData.yaml[0].name)
+  team = Tree.map(teamData.yaml, (person) => &lt;greet.ori>(person.name))
+  assets
+  images
+  <b>small.jpg = thumbnail.js(images/van.jpg>)</b>
 }
 </pre>
 
@@ -355,11 +355,11 @@ You could write formulas to create a thumbnail for each image in the `images` fo
 
 <pre class="step">
 {
-  index.html = &lt;greet.ori>(&lt;teamData.yaml>[0].name)
-  team = Tree.map(&lt;teamData.yaml>, (person) => &lt;greet.ori>(person.name))
-  &lt;assets>
-  &lt;images>
-  <b>thumbnails = Tree.map(&lt;images>, &lt;thumbnail.js>)</b>
+  index.html = &lt;greet.ori>(teamData.yaml[0].name)
+  team = Tree.map(teamData.yaml, (person) => &lt;greet.ori>(person.name))
+  assets
+  images
+  <b>thumbnails = Tree.map(images, thumbnail.js)</b>
 }
 </pre>
 
@@ -406,11 +406,11 @@ The `index.ori` file defines two templates, an outer template and an inner templ
 
 <pre class="step">
 {
-  index.html = <b>&lt;index.ori>(&lt;teamData.yaml>)</b>
-  team = Tree.map(&lt;teamData.yaml>, (person) => &lt;greet.ori>(person.name))
-  &lt;assets>
-  &lt;images>
-  thumbnails = Tree.map(&lt;images>, &lt;thumbnail.js>)
+  index.html = <b>index.ori(teamData.yaml)</b>
+  team = Tree.map(teamData.yaml, (person) => greet.ori(person.name))
+  assets
+  images
+  thumbnails = Tree.map(images, thumbnail.js)
 }
 </pre>
 
@@ -460,11 +460,11 @@ This template displays a person's name in a header. You can use this in the `map
 
 <pre class="step">
 {
-  index.html = &lt;index.ori>(&lt;teamData.yaml>)
-  team = Tree.map(&lt;teamData.yaml>, <b>&lt;person.ori></b>)
-  &lt;assets>
-  &lt;images>
-  thumbnails = Tree.map(&lt;images>, &lt;thumbnail.js>)
+  index.html = index.ori(teamData.yaml)
+  team = Tree.map(teamData.yaml, <b>person.ori</b>)
+  assets
+  images
+  thumbnails = Tree.map(images, thumbnail.js)
 }
 </pre>
 
@@ -492,13 +492,13 @@ So you want to transform both the keys and values of the team data. You can do t
 
 <pre class="step">
 {
-  index.html = &lt;index.ori>(&lt;teamData.yaml>)
-  team = Tree.map(&lt;teamData.yaml>, <b>{
-    value: &lt;person.ori>
+  index.html = index.ori(teamData.yaml)
+  team = Tree.map(teamData.yaml, <b>{
+    value: person.ori
   }</b>)
-  &lt;assets>
-  &lt;images>
-  thumbnails = Tree.map(&lt;images>, &lt;thumbnail.js>)
+  assets
+  images
+  thumbnails = Tree.map(images, thumbnail.js)
 }
 </pre>
 
@@ -512,14 +512,14 @@ This will use `person.ori` to transform values just as before.
 
 <pre class="step">
 {
-  index.html = &lt;index.ori>(&lt;teamData.yaml>)
-  team = Tree.map(&lt;teamData.yaml>, {
+  index.html = index.ori(teamData.yaml)
+  team = Tree.map(teamData.yaml, {
     <b>key: (person) => person.name</b>
-    value: &lt;person.ori>
+    value: person.ori
   })
-  &lt;assets>
-  &lt;images>
-  thumbnails = Tree.map(&lt;images>, &lt;thumbnail.js>)
+  assets
+  images
+  thumbnails = Tree.map(images, thumbnail.js)
 }
 </pre>
 
@@ -556,14 +556,14 @@ We want the pages in the `team` area to end in a `.html` extension because that 
 
 <pre class="step">
 {
-  index.html = &lt;index.ori>(&lt;teamData.yaml>)
-  team = Tree.map(&lt;teamData.yaml>, {
+  index.html = index.ori(teamData.yaml)
+  team = Tree.map(teamData.yaml, {
     key: (person) => <b>`$\{ person.name }.html`</b>
-    value: &lt;person.ori>
+    value: person.ori
   })
-  &lt;assets>
-  &lt;images>
-  thumbnails = Tree.map(&lt;images>, &lt;thumbnail.js>)
+  assets
+  images
+  thumbnails = Tree.map(images, thumbnail.js)
 }
 </pre>
 
@@ -613,14 +613,14 @@ To review, you've created this entire site with a few resources, a couple of tem
 
 ```ori
 {
-  index.html = <index.ori>(<teamData.yaml>)
-  team = Tree.map(<teamData.yaml>, {
+  index.html = index.ori(teamData.yaml)
+  team = Tree.map(teamData.yaml, {
     key: (person) => `$\{ person.name }.html`
-    value: <person.ori>
+    value: person.ori
   })
-  <assets>
-  <images>
-  thumbnails = Tree.map(<images>, <thumbnail.js>)
+  assets
+  images
+  thumbnails = Tree.map(images, thumbnail.js)
 }
 ```
 
