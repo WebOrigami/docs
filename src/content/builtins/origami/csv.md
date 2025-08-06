@@ -1,6 +1,6 @@
 ---
 title: csv(object)
-supertitle: "origami:"
+supertitle: "Origami."
 ---
 
 Render an array or tree of objects in CSV ([comma-separated values](https://en.wikipedia.org/wiki/Comma-separated_values)) format in compliance with [RFC 4180](https://www.rfc-editor.org/rfc/rfc4180).

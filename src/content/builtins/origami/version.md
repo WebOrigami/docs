@@ -1,6 +1,6 @@
 ---
 title: version()
-supertitle: "origami:"
+supertitle: "Origami."
 ---
 
 Returns the current Origami version.

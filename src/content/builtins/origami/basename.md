@@ -1,6 +1,6 @@
 ---
 title: basename(text)
-supertitle: "origami:"
+supertitle: "Origami."
 ---
 
 For a string that looks like a file name with an extension, like "index.html", this returns the portion of the string before the last period. If the text contains no period, the entire text is returned.

@@ -1,6 +1,6 @@
 ---
 title: changes(oldTree, newTree)
-supertitle: "dev:"
+supertitle: "Dev."
 ---
 
 This compares an old tree with a new one, indicating which values have been added, changed, or deleted.

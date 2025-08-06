@@ -1,6 +1,6 @@
 ---
 title: slash
-supertitle: "origami:"
+supertitle: "Origami."
 ---
 
 This is a collection of functions for working with [trailing slashes](/async-tree/interface.html#trailing-slash-convention), which are commonly used in Origami keys to indicate that the value for that key is a subtree. For example, the key for a subfolder `content` may be given as `content/`.

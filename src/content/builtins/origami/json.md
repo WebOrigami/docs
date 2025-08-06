@@ -1,6 +1,6 @@
 ---
 title: json(object)
-supertitle: "origami:"
+supertitle: "Origami."
 ---
 
 Render the contents of the object in JSON format.

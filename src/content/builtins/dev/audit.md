@@ -1,6 +1,6 @@
 ---
 title: audit(tree)
-supertitle: "dev:"
+supertitle: "Dev."
 ---
 
 This audits the site defined by the given tree for broken internal links. It first crawls the site using the same crawler as [`dev:crawl`](crawl.html); see that page for details on what kinds of files and references are crawled.
