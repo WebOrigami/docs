@@ -11,4 +11,4 @@ This is commonly used when copying an Origami site definition to static files to
 $ ori copy src/site.ori, clear files:build
 ```
 
-The `clear` command erases everything the `build` folder, then returns the empty `build` folder. This is then used as the target of the [`copy`](/builtins/Dev/copy.html) operation.
+The `clear` command erases everything the `build` folder, then returns the empty `build` folder. This is then used as the target of the [`copy`](/builtins/dev/copy.html) operation.

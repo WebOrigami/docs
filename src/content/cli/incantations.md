@@ -32,6 +32,6 @@ ori copy src/site.ori, clear files:build
 This copies the virtual tree of files in `site.ori` into the local `build` folder, creating `build` and cleaning out any existing contents as necessary.
 
 - As above, this expression omits parentheses. Adding them: `ori copy(src/site.ori, clear(files:build))`.
-- The [`files:`](/builtins/files.html) protocol finds the local `build` folder and returns it as a tree. If this folder doesn't exist, then the first attempt to write to the tree will create the `build` folder.
+- The [`files:`](/builtins/protocol/files.html) protocol finds the local `build` folder and returns it as a tree. If this folder doesn't exist, then the first attempt to write to the tree will create the `build` folder.
 - The [`clear`](/builtins/tree/clear.html) call deletes any existing files in `build`.
-- The [`copy`](/builtins/tree/copy.html) call copies the virtual tree in `src/site.ori` to the `build` folder, thereby creating the static files necessary to deploy the site.
+- The [`copy`](/builtins/dev/copy.html) call copies the virtual tree in `src/site.ori` to the `build` folder, thereby creating the static files necessary to deploy the site.

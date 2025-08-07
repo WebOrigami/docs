@@ -104,7 +104,7 @@ ${ samples.jse/templates/concat.jse/ }
 
 ## Use template expressions in any file type
 
-It may be useful to embed Origami expressions inside other kinds of files, such as .html files. You can evaluate such expressions with the built-in [`inline`](/builtins/text/inline.html) function.
+It may be useful to embed Origami expressions inside other kinds of files, such as .html files. You can evaluate such expressions with the built-in [`inline`](/builtins/origami/inline.html) function.
 
 For example, you can use this to inline resources such as stylesheets.
 

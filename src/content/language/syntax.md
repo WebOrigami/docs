@@ -77,12 +77,6 @@ If you know the file's in a particular folder, such as the current directory, yo
 ./("foo bar")
 ```
 
-Or you can search the current [scope](scope.html) with the [scope:](/builtins/scope.html) protocol:
-
-```
-scope:("foo bar")
-```
-
 A reference that's entirely numeric digits also requires special handling or it will be treated as a number. For example, you might have folders organized by year with names like `2025`. To force Origami to treat that as a reference, you can write:
 
 ```
@@ -385,7 +379,7 @@ $ ori sample.ori/
 I have a pet named Fluffy.
 ```
 
-You can prefix a template literal with a function name immediately before the leading backtick. This invokes that function with the strings that make up the template's boilerplate text and a set of values to be substituted in the output. This function signature is compatible with JavaScript [tagged template functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates). See [`indent`](/builtins/text/indent.html) for an example of a builtin function that you can use in a tagged template.
+You can prefix a template literal with a function name immediately before the leading backtick. This invokes that function with the strings that make up the template's boilerplate text and a set of values to be substituted in the output. This function signature is compatible with JavaScript [tagged template functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates). See [`Tree.indent`](/builtins/tree/indent.html) for an example of a builtin function that you can use in a tagged template.
 
 Also see [Templates](templates.html) for more about using templates to generate HTML and other text formats.
 

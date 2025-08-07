@@ -114,7 +114,7 @@ $ ori sample.jpg/caption
 A nice photo at the beach
 ```
 
-Origami also has a small set of built-in functions in the [`image:`](/builtins/image/) namespace for resizing or reformatting images.
+Origami also has a small set of built-in functions in the [`Origami.image`](/builtins/origami/image/) collection for resizing or reformatting images.
 
 ### JSON files
 

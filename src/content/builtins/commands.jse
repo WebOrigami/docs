@@ -7,8 +7,8 @@ Tree.sort(
         description: commandHelp.description
         namespace: Origami.slash.remove(namespaceSlash)
         url: help.collection
-          ? `/builtins/${ Origami.slash.remove(namespaceSlash) }.html`
-          : `/builtins/${ namespaceSlash }${ Origami.slash.remove(commandSlash) }.html`
+          ? `/builtins/${ Origami.slash.remove(namespaceSlash).toLowerCase() }.html`
+          : `/builtins/${ namespaceSlash.toLowerCase() }${ Origami.slash.remove(commandSlash) }.html`
       }
     )
   ),

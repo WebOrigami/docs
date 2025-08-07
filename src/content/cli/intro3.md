@@ -60,7 +60,7 @@ HELLO, ALICE.
 
 ## Translate JSON to YAML and vice versa
 
-<span class="tutorialStep"></span> You can use ori to transform a tree from one format to another. By default, ori renders trees in YAML format, but you can ask for JSON format with the [`json`](/builtins/origami/json.html) function:
+<span class="tutorialStep"></span> You can use ori to transform a tree from one format to another. By default, ori renders trees in YAML format, but you can ask for JSON format with the [`json`](/builtins/tree/json.html) function:
 
 ```console
 $ ori greetings.yaml
@@ -145,7 +145,7 @@ $ cat greetings/Alice
 Hello, Alice.
 ```
 
-The `files:greetings` argument indicates that [`copy`](/builtins/tree/copy.html) should copy the input YAML tree to a file system tree under a folder named `greetings`. As a result, the key/value pairs in the YAML file are now individual files in a `greetings` folder.
+The `files:greetings` argument indicates that [`copy`](/builtins/dev/copy.html) should copy the input YAML tree to a file system tree under a folder named `greetings`. As a result, the key/value pairs in the YAML file are now individual files in a `greetings` folder.
 
 <span class="tutorialStep"></span> The important point here is that _all trees look the same to ori_. It doesn't matter whether a tree is defined in a single file like YAML, or a collection of loose files in the file system. Having unpacked the `greetings.yaml` file above, we can ask ori to display the `greetings` folder we just created:
 

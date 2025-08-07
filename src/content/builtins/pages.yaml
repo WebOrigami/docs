@@ -1,12 +1,12 @@
 - text: "All namespaces"
   href: index.html
-- href: Dev/
+- href: dev/
   text: Dev
-- href: Origami/
+- href: origami/
   text: Origami
-- href: Protocol/
+- href: protocol/
   text: Protocol
-- href: Tree/
+- href: tree/
   text: Tree
 
 - text: "&nbsp;"

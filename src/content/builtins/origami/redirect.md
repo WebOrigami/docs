@@ -12,4 +12,4 @@ The optional `options` parameter can include a `permanent` option:
 
 When used with a running Origami server via [`serve`](/builtins/dev/serve.html), this will issue an immediate redirect via an HTTP status code 307 (Temporary Redirect) or 301 (Moved Permanently) as appropriate.
 
-When copied to the file system via [`copy`](/builtins/tree/copy.html), this creates an HTML page implementing an [HTML redirection](https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections#html_redirections)) through a `<meta>` tag.
+When copied to the file system via [`copy`](/builtins/dev/copy.html), this creates an HTML page implementing an [HTML redirection](https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections#html_redirections)) through a `<meta>` tag.

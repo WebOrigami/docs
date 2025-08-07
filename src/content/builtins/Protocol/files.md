@@ -25,7 +25,7 @@ or just
 $ ori misc
 ```
 
-One situation where invoking `files` is often necessary is specifying the target of a [`copy`](tree/copy.html) operation as a folder that does not yet exist.
+One situation where invoking `files` is often necessary is specifying the target of a [`copy`](/builtins/dev/copy.html) operation as a folder that does not yet exist.
 
 ## Root directory
 

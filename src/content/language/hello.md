@@ -354,7 +354,7 @@ ${
 
 Here the key `_body` is used to label the property holding the text of the markdown document.
 
-You can transform this tree of markdown objects into a corresponding tree of HTML objects. Origami includes a markdown-to-HTML command called [`Origami.mdHtml`](/builtins/text/mdHtml.html). That command works on a single file, so you can use it to process a single blog post:
+You can transform this tree of markdown objects into a corresponding tree of HTML objects. Origami includes a markdown-to-HTML command called [`Origami.mdHtml`](/builtins/origami/mdHtml.html). That command works on a single file, so you can use it to process a single blog post:
 
 ```ori
 {

@@ -18,7 +18,7 @@ The expression in parentheses defines a tree that matches patterns of the form `
 The `pattern` argument can take one of two forms:
 
 1. A simple pattern like `[name].html`. When used to match `Alice.html`, the `fn` function will be given an object with the matches: `{ name: "Alice" }`.
-2. A standard JavaScript [RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp) instance. In Origami you can create a regular expression with `RegExp` in the [`js`](/builtins/js.html) namespace. If the regular expression matches, the groups that match will be passed to the `fn` function.
+2. A standard JavaScript [regular expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions).
 
 By default, the tree will have no public keys, but you can provide any [treelike object](/async-tree/treelike.html) as the `keys` argument. That tree's values will be used as the keys for the tree returned by `match()`.
 

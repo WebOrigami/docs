@@ -80,11 +80,11 @@ $ ls snapshot
 Alice      Bob        Carol      index.html
 ```
 
-You can also use the [`explore:`](/builtins/explore.html) protocol to create an explorable site for a given URL.
+You can also use the [`explore:`](/builtins/dev/explore.html) protocol to create an explorable site for a given URL.
 
 ## Adding support for JSON Keys to your site
 
-You can apply the [`jsonKeys`](/builtins/site/jsonKeys.html) function to your site to define default `.keys.json` files for all your site's routes. Alternatively, you can apply the [`static`](/builtins/site/static.html) function to define both default `.keys.json` and `index.html` files for your site.
+You can apply the [`jsonKeys`](/builtins/origami/jsonKeys.html) function to your site to define default `.keys.json` files for all your site's routes. Alternatively, you can apply the [`static`](/builtins/origami/static.html) function to define both default `.keys.json` and `index.html` files for your site.
 
 ## Supporting JSON Keys on other platforms
 

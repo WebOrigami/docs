@@ -45,9 +45,9 @@ $ ori json basho.md
 ${ Tree.json(samples.jse/help/basho.md) + "\n" }
 ```
 
-Here, the [`json`](/builtins/origami/json.html) command implicitly unpacks the document, so the trailing `/` slash is unnecessary.
+Here, the [`json`](/builtins/tree/json.html) command implicitly unpacks the document, so the trailing `/` slash is unnecessary.
 
-You can create a text document from plain text with the [`document`](/builtins/text/document.html) builtin.
+You can create a text document from plain text with the [`document`](/builtins/origami/document.html) builtin.
 
 ## Origami front matter
 
@@ -76,7 +76,7 @@ This technique can be used to attach complex data to a document.
 
 ## Working on documents with builtin functions
 
-Origami builtins that work on text, like [`inline`](/builtins/text/inline.html) and [`mdHtml`](/builtins/text/mdHtml.html), can work on both plain text documents and document objects.
+Origami builtins that work on text, like [`inline`](/builtins/origami/inline.html) and [`mdHtml`](/builtins/origami/mdHtml.html), can work on both plain text documents and document objects.
 
 If you give a builtin function plain text, you get back plain text. For example, `mdHtml` transforms plain markdown text into plain HTML text:
 

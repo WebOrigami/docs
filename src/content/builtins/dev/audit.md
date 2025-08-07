@@ -29,7 +29,7 @@ ${ Origami.yaml(Dev.audit(samples.jse/help/hasMissingPage.jse)) }
 
 Here `audit` reports that `a.html` has a link to a non-existent page `b.html`.
 
-Because Origami treats all trees equally, you can also audit a folder of HTML pages. For example, if you're using `copy` to [build your site](/builtins/tree/copy.html#copy-to-build), you could audit the build output folder:
+Because Origami treats all trees equally, you can also audit a folder of HTML pages. For example, if you're using `copy` to [build your site](/builtins/dev/copy.html#copy-to-build), you could audit the build output folder:
 
 ```console
 $ ori audit build
@@ -39,7 +39,7 @@ Auditing a site directly (via the `.ori` example above) lets you audit it withou
 
 ## Auditing a live site
 
-Using Origami's [`httpstree:`](/builtins/Protocol/httpstree.html) protocol, you can treat a live site as a traversable tree that `audit` can audit.
+Using Origami's [`httpstree:`](/builtins/protocol/httpstree.html) protocol, you can treat a live site as a traversable tree that `audit` can audit.
 
 Example: The venerable [Space Jam](https://www.spacejam.com/1996/) web site has hundreds of pages which, despite being written by hand, contain very few broken internal links. As of this writing (April 2025), an audit of that site produces the following:
 

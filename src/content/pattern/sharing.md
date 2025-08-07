@@ -33,8 +33,8 @@ By default, ori displays a tree in YAML format, but can also display a tree as J
 ori includes richer implementations of all the general-purpose tools shown in this tutorial:
 
 - [`serve`](/builtins/dev/serve.html) command. ori's server has more features, but the basic concept remains the same: the server translates an HTTP/HTTPS request into the traversal of an async tree. ori also includes an Express middleware version that does the same thing.
-- [`setDeep`](/builtins/tree/setDeep.html) command like the one in this tutorial. ori also includes a related [`copy`](/builtins/tree/copy.html) command that adds command-line progress feedback. This can be used as the basis for a build process like the one shown in this tutorial.
-- [`mdHtml`](/builtins/text/mdHtml.html) command that transforms markdown text to the corresponding HTML.
+- [`setDeep`](/builtins/tree/setDeep.html) command like the one in this tutorial. ori also includes a related [`copy`](/builtins/dev/copy.html) command that adds command-line progress feedback. This can be used as the basis for a build process like the one shown in this tutorial.
+- [`mdHtml`](/builtins/origami/mdHtml.html) command that transforms markdown text to the corresponding HTML.
 
 In addition to these commands, ori includes a number of other general-purpose commands for working with async trees.
 

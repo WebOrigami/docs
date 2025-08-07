@@ -16,6 +16,8 @@
   text: debug
 - href: explore.html
   text: explore
+- href: help.html
+  text: help
 - href: keys.html
   text: keys
 - href: log.html
@@ -35,11 +37,11 @@
 
 - href: /builtins
   text: All namespaces
-- href: /builtins/Dev/
+- href: /builtins/dev/
   text: Dev
-- href: /builtins/Origami/
+- href: /builtins/origami/
   text: Origami
-- href: /builtins/Protocol/
+- href: /builtins/protocol/
   text: Protocol
-- href: /builtins/Tree/
+- href: /builtins/tree/
   text: Tree

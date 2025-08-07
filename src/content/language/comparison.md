@@ -155,7 +155,7 @@ You can directly place file names, file paths, and URLs directly in Origami expr
 Origami.mdHtml(ReadMe.md)
 ```
 
-This expression passes the `ReadMe.md` file to Origami's builtin [`mdHtml`](/builtins/text/mdHtml.html) function.
+This expression passes the `ReadMe.md` file to Origami's builtin [`mdHtml`](/builtins/origami/mdHtml.html) function.
 
 ### File name heuristic
 
