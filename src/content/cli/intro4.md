@@ -59,10 +59,10 @@ $ ori uppercase.js greetings.yaml/Alice
 HELLO, ALICE.
 ```
 
-<span class="tutorialStep"></span> You can apply that `uppercase` transformation to an entire tree with the ori's built-in [`map`](/builtins/tree/map.html) function:
+<span class="tutorialStep"></span> You can apply that `uppercase` transformation to an entire tree with the ori's built-in [`Tree.map`](/builtins/tree/map.html) function:
 
 ```console
-$ ori map greetings.yaml, uppercase.js
+$ ori Tree.map greetings.yaml, uppercase.js
 Alice: HELLO, ALICE.
 Bob: HELLO, BOB.
 Carol: HELLO, CAROL.
@@ -92,7 +92,7 @@ In this intro, we're just transforming text, but you can transform anything in b
 <span class="tutorialStep"></span> If you ask for a specific value from a mapped tree, then only that value is computed:
 
 ```console
-$ ori "map(greetings.yaml, uppercase.js)/Alice"
+$ ori "Tree.map(greetings.yaml, uppercase.js)/Alice"
 HELLO, ALICE.
 ```
 
@@ -103,7 +103,7 @@ HELLO, ALICE.
 <span class="tutorialStep"></span> You can transform a tree and save the results as files.
 
 ```console
-$ ori "copy map(greetings.yaml, template.js), files:html"
+$ ori "copy Tree.map(greetings.yaml, template.js), files:html"
 $ ls html
 Alice   Bob     Carol
 ```

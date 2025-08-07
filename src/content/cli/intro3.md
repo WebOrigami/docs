@@ -69,12 +69,12 @@ $ ori json greetings.yaml
 ${ Tree.json(samples.jse/cli/greetings.yaml) + "\n" }
 ```
 
-<span class="tutorialStep"></span> In the other direction, you can render a JSON file as YAML with the [`yaml`](/builtins/origami/yaml.html) function:
+<span class="tutorialStep"></span> In the other direction, you can render a JSON file as YAML with the [`Origami.yaml`](/builtins/origami/yaml.html) function:
 
 ```console
 $ ori letters.json
 ${ samples.jse/cli/letters.json }
-$ ori yaml letters.json
+$ ori Origami.yaml letters.json
 ${ Origami.yaml(samples.jse/cli/letters.json) }
 ```
 

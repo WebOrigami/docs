@@ -66,10 +66,10 @@ Server running at http://localhost:5000
 
 ## Serve a transformed tree of stuff
 
-<span class="tutorialStep"></span> You can ask ori to serve data transformed on demand into HTML using `map` and the template we saw earlier.
+<span class="tutorialStep"></span> You can ask ori to serve data transformed on demand into HTML using `Tree.map` and the template we saw earlier.
 
 ```console
-$ ori "serve map greetings.yaml, template.js"
+$ ori "serve Tree.map greetings.yaml, template.js"
 Server running at http://localhost:5000
 ```
 
@@ -80,7 +80,7 @@ You can browse to one of the defined pages like http://localhost:5000/Alice. You
 Earlier you saw how you can transform a tree and save the results as files.
 
 ```console
-$ ori "copy map(greetings.yaml, template.js), files:html"
+$ ori "copy Tree.map(greetings.yaml, template.js), files:html"
 $ ls html
 Alice   Bob     Carol
 ```
