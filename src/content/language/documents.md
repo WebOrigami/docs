@@ -29,20 +29,20 @@ $ cat basho.md
 ${ samples.jse/help/basho.md }
 ```
 
-To represent text with data consistently, Origami will generally work with it as a plain object. The plain object's properties include the front matter data and an additional `@text` property with the body text.
+To represent text with data consistently, Origami will generally work with it as a plain object. The plain object's properties include the front matter data and an additional `_body` property with the body text.
 
 If you ask Origami to unpack this file:
 
 ```console
 $ ori basho.md/
-${ Origami.yaml(samples.jse/help/basho.md/) }
+${ Origami.yaml(removeText.jse(samples.jse/help/basho.md/)) }
 ```
 
-You can see that Origami is treating the body text as a `@text` property. In JSON format:
+You can see that Origami is treating the body text as a `_body` property. In JSON format:
 
 ```console
-$ ori json basho.md
-${ Tree.json(samples.jse/help/basho.md) + "\n" }
+$ ori Tree.json basho.md
+${ Tree.json(removeText.jse(samples.jse/help/basho.md)) + "\n" }
 ```
 
 Here, the [`json`](/builtins/tree/json.html) command implicitly unpacks the document, so the trailing `/` slash is unnecessary.
@@ -65,11 +65,11 @@ Example: the file `timestamp.md` contains:
 ${ samples.jse/help/timestamp.md }
 ```
 
-The first relevant character in the front matter is a `{`, so the front matter is parsed as an Origami expression. The body of the document is attached to the result as a `@text` property.
+The first relevant character in the front matter is a `{`, so the front matter is parsed as an Origami expression. The body of the document is attached to the result as a `_body` property.
 
 ```console
 $ ori timestamp.md/
-${ Origami.yaml(samples.jse/help/timestamp.md) + "\n" }
+${ Origami.yaml(removeText.jse(samples.jse/help/timestamp.md)) + "\n" }
 ```
 
 This technique can be used to attach complex data to a document.
@@ -89,5 +89,5 @@ If you give the builtin a document object, you get back a new document object th
 
 ```console
 $ ori mdHtml basho.md
-${ Origami.yaml(Origami.mdHtml(samples.jse/help/basho.md/)) }
+${ Origami.yaml(removeText.jse(Origami.mdHtml(samples.jse/help/basho.md/))) }
 ```
