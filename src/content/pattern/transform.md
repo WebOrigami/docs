@@ -126,7 +126,7 @@ One way to think about this virtual HTML tree is that it represents a _tree of p
 
 ```console
 $ node json htmlObject.js
-${ Tree.json(<pattern.jse/flat/transform.js>(Tree.from(pattern.jse/flat/htmlObject.js))) + "\n" }
+${ Tree.json(pattern.jse/flat/transform.js(Tree.from(pattern.jse/flat/htmlObject.js))) + "\n" }
 ```
 
 The `json` utility traverses the virtual HTML tree, causing it to do its work of transforming markdown to HTML as the utility builds an in-memory object it ultimately displays as JSON. You can see that the displayed JSON has the desired shape, keys, and values as the virtual HTML tree in the diagram at the top of this page.

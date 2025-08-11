@@ -53,7 +53,7 @@ ${ pattern.jse/flat/htmlFn.js }
 
 ```console
 $ node json htmlFn.js
-${ Tree.json(<pattern.jse/flat/transform.js>(Tree.from(pattern.jse/flat/htmlFn.js))) + "\n" }
+${ Tree.json(pattern.jse/flat/transform.js(Tree.from(pattern.jse/flat/htmlFn.js))) + "\n" }
 ```
 
 We have now implemented three different ways to construct an async tree. In a bit, we'll see how they can be used together to create interesting combinations and be used for practical purposes. Before doing that, however, let's make our code a little more general-purpose and flexible.

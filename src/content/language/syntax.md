@@ -151,8 +151,6 @@ You can reference the "name" property of this file in several ways:
 - `alice.ori["name"]` — Use the string `"name"` in brackets
 - `alice.ori("name")` — Treat the object as a function
 
-Note that you can use the JavaScript-style `.` operator to get a property value — but because periods are legal in Origami names, one thing you _can't_ do is put the `.name` immediately after `alice.ori`: `alice.ori.name` would be interpreted as a single file name.
-
 ## Object properties can reference other local properties
 
 The expression that defines the value of a property can reference other properties in the same object, or any parent object, by name.
@@ -191,7 +189,7 @@ If you'd like a value to be calculated every time it's requested, you can create
 
 ```ori
 {
-  index.html = <greet.js>()
+  index.html = greet.js()
 }
 ```
 
@@ -269,8 +267,8 @@ $ ori tree1.yaml
 ${ samples.jse/help/merge/tree1.yaml }$ ori tree2.yaml
 ${ samples.jse/help/merge/tree2.yaml }$ ori { ...tree1.yaml, ...tree2.yaml }
 ${ Origami.yaml({
-  ...<samples.jse/help/merge/tree1.yaml>
-  ...<samples.jse/help/merge/tree2.yaml>
+  ...samples.jse/help/merge/tree1.yaml
+  ...samples.jse/help/merge/tree2.yaml
 }) }
 ```
 
@@ -308,10 +306,10 @@ THIS IS A TEXT FILE.
 
 ## Paths
 
-Paths are a sequence of string keys separated with `/` slashes and enclosed in `< >` angle brackets:
+Paths are a sequence of string keys separated with `/` slashes:
 
 ```ori
-<folder/path/to/file.txt>
+folder/path/to/file.txt
 ```
 
 The head of the path, like `folder` here, is resolved as a reference. If that returns a treelike object, it will be traversed using the remaining keys "path", "to", and "file.txt". Treelike objects include object literals and hierarchical data in JSON and YAML files:
@@ -325,15 +323,14 @@ $ ori greetings.yaml/Alice
 Hello, Alice.
 ```
 
-### File paths
+Because Origami interprets a `/` as a path separator, if you want to evaluate a division expression, you must put spaces around the `/` operator:
 
-Paths that start with a leading `/` slash refer to absolute paths in the filesystem:
-
+```console
+$ ori 8 / 2
+4
 ```
-</Users/alice/example.txt>
-```
 
-Similarly, paths that start with a leading `./` refer to relative paths, and paths that start with `../` refer to the current parent folder.
+### Traversing into data
 
 Paths can traverse into files of known [file types](fileTypes.html#standard-file-types) like `.json` files.
 
@@ -356,12 +353,22 @@ returns the string "Test project".
 
 You can reference folder or file by name without any special leading character; such names will be resolved in [scope](scope.html). Example: if a project contains a folder called `src`, then `<./src>` and `<src>` both reference the folder.
 
+### Angle brackets
+
+Origami uses a [heuristic](http://localhost:5000/language/comparison.html#path-literals) to determine whether an expression like `abc.xyz` is a file name or an object `abc` with a property `xyz`. You can also explicitly indicate that something is a path or file name by surrounding it with `< >` angle brackets:
+
+```ori
+<folder/path/to/file.txt>
+```
+
+You can also place URLs (below) in angle brackets.
+
 ### URLs
 
 You can also use URLs in an Origami path:
 
 ```ori
-<https://example.com>
+https://example.com
 ```
 
 The result of this URL will be the contents of the data at the indicated internet location.
@@ -485,39 +492,6 @@ Hello
 ```
 
 On macOS, you can type the `«` character with Option+Backslash, and the `»` character with Option+Shift+Backslash. On Windows, you can type Alt+0171 and Alt+0187, respectively.
-
-### Implied paths
-
-Since both `<` and `>` have special meaning in the shell, you must quote or escape those to use Origami's `<path>` syntax:
-
-```console
-$ ori "<src/assets/styles.css>"
-```
-
-To avoid the need for such quoting, the CLI can recognize slash-separated paths without the need to enclose them in angle brackets:
-
-```console
-$ ori src/assets/styles.css
-```
-
-The CLI must make some accommodations to interpret paths like this. In normal Origami a `.` period is used to access an object property, but in shell shorthand a `.` is generally interpreted as part of a file name. In the following command:
-
-```console
-$ ori data.json
-```
-
-the CLI will recognize `data.json` as a single file name. If you want to access a property from that file, use any of the following:
-
-1. Quote the command and put the path in angle brackets: `ori "<data.json>.name"`
-2. Use slash syntax: `ori data.json/name`
-3. Put a space before the property reference: `ori data.json .name`
-
-Along the same lines, the CLI interprets a `/` as a path separator, so if you want to evaluate a division expression in the shell, you must put spaces around the `/` operator:
-
-```
-$ ori 8 / 2
-4
-```
 
 ### Implicit parentheses for function arguments
 

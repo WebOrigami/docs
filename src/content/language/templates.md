@@ -45,7 +45,7 @@ You can reference local files in Origami expressions. Depending on the situation
 If `copyright.txt` contains:
 
 ```
-${ samples.jse/templates/copyright.txt + "\n" }
+${ samples.jse/templates/copyright.txt/ + "\n" }
 ```
 
 Then an Origami template can reference that local file directly with a `<path>` expression:
@@ -129,7 +129,7 @@ If the input document contains any front matter (see below), inline preserves th
 
 ## Traverse into data
 
-Inside a template, you can use slash-separated paths to traverse into data.
+Inside a template, you can use expressions to traverse into data.
 
 ```yaml
 # teamData.yaml
@@ -144,6 +144,10 @@ Inside a template, you can use slash-separated paths to traverse into data.
 // teamLead.ori
 ${ samples.jse/templates/teamLead.jse }
 ```
+
+The sequence `[0].name` is asking for the `name` property of the first (zeroth) item in the array of people in `teamData.yaml` file. This request implicitly [unpacks the file](http://localhost:5000/language/fileTypes.html#unpacking-files) to data before returning the requested value. A path expression could accomplish the same result: `teamData.yaml/0/name`.
+
+Either way, the result is:
 
 ```console
 $ ori teamLead.ori/
@@ -362,7 +366,7 @@ In the above example, the `map` function maps an array of people to HTML fragmen
     ]) }
   </figure>
   <figure>
-    ${ svg.js(Tree.map(<samples.jse/templates/teamData.yaml>, (_) => `<li>${ _.name }</li>`)) }
+    ${ svg.js(Tree.map(samples.jse/templates/teamData.yaml, (_) => `<li>${ _.name }</li>`)) }
   </figure>
   <figcaption>Source tree of people objects</figcaption>
   <figcaption>Result tree of HTML fragments</figcaption>

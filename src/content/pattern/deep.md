@@ -82,13 +82,13 @@ ${ pattern.jse/deep/transform.js }
 
 ```console
 $ node json htmlFiles.js
-${ Tree.json(<pattern.jse/deep/transform.js>(Tree.from(pattern.jse/deep/files.js))) + "\n" }
+${ Tree.json(pattern.jse/deep/transform.js(Tree.from(pattern.jse/deep/files.js))) + "\n" }
 ```
 
 Visually this looks like:
 
 <figure>
-${ svg.js(<pattern.jse/deep/transform.js>(Tree.from(pattern.jse/deep/files.js))) }
+${ svg.js(pattern.jse/deep/transform.js(Tree.from(pattern.jse/deep/files.js))) }
 </figure>
 
 So now we have a way of transforming an arbitrarily deep folder of markdown content into a corresponding deep tree of HTML content. We're now ready to do some interesting things with this content.

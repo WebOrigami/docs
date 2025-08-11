@@ -45,8 +45,8 @@ If you have a collection of documents, some of which have data and some of which
 ```console
 $ ori Tree.map [basho.md, hokusai.md], =Origami.document _
 ${ Origami.yaml(Tree.map([
-  <samples.jse/help/basho.md>
-  <samples.jse/help/hokusai.md>
+  samples.jse/help/basho.md
+  samples.jse/help/hokusai.md
 ], (file) => removeText.jse(Origami.document(file)))) }
 ```
 

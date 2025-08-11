@@ -172,8 +172,8 @@ the values will end up with `.html` extensions:
 $ ori map movies.yaml, movie.ori.html
 ${ Origami.yaml(
   Tree.map(
-    <samples.jse/templateDocuments/movies/movies.yaml>
-    <samples.jse/templateDocuments/movies/movie.jse.html>
+    samples.jse/templateDocuments/movies/movies.yaml
+    samples.jse/templateDocuments/movies/movie.jse.html
   )
 ) }
 ```

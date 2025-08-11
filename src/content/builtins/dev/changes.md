@@ -25,7 +25,7 @@ Calling `changes` indicates what values have changed:
 
 ```console
 $ ori changes oldTree.yaml, newTree.yaml
-${ Origami.yaml(Dev.changes(<samples.jse/help/oldTree.yaml>, samples.jse/help/newTree.yaml)) }
+${ Origami.yaml(Dev.changes(samples.jse/help/oldTree.yaml, samples.jse/help/newTree.yaml)) }
 ```
 
 Invoking `changes` if the trees are the same returns an empty object, indicating nothing has changed:

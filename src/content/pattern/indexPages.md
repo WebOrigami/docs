@@ -32,7 +32,7 @@ Then invoking `indexPage` on this branch will return:
 ```${'html'}
 ${
   // 2024-09: Need parens; patterns intro doesn't handle trailing slashes yet
-  <pattern.jse/index/htmlObject.js/more>("index.html") + "\n"
+  pattern.jse/index/htmlObject.js/more("index.html") + "\n"
 }
 ```
 
@@ -50,7 +50,7 @@ ${ js/codeFunctions.js(pattern.jse/index/indexPages.js)["@epilogue"] }
 If we use this to transform the `more` branch of the HTML tree, the transformed tree now includes an `index.html` page:
 
 <figure>
-${ svg.js(<pattern.jse/index/indexPages.js>(pattern.jse/index/htmlObject.js/more)) }
+${ svg.js(pattern.jse/index/indexPages.js(pattern.jse/index/htmlObject.js/more)) }
 </figure>
 
 ## Incorporate the index page transform

@@ -17,7 +17,7 @@ ${ samples.jse/cli/greetings.yaml
 }$ cat uppercase.js
 ${ samples.jse/cli/uppercase.js
 }$ ori Tree.map greetings.yaml, uppercase.js
-${ Origami.yaml(Tree.map(<samples.jse/cli/greetings.yaml>, samples.jse/cli/uppercase.js)) }
+${ Origami.yaml(Tree.map(samples.jse/cli/greetings.yaml, samples.jse/cli/uppercase.js)) }
 ```
 
 <div class="sideBySide">
@@ -25,7 +25,7 @@ ${ Origami.yaml(Tree.map(<samples.jse/cli/greetings.yaml>, samples.jse/cli/upper
     ${ svg.js(samples.jse/cli/greetings.yaml) }
   </figure>
   <figure>
-    ${ svg.js(Tree.map(<samples.jse/cli/greetings.yaml>, samples.jse/cli/uppercase.js)) }
+    ${ svg.js(Tree.map(samples.jse/cli/greetings.yaml, samples.jse/cli/uppercase.js)) }
   </figure>
   <figcaption>Original tree</figcaption>
   <figcaption>Mapped values</figcaption>
@@ -63,7 +63,7 @@ The function being called does not need to use all three arguments. The followin
 
 ```console
 $ ori "Tree.map(greetings.yaml, (greeting) => uppercase.js(greeting))"
-${ Origami.yaml(Tree.map(<samples.jse/cli/greetings.yaml>, (greeting) => samples.jse/cli/uppercase.js(greeting))) }
+${ Origami.yaml(Tree.map(samples.jse/cli/greetings.yaml, (greeting) => samples.jse/cli/uppercase.js(greeting))) }
 ```
 
 ### Mapping keys
@@ -72,7 +72,7 @@ This function wants to reference the key being mapped (a person's name). That wi
 
 ```console
 $ ori "Tree.map(greetings.yaml, (greeting, name) => uppercase.js(name))"
-${ Origami.yaml(Tree.map(<samples.jse/cli/greetings.yaml>, (greeting, name) => samples.jse/cli/uppercase.js(name))) }
+${ Origami.yaml(Tree.map(samples.jse/cli/greetings.yaml, (greeting, name) => samples.jse/cli/uppercase.js(name))) }
 ```
 
 A common case for mapping keys is turning some data into a file name. For example, if a tree has keys which are names like "Alice", you can map those keys to ones that end in `.html`, like `Alice.html`.

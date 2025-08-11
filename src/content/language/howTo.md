@@ -115,7 +115,7 @@ Your `markdown` folder will have the following structure:
 
 <figure>
 ${ svg.js({
-  markdown: <samples.jse/howTo/markdown/markdown>
+  markdown: samples.jse/howTo/markdown/markdown
 }) }
 </figure>
 

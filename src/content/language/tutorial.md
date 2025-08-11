@@ -153,7 +153,7 @@ In Origami you can use slash-separated paths to extract information out of any h
 
 <pre class="step">
 {
-  index.html = &lt;greet.ori>(<b>teamData.yaml[0].name</b>)
+  index.html = greet.ori(<b>teamData.yaml[0].name</b>)
 }
 </pre>
 
@@ -171,8 +171,8 @@ You can incorporate folders and other sources of hierarchical data into your sit
 
 <pre class="step">
 {
-  index.html = &lt;greet.ori>(teamData.yaml[0].name)
-  <b>team = &lt;teamData.yaml/></b>
+  index.html = greet.ori(teamData.yaml[0].name)
+  <b>team = teamData.yaml/</b>
 }
 </pre>
 
@@ -202,7 +202,7 @@ Let's start by mapping the people defined in `teamData.yaml`: for each person, w
 
 <pre class="step">
 {
-  index.html = &lt;greet.ori>(teamData.yaml[0].name)
+  index.html = greet.ori(teamData.yaml[0].name)
   team = <b>Tree.map(teamData.yaml, (person) => person.name)</b>
 }
 </pre>
@@ -259,7 +259,7 @@ The formula you give to `map` can be as complex as your situation requires.
 
 <pre class="step">
 {
-  index.html = &lt;greet.ori>(teamData.yaml[0].name)
+  index.html = greet.ori(teamData.yaml[0].name)
   team = Tree.map(teamData.yaml, (person) => <b>greet.ori(person.name)</b>)
 }
 </pre>
@@ -294,8 +294,8 @@ You can pull a real folder or file into your tree by writing a `<path>` on a lin
 
 <pre class="step">
 {
-  index.html = &lt;greet.ori>(teamData.yaml[0].name)
-  team = Tree.map(teamData.yaml, (person) => &lt;greet.ori>(person.name))
+  index.html = greet.ori(teamData.yaml[0].name)
+  team = Tree.map(teamData.yaml, (person) => greet.ori(person.name))
   <b>assets
   images</b>
 }
@@ -327,8 +327,8 @@ ${ demos/framework-intro/thumbnail.js }
 
 <pre class="step">
 {
-  index.html = &lt;greet.ori>(teamData.yaml[0].name)
-  team = Tree.map(teamData.yaml, (person) => &lt;greet.ori>(person.name))
+  index.html = greet.ori(teamData.yaml[0].name)
+  team = Tree.map(teamData.yaml, (person) => greet.ori(person.name))
   assets
   images
   <b>small.jpg = thumbnail.js(images/van.jpg>)</b>
@@ -355,8 +355,8 @@ You could write formulas to create a thumbnail for each image in the `images` fo
 
 <pre class="step">
 {
-  index.html = &lt;greet.ori>(teamData.yaml[0].name)
-  team = Tree.map(teamData.yaml, (person) => &lt;greet.ori>(person.name))
+  index.html = greet.ori(teamData.yaml[0].name)
+  team = Tree.map(teamData.yaml, (person) => greet.ori(person.name))
   assets
   images
   <b>thumbnails = Tree.map(images, thumbnail.js)</b>
