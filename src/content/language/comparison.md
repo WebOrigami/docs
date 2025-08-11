@@ -172,6 +172,54 @@ In this example Origami treats `ReadMe.md` as the name of a local file or folder
 
 Origami allows the JavaScript math symbols `+`, `-`, `*`, and `~` to appear in a name: e.g., `package-lock.json`. To invoke a binary math operator, add spaces around it; see [Operators](#operators).
 
+### Name conflicts
+
+One reason the above heuristic generally works well is that most JavaScript globals start with or contain uppercase letters, while development projects often use lowercase names for folder and file names. This reduces the chances for name collisions.
+
+That said, here is the set of JavaScript globals or keywords that are entirely lowercase letters:
+
+```
+atob
+bota
+console
+crypto
+escape
+eval
+false
+fetch
+import
+navigator
+null
+performance
+process
+true
+undefined
+unescape
+```
+
+If your project happens to have a folder or file with one of these names — or that starts with one of these names — you can surround the path with angle brackets; see below. Example: `performance.yaml` starts with `performance`; to reference the file, use angle brackets: `<performance.yaml>`.
+
+Another potential source of name conflicts are file names that begin with the same name as a local:
+
+```ori
+{
+  index.html = index.ori(posts.ori)
+  posts/ = Tree.map(markdown/, postPage.ori)
+}
+```
+
+Here the `posts.ori` reference won’t find the expected local file. Instead, it will match the local `posts/` variable; see [local property references](#local-property-references) below. Origami will then search that result for a non-existent `ori` property. To fix this, rename `posts.ori` or surround it with angle brackets: `<posts.ori>`.
+
+Note that the following does not produce a conflict:
+
+```ori
+{
+  posts/ = Tree.map(markdown/, posts.ori)
+}
+```
+
+When defining an object key like `posts/` here, the expression that defines the value will never match the key being defined. (Otherwise this would create an infinite loop.) So `posts.ori` in this case can’t match the `posts/` local variable, and will find the file as expected.
+
 ### Paths
 
 A sequence of characters with slashes is treated as a _path_.
