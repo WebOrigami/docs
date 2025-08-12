@@ -6,13 +6,13 @@ ${ templates/blocks.jse(areaLinks) }
 
 The Origami language includes a number of functions that you can call from Origami site definitions, Origami [templates](/language/templates.html), and [command-line interface](/cli/) commands.
 
-## Namespaces and protocols
+## Namespaces
 
 <ul>
 ${ Tree.map(node_modules/@weborigami/origami/src/dev/help.yaml, (help, namespaceSlash) => Tree.indent`
   <li>
-    <a href="${ namespaceSlash }">${ Origami.slash.remove(namespaceSlash) }:</a>
-    ${ help.description }
+    <a href="${ namespaceSlash }">${ Origami.slash.remove(namespaceSlash) }</a>
+    — ${ help.description }
   </li>
 `) }
 </ul>
