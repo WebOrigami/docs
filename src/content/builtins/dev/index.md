@@ -19,4 +19,4 @@ $ ori serve
 
 ## Commands by name
 
-${ commandList.jse/Dev }
+${ commandList.ori/Dev }

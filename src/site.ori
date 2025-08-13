@@ -1,7 +1,7 @@
 // Transform all the content documents into HTML pages
-Tree.deepMap(content, { extension: ".md→.html", value: transform.jse })
+Tree.deepMap(content, { extension: ".md→.html", value: transform.ori })
 
-→ (pages) => <node:process>.env.NODE_ENV === "production"
+→ (pages) => (node:process).env.NODE_ENV === "production"
     ? Tree.cache(pages) // Cache the pages in production
     : pages // No caching in development
 
@@ -18,7 +18,7 @@ Tree.deepMap(content, { extension: ".md→.html", value: transform.jse })
 
   // Live demos
   demos/ = {
-    aboutUs/ = demos/aboutUs/site.jse/
+    aboutUs/ = demos/aboutUs/site.ori/
   }
 
   // Folder of search indexes and resources created on demand (but only once)
@@ -27,5 +27,5 @@ Tree.deepMap(content, { extension: ".md→.html", value: transform.jse })
   // Used by Netlify
   _redirects
 
-  samples/ = samples.jse/
+  samples/ = samples.ori/
 }

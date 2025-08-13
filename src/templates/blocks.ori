@@ -1,0 +1,5 @@
+(links) => Tree.indent`
+  <div class="blocks">
+    ${ areaLinks.ori(links) }
+  </div>
+`

@@ -2,7 +2,7 @@
 title: Origami built-in functions
 ---
 
-${ templates/blocks.jse(areaLinks) }
+${ templates/blocks.ori(areaLinks) }
 
 The Origami language includes a number of functions that you can call from Origami site definitions, Origami [templates](/language/templates.html), and [command-line interface](/cli/) commands.
 
@@ -19,4 +19,4 @@ ${ Tree.map(node_modules/@weborigami/origami/src/dev/help.yaml, (help, namespace
 
 ## Functions and objects by name
 
-${ commandList.jse("") }
+${ commandList.ori("") }

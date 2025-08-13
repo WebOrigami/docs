@@ -12,5 +12,5 @@ Tree.sort(
       }
     )
   ),
-  { compare: naturalOrder }
+  { compare: Origami.naturalOrder }
 )

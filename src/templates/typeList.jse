@@ -1,1 +1,0 @@
-(types) => <js/separatedList.js>(types, ' | ', (x) => x)

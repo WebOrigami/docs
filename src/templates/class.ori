@@ -4,17 +4,17 @@
   </p>
   ${ api.classConstructor ? Tree.indent`
     <h3 id="${ api.classConstructor.name }">
-      new ${ api.classConstructor.name }(${ <parameters.jse>(api.classConstructor.parameters) })
+      new ${ api.classConstructor.name }(${ parameters.ori(api.classConstructor.parameters) })
     </h3>
-    ${ <function.jse>(api.classConstructor) }
+    ${ function.ori(api.classConstructor) }
   `: "" }
   ${ Tree.map(api.members ?? [], (member) => Tree.indent`
     <h3 id="${ member.name }">
       ${ member.static ? "static " : "" }
       ${ member.async ? "async " : "" }
-      ${ member.generator ? "*" : "" }${ member.name }(${ <parameters.jse>(member.parameters) })
+      ${ member.generator ? "*" : "" }${ member.name }(${ parameters.ori(member.parameters) })
       ${ member.isConstructor ? "constructor" : "" }
     </h3>
-    ${ <function.jse>(member) }
+    ${ function.ori(member) }
   `) }
 `

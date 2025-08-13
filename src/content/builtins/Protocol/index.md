@@ -7,4 +7,4 @@ The `Protocol` namespace groups the handlers for URL protocols (technically call
 
 ## Commands by name
 
-${ commandList.jse/Protocol }
+${ commandList.ori/Protocol }

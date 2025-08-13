@@ -18,7 +18,7 @@
         </div>
         <nav id="navBar">
           <a href="/">Origami</a>
-          ${ page.areaLinks ? <areaLinks.jse>(page.areaLinks) : "" }
+          ${ page.areaLinks ? <areaLinks.ori>(page.areaLinks) : "" }
           <a href="https://github.com/WebOrigami/origami">GitHub</a>
           <a id="linkSearch" href="/search.html">Search</a>
         </nav>
@@ -43,7 +43,7 @@
           }
         </header>
         <nav id="sideBar">
-          ${ <sideBar.jse>(page.pageLinks) }
+          ${ <sideBar.ori>(page.pageLinks) }
         </nav>
         <main class="markdown-body">
 ${ page._body }

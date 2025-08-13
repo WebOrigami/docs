@@ -16,4 +16,4 @@ ${ Tree.isTreelike({ name: "Alice" }) + "\n" }
 
 ## Commands by name
 
-${ commandList.jse/Tree }
+${ commandList.ori/Tree }

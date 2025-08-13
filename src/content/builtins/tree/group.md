@@ -9,14 +9,14 @@ For example, suppose the data for a set of books includes a `genre` field that c
 
 ```console
 $ cat books.yaml
-${ samples.jse/help/books.yaml }
+${ samples.ori/help/books.yaml }
 ```
 
 The books can then be grouped by genre. Here the `=_/genre` function is shorthand for `(book) => book/genre`. This function lets the `group` built-in know what the books should be grouped by.
 
 ```console
 $ ori Tree.group books.yaml, =_.genre
-${ Origami.yaml(Tree.group(samples.jse/help/books.yaml, (book) => book.genre)) }
+${ Origami.yaml(Tree.group(samples.ori/help/books.yaml, (book) => book.genre)) }
 ```
 
 In the result tree, the top-level keys for the groups are the individual values found in the `genre` field: "Sci-Fi", "Romance", and "Gothic". The group values are arrays containing references to all the books that included that particular genre; a single book can appear in multiple groups.

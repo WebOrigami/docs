@@ -29,13 +29,13 @@ $ ori map people.yaml, greetings.yaml
 
 <div class="sideBySide">
   <figure>
-    ${ svg.js samples.jse/cli/people.yaml }
+    ${ svg.js samples.ori/cli/people.yaml }
   </figure>
   <figure>
-    ${ svg.js samples.jse/cli/greetings.yaml }
+    ${ svg.js samples.ori/cli/greetings.yaml }
   </figure>
   <figure>
-    ${ svg.js map(samples.jse/cli/people.yaml, samples.jse/cli/greetings.yaml) }
+    ${ svg.js map(samples.ori/cli/people.yaml, samples.ori/cli/greetings.yaml) }
   </figure>
   <figcaption>List of people</figcaption>
   <figcaption>Greetings for everyone</figcaption>

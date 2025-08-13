@@ -1,0 +1,15 @@
+{
+  index.html = index.ori(teamData.yaml)
+
+  team/ = Tree.map(teamData.yaml, {
+    key: (person) => `${person.name}.html`
+    value: person.ori
+  })
+
+  assets/
+  images/
+
+  thumbnails/ = Tree.map(images, (image) =>
+    Origami.image.resize(image, { width: 400 })
+  )
+}

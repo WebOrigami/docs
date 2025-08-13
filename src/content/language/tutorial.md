@@ -98,7 +98,7 @@ For this tutorial, you'll use the [template system built into Origami](templates
 <span class="tutorialStep"></span> View the file `src/greet.ori`.
 
 ```${"html"}
-${ demos/framework-intro/greet.jse }
+${ demos/framework-intro/greet.ori }
 ```
 
 This template defines a function: something that accepts input and produces output. In this case, the function in `greet.ori` accepts a name and returns an HTML greeting that incorporates that name.
@@ -427,7 +427,7 @@ The text inside a template can be as complex as you want.
 <clipboard-copy>
 
 ```${"html"}
-${ demos/framework-intro/index.jse }
+${ demos/framework-intro/index.ori }
 ```
 
 </clipboard-copy>
@@ -588,7 +588,7 @@ The only thing left to do is complete the `person.ori` template.
 <clipboard-copy>
 
 ```${"html"}
-${ demos/framework-intro/person.jse }
+${ demos/framework-intro/person.ori }
 ```
 
 </clipboard-copy>

@@ -11,7 +11,7 @@ To stay as close to the platform as possible, we'll render the tree in JSON form
 An async tree is asynchronous, so we'll need to either traverse it asynchronously and display its values as we go, or else resolve the entire tree to a synchronous, in-memory object. We'll take the latter approach here.
 
 ```${'js'}
-${ js/codeFunctions.js(pattern.jse/flat/json.js).plain }
+${ js/codeFunctions.js(pattern.ori/flat/json.js).plain }
 ```
 
 It may feel counter-productive to do work to wrap a synchronous in-memory object with the asynchronous AsyncTree interface — and then immediately unwind all those asynchronous promises to get back an in-memory object!
@@ -27,11 +27,11 @@ We could write a tool to statically import a specific tree we want to display, b
 ```${'js'}
 /* src/flat/json.js */
 
-${ js/codeFunctions.js(pattern.jse/flat/json.js)["@prologue"] }
+${ js/codeFunctions.js(pattern.ori/flat/json.js)["@prologue"] }
 
 async function plain(tree) { /* See above */ }
 
-${ js/codeFunctions.js(pattern.jse/flat/json.js)["@epilogue"] }
+${ js/codeFunctions.js(pattern.ori/flat/json.js)["@epilogue"] }
 ```
 
 The tool dynamically imports the indicated JavaScript file and gets its default export, which is expected to be an async tree. We then use the `plain` function above to resolve the tree to an in-memory object, then render the JSON for that object to the console.
@@ -42,7 +42,7 @@ The tool dynamically imports the indicated JavaScript file and gets its default 
 
 ```console
 $ node json object.js
-${ Tree.json(pattern.jse/flat/object.js/) + "\n" }
+${ Tree.json(pattern.ori/flat/object.js/) + "\n" }
 ```
 
 &nbsp;

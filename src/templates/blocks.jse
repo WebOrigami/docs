@@ -1,5 +1,0 @@
-(areaLinks) => Tree.indent`
-  <div class="blocks">
-    ${ <areaLinks.jse>(areaLinks) }
-  </div>
-`

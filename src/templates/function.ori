@@ -1,7 +1,7 @@
 (api) => Tree.indent`
   <ul>
   ${ Tree.map(api.parameters, (parameter) => Tree.indent`
-    <li>${parameter.name}: ${ <typeList.jse>(parameter.types) }
+    <li>${parameter.name}: ${ typeList.ori(parameter.types) }
       ${ parameter.description ? `&ndash; ${parameter.description}` : "" }
     </li>  
   `) }
@@ -9,7 +9,7 @@
   ${ !api.isConstructor
     ? Tree.indent`
       <p>
-        Returns: ${ <typeList.jse>(api.returnTypes) }
+        Returns: ${ typeList.ori(api.returnTypes) }
       </p>
     `
     : "" }
