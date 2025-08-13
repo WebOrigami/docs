@@ -27,7 +27,7 @@ then you can turn that into a small Origami program that orchestrates the creati
 ```ori
 {
   // Stylesheets, etc.
-  <assets>
+  assets/
 
   // Create a home page listing all the products
   index.html = index.ori(products.yaml)
