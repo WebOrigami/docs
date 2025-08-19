@@ -8,8 +8,8 @@ These general principles guide the design of the Origami language itself. They a
 
 - Do things in the plainest way possible. This makes things easier on collaborators and on yourself when you return to a project later. It also enables a high degree of sharing/reuse.
 - Use plain strings, plain functions, and plain objects whenever possible.
-- Functions should have the most obvious, simplest signature possible.
-- Use standard formats whenever possible.
+- Functions should have the most obvious, simplest signature possible. They should generally be [pure functions](https://en.wikipedia.org/wiki/Pure_function): they always return the same output for identical inputs and have no side effects.
+- Use standard, or _de facto_ standard, file formats whenever possible.
 - Avoid dependencies.
 
 ### You are always in control
@@ -22,7 +22,7 @@ These general principles guide the design of the Origami language itself. They a
 
 - If you know HTML and CSS but not JavaScript, the language should make sense to you.
 - If you already know JavaScript, the language is essentially JavaScript expressions with syntax for slash-delimited paths.
-- If you ever encounter a situation where Origami is not sufficient, you can easily invoke JavaScript.
+- If you ever encounter a situation where Origami expressions are not sufficient, you can easily invoke JavaScript.
 - Origami prefers using existing platform concepts directly. In advanced usage, this may mean you might encounter an unfamiliar concept from the platform — like async functions or typed arrays — but in the end that's better than a slightly simpler but proprietary concept. You are learning something you can apply to every future web project.
 
 ### Focus on creating great sites
