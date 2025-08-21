@@ -2,7 +2,7 @@
   "name": "my-origami-project",
   "type": "module",
   "dependencies": {
-    "@weborigami/origami": "${ version }"
+    "@weborigami/origami": "${ Dev.version }"
   },
   "scripts": {
     "build": "ori copy src/site.ori, clear files:build",

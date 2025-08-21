@@ -35,14 +35,14 @@ If you ask Origami to unpack this file:
 
 ```console
 $ ori basho.md/
-${ Origami.yaml(removeText.ori(samples.ori/help/basho.md/)) }
+${ Origami.yaml(samples.ori/help/basho.md/) }
 ```
 
 You can see that Origami is treating the body text as a `_body` property. In JSON format:
 
 ```console
 $ ori Tree.json basho.md
-${ Tree.json(removeText.ori(samples.ori/help/basho.md)) + "\n" }
+${ Tree.json(samples.ori/help/basho.md) + "\n" }
 ```
 
 Here, the [`json`](/builtins/tree/json.html) command implicitly unpacks the document, so the trailing `/` slash is unnecessary.
@@ -69,7 +69,7 @@ The first relevant character in the front matter is a `{`, so the front matter i
 
 ```console
 $ ori timestamp.md/
-${ Origami.yaml(removeText.ori(samples.ori/help/timestamp.md)) + "\n" }
+${ Origami.yaml(samples.ori/help/timestamp.md) + "\n" }
 ```
 
 This technique can be used to attach complex data to a document.
@@ -89,5 +89,5 @@ If you give the builtin a document object, you get back a new document object th
 
 ```console
 $ ori mdHtml basho.md
-${ Origami.yaml(removeText.ori(Origami.mdHtml(samples.ori/help/basho.md/))) }
+${ Origami.yaml(Origami.mdHtml(samples.ori/help/basho.md/)) }
 ```

@@ -16,14 +16,14 @@ then invoking `document` on it returns a plain object with the original body tex
 
 ```console
 $ ori Origami.document hokusai.md
-${ Origami.yaml(removeText.ori(Origami.document(samples.ori/help/hokusai.md))) }
+${ Origami.yaml(Origami.document(samples.ori/help/hokusai.md)) }
 ```
 
 You can also attach data:
 
 ```console
 $ ori Origami.document hokusai.md, { author: "'Katsushika Hokusai'" }
-${ Origami.yaml(removeText.ori(Origami.document(samples.ori/help/hokusai.md, { author: "Katsushika Hokusai" }))) }
+${ Origami.yaml(Origami.document(samples.ori/help/hokusai.md, { author: "Katsushika Hokusai" })) }
 ```
 
 If you have a text document with data in front matter:
@@ -37,7 +37,7 @@ Then calling `document` on it returns a plain object with the front matter data 
 
 ```console
 $ ori Origami.document basho.md
-${ Origami.yaml(removeText.ori(samples.ori/help/basho.md/)) }
+${ Origami.yaml(samples.ori/help/basho.md/) }
 ```
 
 If you have a collection of documents, some of which have data and some of which don't, you can normalize all of them to document objects by applying `document` to each of them.
@@ -47,7 +47,7 @@ $ ori Tree.map [basho.md, hokusai.md], =Origami.document _
 ${ Origami.yaml(Tree.map([
   samples.ori/help/basho.md
   samples.ori/help/hokusai.md
-], (file) => removeText.ori(Origami.document(file)))) }
+], (file) => Origami.document(file))) }
 ```
 
 All of the objects in the result are now document objects with a `_body` property.
