@@ -94,15 +94,7 @@ Object literals are created with `{` and `}` curly braces, and contain key/value
 }
 ```
 
-You can separate key/value pairs with commas, newlines, or both. Keys should not be quoted.
-
-As with references (above), you can use periods in keys. Escape any special characters like spaces:
-
-```ori
-{
-  Test\\ File.txt: "Sample text"
-}
-```
+As with references (above), you can use periods in keys. You can separate key/value pairs with commas, newlines, or both.
 
 You can also put keys in single or double quotes:
 
@@ -260,7 +252,7 @@ As with object literals (above), you can separate array items with commas, newli
 
 ## Spread operator
 
-You can use `...` three periods or the single `…` ellipsis character to merge arrays and objects.
+You can use `...` three periods to merge arrays and objects.
 
 ```console
 $ ori tree1.yaml
@@ -279,7 +271,7 @@ In an `.ori` file, you can use this to merge a folder into an object that also d
   index.html: "Hello!"
 
   // Merge in everything in the `styles` folder
-  ...<styles>
+  ...styles
 }
 ```
 

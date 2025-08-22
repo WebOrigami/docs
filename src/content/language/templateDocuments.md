@@ -120,7 +120,7 @@ This can be achieved using the above principle of placing an Origami expression 
 
 If `calcs.ori.md` contains:
 
-```ori
+```
 ${ samples.ori/templateDocuments/calcs.ori.md }
 ```
 
