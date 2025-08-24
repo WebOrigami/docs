@@ -1,1 +1,1 @@
-(types) => js/separatedList.js(types, ' | ', (x) => x)
+(types) => Tree.values(types).join(' | ')

@@ -1,3 +1,6 @@
-(parameters) => js/separatedList.js(parameters, ", ", (parameter) => Tree.indent`
-  ${ parameter.optional ? "[" : "" }${ parameter.name }${ parameter.optional ? "]" : "" }
-`)
+(parameters) => 
+  Tree.map(parameters, (parameter) =>
+    `${ parameter.optional ? "[" : "" }${ parameter.name }${ parameter.optional ? "]" : "" }`
+  )
+
+  → (texts) => Tree.values(texts).join(", ")
