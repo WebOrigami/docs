@@ -159,16 +159,19 @@ This expression passes the `ReadMe.md` file to Origami's builtin [`mdHtml`](/bui
 
 ### File name heuristic
 
-The period in `Origami.mdHtml` above is standard JavaScript syntax for property access, but the period in `ReadMe.md` is just a character in a file name. Origami uses the following heuristic to determine how to interpret a period:
+The period in `Origami.mdHtml` above is standard JavaScript syntax for property access, but the period in `ReadMe.md` is just a character in a file name. How does Origami distinguish these?
 
-- In a sequence `a.b.c`, Origami looks at the part before the first period: `a`. If that is the name of a local variable, Origami treats the `a` as a reference to that local variable, and the `.b` and `.c` as property access.
-- Next Origami considers whether `a` is the name of a global variable. If so, the `a` references that global variable and the `.b` and `.c` are property access.
-- If there's a local variable whose entire name is `a.b.c` (see [property keys with periods](#property-keys-with-periods)), Origami treats this as a reference to that local variable.
-- Otherwise Origami treats the name `a.b.c` as a reference to a local file or folder that will be located using Origami [scope](scope.html).
+Origami uses this heuristic to determine how to interpret a period in a sequence like `a.b.c`:
 
-In the example above, `Origami` is a global. In addition to the [standard JavaScript built-in objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects), Origami defines just two globals itself: `Origami` and `Tree`. Here `Origami.mdHtml` gets the `mdHtml` property of the global `Origami` object.
+1. If there's a local variable whose entire name is `a.b.c` (see [property keys with periods](#property-keys-with-periods)), Origami treats this as a reference to that local variable.
+1. Next Origami looks at the part before the first period: `a`. If that is the name of a local variable, Origami treats the `a` as a reference to that local variable, and the `.b` and `.c` as property access.
+1. Likewise, Origami considers whether `a` is the name of a global variable. If so, the `a` references that global variable and the `.b` and `.c` are property access. In addition to the [standard JavaScript built-in objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects), Origami defines the globals `Dev`, `Origami`, `Protocol`, and `Tree`.
+1. Otherwise Origami treats the complete name `a.b.c` as a reference to a local file or folder that will be located using Origami [scope](scope.html).
 
-In this example Origami treats `ReadMe.md` as the name of a local file or folder because there are no local variables and there is no global variable called `ReadMe`.
+In the example above of `Origami.mdHtml(ReadMe.md)`:
+
+- `Origami` is a global, so `Origami.mdHtml` gets the `mdHtml` property of the global `Origami` object. The value of that is a builtin function.
+- There is no global variable called `ReadMe`, and assuming there is no local variable with that name, Origami treats `ReadMe.md` as the name of a local file or folder.
 
 Origami allows the JavaScript math symbols `+`, `-`, `*`, and `~` to appear in a name: e.g., `package-lock.json`. To invoke a binary math operator, add spaces around it; see [Operators](#operators).
 

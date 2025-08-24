@@ -173,7 +173,7 @@ Origami assumes that text files are encoded in [UTF-8](https://en.wikipedia.org/
 
 See more about [working with text documents](documents.html) in Origami.
 
-## TypeScript files
+### TypeScript files
 
 If you are running Node v23.6.0 or later, Origami can load TypeScript `.ts` files the same as `.js` files (above). This only strips out type information; it does not support using any TypeScript-specific language transformations.
 

@@ -400,10 +400,10 @@ You can define lambda functions using a "=>" (or the Unicode ⇒ Rightwards Doub
 
 This expression will not be evaluated immediately, but only later when explicitly invoked.
 
-For example, the [`map`](/builtins/tree/map.html) built-in function can apply another function to a tree's values and/or keys. To define a function that will be evaluated in the context of each tree value, you can use a lambda:
+For example, the [`Tree.map`](/builtins/tree/map.html) built-in function can apply another function to a tree's values and/or keys. To define a function that will be evaluated in the context of each tree value, you can use a lambda:
 
 ```console
-$ ori "map(letters.json, (description) => uppercase.js(description))"
+$ ori "Tree.map(letters.json, (description) => uppercase.js(description))"
 ${ Origami.yaml(
   Tree.map(
     <samples.ori/cli/letters.json>
