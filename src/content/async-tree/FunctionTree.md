@@ -47,4 +47,4 @@ $ ori function.js/David
 ${ samples/help/function.js/David + "\n" }
 ```
 
-${ templates/class.ori(api/drivers/FunctionTree.yaml/exports/0) }
+${ src/templates/class.ori(api/drivers/FunctionTree.yaml/exports/0) }

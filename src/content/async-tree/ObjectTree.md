@@ -41,4 +41,4 @@ Carol: Hello, Carol.
 
 ## API
 
-${ templates/class.ori(api/drivers/ObjectTree.yaml/exports/0) }
+${ src/templates/class.ori(api/drivers/ObjectTree.yaml/exports/0) }

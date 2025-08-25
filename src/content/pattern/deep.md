@@ -57,7 +57,7 @@ Finally, we need to update our `json` utility. That code has a function called `
 ```${'js'}
 /* Inside src/deep/json.js */
 
-${ js/codeFunctions.js(pattern.ori/deep/json.js).plain }
+${ src/js/codeFunctions.js(pattern.ori/deep/json.js).plain }
 ```
 
 <span class="tutorialStep"></span> From inside the `src/deep` directory, display a deep `ObjectTree` or `FileTree` instance from inside the `src/deep` directory.

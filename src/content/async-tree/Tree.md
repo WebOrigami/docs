@@ -3,4 +3,4 @@ title: Tree
 subtitle: Helper functions for working with asynchronous trees
 ---
 
-${ templates/exports.ori(api/Tree.yaml) }
+${ src/templates/exports.ori(api/Tree.yaml) }
