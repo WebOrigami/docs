@@ -17,7 +17,7 @@ Specifically, we convert a string URL path like `/foo/bar` into an array of keys
 ```${'js'}
 /* In src/deep/serve.js */
 
-${ src/js/codeFunctions.js(pattern.ori/deep/serve.js).keysFromUrl }
+${ src/js/codeFunctions.js(pattern/deep/serve.js).keysFromUrl }
 ```
 
 If the path ends in a slash like `foo/`, this produces the keys `["foo", "index.html"]`.
@@ -29,7 +29,7 @@ We can then iteratively follow this array of keys through a deep tree to a final
 ```${'js'}
 /* In src/deep/serve.js */
 
-${ src/js/codeFunctions.js(pattern.ori/deep/serve.js).traverse }
+${ src/js/codeFunctions.js(pattern/deep/serve.js).traverse }
 ```
 
 The tree itself is acting as a web site router.
@@ -41,7 +41,7 @@ Putting these together, we can build a listener function that uses a tree to res
 ```${'js'}
 /* In src/deep/serve.js */
 
-${ src/js/codeFunctions.js(pattern.ori/deep/serve.js).requestListener }
+${ src/js/codeFunctions.js(pattern/deep/serve.js).requestListener }
 ```
 
 This converts a request's URL into an array of keys, then returns what it finds there. If no value is found, the listener responds with 404 Not Found.
@@ -55,11 +55,11 @@ Finally, we start the server at a default port.
 ```${'js'}
 /* src/deep/serve.js */
 
-${ src/js/codeFunctions.js(pattern.ori/deep/serve.js)["@prologue"] }
+${ src/js/codeFunctions.js(pattern/deep/serve.js)["@prologue"] }
 
 /* …Plus the above code fragments… */
 
-${ src/js/codeFunctions.js(pattern.ori/deep/serve.js)["@epilogue"] }
+${ src/js/codeFunctions.js(pattern/deep/serve.js)["@epilogue"] }
 
 ```
 
@@ -68,7 +68,7 @@ To add a layer of flexibility, we'll serve the tree defined in a new file called
 ```${'js'}
 /* src/deep/siteTree.js */
 
-${ pattern.ori/deep/siteTree.js }
+${ pattern/deep/siteTree.js }
 ```
 
 ## Trying our server

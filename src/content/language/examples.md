@@ -3,7 +3,7 @@ title: Example sites
 subtitle: Created with the Origami language
 ---
 
-${ Tree.map(examples.yaml, (example, keySlash) => `
+${ Tree.map(src/examples.yaml, (example, keySlash) => `
 
 <h2>${ example.name }</h2>
 <a href="${ example.url ?? example.repo }">

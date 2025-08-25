@@ -11,7 +11,7 @@ To create a function-based tree, we'll need two things: 1) a function that can p
 ```${'js'}
 /* src/flat/fn.js */
 
-${ pattern.ori/flat/fn.js }
+${ pattern/flat/fn.js }
 ```
 
 Because the AsyncTree interface supports asynchronous functions by default, we could just as easily have the core `fn` function here be an `async` function that, for example, retrieved a resource from a server.
@@ -36,7 +36,7 @@ $ node fn.test.js
 
 ```console
 $ node json fn.js
-${ Tree.json(pattern.ori/flat/fn.js) + "\n" }
+${ Tree.json(pattern/flat/fn.js) + "\n" }
 ```
 
 You can think of a function tree as a function that can provide a sample output set. Here the core `fn` function can actually handle more keys that the tree exposes in its `keys`, which we can take advantage of later.
@@ -46,14 +46,14 @@ We can apply our markdown-to-HTML transformation to this virtual tree to create 
 ```${'js'}
 /* src/flat/htmlFn.js */
 
-${ pattern.ori/flat/htmlFn.js }
+${ pattern/flat/htmlFn.js }
 ```
 
 <span class="tutorialStep"></span> View the HTML translation of the markdown files in the virtual tree implied by the function.
 
 ```console
 $ node json htmlFn.js
-${ Tree.json(pattern.ori/flat/transform.js(Tree.from(pattern.ori/flat/htmlFn.js))) + "\n" }
+${ Tree.json(pattern/flat/transform.js(Tree.from(pattern/flat/htmlFn.js))) + "\n" }
 ```
 
 We have now implemented three different ways to construct an async tree. In a bit, we'll see how they can be used together to create interesting combinations and be used for practical purposes. Before doing that, however, let's make our code a little more general-purpose and flexible.

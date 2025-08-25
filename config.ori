@@ -5,6 +5,8 @@
   // type information and comments.
   api: src/js/jsApi.js(node_modules/@weborigami/async-tree/src/)
 
+  pattern: node_modules/@weborigami/pattern-intro/src/
+
   samples: node_modules/@weborigami/samples/src/
 
   // We don't want clickable links in rendered SVGs
