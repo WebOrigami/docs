@@ -418,13 +418,13 @@ Origami has a pipe operator `→` (which can also be written `->`) for represent
 
 These deeply-nested function calls:
 
-```
+```ori
 three(two(one(value)))
 ```
 
 can be rewritten using the pipe operator:
 
-```
+```ori
 value → one → two → three
 ```
 
@@ -445,6 +445,22 @@ You can rewrite the above using the pipe operator so that the flow of data reads
 ```
 
 This may make the flow of data easier to see.
+
+The pipe operator passes the value from the left side of the operator to the function on the right side. If you need to provide additional arguments to that function, wrap the function in a [lambda function](#lambda-functions) that accepts a single argument and then calls your desired function with the additional arguments.
+
+Example: these nested calls to [`Origami.mdHtml`](/builtins/origami/mdHtml.html) and [`Tree.sort`](/builtins/tree/sort.html) both take multiple arguments:
+
+```ori
+Tree.sort(Tree.map(markdown/, Origami.mdHtml), { compare: Origami.naturalOrder })
+```
+
+This can be rewritten with the pipe operator and lambda functions:
+
+```ori
+markdown/
+→ (mdFiles) => Tree.map(mdFiles, Origami.mdHtml)
+→ (htmlFiles) => Tree.sort(htmlFiles, { compare: Origami.naturalOrder })
+```
 
 ## Comments
 
