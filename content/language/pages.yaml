@@ -26,8 +26,6 @@
   text: Principles
 - href: howTo.html
   text: How To
-- href: idioms.html
-  text: Idioms
 - href: devTools.html
   text: Development tools
 - href: examples.html

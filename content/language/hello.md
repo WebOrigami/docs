@@ -475,36 +475,6 @@ You can browse the pages in the `posts` area immediately. Other programming envi
 
 _Key point: You can use template systems in Origami to turn files and data into text. Origami comes with a built-in template system._
 
-## Hiding parts of a tree
-
-The blog site above includes an `html` area and a `posts` area, but the `html` area is an intermediate step that's only needed for internal use; it doesn't need to appear in your final site.
-
-You can rearrange the `site.ori` definition to hide the `html` area:
-
-```ori
-{
-  html = Tree.map(<markdown>, Origami.mdHtml)
-  public = {
-    posts = Tree.map(html, post.ori)
-  }
-}.public
-```
-
-This defines a `public` subtree containing everything that should be publicly visible. Inside the `public` subtree, Origami's tree scope (discussed above) lets the `posts` formula reference the `html` branch defined at the top level of the file. Since the `html` branch is outside the `public` area, it behaves like a private variable inside the file.
-
-The `.public` reference at the end of the file indicates that only this `public` subtree should be returned as the result of evaluating `site.ori`. So the blog site now only has a `posts` area:
-
-<figure>
-${
-  svg({
-    posts: {
-      post1.html: "...<title>My first post</title>..."
-      post2.html: ".....<title>Second post</title>..."
-    }
-  })
-}
-</figure>
-
 ## Using a map in a template
 
 A unique feature of Origami templates is that you can use maps inside them to process a collection of documents or data into HTML. You can use this to make page elements for navigation that reflect the structure of the original content.
