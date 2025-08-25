@@ -149,14 +149,14 @@ The expression that defines the value of a property can reference other properti
 
 ```ori
 // localRef.ori
-${ samples.ori/help/localRef.ori }
+${ samples/help/localRef.ori }
 ```
 
 This evaluates to:
 
 ```console
 $ ori localRef.ori/
-${ Origami.yaml(samples.ori/help/localRef.ori/) }
+${ Origami.yaml(samples/help/localRef.ori/) }
 ```
 
 This type of local reference is not possible in languages like JavaScript.
@@ -165,14 +165,14 @@ Origami will avoid recursive local references. If you try to define a `name` pro
 
 ```ori
 // inherited.ori
-${ samples.ori/help/inherited.ori }
+${ samples/help/inherited.ori }
 ```
 
 Here the expression `\${name}` will resolve to the inherited `name` defined in the parent object.
 
 ```console
 $ ori inherited.ori
-${ Origami.yaml(samples.ori/help/inherited.ori/) }
+${ Origami.yaml(samples/help/inherited.ori/) }
 ```
 
 ## Object property getters
@@ -195,21 +195,21 @@ One use for non-enumerable properties is in calculating a value that will be use
 
 ```ori
 // hidden.ori
-${ samples.ori/help/hidden.ori }
+${ samples/help/hidden.ori }
 ```
 
 Here, the declaration of the `company` property is in parentheses, so it is non-enumerable. It can be referenced by other object properties, but will not be included in the object's keys. This means it won't be shown when the object is displayed:
 
 ```console
 $ ori hidden.ori/
-${ Origami.yaml(samples.ori/help/hidden.ori/) }
+${ Origami.yaml(samples/help/hidden.ori/) }
 ```
 
 Marking a property as non-enumerable only affects whether it is included in the object's list of keys; a non-enumerable property is still accessible if one knows the property name:
 
 ```console
 $ ori hidden.ori/company
-${ Origami.yaml(samples.ori/help/hidden.ori/company) }
+${ Origami.yaml(samples/help/hidden.ori/company) }
 ```
 
 ## Object nesting
@@ -256,11 +256,11 @@ You can use `...` three periods to merge arrays and objects.
 
 ```console
 $ ori tree1.yaml
-${ samples.ori/help/merge/tree1.yaml }$ ori tree2.yaml
-${ samples.ori/help/merge/tree2.yaml }$ ori { ...tree1.yaml, ...tree2.yaml }
+${ samples/help/merge/tree1.yaml }$ ori tree2.yaml
+${ samples/help/merge/tree2.yaml }$ ori { ...tree1.yaml, ...tree2.yaml }
 ${ Origami.yaml({
-  ...samples.ori/help/merge/tree1.yaml
-  ...samples.ori/help/merge/tree2.yaml
+  ...samples/help/merge/tree1.yaml
+  ...samples/help/merge/tree2.yaml
 }) }
 ```
 
@@ -406,8 +406,8 @@ For example, the [`Tree.map`](/builtins/tree/map.html) built-in function can app
 $ ori "Tree.map(letters.json, (description) => uppercase.js(description))"
 ${ Origami.yaml(
   Tree.map(
-    <samples.ori/cli/letters.json>
-    (description) => <samples.ori/cli/uppercase.js>(description)
+    samples/cli/letters.json
+    (description) => samples/cli/uppercase.js(description)
   )
 ) }
 ```

@@ -12,10 +12,10 @@ In our markdown-to-HTML transformation, we will create a virtual tree of HTML co
 
 <div class="sideBySide split2to3">
   <figure>
-    ${ svg.js(pattern.ori/flat/object.js) }
+    ${ svg(pattern.ori/flat/object.js) }
   </figure>
   <figure>
-    ${ svg.js(pattern.ori/flat/htmlObject.js) }
+    ${ svg(pattern.ori/flat/htmlObject.js) }
   </figure>
   <figcaption>Tree of markdown content</figcaption>
   <figcaption>Virtual tree of HTML</figcaption>

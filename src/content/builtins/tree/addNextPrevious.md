@@ -9,16 +9,16 @@ Example application of `addNextPrevious` to a tree of strings:
 
 ```console
 $ cat letters.yaml
-${ samples.ori/help/letters.yaml }$ ori Tree.addNextPrevious letters.yaml
-${ Origami.yaml(Tree.addNextPrevious(samples.ori/help/letters.yaml)) }
+${ samples/help/letters.yaml }$ ori Tree.addNextPrevious letters.yaml
+${ Origami.yaml(Tree.addNextPrevious(samples/help/letters.yaml)) }
 ```
 
 <div class="sideBySide">
   <figure>
-    ${ svg.js(samples.ori/help/letters.yaml) }
+    ${ svg(samples/help/letters.yaml) }
   </figure>
   <figure>
-    ${ svg.js(Tree.addNextPrevious(samples.ori/help/letters.yaml)) }
+    ${ svg(Tree.addNextPrevious(samples/help/letters.yaml)) }
   </figure>
   <figcaption>Input tree</figcaption>
   <figcaption>Result of addNextPrevious</figcaption>

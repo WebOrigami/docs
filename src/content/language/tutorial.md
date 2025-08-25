@@ -34,7 +34,7 @@ A helpful way to approach the creation of a site is to think about it as a tree 
 You can visualize this as:
 
 <figure>
-${ svg.js({
+${ svg({
 assets/: "Stylesheets and other resources"
 index.html: "Index page"
 posts/: {
@@ -115,7 +115,7 @@ This opens the Origami Explorer, a debugging page listing your project’s virtu
 <span class="tutorialStep"></span> Select the `site.ori` file on the left, then click the **SVG** button at the top. Your site will be visually depicted as a tree with just one branch:
 
 <figure>
-${ svg.js({
+${ svg({
 index.html: "My Blog"
 }) }
 </figure>
@@ -257,7 +257,7 @@ The order of definitions in `site.ori` doesn't matter, so you can add the `asset
 Refresh the Preview tab to see the updated index page. You can also refresh the Explorer tab to see the updated site structure:
 
 <figure>
-${ svg.js({
+${ svg({
 assets/: {
   styles.css: "... styles ..."
 }
@@ -549,7 +549,7 @@ Now the newest post comes first.
 Your little data pipeline is complete. It turns this tree of files in the `markdown` folder:
 
 <figure>
-${ svg.js({
+${ svg({
 2026-09-01.md: `---
 title: First post
 ---
@@ -566,7 +566,7 @@ This is the _second_ post.
 into this tree of data:
 
 <figure>
-${ svg.js({
+${ svg({
 	2026-09-02: {
 	  title: "Second post"
 	  _body: "<p>This is the <em>second</em> post.</p>"
@@ -674,7 +674,7 @@ This uses the same `extension` option you used earlier; here it adds an `.html` 
 <span class="tutorialStep"></span> In the Explorer tab, select the `site.ori` on the left, then click **SVG** to confirm that your site now has a `posts` area with a page for each post:
 
 <figure>
-${ svg.js({
+${ svg({
   assets/: {
     styles.css: "... styles ..."
   }
@@ -960,7 +960,7 @@ Your basic blog is now complete.
 <span class="tutorialStep"></span> In the Explorer tab, select `site.ori` and click **SVG** to view your site's final structure:
 
 <figure>
-${ svg.js({
+${ svg({
   assets/: {
     styles.css: "... styles ..."
   }

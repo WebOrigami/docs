@@ -23,19 +23,19 @@ A template often begins with a list of named parameters in parentheses:
 
 ```ori
 // greet.ori
-${ samples.ori/templates/greet.ori }
+${ samples/templates/greet.ori }
 ```
 
 The `person` argument holds the template's input, so the expression `person.name` will get the `name` property of any object passed to the template:
 
 ```${"yaml"}
 # alice.yaml
-${ samples.ori/templates/alice.yaml }
+${ samples/templates/alice.yaml }
 ```
 
 ```console
 $ ori greet.ori alice.yaml
-${ samples.ori/templates/greet.ori(samples.ori/templates/alice.yaml) + "\n" }
+${ samples/templates/greet.ori(samples/templates/alice.yaml) + "\n" }
 ```
 
 ## Reference local files
@@ -45,21 +45,21 @@ You can reference local files in Origami expressions. Depending on the situation
 If `copyright.txt` contains:
 
 ```
-${ samples.ori/templates/copyright.txt/ + "\n" }
+${ samples/templates/copyright.txt/ + "\n" }
 ```
 
 Then an Origami template can reference that local file directly with a `<path>` expression:
 
 ```ori
 // fileRef.ori
-${ samples.ori/templates/fileRef.ori }
+${ samples/templates/fileRef.ori }
 ```
 
 In cases like this, where the template does not require any argument, in the command line you can invoke the template with a trailing slash:
 
 ```console
 $ ori fileRef.ori/
-${ samples.ori/templates/fileRef.ori/ + "\n" }
+${ samples/templates/fileRef.ori/ + "\n" }
 ```
 
 ## Reference trees
@@ -68,17 +68,17 @@ If a template expression results in a tree such as a folder or hierarchical data
 
 ```yaml
 # greetings.yaml
-${ samples.ori/templates/greetings.yaml }
+${ samples/templates/greetings.yaml }
 ```
 
 ```ori
 // flatten.ori
-${ samples.ori/templates/flatten.ori }
+${ samples/templates/flatten.ori }
 ```
 
 ```console
 $ ori flatten.ori/
-${ samples.ori/templates/flatten.ori/ + "\n" }
+${ samples/templates/flatten.ori/ + "\n" }
 ```
 
 This feature forms the basis for more complex ones (like maps, below), but one basic use for it is to inline a set of files. For example, you might create a folder that contains a collection of HTML fragments as separate files:
@@ -87,19 +87,19 @@ This feature forms the basis for more complex ones (like maps, below), but one b
 $ ls fragments
 a.html b.html c.html
 $ cat fragments/a.html
-${ samples.ori/templates/fragments/a.html }
+${ samples/templates/fragments/a.html }
 ```
 
 You can then reference that `fragments` folder in a template to concatenate all those HTML fragments into the output:
 
 ```ori
 // concat.ori
-${ samples.ori/templates/concat.ori }
+${ samples/templates/concat.ori }
 ```
 
 ```console
 $ ori concat.ori/
-${ samples.ori/templates/concat.ori/ }
+${ samples/templates/concat.ori/ }
 ```
 
 ## Use template expressions in any file type
@@ -110,17 +110,17 @@ For example, you can use this to inline resources such as stylesheets.
 
 ```html
 <!-- inline.html -->
-${ samples.ori/templates/inline.html }
+${ samples/templates/inline.html }
 ```
 
 ```css
 /* inline.css */
-${ samples.ori/templates/inline.css }
+${ samples/templates/inline.css }
 ```
 
 ```console
 $ ori inline inline.html
-${ Origami.inline(samples.ori/templates/inline.html) }
+${ Origami.inline(samples/templates/inline.html) }
 ```
 
 Here, the `inline.html` file is acting as an Origami template, but keeps the `.html` extension so that it can be otherwise treated as an HTML file.
@@ -142,7 +142,7 @@ Inside a template, you can use expressions to traverse into data.
 
 ```ori
 // teamLead.ori
-${ samples.ori/templates/teamLead.ori }
+${ samples/templates/teamLead.ori }
 ```
 
 The sequence `[0].name` is asking for the `name` property of the first (zeroth) item in the array of people in `teamData.yaml` file. This request implicitly [unpacks the file](http://localhost:5000/language/fileTypes.html#unpacking-files) to data before returning the requested value. A path expression could accomplish the same result: `teamData.yaml/0/name`.
@@ -151,7 +151,7 @@ Either way, the result is:
 
 ```console
 $ ori teamLead.ori/
-${ samples.ori/templates/teamLead.ori/ + "\n" }
+${ samples/templates/teamLead.ori/ + "\n" }
 ```
 
 ## Reference network resources
@@ -160,25 +160,25 @@ Since `https` and `http` URLs are valid Origami expressions, you can incorporate
 
 ```ori
 // net.ori
-${ samples.ori/templates/net.ori }
+${ samples/templates/net.ori }
 ```
 
 ```console
 $ ori net.ori/
 This content came from weborigami.org:
-${ samples.ori/templates/net.txt/ }
+${ samples/templates/net.txt/ }
 ```
 
 This includes being able to traverse into data from the network. A [teamData.yaml](/samples/templates/teamData.yaml) file posted on the network can be referenced as an expression and then further traversed:
 
 ```ori
 // netData.ori
-${ samples.ori/templates/netData.ori }
+${ samples/templates/netData.ori }
 ```
 
 ```console
 $ ori netData.ori/
-Bob lives in ${ samples.ori/templates/teamData.yaml[1].location }.
+Bob lives in ${ samples/templates/teamData.yaml[1].location }.
 ```
 
 You can also obtain a data file from the network, treat it as a tree, and [map the tree to text](#map-trees-to-text). This allows you to directly process network data into text in a template.
@@ -197,16 +197,16 @@ For example, this template accepts a `input` argument that may or may not have a
 
 ```ori
 // condition.ori
-${ samples.ori/templates/condition.ori }
+${ samples/templates/condition.ori }
 ```
 
 If the `input` does have a rating, the template shows the rating, otherwise it shows "Not yet rated".
 
 ```console
 $ ori “condition.ori({ rating: 3 })”
-${ samples.ori/templates/condition.ori({ rating: 3 }) + "\n" }
+${ samples/templates/condition.ori({ rating: 3 }) + "\n" }
 $ ori “condition.ori({})”
-${ samples.ori/templates/condition.ori({}) + "\n" }
+${ samples/templates/condition.ori({}) + "\n" }
 ```
 
 A particularly kind of condition that often arises in templates is providing a default value for some field that might not exist in the template. For that particular kind of condition, you can use a "nullish coalescing operator" whose general form is:
@@ -225,17 +225,17 @@ For example, if you have a file named `uppercase.js` in the same directory as th
 
 ```js
 // uppercase.js
-${ samples.ori/templates/uppercase.js }
+${ samples/templates/uppercase.js }
 ```
 
 ```ori
 // callJs.ori
-${ samples.ori/templates/callJs.ori }
+${ samples/templates/callJs.ori }
 ```
 
 ```console
 $ ori callJs.ori/
-${ samples.ori/templates/callJs.ori/ + "\n" }
+${ samples/templates/callJs.ori/ + "\n" }
 ```
 
 If the function you invoke is asynchronous, its result will be awaited before being incorporated into the text output.
@@ -248,26 +248,26 @@ We can define a template `stars.ori` as a component that displays a star rating:
 
 ```ori
 // stars.ori
-${ samples.ori/templates/stars.ori }
+${ samples/templates/stars.ori }
 ```
 
 This template repeats a ★ star character for the number of times defined in in the input value. For example, you can directly invoke and test this template, passing in a value of 3:
 
 ```console
 $ ori stars.ori 3
-${ samples.ori/templates/stars.ori(3) + "\n" }
+${ samples/templates/stars.ori(3) + "\n" }
 ```
 
 This `stars.ori` template defines a function that you can invoke inside expressions in other templates:
 
 ```ori
 // review.ori
-${ samples.ori/templates/review.ori }
+${ samples/templates/review.ori }
 ```
 
 ```console
 $ ori review.ori/
-${ samples.ori/templates/review.ori/ + "\n" }
+${ samples/templates/review.ori/ + "\n" }
 ```
 
 This technique can let you define components in plain HTML and CSS.
@@ -278,21 +278,21 @@ Another application of invoking a template as a function is to wrap the output o
 
 ```ori
 // page.ori
-${ samples.ori/templates/page.ori }
+${ samples/templates/page.ori }
 ```
 
 A template for a specific type of page, like a `contact.ori` template for a Contact Us page, can invoke `page.ori` as a function:
 
 ```ori
 // contact.ori
-${ samples.ori/templates/contact.ori }
+${ samples/templates/contact.ori }
 ```
 
 Evaluating the contact page template passes its HTML fragment to the overall site page template:
 
 ```console
 $ ori contact.ori/
-${ samples.ori/templates/contact.ori/ }
+${ samples/templates/contact.ori/ }
 ```
 
 ### Processing input front matter
@@ -305,28 +305,28 @@ Example: a blog post can be stored as a markdown file with front matter that def
 
 ```html
 <!-- post1.html -->
-${ samples.ori/templates/posts/post1.html }
+${ samples/templates/posts/post1.html }
 ```
 
 And a template can then reference this `title` property. Here the template uses the `??` operator to provide a default title if the input document has no `title`.
 
 ```ori
 // blogPost.ori
-${ samples.ori/templates/blogPost.ori }
+${ samples/templates/blogPost.ori }
 ```
 
 Applying the template the blog post includes the document's `title` property as desired:
 
 ```console
 $ ori blogPost.ori posts/post1.html
-${ samples.ori/templates/blogPost.ori(samples.ori/templates/posts/post1.html) }
+${ samples/templates/blogPost.ori(samples/templates/posts/post1.html) }
 ```
 
 If the template is applied to a post that has no `title`, the default title is used:
 
 ```console
 $ ori blogPost.ori posts/post2.html
-${ samples.ori/templates/blogPost.ori(samples.ori/templates/posts/post2.html) }
+${ samples/templates/blogPost.ori(samples/templates/posts/post2.html) }
 ```
 
 ## Map trees to text
@@ -336,17 +336,17 @@ You can handle such cases in Origami templates by calling the built-in [`map`](/
 
 ```${"yaml"}
 # teamData.yaml
-${ samples.ori/templates/teamData.yaml }
+${ samples/templates/teamData.yaml }
 ```
 
 ```ori
 // teamList.ori
-${ samples.ori/templates/teamList.ori }
+${ samples/templates/teamList.ori }
 ```
 
 ```console
 $ ori teamList.ori/
-${ samples.ori/templates/teamList.ori/ }
+${ samples/templates/teamList.ori/ }
 ```
 
 The `teamList.ori` file defines an outer template that includes an `<ul>` tag. Inside that, a substitution calling `map` appears, which maps the array of people in `teamData.yaml` to a set of HTML fragments using a nested template with an `<li>` tag.
@@ -359,14 +359,14 @@ In the above example, the `map` function maps an array of people to HTML fragmen
 
 <div class="sideBySide">
   <figure>
-    ${ svg.js([
+    ${ svg([
       { name: "Alice" },
       { name: "Bob" },
       { name: "Carol" }
     ]) }
   </figure>
   <figure>
-    ${ svg.js(Tree.map(samples.ori/templates/teamData.yaml, (_) => `<li>${ _.name }</li>`)) }
+    ${ svg(Tree.map(samples/templates/teamData.yaml, (_) => `<li>${ _.name }</li>`)) }
   </figure>
   <figcaption>Source tree of people objects</figcaption>
   <figcaption>Result tree of HTML fragments</figcaption>
@@ -389,7 +389,7 @@ You can create an index page that links to these files using the key parameter. 
 
 ```ori
 // blogIndex.ori
-${ samples.ori/templates/blogIndex.ori }
+${ samples/templates/blogIndex.ori }
 ```
 
 This lets a link reference a file's specific file name in the `href` attribute.
@@ -400,5 +400,5 @@ Evaluating this template produces a list of links to each post, with each `href`
 
 ```console
 $ ori blogIndex.ori posts
-${ samples.ori/templates/blogIndex.ori(samples.ori/templates/posts) }
+${ samples/templates/blogIndex.ori(samples/templates/posts) }
 ```

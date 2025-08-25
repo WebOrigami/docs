@@ -24,7 +24,7 @@ ${ js/codeFunctions.js(pattern.ori/index/indexPages.js).indexPage }
 If the little `more` branch of our HTML tree looks like this:
 
 <figure>
-${ svg.js(pattern.ori/index/object.js/more) }
+${ svg(pattern.ori/index/object.js/more) }
 </figure>
 
 Then invoking `indexPage` on this branch will return:
@@ -50,7 +50,7 @@ ${ js/codeFunctions.js(pattern.ori/index/indexPages.js)["@epilogue"] }
 If we use this to transform the `more` branch of the HTML tree, the transformed tree now includes an `index.html` page:
 
 <figure>
-${ svg.js(pattern.ori/index/indexPages.js(pattern.ori/index/htmlObject.js/more)) }
+${ svg(pattern.ori/index/indexPages.js(pattern.ori/index/htmlObject.js/more)) }
 </figure>
 
 ## Incorporate the index page transform

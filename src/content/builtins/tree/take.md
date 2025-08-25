@@ -7,16 +7,16 @@ Returns a copy of the given tree, with the additional restriction that the new t
 
 ```console
 $ cat letters.yaml
-${ samples.ori/help/letters.yaml }$ ori Tree.take letters.yaml, 2
-${ Origami.yaml(Tree.take(samples.ori/help/letters.yaml, 2)) }
+${ samples/help/letters.yaml }$ ori Tree.take letters.yaml, 2
+${ Origami.yaml(Tree.take(samples/help/letters.yaml, 2)) }
 ```
 
 <div class="sideBySide">
   <figure>
-    ${ svg.js(samples.ori/help/letters.yaml) }
+    ${ svg(samples/help/letters.yaml) }
   </figure>
   <figure>
-    ${ svg.js(Tree.take(samples.ori/help/letters.yaml, 2)) }
+    ${ svg(Tree.take(samples/help/letters.yaml, 2)) }
   </figure>
   <figcaption>Input tree</figcaption>
   <figcaption>Result</figcaption>

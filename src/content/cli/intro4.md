@@ -76,10 +76,10 @@ The map example above takes the original greetings tree and creates a new tree w
 
 <div class="sideBySide">
   <figure>
-    ${ svg.js(samples.ori/cli/greetings.yaml) }
+    ${ svg(samples/cli/greetings.yaml) }
   </figure>
   <figure>
-    ${ svg.js(Tree.map(samples.ori/cli/greetings.yaml, samples.ori/cli/uppercase.js)) }
+    ${ svg(Tree.map(samples/cli/greetings.yaml, samples/cli/uppercase.js)) }
   </figure>
   <figcaption>Original tree</figcaption>
   <figcaption>Mapped values</figcaption>

@@ -7,16 +7,16 @@ Return the in-order exterior values of the tree as a flat array. This is a deep 
 
 ```console
 $ cat greetings.yaml
-${ samples.ori/help/greetings.yaml }$ ori Tree.deepValues greetings.yaml
-${ Origami.yaml(Tree.deepValues(samples.ori/help/greetings.yaml)) }
+${ samples/help/greetings.yaml }$ ori Tree.deepValues greetings.yaml
+${ Origami.yaml(Tree.deepValues(samples/help/greetings.yaml)) }
 ```
 
 <div class="sideBySide">
   <figure>
-    ${ svg.js(samples.ori/help/greetings.yaml) }
+    ${ svg(samples/help/greetings.yaml) }
   </figure>
   <figure>
-    ${ svg.js(Tree.deepValues(samples.ori/help/greetings.yaml)) }
+    ${ svg(Tree.deepValues(samples/help/greetings.yaml)) }
   </figure>
   <figcaption>Input tree</figcaption>
   <figcaption>Result</figcaption>

@@ -23,7 +23,7 @@ export default new ObjectTree({
 This defines a tree whose keys are the object's keys, and whose values are the object's values:
 
 <figure>
-${ svg.js({
+${ svg({
   Alice: "Hello, Alice."
   Bob: "Hello, Bob."
   Carol: "Hello, Carol."
@@ -41,4 +41,4 @@ Carol: Hello, Carol.
 
 ## API
 
-${ templates/class.ori(api.ori/drivers/ObjectTree.yaml/exports/0) }
+${ templates/class.ori(api/drivers/ObjectTree.yaml/exports/0) }

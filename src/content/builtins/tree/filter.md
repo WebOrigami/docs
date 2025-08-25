@@ -20,19 +20,19 @@ The `filter` operation can be used, for example, to filter a set of blog posts a
 
 ```yaml
 # posts.yaml
-${ samples.ori/help/filter/posts.yaml }
+${ samples/help/filter/posts.yaml }
 ```
 
 The filter operation returns `true` if the `draft` property is missing or `false`:
 
 ```ori
 // published.ori
-${ samples.ori/help/filter/published.ori }
+${ samples/help/filter/published.ori }
 ```
 
 Applying this to the posts returns just the published posts:
 
 ```console
 $ ori published.ori/
-${ Origami.yaml(samples.ori/help/filter/published.ori/) }
+${ Origami.yaml(samples/help/filter/published.ori/) }
 ```

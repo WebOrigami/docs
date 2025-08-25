@@ -29,7 +29,7 @@ ${ pattern.ori/deep/object.js }
 which represents the deep tree
 
 <figure>
-  ${ svg.js(pattern.ori/deep/object.js) }
+  ${ svg(pattern.ori/deep/object.js) }
 </figure>
 
 ## Deep file trees
@@ -88,7 +88,7 @@ ${ Tree.json(pattern.ori/deep/transform.js(Tree.from(pattern.ori/deep/files.js))
 Visually this looks like:
 
 <figure>
-${ svg.js(pattern.ori/deep/transform.js(Tree.from(pattern.ori/deep/files.js))) }
+${ svg(pattern.ori/deep/transform.js(Tree.from(pattern.ori/deep/files.js))) }
 </figure>
 
 So now we have a way of transforming an arbitrarily deep folder of markdown content into a corresponding deep tree of HTML content. We're now ready to do some interesting things with this content.

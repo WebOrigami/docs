@@ -9,12 +9,12 @@ The first object is taken as representative of the set, and its properties used 
 
 ```yaml
 # catBreeds.yaml
-${ samples.ori/help/catBreeds.yaml }
+${ samples/help/catBreeds.yaml }
 ```
 
 ```console
 $ ori Origami.csv catBreeds.yaml
-${ Origami.csv(samples.ori/help/catBreeds.yaml) }
+${ Origami.csv(samples/help/catBreeds.yaml) }
 ```
 
 See also support for unpacking [.csv files](/language/fileTypes.html#csv-files).

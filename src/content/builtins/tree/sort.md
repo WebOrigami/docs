@@ -7,16 +7,16 @@ Returns a copy of the indicated [treelike object](/async-tree/treelike.html) wit
 
 ```console
 $ cat capitals.yaml
-${ samples.ori/help/capitals.yaml }$ ori Tree.sort capitals.yaml
-${ Origami.yaml(Tree.sort(samples.ori/help/capitals.yaml)) }
+${ samples/help/capitals.yaml }$ ori Tree.sort capitals.yaml
+${ Origami.yaml(Tree.sort(samples/help/capitals.yaml)) }
 ```
 
 <div class="sideBySide">
   <figure>
-    ${ svg.js(samples.ori/help/capitals.yaml) }
+    ${ svg(samples/help/capitals.yaml) }
   </figure>
   <figure>
-    ${ svg.js(Tree.sort(samples.ori/help/capitals.yaml)) }
+    ${ svg(Tree.sort(samples/help/capitals.yaml)) }
   </figure>
   <figcaption>Input tree</figcaption>
   <figcaption>With keys sorted</figcaption>
@@ -41,16 +41,16 @@ As shown in the example above, by default `sort` sorts a tree by its keys. You c
 
 ```console
 $ cat capitals.yaml
-${ samples.ori/help/capitals.yaml }$ ori "Tree.sort capitals.yaml, (value, key, tree) => value"
-${ Origami.yaml(Tree.sort(samples.ori/help/capitals.yaml, (capital) => capital)) }
+${ samples/help/capitals.yaml }$ ori "Tree.sort capitals.yaml, (value, key, tree) => value"
+${ Origami.yaml(Tree.sort(samples/help/capitals.yaml, (capital) => capital)) }
 ```
 
 <div class="sideBySide">
   <figure>
-    ${ svg.js(samples.ori/help/capitals.yaml) }
+    ${ svg(samples/help/capitals.yaml) }
   </figure>
   <figure>
-    ${ svg.js(Tree.sort(samples.ori/help/capitals.yaml, (capital) => capital)) }
+    ${ svg(Tree.sort(samples/help/capitals.yaml, (capital) => capital)) }
   </figure>
   <figcaption>Input tree</figcaption>
   <figcaption>With values sorted</figcaption>

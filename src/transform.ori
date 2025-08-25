@@ -1,4 +1,4 @@
-// Transform a single markdown document to a finel page
+// Transform a single markdown document to a final page
 (buffer, key, tree) =>
   // Parse markdown file and add data
   js/addData.js(buffer, key, areas.yaml/, tree, tree["pages.yaml"], client/assets/origami)

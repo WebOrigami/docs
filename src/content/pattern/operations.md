@@ -90,7 +90,7 @@ We apply our `indexPages` transform to give the merged tree index pages.
 The site is now the deep merge of all three trees:
 
 <figure>
-${ svg.js(pattern.ori/merge/siteTree.js) }
+${ svg(pattern.ori/merge/siteTree.js) }
 </figure>
 
 If you compare this to the previous step, where we treated each of the component trees as separate branches, you can see that the merged tree is flatter.

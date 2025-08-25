@@ -23,14 +23,14 @@ These largely work the same, but with some differences described below.
 This template document is called `inline.ori.html`:
 
 ```html
-${ samples.ori/templateDocuments/inline.ori.html }
+${ samples/templateDocuments/inline.ori.html }
 ```
 
 Substitutions inside a template document are full Origami expressions so, among other things, they can reference other documents. The above template includes an embedded Origami expression that references a separate file, `inline.css`.
 
 ```css
 /* inline.css */
-${ samples.ori/templateDocuments/inline.css }
+${ samples/templateDocuments/inline.css }
 ```
 
 The result of the `inline.ori.html` template is a function that returns a string. (The function can accept a single parameter; see below.)
@@ -41,7 +41,7 @@ In this example, evaluating the function inlines the referenced CSS file:
 
 ```console
 $ ori inline.ori.html/
-${ samples.ori/templateDocuments/inline.ori.html/ }
+${ samples/templateDocuments/inline.ori.html/ }
 ```
 
 ### Accepting an argument
@@ -50,14 +50,14 @@ By default, a template document like this can be called as a function with one a
 
 ```html
 <!-- bold.ori.html -->
-${ samples.ori/templateDocuments/bold.ori.html }
+${ samples/templateDocuments/bold.ori.html }
 ```
 
 When called as a function, any value passed to this template will be incorporated into the output:
 
 ```console
 $ ori "bold.ori.html('Hooray')"
-${ samples.ori/templateDocuments/bold.ori.html("Hooray") }
+${ samples/templateDocuments/bold.ori.html("Hooray") }
 ```
 
 Such templates behave like simple components. You can use them decompose the construction of complex documents into smaller pieces that are easier to understand.
@@ -69,7 +69,7 @@ Like other text [documents](documents.html), a template document can include YAM
 Suppose `shopping.ori.html` contains:
 
 ```html
-${ samples.ori/templateDocuments/shopping.ori.html }
+${ samples/templateDocuments/shopping.ori.html }
 ```
 
 The front matter is treated as [YAML](https://en.wikipedia.org/wiki/YAML). This can be used to define additional data — here, a list.
@@ -78,7 +78,7 @@ The front matter data is available to expressions in the body text, so the expre
 
 ```console
 $ ori shopping.ori.html/
-${ Origami.yaml(samples.ori/templateDocuments/shopping.ori.html/) }
+${ Origami.yaml(samples/templateDocuments/shopping.ori.html/) }
 ```
 
 The result of the template is a plain object containing all of the front matter data, plus a `_body` property with the result of evaluating the body text.
@@ -94,7 +94,7 @@ If Origami front matter is present, that will be evaluated and returned as the r
 Example: a website defines its "About" page as a template document called `about.ori.html`:
 
 ```html
-${ samples.ori/templateDocuments/baseTemplate/about.ori.html }
+${ samples/templateDocuments/baseTemplate/about.ori.html }
 ```
 
 The front matter of this document is an Origami expression that will be evaluated and returned as the result of the template document.
@@ -102,14 +102,14 @@ The front matter of this document is an Origami expression that will be evaluate
 In this case, the expression invokes the template's body text via `_template`, then passes that to a base `page.ori.html` template defined separately:
 
 ```html
-${ samples.ori/templateDocuments/baseTemplate/page.ori.html }
+${ samples/templateDocuments/baseTemplate/page.ori.html }
 ```
 
 When you ask for the value of `about.ori.html`, that in turn calls `page.ori.html`:
 
 ```console
 $ ori about.ori.html/
-${ samples.ori/templateDocuments/baseTemplate/about.ori.html/ }
+${ samples/templateDocuments/baseTemplate/about.ori.html/ }
 ```
 
 ### Returning an object
@@ -121,14 +121,14 @@ This can be achieved using the above principle of placing an Origami expression 
 If `calcs.ori.md` contains:
 
 ```
-${ samples.ori/templateDocuments/calcs.ori.md }
+${ samples/templateDocuments/calcs.ori.md }
 ```
 
 then invoking this returns an object:
 
 ```console
 $ ori calcs.ori.md/
-${ Origami.yaml(samples.ori/templateDocuments/calcs.ori.md/) }
+${ Origami.yaml(samples/templateDocuments/calcs.ori.md/) }
 ```
 
 ### Returning a function
@@ -138,14 +138,14 @@ To define your template document as a more complex function — e.g., one that 
 This `link.ori.html` template accepts `href` and `text` parameters to return an HTML link:
 
 ```html
-${ samples.ori/templateDocuments/link.ori.html }
+${ samples/templateDocuments/link.ori.html }
 ```
 
 The value of the `href` and `link` parameters are in scope for expressions in the template body.
 
 ```console
 $ ori "link.ori.html('https://weborigami.org', 'Web Origami')"
-${ samples.ori/templateDocuments/link.ori.html('https://weborigami.org', 'Web Origami') + "\n" }
+${ samples/templateDocuments/link.ori.html('https://weborigami.org', 'Web Origami') + "\n" }
 ```
 
 ### Behavior within a `map`
@@ -156,14 +156,14 @@ For example, this template is called `movie.ori.html`, so it will add `.html` to
 
 ```html
 <!-- movie.ori.html -->
-${ samples.ori/templateDocuments/movies/movie.ori.html }
+${ samples/templateDocuments/movies/movie.ori.html }
 ```
 
 When applied to this data:
 
 ```yaml
 # movies.yaml
-${ samples.ori/templateDocuments/movies/movies.yaml }
+${ samples/templateDocuments/movies/movies.yaml }
 ```
 
 the values will end up with `.html` extensions:
@@ -172,8 +172,8 @@ the values will end up with `.html` extensions:
 $ ori map movies.yaml, movie.ori.html
 ${ Origami.yaml(
   Tree.map(
-    samples.ori/templateDocuments/movies/movies.yaml
-    samples.ori/templateDocuments/movies/movie.ori.html
+    samples/templateDocuments/movies/movies.yaml
+    samples/templateDocuments/movies/movie.ori.html
   )
 ) }
 ```

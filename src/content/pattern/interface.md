@@ -5,7 +5,7 @@ title: The AsyncTree interface
 The last section noted that, in the context of our markdown-to-HTML problem, it's possible to conceptualize the markdown content as a tree:
 
 <figure>
-  ${ svg.js({
+  ${ svg({
     Alice.md: "Hello, **Alice**.",
     Bob.md: "Hello, **Bob**.",
     Carol.md: "Hello, **Carol**.",

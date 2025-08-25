@@ -92,7 +92,7 @@ Origami lets you visualize and explore your site as a hierarchical _tree_ of pag
 You'll see your site visually represented as a tree with just one branch:
 
 <figure>
-${ svg.js({
+${ svg({
 index.html = 'Hello, world!'
 }) }
 </figure>
@@ -235,14 +235,14 @@ So the `team` formula transforms the team data into a corresponding tree of just
 
 <div class="sideBySide">
   <figure>
-    ${ svg.js([
+    ${ svg([
       { name: "Alice", image: "kingfisher.jpg" }
       { name: "Bob", image: "beach.jpg" }
       { name: "Carol", image: "venice.jpg" }
     ]) }
   </figure>
   <figure>
-    ${ svg.js([
+    ${ svg([
       "Alice"
       "Bob"
       "Carol"
@@ -255,7 +255,7 @@ So the `team` formula transforms the team data into a corresponding tree of just
 <span class="tutorialStep"></span> In the tree diagram window, refresh the page to confirm that the tree now includes an `team` area with the names from `teamData.yaml`.
 
 <figure>
-  ${ svg.js({
+  ${ svg({
     index.html = "<p>Hello, <strong>Alice</strong>!</p>"
     team = [
       "Alice"
@@ -285,7 +285,7 @@ The formula you give to `map` can be as complex as your situation requires.
 <span class="tutorialStep"></span> In the tree diagram window, refresh the page to see the updated `team` area.
 
 <figure>
-  ${ svg.js({
+  ${ svg({
     index.html = "<p>Hello, <strong>Alice</strong>!</p>"
     team = [
       "<p>Hello, <strong>Alice</strong>!</p>"
@@ -489,7 +489,7 @@ This template displays a person's name in a header. You can use this in the `map
 <span class="tutorialStep"></span> Refresh the tree diagram window to see that the pages in the `team` area now use your `person.ori` template.
 
 <figure>
-  ${ svg.js({
+  ${ svg({
     0: "<h1>Alice</h1>"
     1: "<h1>Bob</h1>"
     2: "<h1>Carol</h1>"
@@ -547,14 +547,14 @@ _**Note:** The Origami syntax for map recently changed. For projects outside Gli
 
 <div class="sideBySide">
   <figure>
-    ${ svg.js([
+    ${ svg([
       "<p>Hello, <strong>Alice</strong>!<p>"
       "<p>Hello, <strong>Bob</strong>!<p>"
       "<p>Hello, <strong>Carol</strong>!<p>"
     ]) }
   </figure>
   <figure>
-    ${ svg.js({
+    ${ svg({
       Alice: "<p>Hello, <strong>Alice</strong>!<p>"
       Bob: "<p>Hello, <strong>Bob</strong>!<p>"
       Carol: "<p>Hello, <strong>Carol</strong>!<p>"
@@ -590,7 +590,7 @@ We want the pages in the `team` area to end in a `.html` extension because that 
 <span class="tutorialStep"></span> Switch to the tree diagram window and refresh it to confirm that the `team` pages now have names that end in `.html`:
 
 <figure>
-  ${ svg.js({
+  ${ svg({
     Alice.html: "<p>Hello, <strong>Alice</strong>!<p>"
     Bob.html: "<p>Hello, <strong>Bob</strong>!<p>"
     Carol.html: "<p>Hello, <strong>Carol</strong>!<p>"

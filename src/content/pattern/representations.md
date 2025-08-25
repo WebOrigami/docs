@@ -129,7 +129,7 @@ You often encounter this overspecialization in tools. In searching for a tool th
 Regardless of how we are storing the markdown content, it's possible to conceptualize the content as a hierarchical tree:
 
 <figure>
-  ${ svg.js({
+  ${ svg({
     Alice.md: "Hello, **Alice**.",
     Bob.md: "Hello, **Bob**.",
     Carol.md: "Hello, **Carol**.",

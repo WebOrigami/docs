@@ -11,13 +11,13 @@ ori is especially good at dealing with trees. More specifically, ori is designed
 
 ```console
 $ ori greetings.yaml
-${ samples.ori/cli/greetings.yaml }
+${ samples/cli/greetings.yaml }
 ```
 
 ori can interpret this file as the following tree:
 
 <figure>
-${ svg.js(samples.ori/cli/greetings.yaml) }
+${ svg(samples/cli/greetings.yaml) }
 </figure>
 
 The YAML data format shown above can be easier for people to read than formats like JSON. If you prefer, you can just as easily use the ubiquitous JSON format.
@@ -64,18 +64,18 @@ HELLO, ALICE.
 
 ```console
 $ ori greetings.yaml
-${ samples.ori/cli/greetings.yaml }
+${ samples/cli/greetings.yaml }
 $ ori json greetings.yaml
-${ Tree.json(samples.ori/cli/greetings.yaml) + "\n" }
+${ Tree.json(samples/cli/greetings.yaml) + "\n" }
 ```
 
 <span class="tutorialStep"></span> In the other direction, you can render a JSON file as YAML with the [`Origami.yaml`](/builtins/origami/yaml.html) function:
 
 ```console
 $ ori letters.json
-${ samples.ori/cli/letters.json }
+${ samples/cli/letters.json }
 $ ori Origami.yaml letters.json
-${ Origami.yaml(samples.ori/cli/letters.json) }
+${ Origami.yaml(samples/cli/letters.json) }
 ```
 
 The `json` function isn't a specific YAML-to-JSON transformation; it can transform any tree to JSON text. Similarly, `yaml` can transform any tree to YAML text.
@@ -88,21 +88,21 @@ Suppose you have a focused function that does something with a flat, plain objec
 
 ```console
 $ ori text.js
-${ samples.ori/cli/text.js }
+${ samples/cli/text.js }
 ```
 
 <span class="tutorialStep"></span> If you append a `/` slash to the name of the YAML file, Origami will [unpack](/language/fileTypes.html#unpacking-files) into a plain JavaScript object. You can then pass that object to the sample `text.js` function:
 
 ```console
 $ ori text.js greetings.yaml/
-${ samples.ori/cli/text.js(samples.ori/cli/greetings.yaml/) + "\n" }
+${ samples/cli/text.js(samples/cli/greetings.yaml/) + "\n" }
 ```
 
 <span class="tutorialStep"></span> Or pass a parsed JSON file to your function:
 
 ```console
 $ ori text.js letters.json/
-${ samples.ori/cli/text.js(samples.ori/cli/letters.json/) + "\n" }
+${ samples/cli/text.js(samples/cli/letters.json/) + "\n" }
 ```
 
 Separating the parsing from your function like this lets you keep your function as general as possible.
@@ -168,7 +168,7 @@ A folder's values will be file buffers, while `text.js` is expecting strings. To
 
 ```console
 $ ori text.js plain greetings
-${ samples.ori/cli/text.js(samples.ori/cli/greetings.yaml/) + "\n" }
+${ samples/cli/text.js(samples/cli/greetings.yaml/) + "\n" }
 ```
 
 This connects two ideas:

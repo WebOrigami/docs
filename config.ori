@@ -1,0 +1,12 @@
+{
+  // Create a virtual tree of API documentation objects for the async-tree
+  // library. That formula uses a custom transform called `jsApi`, based on the
+  // Microsoft TypeScript compiler, which parses JavaScript source to extract
+  // type information and comments.
+  api: src/js/jsApi.js(node_modules/@weborigami/async-tree/src/)
+
+  samples: node_modules/@weborigami/samples/src/
+
+  // We don't want clickable links in rendered SVGs
+  svg: (treelike) => Dev.svg(treelike, { createLinks: false })
+}

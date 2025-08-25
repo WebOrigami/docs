@@ -7,17 +7,17 @@ Reverses the order of keys in the tree.
 
 ```console
 $ cat letters.yaml
-${ samples.ori/help/letters.yaml }
+${ samples/help/letters.yaml }
 $ ori Tree.reverse letters.yaml
-${ Origami.yaml(Tree.reverse(samples.ori/help/letters.yaml)) + "\n" }
+${ Origami.yaml(Tree.reverse(samples/help/letters.yaml)) + "\n" }
 ```
 
 <div class="sideBySide">
   <figure>
-    ${ svg.js(samples.ori/help/letters.yaml) }
+    ${ svg(samples/help/letters.yaml) }
   </figure>
   <figure>
-    ${ svg.js(Tree.reverse(samples.ori/help/letters.yaml)) }
+    ${ svg(Tree.reverse(samples/help/letters.yaml)) }
   </figure>
   <figcaption>Input tree</figcaption>
   <figcaption>With reversed keys</figcaption>

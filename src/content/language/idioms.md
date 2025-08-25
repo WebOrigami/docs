@@ -14,21 +14,21 @@ As a trivial example, this program defines a site whose `index.html` includes a 
 
 ```ori
 // public.ori
-${ samples.ori/help/public.ori }
+${ samples/help/public.ori }
 ```
 
 Along with `index.html`, this tree will expose the `name` value:
 
 ```console
 $ ori public.ori/
-${ Origami.yaml(samples.ori/help/public.ori) }
+${ Origami.yaml(samples/help/public.ori) }
 ```
 
 But if you don't want the `name` value to be exposed, you can move the portion of the tree you _do_ want to expose into a `public` subtree, and then arrange to return only that subtree:
 
 ```ori
 // private.ori
-${ samples.ori/help/private.ori }
+${ samples/help/private.ori }
 ```
 
 This program effectively defines a [closure](<https://en.wikipedia.org/wiki/Closure_(computer_programming)>): inside the `public` subtree, the `name` property is available for use in calculations.
@@ -37,7 +37,7 @@ The `.public` at the end of the program returns only the `public` subtree, so th
 
 ```console
 $ ori private.ori/
-${ Origami.yaml(samples.ori/help/private.ori) }
+${ Origami.yaml(samples/help/private.ori) }
 ```
 
 ## Define a default value
@@ -46,18 +46,18 @@ You can define a default value for a tree using the [spread operator](syntax.htm
 
 ```ori
 // default.ori
-${ samples.ori/help/default.ori }
+${ samples/help/default.ori }
 ```
 
 This tree returns the indicated value for any defined key, and zero for anything else:
 
 ```console
 $ ori default.ori/a
-${ Origami.yaml(samples.ori/help/default.ori/a) }
+${ Origami.yaml(samples/help/default.ori/a) }
 $ ori default.ori/b
-${ Origami.yaml(samples.ori/help/default.ori/b) }
+${ Origami.yaml(samples/help/default.ori/b) }
 $ ori default.ori/x
-${ Origami.yaml(samples.ori/help/default.ori/x) }
+${ Origami.yaml(samples/help/default.ori/x) }
 ```
 
 This works as follows:
@@ -75,26 +75,26 @@ You can adapt this idiom to provide a default value for deep trees using the [`T
 
 ```ori
 // deepDefault.ori
-${ samples.ori/help/deepDefault.ori }
+${ samples/help/deepDefault.ori }
 ```
 
 This provides the default value of zero for any level of the tree:
 
 ```console
 $ ori deepDefault.ori/a
-${ Origami.yaml(samples.ori/help/deepDefault.ori/a) }
+${ Origami.yaml(samples/help/deepDefault.ori/a) }
 $ ori deepDefault.ori/x
-${ Origami.yaml(samples.ori/help/deepDefault.ori/x) }
+${ Origami.yaml(samples/help/deepDefault.ori/x) }
 $ ori deepDefault.ori/b/c
-${ Origami.yaml(samples.ori/help/deepDefault.ori/b/c) }
+${ Origami.yaml(samples/help/deepDefault.ori/b/c) }
 $ ori deepDefault.ori/b/y
-${ Origami.yaml(samples.ori/help/deepDefault.ori/b/y) }
+${ Origami.yaml(samples/help/deepDefault.ori/b/y) }
 ```
 
 One use for this is to provide a default "Not found" page for a dynamic site:
 
 ```ori
-${ samples.ori/help/notFound.ori }
+${ samples/help/notFound.ori }
 ```
 
 ## Extract specific resources from a site
@@ -106,7 +106,7 @@ That said, if you know the routes you want to extract from a site, you can combi
 ```ori
 // extract.ori
 
-${ samples.ori/help/extract.ori }
+${ samples/help/extract.ori }
 ```
 
 This merges two trees together:

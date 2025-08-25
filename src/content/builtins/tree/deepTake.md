@@ -7,16 +7,16 @@ Traverses deeply inside the tree, returning the first `count` values. This is es
 
 ```console
 $ cat greetings.yaml
-${ samples.ori/help/greetings.yaml }$ ori Tree.deepTake greetings.yaml, 5
-${ Origami.yaml(Tree.deepTake(samples.ori/help/greetings.yaml, 5)) }
+${ samples/help/greetings.yaml }$ ori Tree.deepTake greetings.yaml, 5
+${ Origami.yaml(Tree.deepTake(samples/help/greetings.yaml, 5)) }
 ```
 
 <div class="sideBySide">
   <figure>
-    ${ svg.js(samples.ori/help/greetings.yaml) }
+    ${ svg(samples/help/greetings.yaml) }
   </figure>
   <figure>
-    ${ svg.js(Tree.deepTake(samples.ori/help/greetings.yaml, 5)) }
+    ${ svg(Tree.deepTake(samples/help/greetings.yaml, 5)) }
   </figure>
   <figcaption>Input tree</figcaption>
   <figcaption>Result</figcaption>

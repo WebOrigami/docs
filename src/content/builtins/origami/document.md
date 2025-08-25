@@ -9,35 +9,35 @@ If `hokusai.md` contains plain text:
 
 ```console
 $ ori hokusai.md
-${ samples.ori/help/hokusai.md }
+${ samples/help/hokusai.md }
 ```
 
 then invoking `document` on it returns a plain object with the original body text as a `_body` property:
 
 ```console
 $ ori Origami.document hokusai.md
-${ Origami.yaml(Origami.document(samples.ori/help/hokusai.md)) }
+${ Origami.yaml(Origami.document(samples/help/hokusai.md)) }
 ```
 
 You can also attach data:
 
 ```console
 $ ori Origami.document hokusai.md, { author: "'Katsushika Hokusai'" }
-${ Origami.yaml(Origami.document(samples.ori/help/hokusai.md, { author: "Katsushika Hokusai" })) }
+${ Origami.yaml(Origami.document(samples/help/hokusai.md, { author: "Katsushika Hokusai" })) }
 ```
 
 If you have a text document with data in front matter:
 
 ```console
 $ ori basho.md
-${ samples.ori/help/basho.md }
+${ samples/help/basho.md }
 ```
 
 Then calling `document` on it returns a plain object with the front matter data as properties, plus the body text as a `_body` property:
 
 ```console
 $ ori Origami.document basho.md
-${ Origami.yaml(samples.ori/help/basho.md/) }
+${ Origami.yaml(samples/help/basho.md/) }
 ```
 
 If you have a collection of documents, some of which have data and some of which don't, you can normalize all of them to document objects by applying `document` to each of them.
@@ -45,8 +45,8 @@ If you have a collection of documents, some of which have data and some of which
 ```console
 $ ori Tree.map [basho.md, hokusai.md], =Origami.document _
 ${ Origami.yaml(Tree.map([
-  samples.ori/help/basho.md
-  samples.ori/help/hokusai.md
+  samples/help/basho.md
+  samples/help/hokusai.md
 ], (file) => Origami.document(file))) }
 ```
 

@@ -1,6 +1,0 @@
-// Temporary hack to remove the deprecated @text property from a document so it
-// doesn't show up in docs
-(doc) => {
-  ...doc
-  "@text": undefined
-}
