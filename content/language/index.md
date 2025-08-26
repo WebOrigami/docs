@@ -22,7 +22,7 @@ A short motion comic introduces the language:
 
 You can read about the basics of Origami in [Hello, world](hello.html) »
 
-Build a simple site in Origami in the [hands-on tutorial](tutorial.html) »
+Create a basic blog in Origami in the [hands-on tutorial](tutorial.html) »
 
 Try Origami in the command line using the [Origami CLI](/cli) »
 
