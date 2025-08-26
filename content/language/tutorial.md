@@ -8,6 +8,8 @@ numberHeadings: true
 
 You can walk through the basics of Origami by building a simple blog.
 
+The blog will be modeled after a [sample Origami blog](https://pondlife.netlify.app).
+
 ## Set up
 
 A guiding principle of Origami is that [you are always in control](principles.html#you-are-always-in-control), so Origami does not require you to initialize a new project with a large set of files in a particular folder structure.

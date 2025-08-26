@@ -19,4 +19,4 @@ $ ori serve
 
 ## Commands by name
 
-${ commandList.ori/Dev }
+${ src/templates/commandList.ori/Dev }

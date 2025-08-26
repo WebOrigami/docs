@@ -1,4 +1,5 @@
-import { map, merge, Tree } from "@weborigami/async-tree";
+import { merge, Tree } from "@weborigami/async-tree";
+import { map } from "@weborigami/origami";
 
 /** @this {import("@weborigami/types").AsyncTree} */
 export default async function flatMap(treelike, options) {

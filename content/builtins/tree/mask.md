@@ -30,7 +30,7 @@ Above, `b` and `c/e` have been masked from the `source` tree because those do pa
 
 ## Default value
 
-You can influence the result of a mask operation by [defining a default value](/language/idioms.html#define-a-default-value) for the mask tree using a shorthand function or [Tree.constant](constant.html#set-a-default-value).
+You can influence the result of a mask operation by [defining a default value](/language/howTo.html#define-a-default-value) for the mask tree using a shorthand function or [Tree.constant](constant.html#set-a-default-value).
 
 ```ori
 // maskDefault.ori

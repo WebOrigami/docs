@@ -23,7 +23,7 @@ ${ Origami.yaml(samples/help/constant.ori/a/b/c) }
 
 ## Set a default value
 
-One use for `constant` is to [define a default value for a tree](/language/idioms.html#define-a-default-value) using [`Tree.deepMerge`](deepMerge.html).
+One use for `constant` is to [define a default value for a tree](/language/howTo.html#define-a-default-value) using [`Tree.deepMerge`](deepMerge.html).
 
 ```ori
 // deepDefault.ori

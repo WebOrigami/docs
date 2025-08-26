@@ -22,6 +22,8 @@
   text: deepReverse
 - href: deepTake.html
   text: deepTake
+- href: deepText.html
+  text: deepText
 - href: deepValues.html
   text: deepValues
 - href: defineds.html

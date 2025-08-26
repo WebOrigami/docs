@@ -1,5 +1,5 @@
 Tree.sort(
-  flatMap.js(
+  js/flatMap.js(
     node_modules/@weborigami/origami/src/dev/help.yaml,
     (help, namespaceSlash) =>
       Tree.map(help.commands, (commandHelp, commandSlash) => {

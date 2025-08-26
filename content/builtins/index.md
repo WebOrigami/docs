@@ -19,4 +19,4 @@ ${ Tree.map(node_modules/@weborigami/origami/src/dev/help.yaml, (help, namespace
 
 ## Functions and objects by name
 
-${ commandList.ori("") }
+${ src/templates/commandList.ori("") }
