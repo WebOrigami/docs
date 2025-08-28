@@ -11,3 +11,5 @@ Any front matter in the markdown will be preserved at the top of the HTML output
 $ ori "Origami.mdHtml('# Hello, world')"
 ${ Origami.mdHtml('# Hello, world') }
 ```
+
+See also [`Origami.mdOutline`](mdOutline.html) for extracting the outline structure of a markdown document.

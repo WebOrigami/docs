@@ -26,6 +26,8 @@
   text: jsonParse
 - href: mdHtml.html
   text: mdHtml
+- href: mdOutline.html
+  text: mdOutline
 - href: naturalOrder.html
   text: naturalOrder
 - href: once.html
