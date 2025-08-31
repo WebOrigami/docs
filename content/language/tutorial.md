@@ -302,7 +302,7 @@ Your blog will use the posts as list items in the blog index page, as individual
 - Transform the post content from markdown to an HTML fragment.
 - Remove the `.md` extension from the file name to produce a key for use in a route like `/posts/<key>`.
 
-You can consolidate this work into a new Origami file that returns the set of processed post data objects. This will effectively constitute a data pipeline for your project that will consume one tree (the posts in the `markdown` folder) and produce another.
+You can consolidate this work into a new Origami file that returns the set of processed post data objects. This will effectively constitute a data pipeline for your project that will consume one tree (the posts in the `src/markdown` folder) and produce another.  If you haven't created a `src/markdown` folder yet, check out the examples in [the starter repo](https://github.com/WebOrigami/blog-intro/tree/main/markdown)
 
 <span class="tutorialStep"></span> Create a file called `src/postData.ori`. For now, type only this line into the file:
 
