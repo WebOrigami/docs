@@ -780,10 +780,6 @@ This template accepts a very simple kind of `page` object with `title` and `_bod
         &lt;/li>
       `) }
     &lt;/ul>
-    &lt;footer>
-      &lt;a href="/feed.xml">RSS feed&lt;/a>
-      &lt;a href="/feed.json">JSON feed&lt;/a>
-    &lt;/footer>
   `
 })
 </pre>
