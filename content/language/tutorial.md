@@ -822,7 +822,7 @@ items:
 
 You can define a feed in Origami by creating a plain object with the above schema.
 
-<span class="tutorialStep"></span> Create a file `feed.ori` that contains:
+<span class="tutorialStep"></span> Create a file `src/feed.ori` that contains:
 
 <clipboard-copy>
 
