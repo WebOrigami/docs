@@ -22,6 +22,23 @@ A guiding principle of Origami is that [you are always in control](principles.ht
 
 <span class="tutorialStep"></span> Or if you'd prefer to confirm that there's really no magic involved, manually recreate the few necessary files; follow the instructions in that project’s ReadMe.
 
+- a `package.json` file, includes type: module, weborigami dependency, and a couple of scripts
+```json
+{
+  "name": "blog-intro",
+  "type": "module",
+  "dependencies": {
+    "@weborigami/origami": "0.4.2"
+  },
+  "scripts": {
+    "build": "ori copy src/site.ori, clear files:build",
+    "start": "ori serve watch src, =debug src/site.ori"
+  }
+}
+```
+- a `src/markdown/` folder with a couple of markdown files in it
+- The `@weborigami/origami` package installed, running `npm install` with the above package.json will take care of it.
+
 Let's begin.
 
 ## Visualize your site as a tree
