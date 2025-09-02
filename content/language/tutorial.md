@@ -6,7 +6,7 @@ numberHeadings: true
 
 <script src="/components.js"></script>
 
-You can walk through the basics of Origami by building a simple blog.
+You can walk through the basics of Origami by building a simple blog. If you follow along on your own machine, it might take about an hour to complete this tutorial.
 
 The blog will be modeled after a [sample Origami blog](https://pondlife.netlify.app).
 
@@ -14,32 +14,48 @@ The blog will be modeled after a [sample Origami blog](https://pondlife.netlify.
 
 A guiding principle of Origami is that [you are always in control](principles.html#you-are-always-in-control), so Origami does not require you to initialize a new project with a large set of files in a particular folder structure.
 
-- Origami is built with [Node.js](https://nodejs.org), so if you'd like to follow along on your own machine, you'll need a currently-maintained version of [Node.js](https://nodejs.org) (v20 or later).
-- You will need to create a minimal `package.json` file.
-- You’ll also need some small content files to serve as sample blog posts.
+Origami is built with [Node.js](https://nodejs.org), so if you'd like to follow along on your own machine, you'll need a currently-maintained version of [Node.js](https://nodejs.org) (v20 or later).
 
 <span class="tutorialStep"></span> If you want to save time, clone the [blog-intro](https://github.com/WebOrigami/blog-intro) project locally.
 
-<span class="tutorialStep"></span> Or if you'd prefer to confirm that there's really no magic involved, manually recreate the few necessary files; follow the instructions in that project’s ReadMe.
+<span class="tutorialStep"></span> Or if you'd prefer to confirm there's no magic involved, you can manually recreate the few necessary files. Create a new project folder, and inside that create a `package.json` file along these lines:
 
-- a `package.json` file, includes type: module, weborigami dependency, and a couple of scripts
-```json
+<clipboard-copy>
+
+<pre class="step">
 {
   "name": "blog-intro",
   "type": "module",
   "dependencies": {
-    "@weborigami/origami": "0.4.2"
+    "@weborigami/origami": "${ Dev.version }"
   },
   "scripts": {
     "build": "ori copy src/site.ori, clear files:build",
     "start": "ori serve watch src, =debug src/site.ori"
   }
 }
-```
-- a `src/markdown/` folder with a couple of markdown files in it
-- The `@weborigami/origami` package installed, running `npm install` with the above package.json will take care of it.
+</pre>
 
-Let's begin.
+</clipboard-copy>
+
+Then run `npm install` to install Origami.
+
+Finally, create an empty `src` folder and a `markdown` folder with a couple of markdown files in it. The `markdown` folder can be at the project's top level, or can go inside the `src` folder — the instructions below work the same either way.
+
+Origami doesn't impose any structure on your files — but this tutorial assumes that the markdown file names start with a date, like `2026-09-01.md`. The tutorial also assumes each post has a `title` property, so the markdown content might look like this:
+
+<clipboard-copy>
+
+<pre class="step">
+\---
+title: First post
+---
+This is the _first_ post.
+</pre>
+
+</clipboard-copy>
+
+With that preparation out of the way, let's begin.
 
 ## Visualize your site as a tree
 
@@ -87,7 +103,7 @@ To define an object in Origami, you write an expression that goes in its own fil
 
 Everything between the `{ }` curly braces defines the object that describes the virtual folders and files in your blog site. This object defines a single virtual file whose _key_ or name is `index.html`, and whose _value_ or content is the text “My blog”.
 
-This is standard JavaScript object syntax with one small refinement: because Origami objects are often used to create files with periods in their names, no quotes are necessary around `index.html`, even though that name contains a period.
+This is standard JavaScript object syntax with one small refinement: because Origami objects are often used to create files with periods in their names, no quotes are necessary around `index.html`, even though that name contains a period.
 
 The value of a `.ori` file is the result of evaluating the expression inside. This is similar to the way a JavaScript module can export a value, so the above Origami expression is shorthand for the slightly longer JavaScript:
 
@@ -302,7 +318,7 @@ Your blog will use the posts as list items in the blog index page, as individual
 - Transform the post content from markdown to an HTML fragment.
 - Remove the `.md` extension from the file name to produce a key for use in a route like `/posts/<key>`.
 
-You can consolidate this work into a new Origami file that returns the set of processed post data objects. This will effectively constitute a data pipeline for your project that will consume one tree (the posts in the `src/markdown` folder) and produce another.  If you haven't created a `src/markdown` folder yet, check out the examples in [the starter repo](https://github.com/WebOrigami/blog-intro/tree/main/markdown)
+You can consolidate this work into a new Origami file that returns the set of processed post data objects. This will effectively constitute a data pipeline for your project that will consume one tree (the posts in the `src/markdown` folder) and produce another. If you haven't created a `src/markdown` folder yet, check out the examples in [the starter repo](https://github.com/WebOrigami/blog-intro/tree/main/markdown)
 
 <span class="tutorialStep"></span> Create a file called `src/postData.ori`. For now, type only this line into the file:
 
@@ -338,7 +354,7 @@ This shows a tree whose keys are markdown file names (with a `.md` extension), a
 
 You can begin processing the markdown by parsing the `.md` markdown file into data. Markdown files are a [file type](fileTypes.html) whose extension is known to Origami. Origami automatically parses `.md` files for you if you try to extract data from them.
 
-In Origami you can process a set of files as a batch with a _map_, in the [computer science sense](<https://en.wikipedia.org/wiki/Map_(higher-order_function)>) of an operation performed on every item in a collection to produce a new collection. You can think of a map’s result as a virtual folder — a set of things you can browse and work with, but which aren't stored anywhere.
+In Origami you can process a set of files as a batch with a _map_, in the [computer science sense](<https://en.wikipedia.org/wiki/Map_(higher-order_function)>) of an operation performed on every item in a collection to produce a new collection. You can think of a map’s result as a virtual folder — a set of things you can browse and work with, but which aren't stored anywhere.
 
 <span class="tutorialStep"></span> Update `postData.ori` so that it maps the tree of markdown text files to a tree of corresponding data objects:
 
