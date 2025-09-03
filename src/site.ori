@@ -22,5 +22,6 @@ Tree.deepMap(content, { extension: ".md→.html", value: transform.ori })
   // Used by Netlify
   _redirects
 
-  samples/ = samples/
+  // Code samples
+  samples/
 }
