@@ -275,7 +275,7 @@ In an `.ori` file, you can use this to merge a folder into an object that also d
 }
 ```
 
-The built-in [`merge`](/builtins/tree/merge.html) function performs this same operation as a function.
+The spread operator performs a shallow merge. You can also perform a shallow merge with the built-in [`Tree.merge`](/builtins/tree/merge.html) function. For a deep merge, see [`Tree.deepMerge`](/builtins/tree/deepMerge.html).
 
 ## Function calls
 
