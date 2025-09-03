@@ -3,7 +3,7 @@
 Tree.map(examples.yaml, {
   extension: "→.png"
   value: (example) => example.url
-    ? package:@weborigami/screenshot/url(Origami.log(example.url), {
+    ? package:@weborigami/screenshot/url(Dev.log(example.url), {
         height: 768
         width: 1024
       })
