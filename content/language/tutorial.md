@@ -38,7 +38,7 @@ Origami is built with [Node.js](https://nodejs.org), so if you'd like to follow 
 
 </clipboard-copy>
 
-Then run `npm install` to install Origami.
+Then run `npm install` to install Origami. If you'd like to understand how the `build` and `start` scripts work, you can read about those [standard incantations](/cli/incantations.html).
 
 Finally, create an empty `src` folder and a `markdown` folder with a couple of markdown files in it. The `markdown` folder can be at the project's top level, or can go inside the `src` folder — the instructions below work the same either way.
 
