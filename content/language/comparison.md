@@ -431,6 +431,8 @@ Origami assumes that any function might be asynchronous, so implicitly uses `awa
 
 The Origami language runtime itself is written in JavaScript, so types such as numbers, strings, and objects are actually the same as in JavaScript. E.g., if you pass an Origami object to a JavaScript function, the value will be a regular JavaScript object.
 
+Origami does not yet support `...` spreads in function calls.
+
 ## Lambda functions
 
 Origami supports JavaScript's lambda function syntax:
@@ -439,8 +441,19 @@ Origami supports JavaScript's lambda function syntax:
 (x) => fn(x)
 ```
 
-Origami lambda functions are currently more limited than JavaScript's:
+Origami lambda functions are currently more limited than JavaScript's, and does not support default parameters, rest parameters, or parameter destructuring.
 
-- No default parameters
-- No rest parameters
-- No parameter destructuring
+## Unsupported JavaScript features
+
+As noted above, Origami does not yet support these features from JavaScript:
+
+- binary, octal, hexadecimal numeric literals, or exponential notation (see [Numbers](#numbers))
+- default parameters, rest parameters, parameter destructuring (see [Lambda functions](#lambda-functions))
+- `...` spread operator in function calls
+- `typeof` operator
+- `void` keyword
+- `async` and `await` keywords
+- `?.` optional chaining operator (see [Operators](#operators))
+- defining an object key with a computed property
+
+The Web Origami project plans to eventually support all of these for completeness. In the meantime, experience suggests many of these features are not required to build interesting sites.
