@@ -39,10 +39,10 @@ _Key points: An Origami file provides a concise way to define a site. You can in
 
 We often design and browse websites a single page at a time, but you can step back and consider _all_ the pages on a site as a tree of pages and other resources.
 
-Example: the small <a href="/demos/aboutUs/" target="_blank">About Us</a> site defines has the following pages:
+Example: the [source code](https://github.com/WebOrigami/about-us.git) for the sample <a href="https://origami-about-us.netlify.app" target="_blank">About Us</a> site defines the following pages:
 
-- A home page. That page's URL [ends in a slash](/demos/aboutUs/), which in this case is a synonym for [index.html](/demos/aboutUs/index.html).
-- Pages about different people, with URLs like [team/Alice.html](/demos/aboutUs/team/Alice.html).
+- A home page. That page's URL [ends in a slash](https://origami-about-us.netlify.app/), which in this case is a synonym for [index.html](https://origami-about-us.netlify.app/index.html).
+- Pages about different people, with URLs like [team/Alice.html](https://origami-about-us.netlify.app/team/Alice.html).
 
 You can think about this set of pages as a tree:
 
@@ -59,7 +59,7 @@ ${
 }
 </figure>
 
-Website creators refer to URLs as _routes_: when you navigate to a URL like [team/Alice.html](/demos/aboutUs/team/Alice.html), you're picking one particular route through this site's tree. Conceptually speaking, the web server starts at the tree's root on the left and then follows the keys `team` and `Alice.html` to find the web page it will send to your browser.
+Website creators refer to URLs as _routes_: when you navigate to a URL like [team/Alice.html](https://origami-about-us.netlify.app/team/Alice.html), you're picking one particular route through this site's tree. Conceptually speaking, the web server starts at the tree's root on the left and then follows the keys `team` and `Alice.html` to find the web page it will send to your browser.
 
 The site's complete tree is a little bigger than what's shown above, because it also includes CSS stylesheets, image files, or other resources referenced by the HTML:
 
