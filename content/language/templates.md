@@ -13,7 +13,7 @@ You can also use Origami with other template systems. For a reference example, s
 
 ## Template files
 
-An Origami template file is an Origami file (a text file with a `.ori` extension) defining an [Origami expressions](/language/syntax.html) that either evaluates to a text string or to a function that returns text.
+An Origami template file is an Origami file (a text file with a `.ori` extension) defining an [Origami expressions](expressions.html) that either evaluates to a text string or to a function that returns text.
 
 If a template is long and mostly text, it may be more convenient for you to define it as a [template document](templateDocuments.html).
 

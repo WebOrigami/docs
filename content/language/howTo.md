@@ -174,7 +174,7 @@ ${ svg(samples/howTo/slashPages/site.ori) }
 
 This would give you URLs like `/slash/now.html`.
 
-<span class="tutorialStep"></span> Since you want the `slash` pages to appear at the top level of your site, use the [spread operator](syntax.html#spread-operator) to merge the contents of the `slash` folder into the site's top level:
+<span class="tutorialStep"></span> Since you want the `slash` pages to appear at the top level of your site, use the [spread operator](expressions.html#spread-operator) to merge the contents of the `slash` folder into the site's top level:
 
 ```ori
 // siteSpread.ori
@@ -193,7 +193,7 @@ With this, all the pages are directly available at the root of the site and URLs
 
 ## Add an index page to a folder created with a map
 
-Suppose you have a folder of posts you're create with [`map`](/builtins/tree/map.html), perhaps to [transform a folder of markdown into HTML](#transform-markdown-folder), and you want the resulting virtual folder of HTML to have its own `index.html` page. You can use the same [spread operator](syntax.html#spread-operator) shown above.
+Suppose you have a folder of posts you're create with [`map`](/builtins/tree/map.html), perhaps to [transform a folder of markdown into HTML](#transform-markdown-folder), and you want the resulting virtual folder of HTML to have its own `index.html` page. You can use the same [spread operator](expressions.html#spread-operator) shown above.
 
 In this situation, you're going to be using your transformed markdown twice: once to create the HTML pages in the `pages` area, and a second time for the index page for the `pages` area. To make your `map` reusable, define it in a separate file called `data.ori`
 
@@ -266,7 +266,7 @@ ${ Origami.yaml(samples/help/private.ori) }
 
 ## Define a default value
 
-You can define a default value for a tree using the [spread operator](syntax.html#spread-operator) with an [arrow function](expressions.html#arrow-functions):
+You can define a default value for a tree using the [spread operator](expressions.html#spread-operator) with an [arrow function](expressions.html#arrow-functions):
 
 ```ori
 // default.ori

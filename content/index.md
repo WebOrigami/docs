@@ -43,9 +43,9 @@ A high-level site definition is enough to let you immediately view and iterate o
 
 <span class="tutorialStep"></span> View some [example sites](/language/examples.html)
 
-<span class="tutorialStep"></span> Read the [Hello World](/language/hello.html) introduction
-
 <span class="tutorialStep"></span> Make a small site in the [tutorial](/language/tutorial.html)
+
+<span class="tutorialStep"></span> Learn the basics of Origami [expressions](/language/expressions.html)
 
 ## Building websites through transformation
 

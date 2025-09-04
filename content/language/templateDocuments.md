@@ -116,7 +116,7 @@ ${ samples/templateDocuments/baseTemplate/about.ori.html/ }
 
 Sometimes a template is primarily body text but the result should include some calculated data.
 
-This can be achieved using the above principle of placing an Origami expression in the front matter. In this case, the front matter can define an object using an [object literal](syntax.html#object-literals).
+This can be achieved using the above principle of placing an Origami expression in the front matter. In this case, the front matter can define an object using an [object literal](expressions#object-literals).
 
 If `calcs.ori.md` contains:
 

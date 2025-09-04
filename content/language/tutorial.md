@@ -84,7 +84,7 @@ feed.xml: "RSS feed"
 
 A straightforward way to define a tree is with an _object_ that has keys and values. (Origami uses JavaScript terminology; other programming languages refer to such objects as dictionaries or associative arrays.)
 
-To define an object in Origami, you write an expression that goes in its own file with a `.ori` extension. Origami expressions are [essentially the same as JavaScript expressions](comparison.html), with the addition of support for file paths.
+To define an object in Origami, you write an expression that goes in its own file with a `.ori` extension. Origami expressions are [essentially the same as JavaScript expressions](expressions.html), with the addition of support for file paths.
 
 <span class="tutorialStep"></span> In the `src` folder, create a file called `site.ori`. That name is just a convention; you could call this file something else, in which case adjust the `scripts` in `package.json` to match.
 

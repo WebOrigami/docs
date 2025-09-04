@@ -59,7 +59,7 @@ $ ori greet.js/
 Hello, world.
 ```
 
-This use of slash syntax to invoke a function isn't limited to the command line; it works in Origami [paths](/language/features.html#paths) too.
+This use of slash syntax to invoke a function isn't limited to the command line; it works in Origami [paths](/language/expressions.html#paths) too.
 
 ### Shorthand functions
 
