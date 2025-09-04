@@ -276,6 +276,8 @@ Angle brackets are also useful if your path includes spaces or other characters 
 <markdown/My File with Spaces (and Parens).md>
 ```
 
+Inside the angle brackets you can use any character except a tab, newline, or `>`. If you need to include a `>` in a path, you can escape it with a `\\` backslash.
+
 Although Origami can always recognize [URLs](#urls) that start with a protocol, you can also put a URL in angle brackets:
 
 ```ori
@@ -341,7 +343,13 @@ Note that most Origami [builtin functions](/builtins) that expect a [treelike](/
 
 ## URLs
 
-If a sequence starts with a scheme (protocol) and a colon, Origami treats it as a URL: `https://example.com`.
+If a sequence starts with a scheme (protocol) and a colon, Origami treats it as a URL:
+
+```
+https://example.com
+```
+
+The only characters that cannot be used in a URL are whitespace or a character that ends an expression: `,` `)`, `]`, `}`. If you need to incorporate such a character into a URL, escape it with a `\\` backslash. Alternatively, place the URL in [angle brackets](#angle-brackets).
 
 ## Numbers
 
@@ -466,24 +474,6 @@ Some addition usage notes:
 
 Origami does not yet support JavaScript's [optional chaining operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining): `x?.y`.
 
-## Implied exports
-
-Evaluating any Origami file with the `.ori` extension returns an evaluation of the file's top-level expression — unlike JavaScript, there is no need to explicitly `export` a value.
-
-This `message.ori` file evaluates to a string:
-
-```ori
-// message.ori
-"This file exports this message."
-```
-
-It is equivalent to this JavaScript:
-
-```js
-// message.js
-export default "This file exports this message.";
-```
-
 ## Object literals
 
 Origami's basic syntax for constructing object literals is essentially the same as JavaScript's: create an object literal with `{` and `}` curly braces surrounding key/value pairs:
@@ -604,7 +594,7 @@ You can reference the "name" property of this file in several ways:
 - `alice.ori .name` — Put the `.name` reference after whitespace (this is standard JavaScript syntax)
 - `alice.ori["name"]` — Use the string `"name"` in brackets
 - `alice.ori/name` — Origami treats any [treelike](/async-tree/treelike.html) object as a tree that can be traversed with [path](#paths) syntax
-- `alice.ori("name")` — Origami allows any tree to be called like a function
+- `alice.ori("name")` — Origami allows any tree to be [called like a function](#trees-as-functions).
 
 ### Local property references
 
@@ -781,11 +771,43 @@ Origami does not yet support `...` spreads in function calls.
 
 ### Trees as functions
 
-In Origami's
+Origami's [AsyncTree](/async-tree/interface.html) interface lets a wide variety of [treelike](/async-tree/treelike.html) structures be treated as hierarchical trees. You can use function syntax to "call" any tree, which will have the effect of invoking the tree's `get` method.
+
+This means you can use function call syntax to retrieve a value from a data structure, a folder, etc. For example, if you have a data file:
+
+```yaml
+# capitals.yaml
+${ samples/help/capitals.yaml }
+```
+
+you can extract a value from it with function syntax:
+
+```console
+$ ori "capitals.yaml('Spain')"
+${ samples/help/capitals.yaml('Spain') + "\n" }
+```
+
+You could use this to programmatically look up values: if a variable holds the name of a key, you can call the tree as a function and pass the variable as the argument.
+
+### Functions as trees
+
+Conversely, Origami lets you treat a function as a [treelike](/async-tree/treelike.html) object. This is true for arrow functions, Origami [builtin functions](/builtins), and functions exported by JavaScript modules.
+
+This means you can traverse a function using [path](#paths) syntax, which can be convenient when using the Origami [CLI](/cli) to evaluate expressions in the shell. A shell will typically try to handle parentheses, and so disallow a function call with unquoted parentheses. But a shell will generally leave slashes untouched, allowing you to invoke a function and pass an argument.
+
+```js
+// uppercase.js
+${ samples/cli/uppercase.js }
+```
+
+```console
+$ ori uppercase.js/hello
+${ samples/cli/uppercase.js/hello + "\n" }
+```
 
 ## Arrow functions
 
-An Origami expression can define a type of unnamed function called an [arrow function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) or _lambda_.
+An Origami expression can define a type of unnamed function called an [arrow function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), also called a _lambda_.
 
 You can define arrow functions using `=>` and any number of parameters:
 
@@ -883,6 +905,24 @@ Block comments are enclosed by `/* */`
 Block comment
 
 */
+```
+
+## Implied exports
+
+Evaluating any Origami file with the `.ori` extension returns an evaluation of the file's top-level expression — unlike JavaScript, there is no need to explicitly `export` a value.
+
+This `message.ori` file evaluates to a string:
+
+```ori
+// message.ori
+"This file exports this message."
+```
+
+It is equivalent to this JavaScript:
+
+```js
+// message.js
+export default "This file exports this message.";
 ```
 
 ## Shell shorthands

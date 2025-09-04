@@ -266,7 +266,7 @@ ${ Origami.yaml(samples/help/private.ori) }
 
 ## Define a default value
 
-You can define a default value for a tree using the [spread operator](syntax.html#spread-operator) with a [lambda function](syntax.html#lambda-functions):
+You can define a default value for a tree using the [spread operator](syntax.html#spread-operator) with an [arrow function](expressions.html#arrow-functions):
 
 ```ori
 // default.ori

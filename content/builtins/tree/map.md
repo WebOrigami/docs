@@ -33,7 +33,7 @@ ${ Origami.yaml(Tree.map(samples/cli/greetings.yaml, samples/cli/uppercase.js)) 
 
 Unlike a JavaScript [Array map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), the `map` function does not do any mapping work upon invocation — it only does the work when someone requests the mapped tree's keys or values.
 
-The mapping function is typically a JavaScript function, an Origami [lambda](/language/syntax.html#lambdas-unnamed-functions) (unnamed function), or a template such as an [Origami template](/language/templates.html). You can also use a second tree as a map.
+The mapping function is typically a JavaScript function, an Origami [arrow function](/language/expressions.html#arrow-functions), or a template such as an [Origami template](/language/templates.html). You can also use a second tree as a map.
 
 ## map options
 

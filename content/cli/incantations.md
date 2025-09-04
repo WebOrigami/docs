@@ -15,7 +15,7 @@ ori serve watch src, =debug src/site.ori
 The purpose of the incantation is to serve the `site.ori` file locally, reloading the file if it or anything else in the `src` folder changes.
 
 - The expression omits parentheses to avoid needing to quote them.
-- The `=` is a shorthand for an [unnamed function](/language/syntax.html#lambdas-unnamed-functions) call that could also be written as `() =>`.
+- The `=` is a shorthand for an [arrow function](/language/expressions.html#arrow-functions) definition that could also be written as `() =>`.
 - So the incantation could also be rewritten with explicit parentheses and the longer function syntax `ori "serve(watch(src, () => debug(src/site.ori)))"`.
 - The [`debug`](/builtins/dev/debug.html) call wraps the virtual tree defined in `src/site.ori` to add various routes that expose browser-based debugging tools.
 - The [`watch`](/builtins/dev/watch.html) function here monitors the `src` folder for changes. The result of the `watch` call is a tree that delegates calls to the result of calling the second argument (the function) — with the additional behavior that, if anything changes in the monitored folder, the function will be re-evaluated to get a new tree; the initial tree `watch` returned will now delegate calls to the new tree.
