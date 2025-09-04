@@ -20,9 +20,9 @@ A short motion comic introduces the language:
 	<img class="screenshot" src="/assets/illustrations/comic.png" alt="Comic panel with the text ‘Intro to Origami’ with a bright explosion behind it in the style of classic comic book covers">
 </a>
 
-You can read about the basics of Origami in [Hello, world](hello.html) »
-
 Create a basic blog in Origami in the [hands-on tutorial](tutorial.html) »
+
+You can read about the basics of Origami [expressions](expressions.html) »
 
 Try Origami in the command line using the [Origami CLI](/cli) »
 

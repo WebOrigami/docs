@@ -1,6 +1,5 @@
 ---
-title: Hello, world
-subtitle: The concepts that make Origami unique
+title: Defining a site
 ---
 
 The Origami language lets you concisely define the structure of a website. This page introduces three key concepts — _trees_, _tree scope_, and _maps_ — and a template system that make the language unique. If you prefer a hands-on approach, start with the [tutorial](tutorial.html).
