@@ -18,6 +18,9 @@ Origami introduces some operators of its own, listed here alongside the standard
 | Bitwise NOT                                              | `~x`                          | n/a           |
 | Unary plus                                               | `+x`                          | n/a           |
 | Unary minus                                              | `-x`                          | n/a           |
+| typeof                                                   | `typeof x`                    | n/a           |
+| void                                                     | `void x`                      | n/a           |
+| await                                                    | `await x`                     | n/a           |
 | Exponentiation                                           | `x ** y`                      | right-to-left |
 | Multiplication                                           | `x * y`                       | left-to-right |
 | Division                                                 | `x / y`                       | left-to-right |

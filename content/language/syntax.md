@@ -57,7 +57,7 @@ Hello, world.
 
 In the last command above, `Hello.md` is evaluated as a reference. In this case, it finds the local file, `Hello.md`, so ori displays the contents of that file.
 
-Unlike JavaScript identifiers, it is legal to include characters like a `.` period or a `-` (hyphen) in reference. Spaces and the following characters
+Unlike JavaScript identifiers, it is legal to include characters like a `.` period or a `-` (hyphen) in a reference. Spaces and the following characters
 
 ```
 (){}[]<>?!=,/:`"'«»\\→⇒…
