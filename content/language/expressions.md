@@ -1,6 +1,6 @@
 ---
 title: Origami expressions
-subtitle: Differences from JavaScript
+subtitle: A dialect of JavaScript expressions
 ---
 
 If you're familiar with JavaScript, Origami is essentially **JavaScript expressions plus paths**. It also includes minor adaptations that make it easier to define sites with expressions.
