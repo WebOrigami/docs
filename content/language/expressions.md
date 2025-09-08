@@ -714,6 +714,13 @@ ${ samples/help/capitals.yaml('Spain') + "\n" }
 
 One use for this is to programmatically look up values: if a variable holds the name of a key, you can call the tree as a function and pass the variable as the argument.
 
+This also means you can pass a tree to any Origami builtin that expects a function, such as the `value` option of [`Tree.map`](/builtins/tree/map.html):
+
+```console
+$ ori "Tree.map(['Japan', 'Australia'], { value: capitals.yaml })"
+${ Origami.yaml(Tree.map(['Japan', 'Australia'], { value: samples/help/capitals.yaml })) }
+```
+
 ### Functions as trees
 
 Conversely, Origami lets you treat a function as a [treelike](/async-tree/treelike.html) object. This is true for arrow functions, Origami [builtin functions](/builtins), and functions exported by JavaScript modules.
