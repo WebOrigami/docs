@@ -16,9 +16,11 @@ A guiding principle of Origami is that [you are always in control](principles.ht
 
 Origami is built with [Node.js](https://nodejs.org), so if you'd like to follow along on your own machine, you'll need a currently-maintained version of [Node.js](https://nodejs.org) (v20 or later).
 
-<span class="tutorialStep"></span> If you want to save time, clone the [blog-intro](https://github.com/WebOrigami/blog-intro) project locally.
+Origami is based on a conceptual model called [Create/Transform](model.html) in which you create a set of content files along with small programs (expressions) that transform that content into the final files for your site. So you’ll need a few content files to work with.
 
-<span class="tutorialStep"></span> Or if you'd prefer to confirm there's no magic involved, you can manually recreate the few necessary files. Create a new project folder, and inside that create a `package.json` file along these lines:
+<span class="tutorialStep"></span> If you want to save time, clone the [blog-intro](https://github.com/WebOrigami/blog-intro) project locally to obtain the necessary files.
+
+<span class="tutorialStep"></span> Or if you'd prefer to confirm there's no magic involved, you can manually recreate the files you need. Create a new project folder, and inside that create a `package.json` file along these lines:
 
 <clipboard-copy>
 
@@ -1007,7 +1009,9 @@ ${ svg({
 
 This is target site structure that was shown at the beginning of this tutorial.
 
-You've created this entire site with a few resources, a handful of templates, and a concise `site.ori` with a handful of formulas:
+You’ve built this site by creating some content files, and then transforming them into the desired files. This is the [Create/Transform model](model.html) in practice.
+
+You’ve done this with a couple of templates, a small data pipeline in `postData.ori`, and a concise `site.ori` with a handful of formulas:
 
 <clipboard-copy>
 
@@ -1063,6 +1067,7 @@ Because these are regular files, you can host these on any web hosting service t
 
 This concludes the Origami tutorial. You can continue exploring related topics:
 
+- If you skipped the background reading on the [Create/Transform model](model.html), take a look now.
 - The [Origami expression language](/language/) you used to write formulas and template expressions has additional features not covered in this tutorial.
 - View some [examples of Origami sites](examples.html).
 - The npm `start` and `build` scripts call the [Origami command-line interface](/cli), a general-purpose tool for programming in the shell.

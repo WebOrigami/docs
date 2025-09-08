@@ -1,5 +1,7 @@
 - href: index.html
   text: Overview
+- href: model.html
+  text: Conceptual model
 - href: tutorial.html
   text: Blog tutorial
 - href: expressions.html

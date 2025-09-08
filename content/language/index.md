@@ -20,11 +20,13 @@ A short motion comic introduces the language:
 	<img class="screenshot" src="/assets/illustrations/comic.png" alt="Comic panel with the text ‘Intro to Origami’ with a bright explosion behind it in the style of classic comic book covers">
 </a>
 
-Create a basic blog in Origami in the [hands-on tutorial](tutorial.html) »
+» Learn the [Create/Transform conceptual model](model.html) that forms the basis for Origami
 
-You can read about the basics of Origami [expressions](expressions.html) »
+» Create a basic blog in Origami in the [hands-on tutorial](tutorial.html)
 
-Try Origami in the command line using the [Origami CLI](/cli) »
+» Read about the basics of [Origami expressions](expressions.html)
+
+» Try Origami in the command line using the [Origami CLI](/cli)
 
 ## Concept
 
