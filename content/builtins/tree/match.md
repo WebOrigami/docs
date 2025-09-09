@@ -25,6 +25,6 @@ By default, the tree will have no public keys, but you can provide any [treelike
 ```console
 $ ori matchDomain.ori
 ${ samples/templates/matchDomain.ori }
-$ ori matchDomain.ori
+$ ori matchDomain.ori/
 ${ Origami.yaml(samples/templates/matchDomain.ori/) + "\n" }
 ```
