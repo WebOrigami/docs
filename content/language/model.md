@@ -64,7 +64,7 @@ The path between you and your audience now has more steps:
 
 ![Abstract person creating source content and transformation, with arrows showing that built into HTML read by the audience member](/assets/model/transformation.png)
 
-First you _create_ something, then you _transform_ it to produce something you can share.
+You create content and a transformation, then apply the transformation to the content to produce something you can share.
 
 The transformation often reads in the pile of files you can write and produces another pile of files your users can browse. Such a transformation is called a _static site generator_, where “static” means “stuff that doesn’t change from moment to moment”. Most sites are, or could be, static sites.
 
