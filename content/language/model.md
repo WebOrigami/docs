@@ -66,7 +66,22 @@ The path between you and your audience now has more steps:
 
 You create content and a transformation, then apply the transformation to the content to produce something you can share.
 
-The transformation often reads in the pile of files you can write and produces another pile of files your users can browse. Such a transformation is called a _static site generator_, where “static” means “stuff that doesn’t change from moment to moment”. Most sites are, or could be, static sites.
+As an analogy, consider the traditional paper folding art of origami, in which you transform a flat square of paper into an artwork.
+
+<figure style="align-items: center; display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(125px, 1fr)); justify-items: center;">
+  <img src="/assets/heart/step1.svg">
+  <img src="/assets/heart/step2.svg">
+  <img src="/assets/heart/step3.svg">
+  <img src="/assets/heart/step4.svg">
+  <img src="/assets/heart/step5.svg">
+  <img src="/assets/heart/step6.svg">
+  <img src="/assets/heart/step7.svg">
+  <img src="/assets/heart/step8.svg">
+</figure>
+
+Here the paper is the content, and the transformation is the series of folds.
+
+You can make a site the same way. The transformation can read in the content files you can write and transform it into another set of files your users can browse. Such a transformation is called a _static site generator_, where “static” means “stuff that doesn’t change from moment to moment”. Most sites are, or could be, static sites.
 
 Where does the transformation come from? There are many approaches, but we can group them into general strategies and consider their pros and cons.
 
