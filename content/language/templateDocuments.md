@@ -166,10 +166,10 @@ When applied to this data:
 ${ samples/templateDocuments/movies/movies.yaml }
 ```
 
-the values will end up with `.html` extensions:
+the resulting keys have `.html` extensions:
 
 ```console
-$ ori map movies.yaml, movie.ori.html
+$ ori Tree.map movies.yaml, movie.ori.html
 ${ Origami.yaml(
   Tree.map(
     samples/templateDocuments/movies/movies.yaml

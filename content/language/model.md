@@ -1,9 +1,9 @@
 ---
-title: The Create/Transform model
+title: The Content/Transformation model
 subtitle: How to think about making a site
 ---
 
-The Create/Transform conceptual model forms the basis for Origami, but is general and you can use it anywhere.
+The Content/Transformation conceptual model forms the basis for Origami, but is general and you can use it anywhere.
 
 This is background reading. If you’d prefer to jump straight in, try the [blog tutorial](tutorial.html) or read about [expressions](expressions.html).
 
@@ -13,7 +13,7 @@ Making a website would be so much easier if the web came with a good conceptual 
 
 If you’re making a spreadsheet, the spreadsheet grid provides a vital conceptual and spatial scaffold for your work, helping you break down your data entry and analysis tasks into manageable parts. The web offers nothing like that grid.
 
-This Create/Transform model fills that gap, giving you a way to think about making your site.
+This Content/Transformation model fills that gap, giving you a way to think about making your site.
 
 ## A site is indirect communication
 
@@ -56,7 +56,7 @@ The problem compounds if you want to create a separate page for each book. Updat
 
 So nearly all sites use software to automate all the things that are automatable, like calculations and repetition. This results in an additional level of indirection, so you must create _two_ things instead of one:
 
-The **source content**: The stuff you type out of your head or gather from elsewhere. For a personal site, the source content will typically be a pile of text files, plus data, images, and so on.
+The source **content**: The stuff you type out of your head or gather from elsewhere. For a personal site, the source content will typically be a pile of text files, plus data, images, and so on.
 
 The **transformation**: A set of computer instructions (i.e., software) that can expand or build the source content into the desired result. The result is typically a new pile of files: some in the original form in which you created them, others generated from the source content.
 
@@ -182,4 +182,4 @@ You are almost always best off picking an approach with a transformation that’
 
 Above all, consider how the way you make your site will constrain or expand your creative freedom, and the degree to which that’s important for the content you want to share.
 
-If you’re interested in seeing how Origami directly supports this Create/Transform model, try the creating a basic blog in the [blog tutorial](tutorial.html).
+If you’re interested in seeing how Origami directly supports this Content/Transformation model, try the creating a basic blog in the [blog tutorial](tutorial.html).

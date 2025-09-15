@@ -14,7 +14,7 @@ Tree.deepMap(content, { extension: ".md→.html", value: transform.ori })
   ...pages
 
   // This components.js "bundle" is just concatenated files
-  components.js = Tree.concat(components/)
+  components.js = Tree.deepText(components/)
 
   // Folder of search indexes and resources created on demand (but only once)
   pagefind/ = Origami.once(() => package:@weborigami/pagefind(pages))
