@@ -1,7 +1,6 @@
 import {
   extension,
   isPlainObject,
-  map,
   toPlainValue,
   toString,
   trailingSlash,
@@ -80,7 +79,7 @@ function classDocs(checker, symbol) {
 function docsTree(sourceTree, program, docsPath = "") {
   // We'd like to use a deep map with extensions, but we have to do special
   // handling to construct paths, so we handle the deep behavior ourselves
-  return map(sourceTree, {
+  return Tree.map(sourceTree, {
     inverseKey: (resultKey) =>
       extension.match(resultKey, ".yaml")
         ? extension.replace(resultKey, ".yaml", ".js")

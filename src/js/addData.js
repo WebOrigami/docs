@@ -1,4 +1,4 @@
-import { scope } from "@weborigami/async-tree";
+import { Tree } from "@weborigami/async-tree";
 import { documentObject, toString } from "@weborigami/origami";
 import chooseIcon from "./chooseIcon.js";
 import markCurrent from "./markCurrent.js";
@@ -19,7 +19,8 @@ export default async function addData(
   }
 
   let areaLinks;
-  const area = await scope(tree).get("area");
+  const scope = await Tree.scope(tree);
+  const area = await scope.get("area");
   if (area) {
     const areaHref = `/${toString(area)}/`;
     areaLinks = await markCurrent(areas, areaHref);
