@@ -379,14 +379,14 @@ Number('1e2')     // ${ Number("1e2") }
 
 Strings with double quotes and single quotes are essentially the same as in JavaScript:
 
-```
+```ori
 'string'
 "string"
 ```
 
 You can escape characters with a `\\` backslash:
 
-```
+```ori
 'It\\'s great'
 ```
 
@@ -396,7 +396,7 @@ Text templates are quoted in backticks and can contain Origami expressions insid
 
 Expressions inside an Origami template literal can directly return complex values like arrays, objects, or trees. Origami will perform a depth-first traversal of the result, await any `Promise` values, and concatenate the final values into the string result:
 
-```
+```ori
 `Hello, \${ { name: 'Alice' } }.`      // "Hello, Alice."
 ```
 

@@ -1,15 +1,15 @@
 ---
-title: indent(strings, ...values)
+title: "indent`…`"
 supertitle: "Tree."
 ---
 
-The `indent` function normalizes indentation in template output.
+A [tagged template function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates) that normalizes indentation in template output.
 
 It's helpful to indent text in HTML and other formats so can more easily perceive their structure. When using a template to generate such text, you may want to indent HTML inside Origami code or vice versa. Origami's goal is that both the template and its output can be indented for high legibility.
 
 You can tag a backtick-delimited template with this builtin -- put `inline` immediately before the first backtick -- to normalize the indentation in a template's output.
 
-It is unlikely you will want to call this function directly. (The function's call signature directly matches that of a JavaScript [tagged template functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates)).
+See also [`Tree.text`](text.html), which renders text as-is.
 
 ## Default template whitespace behavior
 

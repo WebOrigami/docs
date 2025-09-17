@@ -10,8 +10,6 @@
   text: calendar
 - href: clear.html
   text: clear
-- href: concat.html
-  text: concat
 - href: constant.html
   text: constant
 - href: deepMap.html
@@ -26,8 +24,8 @@
   text: deepText
 - href: deepValues.html
   text: deepValues
-- href: defineds.html
-  text: defineds
+- href: delete.html
+  text: delete
 - href: entries.html
   text: entries
 - href: filter.html
@@ -38,8 +36,6 @@
   text: forEach
 - href: from.html
   text: from
-- href: fromFn.html
-  text: fromFn
 - href: globKeys.html
   text: globKeys
 - href: group.html
@@ -84,8 +80,6 @@
   text: plain
 - href: regExpKeys.html
   text: regExpKeys
-- href: remove.html
-  text: remove
 - href: reverse.html
   text: reverse
 - href: root.html
@@ -98,6 +92,8 @@
   text: sort
 - href: take.html
   text: take
+- href: text.html
+  text: text
 - href: traverse.html
   text: traverse
 - href: traverseOrThrow.html
@@ -106,6 +102,8 @@
   text: traversePath
 - href: values.html
   text: values
+- href: withKeys.html
+  text: withKeys
 
 - text: "&nbsp;"
 
