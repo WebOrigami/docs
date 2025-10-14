@@ -1,5 +1,5 @@
-import { Tree } from "@weborigami/async-tree";
-import { documentObject, toString } from "@weborigami/origami";
+import { Tree, toString } from "@weborigami/async-tree";
+import { documentObject } from "@weborigami/origami";
 import chooseIcon from "./chooseIcon.js";
 import markCurrent from "./markCurrent.js";
 

@@ -1,4 +1,4 @@
-import { toString } from "@weborigami/origami";
+import { toString } from "@weborigami/async-tree";
 
 /**
  * Given JavaScript source code, returns a tree of the source code for the

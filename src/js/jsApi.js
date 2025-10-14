@@ -26,7 +26,7 @@ export default async function jsDocs(treelike) {
 
   const program = ts.createProgram(paths, options, host);
 
-  const result = docsTree(tree, program);
+  const result = await docsTree(tree, program);
   result.parent = this;
   return result;
 }
@@ -76,7 +76,7 @@ function classDocs(checker, symbol) {
 }
 
 // Given a tree of source files, return a tree of documentation objects
-function docsTree(sourceTree, program, docsPath = "") {
+async function docsTree(sourceTree, program, docsPath = "") {
   // We'd like to use a deep map with extensions, but we have to do special
   // handling to construct paths, so we handle the deep behavior ourselves
   return Tree.map(sourceTree, {
@@ -87,7 +87,7 @@ function docsTree(sourceTree, program, docsPath = "") {
         ? resultKey
         : undefined,
 
-    key: (sourceKey) =>
+    key: (sourceValue, sourceKey) =>
       extension.match(sourceKey, ".js")
         ? extension.replace(sourceKey, ".js", ".yaml")
         : trailingSlash.has(sourceKey)
