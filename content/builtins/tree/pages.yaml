@@ -38,8 +38,8 @@
   text: from
 - href: globKeys.html
   text: globKeys
-- href: group.html
-  text: group
+- href: groupBy.html
+  text: groupBy
 - href: has.html
   text: has
 - href: indent.html
