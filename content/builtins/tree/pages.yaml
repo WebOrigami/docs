@@ -62,6 +62,8 @@
   text: length
 - href: map.html
   text: map
+- href: mapExtension.html
+  text: mapExtension
 - href: mapReduce.html
   text: mapReduce
 - href: mask.html
