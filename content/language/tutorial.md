@@ -501,15 +501,15 @@ Now the `_body` properties are HTML.
 
 You’ll want each post to have a consistent key that can be used as part of a route: for a post like `2026-09-01.md`, we can use the base part of the file name as the key: `2026-09-01`.
 
-The `Tree.map` builtin has an [`extension`](https://weborigami.org/builtins/tree/map#transforming-extensions) option to add, change, and remove extensions.
+There's a variation of `Tree.map` called [`Tree.mapExtension`](https://weborigami.org/builtins/tree/mapExtension.html) that can add, change, and remove extensions.
 
-<span class="tutorialStep"></span> Update `postData.ori` to:
+<span class="tutorialStep"></span> Update `postData.ori` to call `Tree.mapExtension` and indicate that you want to remove the `.md` extension:
 
 <clipboard-copy>
 
 <pre class="step">
 // Blog post data pipeline
-Tree.map(markdown/, {
+Tree.<b>mapExtension</b>(markdown/, {
   <b>extension: ".md->"</b>
   value: (file, fileName) => {
     ...file
@@ -553,7 +553,7 @@ Since blogs generally show posts in reverse chronological order, you can apply a
 <pre class="step">
 // Blog post data pipeline
 <b>Tree.reverse(</b>
-  Tree.map(markdown/, {
+  Tree.mapExtension(markdown/, {
     extension: ".md->"
     value: (file, fileName) => {
       ...file
@@ -697,7 +697,7 @@ To make the post links work, you need to create a `posts` area of the site with 
   assets/
   index.html = indexPage.ori(postData.ori)
 
-  <b>posts/ = Tree.map(postData.ori, {
+  <b>posts/ = Tree.mapExtension(postData.ori, {
     extension: "->.html"
     value: postPage.ori
   })</b>
@@ -706,7 +706,7 @@ To make the post links work, you need to create a `posts` area of the site with 
 
 </clipboard-copy>
 
-This uses the same `extension` option you used earlier; here it adds an `.html` extension to each key.
+This uses the same `Tree.mapExtension` function you used earlier. Here it adds an `.html` extension to each key.
 
 <span class="tutorialStep"></span> In the Explorer tab, select the `site.ori` on the left, then click **SVG** to confirm that your site now has a `posts` area with a page for each post:
 
@@ -879,7 +879,7 @@ This JSON Feed format isn’t widely used — but since you’ve already got the
   assets/
   index.html = indexPage.ori(postData.ori)
 
-  posts/ = Tree.map(postData.ori, {
+  posts/ = Tree.mapExtension(postData.ori, {
     extension: "->.html"
     value: postPage.ori
   })
@@ -906,7 +906,7 @@ Next you can make your feed available in the ubiquitous [RSS](https://cyber.harv
   assets/
   index.html = indexPage.ori(postData.ori)
 
-  posts/ = Tree.map(postData.ori, {
+  posts/ = Tree.mapExtension(postData.ori, {
     extension: "->.html"
     value: postPage.ori
   })
@@ -1021,7 +1021,7 @@ You’ve done this with a couple of templates, a small data pipeline in `postDat
   assets/
   index.html = indexPage.ori(postData.ori)
 
-  posts/ = Tree.map(postData.ori, {
+  posts/ = Tree.mapExtension(postData.ori, {
     extension: "->.html"
     value: postPage.ori
   })
