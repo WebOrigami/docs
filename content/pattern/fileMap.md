@@ -1,23 +1,23 @@
 ---
-title: File trees
+title: File maps
 ---
 
 We now have a working markdown-to-HTML system. Depending on our needs, we might be done. At this point, the markdown content is stored in a JavaScript object defined in a single JavaScript file. As discussed earlier, there are a number of other data representations and storage systems we could choose.
 
-Which approach is best for our particular team authors might vary, but as an example let's look at how we can transition our system to read markdown from file system folders because that's relatively simple. The tree approach we're taking is flexible, so we could change our mind again later.
+Which approach is best for our particular team authors might vary, but as an example let's look at how we can transition our system to read markdown from file system folders because that's relatively simple. The `Map`-based approach we're taking is flexible, so we could change our mind again later.
 
 ## Comparing files and objects
 
-Before starting, let's quickly look at both objects and files through the lens of the AsyncTree interface. In both cases, we have standard ways of getting keys — in the case of folders and files, the keys are folder and file names. And in both cases, we have a way of getting the value or content associated with a given key.
+Before starting, let's quickly look at both objects and files through the lens of the `Map` interface. In both cases, we have standard ways of getting keys — in the case of folders and files, the keys are folder and file names. And in both cases, we have a way of getting the value or content associated with a given key.
 
-| AsyncTree interface method &emsp; | Object implementation &emsp; | File implementation   |
-| :-------------------------------- | :--------------------------- | :-------------------- |
-| `get(key)`                        | `obj[key]`                   | `fs.readFile(key)`    |
-| `keys()`                          | `Object.keys(obj)`           | `fs.readdir(dirname)` |
+| Map method &emsp; | Object implementation &emsp; | File implementation       |
+| :---------------- | :--------------------------- | :------------------------ |
+| `get(key)`        | `obj[key]`                   | `fs.readFileSync(key)`    |
+| `keys()`          | `Object.keys(obj)`           | `fs.readdirSync(dirname)` |
 
-If we're using the Node `fs` API, we have our choice of synchronous or asynchronous methods, but there are performance benefits to be gained by using the asynchronous API.
+If we're using the Node `fs` API, we have our choice of synchronous or asynchronous methods, but for simplicity here we'll use the synchronous methods.
 
-It's worth noting how much of the `fs` API is _not_ necessary for our task at hand. The full API has a wide range of features for comparatively obscure tasks like changing a file's modified date, renaming a file, or creating a symbolic link. Those features are necessary for some applications — but it's reasonable to imagine that the vast majority of users of the `fs` API are using just the `readdir` and `readFile` methods shown above.
+It's worth noting how much of the `fs` API is _not_ necessary for our task at hand. The full API has a wide range of features for comparatively obscure tasks like changing a file's modified date, renaming a file, or creating a symbolic link. Those features are necessary for some applications — but it's reasonable to imagine that the vast majority of users of the `fs` API are using just the methods shown above.
 
 ## Rough in the file tree
 
@@ -26,7 +26,7 @@ To start on our file-backed tree implementation, we'll need to get a path to the
 Our goal is to then return an object implementing the AsyncTree interface for that folder.
 
 ```js
-/* src/flat/files.js */
+/* src/map/files.js */
 
 import * as fs from "node:fs/promises";
 import path from "node:path";
@@ -81,9 +81,9 @@ This `get` method includes some error handling. The AsyncTree interface expects 
 We can test this file tree, once again copying-and-pasting the tests used for the async tree object implementation:
 
 ```${'js'}
-/* src/flat/files.test.js */
+/* src/map/files.test.js */
 
-${ pattern/flat/files.test.js }
+${ pattern/map/files.test.js }
 ```
 
 <span class="tutorialStep"></span> Run these tests to see that all test pass:
@@ -98,11 +98,11 @@ $ node files.test.js
 
 ## Display the files
 
-<span class="tutorialStep"></span> Use our `json` utility from inside the `src/flat` folder to render the folder as JSON:
+<span class="tutorialStep"></span> Use our `json` utility from inside the `src/map` folder to render the folder as JSON:
 
 ```console
 $ node json files.js
-${ Tree.json(pattern/flat/files.js) + "\n" }
+${ Tree.json(pattern/map/files.js) + "\n" }
 ```
 
 That's a single chunk of data now — but the keys of that object came from a directory listing, and each of those values is content from a separate file!
@@ -111,7 +111,7 @@ That's a single chunk of data now — but the keys of that object came from a d
 
 ```console
 $ node json object.js
-${ Tree.json(pattern/flat/object.js) + "\n" }
+${ Tree.json(pattern/map/object.js) + "\n" }
 ```
 
 The critical bit here is that the `json` utility required no modification to work with the new files-based tree. We wrote the `json` utility to work with async trees, and the folder is just another async tree.
@@ -121,16 +121,16 @@ The critical bit here is that the `json` utility required no modification to wor
 Since our folder is now available to us in tree form, we can convert its markdown content to HTML using the transform we already wrote. We can start with the same tree+transform module we created in `htmlObject.js`, and just change where the tree is coming from.
 
 ```${'js'}
-/* src/flat/htmlFiles.js */
+/* src/map/htmlFiles.js */
 
-${ pattern/flat/htmlFiles.js }
+${ pattern/map/htmlFiles.js }
 ```
 
 <span class="tutorialStep"></span> View the HTML translation of the markdown files in the `markdown` folder.
 
 ```console
 $ node json htmlFiles.js
-${ Tree.json(pattern/flat/htmlFiles.js) + "\n" }
+${ Tree.json(pattern/map/htmlFiles.js) + "\n" }
 ```
 
 The transform function can accept any tree of markdown content, so we can switch between our object and folder tree implementations at will. If we wanted to read the markdown content from a CMS, we could create a tree implementation backed by the CMS, then directly apply the unmodified transform function to that tree.

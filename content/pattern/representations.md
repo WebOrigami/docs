@@ -2,14 +2,14 @@
 title: Data representations
 ---
 
-Let's use the async tree pattern to tackle a small, common development task:
+Let's use the map pattern to tackle a small, common development task:
 
 > _Our team writes site content in markdown format since that's friendlier than raw HTML. We need to convert a folder of markdown files to HTML pages so we can deploy them on our site._
 
 <span class="tutorialStep"></span> View the files in the `src/approaches/markdown` folder, which contains some trivial markdown files. For example, `Alice.md`, contains:
 
 ```${'md'}
-${ String(pattern/approaches/markdown/Alice.md) + "\n" }
+${ Origami.string(pattern/approaches/markdown/Alice.md) + "\n" }
 ```
 
 We want to end up with a corresponding collection of HTML pages, such as `Alice.html`:
@@ -143,4 +143,4 @@ We can start with the simplest possible data representation and, if that suffice
 
 &nbsp;
 
-Next: [The AsyncTree interface](interface.html) »
+Next: [The Map interface](interface.html) »

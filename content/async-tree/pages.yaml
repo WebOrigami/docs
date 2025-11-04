@@ -7,6 +7,8 @@
 - href: treelike.html
   text: Treelike objects
 - text: "API:"
+- href: AsyncMap.html
+  text: AsyncMap
 - href: BrowserFileTree.html
   text: BrowserFileTree
 - href: ExplorableSiteTree.html
@@ -23,5 +25,7 @@
   text: SiteTree
 - href: SetTree.html
   text: SetTree
+- href: SyncMap.html
+  text: SyncMap
 - href: Tree.html
   text: Tree

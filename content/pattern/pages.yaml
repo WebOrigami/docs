@@ -5,19 +5,19 @@
 - href: representations.html
   text: Data representations
 - href: interface.html
-  text: Async trees
+  text: Maps
 - href: display.html
-  text: Display a tree
+  text: Display a map
 - href: transform.html
-  text: Transform a tree
-- href: FileTree.html
-  text: File trees
-- href: FunctionTree.html
-  text: Function trees
+  text: Transform a map
+- href: fileMap.html
+  text: File maps
+- href: functionMap.html
+  text: Function maps
 - href: classes.html
   text: Classes
 - href: deep.html
-  text: Deep trees
+  text: Trees of maps
 - href: serve.html
   text: Serve a tree
 - href: indexPages.html

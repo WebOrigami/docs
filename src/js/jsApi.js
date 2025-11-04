@@ -98,7 +98,7 @@ async function docsTree(sourceTree, program, docsPath = "") {
       const sourcePath = `${trailingSlash.add(docsPath)}${trailingSlash.remove(
         sourceKey
       )}`;
-      if (Tree.isAsyncTree(sourceValue)) {
+      if (Tree.isMap(sourceValue)) {
         // Folder; add the key to the path
         return docsTree(sourceValue, program, sourcePath);
       } else {

@@ -1,5 +1,5 @@
 ---
-title: The AsyncTree interface
+title: The Map interface
 ---
 
 The last section noted that, in the context of our markdown-to-HTML problem, it's possible to conceptualize the markdown content as a tree:
@@ -15,62 +15,70 @@ The last section noted that, in the context of our markdown-to-HTML problem, it'
 
 This section introduces an interface suitable for working with such a tree, regardless of its underlying data representation.
 
-## AsyncTree
+## The standard `Map` class
 
-Let's identify a minimal interface sufficient to define a wide variety of trees. This interface, which we'll call the AsyncTree interface, has two parts:
+Let's identify a minimal interface sufficient to define a wide variety of trees:
 
 - A method which produces the keys of the tree. In the tree above, the keys are `Alice.md`, `Bob.md`, and `Carol.md`. The keys will often be strings, but don't have to be strings.
-- A method which gets the value for a given key. If we ask the above tree for `Alice.md`, we want to get back `Hello, **Alice**.` Here the value we get is text, but like the keys, the values can be of any data type.
+- A method which gets the value for a given key. If we ask the above tree for `Alice.md`, we want to get back `Hello, \*\*Alice\*\*.` Here the value we get is text, but like the keys, the values can be of any data type.
 
-In code, an implementation of the AsyncTree interface looks like this:
+The standard JavaScript [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) class provides such an interface. We can subclass `Map` to create a custom class that behaves generally like `Map`, but is backed by data stored in different ways.
+
+Subclassing `Map` includes some complexities, but the basic shape of the code will look like:
 
 ```js
-// An async tree of key-value dictionaries
-const tree = {
-  // Get the value of a given key.
-  async get(key) { ... }
+class MyMap extends Map {
+  get(key) {
+    // Return the value of the given key
+  }
 
-  // Iterate over this tree node's keys.
-  async keys() { ... }
+  *keys() {
+    // Yield the available keys
+  }
 }
 ```
 
-Notes:
+The `get()` method is fairly straightforward: if we call `get("Alice.md")`, we want to get back `Hello, \*\*Alice\*\*.`
 
-- The `keys` method must return an [iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_iterator_protocol): an object that can produce a sequence of values. The simplest way to meet this requirement is to a JavaScript `Array` or `Set`, which provide built-in support for the iterator protocol.
+The `keys` method is slightly more exotic, as it returns an [iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_iterator_protocol): an object that can produce a sequence of values.
 
-- Both functions in the `Explorable` interface are marked with the [async](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) keyword, indicating that they are asynchronous functions. In practice, the functions may return immediately, but they have the potential, at least, to do work that will require a bit of time: retrieving data from the file system, accessing data from a network, or performing long calculations.
+- The simplest way to create an iterator is writing a [generator function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*).
+- The simplest way to consume an iterator is to pass it to [`Array.from`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from), which will enumerate the values produced by the iterator and return those as an array.
 
-- The `keys` method does _not_ have to return all the keys supported by `get`! There may be keys that `get` can handle that the `keys` will not include. This turns out to be useful in a number of situations.
+## Create a map from an object
 
-- An async tree's `get` method is expected to return `undefined` if the key is not present in the tree.
+Of the three data representations we looked at previously, the in-memory JavaScript object was perhaps the simplest, so let's first look at defining a `Map` subclass that's backed directly by data stored in an object:
 
-## Apply the AsyncTree interface to the object
+```js
+/* src/map/ObjectMap.js */
 
-Of the three data representations we looked at previously, the in-memory JavaScript object was perhaps the simplest, so let's first look at applying the AsyncTree interface to a JavaScript object:
-
-```${'js'}
-/* src/flat/object.js */
-
-${ pattern/flat/object.js }
+${ pattern/map/ObjectMap.js }
 ```
 
-This module exports an async tree that wraps the JavaScript object containing the markdown data. For now, this wrapper can only handle a flat object — later we will extend this to handle hierarchical objects.
-
-## Test the object tree
-
-The first thing we can do with this object tree is programmatically verify it implements the AsyncTree interface.
+We can then instantiate this `ObjectMap` class to wrap an object containing the markdown data:
 
 ```${'js'}
-/* src/flat/object.test.js */
+/* src/map/object.js */
 
-${ pattern/flat/object.test.js }
+${ pattern/map/object.js }
 ```
 
-<span class="tutorialStep"></span> From inside the `src/flat` directory, run these tests to see that all test pass:
+For now, this wrapper can only handle a flat object — later we'll extend this to handle hierarchical objects.
+
+## Test the object map
+
+The first thing we can do with this object-based map is programmatically verify that its methods conform to the expectations of the `Map` class:
+
+```${'js'}
+/* src/map/object.test.js */
+
+${ pattern/map/object.test.js }
+```
+
+<span class="tutorialStep"></span> From inside the `src/map` directory, run these tests to see that all test pass:
 
 ```console
-$ cd ../flat
+$ cd ../map
 $ node object.test.js
 …
 # tests 3
@@ -80,4 +88,4 @@ $ node object.test.js
 
 &nbsp;
 
-Next: [Display a tree](display.html) »
+Next: [Display a map](display.html) »

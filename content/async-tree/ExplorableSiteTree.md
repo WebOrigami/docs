@@ -27,4 +27,6 @@ Carol: Hello, Carol.
 
 Above, the custom `explore:` protocol retrieves the route's keys defined in the `.keys.json`, then makes separate requests for each of those pages.
 
+## API
+
 ${ src/templates/class.ori(api/drivers/ExplorableSiteTree.yaml/exports/0) }
