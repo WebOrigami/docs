@@ -25,7 +25,7 @@ The markdown map is "real", in the sense that it is persistently stored in some 
 
 ## Rough in the transformation
 
-The transformation will be a function that accepts a map of markdown and returns a new map of HTML.
+The transformation will be a class that accepts a map of source markdown and represents a new, transformed map of HTML.
 
 ```js
 /* src/map/HtmlMapTransform.js */

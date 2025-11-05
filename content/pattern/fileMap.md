@@ -19,66 +19,75 @@ If we're using the Node `fs` API, we have our choice of synchronous or asynchron
 
 It's worth noting how much of the `fs` API is _not_ necessary for our task at hand. The full API has a wide range of features for comparatively obscure tasks like changing a file's modified date, renaming a file, or creating a symbolic link. Those features are necessary for some applications — but it's reasonable to imagine that the vast majority of users of the `fs` API are using just the methods shown above.
 
-## Rough in the file tree
+## Rough in the file map
 
-To start on our file-backed tree implementation, we'll need to get a path to the directory that will be the root of the tree. In this case, we use some Node APIs to get the directory of a folder relative to the folder containing the JavaScript module we're writing.
+To start on our file-backed map implementation, we'll need to get a path to the directory that will be the root of the map. In this case, we use some Node APIs to get the directory of a folder relative to the folder containing the JavaScript module we're writing.
 
-Our goal is to then return an object implementing the AsyncTree interface for that folder.
+Our goal is to then return an object implementing the `Map` interface for that folder.
 
 ```js
-/* src/map/files.js */
+/* src/map/FileMap.js */
 
-import * as fs from "node:fs/promises";
+import * as fs from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 
-const moduleFolder = path.dirname(fileURLToPath(import.meta.url));
-const dirname = path.resolve(moduleFolder, "markdown");
+export default class FileMap extends Map {
+  constructor(dirname) {
+    super();
+    this.dirname = path.resolve(process.cwd(), dirname);
+  }
 
-export default {
-  async get(key) {
+  get(key) {
     /* TODO */
-  },
-  async keys() {
+  }
+
+  keys() {
     /* TODO */
-  },
-};
+  }
+}
 ```
 
 ## Get the folder's keys
 
-To get the keys for the folder, we'll ask the `fs.readdir` API for the list of file names in that folder, then yield the names in that list.
+To get the keys for the folder, we'll ask the `fs.readdirSync` API for the list of file names in that folder, then yield the names in that list.
 
 ```js
-  async keys() {
-    const filenames = await fs.readdir(dirname);
-    return filenames;
+  *keys() {
+    yield* fs.readdirSync(this.dirname);
   },
 ```
 
 ## Get the contents of a file
 
-To implement the `get` method in the AsyncTree interface, we'll use the `fs.readFile` API to read the contents of the file with the indicated key/name.
+To implement the `get` method in the AsyncTree interface, we'll use the `fs.readFileSync` API to read the contents of the file with the indicated key/name.
 
 ```js
-  async get(key) {
+  get(key) {
     const filename = path.resolve(dirname, key);
     try {
-      return await fs.readFile(filename);
+      return await fs.readFileSync(filename);
     } catch (error) {
       if (error.code === "ENOENT") {
-        return undefined;
+        return undefined; /* File not found */
       }
       throw error;
     }
   },
 ```
 
-This `get` method includes some error handling. The AsyncTree interface expects the `get` method to return `undefined` for an unsupported key, but the `fs.readFile` API will throw an exception if a file does not exist with the indicated name. To create a well-behaved async tree, we catch exceptions and, if the exception is specifically an `ENOENT` (file not found) exception, we return undefined.
+This `get` method includes some error handling. The Map interface expects the `get` method to return `undefined` for an unsupported key, but the `fs.readFile` API will throw an exception if a file does not exist with the indicated name. To create a well-behaved async tree, we catch exceptions and, if the exception is specifically an `ENOENT` (file not found) exception, we return undefined.
 
-## Test the file tree
+## Test the file map
 
-We can test this file tree, once again copying-and-pasting the tests used for the async tree object implementation:
+We can test this file map by instantiating it, pointing it at a local `markdown` folder:
+
+```js
+/* src/map/files.js */
+
+${ pattern/map/files.js }
+```
+
+We can test this file map, once again copying-and-pasting the tests used for the object-based `Map` implementation:
 
 ```${'js'}
 /* src/map/files.test.js */
@@ -114,11 +123,13 @@ $ node json object.js
 ${ Tree.json(pattern/map/object.js) + "\n" }
 ```
 
-The critical bit here is that the `json` utility required no modification to work with the new files-based tree. We wrote the `json` utility to work with async trees, and the folder is just another async tree.
+The critical bit here is that the `json` utility required no modification to work with the new files-based `Map`. We wrote the `json` utility to work with any `Map`, and the folder is just another `Map`. While it would have been possible to hard-code support for objects and file system folders into the `json` utility, that approach would be harder to maintain and less flexible.
+
+This `Map`-based approach is superior because the `Map` interface is entire abstract. This allows us to factor our code better — but even more importantly, to accommodate future `Map` classes that we don’t even know about at the time we’re writing code like the `json` utility.
 
 ## Transform the folder
 
-Since our folder is now available to us in tree form, we can convert its markdown content to HTML using the transform we already wrote. We can start with the same tree+transform module we created in `htmlObject.js`, and just change where the tree is coming from.
+Since our folder is now available to us in map form, we can convert its markdown content to HTML using the transform we already wrote. We can start with the same map-transforming module we created in `htmlObject.js`, and just change where the map is coming from.
 
 ```${'js'}
 /* src/map/htmlFiles.js */
@@ -133,10 +144,8 @@ $ node json htmlFiles.js
 ${ Tree.json(pattern/map/htmlFiles.js) + "\n" }
 ```
 
-The transform function can accept any tree of markdown content, so we can switch between our object and folder tree implementations at will. If we wanted to read the markdown content from a CMS, we could create a tree implementation backed by the CMS, then directly apply the unmodified transform function to that tree.
-
-Both our JSON utility and markdown-to-HTML transformation are completely independent of the underlying data representation and storage location.
+The transform function can accept any map of markdown content, so we can switch between our object and folder map implementations at will. Both our JSON utility and markdown-to-HTML transformation are completely independent of the underlying data representation and storage location.
 
 &nbsp;
 
-Next: [Function trees](FunctionTree.html)
+Next: [Function map](functionMap.html)
