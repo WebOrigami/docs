@@ -2,20 +2,20 @@
 title: Data representations
 ---
 
-Let's use the map pattern to tackle a small, common development task:
+Let's use the Map pattern to tackle a small, common development task:
 
-> _Our team writes site content in markdown format since that's friendlier than raw HTML. We need to convert a folder of markdown files to HTML pages so we can deploy them on our site._
+> _Our team writes blog content in markdown format since that's friendlier than raw HTML. We need to convert a folder of markdown posts to HTML pages so we can deploy them on our site._
 
-<span class="tutorialStep"></span> View the files in the `src/approaches/markdown` folder, which contains some trivial markdown files. For example, `Alice.md`, contains:
+<span class="tutorialStep"></span> View the files in the `src/approaches/markdown` folder, which contains some trivial markdown files. For example, `post1.md`, contains:
 
 ```${'md'}
-${ Origami.string(pattern/approaches/markdown/Alice.md) + "\n" }
+${ Origami.string(pattern/approaches/markdown/post1.md) + "\n" }
 ```
 
-We want to end up with a corresponding collection of HTML pages, such as `Alice.html`:
+We want to end up with a corresponding collection of HTML pages, such as `post1.html`:
 
 ```${'html'}
-${ Origami.mdHtml(pattern/approaches/markdown/Alice.md) }
+${ Origami.mdHtml(pattern/approaches/markdown/post1.md) }
 ```
 
 We will make use of a markdown-to-HTML translator, but beyond that are going to solve this problem without depending on a framework or other code. We'll essentially write everything from scratch.
@@ -30,9 +30,7 @@ Before tackling the translation of markdown to HTML, let's first solve a simpler
 ${ pattern/approaches/files.js }
 ```
 
-Here we use the promise-based flavor of Node's [fs](https://nodejs.org/api/fs.html) API, as it avoids blocking the main thread and makes it easy to work with the results.
-
-We use the `fs.readFile` API to get a list of the file names that we can loop over. For each file name, we load the file and display it.
+Here we use Node’s `fs` API to get a list of the file names that we can loop over. For each file name, we load the file and display it.
 
 <span class="tutorialStep"></span> In the terminal window, cd to the `src/approaches` directory, then execute `files.js` to see the contents of the three markdown files:
 
@@ -65,7 +63,7 @@ $ node object.js
 ${ Origami.yaml(pattern/approaches/markdown) }
 ```
 
-This object-based approach has its own advantages. For one thing, the code is lot simpler. Being synchronous and working directly against memory, it will also be much faster. In some cases, keeping the data in a single file might also make it easier to create, edit, and manage the data as a collection. On the downside, working directly in a JavaScript file is something only someone with development experience would feel comfortable doing.
+This object-based approach has the advantages of being simpler and faster. In some cases, keeping the data in a single file might also make it easier to create, edit, and manage the data as a collection. On the downside, working directly in a JavaScript file is something only someone with development experience would feel comfortable doing. The object definition will also become unwieldy with longer, multi-line content.
 
 ## Markdown from a function
 
@@ -124,22 +122,23 @@ This leads to overspecialized code. In the context of this markdown-to-HTML task
 
 You often encounter this overspecialization in tools. In searching for a tool that can transform markdown to HTML, you may find a tool that expects the content to be files — but if your project isn't storing markdown in separate files, then you may find yourself forced to save data in temporary files just to be able to use that tool.
 
-## Data as trees
+## Data as maps
 
-Regardless of how we are storing the markdown content, it's possible to conceptualize the content as a hierarchical tree:
+Regardless of how we are storing the markdown content, it's possible to conceptualize the content as an abstract collection of keys and values:
 
 <figure>
   ${ svg({
-    Alice.md: "Hello, **Alice**.",
-    Bob.md: "Hello, **Bob**.",
-    Carol.md: "Hello, **Carol**.",
+	  "post1.md": "This is **post 1**.",
+	  "post2.md": "This is **post 2**.",
+	  "post3.md": "This is **post 3**.",
   }) }
-  <figcaption>The markdown documents as a tree</figcaption>
 </figure>
 
-We can write code to treat _any_ of the relevant data representations for this problem as a tree. That is, we can create an adapter or wrapper that lets us work with the data as a tree. Our core operation can then work on trees.
+Such a collection of keys and values is called a _map_.
 
-We can start with the simplest possible data representation and, if that suffices, we're done. If we later need to change our representation, we can write a new adapter that lets us treat that as a tree. Our core code should continue to work without modification. In this way, we productively reduce our switching costs.
+We can write code to treat any of the relevant data representations for this problem as a map.
+
+We can start with the simplest possible data representation and, if that suffices, we're done. If we later need to change our representation, we can write a new adapter that lets us treat that as a map. Our core code should continue to work without modification. In this way, we productively reduce our switching costs.
 
 &nbsp;
 
