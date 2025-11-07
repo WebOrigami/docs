@@ -2,7 +2,7 @@
 title: Display a map
 ---
 
-Now that we've applied the `Map` interface to an object, let's write a simple tool that will display the contents of that `Map` in the console.
+Now that we've applied the `Map` interface to an object, let's write a simple tool to display the map in the console.
 
 To stay as close to the platform as possible, we'll render the map in JSON format. JSON isn't particularly friendly to write or read, but it's built into the platform and supports hierarchical structures.
 

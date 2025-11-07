@@ -2,85 +2,37 @@
 title: Index pages
 ---
 
-Right now, the experience of browsing our tree of generated HTML is a little unsatisfying because there are no index pages — we have to know what pages exist and manually enter a valid URL.
+We'll now use our map classes to create a toy blog site that we can browse and build.
 
-We can fix that by adding another tree transform. Wrapping a tree with this transform will:
-
-1. add "index.html" as one of the inner tree's keys if it's not already defined
-2. define a default value for "index.html" if one isn't already defined
-
-The default value will be an HTML page listing the tree's other keys as links.
-
-## Generate a single index page
-
-First let's write a function that returns a reasonable default index page for a tree that doesn't define one.
-
-```${'js'}
-/* In src/index/indexPages.js */
-
-${ src/js/codeFunctions.js(pattern/index/indexPages.js).indexPage }
-```
-
-If the little `more` branch of our HTML tree looks like this:
+At this point, we've already got a way to build a map of HTML pages that are backed by a collection of markdown files — stored either in memory or the file system, or generated dynamically. We end up with an `HtmlMap` instance, each key ending in `.html` and each value representing a (trivial) HTML blog post page.
 
 <figure>
-${ svg(pattern/index/object.js/more) }
+  ${ svg(pattern/map/htmlObject.js) }
 </figure>
 
-Then invoking `indexPage` on this branch will return:
+We can construct our site around this map in two different ways:
 
-```${'html'}
-${
-  // 2024-09: Need parens; patterns intro doesn't handle trailing slashes yet
-  pattern/index/htmlObject.js/more("index.html") + "\n"
-}
+1. We'll include this map as the site's `posts` area.
+2. We'll use this map to construct a simple blog index page.
+
+Sites generally offer navigation headers, side bars, etc., that reflect the contents of the site. These elements often have a one-to-one correspondence between site structure and visible user interface element: e.g., for each post in the `posts` area, we want to create a clickable link on the home page.
+
+We can define the home page as as a function which, given a map of HTML pages, returns the HTML for an index page that links to all those pages.
+
+```js
+/* src/map/indexPage.js */
+
+${ pattern/map/indexPage.js }
 ```
 
-## Transform a tree by adding index pages
+The work proceeds in steps:
 
-Using the default `indexPage` function above, let's now create a tree transform. This will accept any async tree, and return a new tree with an `index.html` key.
+1. Get the `keys` of the input `map`. That will be an [`Iterator`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Iterator), which is somewhat awkward to work with. We can convert it to a simple array of strings via [`Array.prototype.from`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from).
+2. For each string key, we create an HTML fragment for a list item containing a link to the corresponding page in the `posts` area. (We'll actually define that area shortly.) In a real blog index, we'd want the link to include the blog post title, date, and maybe a summary. Here we'll just use the page file name without the `.html` extension.
+3. We join all the links together and insert them into HTML boilerplate.
 
-```${'js'}
-/* In src/index/indexPages.js */
-
-${ src/js/codeFunctions.js(pattern/index/indexPages.js)["@prologue"] }
-${ src/js/codeFunctions.js(pattern/index/indexPages.js)["@epilogue"] }
-```
-
-If we use this to transform the `more` branch of the HTML tree, the transformed tree now includes an `index.html` page:
-
-<figure>
-${ svg(pattern/index/indexPages.js(pattern/index/htmlObject.js/more)) }
-</figure>
-
-## Incorporate the index page transform
-
-We can apply this `indexPages` transform on top of our object, file, and function-based HTML trees. For example, the file-based tree now looks like:
-
-```${'js'}
-/* src/index/htmlFiles.js */
-
-${ pattern/index/htmlFiles.js }
-```
-
-These transforms are just functions, so we can apply as many tree transforms as we want.
-
-In this case, the order of function calls matters: when the `indexPages` transform is iterating through the keys of a tree, we want it to see keys that end in `.html` so that it create links to the HTML pages. If we applied the `indexPages` transform first, it would create links to the `.md` files.
-
-<span class="tutorialStep"></span> From inside the `src/index` directory, serve the HTML tree again.
-
-```console
-$ cd../index
-$ node serve
-Server running at http://localhost:5000. Press Ctrl+C to stop.
-```
-
-<span class="tutorialStep"></span> Browse the site to see index pages at each level of the hierarchy.
-
-This server can be good enough for development, and we could easily deploy it in this state. But since this HTML content is currently all static, it would be nice to render the HTML content as `.html` files we can deploy directly.
-
-<span class="tutorialStep"></span> Before moving on, in the terminal window, stop the server by pressing Ctrl+C.
+A useful aspect of this `indexPage` function is that, by virtue of using the `Map` abstract, it can construct links to any set of HTML pages defined by any means. We can use it to generate an index of HTML pages generated from markdown files — or write a unit test that generates an index for a small set of hardcoded HTML pages wrapped in an `ObjectMap`.
 
 &nbsp;
 
-Next: [Copy a tree](copy.html) »
+Next: [Composing a tree](composition.html) »

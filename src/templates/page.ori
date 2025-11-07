@@ -34,7 +34,7 @@
             `
             : ""
           }
-          <h1>${ page.title }</h1>
+          <h1>${ page.title ?? "" }</h1>
           ${ page.subtitle
             ? Tree.indent`
               <p class="subtitle">${ page.subtitle }</p>

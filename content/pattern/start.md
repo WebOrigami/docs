@@ -2,9 +2,9 @@
 title: Start the pattern walkthrough
 ---
 
-The following pages illustrate the basic use of the Map pattern to construct a simple site.
+The following pages illustrate the basic use of the Map pattern to construct a simple site. This isn't a tutorial but a code-based walkthrough.
 
-If you'd like to run the code samples shown here, you can use whatever coding environment you prefer. You will need to have [Node.js](https://nodejs.org/en/) installed.
+You may find it helpful to run the sample code as you go along to see the principles in action, to step through code, or to experiment with the ideas yourself. You can use whatever coding environment you prefer. You will need to have [Node.js](https://nodejs.org/en/) installed.
 
 <span class="tutorialStep"></span> Clone the [WebOrigami/pattern-intro](https://github.com/WebOrigami/pattern-intro) repository to your own machine.
 

@@ -8,17 +8,23 @@ Having already created implementations of our object-based and folder-based maps
 
 To create a function-based map, we'll need two things: 1) a function that can produce a value for a given key, and 2) an array of keys defining a representative domain over which the function is valid.
 
-```${'js'}
+```js
+/* src/map/FunctionMap.js */
+
+${ pattern/map/FunctionMap.js }
+```
+
+We can use this `FunctionMap` class as follows:
+
+```js
 /* src/map/fn.js */
 
 ${ pattern/map/fn.js }
 ```
 
-Because the Map interface supports asynchronous functions by default, we could just as easily have the core `fn` function here be an `async` function that, for example, retrieved a resource from a server.
-
 The earlier object-based and files-based maps are "real" in that the data is stored persistently in the real world. But the function-based map above is virtual from the start — the complete data is not stored persistently, and is only available when code is running.
 
-As noted in the original definition of the Map interface, a map's `keys` method is _not_ required to return all of the keys the map can handle. The `keys` for the function map above returns three representative keys, but the `get` method will actually accept any key ending in `.md`.
+Note that a map's `keys` method doesn't have to return every key the map can actually handle. The map above defines three representative keys, but the `get` method will actually accept any key ending in `.md`. If we ask for `post4.md`, we will get back `This is \**post 4**.` That flexibility can be useful, but if not desired, the `get` method could reject requests for keys outside the stated domain.
 
 ## Verify the function map
 
@@ -62,4 +68,4 @@ In a bit, we'll see how they can be used together to create interesting combinat
 
 &nbsp;
 
-Next: [Deep trees](deep.html) »
+Next: [Full compatibility](compatibility.html) »

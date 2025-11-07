@@ -112,15 +112,13 @@ Each of these approaches has their own advantages over loose files. So why be so
 
 One problem with all of the data representations mentioned above is that they have significant switching costs.
 
-First, the specific data representation you pick will entail use of specific APIs and coding patterns. Although all three code examples above are doing the same thing — looping over a set of data values and displaying them — the loop code is slightly different in each case. If you ever change from one data representation to another, you must change such loops throughout your codebase.
+- The specific data representation you pick entails use of specific APIs and coding patterns. Although all three code examples above are doing the same thing — looping over a set of data values and displaying them — the loop code is slightly different in each case. If you ever change from one data representation to another, you must change such loops throughout your codebase.
 
-Second, and more insidiously, the system used to store your data influences how your code refers to data. If you are working with markdown files, your code will tend to pass around strings which are file paths that refer to markdown files. If you are working with in-memory JavaScript objects, then the same type of code will tend to pass around JavaScript object references.
+- More insidiously, the system used to store your data influences how your code refers to data. If you are working with markdown files, your code will tend to pass around strings which are file paths that refer to markdown files. If you are working with in-memory JavaScript objects, then the same type of code will tend to pass around JavaScript object references. Your entire code base will be influenced by how and where your data is stored — including code that doesn't directly read or write data.
 
-That means your entire code base may end up being influenced by how and where your data is stored — including code that doesn't directly read or write data.
+- This leads to overspecialized code. In the context of this markdown-to-HTML task, you may end up writing code that specifically transforms a _folder_ of markdown _files_. Anyone (perhaps your future self) who wants to transform a collection of markdown documents stored in some other way may be unable to use your code without substantial modification.
 
-This leads to overspecialized code. In the context of this markdown-to-HTML task, you may end up writing code that specifically transforms a _folder_ of markdown _files_. Anyone (perhaps your future self) who wants to transform a collection of markdown documents stored in some other way may be unable to use your code without substantial modification.
-
-You often encounter this overspecialization in tools. In searching for a tool that can transform markdown to HTML, you may find a tool that expects the content to be files — but if your project isn't storing markdown in separate files, then you may find yourself forced to save data in temporary files just to be able to use that tool.
+You often encounter this overspecialization in tools. You may find a tool that can transform markdown to HTML, but expects the content to be files. If your project isn't storing markdown in files, you may find yourself forced to save data in temporary files just to be able to use that tool.
 
 ## Data as maps
 
@@ -136,9 +134,7 @@ Regardless of how we are storing the markdown content, it's possible to conceptu
 
 Such a collection of keys and values is called a _map_.
 
-We can write code to treat any of the relevant data representations for this problem as a map.
-
-We can start with the simplest possible data representation and, if that suffices, we're done. If we later need to change our representation, we can write a new adapter that lets us treat that as a map. Our core code should continue to work without modification. In this way, we productively reduce our switching costs.
+We can write code to treat any of the relevant data representations for this problem as a map. We can start with the simplest possible data representation and, if that suffices, we're done. If we later need to change our representation, we can write a new adapter that lets us treat that as a map. Our core code should continue to work without modification. In this way, we productively reduce our switching costs.
 
 &nbsp;
 

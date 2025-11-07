@@ -16,12 +16,12 @@ This section introduces an interface suitable for working with such a map, regar
 
 ## The standard `Map` class
 
-We want to represent a collection of keys associated with values. JavaScript provides a standard [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) class with the interface we want.
+We want to represent a collection of keys associated with values, and JavaScript provides a standard [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) class for that exact purpose.
 
-The `Map` class comes with built-in storage for keys and values. However, we are going to completely ignore that built-in storage mechanism! We will co-opt `Map` into working as a general-purpose interface for accessing information stored elsewhere.
+`Map` comes with built-in storage — but we are going to completely ignore that! We will co-opt `Map` into working as a general-purpose interface for accessing information stored elsewhere. Specifically, we can subclass `Map` to create a custom class that looks and works just like `Map` but is backed by other data.
 
-Specifically, we can subclass `Map` to create a custom class that looks and works just like `Map` but is backed by other data. We will use `Map` as an _interface_: a defined set of consistently-named methods and properties that meet specific expectations. This means that code written to work with `Map` will automatically work with our custom subclasses without any modification.
- 
+That is, we will use `Map` as an _interface_: a defined set of consistently-named methods and properties that meet specific expectations. Any code written to work with `Map` will automatically work with our custom subclasses without modification.
+
 The standard `Map` class includes two core methods of special interest:
 
 - A `keys` method which produces the keys of the map. In the map above, the keys are `post1.md`, `post2.md`, and `post3.md`. The keys will often be strings, but don't have to be strings.
@@ -41,7 +41,7 @@ class CustomMap extends Map {
 }
 ```
 
-The `keys` method is slightly exotic: it returns an [iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_iterator_protocol) that can produce a sequence of values.
+The `keys` method is slightly exotic, returning an [iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_iterator_protocol) that can produce a sequence of values.
 
 - The simplest way to create an iterator is writing a [generator function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*).
 - The simplest way to consume an iterator is to pass it to [`Array.from`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from), which will enumerate the values produced by the iterator and return those as an array.

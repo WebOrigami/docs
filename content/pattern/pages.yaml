@@ -14,19 +14,21 @@
   text: File maps
 - href: functionMap.html
   text: Function maps
-- href: classes.html
-  text: Classes
-- href: deep.html
+- href: compatibility.html
+  text: Map compatibility
+- href: trees.html
   text: Trees of maps
-- href: serve.html
-  text: Serve a tree
+- href: writable.html
+  text: Writable maps
 - href: indexPages.html
   text: Index pages
+- href: composition.html
+  text: Composing a tree
+- href: serve.html
+  text: Serve a tree
 - href: copy.html
-  text: Copy a tree
-- href: combine.html
-  text: Combine trees
-- href: operations.html
-  text: Tree operations
-- href: sharing.html
-  text: Sharing tools
+  text: Build by copying
+- href: async.html
+  text: Asynchronous maps
+- href: reuse.html
+  text: Reusing code

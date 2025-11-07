@@ -49,7 +49,7 @@ export default class FileMap extends Map {
 
 ## Get the folder's keys
 
-To get the keys for the folder, we'll ask the `fs.readdirSync` API for the list of file names in that folder, then yield the names in that list.
+To get the keys for the folder, we'll ask the `fs.readdirSync` method for the list of file names in that folder, then yield the names in that list.
 
 ```js
   *keys() {
@@ -59,7 +59,7 @@ To get the keys for the folder, we'll ask the `fs.readdirSync` API for the list 
 
 ## Get the contents of a file
 
-To implement the `get` method in the AsyncTree interface, we'll use the `fs.readFileSync` API to read the contents of the file with the indicated key/name.
+To implement the `get` method in the AsyncTree interface, we'll use the `fs.readFileSync` method to read the contents of the file with the indicated key/name.
 
 ```js
   get(key) {
@@ -75,7 +75,7 @@ To implement the `get` method in the AsyncTree interface, we'll use the `fs.read
   },
 ```
 
-This `get` method includes some error handling. The Map interface expects the `get` method to return `undefined` for an unsupported key, but the `fs.readFile` API will throw an exception if a file does not exist with the indicated name. To create a well-behaved async tree, we catch exceptions and, if the exception is specifically an `ENOENT` (file not found) exception, we return undefined.
+This `get` method includes some error handling. The Map interface expects the `get` method to return `undefined` for an unsupported key, but the `fs.readFileSync` API will throw an exception if a file does not exist with the indicated name. To create a well-behaved async tree, we catch exceptions and, if the exception is specifically an `ENOENT` (file not found) exception, we return `undefined`.
 
 ## Test the file map
 
