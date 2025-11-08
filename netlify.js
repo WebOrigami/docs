@@ -1,4 +1,4 @@
-import { Tree } from "@weborigami/async-tree";
+import { AsyncMap, Tree } from "@weborigami/async-tree";
 
 /**
  * Expose keys.json (no initial dot) for Netlify.
@@ -9,25 +9,26 @@ import { Tree } from "@weborigami/async-tree";
  * requests for .keys.json (which won't be available) to keys.json (which will
  * be available).
  */
-export default async function netlify(variant) {
-  const graph = Tree.from(variant);
-  return {
+export default async function netlify(treelike) {
+  const source = Tree.from(treelike);
+  return Object.assign(new AsyncMap(), {
     async get(key) {
       if (key === "keys.json") {
         // keys.json is a synonym for .keys.json
-        return await this.get(".keys.json");
+        key = ".keys.json";
       }
-      const value = await graph.get(key);
-      return Tree.isAsyncTree(value) ? netlify(value) : value;
+      const value = await source.get(key);
+      return Tree.isMap(value) ? netlify(value) : value;
     },
 
-    async keys() {
-      const keys = Array.from(await graph.keys());
-      if (keys.includes(".keys.json")) {
-        // Also include "keys.json" for Netlify.
-        keys.push("keys.json");
+    async *keys() {
+      for await (const key of source.keys()) {
+        yield key;
+        if (key === ".keys.json") {
+          // Also include "keys.json" for Netlify.
+          yield "keys.json";
+        }
       }
-      return keys;
     },
-  };
+  });
 }
