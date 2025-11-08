@@ -58,8 +58,6 @@
   text: json
 - href: keys.html
   text: keys
-- href: length.html
-  text: length
 - href: map.html
   text: map
 - href: mapExtension.html
@@ -90,6 +88,8 @@
   text: setDeep
 - href: shuffle.html
   text: shuffle
+- href: size.html
+  text: size
 - href: sort.html
   text: sort
 - href: take.html

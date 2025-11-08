@@ -1,3 +1,5 @@
+import { Tree } from "@weborigami/async-tree";
+
 // Pick an icon for a page that is quasi-random but stable across visits.
 export default async function chooseIcon(filePath, icons) {
   if (!filePath || !icons) {
@@ -5,7 +7,7 @@ export default async function chooseIcon(filePath, icons) {
   }
 
   // Get the keys that end with .svg
-  const keys = Array.from(await icons.keys()).filter((key) =>
+  const keys = Array.from(await Tree.keys(icons)).filter((key) =>
     key.endsWith(".svg")
   );
 

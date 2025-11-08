@@ -80,21 +80,21 @@ async function docsTree(sourceTree, program, docsPath = "") {
   // We'd like to use a deep map with extensions, but we have to do special
   // handling to construct paths, so we handle the deep behavior ourselves
   return Tree.map(sourceTree, {
-    inverseKey: (resultKey) =>
+    inverseKey: async (resultKey) =>
       extension.match(resultKey, ".yaml")
         ? extension.replace(resultKey, ".yaml", ".js")
         : trailingSlash.has(resultKey)
         ? resultKey
         : undefined,
 
-    key: (sourceValue, sourceKey) =>
+    key: async (sourceValue, sourceKey) =>
       extension.match(sourceKey, ".js")
         ? extension.replace(sourceKey, ".js", ".yaml")
         : trailingSlash.has(sourceKey)
         ? sourceKey
         : undefined,
 
-    value: (sourceValue, sourceKey) => {
+    value: async (sourceValue, sourceKey) => {
       const sourcePath = `${trailingSlash.add(docsPath)}${trailingSlash.remove(
         sourceKey
       )}`;
