@@ -23,4 +23,4 @@ const styles = await files.get("styles.css");
 
 ## API
 
-${ src/templates/class.ori(api/drivers/FileTree.yaml/exports/0) }
+${ src/templates/class.ori(api/drivers/FileMap.yaml/exports/0) }

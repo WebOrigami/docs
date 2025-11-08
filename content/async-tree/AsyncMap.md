@@ -7,18 +7,18 @@ This is an asynchronous analogue of the standard JavaScript [Map](https://develo
 
 `AsyncMap` can serve as the foundation for custom `Map`-like classes that represent high-latency resources, such as server data or data which is slow to compute, which are accessed with asynchronous calls. For a synchronous version of this class, see [`SyncMap`](./SyncMap.html).
 
-## Asynchronous members
-
 The methods and properties of `AsyncMap` all generally behave like their counterparts in `Map`, with the significant difference that they are all asynchronous.
 
 ### Async iterators
 
-Another difference from `Map` is that iterators are [`AsyncIterator`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AsyncIterator) instances, including:
+The standard `Map` class includes a number of methods that return an [`Iterator`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Iterator):
 
 - `entries`
 - `keys`
 - `values`
-- `[Symbol.asyncIterator]`
+- `[Symbol.Iterator]`
+
+In `AsyncMap`, all of these methods return an [`AsyncIterator`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AsyncIterator). Moreover, where `Map` uses `[Symbol.Iterator]`, `AsyncMap` uses `[Symbol.asyncIterator]` instead.
 
 Async iterators (marked with a `*` in the API documentation below) yield a sequence of values. To convert an async iterator to a synchronous form, such as an `Array`, it is generally necessary to use a JavaScript [`for await..of`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of) loop:
 

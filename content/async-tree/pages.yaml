@@ -9,22 +9,20 @@
 - text: "API:"
 - href: AsyncMap.html
   text: AsyncMap
-- href: BrowserFileTree.html
-  text: BrowserFileTree
-- href: ExplorableSiteTree.html
-  text: ExplorableSiteTree
-- href: FileTree.html
-  text: FileTree
-- href: FunctionTree.html
-  text: FunctionTree
-- href: MapTree.html
-  text: MapTree
-- href: ObjectTree.html
-  text: ObjectTree
-- href: SiteTree.html
-  text: SiteTree
-- href: SetTree.html
-  text: SetTree
+- href: BrowserFileMap.html
+  text: BrowserFileMap
+- href: ExplorableSiteMap.html
+  text: ExplorableSiteMap
+- href: FileMap.html
+  text: FileMap
+- href: FunctionMap.html
+  text: FunctionMap
+- href: ObjectMap.html
+  text: ObjectMap
+- href: SiteMap.html
+  text: SiteMap
+- href: SetMap.html
+  text: SetMap
 - href: SyncMap.html
   text: SyncMap
 - href: Tree.html

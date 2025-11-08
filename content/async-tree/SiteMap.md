@@ -8,4 +8,4 @@ This class wraps a web address as an async tree, allowing it to be passed to fun
 
 ## API
 
-${ src/templates/class.ori(api/drivers/SiteTree.yaml/exports/0) }
+${ src/templates/class.ori(api/drivers/SiteMap.yaml/exports/0) }

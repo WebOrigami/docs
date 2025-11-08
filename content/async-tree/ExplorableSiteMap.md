@@ -29,4 +29,4 @@ Above, the custom `explore:` protocol retrieves the route's keys defined in the 
 
 ## API
 
-${ src/templates/class.ori(api/drivers/ExplorableSiteTree.yaml/exports/0) }
+${ src/templates/class.ori(api/drivers/ExplorableSiteMap.yaml/exports/0) }

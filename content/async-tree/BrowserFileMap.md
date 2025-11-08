@@ -7,4 +7,4 @@ This class wraps a [FileSystemDirectoryHandle](https://developer.mozilla.org/en-
 
 ## API
 
-${ src/templates/class.ori(api/drivers/BrowserFileTree.yaml/exports/0) }
+${ src/templates/class.ori(api/drivers/BrowserFileMap.yaml/exports/0) }
