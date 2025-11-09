@@ -9,6 +9,35 @@ The specific form a "file" takes can depend on how you reference it.
 - When you reference a file in the file system in Origami, Origami uses a [FileTree](/async-tree/FileTree.html) to resolve the reference and return the value as a Node [Buffer](https://nodejs.org/api/buffer.html) object.
 - When you reference a file on a site via a URL, Origami uses a [SiteTree](/async-tree/SiteTree.html) to resolve the reference and return the value as a JavaScript [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
 
+## Standard file types
+
+Origami has built-in support for handling the following types of files.
+
+| File extension      | Type                                                    |
+| :------------------ | :------------------------------------------------------ |
+| .css                | [Text](#text-files)                                     |
+| .csv                | [Comma-separated values](#comma-separated-values-files) |
+| .htm                | [Text](#text-files)                                     |
+| .html               | [Text](#text-files)                                     |
+| .jpeg               | [JPEG image](#jpeg-image-files)                         |
+| .jpg                | [JPEG image](#jpeg-image-files)                         |
+| .js                 | [JavaScript](#javascript-files)                         |
+| .json               | [JSON](#json-files)                                     |
+| .md                 | [Text](#text-files)                                     |
+| .mjs                | [JavaScript](#javascript-files)                         |
+| .ori                | [Origami](#origami-files)                               |
+| .ori.&lt;something> | [Origami](#origami-files)                               |
+| .sh                 | [Shell script](#shell-script-files)                     |
+| .ts                 | [TypeScript](#typescript-files)                         |
+| .tsv                | [Tab-separated values](#tab-separated-values-files)     |
+| .txt                | [Text](#text-files)                                     |
+| .wasm               | [WebAssembly](#webassembly-files)                       |
+| .xhtml              | [Text](#text-files)                                     |
+| .yaml               | [YAML](#yaml-files)                                     |
+| .yml                | [YAML](#yaml-files)                                     |
+
+See below for details on these types.
+
 ### Unpacking files
 
 Regardless of a file's representation, you can use Origami path syntax to traverse the file and work with a more meaningful representation that reflects the file's type. Origami determines how to "unpack" the file contents based on the file extension.
@@ -26,7 +55,7 @@ $ ori pet.json
 ${ Tree.json(samples/help/pet.json) + "\n" }
 ```
 
-You can unpack this file and traverse into its data with a slash path:
+Since JSON files are a supported file type, you can unpack this file and traverse into its data with a slash path:
 
 ```console
 $ ori pet.json/name
@@ -49,25 +78,7 @@ ${ Origami.yaml(Tree.keys(samples/help/pet.json)) }
 
 If you're writing Origami that works with a file and needs to explicitly unpack it, you can call the [`unpack`](/builtins/origami/unpack.html) builtin function.
 
-## Standard file types
-
-Origami has built-in support for handling the following types of files.
-
-| Type        | File extensions                                |
-| :---------- | :--------------------------------------------- |
-| CSV         | .csv                                           |
-| JavaScript  | .js<br>.mjs                                    |
-| JPEG image  | .jpeg<br>.jpg                                  |
-| JSON        | .json                                          |
-| Origami     | .ori<br>.ori.&lt;something>                    |
-| Text        | .css<br>.htm<br>.html<br>.md<br>.txt<br>.xhtml |
-| TypeScript  | .ts                                            |
-| WebAssembly | .wasm                                          |
-| YAML        | .yaml<br>.yml                                  |
-
-See below for details on these types.
-
-### CSV files
+### Comma-separated values files
 
 Origami can unpack a `.csv` file as containing [comma-separated values](https://en.wikipedia.org/wiki/Comma-separated_values). The first row is assumed to be a header row with property names. Values containing commas can be quoted. Quotes can be escaped as double-quotes.
 
@@ -84,7 +95,7 @@ $ ori catBreeds.csv/
 ${ Origami.yaml(samples/help/catBreeds.csv) }
 ```
 
-For formatting an array of objects as CSV, see [`origami:csv`](/builtins/origami/csv.html).
+For formatting an array of objects as CSV, see [`Origami.csv`](/builtins/origami/csv.html).
 
 ### JavaScript files
 
@@ -153,6 +164,57 @@ ${ samples/templateDocuments/bold.ori.html }
 $ ori "bold.ori.html('Hooray')"
 ${ samples/templateDocuments/bold.ori.html("Hooray") }
 ```
+
+### Shell script files
+
+A file with a `.sh` extension unpacks to a function that invokes the text as a shell script. This function can accept an argument that will be treated by the script as standard input.
+
+Suppose the markdown file `hokusai.md` contains:
+
+```md
+${ samples/help/hokusai.md }
+```
+
+The script `wc.sh` invokes the [`wc`](https://www.linfo.org/wc.html) shell command to count words in the standard input:
+
+```sh
+${ samples/help/wc.sh }
+```
+
+Invoking this and passing the markdown file as an argument counts the words in the file:
+
+```console
+$ ori wc.sh hokusai.md
+${ samples/help/wc.sh(samples/help/hokusai.md) + "\n" }
+```
+
+Here the leading spaces in the output come from the `wc` command. If you want to convert that text to a simpler number, you could process the output further in the script, or process the result of the script with an Origami expression and JavaScript function:
+
+```console
+$ ori parseInt wc.sh hokusai.md
+${ parseInt(samples/help/wc.sh(samples/help/hokusai.md)) + "\n" }
+```
+
+### Tab-separated values files
+
+Files with a `.tsv` extension are treated as [tab-separated values](https://en.wikipedia.org/wiki/Tab-separated_values) with a header row.
+
+If `bunnies.tsv` contains:
+
+```
+${ samples/help/bunnies.tsv }
+```
+
+This can be unpacked and traversed with expressions like:
+
+```console
+$ ori bunnies.tsv[2]
+${ Origami.yaml((samples/help/bunnies.tsv)[2]) }
+$ ori bunnies.tsv[3].breed
+${ Origami.yaml((samples/help/bunnies.tsv)[3].breed) }
+```
+
+To output data in TSV format, see [`Origami.tsv`](/builtins/origami/tsv.html).
 
 ### Text files
 

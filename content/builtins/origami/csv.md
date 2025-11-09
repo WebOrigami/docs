@@ -17,4 +17,4 @@ $ ori Origami.csv catBreeds.yaml
 ${ Origami.csv(samples/help/catBreeds.yaml) }
 ```
 
-See also support for unpacking [.csv files](/language/fileTypes.html#csv-files).
+See also support for unpacking [comma-separated values files](/language/fileTypes.html#comma-separated-values-files).
