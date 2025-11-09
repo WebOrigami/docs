@@ -272,6 +272,18 @@ function parameterTypeFromCommentType(checker, commentType) {
   }
 }
 
+function propertyDocs(checker, symbol) {
+  const propertyType = checker.getTypeOfSymbolAtLocation(
+    symbol,
+    symbol.valueDeclaration
+  );
+  const types = renderTypes(checker, propertyType);
+  return {
+    kind: "property",
+    types,
+  };
+}
+
 // Return docs for the given symbol.
 function symbolDocs(checker, symbol) {
   let name = symbol.getName();
@@ -305,6 +317,7 @@ function symbolDocs(checker, symbol) {
     const mapNodeTypeToDocs = {
       isClassDeclaration: classDocs,
       isFunctionDeclaration: methodDocs,
+      isGetOrSetAccessorDeclaration: propertyDocs,
       isMethodDeclaration: methodDocs,
       isPartOfParameterDeclaration: parameterDocs,
     };

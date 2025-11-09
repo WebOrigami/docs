@@ -12,9 +12,17 @@
     <h3 id="${ member.name }">
       ${ member.static ? "static " : "" }
       ${ member.async ? "async " : "" }
-      ${ member.generator ? "*" : "" }${ member.name }(${ parameters.ori(member.parameters) })
+      ${ member.generator ? "*" : "" }${ member.name }${
+        member.parameters
+          ? `(${ parameters.ori(member.parameters) })`
+          : ""
+      }
       ${ member.isConstructor ? "constructor" : "" }
     </h3>
-    ${ function.ori(member) }
+    ${
+      member.kind === "function"
+        ? function.ori(member)
+        : property.ori(member)
+     }
   `) }
 `

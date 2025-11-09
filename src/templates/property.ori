@@ -1,0 +1,6 @@
+(api) => Tree.indent`
+  <p>
+    Type: ${ typeList.ori(api.types) }
+  </p>
+  ${ Origami.mdHtml(api.description) }
+`
