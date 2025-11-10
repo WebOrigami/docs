@@ -169,26 +169,28 @@ ${ samples/templateDocuments/bold.ori.html("Hooray") }
 
 A file with a `.sh` extension unpacks to a function that invokes the text as a shell script. This function can accept an argument that will be treated by the script as standard input.
 
+For example, this script invokes the [`wc`](https://www.linfo.org/wc.html) shell command to count words in the standard input:
+
+```sh
+# wc.sh
+
+${ samples/help/wc.sh }
+```
+
 Suppose the markdown file `hokusai.md` contains:
 
 ```md
 ${ samples/help/hokusai.md }
 ```
 
-The script `wc.sh` invokes the [`wc`](https://www.linfo.org/wc.html) shell command to count words in the standard input:
-
-```sh
-${ samples/help/wc.sh }
-```
-
-Invoking this and passing the markdown file as an argument counts the words in the file:
+Invoking the script as a function and passing the markdown file as an argument counts the words in the file:
 
 ```console
 $ ori wc.sh hokusai.md
 ${ samples/help/wc.sh(samples/help/hokusai.md) + "\n" }
 ```
 
-Here the leading spaces in the output come from the `wc` command. If you want to convert that text to a simpler number, you could process the output further in the script, or process the result of the script with an Origami expression and JavaScript function:
+Here the leading spaces in the output come from the `wc` command. If you want to convert that text to a simpler number, you could process the output further in the script, or process the result of the script with a JavaScript function:
 
 ```console
 $ ori parseInt wc.sh hokusai.md
