@@ -56,6 +56,8 @@
   text: static
 - href: string.html
   text: string
+- href: tsv.html
+  text: tsv
 - href: toFunction.html
   text: toFunction
 - href: unpack.html
