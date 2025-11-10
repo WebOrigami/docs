@@ -18,16 +18,56 @@ This section introduces an interface suitable for working with such a map, regar
 
 We want to represent a collection of keys associated with values, and JavaScript provides a standard [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) class for that exact purpose.
 
-`Map` comes with built-in storage — but we are going to completely ignore that! We will co-opt `Map` into working as a general-purpose interface for accessing information stored elsewhere. Specifically, we can subclass `Map` to create a custom class that looks and works just like `Map` but is backed by other data.
+```js
+const m = new Map();
+
+m.add("a", 1);
+m.add("b", 2);
+
+m.get("a"); // 1
+m.get("b"); // 2
+m.get("c"); // undefined
+
+m.keys(); // "a", "b"
+```
+
+If you haven’t worked with the `Map` class before, you can think of it as an array holding little arrays, each of which pairs a key with a value. The above `Map` is effectively the same as the array:
+
+```js
+[
+  ["a", 1],
+  ["b", 2],
+];
+```
+
+One thing that makes `Map` more interesting than an array-of-arrays is that finding a value in a `Map` designed to be much faster at finding a given key and the value associated with it. Another point that’s vital for our purposes is that `Map` is a class whose members can be overridden.
+
+We can actually pass an array-of-arrays to the `Map` constructor to populate it with an initial set of entries. We could initialize a `Map` with our sample post data:
+
+```js
+const m = new Map([
+  ["post1.md", "This is **post 1**."],
+  ["post2.md", "This is **post 2**."],
+  ["post3.md", "This is **post 3**."],
+]);
+
+m.get("post1.md"); // "This is **post 1**."
+```
+
+## Map as an interface
+
+We can co-opt `Map` into working as a general-purpose interface for accessing information stored elsewhere.
+
+Specifically, we can subclass `Map` to create a custom class that looks and works just like `Map` but is backed by other data. The `Map` class happens to come with built-in storage — but we are going to completely ignore that!
 
 That is, we will use `Map` as an _interface_: a defined set of consistently-named methods and properties that meet specific expectations. Any code written to work with `Map` will automatically work with our custom subclasses without modification.
 
 The standard `Map` class includes two core methods of special interest:
 
-- A `keys` method which produces the keys of the map. In the map above, the keys are `post1.md`, `post2.md`, and `post3.md`. The keys will often be strings, but don't have to be strings.
 - A `get` method which gets the value for a given key. If we ask the above map for `post1.`, we want to get back `This is \*\*post 1\*\*.` Here the value we get is text, but like the keys, the values can be of any data type.
+- A `keys` method which produces the keys of the map. In the map above, the keys are `post1.md`, `post2.md`, and `post3.md`. The keys will often be strings, but don't have to be strings.
 
-Overriding these two `Map` methods will form the basis of the Map pattern. The basic shape of our code will look like:
+Overriding these two `Map` methods will form the basis of the Map Tree pattern. The basic shape of our code will look like:
 
 ```js
 class CustomMap extends Map {
@@ -56,15 +96,15 @@ Of the three data representations we looked at previously, the in-memory JavaScr
 ${ pattern/map/ObjectMap.js }
 ```
 
-This `Map` class isn’t complete yet, but is sufficient for us to begin playing with it. We can instantiate this class to wrap an object containing the markdown data:
+This lets us work with an existing object as if it were a `Map`. To be clear: we’re not copying that object’s keys and values into a `Map` — we’re creating a `Map` that wraps the object. This is a fast operation.
+
+This `ObjectMap` class isn’t finished yet, but this is sufficient for us to begin playing with it. We can instantiate this class to wrap an object containing the markdown data:
 
 ```${'js'}
 /* src/map/object.js */
 
 ${ pattern/map/object.js }
 ```
-
-For now, this wrapper can only handle a flat object — later we'll extend this to handle hierarchical objects.
 
 ## Test the object map
 

@@ -9,6 +9,8 @@ Since most of our map classes are read-only, our `SyncMap` base class defines th
 Here, for example, are the `ObjectMap` implementations of the destructive methods:
 
 ```js
+/* src/site/ObjectMap.js */
+
 export default class ObjectMap extends SyncMap {
 
   …
@@ -22,35 +24,21 @@ export default class ObjectMap extends SyncMap {
   }
 
   set(key, value) {
-    if (value === this.constructor.EMPTY) {
-      this.object[key] = new this.constructor({});
-    } else {
-      this.object[key] = value;
-    }
+    this.object[key] = value;
     return this;
   }
 }
 ```
 
-Per the standard, the [`Map.prototype.delete`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/delete) method return `true` if the value was removed, `false` if not. Likewise, the standard definition of [`Map.prototype.set`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/set) is to return the map itself.
-
-### Creating a new child node
-
-The `EMPTY` bit in `set` above needs explanation. When writing a tree using the `Map` interface, we need some way to tell a given map node in the tree to create a new, empty child node:
-
-```
-set(key, <empty map>)
-```
-
-But using the `Map` interface alone, there’s no universal way to create a new, empty map that will work for all `Map` subclasses. The `FileMap` constructor, for example, requires a file directory as an argument.
-
-Our solution is a convention: a `Map` subclass has the option to define a static `EMPTY` value that can be passed as the value to `set`. If `set` receives this as the `value`,it creates a child node as an empty map of the same type. We can define `EMPTY` in the `SyncMap` base class to make that available to subclasses like `ObjectMap`.
+Per the standard, the [`delete`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/delete) method returns `true` if the value was removed, `false` if not. Likewise, the standard definition of [`set`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/set) is to return the map itself.
 
 ## Writable FileMap
 
 Here’s what adding read/write to `FileMap` looks like:
 
 ```js
+/* src/site/FileMap.js */
+
 export default class FileMap extends SyncMap {
 
   …
@@ -70,7 +58,11 @@ export default class FileMap extends SyncMap {
 
   set(key, value) {
     const destPath = path.resolve(this.dirname, key);
-    if (value === this.constructor.EMPTY) {
+    // Is the value an empty plain object?
+    const isEmptyObject =
+      Object.getPrototypeOf(value) === Object.prototype &&
+      Object.keys(value).length === 0;
+    if (isEmptyObject) {
       // Create empty subdirectory
       fs.mkdirSync(destPath, { recursive: true });
     } else {
@@ -84,9 +76,19 @@ export default class FileMap extends SyncMap {
 }
 ```
 
-As discussed above, calling `FileMap` `set` with an `EMPTY` value creates an empty subdirectory.
+## Creating a new child node
 
-This completes our map-based foundation classes. We can now use these to build a site.
+As discussed earlier, we will use instances of our `Map` classes as nodes in a tree. In a short while we'll look at a general tree operation that copies one tree into another. That requires the ability to create a new, empty `Map` as a child of an existing `Map`. We need some way to write:
+
+```
+set(key, <empty map of the same type>)
+```
+
+But using the `Map` interface alone, there’s no universal way to create a new, empty map that will work for all `Map` subclasses. The `FileMap` constructor, for example, requires a file directory as an argument.
+
+Our solution here is a convention: if `set()` receives an empty, plain object as the `value`, it creates a child node as an empty map of the same type. For `ObjectMap` that behavior will fall out by default, but for `FileMap` we have `set()` check if the `value` is an empty object. If so, it creates an empty subdirectory with the name supplied as the `key`.
+
+This completes our `Map`-based foundation classes. We can now use these to build a site.
 
 &nbsp;
 

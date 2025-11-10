@@ -24,7 +24,7 @@ ${ pattern/map/fn.js }
 
 The earlier object-based and files-based maps are "real" in that the data is stored persistently in the real world. But the function-based map above is virtual from the start — the complete data is not stored persistently, and is only available when code is running.
 
-Note that a map's `keys` method doesn't have to return every key the map can actually handle. The map above defines three representative keys, but the `get` method will actually accept any key ending in `.md`. If we ask for `post4.md`, we will get back `This is \**post 4**.` That flexibility can be useful, but if not desired, the `get` method could reject requests for keys outside the stated domain.
+Note that a map's `keys` method doesn't have to return every key the map can actually handle. The map above defines three representative keys, but the `get` method will actually accept any key ending in `.md`. If we ask for `post4.md`, we will get back `This is \**post 4**.` That flexibility can be useful. (If that’s not desired, the `get` method can reject requests for keys outside the stated domain.)
 
 ## Verify the function map
 
@@ -45,9 +45,9 @@ $ node json fn.js
 ${ Tree.json(pattern/map/fn.js) + "\n" }
 ```
 
-You can think of a function map as a function that can provide a sample output set. Here the core `fn` function can actually handle more keys that the map exposes in its `keys`, which we can take advantage of later.
+You can think of a `FunctionMap` as a function that can tell you what its domain is.
 
-We can apply our markdown-to-HTML transformation to this virtual map to create a new virtual map of HTML.
+We can apply our markdown-to-HTML transformation to this function-backed map to create a new map of HTML.
 
 ```${'js'}
 /* src/map/htmlFn.js */
@@ -64,7 +64,7 @@ ${ Tree.json(pattern/map/htmlFn.js) + "\n" }
 
 We have now implemented four different ways to construct a map based on: 1) an object, 2) a folder, 3) a function, 4) another map.
 
-In a bit, we'll see how they can be used together to create interesting combinations and be used for practical purposes. Before doing that, however, let's make our code a little more general-purpose and flexible.
+In a bit, we'll see how they can be used together to create interesting combinations and be used for practical purposes like making a site. Before doing that, however, let's make our code a little more general-purpose and flexible.
 
 &nbsp;
 

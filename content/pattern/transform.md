@@ -4,11 +4,11 @@ title: Transform a map
 
 In the last step, we defined an in-memory JavaScript object to hold the set of markdown content we want to convert to HTML. We wrapped the object in a `Map` so that other code can access that content in an abstract way, without the need to know specifically how and where that content is stored.
 
-With that in place, we can now write code to transform the map of markdown into HTML. The interesting thing is that this transformation is defined as another map!
+With that in place, we can now write code to transform the map of markdown into HTML. The interesting thing is that we will define this transformation as another `Map`!
 
 ## Visualize the transformation
 
-We've already used a general strategy to define a `Map` based on a plain object. We can use that same strategy to define one `Map` based on another `Map`.
+We've already used a general strategy to define a `Map` backed by a plain object. We can use that same strategy to define one `Map` backed by a second `Map`.
 
 In our markdown-to-HTML transformation, we will create a virtual map of HTML content based on the real map of markdown content. The maps will have the same shape, but the keys and values will both differ.
 
@@ -22,8 +22,6 @@ In our markdown-to-HTML transformation, we will create a virtual map of HTML con
   <figcaption>Map of markdown content</figcaption>
   <figcaption>Map of HTML content</figcaption>
 </div>
-
-The markdown map is "real", in the sense that it is persistently stored in some fashion as `object.js`. We'll now create a new map which is _virtual_ as it exists only while the code is running.
 
 ## Rough in the transformation
 
@@ -74,12 +72,13 @@ The second step is to transform the markdown values into HTML values.
 
 ```js
   get(key) {
-    if (!key.endsWith(".html")) {
-      return undefined;
-    }
-    const markdownKey = key.replace(/\.html$/, ".md");
-    const markdown = this.source.get(markdownKey);
-    return markdown ? marked(markdown.toString()) : undefined;
+    const sourceKey = key.replace(/\.html$/, ".md");
+    const sourceValue = this.source.get(sourceKey);
+    const resultValue =
+      sourceValue && key.endsWith(".html")
+        ? marked(sourceValue.toString())
+        : undefined;
+    return resultValue;
   }
 ```
 
@@ -119,7 +118,7 @@ We can bake the transform and the object together to create a final HTML map.
 ${ pattern/map/htmlObject.js }
 ```
 
-This `transform` function takes a map of markdown and returns a virtual map of HTML — but the resulting virtual map is actually _lazy_. It does not do any substantive work when it is created!
+This `HtmlMap` class takes a `Map` of markdown and returns a new `Map` of HTML. The resulting map is _lazy_: it does not do any substantive work when it is created!
 
 The real work — to enumerate the HTML keys, and to get the values of those keys — will only be performed when we actually traverse the map. This laziness is a vital aspect of the transformation; we can use this map in various ways and be sure we are only doing the minimum work necessary.
 
@@ -130,7 +129,9 @@ $ node json htmlObject.js
 ${ Tree.json(pattern/map/htmlObject.js) + "\n" }
 ```
 
-The `json` utility traverses the virtual HTML map, causing it to do its work of transforming markdown to HTML as the utility builds an in-memory object it ultimately displays as JSON. You can see that the displayed JSON has the desired shape, keys, and values as the virtual HTML map in the diagram at the top of this page.
+The `json` utility traverses the HTML map, causing it to do its work of transforming markdown to HTML as the utility builds an in-memory object it ultimately displays as JSON. You can see that the displayed JSON has the desired shape, keys, and values as the virtual HTML map in the diagram at the top of this page.
+
+You can set breakpoints in the code and step through the code to confirm how it works. For example, in Microsoft Visual Studio Code: open the Terminal, start a new JavaScript Debug Terminal, set a breakpoint, then run the `node` command above.
 
 &nbsp;
 

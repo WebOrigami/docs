@@ -22,23 +22,32 @@ We can fix this by overriding the `Map` helper methods so that they call `get` o
 
 Happily, we’ll only need to do this once. We can define a general-purpose base class that extends `Map` and defines more consistent implementations of `entries` and other helper methods. We’ll call this base class `SyncMap` to distinguish it from an asynchronous version we’ll look at later.
 
-As an example, the `entries` method of `SyncMap` looks like:
+As an example, the definition of `SyncMap` and its `entries()` method looks like:
 
 ```js
-// Override entries() method to call overridden get() and keys()
-*entries() {
-  for (const key of this.keys()) {
-    const value = this.get(key);
-    yield [key, value];
+/* src/site/SyncMap.js */
+
+export default class SyncMap extends Map {
+
+  // Override entries() method to call overridden get() and keys()
+  *entries() {
+    for (const key of this.keys()) {
+      const value = this.get(key);
+      yield [key, value];
+    }
   }
+
+  …
 }
 ```
 
 This calls the map’s custom `keys` methods to loop through the keys. For each key, it calls `get` to obtain the corresponding value for that key. It then yields that `[key, value]` pair.
 
-We can then update all of our map classes to extend `SyncMap` instead of directly extending `Map`. For example, our `ObjectMap` class can be defined as:
+We can then update all of our map classes to extend `SyncMap` instead of directly extending `Map`. For example, the declaration of our `ObjectMap` class can be updated as follows, leaving everything else the same:
 
 ```js
+/* src/site/ObjectMap.js */
+
 import SyncMap from "./SyncMap.js";
 
 export default class ObjectMap extends SyncMap {
@@ -57,6 +66,19 @@ const map = new ObjectMap({
 
 map.entries(); // [["post1.md", "This is **post 1**."], … etc.]
 ```
+
+<span class="tutorialStep"></span> From inside the `src/site` directory, confirm that all tests still pass:
+
+```console
+$ cd ../site
+$ node object.test.js
+…
+# tests 3
+# pass 3
+# fail 0
+```
+
+We can likewise update `FileMap`, `FunctionMap`, and `HtmlMap` to derive from `SyncMap`. All those classes will now be fully `Map`-compatible.
 
 &nbsp;
 

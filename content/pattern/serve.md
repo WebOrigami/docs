@@ -15,9 +15,9 @@ The first thing is to recognize a URL as a tree traversal — we can treat a UR
 Specifically, we convert a string URL path like `/foo/bar` into an array of keys `["foo", "bar"]`.
 
 ```js
-/* In src/map/serve.js */
+/* In src/site/serve.js */
 
-${ src/js/codeFunctions.js(pattern/map/serve.js).keysFromUrl }
+${ src/js/codeFunctions.js(pattern/site/serve.js).keysFromUrl }
 ```
 
 If the path ends in a slash like `foo/`, this produces the keys `["foo", "index.html"]`.
@@ -27,9 +27,9 @@ If the path ends in a slash like `foo/`, this produces the keys `["foo", "index.
 We can then iteratively follow this array of keys through a deep tree of `Map` nodes to a final value:
 
 ```js
-/* In src/map/serve.js */
+/* In src/site/serve.js */
 
-${ src/js/codeFunctions.js(pattern/map/serve.js).traverse }
+${ src/js/codeFunctions.js(pattern/site/serve.js).traverse }
 ```
 
 The tree itself is acting as a web site router.
@@ -39,9 +39,9 @@ The tree itself is acting as a web site router.
 Putting these together, we can build a listener function that uses a tree to respond to HTTP requests.
 
 ```js
-/* In src/map/serve.js */
+/* In src/site/serve.js */
 
-${ src/js/codeFunctions.js(pattern/map/serve.js).requestListener }
+${ src/js/codeFunctions.js(pattern/site/serve.js).requestListener }
 ```
 
 This converts a request's URL into an array of keys, then returns the resource it finds there. If no value is found, the listener responds with 404 Not Found.
@@ -51,19 +51,19 @@ This converts a request's URL into an array of keys, then returns the resource i
 Finally, we start the server at a default port, serving the tree defined in `site.js`.
 
 ```js
-/* src/map/serve.js */
+/* src/site/serve.js */
 
-${ src/js/codeFunctions.js(pattern/map/serve.js)["@prologue"] }
+${ src/js/codeFunctions.js(pattern/site/serve.js)["@prologue"] }
 
 …
 
-${ src/js/codeFunctions.js(pattern/map/serve.js)["@epilogue"] }
+${ src/js/codeFunctions.js(pattern/site/serve.js)["@epilogue"] }
 
 ```
 
 ## Trying our server
 
-<span class="tutorialStep"></span> From inside the `src/map` directory, start the server:
+<span class="tutorialStep"></span> From inside the `src/site` directory, start the server:
 
 ```console
 $ node serve
@@ -80,22 +80,24 @@ Because we've designed all our `Map` classes to be lazy, when you start the serv
 
 The tree only generates the HTML when you ask for it by browsing to a page like `posts/post1.html`:
 
-1. The server asks the top-level `ObjectMap` for `posts`. This returns a `HtmlMap`.
+1. The server asks the top-level map for `posts`. That returns an `HtmlMap`.
 1. The server asks the `HtmlMap` for `post1.html`.
-1. The `HtmlMap` asks the inner `FileMap` map for `post1.md`.
-1. The inner `FileMap` asks the file system for the content of `post1.md` and returns that.
+1. The `HtmlMap` asks the inner markdown map for `post1.md`.
+1. The inner markdown map returns the value for `post1.md`. If we’re using a `FileMap` to represent the markdown, this gets the content of `post1.md` from the file system.
 1. The `HtmlMap` converts the markdown content to HTML and returns that.
 1. The server gets the HTML as the final resource and sends it to the client.
 
-Because all the maps involved are lazy, getting `posts/post1.html` doesn't do any of the work required to generate the other pages `post2.html` or `post3.html`.
+Because all the maps involved are lazy, navigating to `posts/post1.html` doesn't do any of the work required to generate the other pages `post2.html` or `post3.html`.
 
 ## Flexible
 
-This server is already pretty interesting! We've got a simple site, but can flexibly change the representation of the data. Having done relatively little work, we can let our team write content in markdown. Unlike many markdown-to-HTML solutions, the translation is happening at runtime, so an author can immediately view the result of markdown changes by refreshing the corresponding page.
+This server is already pretty interesting!
+
+We've got a simple site but can flexibly change the representation of the data. Having done relatively little work, we can let our team write content in markdown. Unlike many markdown-to-HTML solutions, the translation is happening at runtime, so an author can immediately view the result of markdown changes by refreshing the corresponding page.
 
 Each of our underlying object, file, or function-based trees has its advantages. For example, we can serve our function-based tree to browse HTML pages which are generated on demand.
 
-<span class="tutorialStep"></span> Edit `src/map/site.js` to export the function-based map from `htmlFn.js` instead of `htmlFiles.js`.
+<span class="tutorialStep"></span> Edit `src/site/site.js` so that the `markdown` comes from the function-based map from `fn.js` instead of `files.js`.
 
 <span class="tutorialStep"></span> Browse to a page like `posts/post4.html`. Corresponding markdown will be generated on demand by the `FunctionMap` and converted to HTML:
 

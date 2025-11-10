@@ -2,7 +2,7 @@
 title: Data representations
 ---
 
-Let's use the Map pattern to tackle a small, common development task:
+Let's use the Map Tree pattern to tackle a small, common development task:
 
 > _Our team writes blog content in markdown format since that's friendlier than raw HTML. We need to convert a folder of markdown posts to HTML pages so we can deploy them on our site._
 

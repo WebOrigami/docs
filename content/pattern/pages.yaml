@@ -23,12 +23,12 @@
 - href: indexPages.html
   text: Index pages
 - href: composition.html
-  text: Composing a tree
+  text: Compose a tree
 - href: serve.html
   text: Serve a tree
 - href: copy.html
   text: Build by copying
 - href: async.html
   text: Asynchronous maps
-- href: reuse.html
-  text: Reusing code
+- href: system.html
+  text: System of tools

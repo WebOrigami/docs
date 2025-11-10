@@ -4,14 +4,16 @@ title: Trees of maps
 
 A map is effectively a flat list, but we can organize them into hierarchical tree structures to represent data sources like the file system or software artifacts like sites.
 
-This is easily accomplished by having the value in a `Map` be another `Map`. We'll need to make a few modifications to our map classes to handle this.
+This is easily accomplished by having the value in a `Map` be another `Map`. In tree terms, the first `Map` is the parent; the second map is the child.
+
+We'll need to make a few modifications to our map classes to accommodate their use in trees.
 
 ## Object trees
 
 We can update the `get` method in `ObjectMap` so that, if the value being returned in another plain object and not already a `Map`, we wrap that object in another `ObjectMap`.
 
 ```${'js'}
-/* src/map/ObjectMap.js */
+/* src/site/ObjectMap.js */
 
   get(key) {
     const value = this.object[key];
@@ -28,7 +30,7 @@ Instead of creating new instances with `new ObjectMap`, we use `new this.constru
 We do something very similar in `FileMap.js`. We check to see whether the requested key corresponds to a subdirectory and, if so, wrap that in its own `FileMap` before returning it.
 
 ```${'js'}
-/* src/map/FileMap.js */
+/* src/site/FileMap.js */
 
   get(key) {
     const filePath = path.resolve(this.dirname, key);
@@ -59,7 +61,7 @@ The `FunctionMap` class itself doesn't need to be updated to support function-ba
 We can update a transformation like `HtmlMap` so that it can transform a tree. If the `get` method obtains a value from the source map, it checks to see whether that value is itself a map, i.e., a child node in the tree. If so, the transformation applies itself to that value before returning it.
 
 ```${'js'}
-/* src/map/transform.js */
+/* src/site/transform.js */
 
   get(key) {
     const sourceKey = key.replace(/\.html$/, ".md");

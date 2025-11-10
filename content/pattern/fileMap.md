@@ -8,7 +8,7 @@ Which approach is best for our particular team authors might vary, but as an exa
 
 ## Comparing files and objects
 
-Before starting, let's quickly look at both objects and files through the lens of the `Map` interface. In both cases, we have standard ways of getting keys — in the case of folders and files, the keys are folder and file names. And in both cases, we have a way of getting the value or content associated with a given key.
+Before starting, let's quickly look at both objects and files through the lens of the `Map` interface. We have standard ways of getting keys in both cases — for the file system, the keys are folder and file names. And in both cases we have a way of getting the value or content associated with a given key.
 
 | Map method &emsp; | Object implementation &emsp; | File implementation       |
 | :---------------- | :--------------------------- | :------------------------ |
@@ -17,11 +17,11 @@ Before starting, let's quickly look at both objects and files through the lens o
 
 If we're using the Node `fs` API, we have our choice of synchronous or asynchronous methods, but for simplicity here we'll use the synchronous methods.
 
-It's worth noting how much of the `fs` API is _not_ necessary for our task at hand. The full API has a wide range of features for comparatively obscure tasks like changing a file's modified date, renaming a file, or creating a symbolic link. Those features are necessary for some applications — but it's reasonable to imagine that the vast majority of users of the `fs` API are using just the methods shown above.
+It's worth noting how much of the `fs` API is _not_ necessary for our task at hand. The full API has a wide range of features for comparatively obscure tasks like changing a file's modified date, renaming a file, or creating a symbolic link. Those features are necessary for some applications — but it's reasonable to imagine that the vast majority of users of the `fs` API are using only basic methods like those shown above.
 
 ## Rough in the file map
 
-To start on our file-backed map implementation, we'll need to get a path to the directory that will be the root of the map. In this case, we use some Node APIs to get the directory of a folder relative to the folder containing the JavaScript module we're writing.
+To start on our file-backed map implementation, we'll need to get a path to the directory that will be the root of the map. We can use the Node `path` and `process` APIs to get the directory of a folder relative to the folder containing the JavaScript module we're writing.
 
 Our goal is to then return an object implementing the `Map` interface for that folder.
 
@@ -53,8 +53,16 @@ To get the keys for the folder, we'll ask the `fs.readdirSync` method for the li
 
 ```js
   *keys() {
-    yield* fs.readdirSync(this.dirname);
-  },
+    try {
+      yield* fs.readdirSync(this.dirname);
+    } catch (/** @type {any} */ error) {
+      if (error.code === "ENOENT") {
+        // Directory doesn't exist yet; treat as empty
+      } else {
+        throw error;
+      }
+    }
+  }
 ```
 
 ## Get the contents of a file
@@ -65,14 +73,14 @@ To implement the `get` method in the AsyncTree interface, we'll use the `fs.read
   get(key) {
     const filename = path.resolve(dirname, key);
     try {
-      return await fs.readFileSync(filename);
+      return fs.readFileSync(filename);
     } catch (error) {
       if (error.code === "ENOENT") {
         return undefined; /* File not found */
       }
       throw error;
     }
-  },
+  }
 ```
 
 This `get` method includes some error handling. The Map interface expects the `get` method to return `undefined` for an unsupported key, but the `fs.readFileSync` API will throw an exception if a file does not exist with the indicated name. To create a well-behaved async tree, we catch exceptions and, if the exception is specifically an `ENOENT` (file not found) exception, we return `undefined`.
@@ -144,7 +152,7 @@ $ node json htmlFiles.js
 ${ Tree.json(pattern/map/htmlFiles.js) + "\n" }
 ```
 
-The transform function can accept any map of markdown content, so we can switch between our object and folder map implementations at will. Both our JSON utility and markdown-to-HTML transformation are completely independent of the underlying data representation and storage location.
+The `HtmlMap` class can accept any `Map` of markdown content, so we can switch between our object and folder map implementations at will. Both our JSON utility and markdown-to-HTML transformation are completely independent of the underlying data representation and storage location.
 
 &nbsp;
 
