@@ -352,7 +352,7 @@ posts/post1.md/
 
 This returns the content of `post1.md` as an object, including any front matter data as properties.
 
-Note that most Origami [builtin functions](/builtins) that expect a [treelike](/async-tree/treelike.html) argument will automatically unpack a file or resource (such as `Uint8Array` or `ArrayBuffer`) value as long as the path includes a known file extension.
+Note that most Origami [builtin functions](/builtins) that expect a [map-like](/async-tree/map-like.html) argument will automatically unpack a file or resource (such as `Uint8Array` or `ArrayBuffer`) value as long as the path includes a known file extension.
 
 ## URLs
 
@@ -536,7 +536,7 @@ You can reference the "name" property of this file in several ways:
 - `(alice.ori).name` — Put the `.name` reference after a closing parenthesis
 - `alice.ori .name` — Put the `.name` reference after whitespace (this might look a little strange, but is standard JavaScript syntax)
 - `alice.ori["name"]` — Use the string `"name"` in square brackets
-- `alice.ori/name` — Origami treats any [treelike](/async-tree/treelike.html) object as a tree that can be traversed with [path](#paths) syntax
+- `alice.ori/name` — Origami treats any [map-like](/async-tree/map-like.html) object as a tree that can be traversed with [path](#paths) syntax
 - `alice.ori("name")` — Origami allows any tree to be [called like a function](#trees-as-functions).
 
 ### Local property access
@@ -696,7 +696,7 @@ Origami does not yet support `...` spreads in function calls.
 
 ### Trees as functions
 
-Origami's [AsyncTree](/async-tree/interface.html) interface lets you treat a wide variety of [treelike](/async-tree/treelike.html) structures as hierarchical trees. You can use function syntax to obtain a value from the tree; this invokes the tree's `get` method.
+Origami's [AsyncTree](/async-tree/interface.html) interface lets you treat a wide variety of [map-like](/async-tree/map-like.html) structures as hierarchical trees. You can use function syntax to obtain a value from the tree; this invokes the tree's `get` method.
 
 This means you can use function call syntax to retrieve a value from a data structure, a folder, etc. If you have a data file:
 
@@ -723,7 +723,7 @@ ${ Origami.yaml(Tree.map(['Japan', 'Australia'], { value: samples/help/capitals.
 
 ### Functions as trees
 
-Conversely, Origami lets you treat a function as a [treelike](/async-tree/treelike.html) object. This is true for arrow functions, Origami [builtin functions](/builtins), and functions exported by JavaScript modules.
+Conversely, Origami lets you treat a function as a [map-like](/async-tree/map-like.html) object. This is true for arrow functions, Origami [builtin functions](/builtins), and functions exported by JavaScript modules.
 
 This means you can traverse a function using [path](#paths) syntax, which can be convenient when using the Origami [CLI](/cli) to evaluate expressions in the shell. A shell will typically try to handle parentheses, and so disallow a function call with unquoted parentheses. But a shell will generally leave slashes untouched, allowing you to invoke a function and pass an argument.
 

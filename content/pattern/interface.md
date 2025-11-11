@@ -64,7 +64,7 @@ That is, we will use `Map` as an _interface_: a defined set of consistently-name
 
 The standard `Map` class includes two core methods of special interest:
 
-- A `get` method which gets the value for a given key. If we ask the above map for `post1.`, we want to get back `This is \*\*post 1\*\*.` Here the value we get is text, but like the keys, the values can be of any data type.
+- A `get` method which gets the value for a given key. If we ask the above map for `post1.md`, we want to get back `This is \*\*post 1\*\*.` Here the value we get is text, but like the keys, the values can be of any data type.
 - A `keys` method which produces the keys of the map. In the map above, the keys are `post1.md`, `post2.md`, and `post3.md`. The keys will often be strings, but don't have to be strings.
 
 Overriding these two `Map` methods will form the basis of the Map Tree pattern. The basic shape of our code will look like:

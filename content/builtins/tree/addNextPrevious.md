@@ -26,7 +26,7 @@ ${ Origami.yaml(Tree.addNextPrevious(samples/help/letters.yaml)) }
 
 If the values in the given tree aren't objects, they will be transformed to plain objects as follows:
 
-- A value which is a treelike will be resolved to a plain object.
+- A value which is a map-like will be resolved to a plain object.
 - Any other value (e.g., a string) will become a plain object with a `value` property containing the value.
 
 See also [`paginate`](paginate.html), which groups a set of items into fixed-size pages.

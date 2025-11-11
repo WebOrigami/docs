@@ -4,13 +4,13 @@ title: Transform a map
 
 In the last step, we defined an in-memory JavaScript object to hold the set of markdown content we want to convert to HTML. We wrapped the object in a `Map` so that other code can access that content in an abstract way, without the need to know specifically how and where that content is stored.
 
-With that in place, we can now write code to transform the map of markdown into HTML. The interesting thing is that we will define this transformation as another `Map`!
+With that in place, we can now write code to transform the map of markdown into HTML. The interesting thing is that we will define the result of this transformation as another `Map`!
 
 ## Visualize the transformation
 
 We've already used a general strategy to define a `Map` backed by a plain object. We can use that same strategy to define one `Map` backed by a second `Map`.
 
-In our markdown-to-HTML transformation, we will create a virtual map of HTML content based on the real map of markdown content. The maps will have the same shape, but the keys and values will both differ.
+In our markdown-to-HTML transformation, we will create a virtual map of HTML content based on the original map of markdown content. The maps will have the same shape, but the keys and values will both differ.
 
 <div class="sideBySide split2to3">
   <figure>
@@ -22,6 +22,8 @@ In our markdown-to-HTML transformation, we will create a virtual map of HTML con
   <figcaption>Map of markdown content</figcaption>
   <figcaption>Map of HTML content</figcaption>
 </div>
+
+A `Map` associates keys with values, so the fact the transformation will affect both keys and values makes a `Map` a good choice for representing the transformation's input and output.
 
 ## Rough in the transformation
 
@@ -52,9 +54,9 @@ To translate markdown to HTML, we will use the [marked](https://github.com/marke
 
 ## Transform the keys
 
-The first step is to transform the extension on the keys from `.md` to `.html`.
+When dealing with content, we often use an extension in a name as a type signature to indicate the type of data contained therein.
 
-When dealing with content, we often use an extension in a name as a type signature to indicate the type of data contained therein. In this case, we want the keys of the transformed map to reflect the fact its contents are HTML.
+In this case, we want the keys of the transformed map to reflect the fact its contents are no longer markdown, but HTML instead. So the first step in our transformation is to change the file extensions on the keys from `.md` to `.html`.
 
 ```js
   *keys() {

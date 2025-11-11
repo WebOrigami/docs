@@ -3,7 +3,7 @@ title: sort(tree, [options])
 supertitle: "Tree."
 ---
 
-Returns a copy of the indicated [treelike object](/async-tree/treelike.html) with the keys sorted. The sort is performed with the default lexicographic Unicode sort order provided by JavaScript's [Array.sort()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) method.
+Returns a copy of the indicated [map-like object](/async-tree/map-like.html) with the keys sorted. The sort is performed with the default lexicographic Unicode sort order provided by JavaScript's [Array.sort()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) method.
 
 ```console
 $ cat capitals.yaml

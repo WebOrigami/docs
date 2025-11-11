@@ -99,7 +99,7 @@ For formatting an array of objects as CSV, see [`Origami.csv`](/builtins/origami
 
 ### JavaScript files
 
-Unpacking a `.js` file returns the file's default export or, if there are multiple exports, all the exports. If that export is [treelike](/async-tree/treelike.html), you can traverse into that export using slash syntax.
+Unpacking a `.js` file returns the file's default export or, if there are multiple exports, all the exports. If that export is [map-like](/async-tree/map-like.html), you can traverse into that export using slash syntax.
 
 Example: If `data.js` contains
 
@@ -133,7 +133,7 @@ You can traverse into a JSON file using slash syntax; see [Unpacking files](#unp
 
 ### Origami files
 
-A file with a `.ori` extension indicates a file containing an Origami expression. If the result of that expression is [treelike](/async-tree/treelike.html) you can traverse into it using slash syntax.
+A file with a `.ori` extension indicates a file containing an Origami expression. If the result of that expression is [map-like](/async-tree/map-like.html) you can traverse into it using slash syntax.
 
 If `greet.ori` contains
 

@@ -1,11 +1,13 @@
 - href: index.html
   text: Overview
-- text: Interface
+- text: Map interface
   href: interface.html
+- href: maplike.html
+  text: Map-like objects
+- text: Trailing slashes
+  href: trailingSlash.html
 - text: JSON Keys
   href: jsonKeys.html
-- href: treelike.html
-  text: Treelike objects
 - text: "API:"
 - href: AsyncMap.html
   text: AsyncMap

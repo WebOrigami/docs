@@ -1,9 +1,9 @@
 ---
 title: SyncMap class
-subtitle: A solid base class for custom Map subclasses
+subtitle: A base class for custom Map subclasses
 ---
 
-The standard JavaScript [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) class is a general-purpose utility class for associating any kind of value with any kind of key.
+The standard JavaScript [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) class is a general-purpose utility class for associating any kind of value with any kind of key.
 
 ```js
 const primes = new Map();
