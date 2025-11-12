@@ -3,20 +3,11 @@ title: SyncMap class
 subtitle: A base class for custom Map subclasses
 ---
 
-The standard JavaScript [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) class is a general-purpose utility class for associating any kind of value with any kind of key.
+To support the use of [`Map` as an interface](interface.html), the `async-tree` library provides a base class called `SyncMap`. `SyncMap` can be used as a drop-in replacement for `Map`, and avoids a number of problems with extending `Map` directly; see below.
 
-```js
-const primes = new Map();
-primes.set(3, true);
-primes.set(4, false);
+As its name suggests, all of the members of `SyncMap` are synchronous; for an asynchronous version, see [`AsyncMap`](./AsyncMap.html).
 
-primes.get(3); // true
-primes.get(4); // false
-```
-
-`SyncMap` can be used as a drop-in replacement for `Map`. As its name suggests, all of the members of `SyncMap` are synchronous; for an asynchronous version, see [`AsyncMap`](./AsyncMap.html).
-
-## Problems with the standard `Map` class
+## Problems extending the standard `Map` class
 
 The interface for `Map` is straightforward, so it would be nice to subclass `Map` to create new classes that behave just like `Map` and can be used anywhere `Map` can be used. Unfortunately, the standard `Map` class has a number of limitations that make it cumbersome to extend.
 
@@ -31,7 +22,7 @@ It would be nice if the helper members were actually defined in terms of the cor
 
 For example, the [`clear()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/clear) helper method erases everything in the `Map`. It would ideally be defined in terms of the core methods `keys()` and `delete()`. Similarly, the [`entries()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/entries) helper method returns the `[key, value]` pairs of the map, and would ideally be defined in terms of the core methods `keys()` and `get()`.
 
-Sadly, the `Map` helper members are hard-coded to work directly with the class’s internal data representation. Subclassing `Map` then requires a fair amount of boilerplate code to maintain baseline expectations.
+Sadly, the `Map` helper members are hard-coded to work directly with the class’s internal data representation. Subclassing `Map` then requires boilerplate code to maintain baseline expectations.
 
 ### `Map` methods fail when the prototype chain is extended
 
@@ -57,11 +48,11 @@ However, the standard `Map` breaks this useful behavior.
 const m = new Map([["a", 1]]);
 m.get("a"); // 1
 
-const n = Object.create(m);
+const n = Object.create(m); // n extends m
 n.get("a"); // TypeError: get method called on incompatible Object
 ```
 
-The problem is that the standard `Map` methods specifically check to makes sure that the object they’re applied to was created with a `Map` constructor. This limits the ways in which a `Map` can be used.
+The problem is that the standard `Map` methods specifically check that the object they’re applied to was created with a `Map` constructor. This limits the ways in which a `Map` can be used.
 
 ### A `Map` is always read/write
 
@@ -178,8 +169,8 @@ const m = new GreetingsMap();
 m.has("Alice"); // true
 m.get("Alice"); // "Hello, Alice!"
 
-m.has("Dave"); // false
-m.get("Dave"); // "Hello, David!" despite not being a defined key
+m.has("Dave"); // false, not a defined key
+m.get("Dave"); // "Hello, Dave!"
 ```
 
 In certain circumstances, such a map can be very useful.
