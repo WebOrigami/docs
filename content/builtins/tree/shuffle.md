@@ -1,9 +1,9 @@
 ---
-title: shuffle(tree)
+title: shuffle(map)
 supertitle: "Tree."
 ---
 
-Returns a new tree with the original `tree` keys randomly shuffled.
+Returns a new map with the original's keys randomly shuffled.
 
 ```console
 $ ori greetings.yaml

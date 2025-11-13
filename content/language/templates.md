@@ -64,7 +64,7 @@ ${ samples/templates/fileRef.ori/ + "\n" }
 
 ## Reference trees
 
-If a template expression results in a tree such as a folder or hierarchical data, Origami will collect the deep values of that tree, convert them to strings, then concatenate them.
+If a template expression results in a map-based tree such as a folder or hierarchical data, Origami will collect the deep values of that tree, convert them to strings, then concatenate them.
 
 ```yaml
 # greetings.yaml
@@ -145,7 +145,7 @@ Inside a template, you can use expressions to traverse into data.
 ${ samples/templates/teamLead.ori }
 ```
 
-The sequence `[0].name` is asking for the `name` property of the first (zeroth) item in the array of people in `teamData.yaml` file. This request implicitly [unpacks the file](http://localhost:5000/language/fileTypes.html#unpacking-files) to data before returning the requested value. A path expression could accomplish the same result: `teamData.yaml/0/name`.
+The sequence `[0].name` is asking for the `name` property of the first (zeroth) item in the array of people in `teamData.yaml` file. This request implicitly [unpacks the file](/language/fileTypes.html#unpacking-files) to data before returning the requested value. A path expression could accomplish the same result: `teamData.yaml/0/name`.
 
 Either way, the result is:
 
@@ -332,6 +332,7 @@ ${ samples/templates/blogPost.ori(samples/templates/posts/post2.html) }
 ## Map trees to text
 
 It’s common to have a template generate some fragment of text for each value in a tree: an array, a set, a folder, etc.
+
 You can handle such cases in Origami templates by calling the built-in [`map`](/builtins/tree/map.html#values) function to map a tree’s values to text.
 
 ```${"yaml"}
@@ -351,9 +352,9 @@ ${ samples/templates/teamList.ori/ }
 
 The `teamList.ori` file defines an outer template that includes an `<ul>` tag. Inside that, a substitution calling `map` appears, which maps the array of people in `teamData.yaml` to a set of HTML fragments using a nested template with an `<li>` tag.
 
-### How maps work
+### How the `map` function works
 
-Origami templates don't treat such maps specially. Rather, the `map` function is returning a tree of HTML fragments that are concatenated into the text output.
+Origami templates don't treat transformed trees specially. Rather, the `map` function returns a map-based tree of HTML fragments that are concatenated into the text output.
 
 In the above example, the `map` function maps an array of people to HTML fragments. The transformation can be visualized like this:
 
@@ -376,7 +377,7 @@ Per the discussion in [Reference trees](#Reference-trees), the template concaten
 
 ### Reference the key for a value
 
-When `map` calls a template, it passes three parameters: the value being mapped, the key for that value, and the overall tree being mapped. You don't have to use all the parameters.
+When `map` calls a template, it passes three parameters: the value being mapped, the key for that value, and the tree node being mapped. You don't have to use all the parameters.
 
 The key parameter can be useful when you are building a list or index. For example, suppose you want to build an index page for a blog, where you will write posts in a `posts` folder:
 

@@ -67,7 +67,7 @@ To get the keys for the folder, we'll ask the `fs.readdirSync` method for the li
 
 ## Get the contents of a file
 
-To implement the `get` method in the AsyncTree interface, we'll use the `fs.readFileSync` method to read the contents of the file with the indicated key/name.
+To implement the `get` method in the `Map` interface, we'll use the `fs.readFileSync` method to read the contents of the file with the indicated key/name.
 
 ```js
   get(key) {

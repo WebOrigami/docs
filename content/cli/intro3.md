@@ -5,7 +5,9 @@ numberHeadings: true
 
 ## Async trees
 
-ori is especially good at dealing with trees. More specifically, ori is designed to work with _async trees_: a tree whose nodes can enumerate their keys and, given a key, can return the corresponding value. Many common data structures can be represented as async trees.
+ori is especially good at dealing with trees. More specifically, ori is designed to work with trees constructed from objects supporting the [Map interface](/async-tree/interface.html). Such nodes can enumerate their keys and, given a key, can return the corresponding value. Many common data structures can be represented as trees.
+
+To accommodate remote data sources, ori can also work with asynchronous trees, where nodes support an interface that looks like a standard JavaScript `Map` but has asynchronous methods.
 
 <span class="tutorialStep"></span> One way to define an async tree is in [YAML](https://yaml.org/) format.
 
@@ -22,16 +24,16 @@ ${ svg(samples/cli/greetings.yaml) }
 
 The YAML data format shown above can be easier for people to read than formats like JSON. If you prefer, you can just as easily use the ubiquitous JSON format.
 
-ori itself natively understands several types of async trees:
+ori itself natively understands several types of map-based trees:
 
 - JSON
 - YAML
 - JavaScript objects
-- JavaScript Array, Map, or Set instances
+- JavaScript `Array`, `Iterator`, `Map`, or `Set` instances
 - JavaScript functions
 - folder trees
 - web sites (some operations require support for [JSON Keys](/async-tree/jsonKeys.html) files, discussed later)
-- any object that implements the [AsyncTree interface](/async-tree/interface.html)
+- any object that implements the [Map interface](/async-tree/interface.html)
 
 ## Extract specific values out of a tree
 

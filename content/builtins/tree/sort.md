@@ -1,9 +1,9 @@
 ---
-title: sort(tree, [options])
+title: sort(map, [options])
 supertitle: "Tree."
 ---
 
-Returns a copy of the indicated [map-like object](/async-tree/map-like.html) with the keys sorted. The sort is performed with the default lexicographic Unicode sort order provided by JavaScript's [Array.sort()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) method.
+Returns a copy of the indicated [map-like object](/async-tree/maplike.html) with the keys sorted. The sort is performed with the default lexicographic Unicode sort order provided by JavaScript's [Array.sort()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) method.
 
 ```console
 $ cat capitals.yaml
@@ -18,7 +18,7 @@ ${ Origami.yaml(Tree.sort(samples/help/capitals.yaml)) }
   <figure>
     ${ svg(Tree.sort(samples/help/capitals.yaml)) }
   </figure>
-  <figcaption>Input tree</figcaption>
+  <figcaption>Input map</figcaption>
   <figcaption>With keys sorted</figcaption>
 </div>
 

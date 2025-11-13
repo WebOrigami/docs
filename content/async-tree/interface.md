@@ -43,3 +43,16 @@ Instead of having to develop specific versions of these operations for objects, 
 The standard `Map` class is somewhat awkward to extend directly. For this reason, the `async-tree` library includes a base class called [`SyncMap`](SyncMap.html) that can be used as a drop-in replacement for `Map`. See that page for a discussion of the issues with `Map` and how `SyncMap` addresses them.
 
 Another important use of `Map` is in constructing general-purpose trees, such as the tree of resources for a site. See the [Map Tree pattern](/pattern) for a walkthrough of how maps can be used in that way.
+
+## Asynchronous maps
+
+The standard `Map` class has synchronous methods. To represent asynchronous data sources, the `async-tree` library defines a [`AsyncMap`](AsyncMap.html) class as a variation.
+
+- `AsyncMap` has with the same basic interface as `Map`, but the methods and properties are all async.
+- Additionally, instead of defining a [`Symbol.iterator`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator) property, `AsyncMap` defines an [`Symbol.asyncIterator`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/asyncIterator).
+
+All of the [`Tree`](/builtins/tree) builtins accept both `Map` and `AsyncMap` objects.
+
+## Map-based trees
+
+If a value in a `Map` is another `Map`, you can view the overall structure as a [map-based tree](mapBasedTree.html).

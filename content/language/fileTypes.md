@@ -6,8 +6,8 @@ title: Working with file types
 
 The specific form a "file" takes can depend on how you reference it.
 
-- When you reference a file in the file system in Origami, Origami uses a [FileTree](/async-tree/FileTree.html) to resolve the reference and return the value as a Node [Buffer](https://nodejs.org/api/buffer.html) object.
-- When you reference a file on a site via a URL, Origami uses a [SiteTree](/async-tree/SiteTree.html) to resolve the reference and return the value as a JavaScript [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
+- When you reference a file in the file system in Origami, Origami uses a [FileMap](/async-tree/FileMap.html) to resolve the reference and return the value as a Node [Buffer](https://nodejs.org/api/buffer.html) object.
+- When you reference a file on a site via a URL, Origami uses a [SiteMap](/async-tree/SiteMap.html) to resolve the reference and return the value as a JavaScript [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
 
 ## Standard file types
 
@@ -99,7 +99,7 @@ For formatting an array of objects as CSV, see [`Origami.csv`](/builtins/origami
 
 ### JavaScript files
 
-Unpacking a `.js` file returns the file's default export or, if there are multiple exports, all the exports. If that export is [map-like](/async-tree/map-like.html), you can traverse into that export using slash syntax.
+Unpacking a `.js` file returns the file's default export or, if there are multiple exports, all the exports. If that export is [map-like](/async-tree/maplike.html), you can traverse into that export using slash syntax.
 
 Example: If `data.js` contains
 
@@ -133,7 +133,7 @@ You can traverse into a JSON file using slash syntax; see [Unpacking files](#unp
 
 ### Origami files
 
-A file with a `.ori` extension indicates a file containing an Origami expression. If the result of that expression is [map-like](/async-tree/map-like.html) you can traverse into it using slash syntax.
+A file with a `.ori` extension indicates a file containing an Origami expression. If the result of that expression is [map-like](/async-tree/maplike.html) you can traverse into it using slash syntax.
 
 If `greet.ori` contains
 

@@ -1,5 +1,5 @@
 ---
-title: keys([tree])
+title: keys(tree)
 supertitle: "Dev."
 ---
 

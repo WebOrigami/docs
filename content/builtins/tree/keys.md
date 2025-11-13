@@ -1,9 +1,9 @@
 ---
-title: keys([tree])
+title: keys(map)
 supertitle: "Tree."
 ---
 
-Returns an array of the top-level keys in the indicated tree.
+Returns an array of the top-level keys in the indicated map.
 
 ```console
 $ cat letters.yaml
@@ -18,7 +18,7 @@ ${ Origami.yaml(Tree.keys(samples/help/letters.yaml)) }
   <figure>
     ${ svg(Tree.keys(samples/help/letters.yaml)) }
   </figure>
-  <figcaption>Input tree</figcaption>
+  <figcaption>Input map</figcaption>
   <figcaption>Keys as an array</figcaption>
 </div>
 

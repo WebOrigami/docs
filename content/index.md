@@ -72,7 +72,7 @@ The project includes several separate but interoperable tools and ideas:
 - The [ori command-line interface](/cli/) (CLI) lets you use Origami expressions in a command terminal to manipulate files or get resources out of an Origami website in the command line. The CLI is also useful as a general tool in its own right for working with JavaScript in the shell.
 - The [built-in functions](/builtins/) let you perform a number of common website development tasks in the Origami language.
 - The [async-tree library](/async-tree/) lets JavaScript programmers use core Origami features in JavaScript applications.
-- The [conceptual pattern](/pattern/) at the foundation of it all lets you represent a wide variety of data types as trees that can be easily traversed and transformed. There's no code at this level; you can use the ideas in any project.
+- The [conceptual pattern](/pattern/) at the foundation of it all lets you represent a wide variety of data types as tree structures that can be easily traversed and transformed. There's no code at this level; you can use the ideas in any project.
 
 If you'd like to ask questions, visit the [Web Origami room](https://matrix.to/#/%23weborigami:envs.net) on [Matrix](https://matrix.org).
 

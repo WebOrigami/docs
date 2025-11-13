@@ -1,9 +1,9 @@
 ---
-title: clear(tree)
+title: clear(map)
 supertitle: "Tree."
 ---
 
-This removes all values from the given tree and then returns the empty tree.
+This removes all values from the given map and then returns the empty map.
 
 This is commonly used when copying an Origami site definition to static files to clear out the contents of a `build` folder:
 

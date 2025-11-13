@@ -1,6 +1,6 @@
 ---
-title: delete(tree, key)
+title: delete(map, key)
 supertitle: "Tree."
 ---
 
-Deletes the value for the given key from the specific node of the , which must be mutable.
+Deletes the value for the given key from the map, which must be read/write.

@@ -1,11 +1,11 @@
 ---
-title: addNextPrevious(tree)
+title: addNextPrevious(map)
 supertitle: "Tree."
 ---
 
-This returns a new tree that extends the values in the given tree with `nextKey` and `previousKey` properties. These properties will indicate the keys of the next and previous entries in the tree. This information can then be used to, for example, add links below a blog post that take the reader to the next or previous post.
+Given a [map-like](/async-tree/maplike.html) object, `addNextPrevious` returns a new object extending the map's values with `nextKey` and `previousKey` properties. These properties will indicate the keys of the next and previous entries in the tree. This information can then be used to, for example, add links below a blog post that take the reader to the next or previous post.
 
-Example application of `addNextPrevious` to a tree of strings:
+Example application of `addNextPrevious` to a map of strings:
 
 ```console
 $ cat letters.yaml
@@ -20,7 +20,7 @@ ${ Origami.yaml(Tree.addNextPrevious(samples/help/letters.yaml)) }
   <figure>
     ${ svg(Tree.addNextPrevious(samples/help/letters.yaml)) }
   </figure>
-  <figcaption>Input tree</figcaption>
+  <figcaption>Input map</figcaption>
   <figcaption>Result of addNextPrevious</figcaption>
 </div>
 

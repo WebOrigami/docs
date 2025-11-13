@@ -11,7 +11,7 @@ Crawls the indicated live site and returns the complete tree of reachable resour
 
 You can use `crawl` to crawl an existing website and copy the resulting crawled tree for local inspection.
 
-In this case, the `tree` parameter is typically a [SiteTree](/async-tree/SiteTree.html). A convenient way to wrap an existing site is with the `httpstree` protocol (or `httptree` for non-secure HTTP sites) in a URL.
+In this case, the `tree` parameter is typically a [SiteMap](/async-tree/SiteMap.html). A convenient way to wrap an existing site is with the `httpstree` protocol (or `httptree` for non-secure HTTP sites) in a URL.
 
 For example, you can copy the original [Space Jam](https://www.spacejam.com/1996/) website to a local folder called `spacejam` via:
 

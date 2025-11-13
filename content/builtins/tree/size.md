@@ -1,9 +1,9 @@
 ---
-title: size(tree)
+title: size(map)
 supertitle: "Tree."
 ---
 
-Returns the number of objects in the given tree node.
+Returns the number of objects in the given [map-like](/async-tree/maplike.html) object.
 
 ```console
 $ ori capitals.yaml

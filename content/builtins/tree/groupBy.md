@@ -1,5 +1,5 @@
 ---
-title: groupBy(tree, fn)
+title: groupBy(map, fn)
 supertitle: "Tree."
 ---
 
@@ -49,7 +49,7 @@ In the result tree, the top-level keys for the groups are the individual values 
       ]
     }) }
   </figure>
-  <figcaption>Input tree</figcaption>
+  <figcaption>Input map</figcaption>
   <figcaption>Grouped by genre</figcaption>
 </div>
 

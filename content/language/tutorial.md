@@ -1072,7 +1072,7 @@ This concludes the Origami tutorial. You can continue exploring related topics:
 - View some [examples of Origami sites](examples.html).
 - The npm `start` and `build` scripts call the [Origami command-line interface](/cli), a general-purpose tool for programming in the shell.
 - The conceptual framework is built on an [async-tree library](/async-tree) that lets you do everything that you did here with formulas using JavaScript instead.
-- You can implement sites with no Origami dependency at all using the [async tree pattern](/pattern). This approach may appeal to people who want to work as close to the metal as possible. That pattern is also a useful reference if you want to understand how Origami works under the hood.
+- You can implement sites with no Origami dependency at all using the [Map Tree pattern](/pattern). This approach may appeal to people who want to work as close to the metal as possible. That pattern is also a useful reference if you want to understand how Origami works under the hood.
 
 &nbsp;
 

@@ -1,5 +1,5 @@
 ---
-title: SiteTree class
+title: SiteMap class
 subtitle: Wraps a web site as an async tree
 ---
 

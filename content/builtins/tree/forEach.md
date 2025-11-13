@@ -1,6 +1,6 @@
 ---
-title: forEach(tree, fn)
+title: forEach(map, fn)
 supertitle: "Tree."
 ---
 
-Calls the `fn` once for each key-value pair present in the specific node of the tree. For each pair, the function will be passed `value` and `key` parameters.
+Calls the `fn` once for each key-value pair present in the map. For each pair, the function will be passed `value` and `key` parameters.

@@ -46,11 +46,11 @@ These `.keys.json` files can be viewed by users or consumed by programs so they 
 
 ## Origami support for JSON Keys
 
-The Origami [ExplorableSiteTree](ExplorableSiteTree.html) class supports the JSON Keys protocol. If you ask a `ExplorableSiteTree` for its keys, it will look for a `.keys.json` file and, if it exists, parse it and return those keys. (It will strip the trailing `/` from any keys for subtrees.)
+The Origami [ExplorableSiteMap](ExplorableSiteMap.html) class supports the JSON Keys protocol. If you ask a `ExplorableSiteMap` for its keys, it will look for a `.keys.json` file and, if it exists, parse it and return those keys. (It will strip the trailing `/` from any keys for subtrees.)
 
 The ori [CLI](/cli) builds on this in several ways.
 
-Origami's custom `explore:` protocol allow you to indicate that you want to treat a given URL as the root of an [ExplorableSiteTree](ExplorableSiteTree.html) instead of a single resource. This lets you pass a site to any function that wants to enumerate the site's keys, such as the [`keys`](/builtins/tree/keys.html) builtin:
+Origami's custom `explore:` protocol allow you to indicate that you want to treat a given URL as the root of an [ExplorableSiteMap](ExplorableSiteMap.html) instead of a single resource. This lets you pass a site to any function that wants to enumerate the site's keys, such as the [`keys`](/builtins/tree/keys.html) builtin:
 
 ```console
 $ ori keys explore://weborigami.org/samples/greetings/
@@ -60,7 +60,7 @@ $ ori keys explore://weborigami.org/samples/greetings/
 - index.html
 ```
 
-Here the `explore:` protocol creates a `SiteTree` instance which retrieves the route's keys defined in a `.keys.json` file. The `keys` function then asks that tree for the list of keys, which the ori CLI displays as the result of the command.
+Here the `explore:` protocol creates a `SiteMap` instance which retrieves the route's keys defined in a `.keys.json` file. The `keys` function then asks that tree for the list of keys, which the ori CLI displays as the result of the command.
 
 You can also use ori to display the complete contents of all pages at a given route:
 

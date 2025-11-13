@@ -4,6 +4,8 @@
   href: interface.html
 - href: maplike.html
   text: Map-like objects
+- href: mapBasedTree.html
+  text: Map-based trees
 - text: Trailing slashes
   href: trailingSlash.html
 - text: JSON Keys

@@ -20,7 +20,7 @@ The `pattern` argument can take one of two forms:
 1. A simple pattern like `[name].html`. When used to match `Alice.html`, the `fn` function will be given an object with the matches: `{ name: "Alice" }`.
 2. A standard JavaScript [regular expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions).
 
-By default, the tree will have no public keys, but you can provide any [map-like object](/async-tree/map-like.html) as the `keys` argument. That tree's values will be used as the keys for the tree returned by `match()`.
+By default, the tree will have no public keys, but you can provide any [map-like object](/async-tree/maplike.html) as the `keys` argument. That tree's values will be used as the keys for the tree returned by `match()`.
 
 ```console
 $ ori matchDomain.ori

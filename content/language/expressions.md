@@ -295,12 +295,7 @@ Although Origami can always recognize [URLs](#urls) that start with a protocol, 
 
 ### Trailing slashes
 
-Paths in Origami follow a [trailing slash convention](http://localhost:5000/async-tree/interface.html#trailing-slash-convention):
-
-- If a trailing slash is present, then the value is definitely a traversable subtree.
-- If a trailing slash is not present, the value may or may not be a subtree. That is, a tree isn’t obligated to append slashes to any or all of its keys for traversable subtrees.
-
-In practice, when writing a path for a folder, you have the _option_ to end the path with a trailing slash. If your project includes a folder called "markdown", both of these paths will find the folder:
+Paths in Origami follow a [trailing slash convention](/async-tree/interface.html#trailing-slash-convention). When writing a path for a folder, you have the _option_ to end the path with a trailing slash. If your project includes a folder called "markdown", both of these paths will find the folder:
 
 ```
 markdown
@@ -318,7 +313,7 @@ A path to a file returns the raw contents of the indicated file.
 - For a file name or path, this will be a [Uint8Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array).
 - For a URL, this will be an [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
 
-Origami has built-in handlers that can parse the contents of common [file types](http://localhost:5000/language/fileTypes.html) such as JSON and markdown with front matter; see that page for details. This allows you to, for example, obtain your project's version number from its `package.json` file via:
+Origami has built-in handlers that can parse the contents of common [file types](/language/fileTypes.html) such as JSON and markdown with front matter; see that page for details. This allows you to, for example, obtain your project's version number from its `package.json` file via:
 
 ```ori
 (package.json).version
@@ -352,7 +347,7 @@ posts/post1.md/
 
 This returns the content of `post1.md` as an object, including any front matter data as properties.
 
-Note that most Origami [builtin functions](/builtins) that expect a [map-like](/async-tree/map-like.html) argument will automatically unpack a file or resource (such as `Uint8Array` or `ArrayBuffer`) value as long as the path includes a known file extension.
+Note that most Origami [builtin functions](/builtins) that expect a [map-like](/async-tree/maplike.html) argument will automatically unpack a file or resource (such as `Uint8Array` or `ArrayBuffer`) value as long as the path includes a known file extension.
 
 ## URLs
 
@@ -394,7 +389,7 @@ You can escape characters with a `\\` backslash:
 
 Text templates are quoted in backticks and can contain Origami expressions inside `\$\{` `}` placeholders. The evaluated expression results will be substituted for those placeholders in the template's text output.
 
-Expressions inside an Origami template literal can directly return complex values like arrays, objects, or trees. Origami will perform a depth-first traversal of the result, await any `Promise` values, and concatenate the final values into the string result:
+Expressions inside an Origami template literal can directly return complex values like arrays, objects, or map-based trees. Origami will perform a depth-first traversal of the result, await any `Promise` values, and concatenate the final values into the string result:
 
 ```ori
 `Hello, \${ { name: 'Alice' } }.`      // "Hello, Alice."
@@ -536,8 +531,8 @@ You can reference the "name" property of this file in several ways:
 - `(alice.ori).name` — Put the `.name` reference after a closing parenthesis
 - `alice.ori .name` — Put the `.name` reference after whitespace (this might look a little strange, but is standard JavaScript syntax)
 - `alice.ori["name"]` — Use the string `"name"` in square brackets
-- `alice.ori/name` — Origami treats any [map-like](/async-tree/map-like.html) object as a tree that can be traversed with [path](#paths) syntax
-- `alice.ori("name")` — Origami allows any tree to be [called like a function](#trees-as-functions).
+- `alice.ori/name` — Origami treats any [map-like](/async-tree/maplike.html) object as a map-based tree that can be traversed with [path](#paths) syntax
+- `alice.ori("name")` — Origami allows any map to be [called like a function](#trees-as-functions).
 
 ### Local property access
 
@@ -607,7 +602,7 @@ ${ Origami.yaml(samples/help/hidden.ori/company) }
 
 ### Keys with trailing slashes
 
-As noted above, paths can [end in trailing slashes](#trailing-slashes) to follow Origami's [trailing slash convention](http://localhost:5000/async-tree/interface.html#trailing-slash-convention).
+As noted above, paths can [end in trailing slashes](#trailing-slashes) to follow Origami's [trailing slash convention](/async-tree/interface.html#trailing-slash-convention).
 
 When defining an object, you have the option of adding a trailing slash to a key whose value is a traversable subtree. This can be a useful way of reminding readers of the code (including yourself later) that the value is a tree.
 
@@ -694,9 +689,9 @@ The Origami language runtime itself is written in JavaScript, so types such as n
 
 Origami does not yet support `...` spreads in function calls.
 
-### Trees as functions
+### Maps as functions
 
-Origami's [AsyncTree](/async-tree/interface.html) interface lets you treat a wide variety of [map-like](/async-tree/map-like.html) structures as hierarchical trees. You can use function syntax to obtain a value from the tree; this invokes the tree's `get` method.
+The [Map interface](/async-tree/interface.html) lets you treat a wide variety of [map-like](/async-tree/maplike.html) structures as maps. You can use function syntax to obtain a value from the map; this invokes the map's `get` method.
 
 This means you can use function call syntax to retrieve a value from a data structure, a folder, etc. If you have a data file:
 
@@ -712,18 +707,18 @@ $ ori "capitals.yaml('Spain')"
 ${ samples/help/capitals.yaml('Spain') + "\n" }
 ```
 
-One use for this is to programmatically look up values: if a variable holds the name of a key, you can call the tree as a function and pass the variable as the argument.
+One use for this is to programmatically look up values: if a variable holds the name of a key, you can call the map as a function and pass the variable as the argument.
 
-This also means you can pass a tree to any Origami builtin that expects a function, such as the `value` option of [`Tree.map`](/builtins/tree/map.html):
+This also means you can pass a map to any Origami builtin that expects a function, such as the `value` option of [`Tree.map`](/builtins/tree/map.html):
 
 ```console
 $ ori "Tree.map(['Japan', 'Australia'], { value: capitals.yaml })"
 ${ Origami.yaml(Tree.map(['Japan', 'Australia'], { value: samples/help/capitals.yaml })) }
 ```
 
-### Functions as trees
+### Functions as maps
 
-Conversely, Origami lets you treat a function as a [map-like](/async-tree/map-like.html) object. This is true for arrow functions, Origami [builtin functions](/builtins), and functions exported by JavaScript modules.
+Conversely, Origami lets you treat a function as a [map-like](/async-tree/maplike.html) object. This is true for arrow functions, Origami [builtin functions](/builtins), and functions exported by JavaScript modules.
 
 This means you can traverse a function using [path](#paths) syntax, which can be convenient when using the Origami [CLI](/cli) to evaluate expressions in the shell. A shell will typically try to handle parentheses, and so disallow a function call with unquoted parentheses. But a shell will generally leave slashes untouched, allowing you to invoke a function and pass an argument.
 
@@ -749,7 +744,7 @@ You can define arrow functions using `=>` and any number of parameters:
 
 That `expression` will not be evaluated immediately, only later when the function is invoked.
 
-For example, the [`Tree.map`](/builtins/tree/map.html) builtin function can apply another function to a tree's values and/or keys. To define a function that will be evaluated in the context of each tree value, you can use an arrow function:
+For example, the [`Tree.map`](/builtins/tree/map.html) builtin function can apply another function to a map's values and/or keys. To define a function that will be evaluated in the context of each of the map's values, you can use an arrow function:
 
 ```console
 $ ori "Tree.map(['a', 'b', 'c'], (letter) => letter.toUpperCase())"
@@ -835,12 +830,12 @@ Origami does not yet support JavaScript's [optional chaining operator](https://d
 You can use `...` three periods to merge arrays and objects.
 
 ```console
-$ ori tree1.yaml
-${ samples/help/merge/tree1.yaml }$ ori tree2.yaml
-${ samples/help/merge/tree2.yaml }$ ori { ...tree1.yaml, ...tree2.yaml }
+$ ori data1.yaml
+${ samples/help/merge/data1.yaml }$ ori data2.yaml
+${ samples/help/merge/data2.yaml }$ ori { ...data1.yaml, ...data2.yaml }
 ${ Origami.yaml({
-  ...samples/help/merge/tree1.yaml
-  ...samples/help/merge/tree2.yaml
+  ...samples/help/merge/data1.yaml
+  ...samples/help/merge/data2.yaml
 }) }
 ```
 

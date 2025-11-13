@@ -1,19 +1,19 @@
 ---
-title: ObjectTree class
+title: ObjectMap class
 subtitle: Wraps a plain JavaScript object or array as an async tree
 ---
 
 ## JavaScript usage
 
-Create a new `ObjectTree` by passing an object or array to the constructor:
+Create a new `ObjectMap` by passing an object or array to the constructor:
 
 ```js
 // object.js
 
-import { ObjectTree } from "@weborigami/origami";
+import { ObjectMap } from "@weborigami/origami";
 
 // Wrap an object to create an async tree.
-export default new ObjectTree({
+export default new ObjectMap({
   Alice: "Hello, Alice.",
   Bob: "Hello, Bob.",
   Carol: "Hello, Carol.",
@@ -30,7 +30,7 @@ ${ svg({
 }) }
 </figure>
 
-The [ori](/cli) tool will display the contents of the resulting `ObjectTree`.
+The [ori](/cli) tool will display the contents of the resulting `ObjectMap`.
 
 ```console
 $ ori object.js/

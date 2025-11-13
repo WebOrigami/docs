@@ -46,12 +46,12 @@
   text: indent
 - href: inners.html
   text: inners
-- href: isAsyncMutableTree.html
-  text: isAsyncMutableTree
 - href: isMap.html
   text: isMap
 - href: isMaplike.html
   text: isMaplike
+- href: isReadOnly.html
+  text: isReadOnly
 - href: isTraversable.html
   text: isTraversable
 - href: json.html
@@ -84,8 +84,6 @@
   text: reverse
 - href: root.html
   text: root
-- href: setDeep.html
-  text: setDeep
 - href: shuffle.html
   text: shuffle
 - href: size.html

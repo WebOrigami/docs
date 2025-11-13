@@ -1,9 +1,9 @@
 ---
-title: reverse(tree)
+title: reverse(map)
 supertitle: "Tree."
 ---
 
-Reverses the order of keys in the tree.
+Reverses the order of keys in the map.
 
 ```console
 $ cat letters.yaml
@@ -19,10 +19,10 @@ ${ Origami.yaml(Tree.reverse(samples/help/letters.yaml)) + "\n" }
   <figure>
     ${ svg(Tree.reverse(samples/help/letters.yaml)) }
   </figure>
-  <figcaption>Input tree</figcaption>
+  <figcaption>Input map</figcaption>
   <figcaption>With reversed keys</figcaption>
 </div>
 
 After sorting by date with [`sort`](sort.html), it can be useful to `reverse` that order to get things in reverse chronological order.
 
-`reverse` only affects the keys at the top level of the tree. For a deep version that affects all levels of a tree, use [`deepReverse`](deepReverse.html)
+For a deep version that affects all levels of a tree, use [`deepReverse`](deepReverse.html)

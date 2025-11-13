@@ -1,13 +1,13 @@
 ---
-title: ExplorableSiteTree class
+title: ExplorableSiteMap class
 subtitle: A site that exposes its keys so it can be traversed
 ---
 
 ## JSON Keys protocol support
 
-If you use `ExplorableSiteTree` to wrap a site that supports the [JSON Keys protocol](jsonKeys.html), the `ExplorableSiteTree` instance will be able to programmatically return the keys at a given route. See that protocol for more details.
+If you use `ExplorableSiteMap` to wrap a site that supports the [JSON Keys protocol](jsonKeys.html), the `ExplorableSiteMap` instance will be able to programmatically return the keys at a given route. See that protocol for more details.
 
-For example, you can use the ori [CLI](/cli) to display the keys of a given site route using the custom `explore:` protocol, which returns an `ExplorableSiteTree`.
+For example, you can use the ori [CLI](/cli) to display the keys of a given site route using the custom `explore:` protocol, which returns an `ExplorableSiteMap`.
 
 ```console
 $ ori keys explore://weborigami.org/samples/greetings/

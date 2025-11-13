@@ -2,9 +2,9 @@
 title: Map-like objects
 ---
 
-Many features in the async-tree library and the [Origami expression language](/language/) built-in functions accept arguments that are _map-like_ objects.
+Many features in the async-tree library and the [Origami expression language](/language/) built-in functions accept _map-like_ arguments.
 
-A map-like object is one that is any of the following:
+A map-like object is any of the following:
 
 1. A JavaScript [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) object
 1. An [`AsyncMap`](AsyncMap.html) object (an asynchronous variant of `Map`)

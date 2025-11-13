@@ -1,5 +1,5 @@
 ---
-title: mask(tree, mask)
+title: mask(source, mask)
 supertitle: "Tree."
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: FunctionTree class
+title: FunctionMap class
 subtitle: Wraps a function and a domain as an async tree
 ---
 
@@ -9,18 +9,18 @@ subtitle: Wraps a function and a domain as an async tree
 ${ samples/help/function.js }
 ```
 
-The [ori](/cli) tool will display the contents of the resulting `FunctionTree`.
+The [ori](/cli) tool will display the contents of the resulting `FunctionMap`.
 
 ```console
 $ ori function.js/
 ${ Origami.yaml(samples/help/function.js/) }
 ```
 
-A rough implementation of the core interface methods in `FunctionTree` is:
+A rough implementation of the core interface methods in `FunctionMap` is:
 
 ```js
 // Rough implementation
-class FunctionTree {
+class FunctionMap {
   constructor(fn, domain = []) {
     this.fn = fn;
     this.domain = domain;
@@ -38,7 +38,7 @@ class FunctionTree {
 }
 ```
 
-Unlike async tree classes like [ObjectTree](ObjectTree.html), an `FunctionTree` can often accept keys which it does not make public in its `keys` iterator. The sample `FunctionTree` defined above exposes only three keys ("Alice", "Bob", "Carol"), but will actually accept any key.
+Unlike async tree classes like [ObjectMap](ObjectMap.html), an `FunctionMap` can often accept keys which it does not make public in its `keys` iterator. The sample `FunctionMap` defined above exposes only three keys ("Alice", "Bob", "Carol"), but will actually accept any key.
 
 ```console
 $ ori keys function.js/

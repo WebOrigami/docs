@@ -2,7 +2,7 @@
 title: Trailing slash convention
 ---
 
-To facilitate the use of maps as nodes in a tree, maps may elect to support the trailing slash convention: _a key ends in a trailing slash if its value is a map_.
+To facilitate the use of maps as nodes in a tree, maps may elect to support the trailing slash convention: _a key ends in a trailing slash if its value is known to be a map_.
 
 For example, this tree has two map nodes that follow the trailing slash convention. The root node (the circle on the left) has a key called `subfolder/` because that key's value is a map (the circle in the middle):
 
@@ -48,7 +48,7 @@ Tools can look at a trailing slash on a key to infer intent. For example, the Or
 Any map object can indicate that it supports the trailing slash convention:
 
 1. Define a `trailingSlashKeys` property that returns `true`.
-1. Have the `keys()` method add trailing slashes to every key whose value is a map.
+1. Have the `keys()` method add trailing slashes to every key whose value is known to be a map.
 1. Ensure that methods that accept a key — `delete()`, `get()`, `has()`, and `set()` — can accept a key with or without a trailing slash. For example, `get("a")` and `get("a/")` should have equivalent results, regardless of whether `a` is a child node or not.
 
 The following classes support the convention:

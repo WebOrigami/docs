@@ -2,7 +2,7 @@
 title: Defining a site
 ---
 
-The Origami language lets you concisely define the structure of a website. This page introduces three key concepts — _trees_, _tree scope_, and _maps_ — and a template system that make the language unique. If you prefer a hands-on approach, start with the [tutorial](tutorial.html).
+The Origami language lets you concisely define the structure of a website. This page introduces three key concepts — _trees_, _tree scope_, and _transformations_ — and a template system that make the language unique. If you prefer a hands-on approach, start with the [tutorial](tutorial.html).
 
 ## A tiny site
 
@@ -307,7 +307,7 @@ You can arrange to have an Origami expression reevaluated each time a value is r
 
 When serving this site with the Origami server, Origami will regenerate the text for `index.html` each time you visit the page. If you are editing `siteInfo.json` in a separate window, then changes to the data in that file will be reflected when you refresh `index.html` in your browser.
 
-## Turning a tree of stuff into something else
+## Transforming a tree
 
 You may often find yourself creating content in one form — text, images, etc. — that you want to process into some other form before publishing it on your site.
 
