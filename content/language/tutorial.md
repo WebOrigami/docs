@@ -18,7 +18,7 @@ Origami is built with [Node.js](https://nodejs.org), so if you'd like to follow 
 
 Origami is based on a conceptual model called [Content/Transformation](model.html) in which you create a set of content files along with small programs (expressions) that transform that content into the final files for your site. So you’ll need a few content files to work with.
 
-<span class="tutorialStep"></span> If you want to save time, clone the [blog-intro](https://github.com/WebOrigami/blog-intro) project locally to obtain the necessary files.
+<span class="tutorialStep"></span> If you want to save time, clone the [blog-intro](https://github.com/WebOrigami/blog-intro) project locally to obtain the necessary files. Then skip to the next section below.
 
 <span class="tutorialStep"></span> Or if you'd prefer to confirm there's no magic involved, you can manually recreate the files you need. Create a new project folder, and inside that create a `package.json` file along these lines:
 
@@ -40,7 +40,7 @@ Origami is based on a conceptual model called [Content/Transformation](model.htm
 
 </clipboard-copy>
 
-Then run `npm install` to install Origami. If you'd like to understand how the `build` and `start` scripts work, you can read about those [standard incantations](/cli/incantations.html).
+<span class="tutorialStep"></span> Then run `npm install` to install Origami. If you'd like to understand how the `build` and `start` scripts work, you can read about those [standard incantations](/cli/incantations.html).
 
 Finally, create an empty `src` folder and a `markdown` folder with a couple of markdown files in it. The `markdown` folder can be at the project's top level, or can go inside the `src` folder — the instructions below work the same either way.
 
@@ -364,11 +364,11 @@ In Origami you can process a set of files as a batch with a _map_, in the [compu
 
 <pre class="step">
 // Blog post data pipeline
-Tree.map(markdown/, {
+<b>Tree.map(markdown/, {
   value: (file) => {
     ...file
   }
-})
+})</b>
 </pre>
 
 </clipboard-copy>
@@ -625,24 +625,24 @@ Let’s update `indexPage.ori` to show a list of your blog posts.
 
 Most template systems handle lists with iteration, but Origami lets you reuse the same `Tree.map` feature you’ve already used in `postData.ori`. You can use the same `Tree.map` to turn the post objects into HTML text.
 
-<span class="tutorialStep"></span> Update `indexPage.ori` to:
+<span class="tutorialStep"></span> Update `indexPage.ori` to expect an incoming `posts` parameter and to build a list of those posts:
 
 <clipboard-copy>
 
 <pre class="step">
 // Blog home page
-(posts) => Tree.indent`
+(<b>posts</b>) => Tree.indent`
   &lt;link rel="stylesheet" href="/assets/styles.css">
   &lt;h1>My blog&lt;/h1>
-  &lt;ul>
-    \${ Tree.map(posts, (post, slug) => Tree.indent`
+  <b>&lt;ul>
+    \${ Tree.map(posts, (post, key) => Tree.indent`
       &lt;li>
-        &lt;a href="/posts/\${ slug }.html">\${ post.title }&lt;/a>
+        &lt;a href="/posts/\${ key }.html">\${ post.title }&lt;/a>
         —
         \${ post.date.toLocaleDateString("en-US", { dateStyle: "short" }) }
       &lt;/li>
     `) }
-  &lt;/ul>
+  &lt;/ul></b>
 `
 </pre>
 
@@ -768,13 +768,13 @@ This template accepts a very simple kind of `page` object with `title` and `_bod
 
 <pre class="step">
 // A page for a single post
-(post) => page.ori({
+(post) => <b>page.ori({
   title: post.title
-  _body: Tree.indent`
+  _body:</b> Tree.indent`
     &lt;h1>\${ post.title }&lt;/h1>
     \${ post._body }
   `
-})
+<b>})</b>
 </pre>
 
 </clipboard-copy>
@@ -785,9 +785,9 @@ This template accepts a very simple kind of `page` object with `title` and `_bod
 
 <pre class="step">
 // Blog home page
-(posts) => page.ori({
+(posts) => <b>page.ori({
   title: "My blog"
-  _body: Tree.indent`
+  _body:</b> Tree.indent`
     &lt;h1>My blog&lt;/h1>
     &lt;ul>
       \${ Tree.map(posts, (post, slug) => Tree.indent`
@@ -799,7 +799,7 @@ This template accepts a very simple kind of `page` object with `title` and `_bod
       `) }
     &lt;/ul>
   `
-})
+<b>})</b>
 </pre>
 
 </clipboard-copy>
