@@ -3,7 +3,7 @@ title: calendar(options)
 supertitle: "Tree."
 ---
 
-This returns a tree structure representing years, months, and days from a start date to an end date. This is useful, for example, in generating a portion of a site that presents information for a given year, month, or day.
+This returns a [map-based tree](/async-tree/mapBasedTree.html) representing years, months, and days from a start date to an end date. This is useful, for example, in generating a portion of a site that presents information for a given year, month, or day.
 
 The `options` determines the result through the following properties:
 

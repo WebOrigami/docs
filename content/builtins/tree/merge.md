@@ -3,7 +3,7 @@ title: merge(...maps)
 supertitle: "Tree."
 ---
 
-Returns a tree that is the result of merging the indicated maps.
+Merges the indicated [map-like](/async-tree/maplike.html) objects to return a new map.
 
 If you have two maps:
 

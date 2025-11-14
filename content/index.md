@@ -1,6 +1,6 @@
 ---
 title: Web Origami
-subtitle: A language for making websites where you can understand how they're made
+subtitle: A language for making sites where you can understand how they're made
 icon: bird.svg
 area: ""
 fileName: index.html
@@ -8,11 +8,11 @@ fileName: index.html
 
 ${ src/templates/blocks.ori(areaLinks) }
 
-Origami is a new programming language that complements HTML and CSS for making small- to medium-scale websites.
+Origami is system for creating sites that complements HTML and CSS with the ability to concisely define the structure and content of your site.
 
 **Everybody has something to say,** and the web is a great place to say it, but creating interesting sites can be hard or expensive. Standard HTML and CSS let you define individual pages, but it’s hard to efficiently create a bunch of pages and organize them into a coherent site.
 
-Corporate site hosting services offer nice drag-and-drop editors but impose creative limitations and high monthly costs. You could build something from scratch — if you master a full programming language like JavaScript and a pile of industrial development tools. The web needs better ways to create sizable, expressive sites at low cost and without entanglements.
+Corporate site hosting services offer drag-and-drop editors but impose creative limitations and high monthly costs. You could build something from scratch — if you master a programming language and a pile of industrial development tools. The web needs better ways to create sizable, expressive sites at low cost and without entanglements.
 
 Origami is designed for you: someone who wants to make a site for yourself or a small organization, who can write some HTML and CSS, who’s not a professional developer — or is, but wants to build sites more quickly. Someone who wants to understand how their site actually gets made.
 
@@ -47,7 +47,7 @@ A high-level site definition is enough to let you immediately view and iterate o
 
 <span class="tutorialStep"></span> Learn the basics of Origami [expressions](/language/expressions.html)
 
-## Building websites through transformation
+## Building sites through transformation
 
 Web Origami takes its name from the traditional paper folding art of origami, in which you can transform a flat square of paper into an artwork.
 
@@ -68,9 +68,9 @@ The steps may be simple but the end result can be complex and beautiful. In the 
 
 The project includes several separate but interoperable tools and ideas:
 
-- The [Origami language](/language/) lets you concisely define a website or other structured using formulas similar to those in a spreadsheet.
-- The [ori command-line interface](/cli/) (CLI) lets you use Origami expressions in a command terminal to manipulate files or get resources out of an Origami website in the command line. The CLI is also useful as a general tool in its own right for working with JavaScript in the shell.
-- The [built-in functions](/builtins/) let you perform a number of common website development tasks in the Origami language.
+- The [Origami language](/language/) lets you concisely define a site or other structured using formulas similar to those in a spreadsheet.
+- The [ori command-line interface](/cli/) (CLI) lets you use Origami expressions in a command terminal to manipulate files or get resources out of an Origami site in the command line. The CLI is also useful as a general tool in its own right for working with JavaScript in the shell.
+- The [built-in functions](/builtins/) let you perform a number of common site development tasks in the Origami language or JavaScript.
 - The [async-tree library](/async-tree/) lets JavaScript programmers use core Origami features in JavaScript applications.
 - The [conceptual pattern](/pattern/) at the foundation of it all lets you represent a wide variety of data types as tree structures that can be easily traversed and transformed. There's no code at this level; you can use the ideas in any project.
 

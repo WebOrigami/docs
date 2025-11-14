@@ -143,7 +143,7 @@ If you want the pages to appear at a higher level of the site, you can combine t
 
 Sometimes you want to group a set of pages into a subfolder to keep your source content organized, but have all those pages appear as if they were direct children of some other folder.
 
-For example, if you are an indie website author, you may want to create set of [slash pages](https://slashpages.net) at the top level of your site for various aspects of you and your interests. You can create these pages in HTML directly (or use markdown; see the preceding section).
+For example, if you are an indie site author, you may want to create set of [slash pages](https://slashpages.net) at the top level of your site for various aspects of you and your interests. You can create these pages in HTML directly (or use markdown; see the preceding section).
 
 It may be useful to group such pages into a subfolder, but them merge them into the top level of your site so the pages have shorter URLs.
 
@@ -323,7 +323,7 @@ ${ samples/help/notFound.ori }
 
 ## Extract specific resources from a site
 
-The [`httpstree:`](/builtins/protocol/httpstree.html) protocol lets you treat a live website as a tree. Since sites don't generally make their keys (routes) available, you can only use such a tree to obtain values at known routes.
+The [`httpstree:`](/builtins/protocol/httpstree.html) protocol lets you treat a live site as a tree. Since sites don't generally make their keys (routes) available, you can only use such a tree to obtain values at known routes.
 
 That said, if you know the routes you want to extract from a site, you can combine `httpstree:` with [`Tree.deepMerge`](/builtins/tree/deepMerge.html) to extract those specific routes.
 

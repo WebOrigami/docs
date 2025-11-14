@@ -3,7 +3,7 @@ title: "text`…`"
 supertitle: "Tree."
 ---
 
-A [tagged template function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates) that renders a text string including the deep values of trees. See also [`Tree.indent`](indent.html), which normalizes whitespace indentation.
+A [tagged template function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates) that renders a text string including the deep values of [map-based trees](/async-tree/mapBasedTree.html). See also [`Tree.indent`](indent.html), which normalizes whitespace indentation.
 
 As discussed in [template expressions](http://localhost:5000/language/expressions.html#templates), Origami template strings can directly include the contents of arrays, objects, or trees. JavaScript template literals do not provide useful results for such objects:
 

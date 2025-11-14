@@ -3,7 +3,7 @@ title: deepValues(tree)
 supertitle: "Tree."
 ---
 
-Return the in-order exterior values of the tree as a flat array. This is a deep version of the [`values`](values.html) built-in function.
+Return the in-order exterior values of the [map-based tree](/async-tree/mapBasedTree.html) as a flat array. This is a deep version of the [`values`](values.html) built-in function.
 
 ```console
 $ cat greetings.yaml

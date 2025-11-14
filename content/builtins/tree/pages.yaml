@@ -50,8 +50,8 @@
   text: isMap
 - href: isMaplike.html
   text: isMaplike
-- href: isReadOnly.html
-  text: isReadOnly
+- href: isReadOnlyMap.html
+  text: isReadOnlyMap
 - href: isTraversable.html
   text: isTraversable
 - href: json.html
@@ -84,12 +84,16 @@
   text: reverse
 - href: root.html
   text: root
+- href: scope.html
+  text: scope
 - href: shuffle.html
   text: shuffle
 - href: size.html
   text: size
 - href: sort.html
   text: sort
+- href: sync.html
+  text: sync
 - href: take.html
   text: take
 - href: text.html

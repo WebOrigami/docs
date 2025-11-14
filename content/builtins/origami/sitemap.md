@@ -3,7 +3,7 @@ title: sitemap(tree, host)
 supertitle: "Origami."
 ---
 
-Generates a basic [sitemap](https://en.wikipedia.org/wiki/Sitemaps) for the given tree so that it can be more easily crawled by search engines. The `sitemap` function prepends the indicated `host` URL to all paths in the tree to generate a list of the search engine should visit.
+Generates a basic [sitemap](https://en.wikipedia.org/wiki/Sitemaps) for the given [map-based tree](/async-tree/mapBasedTree.html) so that it can be more easily crawled by search engines. The `sitemap` function prepends the indicated `host` URL to all paths in the tree to generate a list of the search engine should visit.
 
 Example: if `tinySite.ori` contains:
 

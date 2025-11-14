@@ -30,7 +30,7 @@ Let's call the thing you create directly the _source form_ and the final result 
   <img src="/assets/illustrations/transformation.svg">
 </figure>
 
-You might create the source form by typing stuff out of your head, or by gathering bits of stuff from the web. For a website project like this About Us site, the source form is text, data, and images. This source form represents, in some way or another, the seed of everything necessary to grow the site you want.
+You might create the source form by typing stuff out of your head, or by gathering bits of stuff from the web. For a site project like this About Us site, the source form is text, data, and images. This source form represents, in some way or another, the seed of everything necessary to grow the site you want.
 
 You will define a series of computer-assisted _transformations_ to produce the result form: an immediately consumable representation of your idea, in this tutorial a final set of HTML pages that your audience can view directly in their browser. In some cases, you will need to put the source form through multiple transformations, in which the content takes on a series of intermediate forms before achieving its result form.
 

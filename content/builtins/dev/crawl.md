@@ -3,17 +3,17 @@ title: crawl(tree, [baseHref])
 supertitle: "Dev."
 ---
 
-Crawls the indicated live site and returns the complete tree of reachable resources.
+Crawls a [map-based tree](/async-tree/mapBasedTree.html) that represents a site and returns the complete tree of reachable resources.
 
 (If you already have a specific set of known resources you want to fetch from a site, you can [extract specific resources from a site](/language/howTo.html#extract-specific-resources-from-a-site).)
 
 ## Crawl an existing site
 
-You can use `crawl` to crawl an existing website and copy the resulting crawled tree for local inspection.
+You can use `crawl` to crawl an existing site and copy the resulting crawled tree for local inspection.
 
 In this case, the `tree` parameter is typically a [SiteMap](/async-tree/SiteMap.html). A convenient way to wrap an existing site is with the `httpstree` protocol (or `httptree` for non-secure HTTP sites) in a URL.
 
-For example, you can copy the original [Space Jam](https://www.spacejam.com/1996/) website to a local folder called `spacejam` via:
+For example, you can copy the original [Space Jam](https://www.spacejam.com/1996/) site to a local folder called `spacejam` via:
 
 ```console
 $ ori "copy crawl(httpstree://www.spacejam.com/1996/), files:spacejam"

@@ -3,7 +3,7 @@ title: shuffle(map)
 supertitle: "Tree."
 ---
 
-Returns a new map with the original's keys randomly shuffled.
+Reads the keys of a [map-like](/async-tree/maplike.html) object and returns a new map with the original keys randomly shuffled.
 
 ```console
 $ ori greetings.yaml

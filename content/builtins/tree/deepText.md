@@ -3,7 +3,7 @@ title: deepText(tree)
 supertitle: "Tree."
 ---
 
-Concatenates the text values of the tree.
+Concatenates the text values of the [map-based tree](/async-tree/mapBasedTree.html).
 
 ```yaml
 // greetings.yaml

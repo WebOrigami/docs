@@ -9,7 +9,7 @@ This is background reading. If you’d prefer to jump straight in, try the [blog
 
 ## Introduction
 
-Making a website would be so much easier if the web came with a good conceptual model for thinking about site construction.
+Making a site would be so much easier if the web came with a good conceptual model for thinking about site construction.
 
 If you’re making a spreadsheet, the spreadsheet grid provides a vital conceptual and spatial scaffold for your work, helping you break down your data entry and analysis tasks into manageable parts. The web offers nothing like that grid.
 
@@ -129,7 +129,7 @@ That said, with the right programming model and language, coding a site doesn't 
 
 That said, the programming approach isn’t appropriate for everyone or for every project. For comparison, let’s look at some other ways you could make a site.
 
-## Use a website framework
+## Use a site framework
 
 Even programmers don’t typically write their own site-generating program; they build instead on top of a site-generating _framework_ created by someone else. Popular site frameworks these days include [Astro](https://astro.build/), [Eleventy](https://www.11ty.dev/), [Gatsby](https://www.gatsbyjs.com/), and [Hugo](https://gohugo.io/); there are literally hundreds of others.
 

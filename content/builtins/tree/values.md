@@ -3,7 +3,7 @@ title: values(map)
 supertitle: "Tree."
 ---
 
-Returns an array of the top-level values in the map.
+Returns an array of the top-level values in the [map-like](/async-tree/maplike.html) object.
 
 ```console
 $ cat letters.yaml

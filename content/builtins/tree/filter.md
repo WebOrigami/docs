@@ -3,7 +3,7 @@ title: filter(tree, options)
 supertitle: "Tree."
 ---
 
-Applies a filter operation to a tree, returning only those values that pass a `test` function.
+Applies a filter operation to a [map-based tree](/async-tree/mapBasedTree.html), returning only those values that pass a `test` function.
 
 The `options` parameter can be either a function that will be used as the `test` function or a dictionary of options:
 

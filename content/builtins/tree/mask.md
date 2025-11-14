@@ -3,7 +3,7 @@ title: mask(source, mask)
 supertitle: "Tree."
 ---
 
-This returns the tree that results from applying the `mask` tree to the `source` tree, preserving only keys that exist in `mask` and have a [truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) value.
+This returns the tree that results from applying the `mask` tree to the [map-based](/async-tree/mapBasedTree.html) `source` tree, preserving only keys that exist in `mask` and have a [truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) value.
 
 See also [`Tree.filter`](filter.html).
 

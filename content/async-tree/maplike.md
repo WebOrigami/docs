@@ -26,4 +26,4 @@ async function manipulateTree(maplike) {
 }
 ```
 
-Note: the [`Tree.from`](from.html) method accepts any JavaScript object, but the helper function [`Tree.isMaplike`](/builtins/tree/isMaplike.html) returns `false` for an object that isn't one of the types listed above.
+Note: the [`Tree.from`](/builtins/tree/from.html) method accepts any JavaScript object, but the helper function [`Tree.isMaplike`](/builtins/tree/isMaplike.html) returns `false` for an object that isn't one of the types listed above.

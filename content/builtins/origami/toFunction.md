@@ -1,5 +1,6 @@
 ---
 title: toFunction(obj)
+supertitle: "Origami."
 ---
 
 This coerces the given object to a function.

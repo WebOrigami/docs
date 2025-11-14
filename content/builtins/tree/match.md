@@ -3,7 +3,7 @@ title: match(pattern, fn, [keys])
 supertitle: "Tree."
 ---
 
-Returns a tree that can match against simple patterns or JavaScript regular expressions. This is useful in creating virtual trees.
+Returns a [map-based tree](/async-tree/mapBasedTree.html) that can match against simple patterns or JavaScript regular expressions. This is useful in creating virtual trees.
 
 For example, if you are creating a `/user` area within a site that will handle routes like `/user/[name].html`, you can use `match()` to match that pattern and return a result.
 

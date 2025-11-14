@@ -1,9 +1,9 @@
 ---
 title: "httpstree: protocol"
-subtitle: Treat an HTTPS website as a tree
+subtitle: Treat an HTTPS site as a tree
 ---
 
-This lets you retrieve resources from an existing website by treating it as a tree.
+This lets you retrieve resources from an existing site by treating it as a tree.
 
 ```console
 $ ori "(httpstree://example.com)/index.html"

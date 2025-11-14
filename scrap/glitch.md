@@ -498,7 +498,7 @@ This template displays a person's name in a header. You can use this in the `map
 
 ## Use people names as file names
 
-As you've seen, the top-level keys in `teamData.yaml` are numbers, like `0` for the first person, so at the moment the `team` area pages are identified with numbers too. But in your final website tree, you'd like the keys in the `team` area to include the person's name, like `Alice.html`.
+As you've seen, the top-level keys in `teamData.yaml` are numbers, like `0` for the first person, so at the moment the `team` area pages are identified with numbers too. But in your final site tree, you'd like the keys in the `team` area to include the person's name, like `Alice.html`.
 
 So you want to transform both the keys and values of the team data. You can do this with an expanded form of the `map` function.
 
@@ -648,7 +648,7 @@ To review, you've created this entire site with a few resources, a couple of tem
 
 You have been viewing your About Us site using a small Origami server running in the background. Since the members of your team aren't going to change every minute, you can turn the whole site into static files: regular files whose contents aren't expected to constantly change.
 
-Defining a site as static files is generally faster and cheaper than running a live web server. On services like Glitch, static file websites are free!
+Defining a site as static files is generally faster and cheaper than running a live web server. On services like Glitch, static file sites are free!
 
 Glitch will build your site's static files automatically after you stop editing the site, but you can manually trigger the build process to see it in action.
 
@@ -660,7 +660,7 @@ Glitch will build your site's static files automatically after you stop editing 
 $ npm run build
 ```
 
-That copies everything in your running website to a real folder called `build`.
+That copies everything in your running site to a real folder called `build`.
 
 <span class="tutorialStep"></span> In the Glitch terminal, type:
 

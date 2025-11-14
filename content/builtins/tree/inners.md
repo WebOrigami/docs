@@ -3,4 +3,4 @@ title: inners(tree)
 supertitle: "Tree."
 ---
 
-Returns the tree's interior nodes, i.e., its nodes that have children.
+Returns the interior nodes of the [map-based tree](/async-tree/mapBasedTree.html), i.e., the nodes in the tree that have children.

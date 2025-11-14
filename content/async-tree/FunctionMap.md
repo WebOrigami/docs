@@ -1,9 +1,9 @@
 ---
 title: FunctionMap class
-subtitle: Wraps a function and a domain as an async tree
+subtitle: Wraps a function and a domain as a map
 ---
 
-## Usage
+## JavaScript usage
 
 ```js
 ${ samples/help/function.js }
@@ -38,7 +38,7 @@ class FunctionMap {
 }
 ```
 
-Unlike async tree classes like [ObjectMap](ObjectMap.html), an `FunctionMap` can often accept keys which it does not make public in its `keys` iterator. The sample `FunctionMap` defined above exposes only three keys ("Alice", "Bob", "Carol"), but will actually accept any key.
+Unlike classes like [ObjectMap](ObjectMap.html), an `FunctionMap` can often accept keys which it does not make public in its `keys` iterator. The sample `FunctionMap` defined above exposes only three keys ("Alice", "Bob", "Carol"), but will actually accept any key.
 
 ```console
 $ ori keys function.js/

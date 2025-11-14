@@ -3,7 +3,7 @@ title: plain(tree)
 supertitle: "Tree."
 ---
 
-Converts a tree of sync or async maps into a synchronous plain JavaScript object or array. A common use for `Tree.plain` is to convert a tree into a form that you can pass to a JavaScript function expecting a plain JavaScript object or array.
+Converts a [map-based tree](/async-tree/mapBasedTree.html) of sync or async maps into a synchronous plain JavaScript object or array. A common use for `Tree.plain` is to convert a tree into a form that you can pass to a JavaScript function expecting a plain JavaScript object or array.
 
 - The supplied argument can be any [map-like object](/async-tree/maplike.html) such as a JSON/YAML file, file system folder, etc. If omitted, `plain` converts the current tree — in the command line, this will be the current folder — to a plain JavaScript object.
 - The result's keys will be the tree's keys cast to strings. Any trailing slashes in keys will be removed.

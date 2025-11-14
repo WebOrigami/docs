@@ -33,7 +33,7 @@ These general principles guide the design of the Origami language itself. They a
 
 ### Focus on providing good ways to perform operations on trees
 
-- Such operations are ubiquitous in building digital artifacts like websites, but the platform (and Node.js) includes no solution for them. People fail to notice the considerable cost of implementing these operations.
+- Such operations are ubiquitous in building digital artifacts like sites, but the platform (and Node.js) includes no solution for them. People fail to notice the considerable cost of implementing these operations.
 - Make it possible to represent all hierarchical data sources as map-based trees. Origami offers built-in definitions for common types of maps; others are offered via extensions.
 - For all other hierarchical data sources, it should be straightforward to define a tree implementation compatible with Origami using just the [Map Tree pattern](/pattern) and [Map interface](/async-tree/interface.html).
 - Operations that work on one kind of tree should work on any kind of tree.

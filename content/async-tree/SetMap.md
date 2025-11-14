@@ -1,6 +1,6 @@
 ---
 title: SetMap class
-subtitle: Wraps a JavaScript Set instance as an async tree
+subtitle: Wraps a JavaScript Set instance as a map
 ---
 
 ## API

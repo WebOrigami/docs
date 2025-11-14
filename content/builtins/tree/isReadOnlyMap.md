@@ -1,5 +1,5 @@
 ---
-title: isReadOnly(obj)
+title: isReadOnlyMap(obj)
 supertitle: "Tree."
 ---
 

@@ -19,11 +19,11 @@ The Web Origami [async-tree](/async-tree) library contains more full-featured im
 
 The library also contains general-purpose versions of some of the map and tree operations in this walkthrough:
 
-- [`copy`](/builtins/tree/copy.html) command which, as shown here, can be used as the basis for a build process.
+- [`copy`](/builtins/dev/copy.html) command which, as shown here, can be used as the basis for a build process.
 - [`json`](/builtins/tree/json.html) returns a JSON representation of a map-based tree.
 - [`map`](/builtins/tree/map.html) handles the general case of mapping a tree with keys of one type (`.md` for markdown files, say) to another (`.html` for HTML files).
 - [`mdHtml`](/builtins/origami/mdHtml.html) command that transforms markdown text to the corresponding HTML.
-- [`plain`](/async-tree/tree/plain.html) can resolve a tree (including an async tree) to a plain JavaScript object.
+- [`plain`](/builtins/tree/plain.html) can resolve a tree (including an async tree) to a plain JavaScript object.
 - [`serve`](/builtins/dev/serve.html) command. This server has more features but retains the fundamental concept of translating an HTTP/S request into the traversal of a tree of maps.
 
 ## Command-line tool

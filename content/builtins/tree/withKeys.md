@@ -3,7 +3,7 @@ title: withKeys(map, keys)
 supertitle: "Tree."
 ---
 
-Returns a new map with the specified keys. This is similar to [`mask`](mask.html), but here the _values_ (not the keys) will be used from the `keys` option. Typically `keys` will be an array of strings.
+Given a [map-like](/async-tree/maplike.html) object and a set of `keys`, this returns a new map with the specified keys. This is similar to [`mask`](mask.html), but here the _values_ (not the keys) will be used from the `keys` option. Typically `keys` will be an array of strings.
 
 A use for this is to establish a domain for a function. Given a function that returns a string, `withKeys` establishes a domain for the function.
 

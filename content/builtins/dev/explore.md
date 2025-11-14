@@ -11,4 +11,4 @@ This is intended to be used in conjunction with the [`debug`](debug.html) comman
 http://localhost:5000/path/to/something/!explore
 ```
 
-to explore the scope available at that specific point in the website tree.
+to explore the scope available at that specific point in the site tree.

@@ -5,7 +5,7 @@ subtitle: Simple system for making sites traversable
 
 The JSON Keys protocol lets you make a site fully traversable so that users and programs can easily determine what files the site provides.
 
-We can think of a website as an asynchronous tree whose values can be retrieved via HTTP requests. Sadly, HTTP does not provide a way to list the keys of a subtree, so normally it is impossible to completely traverse a site's tree. JSON Keys attempts to fill this gap in the simplest way possible.
+We can think of a site as an asynchronous tree whose values can be retrieved via HTTP requests. Sadly, HTTP does not provide a way to list the keys of a subtree, so normally it is impossible to completely traverse a site's tree. JSON Keys attempts to fill this gap in the simplest way possible.
 
 ## JSON Keys protocol
 

@@ -3,7 +3,7 @@ title: reverse(map)
 supertitle: "Tree."
 ---
 
-Reverses the order of keys in the map.
+Reverses the order of keys in the [map-like](/async-tree/maplike.html) object.
 
 ```console
 $ cat letters.yaml

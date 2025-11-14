@@ -3,7 +3,7 @@ title: keys(map)
 supertitle: "Tree."
 ---
 
-Returns an array of the top-level keys in the indicated map.
+Returns an array of the top-level keys in the indicated [map-like](/async-tree/maplike.html) object.
 
 ```console
 $ cat letters.yaml

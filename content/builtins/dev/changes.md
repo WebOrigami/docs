@@ -3,7 +3,7 @@ title: changes(oldTree, newTree)
 supertitle: "Dev."
 ---
 
-This compares an old tree with a new one, indicating which values have been added, changed, or deleted.
+This compares an old [map-based](/async-tree/mapBasedTree.html) with a new one, indicating which values have been added, changed, or deleted.
 
 ## Example
 
@@ -37,7 +37,7 @@ $
 
 ## Using `changes` for testing static sites
 
-If you're using Origami to build a static website, your build folder represents the complete set of resources needed for your site to run. This means you can use `changes` to compare an old build and a new build to determine whether anything has changed.
+If you're using Origami to build a static site, your build folder represents the complete set of resources needed for your site to run. This means you can use `changes` to compare an old build and a new build to determine whether anything has changed.
 
 This can confirm that modifications to your site have only had the expected effects, and not broken something else somewhere unexpected.
 

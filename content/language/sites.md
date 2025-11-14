@@ -2,7 +2,7 @@
 title: Defining a site
 ---
 
-The Origami language lets you concisely define the structure of a website. This page introduces three key concepts — _trees_, _tree scope_, and _transformations_ — and a template system that make the language unique. If you prefer a hands-on approach, start with the [tutorial](tutorial.html).
+The Origami language lets you concisely define the structure of a site. This page introduces three key concepts — _trees_, _tree scope_, and _transformations_ — and a template system that make the language unique. If you prefer a hands-on approach, start with the [tutorial](tutorial.html).
 
 ## A tiny site
 
@@ -34,9 +34,9 @@ There are a number of ways to run an Origami program like the one above. The Ori
 
 _Key points: An Origami file provides a concise way to define a site. You can interact with your site immediately and view it as an interactive diagram, or work with it in the command line, or build it into a static site._
 
-## Websites as trees
+## sites as trees
 
-We often design and browse websites a single page at a time, but you can step back and consider _all_ the pages on a site as a tree of pages and other resources.
+We often design and browse sites a single page at a time, but you can step back and consider _all_ the pages on a site as a tree of pages and other resources.
 
 Example: the [source code](https://github.com/WebOrigami/about-us.git) for the sample <a href="https://origami-about-us.netlify.app" target="_blank">About Us</a> site defines the following pages:
 
@@ -58,7 +58,7 @@ ${
 }
 </figure>
 
-Website creators refer to URLs as _routes_: when you navigate to a URL like [team/Alice.html](https://origami-about-us.netlify.app/team/Alice.html), you're picking one particular route through this site's tree. Conceptually speaking, the web server starts at the tree's root on the left and then follows the keys `team` and `Alice.html` to find the web page it will send to your browser.
+site creators refer to URLs as _routes_: when you navigate to a URL like [team/Alice.html](https://origami-about-us.netlify.app/team/Alice.html), you're picking one particular route through this site's tree. Conceptually speaking, the web server starts at the tree's root on the left and then follows the keys `team` and `Alice.html` to find the web page it will send to your browser.
 
 The site's complete tree is a little bigger than what's shown above, because it also includes CSS stylesheets, image files, or other resources referenced by the HTML:
 

@@ -1,5 +1,5 @@
 ---
-title: "mapExtension(tree, ext, [fn|options])"
+title: "mapExtension(source, ext, [fn|options])"
 ---
 
 A variant of [`map`](map.html) that changes file extensions in keys.

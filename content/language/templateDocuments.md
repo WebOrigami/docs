@@ -91,7 +91,7 @@ Alternatively, front matter can be an [Origami expression](documents.html#origam
 
 If Origami front matter is present, that will be evaluated and returned as the result of invoking the template document. Within this front matter, you can invoke the template's body text as `_template`.
 
-Example: a website defines its "About" page as a template document called `about.ori.html`:
+Example: a site defines its "About" page as a template document called `about.ori.html`:
 
 ```html
 ${ samples/templateDocuments/baseTemplate/about.ori.html }

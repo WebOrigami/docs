@@ -3,14 +3,14 @@ title: constant(value)
 supertitle: "Tree."
 ---
 
-This returns a deep tree that returns the indicated `value` for any path.
+This returns a deep [map-based tree](/async-tree/mapBasedTree.html) that has the indicated `value` for any requested leaf node.
 
 ```ori
 // constant.ori
 ${ samples/help/constant.ori }
 ```
 
-This always returns the value 1 for any path:
+This always returns the value 1 for any path to a leaf node:
 
 ```console
 $ ori constant.ori/a

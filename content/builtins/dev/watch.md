@@ -1,11 +1,13 @@
 ---
-title: watch([tree], [expression])
+title: watch(tree, expression)
 supertitle: "Dev."
 ---
 
-Returns a tree that will be the result of executing the indicated `expression` in the context of the indicated `tree`.
+Watches a given [map-based tree](/async-tree/mapBasedTree.html) for changes.
 
-This also watches the `tree` for `change` events. Currently, [FileMap](/async-tree/FileMap.html) is the only type of tree that supports `change` events. If a `change` event is raised, the `expression` is reevaluated to obtain a new result tree. Subsequent references to the `watch()` result will access the new tree.
+When first called, this evaluates the `expression`, which should return a tree that can be served. That tree is essentially an indirect reference. If anything in the source tree changes, the expression is reevaluated and the indirect reference will be updated to point to the new result.
+
+This watches the source tree for `change` events. Currently, [FileMap](/async-tree/FileMap.html) is the only type of tree that supports `change` events. If a `change` event is raised, the `expression` is reevaluated to obtain a new result tree. Subsequent references to the `watch()` result will access the new tree.
 
 This can be used to serve a virtual folder, reevaluating its definition whenever the containing real folder changes.
 

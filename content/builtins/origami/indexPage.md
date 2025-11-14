@@ -3,7 +3,7 @@ title: indexPage([tree])
 supertitle: "Origami."
 ---
 
-Returns a default `index.html` page for the indicated tree. This will contain links for each of the tree's keys.
+Returns a default `index.html` page for the indicated [map-based tree](/async-tree/mapBasedTree.html). This will contain links for each of the tree's keys.
 
 This built-in function is implicitly included when you use the [`serve`](/builtins/dev/serve.html) function, but you can also invoke it manually in situations where you want to explicitly create a functional index page but don't care about its appearance, or want to define a simple index page with a different name.
 

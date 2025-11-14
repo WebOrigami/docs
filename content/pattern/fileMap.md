@@ -83,7 +83,7 @@ To implement the `get` method in the `Map` interface, we'll use the `fs.readFile
   }
 ```
 
-This `get` method includes some error handling. The Map interface expects the `get` method to return `undefined` for an unsupported key, but the `fs.readFileSync` API will throw an exception if a file does not exist with the indicated name. To create a well-behaved async tree, we catch exceptions and, if the exception is specifically an `ENOENT` (file not found) exception, we return `undefined`.
+This `get` method includes some error handling. The Map interface expects the `get` method to return `undefined` for an unsupported key, but the `fs.readFileSync` API will throw an exception if a file does not exist with the indicated name. To create a well-behaved map, we catch exceptions and, if the exception is specifically an `ENOENT` (file not found) exception, we return `undefined`.
 
 ## Test the file map
 

@@ -73,7 +73,7 @@ $ ori "serve Tree.map greetings.yaml, template.js"
 Server running at http://localhost:5000
 ```
 
-You can browse to one of the defined pages like http://localhost:5000/Alice. You'll see "Hello, Alice." rendered in HTML. Due to the lazy nature of async trees and `map`, that rendering work is only done on request.
+You can browse to one of the defined pages like http://localhost:5000/Alice. You'll see "Hello, Alice." rendered in HTML. Due to the lazy nature of map-based trees, that rendering work is only done on request.
 
 ## Transforming data into static files and then serving
 
@@ -96,7 +96,7 @@ You can perform a `copy` operation like the one in this example in preparation f
 
 ## Inspect a live web site
 
-<span class="tutorialStep"></span> The web site you're reading now supports viewing its contents as an async tree, so you can reference it directly in ori. For example, this site includes a route `/samples/greetings/`. You can pass that URL to ori with the custom [httpstree:](/builtins/protocol/httpstree.html) protocol to treat that route as an async tree, and display all the files at that route:
+<span class="tutorialStep"></span> The web site you're reading now supports viewing its contents as a tree, so you can reference it directly in ori. For example, this site includes a route `/samples/greetings/`. You can pass that URL to ori with the custom [httpstree:](/builtins/protocol/httpstree.html) protocol to treat that route as a tree, and display all the files at that route:
 
 ```console
 $ ori httpstree://weborigami.org/samples/greetings/
@@ -125,7 +125,7 @@ Making the full contents of a site more freely available might be concerning to 
 
 ## Copy a live web site to local files
 
-<span class="tutorialStep"></span> You can also use ori to copy a website as an async tree to local files:
+<span class="tutorialStep"></span> You can also use ori to copy a site as a tree to local files:
 
 ```console
 $ ori copy httpstree://weborigami.org/samples/greetings/, files:snapshot

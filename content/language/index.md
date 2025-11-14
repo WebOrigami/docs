@@ -1,6 +1,6 @@
 ---
 title: The Origami language
-subtitle: Complements HTML, CSS, and JavaScript so you can build complete websites
+subtitle: Complements HTML, CSS, and JavaScript so you can build complete sites
 ---
 
 ${ src/templates/blocks.ori(areaLinks) }
@@ -11,6 +11,8 @@ The HTML, CSS, and JavaScript languages let you define individual web pages, but
 - Process data and content into publishable forms.
 - Generate and reuse HTML across pages so they can be consistent and easier to make.
 - Serve those pages to your visitors.
+
+Origami is designed to help you accomplish all of that.
 
 ## Starting points
 

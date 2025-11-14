@@ -3,7 +3,7 @@ title: globKeys(tree)
 supertitle: "Tree."
 ---
 
-Treats the keys of `tree` as simple [glob](<https://en.m.wikipedia.org/wiki/Glob_(programming)>) patterns. The following patterns are supported:
+Treats the keys of the given [map-based tree](/async-tree/mapBasedTree.html) as simple [glob](<https://en.m.wikipedia.org/wiki/Glob_(programming)>) patterns. The following patterns are supported:
 
 - `*` matches any text
 - `?` matches a single character

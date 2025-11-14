@@ -1,5 +1,5 @@
 ---
-title: clear(tree)
+title: clear(map)
 supertitle: "Dev."
 ---
 

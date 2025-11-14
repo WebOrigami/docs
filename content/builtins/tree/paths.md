@@ -3,7 +3,7 @@ title: paths(tree)
 supertitle: "Tree."
 ---
 
-Returns an array of slash-separated paths for all values in the tree.
+Returns an array of slash-separated paths for all values in the [map-based tree](/async-tree/mapBasedTree.html).
 
 ```console
 $ ori greetings.yaml

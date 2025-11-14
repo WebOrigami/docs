@@ -3,7 +3,7 @@ title: take(map, count)
 supertitle: "Tree."
 ---
 
-Returns a copy of the given map, with the additional restriction that the new map's `keys` method will return only (at most) the first `count` keys.
+Returns a copy of the given [map-like](/async-tree/maplike.html) object, with the additional restriction that the new map's `keys` method will return only (at most) the first `count` keys.
 
 ```console
 $ cat letters.yaml

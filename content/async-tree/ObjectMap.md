@@ -1,6 +1,6 @@
 ---
 title: ObjectMap class
-subtitle: Wraps a plain JavaScript object or array as an async tree
+subtitle: Wraps a plain JavaScript object or array as a map
 ---
 
 ## JavaScript usage
@@ -12,7 +12,7 @@ Create a new `ObjectMap` by passing an object or array to the constructor:
 
 import { ObjectMap } from "@weborigami/origami";
 
-// Wrap an object to create an async tree.
+// Wrap an object to create a map.
 export default new ObjectMap({
   Alice: "Hello, Alice.",
   Bob: "Hello, Bob.",
@@ -20,7 +20,7 @@ export default new ObjectMap({
 });
 ```
 
-This defines a tree whose keys are the object's keys, and whose values are the object's values:
+This defines a map whose keys are the object's keys, and whose values are the object's values:
 
 <figure>
 ${ svg({

@@ -482,7 +482,7 @@ This template displays a person's name in a header. You can use this in the `map
 
 ## Use people names as file names
 
-As you've seen, the top-level keys in `teamData.yaml` are numbers, like `0` for the first person, so at the moment the `team` area pages are identified with numbers too. But in your final website tree, you'd like the keys in the `team` area to include the person's name, like `Alice.html`.
+As you've seen, the top-level keys in `teamData.yaml` are numbers, like `0` for the first person, so at the moment the `team` area pages are identified with numbers too. But in your final site tree, you'd like the keys in the `team` area to include the person's name, like `Alice.html`.
 
 So you want to transform both the keys and values of the team data. You can do this with an expanded form of the `map` function.
 

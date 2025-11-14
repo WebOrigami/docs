@@ -622,7 +622,7 @@ ${ Origami.yaml(Tree.keys(samples/howTo/markdown/site.ori)) + "\n" }
 
 ### Object nesting
 
-As in JavaScript, object literals can be nested. A common use for this in Origami is to define the overall structure of a website in a `.ori` file:
+As in JavaScript, object literals can be nested. A common use for this in Origami is to define the overall structure of a site in a `.ori` file:
 
 ```
 // subtree.ori

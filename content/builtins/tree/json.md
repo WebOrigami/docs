@@ -3,7 +3,7 @@ title: json(tree)
 supertitle: "Tree."
 ---
 
-Render the contents of the tree in JSON format.
+Render the contents of the [map-based tree](/async-tree/mapBasedTree.html) in JSON format.
 
 The ori tool uses YAML as its default output format, so you can use the `json` function to reformat the output as JSON:
 

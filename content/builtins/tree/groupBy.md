@@ -3,7 +3,7 @@ title: groupBy(map, fn)
 supertitle: "Tree."
 ---
 
-This function creates a new tree that groups values according to the result of a grouping function.
+Groups values in the [map-like](/async-tree/maplike.html) object according to the result of a grouping function, returning a new [map-based tree](/async-tree/mapBasedTree.html).
 
 For example, suppose the data for a set of books includes a `genre` field that can have multiple values:
 

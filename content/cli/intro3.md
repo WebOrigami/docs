@@ -3,13 +3,13 @@ title: Working with trees
 numberHeadings: true
 ---
 
-## Async trees
+## Trees
 
-ori is especially good at dealing with trees. More specifically, ori is designed to work with trees constructed from objects supporting the [Map interface](/async-tree/interface.html). Such nodes can enumerate their keys and, given a key, can return the corresponding value. Many common data structures can be represented as trees.
+ori is especially good at dealing with trees. More specifically, ori is designed to work with [map-based trees](/async-tree/mapBasedTree.html) constructed from objects supporting the [Map interface](/async-tree/interface.html). Such nodes can enumerate their keys and, given a key, can return the corresponding value. Many common data structures can be represented as trees.
 
-To accommodate remote data sources, ori can also work with asynchronous trees, where nodes support an interface that looks like a standard JavaScript `Map` but has asynchronous methods.
+To accommodate remote data sources, ori can also work with asynchronous trees. The nodes of such trees have the same methods as a standard JavaScript `Map` but the methods are asynchronous.
 
-<span class="tutorialStep"></span> One way to define an async tree is in [YAML](https://yaml.org/) format.
+<span class="tutorialStep"></span> One way to define a tree is in [YAML](https://yaml.org/) format.
 
 ```console
 $ ori greetings.yaml
@@ -46,7 +46,7 @@ Hello, Alice.
 
 The `greetings.yaml` tree is a flat list, but it can be a hierarchical tree or arbitrarily complex.
 
-<span class="tutorialStep"></span> An async tree can also be invoked like a function, so you also have the option of using function call syntax:
+<span class="tutorialStep"></span> A tree can also be invoked like a function, so you also have the option of using function call syntax:
 
 ```console
 $ ori "greetings.yaml('Alice')"
@@ -182,7 +182,7 @@ This means that you can use the `plain` function to convert a folder to a plain 
 
 Writing code to work with folder and files this way can be much easier than using Node's file system API directly. There is a performance trade-off implied by building an in-memory object to hold the file system data, but in many cases this is still very fast. And in practice it can much easier to manipulate a complete file system hierarchy as an in-memory object than working with a file system API.
 
-Another important benefit of working with async trees is that you can change your mind later about how you want to represent data without having to rewrite code that processes that data. You could start a small project by representing data in a single file and then, if your needs change later, switch to representing that data in a hierarchical tree of files, or data stored as web resources.
+Another important benefit of working with trees is that you can change your mind later about how you want to represent data without having to rewrite code that processes that data. You could start a small project by representing data in a single file and then, if your needs change later, switch to representing that data in a hierarchical tree of files, or data stored as web resources.
 
 &nbsp;
 

@@ -1,9 +1,9 @@
 ---
-title: map(tree, options)
+title: map(source, options)
 supertitle: "Tree."
 ---
 
-Creates a new tree from another by applying mapping functions to the original tree's values and/or keys.
+Given a [map-like](/async-tree/maplike.html) source, this applies functions to the map's values and/or keys to create a new, transformed map.
 
 See also [`mapExtension`](mapExtension.html) which handles changing file extensions in keys.
 
@@ -11,7 +11,7 @@ See also [`mapExtension`](mapExtension.html) which handles changing file extensi
 
 ## Mapping values
 
-In the simplest form of `map`, you provide a tree and a function that will be applied to the tree's values. The resulting tree will have the same keys as the original:
+In the simplest form of `map`, you provide a source map and a function that will be applied to the map's values. The resulting map will have the same keys as the original:
 
 ```console
 $ cat greetings.yaml
@@ -29,15 +29,15 @@ ${ Origami.yaml(Tree.map(samples/cli/greetings.yaml, samples/cli/uppercase.js)) 
   <figure>
     ${ svg(Tree.map(samples/cli/greetings.yaml, samples/cli/uppercase.js)) }
   </figure>
-  <figcaption>Original tree</figcaption>
-  <figcaption>Mapped values</figcaption>
+  <figcaption>Source map</figcaption>
+  <figcaption>Result map with transformed values</figcaption>
 </div>
 
 Unlike a JavaScript [Array map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map), the `map` function does not do any mapping work upon invocation — it only does the work when someone requests the mapped tree's keys or values.
 
 The mapping function is typically a JavaScript function, an Origami [arrow function](/language/expressions.html#arrow-functions), or a template such as an [Origami template](/language/templates.html). You can also use a second tree as a map.
 
-## map options
+## Options
 
 In the basic form of `map` shown above, the second parameter is some kind of mapping function that will be applied to the tree's values. You can also use an expanded form of `map` in which the second parameter is a collection of options:
 

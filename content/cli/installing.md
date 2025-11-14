@@ -29,7 +29,7 @@ If you don't want to install Origami globally, you can still invoke Origami with
 
 ## Create a package.json file
 
-A typical Origami website project will exist in a folder containing a `package.json` file
+A typical Origami site project will exist in a folder containing a `package.json` file
 
 <span class="tutorialStep"></span> Create a new folder and name it whatever you want.
 

@@ -1,14 +1,14 @@
 ---
-title: serve([tree], [port])
+title: serve(tree, [port])
 supertitle: "Dev."
 ---
 
-Starts a local web server to serve the contents of `tree`.
+Starts a local web server to serve the given [map-based tree](/async-tree/mapBasedTree.html).
 
-If no `tree` is supplied, `serve` uses the current tree (from the command line, that will be the current folder). To serve the current folder:
+To serve the current folder:
 
 ```console
-$ ori serve
+$ ori serve .
 Server running at http://localhost:5000
 ```
 

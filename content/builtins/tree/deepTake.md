@@ -3,7 +3,7 @@ title: deepTake(tree, count)
 supertitle: "Tree."
 ---
 
-Traverses deeply inside the tree, returning the first `count` values. This is essentially a deep version of [`take`](take.html) or a constrained version of [`deepValues`](deepValues.html).
+Traverses deeply inside the [map-based tree](/async-tree/mapBasedTree.html), returning the first `count` values. This is essentially a deep version of [`take`](take.html) or a constrained version of [`deepValues`](deepValues.html).
 
 ```console
 $ cat greetings.yaml

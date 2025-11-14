@@ -3,7 +3,7 @@ title: regExpKeys(tree)
 supertitle: "Tree."
 ---
 
-Treats the string keys of `tree` as [regular expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions).
+Treats the string keys of a [map-based tree](/async-tree/mapBasedTree.html) as [regular expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions).
 
 ```ori
 // regExpKeys.ori
