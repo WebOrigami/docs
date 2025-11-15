@@ -12,11 +12,11 @@ The last section noted that, in the context of our markdown-to-HTML problem, it'
   }) }
 </figure>
 
-This section introduces an interface suitable for working with such a map, regardless of its underlying data representation.
+We can use an interface to represent such a map, regardless of the data's underlying representation.
 
 ## The standard `Map` class
 
-We want to represent a collection of keys associated with values, and JavaScript provides a standard [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) class for that exact purpose.
+JavaScript provides a standard [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) class for the express purpose of associating keys with values.
 
 ```js
 const m = new Map();
@@ -31,7 +31,7 @@ m.get("c"); // undefined
 m.keys(); // "a", "b"
 ```
 
-If you haven’t worked with the `Map` class before, you can think of it as an array holding little arrays, each of which pairs a key with a value. The above `Map` is effectively the same as the array:
+If you haven’t worked with the `Map` class before, it's a little like an array holding little arrays, each of which pairs a key with a value. The above `Map` is effectively the same as:
 
 ```js
 [
@@ -40,9 +40,7 @@ If you haven’t worked with the `Map` class before, you can think of it as an a
 ];
 ```
 
-One thing that makes `Map` more interesting than an array-of-arrays is that finding a value in a `Map` designed to be much faster at finding a given key and the value associated with it. Another point that’s vital for our purposes is that `Map` is a class whose members can be overridden.
-
-We can actually pass an array-of-arrays to the `Map` constructor to populate it with an initial set of entries. We could initialize a `Map` with our sample post data:
+We can pass such an array-of-arrays to the `Map` constructor to populate it with an initial set of entries. We could initialize a `Map` with our sample post data:
 
 ```js
 const m = new Map([
@@ -54,11 +52,13 @@ const m = new Map([
 m.get("post1.md"); // "This is **post 1**."
 ```
 
+One thing that makes `Map` more interesting than an array-of-arrays is that `Map` is much faster at finding a given key and the value associated with it. Another point that’s vital for our purposes is that `Map` is a class whose members can be overridden.
+
 ## Map as an interface
 
 We can co-opt `Map` into working as a general-purpose interface for accessing information stored elsewhere.
 
-Specifically, we can subclass `Map` to create a custom class that looks and works just like `Map` but is backed by other data. The `Map` class happens to come with built-in storage — but we are going to completely ignore that!
+Specifically, we can subclass `Map` to create a custom class that looks and works just like `Map` but is backed by other data. The `Map` class happens to come with built-in storage — but we just ignore that.
 
 That is, we will use `Map` as an _interface_: a defined set of consistently-named methods and properties that meet specific expectations. Any code written to work with `Map` will automatically work with our custom subclasses without modification.
 
@@ -83,12 +83,12 @@ class CustomMap extends Map {
 
 The `keys` method is slightly exotic, returning an [iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_iterator_protocol) that can produce a sequence of values.
 
-- The simplest way to create an iterator is writing a [generator function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*).
+- The simplest way to create an iterator is writing a [generator function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*). A generator definition starts with an asterisk, like `*keys`.
 - The simplest way to consume an iterator is to pass it to [`Array.from`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from), which will enumerate the values produced by the iterator and return those as an array.
 
 ## Create a map from an object
 
-Of the three data representations we looked at previously, the in-memory JavaScript object was the simplest, so let's first look at defining a `Map` subclass that's backed directly by data stored in an object:
+Of the three data representations we looked at previously, the in-memory JavaScript object was the simplest, so let's first look at defining a `Map` subclass that's backed by an object's data:
 
 ```js
 /* src/map/ObjectMap.js */

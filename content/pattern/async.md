@@ -140,7 +140,7 @@ $ node json remote.js
 ${ Tree.json(pattern/async/remote.js) + "\n" }
 ```
 
-As before, all of the data looks the same — but is now coming from a completely different server. Each of those keys came from the `.keys.json` file, and each of those values came from the respective server file.
+As before, all of the data looks the same — but is now coming from a server. Each of those keys came from the server's `.keys.json` file, and each of those values came from the respective server file.
 
 Happily, this async `json` utility will still be able to process our regular, synchronous `Map` classes too. The JavaScript `for await` statement and `await` keyword are flexible enough that they work even if a map's `get` and `keys` methods are synchronous. The use of the async features for a sync map will have a minor impact on performance, but in exchange tools like the `json` utility can be made to work with both sync and async maps.
 

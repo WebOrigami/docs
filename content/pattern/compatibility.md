@@ -15,7 +15,7 @@ const map = new ObjectMap({
   "post3.md": "This is **post 3**.",
 });
 
-map.entries(); // empty array
+map.entries(); // empty array ☹️
 ```
 
 We can fix this by overriding the `Map` helper methods so that they call `get` or `keys` where appropriate.
