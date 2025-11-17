@@ -32,10 +32,15 @@ Note that a map's `keys` method doesn't have to return every key the map can act
 
 ```console
 $ node fn.test.js
+▶ FunctionMap
+  ✔ get (0.755042ms)
+  ✔ keys (0.346042ms)
+✔ FunctionMap (1.489167ms)
+ℹ tests 2
+ℹ suites 1
+ℹ pass 2
+ℹ fail 0
 …
-# tests 3
-# pass 3
-# fail 0
 ```
 
 <span class="tutorialStep"></span> Use our `json` utility to display this function-based map:

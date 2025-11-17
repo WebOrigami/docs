@@ -107,10 +107,15 @@ ${ pattern/map/files.test.js }
 
 ```console
 $ node files.test.js
+▶ FileMap
+  ✔ get (0.574958ms)
+  ✔ keys (0.410875ms)
+✔ FileMap (1.39225ms)
+ℹ tests 2
+ℹ suites 1
+ℹ pass 2
+ℹ fail 0
 …
-# tests 3
-# pass 3
-# fail 0
 ```
 
 ## Display the files

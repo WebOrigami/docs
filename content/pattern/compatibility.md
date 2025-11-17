@@ -67,15 +67,28 @@ const map = new ObjectMap({
 map.entries(); // [["post1.md", "This is **post 1**."], … etc.]
 ```
 
-<span class="tutorialStep"></span> From inside the `src/site` directory, confirm that all tests still pass:
+We can create an expanded suite of tests that cover more of the `Map` interface.
+
+<span class="tutorialStep"></span> From inside the `src/site` directory, confirm that our enhanced `ObjectMap` passes the expanded test suite:
 
 ```console
 $ cd ../site
 $ node object.test.js
+▶ ObjectMap
+  ✔ get (0.292541ms)
+  ✔ keys (0.304ms)
+  ✔ entries (0.075416ms)
+  ✔ forEach (0.0825ms)
+  ✔ has (0.066042ms)
+  ✔ size (0.04675ms)
+  ✔ Symbol.iterator (0.072667ms)
+  ✔ values (0.061ms)
+✔ ObjectMap (1.429834ms)
+ℹ tests 8
+ℹ suites 1
+ℹ pass 8
+ℹ fail 0
 …
-# tests 3
-# pass 3
-# fail 0
 ```
 
 We can likewise update `FileMap`, `FunctionMap`, and `HtmlMap` to derive from `SyncMap`. All those classes will now be fully `Map`-compatible.

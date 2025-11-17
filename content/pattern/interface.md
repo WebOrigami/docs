@@ -108,7 +108,17 @@ ${ pattern/map/object.js }
 
 ## Test the object map
 
-The first thing we can do with this object-based map is programmatically verify that its methods conform to the expectations of the `Map` class:
+The first thing we can do with this object-based map is programmatically verify that its `get` and `keys` methods conform to the expectations of the `Map` class.
+
+We're going to run these tests against other types of maps, so we'll generalize them:
+
+```${'js'}
+/* src/map/mapTest.js */
+
+${ pattern/map/mapTest.js }
+```
+
+And then used the general tests with our `ObjectMap` implementation:
 
 ```${'js'}
 /* src/map/object.test.js */
@@ -121,10 +131,15 @@ ${ pattern/map/object.test.js }
 ```console
 $ cd ../map
 $ node object.test.js
+▶ ObjectMap
+  ✔ get
+  ✔ keys
+✔ ObjectMap
+ℹ tests 2
+ℹ suites 1
+ℹ pass 2
+ℹ fail 0
 …
-# tests 3
-# pass 3
-# fail 0
 ```
 
 &nbsp;

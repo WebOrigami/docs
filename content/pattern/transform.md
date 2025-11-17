@@ -104,10 +104,14 @@ ${ pattern/map/HtmlMap.test.js }
 
 ```console
 $ node HtmlMap.test.js
-…
-# tests 3
-# pass 3
-# fail 0
+▶ HtmlMap
+  ✔ get (5.9125ms)
+  ✔ keys (0.352084ms)
+✔ HtmlMap (6.658167ms)
+ℹ tests 2
+ℹ suites 1
+ℹ pass 2
+ℹ fail 0
 ```
 
 ## Display the transformed map
