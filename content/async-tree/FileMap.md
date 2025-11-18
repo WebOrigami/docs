@@ -1,6 +1,6 @@
 ---
 title: FileMap class
-subtitle: Wraps a file system directory as a may
+subtitle: Wraps a file system directory as a map
 ---
 
 This class wraps the Node.js [`fs`](https://nodejs.org/api/fs.html) file system API so that you can work with a file system folder as a `Map`.
