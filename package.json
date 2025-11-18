@@ -3,14 +3,14 @@
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
-    "@weborigami/origami": "0.5.8",
-    "@weborigami/pagefind": "0.0.12",
-    "@weborigami/pattern-intro": "github:WebOrigami/pattern-intro#8d53765d",
+    "@weborigami/origami": "0.6.0",
+    "@weborigami/pagefind": "0.0.15",
+    "@weborigami/pattern-intro": "github:WebOrigami/pattern-intro#4de23649",
     "@weborigami/samples": "github:WebOrigami/samples#f9998bc3",
-    "marked": "15.0.7",
-    "sharp": "0.33.5",
-    "typescript": "5.8.2",
-    "yaml": "2.7.0"
+    "marked": "17.0.0",
+    "sharp": "0.34.5",
+    "typescript": "5.9.3",
+    "yaml": "2.8.1"
   },
   "devDependencies": {
     "@weborigami/screenshot": "0.0.6"
