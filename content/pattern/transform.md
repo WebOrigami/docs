@@ -23,7 +23,7 @@ In our markdown-to-HTML transformation, we will create a virtual map of HTML con
   <figcaption>Map of HTML content</figcaption>
 </div>
 
-A `Map` associates keys with values, so the fact the transformation will affect both keys and values makes a `Map` a good choice for representing the transformation's input and output.
+A `Map` associates keys with values, so the fact the transformation affects both keys and values makes a `Map` a good choice for representing the transformation's input and output.
 
 ## Rough in the transformation
 

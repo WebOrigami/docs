@@ -3,7 +3,7 @@ title: SyncMap class
 subtitle: A base class for custom Map subclasses
 ---
 
-To support the use of [`Map` as an interface](interface.html), the `async-tree` library provides a base class called `SyncMap`. `SyncMap` can be used as a drop-in replacement for `Map`, and avoids a number of problems with extending `Map` directly; see below.
+To support the use of [`Map` as an interface](interface.html), the `async-tree` library provides a base class called `SyncMap`. `SyncMap` is designed as a drop-in replacement for `Map`, and avoids a number of problems with extending `Map` directly; see below.
 
 As its name suggests, all of the members of `SyncMap` are synchronous; for an asynchronous version, see [`AsyncMap`](./AsyncMap.html).
 
@@ -23,6 +23,8 @@ It would be nice if the helper members were actually defined in terms of the cor
 For example, the [`clear()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/clear) helper method erases everything in the `Map`. It would ideally be defined in terms of the core methods `keys()` and `delete()`. Similarly, the [`entries()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/entries) helper method returns the `[key, value]` pairs of the map, and would ideally be defined in terms of the core methods `keys()` and `get()`.
 
 Sadly, the `Map` helper members are hard-coded to work directly with the class’s internal data representation. Subclassing `Map` then requires boilerplate code to maintain baseline expectations.
+
+For comparison, the Python language provides a [`Mapping` abstract base class](https://docs.python.org/3/library/collections.abc.html#collections-abstract-base-classes) that is much more helpful than JavaScript's `Map`. When you inherit from `Mapping`, you only need to define a small set of core methods, and the base class uses your definitions to provide the remaining methods.
 
 ### `Map` methods fail when the prototype chain is extended
 
@@ -180,6 +182,10 @@ To account for this potential disconnect between keys and values, the map helper
 - `clear()`, `entries()`, `forEach()`, `values()`, and `[Symbol.iterator]()` loop over the result of `keys()`.
 - `has(key)` returns `true` as long as the given `key` appears in the result of `keys()`. As shown above, the map might still return a value for a `key` even when `has(key)` is `false`.
 - `size` returns the number of keys returned by `keys()`. The `get()` might actually return more values than that size would suggest.
+
+## Limitations
+
+`SyncMap` can be generally used as a drop-in replacement for `Map`. One situation where `SyncMap` will not work as expected is with the JavaScript function [`structuredClone`](https://developer.mozilla.org/en-US/docs/Web/API/Window/structuredClone). `structuredClone` will accept a `Map` object but will directly accesses a map's built-in storage. If you pass a `SyncMap` to `structuredClone`, the function will not call your `get()` or `keys()` methods, and the cloned result will be an empty `Map`.
 
 ## API
 

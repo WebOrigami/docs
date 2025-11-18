@@ -7,10 +7,10 @@ ${ src/templates/blocks.ori(areaLinks) }
 
 The HTML, CSS, and JavaScript languages let you define individual web pages, but to build a complete site you also need to:
 
-- Define the overall structure of the pages and resources for your site.
-- Process data and content into publishable forms.
-- Generate and reuse HTML across pages so they can be consistent and easier to make.
-- Serve those pages to your visitors.
+- **Define the overall structure** of the pages and resources for your site.
+- **Process data and content** into publishable forms.
+- **Generate and reuse HTML** across pages so they can be consistent and easier to make.
+- **Serve or build** those pages as static files you can deploy anywhere.
 
 Origami is designed to help you accomplish all of that.
 
