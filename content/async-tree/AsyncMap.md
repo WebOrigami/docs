@@ -1,5 +1,5 @@
 ---
-title: AsyncMap
+title: AsyncMap class
 subtitle: Asynchronous version of standard Map class
 ---
 

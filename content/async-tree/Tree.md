@@ -1,5 +1,5 @@
 ---
-title: Tree
+title: Tree collection
 subtitle: Helper functions for working with asynchronous trees
 ---
 
