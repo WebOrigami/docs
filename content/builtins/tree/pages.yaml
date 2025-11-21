@@ -8,6 +8,8 @@
   text: cache
 - href: calendar.html
   text: calendar
+- href: child.html
+  text: child
 - href: clear.html
   text: clear
 - href: constant.html
@@ -86,6 +88,8 @@
   text: root
 - href: scope.html
   text: scope
+- href: set.html
+  text: set
 - href: shuffle.html
   text: shuffle
 - href: size.html

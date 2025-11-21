@@ -13,7 +13,7 @@ A site can indicate which keys are available at a given route by supporting the 
 
 - Every route that acts as a folder can define a `.keys.json` file.
 - The contents of this file must be an array of strings in JSON format listing the keys (names) of the files and subfolders published at that route.
-- A key may follow the [trailing slash convention](interface.html#trailing-slash-convention) by ending in a trailing `/` slash to signal that the key is for a subfolder. If the site chooses not to do this, it should redirect to a route that ends in a trailing slash (e.g., from `/foo` to `/foo/`); the redirection itself will act as the signal that the route represents a folder.
+- Keys follow the [trailing slash convention](trailingSlash.html) by ending in a trailing `/` slash to signal that the key is for a subfolder.
 - The `.keys.json` file should not list its own name in the array of keys, nor should it include `"."` and `".."` entries for the folder itself and its parent.
 
 ## Example
