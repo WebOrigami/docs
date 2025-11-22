@@ -6,8 +6,8 @@ title: Working with file types
 
 The specific form a "file" takes can depend on how you reference it.
 
-- When you reference a file in the file system in Origami, Origami uses a [FileMap](/async-tree/FileMap.html) to resolve the reference and return the value as a Node [Buffer](https://nodejs.org/api/buffer.html) object.
-- When you reference a file on a site via a URL, Origami uses a [SiteMap](/async-tree/SiteMap.html) to resolve the reference and return the value as a JavaScript [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
+- When you reference a file in the file system in Origami, Origami uses a [`FileMap`](/async-tree/FileMap.html) to resolve the reference and return the value as a Node [`Buffer`](https://nodejs.org/api/buffer.html) object.
+- When you reference a file on a site via a URL, Origami uses a [`SiteMap`](/async-tree/SiteMap.html) to resolve the reference and return the value as a JavaScript [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
 
 ## Standard file types
 
@@ -302,9 +302,10 @@ With that, Origami will call your custom file handler whenever you reference a `
 $ cat alice.user
 ${ samples/cli/alice.user }
 $ ori alice.user/
-${ Origami.yaml(Origami.jsonParse(samples/cli/alice.user)) }
+${ Origami.yaml(samples/cli/alice.user/) }
 $ ori alice.user/name
-${ Origami.jsonParse(samples/cli/alice.user).name + "\n" }
+${ (samples/cli/alice.user).name }
+
 ```
 
 ### Defining a handler for a template language
