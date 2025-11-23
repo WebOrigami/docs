@@ -54,10 +54,7 @@ Origami's custom `explore:` protocol allow you to indicate that you want to trea
 
 ```console
 $ ori keys explore://weborigami.org/samples/greetings/
-- Alice
-- Bob
-- Carol
-- index.html
+${ Origami.yaml(Tree.keys(explore://weborigami.org/samples/greetings/)) }
 ```
 
 Here the `explore:` protocol creates a `SiteMap` instance which retrieves the route's keys defined in a `.keys.json` file. The `keys` function then asks that tree for the list of keys, which the ori CLI displays as the result of the command.
@@ -66,10 +63,7 @@ You can also use ori to display the complete contents of all pages at a given ro
 
 ```console
 $ ori explore://weborigami.org/samples/greetings/
-Alice: Hello, Alice.
-Bob: Hello, Bob.
-Carol: Hello, Carol.
-index.html: … [HTML content of the file] …
+${ Origami.yaml(explore://weborigami.org/samples/greetings/) }
 ```
 
 Or use ori to copy the contents of a site locally:
@@ -77,7 +71,7 @@ Or use ori to copy the contents of a site locally:
 ```console
 $ ori copy explore://weborigami.org/samples/greetings/, files:snapshot
 $ ls snapshot
-Alice      Bob        Carol      index.html
+Alice      Bob        Carol
 ```
 
 You can also use the [`explore:`](/builtins/dev/explore.html) protocol to create an explorable site for a given URL.
