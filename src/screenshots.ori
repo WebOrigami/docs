@@ -1,6 +1,6 @@
 // This Origami program consumes the information about the sample Origami sites
 // and returns a virtual folder of screenshots of those sites.
-Tree.map(examples.yaml, {
+Tree.mapExtension(examples.yaml, {
   extension: "→.png"
   value: (example) => example.url
     ? package:@weborigami/screenshot/url(Dev.log(example.url), {
