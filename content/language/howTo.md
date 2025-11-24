@@ -193,7 +193,7 @@ With this, all the pages are directly available at the root of the site and URLs
 
 ## Add an index page to a folder created with a map
 
-Suppose you have a folder of posts you're create with [`map`](/builtins/tree/map.html), perhaps to [transform a folder of markdown into HTML](#transform-markdown-folder), and you want the resulting virtual folder of HTML to have its own `index.html` page. You can use the same [spread operator](expressions.html#spread-operator) shown above.
+Suppose you have a folder of posts you create with [`map`](/builtins/tree/map.html), perhaps to [transform a folder of markdown into HTML](#transform-markdown-folder), and you want the resulting virtual folder of HTML to have its own `index.html` page. You can use the same [spread operator](expressions.html#spread-operator) shown above.
 
 In this situation, you're going to be using your transformed markdown twice: once to create the HTML pages in the `pages` area, and a second time for the index page for the `pages` area. To make your `map` reusable, define it in a separate file called `data.ori`
 
