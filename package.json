@@ -13,7 +13,7 @@
     "yaml": "2.8.1"
   },
   "devDependencies": {
-    "@weborigami/screenshot": "0.0.6"
+    "@weborigami/screenshot": "0.0.15"
   },
   "scripts": {
     "build": "NODE_ENV=production ori 'copy netlify.js(Origami.jsonKeys(src/site.ori)), clear files:build'",
