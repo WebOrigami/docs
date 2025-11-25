@@ -47,7 +47,17 @@ ${ Origami.yaml(samples/help/yamlTags/callTagDemo.yaml/) }
 
 ## Incorporate a file as a property
 
-Suppose you have a set of data files to represent information on products. Most of the data is text or numbers, but you also have an image file you'd like to associate with a product.
+Suppose you have a set of data files to represent information on products. Most of the data is text or numbers, but you'd also like to associate with a product. A typical solution is to reference a path:
+
+```yaml
+product: Widget
+description: Our latest model
+image: images/widget.svg
+```
+
+The `image` property is a string, "images/widget.svg". Code that renders this object has to be aware of the path and know what base address the path is relative to.
+
+In some cases, it may be preferable to actually make the file contents available as a property of the data object.
 
 ```yaml
 product: Widget
@@ -55,9 +65,9 @@ description: Our latest model
 image: !ori images/widget.svg
 ```
 
-The `image` expression points to an SVG file; the path will be resolved using Origami [scope](scope.html).
+Here the `image` property will be (a `Promise` for) the actual SVG content. The path will be resolved using the Origami [scope](scope.html) for the folder containing the YAML file. The expression could just as easily reference a network file via a URL.
 
-This makes the `image` data a property of the product. Code that, for example, renders a product as an HTML page doesn't need to know where image came from.
+Code that renders the product as an HTML page won't need to care where image came from.
 
 ## Apply a template to data
 
@@ -69,7 +79,7 @@ Suppose a project defines a [template document](/language/templateDocuments.html
 ${ samples/help/yamlTags/page.ori.html }
 ```
 
-This template document defines a function that defines a single `_` underscore parameter. The argument passed to that function should have `title` and `_body` properties.
+This template document defines a function that accepts a single `_` underscore parameter. The argument passed as that parameter should have `title` and `_body` properties.
 
 A YAML file can define data _and_ indicate that the template should be applied to it:
 
@@ -83,3 +93,5 @@ Evaluating this applies the template as a function to the data and returns the t
 $ ori quote.yaml/
 ${ samples/help/yamlTags/quote.yaml/ }
 ```
+
+This effectively treats a YAML file as a format for describing a function call, with potentially complex arguments and significant blocks of multi-line text.

@@ -28,4 +28,7 @@ Tree.mapExtension(content, {
 
   // Code samples
   samples/
+
+  // Comics
+  // comics/ = comics.ori/
 }
