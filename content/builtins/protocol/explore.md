@@ -7,7 +7,5 @@ If the given site supports the [JSON Keys](/async-tree/jsonKeys.html) protocol, 
 
 ```console
 $ ori keys explore://weborigami.org/samples/greetings
-- Alice
-- Bob
-- Carol
+${ Origami.yaml(Tree.keys(explore://weborigami.org/samples/greetings/)) }
 ```

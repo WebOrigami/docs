@@ -33,7 +33,7 @@ The work proceeds in steps:
 2. For each string key, we create an HTML fragment for a list item containing a link to the corresponding page in the `posts` area. (We'll actually define that area shortly.) In a real blog index, we'd want the link to include the blog post title, date, and maybe a summary. Here we'll just use the page file name without the `.html` extension.
 3. We join all the links together and insert them into HTML boilerplate.
 
-A useful aspect of this `indexPage` function is that, by virtue of using the `Map` abstract, it can construct links to any set of HTML pages defined by any means. We can use it to generate an index of HTML pages generated from markdown files — or write a unit test that generates an index for a small set of hardcoded HTML pages wrapped in a standard `Map`.
+A useful aspect of this `indexPage` function is that, by virtue of using the `Map` base class, it can construct links to any set of HTML pages defined by any means. We can use it to generate an index of HTML pages generated from markdown files — or write a unit test that generates an index for a small set of hardcoded HTML pages wrapped in a standard `Map`.
 
 &nbsp;
 

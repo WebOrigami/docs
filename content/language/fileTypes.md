@@ -6,8 +6,8 @@ title: Working with file types
 
 The specific form a "file" takes can depend on how you reference it.
 
-- When you reference a file in the file system in Origami, Origami uses a [FileMap](/async-tree/FileMap.html) to resolve the reference and return the value as a Node [Buffer](https://nodejs.org/api/buffer.html) object.
-- When you reference a file on a site via a URL, Origami uses a [SiteMap](/async-tree/SiteMap.html) to resolve the reference and return the value as a JavaScript [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
+- When you reference a file in the file system in Origami, Origami uses a [`FileMap`](/async-tree/FileMap.html) to resolve the reference and return the value as a [`Uint8Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array). This is a more standard representation of a Node [`Buffer`](https://nodejs.org/api/buffer.html) object.
+- When you reference a file on a site via a URL, Origami uses a [`SiteMap`](/async-tree/SiteMap.html) to resolve the reference and return the value as a JavaScript [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
 
 ## Standard file types
 
@@ -40,7 +40,10 @@ See below for details on these types.
 
 ### Unpacking files
 
-Regardless of a file's representation, you can use Origami path syntax to traverse the file and work with a more meaningful representation that reflects the file's type. Origami determines how to "unpack" the file contents based on the file extension.
+Regardless of a file's representation, you can use Origami path syntax to traverse the file and work with a more meaningful representation that reflects the file's type. Origami determines how to "unpack" the file contents based on the file extension. Origami does this automatically when:
+
+1. You traverse inside them with an operator like `/`, `.`, or `[ ]`.
+1. You pass them to one of Origami's [builtin function](/builtins) that implies traversal, like [`Tree.map`](https://weborigami.org/builtins/tree/map.html).
 
 For example, suppose you have a JSON file `pet.json` containing
 
@@ -69,7 +72,7 @@ $ ori pet.json/
 ${ Origami.yaml(samples/help/pet.json) }
 ```
 
-Most builtin functions that work on data will implicitly unpack a file in order to work on it. For example, you can hand the above JSON file directly to the [`keys`](/builtins/tree/keys.html) function to view the keys of the data in that file, without having to append a `/` trailing slash to the `pet.json` file name:
+Most builtin functions that work on data will implicitly unpack a file in order to work on it. For example, you can hand the above JSON file directly to the [`Tree.keys`](/builtins/tree/keys.html) function to view the keys of the data in that file, without having to append a `/` trailing slash to the `pet.json` file name:
 
 ```console
 $ ori keys pet.json
@@ -275,23 +278,24 @@ You can tell Origami how to handle other types of files based on their file exte
 
 Suppose your project has `.user` files that define data about users. For simplicity, let's assume the contents of a `.user` file is in plain JSON text.
 
-You can define a JavaScript file `user.handler.js`:
+You can define a JavaScript file `user_handler.js`:
 
 ```${"js"}
-${ samples/cli/user.handler.js }
+${ samples/cli/user_handler.js }
+
 ```
 
-The `mediaType` declaration tells the Origami server to transmit any `.user` files as JSON. The `unpack` method defines how to turn the file contents into data. A file may be a `Buffer`, `ArrayBuffer`, or other data type depending on where it is stored. The `toString()` utility function in Origami converts any of those types to plain text. The `JSON.parse()` call then parses the text into data.
+The `mediaType` declaration tells the Origami server to transmit any `.user` files as JSON. The `unpack` method defines how to turn the file contents into data. A file may be a `Uint8Array` (`Buffer`), `ArrayBuffer`, or other data type depending on where it is stored. The `toString()` utility function in Origami converts any of those types to plain text. The `JSON.parse()` call then parses the text into data.
 
 ### Add your extension handler to your Origami configuration
 
-The second step is to tell Origami to use your `user.handler.js` file to handle any `.user` files.
+The second step is to tell Origami to use your `user_handler.js` file to handle any `.user` files.
 
-Define a [config.ori](configuration.html) file at the root of your project. Inside that, define a key `user.handler` that points to the location of the `.js` file:
+Define a [config.ori](configuration.html) file at the root of your project. Inside that, define a key `user_handler` that points to the location of the `.js` file:
 
 ```ori
 {
-  user.handler = src/user.handler.js
+  user_handler = src/user_handler.js
 }
 ```
 
@@ -301,9 +305,10 @@ With that, Origami will call your custom file handler whenever you reference a `
 $ cat alice.user
 ${ samples/cli/alice.user }
 $ ori alice.user/
-${ Origami.yaml(Origami.jsonParse(samples/cli/alice.user)) }
+${ Origami.yaml(samples/cli/alice.user/) }
 $ ori alice.user/name
-${ Origami.jsonParse(samples/cli/alice.user).name + "\n" }
+${ (samples/cli/alice.user).name }
+
 ```
 
 ### Defining a handler for a template language

@@ -1,0 +1,11 @@
+{
+  assets/
+  index.html = index.ori(posts)
+  posts/ = Tree.map(markdown/, Origami.mdHtml)
+
+  // Folder of search indexes and resources created on demand (but only once),
+  pagefind/ = Origami.once(() => package:@weborigami/pagefind({ posts }))
+
+  // Search page
+  search.html
+}
