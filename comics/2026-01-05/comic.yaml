@@ -1,0 +1,28 @@
+- text: >
+    The **pagefind** tool lets you add full-text search to your static site — and it’s easy to add to your an Origami site!
+  actor: Alice
+  scene:
+    browser.ori.html:
+      url: https://pagefind.app
+      body: !ori screenshot.ori("https://pagefind.app")
+
+- text: >
+    Create a **search page** however you want, then link to it in your navigation.
+  scene:
+    editor.ori.html:
+      file: search.html
+
+- text: >
+    Add **two lines** to your Origami site definition to include the search page and generate the indexes
+  scene:
+    editor.ori.html:
+      file: site.ori
+
+- text: >
+    Serve your site locally or **build to deploy** anywhere!
+  actor: Alice
+  face: grin
+  scene:
+    browser.ori.html:
+      url: http://localhost:5000
+      body: !ori hello.html
