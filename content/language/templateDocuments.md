@@ -148,7 +148,7 @@ $ ori "link.ori.html('https://weborigami.org', 'Web Origami')"
 ${ samples/templateDocuments/link.ori.html('https://weborigami.org', 'Web Origami') + "\n" }
 ```
 
-### Behavior within a `map`
+## Behavior within a `map`
 
 When used inside a [`Tree.map`](/builtins/tree/map.html) function, a template document will provide a default `key` function to the map. This `key` function will add the template document's last extension to keys in the map's output.
 

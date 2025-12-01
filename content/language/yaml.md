@@ -47,7 +47,7 @@ ${ Origami.yaml(samples/help/yamlTags/callTagDemo.yaml/) }
 
 ## Incorporate a file as a property
 
-Suppose you have a set of data files to represent information on products. Most of the data is text or numbers, but you'd also like to associate with a product. A typical solution is to reference a path:
+Suppose you have a set of data files to represent information on products. Most of the data is text or numbers, but you'd also like to associate each product with an image. A typical solution is to reference an image by a path:
 
 ```yaml
 product: Widget
@@ -57,7 +57,7 @@ image: images/widget.svg
 
 The `image` property is a string, "images/widget.svg". Code that renders this object has to be aware of the path and know what base address the path is relative to.
 
-In some cases, it may be preferable to actually make the file contents available as a property of the data object.
+In some cases, it may be preferable to make the file _contents_ available as a property of the data object.
 
 ```yaml
 product: Widget
@@ -67,7 +67,7 @@ image: !ori images/widget.svg
 
 Here the `image` property will be (a `Promise` for) the actual SVG content. The path will be resolved using the Origami [scope](scope.html) for the folder containing the YAML file. The expression could just as easily reference a network file via a URL.
 
-Code that renders the product as an HTML page won't need to care where image came from.
+Code that renders the product as an HTML page won't need to care where the image came from.
 
 ## Apply a template to data
 
