@@ -34,9 +34,9 @@ The trailing slashes let you quickly see that `src/` and `test/` represent subfo
 
 Operations that traverse a tree also benefit from quickly knowing which keys represent subtrees.
 
-As an example, the [`Tree.paths`](/builtins/tree/paths.html) function returns a list of path-separated paths for every value in a tree. The function needs to visit each node in the tree — but it wants to avoid wasting work getting values that aren't map nodes.
+As an example, the builtin [`Tree.paths`](/builtins/tree/paths.html) operation returns a list of path-separated paths for every value in a tree. The function needs to visit each node in the tree — but it wants to avoid wasting work getting values that aren't map nodes.
 
-- If the map for a node supports trailing slashes, the `paths` operation knows it only needs to get the values for keys that end in slashes. The keys without slashes won't be child nodes.
+- If the map for a node has a `trailingSlashKeys` property (below) that is `true`, the `paths` operation knows it only needs to get the values for keys that end in slashes. The keys without slashes won't be child nodes.
 - If the map for a node doesn't support trailing slashes, then `paths` must get every value in that node to decide whether it needs to descend into it.
 
 ## Indicating intent
@@ -56,6 +56,6 @@ The following classes support the convention:
 - [`BrowserFileMap`](BrowserFileMap.html)
 - [`ExplorableSiteMap`](ExplorableSiteMap.html)
 - [`FileMap`](FileMap.html)
-- [`ObjectMap`](ObjectMap.html)
+- [`ObjectMap`](ObjectMap.html) if the constructor's `deep` option is `true`
 
 Origami also includes a set of [`slash`](/builtins/origami/slash.html) functions for working with trailing slashes.

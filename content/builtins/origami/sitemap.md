@@ -18,3 +18,5 @@ then calling `sitemap` generates:
 $ ori Origami.sitemap tinySite.ori, "'https://mysite.org'"
 ${ Origami.sitemap(samples/help/tinySite.ori, "https://mysite.org") }
 ```
+
+Note: If the indicated tree supports the [`trailingSlashKeys`](/async-tree/mapBasedTree.html#trailingslashkeys-property) property, the `Tree.sitemap` operation will only descend into child nodes whose keys are marked with trailing slashes.

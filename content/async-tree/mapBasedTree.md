@@ -51,6 +51,8 @@ A map can define an optional `parent` property pointing to another map. A map ca
 
 ### `trailingSlashKeys` property
 
-To indicate that a map does or doesn't comply with the [JSON Keys](jsonKeys.html) protocol, a map can define an optional `trailingSlashKeys` property. This should be a boolean value, and should be `true` if the map's `keys()` method appends trailing slashes to keys for child nodes.
+A map can optionally comply with the [trailing slash convention](trailingSlash.html) by defining a `trailingSlashKeys` property. This should be a boolean value: if `true`, the map's `keys()` method should return trailing slashes on keys for child nodes.
 
-If a map has no `trailingSlashKeys` property, tree operations will assume the map doesn't support the protocol.
+Origami builtin tree operations like [`Tree.paths`](/builtins/tree/paths.html) and [`Tree.sitemap`](/builtins/tree/sitemap.html) can optimize their work in tree whose map nodes have a `trailingSlashKeys` property that is `true`. The operations can look at a key to decide whether the value is a child node in the tree; keys that don't have trailing slashes are considered leaf nodes, and the operation won't need to get their values. This can save considerable time when traversing a large tree.
+
+If a map has no `trailingSlashKeys` property, or the property is `false`, tree operations assume the map doesn't support the protocol. They will get the value for each key and, if the value is a map, descend into it. Getting each value is more thorough but takes more time.
