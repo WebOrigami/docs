@@ -48,6 +48,8 @@
   text: indent
 - href: inners.html
   text: inners
+- href: invokeFunctions.html
+  text: invokeFunctions
 - href: isMap.html
   text: isMap
 - href: isMaplike.html
