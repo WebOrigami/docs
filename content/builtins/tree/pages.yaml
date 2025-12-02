@@ -82,6 +82,8 @@
   text: paths
 - href: plain.html
   text: plain
+- href: reduce.html
+  text: reduce
 - href: regExpKeys.html
   text: regExpKeys
 - href: reverse.html
