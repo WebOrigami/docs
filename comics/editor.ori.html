@@ -1,4 +1,6 @@
 <comic-editor>
   <div>${ _.name }</div>
-<pre>${ _.content }</pre>
+<pre>
+${ Origami.htmlEscape(_.content) }
+</pre>
 </comic-editor>

@@ -4,7 +4,8 @@ title: |
 
 frames:
   - text: >
-      The **pagefind** tool lets you add full-text search to your static site — and it’s easy to add to your an Origami site!
+      The **pagefind** tool lets you add full-text search to your static site —
+      and it’s easy to add to your an Origami site!
     actor: Alice
     scene: browser.ori.html
     url: https://pagefind.app
@@ -18,7 +19,8 @@ frames:
     content: !ori search.html
 
   - text: >
-      Add **two lines** to your Origami site definition to include the search page and generate the indexes
+      Add **two lines** to your Origami site definition to include the search
+      page and generate the indexes
     scene: editor.ori.html
     name: site.ori
     content: !ori site.ori

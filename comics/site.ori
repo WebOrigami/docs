@@ -1,0 +1,6 @@
+{
+  comics/ = Tree.map(comics/, {
+    key: "/→.html"
+    value: (folder) => comic.ori.html(folder/comic.yaml)
+  })
+}
