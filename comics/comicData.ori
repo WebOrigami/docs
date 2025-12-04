@@ -1,0 +1,4 @@
+Tree.map(comics/, (folder, dateSlash) => {
+  ...folder/comic.yaml
+  date: Origami.slash.remove(dateSlash)
+})

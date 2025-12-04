@@ -1,0 +1,11 @@
+(date) =>
+
+  // Get URLs to the individual panels being served locally
+  Tree.paths((explorehttp://localhost:5000/panels)[date], {
+    base: `http://localhost:5000/panels/${ date }`
+  })
+
+  → (urls) => Tree.mapExtension(urls, {
+    extension: "→.png"
+    value: (url) => package:@weborigami/screenshot/url(url)
+  })

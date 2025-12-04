@@ -4,10 +4,7 @@
     styles.css = Tree.deepText(styles/)
   }
 
-  comics/ = Tree.mapExtension(comics/, {
-    extension: "/→.html"
-    value: (folder, date) => comic.ori.html(folder/comic.yaml, Origami.slash.remove(date))
-  })
+  comics/ = Tree.map(comicData.ori, comic.ori.html)
 
   // Extract images from comics folder
   images/ = Tree.mask(<comics/>, Tree.globKeys({
@@ -23,6 +20,8 @@
       "*.webp": true
     }
   }))
+
+  panels/ = Tree.map(comicData.ori, panels.ori)
 
   screenshots/ = screenshots.ori/
 }

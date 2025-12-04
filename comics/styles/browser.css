@@ -1,6 +1,7 @@
 screencast-browser {
   background: var(--browser-background);
   display: grid;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   grid-template-rows: auto 1fr;
 
   .addressBar {
@@ -28,7 +29,6 @@ screencast-browser {
   .page {
     background: white;
     color: black;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: larger;
 
     button, input, select, textarea {

@@ -1,5 +1,6 @@
-node_modules
 .DS_Store
 .netlify
-crawl
 build
+captures
+crawl
+node_modules
