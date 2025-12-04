@@ -1,3 +1,12 @@
-<comic-browser url="${ _.url }">
-  ${ _.content ?? "" }
-</comic-browser>
+---
+(frame, date) => _template()
+---
+<div class="browser">
+  <div class="url">${ frame.url ?? "" }</div>
+  <div inert>
+    ${ frame.content ?? "" }
+    ${ frame.screenshot ? Tree.indent`
+      <img src="/screenshots/${ date }/${ frame.screenshot }">
+    ` : "" }
+  </div>
+</div>

@@ -4,13 +4,11 @@ title: |
 
 frames:
   - text: >
-      The **pagefind** tool lets you add full-text search to your static site —
-      and it’s easy to add to your an Origami site!
+      Easily add **full-text search** to your static site with Origami's pagefind extension!
     actor: Alice
     scene: browser.ori.html
     url: https://pagefind.app
-    content: |
-      <img src="/comics/2026-01-05/pagefind.png" alt="Pagefind website screenshot">
+    screenshot: pagefind.png
 
   - text: >
       Create a **search page** however you want, then link to it in your navigation.
@@ -29,5 +27,5 @@ frames:
     actor: Alice
     face: grin
     scene: browser.ori.html
-    url: http://localhost:5000
-    content: !ori hello.html
+    url: http://localhost:5000/search.html
+    content: !ori results.html

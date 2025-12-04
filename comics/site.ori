@@ -1,6 +1,23 @@
 {
-  comics/ = Tree.map(comics/, {
-    key: "/→.html"
-    value: (folder) => comic.ori.html(folder/comic.yaml)
+  comics/ = Tree.mapExtension(comics/, {
+    extension: "/→.html"
+    value: (folder, date) => comic.ori.html(folder/comic.yaml, Origami.slash.remove(date))
   })
+
+  // Extract images from comics folder
+  images/ = Tree.mask(<comics/>, Tree.globKeys({
+    "**": {
+      "*.gif": true
+      "*.ico": true
+      "*.jpeg": true
+      "*.jpg": true
+      "*.png": true
+      "*.svg": true
+      "*.tif": true
+      "*.tiff": true
+      "*.webp": true
+    }
+  }))
+
+  screenshots/ = screenshots.ori/
 }

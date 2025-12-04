@@ -1,4 +1,7 @@
+---
+// A single comic page
+(comic, date) => page.ori.html(_template())
+---
 <article>
-  ${ Origami.mdHtml(_.title) }
-${ Tree.map(_.frames, frame.ori) }
+${ Tree.map(comic.frames, (frame) => <frame.ori>(frame, date)) }
 </article>

@@ -1,0 +1,9 @@
+Tree.map(
+  <comics/>
+  (folder) => Tree.map(folder/comic.yaml/frames, {
+    key: (frame) => frame.screenshot
+    value: (frame) => screenshot.ori(frame.url)
+  }
+))
+
+→ (screenshots) => Tree.cache(screenshots, files:cache/screenshots)
