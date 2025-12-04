@@ -1,6 +1,9 @@
-<comic-editor>
-  <div>${ _.name }</div>
-<pre>
-${ Origami.htmlEscape(_.content) }
-</pre>
-</comic-editor>
+<screencast-editor class="scene">
+  <div class="tabBar">
+    <div class="tab">${ _.name }</div>
+  </div>
+  <div class="editor">
+${ Origami.mdHtml(`\`\`\`${ Origami.extension.extname(_.name).slice(1) }
+${ _.content } \`\`\``) }
+  </div>
+</screencast-editor>

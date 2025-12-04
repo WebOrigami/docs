@@ -1,8 +1,8 @@
 Tree.map(
-  <comics/>
-  (folder) => Tree.map(folder/comic.yaml/frames, {
-    key: (frame) => frame.screenshot
-    value: (frame) => screenshot.ori(frame.url)
+  comics/
+  (folder) => Tree.map(folder/comic.yaml/panels, {
+    key: (panel) => panel.screenshot
+    value: (panel) => screenshot.ori(panel.url)
   }
 ))
 

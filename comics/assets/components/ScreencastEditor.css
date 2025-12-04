@@ -1,0 +1,39 @@
+screencast-editor {
+  background: var(--terminal-background);
+  color: var(--editor-color);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
+
+  > * {
+    overflow: hidden;
+  }
+  
+  .tabBar {
+    background: var(--editor-background);
+    padding: var(--window-padding);
+    padding-bottom: 0;
+    
+    .tab {
+      background: var(--terminal-background);
+      color: color-mix(in oklch, var(--editor-color), var(--terminal-background) 10%);
+      display: inline-block;
+      padding: 0.5rem 1rem;
+    } 
+  }
+
+  .editor {
+    font-family: var(--editor-font-family);
+    padding: var(--window-padding);
+
+    pre {
+      font-family: inherit;
+      margin: 0;
+      overflow: hidden;
+    }
+  }
+
+  screencast-terminal {
+    border-top: 1px solid color-mix(in oklch, var(--terminal-background), white 25%);
+  }
+}

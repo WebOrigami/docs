@@ -1,0 +1,44 @@
+screencast-terminal {
+  background: var(--terminal-background);
+  color: var(--editor-color);
+  display: grid;
+  font-family: var(--editor-font-family);
+  grid-auto-rows: min-content;
+  padding: var(--window-padding);
+  
+  screencast-typewriter {
+    .prefix {
+      color: #FAC863;
+      font-weight: bold;
+      width: 2ch; /* Since we have to use grid */
+    }
+
+    .text {
+      font-weight: bold;
+    }
+  }
+
+  /* Hide second typewriter if the first has nothing to type */
+  &:has(screencast-typewriter:first-of-type.notyping) screencast-typewriter:nth-of-type(2) {
+    display: none;
+  }
+
+  pre {
+    font-family: inherit;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  &.typing {
+    .output {
+      display: none;
+    }
+  }
+
+  &.typing,
+  &.running {
+    screencast-typewriter:nth-of-type(2) {
+      display: none;
+    }
+  }
+}

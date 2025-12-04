@@ -1,0 +1,45 @@
+screencast-browser {
+  background: var(--browser-background);
+  display: grid;
+  grid-template-rows: auto 1fr;
+
+  .addressBar {
+    align-items: center;
+    color: black;
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    padding: 0.5rem;
+
+    .icon {
+      color: #555;
+      height: 1.5rem;
+      width: 1.5rem;
+    }
+
+    .addressInput {
+      background: #f0f0f0;
+      box-sizing: border-box;
+      border: 1px solid transparent;
+      margin-left: 0.5rem;
+      padding: 0.5rem;
+    }
+  }
+
+  .background {
+    background: white;
+    display: grid;
+    font-family: serif;
+    
+    .page {
+      color: black;
+      font-size: larger;
+      /* padding: 0.5rem; */
+    }
+  }
+
+  .page {
+    img {
+      max-width: 100%;
+    }
+  }
+}

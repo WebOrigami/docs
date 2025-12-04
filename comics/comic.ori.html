@@ -2,6 +2,6 @@
 // A single comic page
 (comic, date) => page.ori.html(_template())
 ---
-<article>
-${ Tree.map(comic.frames, (frame) => <frame.ori>(frame, date)) }
-</article>
+<screencast-comic>
+${ Tree.map(comic.panels, (panel) => <panel.ori>(panel, date)) }
+</screencast-comic>

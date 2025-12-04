@@ -1,0 +1,54 @@
+@font-face {
+  font-family: "Anime Ace 3";
+  src: url("/assets/fonts/AnimeAce3BB-Regular.woff") format("woff");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+/* 
+@font-face {
+  font-family: "Anime Ace 3";
+  src: url("/assets/fonts/AnimeAce3BB-Bold.woff") format("woff");
+  font-style: normal;
+  font-weight: bold;
+  text-rendering: optimizeLegibility;
+} */
+ 
+@font-face {
+  font-family: "Anime Ace 3";
+  src: url("/assets/fonts/AnimeAce3BB-Italic.woff") format("woff");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "Anime Ace 3";
+  src: url("/assets/fonts/AnimeAce3BB-BoldItalic.woff") format("woff");
+  font-style: italic;
+  font-weight: bold;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+body {
+  --browser-background: #ccc;
+  --terminal-background: #1d2225;
+  --editor-background: color-mix(in oklch, var(--terminal-background), var(--editor-color) 10%);
+  --editor-color: white;
+  --editor-font-family: monospace;
+  --selection-transition-speed: 0.25s;
+  --window-padding: 0.5rem;
+
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  color-scheme: light dark;  
+}

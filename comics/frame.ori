@@ -1,9 +1,0 @@
-// A single comic frame
-(frame, date) => Tree.indent`
-  <div class="frame">
-    <div class="caption">
-      ${ Origami.mdHtml(frame.text) }
-    </div>
-${ .(frame.scene)(frame, date) }
-  </div>
-`

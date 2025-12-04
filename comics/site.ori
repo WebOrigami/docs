@@ -1,4 +1,9 @@
 {
+  assets = {
+    ...assets/
+    components.css = Tree.deepText(assets/components)
+  }
+
   comics/ = Tree.mapExtension(comics/, {
     extension: "/→.html"
     value: (folder, date) => comic.ori.html(folder/comic.yaml, Origami.slash.remove(date))

@@ -2,10 +2,11 @@ title: |
   Easily add full text search to your #static site with the [pagefind
   extension](https://github.com/WebOrigami/extensions/tree/main/pagefind)
 
-frames:
+panels:
   - text: >
       Easily add **full-text search** to your static site with Origami's pagefind extension!
     actor: Alice
+    face: wow
     scene: browser.ori.html
     url: https://pagefind.app
     screenshot: pagefind.png
@@ -17,8 +18,8 @@ frames:
     content: !ori search.html
 
   - text: >
-      Add **two lines** to your Origami site definition to include the search
-      page and generate the indexes
+      Add **two lines** to your Origami site definition to include the pagefind
+      files and the search page.
     scene: editor.ori.html
     name: site.ori
     content: !ori site.ori

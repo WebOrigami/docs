@@ -1,0 +1,19 @@
+// A single comic panel
+(panel, date) => Tree.indent`
+  <screencast-panel>
+    <div class="caption">
+      ${ panel.face ? `
+          <div class="iconContainer">
+            <img class="icon" src="/assets/${ panel.actor.toLowerCase() }/${ panel.face }.svg" />
+          </div>
+        ` : "" }
+      <div class="bubble">
+        <div class="tail"></div>
+        <div class="speech">
+          ${ Origami.mdHtml(panel.text) }
+        </div>
+      </div>
+    </div>
+${ .(panel.scene)(panel, date) }
+  </screencast-panel>
+`

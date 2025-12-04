@@ -1,0 +1,33 @@
+
+screencast-comic {
+  --gutter: clamp(1rem, 3vw, 2rem);
+  color-scheme: light dark;  
+  container-type: inline-size;
+  display: grid;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  gap: 3rem 0;
+  grid-template-columns: var(--gutter) auto var(--gutter);
+  justify-content: center;
+  justify-items: center;
+  padding: 3rem 0;
+
+  @media (prefers-color-scheme: dark) {
+    background: #111;
+    color: white;
+  }
+
+  @media (prefers-color-scheme: light) {
+    background: #faf9f6;
+    color: #333;
+  }
+
+  > * {
+    grid-column: 2;
+    transition: opacity var(--selection-transition-speed);
+
+    &[aria-selected="false"] {
+      opacity: 0.66;
+    }
+  }
+}
