@@ -1,2 +1,27 @@
-<input type="text" value="about" />
-<div>About us</div>
+<div style="display: grid; gap: 1rem">
+  <template shadowrootmode="open">
+    <style>
+      ::slotted(div) {
+        border-top: 1px solid #ccc;
+        padding-top: 1rem;
+      }
+    </style>
+    <slot></slot>
+  </template>
+
+  <h3 style="margin: 0">Search</h3>
+
+  <input type="text" value="about" />
+
+  <p style="font-weight: bold">Two results for about</p>
+
+  <div>
+    <strong>About us</strong>
+    <p>Learn more <mark>about</mark> our mission and values.</p>
+  </div>
+
+  <div>
+    <strong>Support</strong>
+    <p>Get help and find answers <mark>about</mark> our services.</p>
+  </div>
+</div>

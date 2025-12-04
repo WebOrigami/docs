@@ -1,7 +1,7 @@
 {
   assets = {
     ...assets/
-    components.css = Tree.deepText(assets/components)
+    styles.css = Tree.deepText(styles/)
   }
 
   comics/ = Tree.mapExtension(comics/, {

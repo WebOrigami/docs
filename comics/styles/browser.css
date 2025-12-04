@@ -25,20 +25,22 @@ screencast-browser {
     }
   }
 
-  .background {
-    background: white;
-    display: grid;
-    font-family: serif;
-    
-    .page {
-      color: black;
-      font-size: larger;
-      /* padding: 0.5rem; */
-    }
-  }
-
   .page {
-    img {
+    background: white;
+    color: black;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: larger;
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    &:not(:has(.screenshot)) {
+      padding: 1rem;
+    }
+    
+    .screenshot {
       max-width: 100%;
     }
   }

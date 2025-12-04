@@ -32,12 +32,10 @@
       ${ panel.url ?? "" }
     </div>
   </div>
-  <div class="background">
-    <div class="page" inert>
-      ${ panel.content ?? "" }
-      ${ panel.screenshot ? Tree.indent`
-        <img src="/screenshots/${ date }/${ panel.screenshot }">
-      ` : "" }
-    </div>
+  <div class="page" inert>
+    ${ panel.content ?? "" }
+    ${ panel.screenshot ? Tree.indent`
+      <img src="/screenshots/${ date }/${ panel.screenshot }" class="screenshot">
+    ` : "" }
   </div>
 </screencast-browser>

@@ -6,15 +6,6 @@
   text-rendering: optimizeLegibility;
 }
 
-/* 
-@font-face {
-  font-family: "Anime Ace 3";
-  src: url("/assets/fonts/AnimeAce3BB-Bold.woff") format("woff");
-  font-style: normal;
-  font-weight: bold;
-  text-rendering: optimizeLegibility;
-} */
- 
 @font-face {
   font-family: "Anime Ace 3";
   src: url("/assets/fonts/AnimeAce3BB-Italic.woff") format("woff");
