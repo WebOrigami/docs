@@ -1,0 +1,57 @@
+title: |
+  Origami is a dialect of **JavaScript expressions** that uses paths instead of imports.
+
+  https://weborigami.org/language/expressions
+
+panels:
+  - text: >
+      Origami is a dialect of **JavaScript expressions** that uses paths instead of imports.
+    actor: Bob
+    face: talk
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: site.js
+        content: !ori site.js
+      - scene: editor.ori.html
+        name: site.ori
+        content: !ori site.ori
+    footnote: The greet.js reference resolves to the file's **default export**.
+
+  - text: >
+      This makes it quicker to call a JavaScript function from a **site
+      definition** to generate a resource.
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: site.ori
+        content: !ori site.ori
+      - scene: terminal.ori.html
+        content: !ori session3.ori.html()
+
+  - text: >
+      Paths can also **reference data** inside local or network files.
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: teamData.yaml
+        content: !ori samples/templates/teamData.yaml
+      - scene: editor.ori.html
+        name: site.ori
+        content: !ori site2.ori
+      - scene: terminal.ori.html
+        content: !ori session4.ori.html()
+
+  - text: >
+      Paths are one reason the Origami dialect is generally **much more
+      concise** than the equivalent JavaScript!
+    actor: Bob
+    face: happy
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: site.js
+        content: !ori site2.js
+      - scene: editor.ori.html
+        name: site.ori
+        content: !ori site2.ori

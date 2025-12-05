@@ -4,6 +4,8 @@
   </div>
   <div class="editor">
 ${ Origami.mdHtml(`\`\`\`${ Origami.extension.extname(_.name).slice(1) }
-${ _.content } \`\`\``) }
+${ _.content }
+${ Origami.string(_.content).endsWith("\n") ? "" : "\n" }
+\`\`\``) }
   </div>
 </screencast-editor>

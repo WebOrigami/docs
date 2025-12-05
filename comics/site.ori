@@ -4,7 +4,7 @@
     styles.css = Tree.deepText(styles/)
   }
 
-  comics/ = Tree.map(comicData.ori, comic.ori.html)
+  comics/ = Tree.map(comicData.ori, templates/comic.ori.html)
 
   // Extract images from comics folder
   images/ = Tree.mask(<comics/>, Tree.globKeys({
@@ -21,7 +21,7 @@
     }
   }))
 
-  panels/ = Tree.map(comicData.ori, panels.ori)
+  panels/ = Tree.map(comicData.ori, templates/panels.ori)
 
   screenshots/ = screenshots.ori/
 }

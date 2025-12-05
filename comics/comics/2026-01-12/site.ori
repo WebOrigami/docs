@@ -1,0 +1,5 @@
+// Equivalent in Origami dialect
+
+{
+  greeting.html: greet.js("world")
+}

@@ -15,5 +15,12 @@
       </div>
     </div>
 ${ .(panel.scene)(panel, date) }
+  ${ panel.footnote ?
+    Tree.indent`
+      <div class="footnote ${ panel.footnote.length > 60 ? "long" : "short" }">
+        ${ Origami.mdHtml(panel.footnote) }
+      </div>
+    ` : ""
+  }
   </screencast-panel>
 `

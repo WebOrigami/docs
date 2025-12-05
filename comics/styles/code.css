@@ -76,3 +76,7 @@
   text-decoration: underline;
   color: #5FB3B3;
 }
+
+.language-bash {
+  font-weight: bold;
+}
