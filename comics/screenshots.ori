@@ -1,6 +1,6 @@
 Tree.map(
-  comics/
-  (folder) => Tree.map(folder/comic.yaml/panels, {
+  comicData.ori
+  (comic) => Tree.map(comic/panels, {
     key: (panel) => panel.screenshot
     value: (panel) => screenshot.ori(panel.url)
   }

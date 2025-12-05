@@ -4,52 +4,61 @@ title: |
 
 panels:
   - text: >
-      Many site generators require blog feed **plugins** that are typically
-      magic and often hard to configure.
+      Site generators typically create blog feeds via **plugins** that are often
+      magic and hard to configure.
     actor: Bob
     face: concerned
     scene: editor.ori.html
-    name: blogConfig.json
+    name: ssg.config.json
     content: |
       {
         "title": "Bob's Cool Blog",
         "author": "Bob Barnes",
         "url": "https://bobscoolblog.com",
         "plugins": [
-          "blog-feed-plugin"
+          "blog-feed-plugin": {
+            "itemsPerPage": 10,
+            "includeImages": true,
+            "customFields": [
+              "readingTime",
+              "tags"
+            ],
+            "dontIncludeDrafts": true,
+            "sortBy": "date",
+            "sortOrder": "descending",
+            "outputFormats": [
+              "rss",
+              "jsonFeed"
+            ]
+          }
         ],
-        "blogFeedPlugin": {
-          "itemsPerPage": 10,
-          "includeImages": true,
-          "customFields": [
-            "readingTime",
-            "tags"
-          ],
-          "dontIncludeDrafts": true,
-          "sortBy": "date"
-        }
       }
 
   - text: >
-      The actual feed formats are reasonably simple! For example, the **JSON
-      Feed** format can directly represent your blog content.
+      The actual feed formats are comparatively simple! For example, the **JSON
+      Feed** format is just your blog posts as JSON data.
     scene: editor.ori.html
     name: feed.json
     content: !ori feed.json
-    footnote: For details, visit jsonfeed.org
+    footnote: See jsonfeed.org
 
   - text: >
-      You can write an **Origami expression** outputs your blog posts in JSON
-      Feed format.
+      You can write an **Origami expression** that translates your blog posts to
+      JSON Feed format.
     scene: editor.ori.html
     name: feed.ori
     content: !ori feed.ori
 
   - text: >
-      You can add the JSON Feed format and **RSS format** to your blog without
-      any plugins at all!
+      So you can add a JSON Feed and **RSS feed** to your blog without any
+      plugins!
     actor: Bob
-    face: happy
-    scene: editor.ori.html
-    name: site.ori
-    content: !ori site.ori
+    face: wink
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: site.ori
+        content: !ori site.ori
+      - scene: browser.ori.html
+        url: https://bobscoolblog.com/feed.xml
+        content: !ori rss.ori.html()

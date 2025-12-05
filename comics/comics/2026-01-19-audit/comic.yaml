@@ -36,7 +36,7 @@ panels:
           $ ori audit site.ori
           ${ Dev.audit(fixed.ori) ? Origami.yaml(Dev.audit(fixed.ori)) : "" }
           $
-    footnote: No audit results means no broken links.
+    footnote: No audit results = no broken links
 
   - text: You can even audit a **public site**!
     actor: Alice

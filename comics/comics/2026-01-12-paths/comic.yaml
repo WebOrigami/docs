@@ -19,8 +19,8 @@ panels:
     footnote: The greet.js reference gets the file's **default export**.
 
   - text: >
-      That makes it easier to call a JavaScript function from a **site
-      definition** to generate a resource.
+      You can call a JavaScript function by file name in a **site definition**
+      to generate a resource.
     scene: split.ori.html
     panes:
       - scene: editor.ori.html

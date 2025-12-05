@@ -1,4 +1,3 @@
-// Blog site definition
 {
   // The posts area contains a page for each individual post
   posts/ = Tree.map(postData.ori, singlePostPage.ori)

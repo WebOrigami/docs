@@ -1,3 +1,7 @@
+---
+(panel, comic) => _template()
+---
+
 <screencast-browser class="scene">
   <div class="addressBar">
     <svg
@@ -25,13 +29,13 @@
       />
     </svg>
     <div class="addressInput">
-      ${ _.url ?? "" }
+      ${ panel.url ?? "" }
     </div>
   </div>
   <div class="page" inert>
-    ${ _.content ?? "" }
-    ${ _.screenshot ? Tree.indent`
-      <img src="/screenshots/${ date }/${ _.screenshot }" class="screenshot">
+${ panel.content ?? "" }
+    ${ panel.screenshot ? Tree.indent`
+      <img src="/screenshots/${ comic.slug }/${ panel.screenshot }" class="screenshot">
     ` : "" }
   </div>
 </screencast-browser>
