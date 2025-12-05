@@ -1,0 +1,23 @@
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "Bob's Cool Blog",
+  "description": "Bob's thoughts on everything",
+  "feed_url": "https://bobscoolblog.com/feed.json",
+  "home_page_url": "https://bobscoolblog.com",
+  "items": [
+    {
+      "content_html": "<p><img src=\"https://bobscoolblog.com/images/narcissus.jpg\" alt=\"Narcissus flowers\"></p>\n<p>So why did I come all the way out here away from everyone? My nearest neighbor is a mile away, and there’s no house in sight unless you climb a hill half a mile away. It’s an amazing feeling to have my horizon completely encircled by woods, with no sign of human habitation.</p>\n<p>From my little spot I have a distant view of the railroad where it touches the pond on one side, and the fence skirting the woodland road on the other. But most of the time, it’s as solitary here as being out on the prairies. It feels like I have my own private universe.</p>\n",
+      "date_published": "2025-08-13T17:00:00.000Z",
+      "id": "https://bobscoolblog.com/posts/2025-08-13.html",
+      "title": "Solitude",
+      "url": "https://bobscoolblog.com/posts/2025-08-13.html"
+    },
+    {
+      "content_html": "<p><img src=\"https://bobscoolblog.com/images/stars.jpg\" alt=\"Nighttime sky showing stars between trees\"></p>\n<p>You might be surprised to learn just how dark it can get in the woods, even on an average night. It’s darker than most people think. Often, I have to look up at the gaps between the trees to find my way, using the faint light from the sky to guide me. When there’s no clear path, I rely on my feet to feel the worn trail or use my hands to recognize familiar trees. For instance, I often pass between two pines that are just eighteen inches apart, even in the pitch-black darkness.</p>\n<p>Sometimes, I come home late on a dark and muggy night, my feet instinctively following the path that my eyes can’t see. I walk in a dream-like state, absent-mindedly navigating my way through the forest. It’s only when I reach my door and have to lift the latch that I snap back to reality. There have been times when I couldn’t recall a single step of my walk, making me wonder if my body could find its way home on its own, just like how a hand automatically finds its way to the mouth.</p>\n",
+      "date_published": "2025-08-10T17:00:00.000Z",
+      "id": "https://bobscoolblog.com/posts/2025-08-10.html",
+      "title": "Coming home at night",
+      "url": "https://bobscoolblog.com/posts/2025-08-10.html"
+    }
+  ]
+}

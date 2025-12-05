@@ -1,7 +1,3 @@
----
-(panel, date) => _template()
----
-
 <screencast-browser class="scene">
   <div class="addressBar">
     <svg
@@ -29,13 +25,13 @@
       />
     </svg>
     <div class="addressInput">
-      ${ panel.url ?? "" }
+      ${ _.url ?? "" }
     </div>
   </div>
   <div class="page" inert>
-    ${ panel.content ?? "" }
-    ${ panel.screenshot ? Tree.indent`
-      <img src="/screenshots/${ date }/${ panel.screenshot }" class="screenshot">
+    ${ _.content ?? "" }
+    ${ _.screenshot ? Tree.indent`
+      <img src="/screenshots/${ date }/${ _.screenshot }" class="screenshot">
     ` : "" }
   </div>
 </screencast-browser>

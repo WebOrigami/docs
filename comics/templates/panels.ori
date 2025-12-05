@@ -7,6 +7,6 @@
         width: 800px;
       }
     </style>
-    ${ <panel.ori>(panel, comic.date) }
+    ${ <panel.ori>(panel, comic) }
   `)
 })

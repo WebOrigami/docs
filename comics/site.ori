@@ -4,7 +4,10 @@
     styles.css = Tree.deepText(styles/)
   }
 
-  comics/ = Tree.map(comicData.ori, templates/comic.ori.html)
+  comics/ = Tree.map(comicData.ori, {
+    key: (value, key) => `${ Origami.slug(key) }.html`
+    value: templates/comic.ori.html
+  })
 
   // Extract images from comics folder
   images/ = Tree.mask(<comics/>, Tree.globKeys({

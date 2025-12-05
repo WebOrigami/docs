@@ -1,4 +1,5 @@
-Tree.map(comics/, (folder, dateSlash) => {
+Tree.map(comics/, (folder, key) => {
   ...folder/comic.yaml
-  date: Origami.slash.remove(dateSlash)
+  date: key.match(/^(?<date>\d\d\d\d-\d\d-\d\d)/).groups.date
+  files: folder
 })

@@ -1,0 +1,3 @@
+{
+  greeting.html: greet.js(teamData.json[0].name)
+}

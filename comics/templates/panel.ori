@@ -1,5 +1,5 @@
 // A single comic panel
-(panel, date) => Tree.indent`
+(panel, comic) => Tree.indent`
   <screencast-panel>
     <div class="caption">
       ${ panel.face ? `
@@ -14,7 +14,7 @@
         </div>
       </div>
     </div>
-${ .(panel.scene)(panel, date) }
+${ .(panel.scene)(panel, comic) }
   ${ panel.footnote ?
     Tree.indent`
       <div class="footnote ${ panel.footnote.length > 60 ? "long" : "short" }">

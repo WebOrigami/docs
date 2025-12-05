@@ -1,0 +1,55 @@
+title: |
+  Origami comics: You don't need plugins to define a feed for your blog; feed
+  formats are comprehensible by design.
+
+panels:
+  - text: >
+      Many site generators require blog feed **plugins** that are typically
+      magic and often hard to configure.
+    actor: Bob
+    face: concerned
+    scene: editor.ori.html
+    name: blogConfig.json
+    content: |
+      {
+        "title": "Bob's Cool Blog",
+        "author": "Bob Barnes",
+        "url": "https://bobscoolblog.com",
+        "plugins": [
+          "blog-feed-plugin"
+        ],
+        "blogFeedPlugin": {
+          "itemsPerPage": 10,
+          "includeImages": true,
+          "customFields": [
+            "readingTime",
+            "tags"
+          ],
+          "dontIncludeDrafts": true,
+          "sortBy": "date"
+        }
+      }
+
+  - text: >
+      The actual feed formats are reasonably simple! For example, the **JSON
+      Feed** format can directly represent your blog content.
+    scene: editor.ori.html
+    name: feed.json
+    content: !ori feed.json
+    footnote: For details, visit jsonfeed.org
+
+  - text: >
+      You can write an **Origami expression** outputs your blog posts in JSON
+      Feed format.
+    scene: editor.ori.html
+    name: feed.ori
+    content: !ori feed.ori
+
+  - text: >
+      You can add the JSON Feed format and **RSS format** to your blog without
+      any plugins at all!
+    actor: Bob
+    face: happy
+    scene: editor.ori.html
+    name: site.ori
+    content: !ori site.ori

@@ -1,3 +1,7 @@
+---
+(panel, comic) => _template()
+---
+
 <screencast-split>
-${ Tree.map(_.panes, (pane) => .(pane.scene)(pane, date)) }
+${ Tree.map(panel.panes, (pane) => .(pane.scene)(pane, comic)) }
 </screencast-split>

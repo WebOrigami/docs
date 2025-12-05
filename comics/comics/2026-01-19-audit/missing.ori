@@ -1,0 +1,8 @@
+{
+  index.html: `
+    <h1>Home</h1>
+    <a href="aboot.html">About</a>
+  `
+  
+  about.html: `<h1>About Us</h1>`
+}

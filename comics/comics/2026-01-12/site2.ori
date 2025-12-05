@@ -1,3 +1,0 @@
-{
-  greeting.html: greet.js(teamData.yaml[0].name)
-}

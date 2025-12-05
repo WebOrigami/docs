@@ -1,0 +1,63 @@
+title: |
+  Origami comics: Find broken internal links in your #static site with [`Dev.audit`](https://weborigami.org/builtins/dev/audit)
+
+panels:
+  - text: >
+      As you evolve your site, you might end up with **broken links**!
+    actor: Alice
+    face: meh
+    scene: browser.ori.html
+    url: https://mycoolsite.com/aboot.html
+    content: |
+      404 not found
+
+  - text: >
+      Origami’s **audit function** lists pages with broken internal links.
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: site.ori
+        content: !ori missing.ori
+      - scene: session.ori.html
+        content: |
+          $ ori audit site.ori
+          ${ Origami.yaml(Dev.audit(missing.ori)) }
+          $
+
+  - text: >
+      Fix the links and audit again to confirm that **all links work**.
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: site.ori
+        content: !ori fixed.ori
+      - scene: session.ori.html
+        content: |
+          $ ori audit site.ori
+          ${ Dev.audit(fixed.ori) ? Origami.yaml(Dev.audit(fixed.ori)) : "" }
+          $
+    footnote: No audit results means no broken links.
+
+  - text: You can even audit a **public site**!
+    actor: Alice
+    face: grin
+    scene: terminal.ori.html
+    content: |
+      $ ori audit httpstree://www.spacejam.com/1996/
+      cmp/lineup/lineupnoframes.html:
+        - cmp/lineup/triviaframes.html
+      cmp/junior/juniornoframes.html:
+        - bin/junior.map><img src=
+      cmp/lineup/quiz6.html:
+        - cmp/lineup/quiz6b.html
+        - cmp/lineup/quiz6d.html
+      cmp/behind/characters/void4.html:
+        - cmp/behind/characters/img/bg-behind.gif
+      bin/behind.map:
+        - bin/..cmp/behind/behind.html
+        - bin/..cmp/behind/sketches.html
+        - bin/..cmp/behind/chardevelopment.html
+        - bin/..cmp/behind/tech.html
+        - bin/..cmp/behind/broll.html
+      cmp/lineup/quiz4.html:
+        - cmp/lineup/img/quiz/q4.gif

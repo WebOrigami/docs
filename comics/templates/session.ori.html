@@ -1,0 +1,7 @@
+---
+(panel, comic) => _template()
+---
+
+${ terminal.ori.html({
+  content: Origami.inline(panel.content, { parent: comic.files })
+}) }
