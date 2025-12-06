@@ -43,7 +43,7 @@ panels:
     face: grin
     scene: terminal.ori.html
     content: |
-      $ ori audit httpstree://www.spacejam.com/1996/
+      $ ori "audit('https://www.spacejam.com/1996/')"
       cmp/lineup/lineupnoframes.html:
         - cmp/lineup/triviaframes.html
       cmp/junior/juniornoframes.html:
