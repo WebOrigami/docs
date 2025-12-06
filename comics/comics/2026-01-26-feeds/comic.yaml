@@ -33,26 +33,26 @@ panels:
           }
         ],
       }
-    footnote: Configuration **sounds** easy but can get complicated.
+    footnote: Configuration **sounds** easy but is just an awkward form of coding.
 
   - text: >
-      Standard feed formats are actually comparatively simple! The **JSON Feed**
-      format is just your blog posts as JSON data.
+      Feed formats like **JSON Feed** are actually comparatively simple! It
+      looks noisy, but it's just your post data in JSON form.
     scene: editor.ori.html
     name: feed.json
     content: !ori feed.json
     footnote: See jsonfeed.org
 
   - text: >
-      You can write an **Origami expression** that translates your blog posts to
-      an object with the JSON Feed fields.
+      Write an **expression** to transform your blog posts to a JSON Feed object
+      using vanilla JavaScript or the Origami dialect shown here.
     scene: editor.ori.html
     name: feed.ori
     content: !ori feed.ori
 
   - text: >
-      So you can add a JSON Feed and a widely-accepted **RSS feed** to your
-      blog without any plugins!
+      The same object can be turned into an **RSS feed**. You can define your
+      blog feeds without any plugins!
     actor: Bob
     face: wink
     scene: split.ori.html
@@ -63,3 +63,4 @@ panels:
       - scene: browser.ori.html
         url: https://bobscoolblog.com/feed.xml
         content: !ori rss.ori.html()
+    footnote: And you'll learn reusable concepts.

@@ -30,7 +30,8 @@ screencast-panel {
   
   .faceContainer {
     aspect-ratio: 1; /* not sure why this is necessary height=width */
-    background: white;
+    /* background: white; */
+    background: #ccc;
     border: 2px solid black;
     border-radius: 50%;
     clip-path: circle();
@@ -66,6 +67,7 @@ screencast-panel {
     align-items: center;
     display: flex;
     gap: 0.7rem;
+    text-wrap: balance;
 
     /* strong = bold and italic */
     strong {
@@ -165,7 +167,7 @@ screencast-panel {
     }
   }
 
-  &:has(.footnote) + &:has(.footnote):nth-of-type(odd) {
+  &:has(.footnote):nth-of-type(even) {
     .footnote {
       /* Vary alignment to relieve monotony */
       flex-direction: row;
@@ -198,11 +200,14 @@ screencast-panel {
   }
 }
 
-/* On narrow screens, use a taller aspect ratio */
+/* On narrow screens, make the scene taller */
 @container (max-width: 500px) {
   screencast-panel {
-    .panel {
-      aspect-ratio: 0.66;
+    aspect-ratio: inherit;
+    max-height: none;
+
+    > .scene {
+      aspect-ratio: 3/4;
     }
-  }  
+  }
 }

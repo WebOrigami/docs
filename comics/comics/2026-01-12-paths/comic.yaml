@@ -6,7 +6,7 @@ title: |
 panels:
   - text: >
       Origami is a dialect of **JavaScript expressions** that uses inline paths
-      instead of imports.
+      instead of import statements.
     actor: Bob
     face: talk
     scene: split.ori.html
@@ -35,11 +35,11 @@ panels:
     scene: split.ori.html
     panes:
       - scene: editor.ori.html
-        name: teamData.json
-        content: !ori teamData.json
-      - scene: editor.ori.html
         name: site.ori
         content: !ori site2.ori
+      - scene: editor.ori.html
+        name: teamData.json
+        content: !ori teamData.json
       - scene: browser.ori.html
         url: http://localhost:5000/greeting.html
         content: !ori site2.ori/greeting.html
@@ -52,8 +52,8 @@ panels:
     scene: split.ori.html
     panes:
       - scene: editor.ori.html
-        name: site.js
-        content: !ori site2.js
-      - scene: editor.ori.html
         name: site.ori
         content: !ori site2.ori
+      - scene: editor.ori.html
+        name: site.js
+        content: !ori site2.js

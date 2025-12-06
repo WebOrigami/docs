@@ -12,7 +12,8 @@ panels:
       404 not found
 
   - text: >
-      Origami’s **audit function** lists pages with broken internal links.
+      Origami’s **audit function** scans your site and lists any pages with
+      broken internal links.
     scene: split.ori.html
     panes:
       - scene: editor.ori.html
@@ -25,7 +26,7 @@ panels:
           $
 
   - text: >
-      Fix the links and audit again to confirm that **all links work**.
+      Fix the links and **audit again** to confirm there are no broken links.
     scene: split.ori.html
     panes:
       - scene: editor.ori.html
@@ -36,7 +37,6 @@ panels:
           $ ori audit site.ori
           ${ Dev.audit(fixed.ori) ? Origami.yaml(Dev.audit(fixed.ori)) : "" }
           $
-    footnote: No audit results = no broken links!
 
   - text: You can even audit a **public site**!
     actor: Alice

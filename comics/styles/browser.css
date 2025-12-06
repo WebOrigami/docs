@@ -31,6 +31,7 @@ screencast-browser {
     background: white;
     color: black;
     font-size: larger;
+    overflow: hidden;
 
     button, input, select, textarea {
       font-family: inherit;
