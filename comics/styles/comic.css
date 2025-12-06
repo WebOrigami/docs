@@ -24,8 +24,7 @@ screencast-comic {
 
   > * {
     grid-column: 2;
-    transition: opacity var(--selection-transition-speed);
-
+    
     &[aria-selected="false"] {
       opacity: 0.66;
     }

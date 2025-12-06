@@ -3,8 +3,8 @@
   <screencast-panel>
     <div class="caption">
       ${ panel.face ? `
-          <div class="iconContainer">
-            <img class="icon" src="/assets/${ panel.actor.toLowerCase() }/${ panel.face }.svg" />
+          <div class="faceContainer">
+            <img class="face" src="/assets/${ panel.actor.toLowerCase() }/${ panel.face }.svg" />
           </div>
         ` : "" }
       <div class="bubble">

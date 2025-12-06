@@ -3,6 +3,7 @@ screencast-browser {
   display: grid;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   grid-template-rows: auto 1fr;
+  overflow: hidden;
 
   .addressBar {
     align-items: center;

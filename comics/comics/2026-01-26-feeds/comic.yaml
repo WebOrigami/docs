@@ -33,10 +33,11 @@ panels:
           }
         ],
       }
+    footnote: Configuration **sounds** easy but can get complicated.
 
   - text: >
-      The actual feed formats are comparatively simple! For example, the **JSON
-      Feed** format is just your blog posts as JSON data.
+      Standard feed formats are actually comparatively simple! The **JSON Feed**
+      format is just your blog posts as JSON data.
     scene: editor.ori.html
     name: feed.json
     content: !ori feed.json
@@ -44,14 +45,14 @@ panels:
 
   - text: >
       You can write an **Origami expression** that translates your blog posts to
-      JSON Feed format.
+      an object with the JSON Feed fields.
     scene: editor.ori.html
     name: feed.ori
     content: !ori feed.ori
 
   - text: >
-      So you can add a JSON Feed and **RSS feed** to your blog without any
-      plugins!
+      So you can add a JSON Feed and a widely-accepted **RSS feed** to your
+      blog without any plugins!
     actor: Bob
     face: wink
     scene: split.ori.html

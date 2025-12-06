@@ -3,7 +3,6 @@ screencast-panel {
   /* Anime Ace font seems to need more padding below in Safari */
   --text-padding: 0.5rem 0.5rem 0.7rem 0.6rem;
   aspect-ratio: 4 / 3;
-  border: var(--border);
   box-sizing: border-box;
   color: #333;
   display: grid;
@@ -29,7 +28,7 @@ screencast-panel {
     width: 100%;
   }
   
-  .iconContainer {
+  .faceContainer {
     aspect-ratio: 1; /* not sure why this is necessary height=width */
     background: white;
     border: 2px solid black;
@@ -38,7 +37,7 @@ screencast-panel {
     height: 64px;
     width: 64px;
 
-    .icon {
+    .face {
       position: relative;
       
       /* Adjustments for specific SVG positions */
@@ -67,15 +66,16 @@ screencast-panel {
     align-items: center;
     display: flex;
     gap: 0.7rem;
-    padding: 0.5rem 0.5rem;
 
     /* strong = bold and italic */
     strong {
       font-style: italic;
     }
 
-    /* If icon is present, show text in speech balloon */
-    &:has(.icon) {
+    /* If face icon is present, show text in speech balloon */
+    &:has(.face) {
+      padding-bottom: 0.5rem;
+
       .bubble {
         --bubble-border-color: black;
         --bubble-border-width: 2px;
@@ -107,10 +107,12 @@ screencast-panel {
       }
     }
 
-    &:not(:has(.icon)) {
+    /* No face icon */
+    &:not(:has(.face)) {
       background: white;
       border-bottom: var(--border);
       box-sizing: border-box;  
+      padding: 0.5rem 0.5rem;
 
       .speech {
         padding-bottom: 0.2rem;
@@ -118,27 +120,57 @@ screencast-panel {
     }
   }
 
-  &:has(.icon) .caption {
+  /* Odd faces go on left, even on right */
+  &:has(.face):nth-child(odd) {
     .tail {
       left: var(--tail-shift);
-    }
+    }    
   }
-
-  /* Speech orientation for first speaker */
-  /* &[data-speaker="Alice"]:has(.icon) .caption {
-    .tail {
-      left: var(--tail-shift);
+  &:has(.face):nth-child(even) {
+    .caption {
+      flex-direction: row-reverse;
     }
-  } */
-
-  /* Icon/caption are flipped for second speaker */
-  /* &[data-speaker="Bob"]:has(.icon) .caption {
-    flex-direction: row-reverse;
 
     .tail {
       right: var(--tail-shift);
+    }    
+  }
+
+  /* Non-local effects of face icon presence or absence */
+  &:has(.face) {
+    /* Face icon present */
+
+    /* Set border on panel contents */
+    & > .scene {
+      border: var(--border);
     }
-  } */
+  }
+
+  &:not(:has(.face)) {
+    /* No face icon present */
+    border: var(--border);
+
+    /* Set default background color based on specific scene */
+    &:has(screencast-graphic) {
+      background: black;
+    }
+    &:has(screencast-browser) {
+      background: var(--browser-background);
+    }
+    &:has(screencast-editor) {
+      background: var(--editor-background);
+    }
+    &:has(screencast-terminal) {
+      background: var(--editor-background);
+    }
+  }
+
+  &:has(.footnote) + &:has(.footnote):nth-of-type(odd) {
+    .footnote {
+      /* Vary alignment to relieve monotony */
+      flex-direction: row;
+    }
+  }
 
   .footnote {
     bottom: 0.5em;
@@ -162,29 +194,6 @@ screencast-panel {
 
     &.short p {
       width: fit-content;
-    }
-  }
-
-  &:has(.footnote) + &:has(.footnote):nth-of-type(odd) {
-    .footnote {
-      /* Vary alignment to relieve monotony */
-      flex-direction: row;
-    }
-  }
-
-  /* Set default background color based on specific scene */
-  &:has(.icon) {
-    &:has(screencast-graphic) {
-      background: black;
-    }
-    &:has(screencast-browser) {
-      background: var(--browser-background);
-    }
-    &:has(screencast-editor) {
-      background: var(--editor-background);
-    }
-    &:has(screencast-terminal) {
-      background: var(--editor-background);
     }
   }
 }

@@ -14,7 +14,7 @@ screencast-split {
     overflow: hidden;
   }
   
-  screencast-terminal {
+  > *:not(:first-child) {
     border-top: 1px solid color-mix(in oklch, var(--terminal-background), white 25%);
   }
 }

@@ -16,7 +16,8 @@ screencast-editor {
     
     .tab {
       background: var(--terminal-background);
-      color: color-mix(in oklch, var(--editor-color), var(--terminal-background) 10%);
+      /* color: color-mix(in oklch, var(--editor-color), var(--terminal-background) 10%); */
+      color: #FAC863;
       display: inline-block;
       padding: 0.5rem 1rem;
     } 

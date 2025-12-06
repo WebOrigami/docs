@@ -16,7 +16,7 @@ panels:
       - scene: editor.ori.html
         name: site.ori
         content: !ori site.ori
-    footnote: The greet.js reference gets the file's **default export**.
+    footnote: The **greet.js** gets the file's default export.
 
   - text: >
       You can call a JavaScript function by file name in a **site definition**
@@ -26,27 +26,23 @@ panels:
       - scene: editor.ori.html
         name: site.ori
         content: !ori site.ori
-      - scene: session.ori.html
-        content: |
-          $ ori site.ori/
-          ${ Origami.yaml(site.ori) }
-          $
+      - scene: browser.ori.html
+        url: http://localhost:5000/greeting.html
+        content: !ori site.ori/greeting.html
 
   - text: >
-      Paths can also **reference data** inside local or network files.
+      Paths can also **reference data** in local or network files.
     scene: split.ori.html
     panes:
       - scene: editor.ori.html
-        name: teamData.yaml
-        content: !ori samples/templates/teamData.yaml
+        name: teamData.json
+        content: !ori teamData.json
       - scene: editor.ori.html
         name: site.ori
         content: !ori site2.ori
-      - scene: session.ori.html
-        content: |
-          $ ori site.ori/
-          ${ Origami.yaml(site2.ori) }
-          $
+      - scene: browser.ori.html
+        url: http://localhost:5000/greeting.html
+        content: !ori site2.ori/greeting.html
 
   - text: >
       Paths are one reason the Origami dialect is generally **much more
