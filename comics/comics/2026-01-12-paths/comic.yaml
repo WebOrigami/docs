@@ -5,7 +5,8 @@ title: |
 
 panels:
   - text: >
-      Origami is a dialect of **JavaScript expressions** that uses paths instead of imports.
+      Origami is a dialect of **JavaScript expressions** that uses inline paths
+      instead of imports.
     actor: Bob
     face: talk
     scene: split.ori.html
@@ -19,8 +20,7 @@ panels:
     footnote: The **greet.js** gets the file's default export.
 
   - text: >
-      You can call a JavaScript function by file name in a **site definition**
-      to generate a resource.
+      You can call a JavaScript function by path in a **site definition**.
     scene: split.ori.html
     panes:
       - scene: editor.ori.html
@@ -46,7 +46,7 @@ panels:
 
   - text: >
       Paths are one reason the Origami dialect is generally **much more
-      concise** than the equivalent JavaScript!
+      concise** than the equivalent standard JavaScript!
     actor: Bob
     face: happy
     scene: split.ori.html
