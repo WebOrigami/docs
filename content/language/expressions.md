@@ -788,6 +788,8 @@ Origami closely follows [JavaScript operator precedence](https://developer.mozil
 | Less than or equal                                                                      | `x <= y`                      | left-to-right |
 | Greater than                                                                            | `x > y`                       | left-to-right |
 | Greater than or equal                                                                   | `x >= y`                      | left-to-right |
+| in                                                                                      | `x in y`                      | left-to-right |
+| instanceof                                                                              | `x instanceof y`              | left-to-right |
 | Equality                                                                                | `x == y`                      | left-to-right |
 | Inequality                                                                              | `x != y`                      | left-to-right |
 | Strict equality                                                                         | `x === y`                     | left-to-right |
@@ -805,7 +807,7 @@ Origami closely follows [JavaScript operator precedence](https://developer.mozil
 
 An operator’s precedence determines how the Origami parser handles expressions that have more than one possible interpretation.
 
-Example: `a -> b => c` could be interpreted as `a -> (b => c)` or `(a -> b) => c`. Origami uses the former interpretation, because the arrow operator has a higher precedence than Origami's pipe operator.
+Example: `a -> b => c` could be interpreted as `a -> (b => c)` or `(a -> b) => c`. Origami uses the former interpretation, because the standard `=>` arrow operator has a higher precedence than Origami's `->` pipe operator.
 
 Origami requires spaces around binary operators:
 
