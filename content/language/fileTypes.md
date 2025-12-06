@@ -270,6 +270,8 @@ The parentheses around the URL for a WebAssembly module cause it to be evaluated
 
 Like JSON files, you can traverse into a YAML file using slash syntax.
 
+When loaded in Origami, YAML files can contain Origami expressions; see [Origami in YAML](yaml.html).
+
 ## Custom file types
 
 You can tell Origami how to handle other types of files based on their file extension.

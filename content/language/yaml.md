@@ -2,6 +2,8 @@
 title: Origami in YAML
 ---
 
+Origami supports .yaml files as a known [file type](fileTypes.html#yaml-files).
+
 Origami's YAML parser adds support for two custom YAML tags: `!ori` and `!ori.call`, which allow for Origami expressions to be embedded in YAML documents.
 
 These tags can be helpful in contexts where the bulk of the data in a file can be easily expressed in YAML, but you wish to attach additional data from other data sources or incorporate the results of calculations.
@@ -69,11 +71,40 @@ Here the `image` property will be (a `Promise` for) the actual SVG content. The 
 
 Code that renders the product as an HTML page won't need to care where the image came from.
 
+## YAML includes
+
+A related use for the `!ori` tag is to break apart YAML files into pieces that can be combined, in much the same way that many programming languages support via `include` statements.
+
+Suppose a commonly-used block of YAML is defined in its own file:
+
+```yaml
+# address.yaml
+${ samples/help/address.yaml }
+```
+
+This can then be included in a second YAML file:
+
+```yaml
+# order.yaml
+${ samples/help/order.yaml }
+```
+
+To include the object represented by the first YAML file, the `address.yaml/` needs a trailing slash to unpack that file. Referencing `address.yaml` on its own would return the YAML file text.
+
+With that, evaluating the second file returns an object that incorporates the first:
+
+```console
+$ ori order.yaml/
+${ Origami.yaml(samples/help/order.yaml/) }
+```
+
+This allows complex files to be broken down into smaller, reusable pieces.
+
 ## Apply a template to data
 
 One use for `!ori.call` is to apply a template to data.
 
-Suppose a project defines a [template document](/language/templateDocuments.html) `page.ori.html`:
+Suppose a project defines a [template document](/language/templateDocuments.html) called `page.ori.html`:
 
 ```ori
 ${ samples/help/yamlTags/page.ori.html }
@@ -81,7 +112,7 @@ ${ samples/help/yamlTags/page.ori.html }
 
 This template document defines a function that accepts a single `_` underscore parameter. The argument passed as that parameter should have `title` and `_body` properties.
 
-A YAML file can define data _and_ indicate that the template should be applied to it:
+A YAML file can define data _and_ indicate that the template function should be applied to it:
 
 ```yaml
 ${ samples/help/yamlTags/quote.yaml }
