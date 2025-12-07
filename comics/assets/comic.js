@@ -15,11 +15,14 @@ function autoFitWidth(element) {
 }
 
 function autoFitWidths() {
-  const speeches = document.querySelectorAll(".speech");
+  const captionsWithFaces = document.querySelectorAll(".caption:has(.face)");
+  const speeches = Array.from(captionsWithFaces).map((caption) =>
+    caption.querySelector(".speech")
+  );
   speeches.forEach(autoFitWidth);
 
-  // const footnotes = document.querySelectorAll(".footnote");
-  // footnotes.forEach(autoFitWidth);
+  const footnotes = document.querySelectorAll(".footnote");
+  footnotes.forEach(autoFitWidth);
 }
 
 function visibleTextWidth(element) {

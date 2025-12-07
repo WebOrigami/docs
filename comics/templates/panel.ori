@@ -17,8 +17,10 @@
 ${ .(panel.scene)(panel, comic) }
   ${ panel.footnote ?
     Tree.indent`
-      <div class="footnote ${ panel.footnote.length > 60 ? "long" : "short" }">
-        ${ Origami.mdHtml(panel.footnote) }
+      <div class="footnoteContainer">
+        <div class="footnote ${ panel.footnote.length > 60 ? "long" : "short" }">
+          ${ Origami.mdHtml(panel.footnote) }
+        </div>
       </div>
     ` : ""
   }

@@ -63,4 +63,4 @@ panels:
       - scene: browser.ori.html
         url: https://bobscoolblog.com/feed.xml
         content: !ori rss.ori.html()
-    footnote: And you'll learn reusable concepts.
+    footnote: And you'll learn reusable concepts!

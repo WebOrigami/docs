@@ -1,5 +1,6 @@
 screencast-panel {
-  --border: 3px solid #333;
+  --border-color: #333;
+  --border: 3px solid var(--border-color);
   /* Anime Ace font seems to need more padding below in Safari */
   --text-padding: 0.5rem 0.5rem 0.7rem 0.6rem;
   aspect-ratio: 4 / 3;
@@ -16,7 +17,7 @@ screencast-panel {
   width: 100%;
 
   @media (prefers-color-scheme: dark) {
-    --border: 3px solid #666;
+    --border-color: #666;
   }
 
   & > * {
@@ -67,7 +68,6 @@ screencast-panel {
     align-items: center;
     display: flex;
     gap: 0.7rem;
-    text-wrap: balance;
 
     /* strong = bold and italic */
     strong {
@@ -105,6 +105,7 @@ screencast-panel {
         background: white;
         border-radius: 0.5rem;
         padding: var(--text-padding);
+        text-wrap: balance;
         z-index: 1;
       }
     }
@@ -168,34 +169,34 @@ screencast-panel {
   }
 
   &:has(.footnote):nth-of-type(even) {
-    .footnote {
+    .footnoteContainer {
       /* Vary alignment to relieve monotony */
       flex-direction: row;
     }
   }
 
-  .footnote {
-    bottom: 0.5em;
+  .footnoteContainer {
+    bottom: 1em;
     display: flex;
     flex-direction: row-reverse;
-    font-style: italic;
-    left: 0.5em;
+    left: 1em;
     position: absolute;
-    right: 0.5em;
+    right: 1em;
     
-    p {
+    .footnote {
       background: palegoldenrod;
+      border: 1px solid #ccc;
+      box-shadow: 4px 4px 4px rgba(0,0,0,0.2);
+      font-style: italic;
       padding: var(--text-padding);
-      text-wrap: balance;
-    }
-    
-    &.long p {
-      min-width: 275px;
-      width: min-content;
-    }
-
-    &.short p {
-      width: fit-content;
+      
+      p {
+        text-wrap: balance;
+      }
+      
+      &.long {
+        max-width: 50%;
+      }
     }
   }
 }
