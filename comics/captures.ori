@@ -1,8 +1,8 @@
-(date) =>
+(slug) =>
 
   // Get URLs to the individual panels being served locally
-  Tree.paths((explorehttp://localhost:5000/panels)[date], {
-    base: `http://localhost:5000/panels/${ date }`
+  Tree.paths((explorehttp://localhost:5000/panels)[slug], {
+    base: `http://localhost:5000/panels/${ slug }`
   })
 
   → (urls) => Tree.mapExtension(urls, {

@@ -33,7 +33,7 @@ panels:
           }
         ],
       }
-    footnote: Configuration **sounds** easy but is just an awkward form of coding.
+    footnote: Configuration **sounds** easy but becomes an awkward form of coding.
 
   - text: >
       Feed formats like **JSON Feed** are actually comparatively simple! It
@@ -63,4 +63,4 @@ panels:
       - scene: browser.ori.html
         url: https://bobscoolblog.com/feed.xml
         content: !ori rss.ori.html()
-    footnote: And you'll learn reusable concepts!
+    footnote: You'll learn reusable concepts, and have total control!

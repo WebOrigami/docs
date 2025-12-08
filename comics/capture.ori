@@ -1,0 +1,7 @@
+// Invoke this with capture.ori/<date>
+
+(date) =>
+
+  Tree.first(Tree.filter(comicData.ori, (comic) => comic.date === date))
+
+  // -> (comic) => Dev.copy(captures.ori[comic])

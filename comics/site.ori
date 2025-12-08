@@ -6,7 +6,7 @@
 
   comics/ = Tree.map(comicData.ori, {
     key: (value, key) => `${ Origami.slug(key) }.html`
-    value: templates/comic.ori.html
+    value: templates/strip.ori.html
   })
 
   // Extract images from comics folder

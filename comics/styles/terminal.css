@@ -1,4 +1,4 @@
-screencast-terminal {
+comic-terminal {
   background: var(--terminal-background);
   color: var(--editor-color);
   display: grid;
@@ -6,7 +6,7 @@ screencast-terminal {
   grid-auto-rows: min-content;
   padding: var(--window-padding);
   
-  screencast-typewriter {
+  comic-typewriter {
     .prefix {
       color: #FAC863;
       font-weight: bold;
@@ -19,7 +19,7 @@ screencast-terminal {
   }
 
   /* Hide second typewriter if the first has nothing to type */
-  &:has(screencast-typewriter:first-of-type.notyping) screencast-typewriter:nth-of-type(2) {
+  &:has(comic-typewriter:first-of-type.notyping) comic-typewriter:nth-of-type(2) {
     display: none;
   }
 
@@ -37,7 +37,7 @@ screencast-terminal {
 
   &.typing,
   &.running {
-    screencast-typewriter:nth-of-type(2) {
+    comic-typewriter:nth-of-type(2) {
       display: none;
     }
   }

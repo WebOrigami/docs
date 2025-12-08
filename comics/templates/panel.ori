@@ -1,10 +1,12 @@
 // A single comic panel
-(panel, comic) => Tree.indent`
-  <screencast-panel>
+(panel, index, comic) => Tree.indent`
+  <comic-panel class="${ index % 2 === 0 ? 'even' : 'odd' }">
     <div class="caption">
       ${ panel.face ? `
-          <div class="faceContainer">
-            <img class="face" src="/assets/${ panel.actor.toLowerCase() }/${ panel.face }.svg" />
+          <div class="faceCircle">
+            <div class="faceContainer">
+              <img class="face" src="/assets/${ panel.actor.toLowerCase() }/${ panel.face }.svg" />
+            </div>
           </div>
         ` : "" }
       <div class="bubble">
@@ -24,5 +26,5 @@ ${ .(panel.scene)(panel, comic) }
       </div>
     ` : ""
   }
-  </screencast-panel>
+  </comic-panel>
 `

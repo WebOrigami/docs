@@ -1,4 +1,4 @@
-screencast-panel {
+comic-panel {
   --border-color: #333;
   --border: 3px solid var(--border-color);
   /* Anime Ace font seems to need more padding below in Safari */
@@ -29,30 +29,38 @@ screencast-panel {
     width: 100%;
   }
   
-  .faceContainer {
+  .faceCircle {
     aspect-ratio: 1; /* not sure why this is necessary height=width */
     /* background: white; */
     background: #ccc;
     border: 2px solid black;
     border-radius: 50%;
+    box-sizing: border-box;
     clip-path: circle();
     height: 64px;
     width: 64px;
 
-    .face {
-      position: relative;
+    .faceContainer {
+      border-radius: 50%;
+      clip-path: circle();
+      height: 60px;
+      width: 60px;
       
-      /* Adjustments for specific SVG positions */
-      &[src*="alice"] {
-        left: -7px;
-        top: 5px;
-        width: 84px;
-      }
-
-      &[src*="bob"] {
-        top: 6px;
-        left: -11px;
-        width: 88px;
+      .face {
+        position: relative;
+        
+        /* Adjustments for specific SVG positions */
+        &[src*="alice"] {
+          left: -9px;
+          top: 3px;
+          width: 84px;
+        }
+        
+        &[src*="bob"] {
+          left: -13px;
+          top: 4px;
+          width: 88px;
+        }
       }
     }
   }
@@ -68,6 +76,7 @@ screencast-panel {
     align-items: center;
     display: flex;
     gap: 0.7rem;
+    padding: var(--caption-padding);
 
     /* strong = bold and italic */
     strong {
@@ -104,7 +113,7 @@ screencast-panel {
       .speech {
         background: white;
         border-radius: 0.5rem;
-        padding: var(--text-padding);
+        padding: var(--speech-padding, 0.5rem 0.75rem 0.7rem 0.85rem);
         text-wrap: balance;
         z-index: 1;
       }
@@ -123,20 +132,32 @@ screencast-panel {
     }
   }
 
-  /* Odd faces go on left, even on right */
-  &:has(.face):nth-child(odd) {
+  /* Alternate left/right placement of face and footnote */
+  &.even {
+    .caption {
+      padding-right: 0.5rem;
+    }
+
     .tail {
       left: var(--tail-shift);
     }    
   }
-  &:has(.face):nth-child(even) {
-    .caption {
-      flex-direction: row-reverse;
+
+  &.odd {
+    &:has(.face) {
+      .caption {
+        flex-direction: row-reverse;
+        padding-left: 0.5rem;
+      }
+
+      .tail {
+        right: var(--tail-shift);
+      }
     }
 
-    .tail {
-      right: var(--tail-shift);
-    }    
+    .footnoteContainer {
+      flex-direction: row;
+    }
   }
 
   /* Non-local effects of face icon presence or absence */
@@ -154,24 +175,17 @@ screencast-panel {
     border: var(--border);
 
     /* Set default background color based on specific scene */
-    &:has(screencast-graphic) {
+    &:has(comic-graphic) {
       background: black;
     }
-    &:has(screencast-browser) {
+    &:has(comic-browser) {
       background: var(--browser-background);
     }
-    &:has(screencast-editor) {
+    &:has(comic-editor) {
       background: var(--editor-background);
     }
-    &:has(screencast-terminal) {
+    &:has(comic-terminal) {
       background: var(--editor-background);
-    }
-  }
-
-  &:has(.footnote):nth-of-type(even) {
-    .footnoteContainer {
-      /* Vary alignment to relieve monotony */
-      flex-direction: row;
     }
   }
 
@@ -186,7 +200,7 @@ screencast-panel {
     .footnote {
       background: palegoldenrod;
       border: 1px solid #ccc;
-      box-shadow: 4px 4px 4px rgba(0,0,0,0.2);
+      box-shadow: 4px 4px 6px rgba(0,0,0,0.4);
       font-style: italic;
       padding: var(--text-padding);
       
@@ -203,7 +217,7 @@ screencast-panel {
 
 /* On narrow screens, make the scene taller */
 @container (max-width: 500px) {
-  screencast-panel {
+  comic-panel {
     aspect-ratio: inherit;
     max-height: none;
 
@@ -211,4 +225,15 @@ screencast-panel {
       aspect-ratio: 3/4;
     }
   }
+}
+
+/*
+Captured PNGs need spacing around the caption so that the balloon and face
+circle don't end up touching the edge of the image.
+
+To achieve this, we shift spacing from the speech text to the caption.
+*/
+.capture comic-panel {
+  --caption-padding: 0.5rem;
+  --speech-padding: var(--text-padding);
 }

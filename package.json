@@ -17,7 +17,7 @@
   },
   "scripts": {
     "build": "NODE_ENV=production ori 'copy netlify.js(Origami.jsonKeys(src/site.ori)), clear files:build'",
-    "capture": "ori copy comics/captures.ori/2026-01-05, clear files:comics/captures",
+    "capture": "ori copy comics/captures.ori/2026-01-26-feeds, clear files:comics/captures",
     "comics": "ori copy comics/site.ori, clear files:comics/build",
     "screenshots": "ori copy src/screenshots.ori, src/client/assets/screenshots",
     "start": "ori serve watch src, =debug src/site.ori",
