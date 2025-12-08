@@ -18,10 +18,10 @@
   text: File types
 - href: documents.html
   text: Documents
-- href: configuration.html
-  text: Configuration
 - href: yaml.html
   text: In YAML
+- href: configuration.html
+  text: Configuration
 - href: principles.html
   text: Principles
 - href: howTo.html

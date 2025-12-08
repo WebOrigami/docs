@@ -12,6 +12,8 @@
   text: extension
 - href: fetch.html
   text: fetch
+- href: htmlEscape.html
+  text: htmlEscape
 - href: image.html
   text: image
 - href: indexPage.html

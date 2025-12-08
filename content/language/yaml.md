@@ -73,7 +73,7 @@ Code that renders the product as an HTML page won't need to care where the image
 
 ## YAML includes
 
-A related use for the `!ori` tag is to break apart YAML files into pieces that can be combined, in much the same way that many programming languages support via `include` statements.
+A related use for the `!ori` tag is to break apart YAML files into pieces that can be combined. Programming languages often support such decomposition with `include` statements.
 
 Suppose a commonly-used block of YAML is defined in its own file:
 
@@ -118,7 +118,7 @@ A YAML file can define data _and_ indicate that the template function should be 
 ${ samples/help/yamlTags/quote.yaml }
 ```
 
-Evaluating this applies the template as a function to the data and returns the text:
+Evaluating this applies the template as a function to the data and returns the resulting _text_. (While YAML files typically define objects, they can also define a single value, such as a text string.)
 
 ```console
 $ ori quote.yaml/
