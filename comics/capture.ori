@@ -1,4 +1,4 @@
-// Invoke this with capture.ori/<date>
+// Invoke this with capture.ori/<date> to create PNGs in captures/ folder
 
 (date) =>
 
@@ -14,6 +14,8 @@
     ".html→.png"
     (panelPage) => package:@weborigami/screenshot/html(panelPage, {
       deviceScaleFactor: 2,
-      resources: site.ori
+      resources: comics.ori/
     })
   )
+
+  → (pngs) => Dev.copy(pngs, Tree.clear(files:captures))

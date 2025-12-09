@@ -1,19 +1,23 @@
 (comic) => Tree.map(comic.panels, {
   key: (value, key) => `${ key }.html`
-  value: (panel, index) => page.ori.html({
-      head: Tree.indent`
-        <base href="http://screenshot.local">
-      `
-      _body: Tree.indent`
+  value: (panel, index) => Tree.indent`
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/assets/styles.css">
+        <script type="module" src="/assets/comic.js"></script>
         <style>
           body {
             height: 600px;
             width: 800px;
           }
         </style>
-        <div class="capture">
+      </head>
+      <body class="capture">
 ${ <panel.ori>(panel, index, comic) }
-        </div>
-      `
-    })
+      </body>
+    </html>
+  `
 })

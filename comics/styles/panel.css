@@ -15,7 +15,6 @@ comic-panel {
   max-width: 800px;
   overflow: hidden;
   position: relative;
-  /* scroll-snap-align: center; */
   width: 100%;
 
   @media (prefers-color-scheme: dark) {
@@ -33,7 +32,6 @@ comic-panel {
   
   .faceCircle {
     aspect-ratio: 1; /* not sure why this is necessary height=width */
-    /* background: white; */
     background: #ccc;
     border: 2px solid black;
     border-radius: 50%;
@@ -84,9 +82,40 @@ comic-panel {
     strong {
       font-style: italic;
     }
+  }
 
-    /* If face icon is present, show text in speech balloon */
+  /* Alternate left/right placement of face and footnote */
+  &.even {
+    .caption {
+      padding-right: 0.5rem;
+    }
+
+    .tail {
+      left: var(--tail-shift);
+    }    
+  }
+
+  &.odd {
     &:has(.face) {
+      .caption {
+        flex-direction: row-reverse;
+        padding-left: 0.5rem;
+      }
+
+      .tail {
+        right: var(--tail-shift);
+      }
+    }
+
+    .footnoteContainer {
+      flex-direction: row;
+    }
+  }
+
+  /* Face icon present */
+  &:has(.face) {
+    /* Show text in speech balloon */
+    .caption {
       padding-bottom: 0.5rem;
 
       .bubble {
@@ -121,8 +150,18 @@ comic-panel {
       }
     }
 
-    /* No face icon */
-    &:not(:has(.face)) {
+    /* Set border on panel scene */
+    & > .scene {
+      border: var(--border);
+    }
+  }
+
+  /* No face icon present */
+  &:not(:has(.face)) {
+    /* Set border on panel */
+    border: var(--border);
+
+    .caption {
       background: white;
       border-bottom: var(--border);
       box-sizing: border-box;  
@@ -132,49 +171,6 @@ comic-panel {
         padding-bottom: 0.2rem;
       }
     }
-  }
-
-  /* Alternate left/right placement of face and footnote */
-  &.even {
-    .caption {
-      padding-right: 0.5rem;
-    }
-
-    .tail {
-      left: var(--tail-shift);
-    }    
-  }
-
-  &.odd {
-    &:has(.face) {
-      .caption {
-        flex-direction: row-reverse;
-        padding-left: 0.5rem;
-      }
-
-      .tail {
-        right: var(--tail-shift);
-      }
-    }
-
-    .footnoteContainer {
-      flex-direction: row;
-    }
-  }
-
-  /* Non-local effects of face icon presence or absence */
-  &:has(.face) {
-    /* Face icon present */
-
-    /* Set border on panel contents */
-    & > .scene {
-      border: var(--border);
-    }
-  }
-
-  &:not(:has(.face)) {
-    /* No face icon present */
-    border: var(--border);
 
     /* Set default background color based on specific scene */
     &:has(comic-graphic) {

@@ -6,4 +6,4 @@ Tree.map(
   }
 ))
 
-→ (screenshots) => Tree.cache(screenshots, files:cache/screenshots)
+→ (screenshots) => Tree.cache(screenshots, files:comics/cache)
