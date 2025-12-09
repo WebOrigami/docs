@@ -2,10 +2,10 @@
 (panel, index, comic) => Tree.indent`
   <comic-panel class="${ index % 2 === 0 ? 'even' : 'odd' }">
     <div class="caption">
-      ${ panel.face ? `
+      ${ panel.actor ? `
           <div class="faceCircle">
             <div class="faceContainer">
-              <img class="face" src="/assets/${ panel.actor.toLowerCase() }/${ panel.face }.svg" />
+              <img class="face" src="/assets/${ panel.actor.toLowerCase() }/${ panel.face ?? 'default' }.svg" />
             </div>
           </div>
         ` : "" }

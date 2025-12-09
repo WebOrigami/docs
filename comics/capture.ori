@@ -2,6 +2,18 @@
 
 (date) =>
 
+  // Find comic with that date
   Tree.first(Tree.filter(comicData.ori, (comic) => comic.date === date))
 
-  // -> (comic) => Dev.copy(captures.ori[comic])
+  // Construct panels
+  → templates/panels.ori
+
+  // Screenshot
+  → (panelPages) => Tree.mapExtension(
+    panelPages,
+    ".html→.png"
+    (panelPage) => package:@weborigami/screenshot/html(panelPage, {
+      deviceScaleFactor: 2,
+      resources: site.ori
+    })
+  )

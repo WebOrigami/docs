@@ -8,6 +8,8 @@ comic-panel {
   color: #333;
   display: grid;
   display: grid;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
   grid-template-rows: auto 1fr;
   max-height: 90svh;
   max-width: 800px;
