@@ -1,9 +1,0 @@
----
-// A single comic page
-(comic) => page.ori.html({
-  _body: _template()
-})
----
-<comic-strip>
-${ Tree.map(comic.panels, (panel, index) => <panel.ori>(panel, index, comic)) }
-</comic-strip>

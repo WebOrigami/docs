@@ -36,7 +36,8 @@ function visibleTextWidth(element) {
   return visibleWidth;
 }
 
-window.addEventListener("load", () => {
+window.addEventListener("load", async () => {
+  await document.fonts.ready;
   autoFitWidths();
   new ResizeObserver(autoFitWidths).observe(document.body);
 });

@@ -2,7 +2,7 @@ comic-split {
   background: var(--terminal-background);
   color: var(--editor-color);
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: auto;
   overflow: hidden;
 
   > * {

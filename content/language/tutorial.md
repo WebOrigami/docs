@@ -4,7 +4,7 @@ subtitle: A hands-on tutorial
 numberHeadings: true
 ---
 
-<script src="/components.js"></script>
+<script src="/scripts/ClipboardCopy.js"></script>
 
 You can walk through the basics of Origami by building a simple blog. If you follow along on your own machine, it might take about an hour to complete this tutorial.
 

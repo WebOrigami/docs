@@ -6,8 +6,8 @@
       <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/assets/styles.css">
-        <script type="module" src="/assets/comic.js"></script>
+        <link rel="stylesheet" href="/styles/comic.css">
+        <script type="module" src="/scripts/comic.js"></script>
         <style>
           body {
             height: 600px;

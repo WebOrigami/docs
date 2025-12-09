@@ -6,10 +6,10 @@
   feed_url: "https://bobscoolblog.com/feed.json"
   home_page_url: "https://bobscoolblog.com/feed.json"
   items: Tree.values(Tree.map(posts, (post, slug) => {
-    content_html: post._body
     date_published: post.date
     id: url
     title: post.title
     url: `https://bobscoolblog.com/posts/${ slug }`
+    content_html: post._body
   }))
 }

@@ -9,7 +9,7 @@ panels:
     scene: browser.ori.html
     url: https://mycoolsite.com/aboot.html
     content: |
-      404 not found
+      404 not found ☹️
 
   - text: >
       Origami’s **audit function** scans your site and lists any pages with

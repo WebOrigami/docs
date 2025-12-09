@@ -5,7 +5,7 @@
       ${ panel.actor ? `
           <div class="faceCircle">
             <div class="faceContainer">
-              <img class="face" src="/assets/${ panel.actor.toLowerCase() }/${ panel.face ?? 'default' }.svg" />
+              <img class="face" src="/assets/faces/${ panel.actor.toLowerCase() }/${ panel.face ?? 'default' }.svg" />
             </div>
           </div>
         ` : "" }

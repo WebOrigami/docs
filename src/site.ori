@@ -12,23 +12,27 @@ Tree.mapExtension(content, {
 // The top-level structure of the site
 → (pages) => {
   // Static files
-  ...client/
+  ...Tree.deepMerge(
+    client/
+    {
+      styles: {
+        comic.css = Tree.deepText(./comics/styles/)
+      }
+    }
+  )
   
-  // All generated pages
-  ...pages
-
-  // This components.js "bundle" is just concatenated files
-  components.js = Tree.deepText(components/)
+  // Comics
+  comics/ = comics/comics.ori/
 
   // Folder of search indexes and resources created on demand (but only once)
   pagefind/ = Origami.once(() => package:@weborigami/pagefind(pages))
+
+  // All generated pages
+  ...pages
 
   // Used by Netlify
   _redirects
 
   // Code samples
   samples/
-
-  // Comics
-  // comics/ = comics.ori/
 }

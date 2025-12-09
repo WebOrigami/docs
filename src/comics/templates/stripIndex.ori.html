@@ -1,0 +1,24 @@
+---
+// A single comic page
+(comics) => src/templates/page.ori({
+  area: "comics"
+  areaLinks: src/areas.yaml/
+  icon: src/js/chooseIcon.js("comics/index.html", src/client/assets/origami) 
+  title: "Comics"
+  _body: _template()
+})
+---
+
+<p>
+  These comics illustrate the use and features of Origami as a complement to
+  the primary documentation. Origami code used in the comics should work as
+  shown in the latest version.
+</p>
+
+<ul>
+${ Tree.map(comics, (comic, key) => Tree.indent`
+  <li>
+    <a href="/comics/${ Origami.slash.remove(key) }.html">${comic.date} - Title goes here</a>
+  </li>
+`) }
+</ul>

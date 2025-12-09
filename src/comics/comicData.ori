@@ -1,4 +1,4 @@
-Tree.map(comics/, (folder, key) => {
+Tree.map(../../comics/, (folder, key) => {
   ...folder/comic.yaml
   date: key.match(/^(?<date>\d\d\d\d-\d\d-\d\d)/).groups.date
   files: folder

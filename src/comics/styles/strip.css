@@ -1,11 +1,11 @@
 
 comic-strip {
   --gutter: clamp(1rem, 3vw, 2rem);
-  color-scheme: light dark;  
+  /* color-scheme: light dark; */
   container-type: inline-size;
   display: grid;
   gap: 3rem 0;
-  grid-template-columns: var(--gutter) auto var(--gutter);
+  /* grid-template-columns: var(--gutter) auto var(--gutter); */
   justify-content: center;
   justify-items: center;
   padding: 3rem 0;

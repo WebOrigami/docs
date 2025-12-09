@@ -1,10 +1,5 @@
 // Comics area
 {
-  assets = {
-    ...assets/
-    styles.css = Tree.deepText(styles/)
-  }
-
   // Extract images from comics folder
   images/ = Tree.mask(comics/, Tree.globKeys({
     "**": {
@@ -20,12 +15,15 @@
     }
   }))
 
-  panels/ = Tree.map(comicData.ori, templates/panels.ori)
+  index.html = src/comics/templates/stripIndex.ori.html(comicData.ori)
+
+  panels/ = Tree.map(comicData.ori, src/comics/templates/panels.ori)
 
   screenshots/ = screenshots.ori/
 
-  strips/ = Tree.map(comicData.ori, {
+  (stripPages) = Tree.map(comicData.ori, {
     key: (value, key) => `${ Origami.slug(key) }.html`
-    value: templates/strip.ori.html
+    value: src/comics/templates/strip.ori.html
   })
+  ...stripPages
 }

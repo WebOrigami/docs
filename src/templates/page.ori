@@ -45,7 +45,7 @@
         <nav id="sideBar">
           ${ <sideBar.ori>(page.pageLinks) }
         </nav>
-        <main class="markdown-body">
+        <main${ page.area === "comics" ? "" : `class="markdown-body"` }>
 ${ page._body }
         </main>
       </div>

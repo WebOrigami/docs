@@ -1,2 +1,0 @@
-#!/usr/bin/env ori Origami.unpack
-Dev.copy(site.ori, Tree.clear(files:build/))
