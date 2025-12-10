@@ -1,11 +1,6 @@
-title: |
-  Origami is a dialect of **JavaScript expressions** that uses paths instead of imports.
-
-  https://weborigami.org/language/expressions
-
 panels:
   - text: >
-      Origami is a dialect of **JavaScript expressions** that uses inline paths
+      Origami is a dialect of **JavaScript expressions** with inline paths
       instead of import statements.
     actor: Bob
     face: talk
@@ -57,3 +52,7 @@ panels:
       - scene: editor.ori.html
         name: site.js
         content: !ori site2.js
+
+link:
+  href: https://weborigami.org/language/expressions
+  text: Origami JavaScript expressions

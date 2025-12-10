@@ -1,6 +1,3 @@
-title: |
-  Easily add full text search to your #static site with the #WebOrigami [pagefind extension](https://github.com/WebOrigami/extensions/tree/main/pagefind)
-
 panels:
   - text: >
       Easily add **full-text search** to your static site with Origami's pagefind extension!
@@ -11,7 +8,7 @@ panels:
     screenshot: pagefind.png
 
   - text: >
-      Create a **search page** that loads pagefind's script and styles.
+      Create a **search page** that loads pagefind's styles and script.
     scene: editor.ori.html
     name: search.html
     content: !ori search.html
@@ -29,3 +26,7 @@ panels:
     scene: browser.ori.html
     url: http://localhost:5000/search.html
     content: !ori results.html
+
+link:
+  href: https://github.com/WebOrigami/extensions/tree/main/pagefind
+  text: Origami's pagefind extension

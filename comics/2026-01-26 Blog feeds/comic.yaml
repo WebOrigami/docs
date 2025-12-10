@@ -1,11 +1,7 @@
-title: |
-  Origami comics: You don't need plugins to define a feed for your blog; feed
-  formats are comprehensible by design.
-
 panels:
   - text: >
-      Site generators typically create blog feeds via **plugins** that are often
-      magic and hard to configure.
+      Site generators create blog feeds via **plugins** that are often magic and
+      hard to configure.
     actor: Bob
     face: concerned
     scene: editor.ori.html
@@ -45,7 +41,7 @@ panels:
 
   - text: >
       Write an **expression** to transform your blog posts to a JSON Feed object
-      using vanilla JavaScript or the Origami dialect shown here.
+      using vanilla JavaScript or the Origami dialect.
     scene: editor.ori.html
     name: feed.ori
     content: !ori feed.ori
@@ -64,3 +60,7 @@ panels:
         url: https://bobscoolblog.com/feed.xml
         content: !ori rss.ori.html()
     footnote: You'll learn reusable concepts, and have total control!
+
+link:
+  href: https://weborigami.org/builtins/origami/rss.html
+  text: The Origami.rss() function

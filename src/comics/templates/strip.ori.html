@@ -1,16 +1,16 @@
 ---
-// A single comic page
-(comic, key) => src/templates/page.ori({
-  area: "comics"
-  areaLinks: src/areas.yaml/
-  icon: src/js/chooseIcon.js(key, src/client/assets/origami) 
-  supertitle: comic.date
-  title: "Title goes here"
-  _body: _template()
-})
+// A single comic strip
+(comic, key, comics) => _template()
 ---
-<link rel="stylesheet" href="/styles/comic.css">
-<script type="module" src="/scripts/comic.js"></script>
 <comic-strip>
 ${ Tree.map(comic.panels, (panel, index) => <panel.ori>(panel, index, comic)) }
 </comic-strip>
+${ comic.link
+    ? Tree.indent`
+      <p class="readMore">
+        Read more:
+        <a href="${ comic.link.href }">${ comic.link.text }</a>
+      </p>
+    `
+    : ""
+}

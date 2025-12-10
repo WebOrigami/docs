@@ -9,7 +9,10 @@ export default async function markCurrent(treelike, currentPage) {
   }
   const links = Object.values(await Tree.plain(treelike));
   const result = links.map((entry) => {
-    const current = entry.href === currentPage;
+    // Compare the full href as well as just the page portion.
+    const fullMatch = entry.href === currentPage;
+    const pageMatch = entry.href.split("/").pop() === currentPage;
+    const current = fullMatch || pageMatch;
     return Object.assign({ current }, entry);
   });
   return result;

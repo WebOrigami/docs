@@ -1,6 +1,3 @@
-title: |
-  Origami comics: Find broken internal links in your #static site with [`Dev.audit`](https://weborigami.org/builtins/dev/audit)
-
 panels:
   - text: >
       As you evolve your site, you might end up with **broken links**!
@@ -26,7 +23,7 @@ panels:
           $
 
   - text: >
-      Fix the links and **audit again** to confirm there are no broken links.
+      Fix the links and **audit again** to confirm all links work.
     scene: split.ori.html
     panes:
       - scene: editor.ori.html
@@ -61,3 +58,7 @@ panels:
         - bin/..cmp/behind/broll.html
       cmp/lineup/quiz4.html:
         - cmp/lineup/img/quiz/q4.gif
+
+link:
+  href: https://weborigami.org/builtins/dev/audit
+  text: Origami's Dev.audit function

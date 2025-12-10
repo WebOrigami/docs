@@ -1,13 +1,7 @@
 
 comic-strip {
-  --gutter: clamp(1rem, 3vw, 2rem);
-  /* color-scheme: light dark; */
-  container-type: inline-size;
   display: grid;
   gap: 3rem 0;
-  /* grid-template-columns: var(--gutter) auto var(--gutter); */
-  justify-content: center;
-  justify-items: center;
   padding: 3rem 0;
 
   @media (prefers-color-scheme: dark) {
@@ -18,13 +12,5 @@ comic-strip {
   @media (prefers-color-scheme: light) {
     background: #faf9f6;
     color: #333;
-  }
-
-  > * {
-    grid-column: 2;
-    
-    &[aria-selected="false"] {
-      opacity: 0.66;
-    }
   }
 }
