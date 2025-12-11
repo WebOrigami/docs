@@ -5,10 +5,6 @@ comic-editor {
   grid-template-rows: auto 1fr;
   overflow: hidden;
 
-  > * {
-    overflow: hidden;
-  }
-  
   .tabBar {
     background: var(--editor-background);
     padding: var(--window-padding);
@@ -25,12 +21,12 @@ comic-editor {
 
   .editor {
     font-family: var(--editor-font-family);
+    overflow: scroll;
     padding: var(--window-padding);
 
     pre {
       font-family: inherit;
       margin: 0;
-      overflow: hidden;
     }
   }
 

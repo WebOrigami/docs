@@ -249,10 +249,10 @@ nav a:hover {
   color: #bbb;
 }
 
-/* Styles for markdown body content */
+/* Styles for markdown body content -- but not inside comic strips */
 .markdown-body {
-  img,
-  iframe {
+  > :is(img, iframe),
+  > :not(comic-strip) :is(img, iframe) {
     max-width: 100%;
   }
 
@@ -313,73 +313,78 @@ nav a:hover {
 
   /*
    * Code
+   *
+   * Don't mess with code in comic strips
    */
 
-  pre {
-    overflow: auto;
-    font-size: 85%;
-    line-height: 1.45;
+  > pre,
+  > :not(comic-strip) pre {
     background-color: var(--color-canvas-subtle);
     border-radius: 6px;
+    font-family: "Consolas", "Menlo", "Courier New", "Courier", monospace;
+    font-size: 85%;
+    line-height: 1.45;
+    overflow: auto;
     padding: 16px;
+
+    &.step {
+      color: #555;
+    }
+
+    &.step b {
+      color: black;
+      font-weight: bold;
+    }
+
+    .hljs {
+      background: inherit;
+      color: inherit;
+    }
+
+    & code.hljs {
+      padding: 0;
+    }
+
+    & code {
+      white-space: pre-wrap;
+    }
   }
+
   td pre {
     margin: 0;
     padding: 0;
   }
 
-  pre,
-  code {
+  > code,
+  > :not(comic-strip) code {
+    /* Approximate more recent GitHub styling for inline code */
     font-family: "Consolas", "Menlo", "Courier New", "Courier", monospace;
-  }
-
-  code.language-console,
-  code.language-console .hljs-meta {
-    color: #333;
-    font-weight: normal;
-  }
-
-  code.language-console span {
-    color: #222;
-    font-weight: bold;
-  }
-
-  pre.step {
-    color: #555;
-  }
-
-  pre.step b {
-    color: black;
-    font-weight: bold;
-  }
-
-  .hljs {
-    background: inherit;
-    color: inherit;
-  }
-
-  code.hljs {
-    padding: 0;
-  }
-
-  pre code.hljs {
-    padding: 0;
-  }
-
-  /* Approximate more recent GitHub styling for inline code */
-  code {
     background-color: var(--color-canvas-subtle);
     white-space: nowrap;
+
+    &.hljs {
+      padding: 0;
+    }
+
+    &.language-console,
+    &.language-console .hljs-meta {
+      color: #333;
+      font-weight: normal;
+    }
+
+    &.language-console span {
+      color: #222;
+      font-weight: bold;
+    }
+
+    &:not(pre code) {
+      border-radius: 6px;
+      font-size: 85%;
+      margin: 0;
+      padding: .2em .4em;
+    }
   }
-  code:not(pre code) {
-    border-radius: 6px;
-    font-size: 85%;
-    margin: 0;
-    padding: .2em .4em;
-  }
-  pre code {
-    white-space: pre-wrap;
-  }
+
   p code {
     white-space: break-spaces;
   }
@@ -438,8 +443,8 @@ nav a:hover {
     fill: white;
   }
 
-  .screenshot {
-    border: 1px solid #ddd;
+  > .screenshot,
+  > :not(comic-strip) .screenshot {    border: 1px solid #ddd;
     max-height: 350px;
     max-width: 50%;
   }

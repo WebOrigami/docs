@@ -5,13 +5,8 @@ comic-split {
   grid-template-rows: auto;
   overflow: hidden;
 
-  > * {
-    overflow: hidden;
-  }
-
   pre {
     margin: 0;
-    overflow: hidden;
   }
   
   > *:not(:first-child) {

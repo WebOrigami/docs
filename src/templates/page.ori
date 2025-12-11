@@ -14,7 +14,9 @@
     <div id="page">
       <div id="topNav" class="pageRow">
         <div id="homeContainer">
-          <a href="/" ${ page.area === "home" ? ` aria-current="page"` : "" }>Web Origami</a>
+          <a href="/" ${
+            page.area === "home" || page.area === "comics" ? ` aria-current="page"` : ""
+          }>Web Origami</a>
         </div>
         <nav id="navBar">
           <a href="/">Origami</a>
@@ -45,7 +47,7 @@
         <nav id="sideBar">
           ${ <sideBar.ori>(page.pageLinks) }
         </nav>
-        <main${ page.area === "comics" ? "" : ` class="markdown-body"` }>
+        <main class="markdown-body">
 ${ page._body }
         </main>
       </div>

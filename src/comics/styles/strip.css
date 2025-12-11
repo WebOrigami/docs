@@ -1,5 +1,6 @@
 
 comic-strip {
+  container-type: inline-size;
   display: grid;
   gap: 3rem 0;
   padding: 3rem 0;

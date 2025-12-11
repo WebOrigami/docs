@@ -1,7 +1,7 @@
 ---
 // A comic strip page
 (comic, key, comics) => src/templates/page.ori({
-  area: "home"
+  area: "comics"
   areaLinks: src/areas.yaml/
   icon: src/js/chooseIcon.js(key, src/client/assets/origami)
   pageLinks: src/js/markCurrent.js(content/pages.yaml, `/comics/${ key }.html`)
@@ -21,7 +21,7 @@ ${ strip.ori.html(comic, key, comics) }
       `
       : ""
   }
-  <a href="/comics">Comics Index</a>
+  <a href="/comics">Index</a>
   ${ comic.nextKey
       ? Tree.indent`
         &nbsp;

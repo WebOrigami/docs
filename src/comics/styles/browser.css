@@ -31,7 +31,7 @@ comic-browser {
     background: white;
     color: black;
     font-size: larger;
-    overflow: hidden;
+    overflow: scroll;
 
     button, input, select, textarea {
       font-family: inherit;

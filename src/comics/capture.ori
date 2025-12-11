@@ -14,9 +14,7 @@
     ".html→.png"
     (panelPage) => package:@weborigami/screenshot/html(panelPage, {
       deviceScaleFactor: 2,
-      resources: {
-        comics: comics.ori/
-      }
+      resources: site.ori/
     })
   )
 
