@@ -1,4 +1,4 @@
-src/comics/publishedComics.ori/
+publishedComics.ori/
 
 -> (comics) => comics.size > 0
   ? strip.ori.html(Tree.first(comics), Tree.keys(comics)[0], comics)

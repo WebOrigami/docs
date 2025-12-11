@@ -1,9 +1,15 @@
-Tree.map(../../comics/, (folder, key) => {
+Tree.map(Origami.project()/comics/, (folder, key) => {
   date: key.match(/^(?<date>\d\d\d\d-\d\d-\d\d)/).groups.date
   slug: Origami.slug(Origami.slash.remove(key))
   title: Origami.slash.remove(key).match(/^(?<date>\d\d\d\d-\d\d-\d\d) (?<title>.+)/).groups.title
   ...folder/comic.yaml
   files: folder
+})
+
+// Add `published` field
+→ (comics) => Tree.map(comics, (comic) => {
+  ...comic
+  published: (node:process).env.NODE_ENV !== "production" || comic.date < new Date().toISOString().slice(0, 10)
 })
 
 // Use slug as key

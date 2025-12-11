@@ -15,15 +15,15 @@
     }
   }))
 
-  index.html = src/comics/templates/stripIndex.ori.html(publishedComics.ori/)
+  index.html = templates/stripIndex.ori.html(publishedComics.ori)
 
-  panels/ = Tree.map(comicData.ori, src/comics/templates/panels.ori)
+  panels/ = Tree.map(comicData.ori, templates/panels.ori)
 
   screenshots/ = screenshots.ori/
 
   (stripPages) = Tree.map(comicData.ori, {
     key: (value, key) => `${ Origami.slug(key) }.html`
-    value: src/comics/templates/stripPage.ori.html
+    value: templates/stripPage.ori.html
   })
   ...stripPages
 }

@@ -14,7 +14,7 @@
 <script type="module" src="/scripts/comic.js"></script>
 ${ strip.ori.html(comic, key, comics) }
 <p>
-  ${ comic.previousKey
+  ${ comic.previousKey && comics[comic.previousKey].published
       ? Tree.indent`
         <a class="previous" href="${ comic.previousKey }.html">Previous: ${ comics[comic.previousKey].title }</a>
         &nbsp;
@@ -22,7 +22,7 @@ ${ strip.ori.html(comic, key, comics) }
       : ""
   }
   <a href="/comics">Index</a>
-  ${ comic.nextKey
+  ${ comic.nextKey && comics[comic.nextKey].published
       ? Tree.indent`
         &nbsp;
         <a class="next" href="${ comic.nextKey }.html">Next: ${ comics[comic.nextKey].title }</a>

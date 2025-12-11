@@ -1,4 +1,1 @@
-// On production, only comics with dates in the past are considered published
-(node:process).env.NODE_ENV === "production"
-  ? Tree.filter(comicData.ori, (comic) => comic.date < new Date().toISOString().slice(0, 10))
-  : comicData.ori/
+Tree.filter(comicData.ori/, (comic) => comic.published)
