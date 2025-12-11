@@ -22,7 +22,7 @@ A short motion comic introduces the language:
 	<img class="screenshot" src="/assets/illustrations/comic.png" alt="Comic panel with the text ‘Intro to Origami’ with a bright explosion behind it in the style of classic comic book covers">
 </a>
 
-» Learn the [Content/Transformation conceptual model](model.html) that forms the basis for Origami
+» Learn the [Content/Transformation conceptual model](/model.html) that forms the basis for Origami
 
 » Create a basic blog in Origami in the [hands-on tutorial](tutorial.html)
 

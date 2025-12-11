@@ -1,11 +1,12 @@
 ---
 title: The Content/Transformation model
 subtitle: How to think about making a site
+area: home
 ---
 
 The Content/Transformation conceptual model forms the basis for Origami, but is general and you can use it anywhere.
 
-This is background reading. If you’d prefer to jump straight in, try the [blog tutorial](tutorial.html) or read about [expressions](expressions.html).
+This is background reading. If you’d prefer to jump straight in, try the [blog tutorial](/language/tutorial.html) or read about [expressions](/language/expressions.html).
 
 ## Introduction
 
@@ -197,4 +198,4 @@ You are almost always best off picking an approach with a transformation that’
 
 Above all, consider how the way you make your site will constrain or expand your creative freedom, and the degree to which that’s important for the content you want to share.
 
-If you’re interested in seeing how Origami directly supports this Content/Transformation model, try the creating a basic blog in the [blog tutorial](tutorial.html).
+If you’re interested in seeing how Origami directly supports this Content/Transformation model, try the creating a basic blog in the [blog tutorial](/language/tutorial.html).

@@ -20,7 +20,7 @@ export default async function addData(
 
   let areaLinks;
   const scope = await Tree.scope(tree);
-  const area = await scope.get("area");
+  const area = object.area ?? (await scope.get("area"));
   if (area) {
     const areaHref = `/${toString(area)}/`;
     areaLinks = await markCurrent(areas, areaHref);

@@ -1,11 +1,11 @@
 ---
 // A comic strip page
 (comic, key, comics) => src/templates/page.ori({
-  area: "comics"
+  area: "home"
   areaLinks: src/areas.yaml/
   icon: src/js/chooseIcon.js(key, src/client/assets/origami)
   pageLinks: src/js/markCurrent.js(content/pages.yaml, `/comics/${ key }.html`)
-  supertitle: "Origami Comics"
+  supertitle: "Origami comics"
   title: comic.title
   _body: _template()
 })

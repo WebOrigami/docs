@@ -14,7 +14,7 @@
     <div id="page">
       <div id="topNav" class="pageRow">
         <div id="homeContainer">
-          <a href="/">Web Origami</a>
+          <a href="/" ${ page.area === "home" ? ` aria-current="page"` : "" }>Web Origami</a>
         </div>
         <nav id="navBar">
           <a href="/">Origami</a>

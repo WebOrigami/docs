@@ -2,7 +2,7 @@
 title: Web Origami
 subtitle: A language for making sites where you can understand how they're made
 icon: bird.svg
-area: ""
+area: "home"
 fileName: index.html
 ---
 

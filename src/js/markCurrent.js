@@ -11,7 +11,7 @@ export default async function markCurrent(treelike, currentPage) {
   const result = links.map((entry) => {
     // Compare the full href as well as just the page portion.
     const fullMatch = entry.href === currentPage;
-    const pageMatch = entry.href.split("/").pop() === currentPage;
+    const pageMatch = entry.href?.split("/").pop() === currentPage;
     const current = fullMatch || pageMatch;
     return Object.assign({ current }, entry);
   });
