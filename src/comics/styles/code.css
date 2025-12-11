@@ -1,82 +1,109 @@
-/* Highlight.js Oceanic Next Theme */
+/*
 
+    Name:       Base16 Oceanic Next Dark
+    Author:     Dmitri Voronianski (http://pixelhunter.me)
+
+    highlight.js v8.0 template by Jan T. Sott (https://github.com/idleberg/base16-highlight.js)
+    Original Base16 color scheme by Chris Kempson (https://github.com/chriskempson/base16)
+
+*/
+
+/* Origami override */
 .hljs {
-  /* background: #1B2B34; */
-  color: #D8DEE9;
-  font-family: var(--editor-font-family);
-  line-height: 1.5;
+  --text-color: #f0f0f0;
 }
 
+/* Oceanic Next Comment */
 .hljs-comment,
-.hljs-quote {
-  color: #65737E;
-  font-style: italic;
+.hljs-title {
+  color: #A7ADBA;
 }
 
-.hljs-keyword,
-.hljs-selector-tag,
-.hljs-subst {
-  color: #C594C5;
-  /* font-weight: bold; */
+.hljs-title {
+  color: var(--text-color);
 }
 
-.hljs-number,
-.hljs-literal,
+/* Oceanic Next Red */
 .hljs-variable,
-.hljs-template-variable,
-.hljs-tag .hljs-attr {
-  color: #F99157;
-}
-
-.hljs-string,
-.hljs-doctag,
-.hljs-title,
-.hljs-section,
-.hljs-selector-id,
-.hljs-selector-class {
-  color: #99C794;
-}
-
-.hljs-attr,
 .hljs-attribute,
-.hljs-builtin,
-.hljs-symbol,
-.hljs-bullet,
-.hljs-code {
-  color: #FAC863;
-}
-
-.hljs-addition {
-  background-color: #334C56;
-  color: #99C794;
-}
-
-.hljs-deletion {
-  background-color: #4C3A3A;
+.hljs-attr, /* Origami addition */
+.hljs-tag,
+.hljs-regexp,
+.ruby .hljs-constant,
+.xml .hljs-tag .hljs-title,
+.xml .hljs-pi,
+.xml .hljs-doctype,
+.html .hljs-doctype,
+.css .hljs-id,
+.css .hljs-class,
+.css .hljs-pseudo {
   color: #EC5f67;
 }
 
-.hljs-meta {
+/* Oceanic Next Orange */
+.hljs-number,
+.hljs-preprocessor,
+.hljs-built_in,
+.hljs-literal,
+.hljs-params,
+.hljs-constant {
+  color: #F99157;
+}
+
+/* Oceanic Next Yellow */
+.ruby .hljs-class .hljs-title,
+.css .hljs-rules .hljs-attribute {
+  color: #FAC863;
+}
+
+/* Oceanic Next Green */
+.hljs-string,
+.hljs-value,
+.hljs-inheritance,
+.hljs-header,
+.ruby .hljs-symbol,
+.xml .hljs-cdata {
+  color: #99C794;
+}
+
+/* Oceanic Next Aqua */
+.css .hljs-hexcolor {
   color: #5FB3B3;
 }
 
-.hljs-meta .hljs-keyword {
+/* Oceanic Next Blue */
+.hljs-function,
+.python .hljs-decorator,
+.python .hljs-title,
+.ruby .hljs-function .hljs-title,
+.ruby .hljs-title .hljs-keyword,
+.perl .hljs-sub,
+.javascript .hljs-title,
+.coffeescript .hljs-title {
+  color: #6699CC;
+}
+
+/* Oceanic Next Purple */
+.hljs-keyword,
+.hljs-meta, /* Origami addition */
+.javascript .hljs-function {
   color: #C594C5;
 }
 
-.hljs-emphasis {
-  font-style: italic;
+.hljs {
+  display: block;
+  /* background: #1B2B34; */
+  /* color: #C0C5CE; */
+  color: var(--text-color);
+  padding: 0.5em;
 }
 
-.hljs-strong {
-  font-weight: bold;
-}
-
-.hljs-link {
-  text-decoration: underline;
-  color: #5FB3B3;
-}
-
-.language-bash {
-  font-weight: bold;
+.coffeescript .javascript,
+.javascript .xml,
+.tex .hljs-formula,
+.xml .javascript,
+.xml .vbscript,
+.xml .css,
+.xml .hljs-cdata {
+  opacity: 0.5;
 }
