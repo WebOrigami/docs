@@ -1,0 +1,10 @@
+Tree.map(
+  comicData.ori
+  (comic) => Tree.map(comic/panels, {
+    key: (panel) => panel.screenshot
+    value: (panel) => package:@weborigami/screenshot/url(Dev.log(panel.url), {
+      height: 768
+      width: 1024
+    })
+  }
+))

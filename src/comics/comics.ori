@@ -1,7 +1,7 @@
 // Comics area
 {
   // Extract images from comics folder
-  images/ = Tree.mask(comics/, Tree.globKeys({
+  images/ = Tree.mask(Origami.project()/comics/, Tree.globKeys({
     "**": {
       "*.gif": true
       "*.ico": true
@@ -16,14 +16,14 @@
   }))
 
   index.html = templates/stripIndex.ori.html(publishedComics.ori)
+  _review.html = templates/stripIndex.ori.html(comicData.ori)
 
-  panels/ = Tree.map(comicData.ori, templates/panels.ori)
+  // For debugging: panels in screenshot form
+  // panels/ = Tree.map(comicData.ori, templates/panels.ori)
 
-  screenshots/ = screenshots.ori/
-
-  (stripPages) = Tree.map(comicData.ori, {
+  // Strip pages
+  ...Tree.map(comicData.ori, {
     key: (value, key) => `${ Origami.slug(key) }.html`
     value: templates/stripPage.ori.html
   })
-  ...stripPages
 }

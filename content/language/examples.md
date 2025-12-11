@@ -9,7 +9,7 @@ ${ Tree.map(src/examples.yaml, (example, keySlash) => `
 <a href="${ example.url ?? example.repo }">
   <img class="screenshot" src="${
     example.image ??
-    `/assets/screenshots/${ Origami.slash.remove(keySlash) }.png`
+    `/assets/screenshots/examples/${ Origami.slash.remove(keySlash) }.png`
   }" alt="Screenshot">
 </a>
 <p>
