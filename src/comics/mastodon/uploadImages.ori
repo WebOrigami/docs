@@ -1,0 +1,9 @@
+Tree.map(
+  [
+    post/0.png
+    post/1.png
+    post/2.png
+    post/3.png
+  ]
+  (buffer, index) => uploadImage.js(buffer, `${ index }.png`, post/altText.yaml[index])
+)

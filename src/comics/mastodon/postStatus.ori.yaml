@@ -1,0 +1,6 @@
+status: |
+  This week's #WebOrigami comic: ${ _.title }
+
+  More about ${ _.link.text }: ${ _.link.href }
+media_ids: !ori (media.yaml).map(data => data.id)
+visibility: direct

@@ -1,6 +1,7 @@
 .DS_Store
 .netlify
 build
+cache
 captures
 crawl
 node_modules

@@ -1,0 +1,24 @@
+// Return the files needed to post the comic for the given date.
+(date) => 
+  // Find comic with that date
+  Tree.first(Tree.filter(comicData.ori, (comic) => comic.date === Origami.slash.remove(date)))
+
+  → (comic) => comic
+    ? {
+      post.yaml: postStatus.ori.yaml(comic)
+
+      altText.yaml: Origami.yaml(
+        Tree.map(comic.panels, (value) => stripMarkdown.js(value.text))
+      )
+
+      // Screenshots
+      ...Tree.mapExtension(
+        templates/panels.ori(comic),
+        ".html→.png"
+        (panelPage) => package:@weborigami/screenshot/html(panelPage, {
+          deviceScaleFactor: 2,
+          resources: site.ori/
+        })
+      )
+    }
+  : Dev.log(null, "No comic found")

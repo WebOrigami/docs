@@ -1,6 +1,6 @@
 panels:
   - text: >
-      Easily add **full-text search** to your static site with Origami's pagefind extension!
+      Easily add **full-text search** to your Origami static site with pagefind!
     actor: Alice
     face: wow
     scene: browser.ori.html

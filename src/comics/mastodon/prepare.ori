@@ -1,0 +1,3 @@
+// Invoke this with prepare.ori/<date> to create/update the `post` folder
+
+(date) => Dev.copy(postFiles.ori(date), Tree.clear(files:post))
