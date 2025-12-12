@@ -1,18 +1,19 @@
 ---
-title: The Origami language
-subtitle: Complements HTML, CSS, and JavaScript so you can build complete sites
+title: Origami expression language
+subtitle: A concise dialect of JavaScript expressions for building sites
 ---
 
 ${ src/templates/blocks.ori(areaLinks) }
 
-The HTML, CSS, and JavaScript languages let you define individual web pages, but to build a complete site you also need to:
+The Origami expression language lets you write concise formulas that determine the contents of your site.
 
-- **Define the overall structure** of the pages and resources for your site.
-- **Process data and content** into publishable forms.
-- **Generate and reuse HTML** across pages so they can be consistent and easier to make.
-- **Serve or build** those pages as static files you can deploy anywhere.
+If you're not a programmer, it's roughly equivalent to writing **spreadsheet formulas**. If you know JavaScript, Origami is essentially **JavaScript expressions plus paths**.
 
-Origami is designed to help you accomplish all of that.
+The language is focused on being the most concise way possible to:
+
+- Define the overall structure of the pages and resources for your site.
+- Process data and content into publishable forms.
+- Generate and reuse HTML across pages so they can be consistent and easier to make.
 
 ## Starting points
 
@@ -32,7 +33,7 @@ A short motion comic introduces the language:
 
 ## Concept
 
-The Origami language and tools round out the native web languages:
+The Origami language and tools round out the native web languages, handling the tasks that HTML and CSS alone can't handle:
 
 <figure>
   <img src="/assets/illustrations/roles.svg" style="width: 75%;">
@@ -40,4 +41,4 @@ The Origami language and tools round out the native web languages:
 
 Using the Origami language, you can write a concise site definition to establish your site's structure. You use the same language to process data into publishable forms, and to define templates to generate HTML. You can make those pages available as static files (that is, regular files that can be served cheaply or for free), or using the included Origami server, or using other servers like [Express](https://expressjs.com/).
 
-The Origami language [expression syntax](expressions.html) is relatively simple and intended for people who have some experience working with HTML and CSS. Full knowledge of JavaScript isn't required, although if you do know JavaScript you can do a lot with Origami.
+The Origami [expression syntax](expressions.html) is relatively simple and intended for people who have some experience working with HTML and CSS. Full knowledge of JavaScript isn't required.

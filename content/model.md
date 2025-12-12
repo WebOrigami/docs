@@ -69,7 +69,7 @@ You create content and a transformation, then apply the transformation to the co
 
 As an analogy, consider the traditional paper folding art of origami, in which you transform a flat square of paper into an artwork.
 
-<figure style="align-items: center; display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(125px, 1fr)); justify-items: center;">
+<figure style="align-items: center; display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(20%, 1fr)); justify-items: center;">
   <img src="/assets/heart/step1.svg">
   <img src="/assets/heart/step2.svg">
   <img src="/assets/heart/step3.svg">
