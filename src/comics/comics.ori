@@ -19,7 +19,7 @@
   _review.html = templates/stripIndex.ori.html(comicData.ori)
 
   // For debugging: panels in screenshot form
-  // panels/ = Tree.map(comicData.ori, templates/panels.ori)
+  panels/ = Tree.map(comicData.ori, templates/panels.ori)
 
   // Strip pages
   ...Tree.map(comicData.ori, {

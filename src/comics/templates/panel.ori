@@ -2,25 +2,26 @@
 (panel, index, comic) => Tree.indent`
   <comic-panel class="${ index % 2 === 0 ? 'even' : 'odd' }">
     <div class="caption">
-      ${ panel.actor ? Tree.indent`
-          <div class="faceCircle">
-            <div class="faceContainer">
-              <img class="face" src="/assets/faces/${ panel.actor.toLowerCase() }/${ panel.face ?? 'default' }.svg" />
+      ${ panel.actor
+        ? Tree.indent`
+            <div class="faceCircle">
+              <div class="faceContainer">
+                <img class="face" src="/assets/faces/${ panel.actor.toLowerCase() }/${ panel.face ?? 'default' }.svg" />
+              </div>
             </div>
+            ${ bubble.ori.html(Origami.mdHtml(panel.text)) }
+          `
+        : Tree.indent`
+          <div class="plainCaption comicText">
+            ${ Origami.mdHtml(panel.text) }
           </div>
-        ` : "" }
-      <div class="bubble">
-        <div class="tail"></div>
-        <div class="speech">
-          ${ Origami.mdHtml(panel.text) }
-        </div>
-      </div>
+        ` }
     </div>
 ${ .(panel.scene)(panel, comic) }
   ${ panel.footnote ?
     Tree.indent`
       <div class="footnoteContainer">
-        <div class="footnote ${ panel.footnote.length > 60 ? "long" : "short" }">
+        <div class="footnote comicText ${ panel.footnote.length > 60 ? "long" : "short" }">
           ${ Origami.mdHtml(panel.footnote) }
         </div>
       </div>

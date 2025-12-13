@@ -10,16 +10,35 @@
 })
 ---
 
+<link rel="stylesheet" href="/styles/comic.css">
+<style>
+.comicLink {
+  --left-tail-shift: -5px;
+  --right-tail-shift: inherit;
+  color: inherit;
+  display: flex;
+  margin-top: 2rem;
+  text-decoration: none;
+
+  &:nth-child(even) {
+    --left-tail-shift: inherit;
+    --right-tail-shift: -5px;
+    flex-direction: row-reverse;
+  }
+}
+</style>
+<script type="module" src="/scripts/comic.js"></script>
+
 <p>
   These comics illustrate the use and features of Origami as a complement to
-  the primary documentation. Where possible, Origami code used in the comics
-  is verified in the latest version of Origami.
+  the primary documentation.
+</p>
+<p>
+  Click a speech balloon to view the full comic.
 </p>
 
-<ul>
 ${ Tree.map(comics, (comic, key) => Tree.indent`
-  <li>
-    <a href="/comics/${ Origami.slash.remove(key) }.html">${ comic.title }</a>
-  </li>
+  <a class="comicLink" href="/comics/${ Origami.slash.remove(key) }.html">
+    ${ bubble.ori.html(Origami.mdHtml(comic.panels[0].text + "…")) }
+  </a>
 `) }
-</ul>

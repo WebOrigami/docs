@@ -1,6 +1,6 @@
 panels:
   - text: >
-      Site generators create blog feeds via **plugins** that are often magic and
+      Site generators create **blog feeds** via plugins that are often magic and
       hard to configure.
     actor: Bob
     face: concerned

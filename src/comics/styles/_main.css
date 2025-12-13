@@ -44,6 +44,25 @@ body {
   color-scheme: light dark;  
 } */
 
+.comicText {
+  font-family: "Anime Ace 3", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  line-height: 1.1;
+  padding: 0.5rem;
+  /* Anime Ace font seems to need more padding below in Safari. We try to strike
+  a compromise across all browsers. */
+  padding-bottom: 0.7rem;
+  
+  p {
+    margin: 0;
+  }
+
+  /* strong = bold and italic */
+  strong {
+    font-style: italic;
+  }
+}
+
 .readMore {
   margin-bottom: 3rem;
 }

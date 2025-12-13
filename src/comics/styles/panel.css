@@ -2,7 +2,7 @@ comic-panel {
   --border-color: #333;
   --border: 3px solid var(--border-color);
   /* Anime Ace font seems to need more padding below in Safari */
-  --text-padding: 0.5rem 0.5rem 0.7rem 0.6rem;
+  --comic-text-padding: 0.5rem 0.5rem 0.7rem 0.6rem;
   aspect-ratio: 4 / 3;
   box-sizing: border-box;
   color: #333;
@@ -23,11 +23,6 @@ comic-panel {
 
   & > * {
     min-width: 0;
-  }
-
-  p {
-    margin: 0;
-    width: 100%;
   }
   
   .faceCircle {
@@ -65,45 +60,37 @@ comic-panel {
     }
   }
 
-  .caption,
-  .footnote {
-    font-family: "Anime Ace 3", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 20px;
-    line-height: 1.1;
-  }
-
   .caption {
     align-items: center;
     display: flex;
     gap: 0.7rem;
     padding: var(--caption-padding);
 
-    /* strong = bold and italic */
-    strong {
-      font-style: italic;
+    &:has(comic-bubble) {
+      padding-bottom: 0.5rem;
     }
   }
 
   /* Alternate left/right placement of face and footnote */
   &.even {
-    .caption {
-      padding-right: 0.5rem;
-    }
+    --left-tail-shift: -5px;
+    --right-tail-shift: inherit;
 
-    .tail {
-      left: var(--tail-shift);
-    }    
+    &:has(.face) {
+      .caption {
+        padding-right: var(--extra-caption-padding, var(--caption-padding));
+      }
+    }
   }
 
   &.odd {
+    --left-tail-shift: inherit;
+    --right-tail-shift: -5px;
+
     &:has(.face) {
       .caption {
         flex-direction: row-reverse;
-        padding-left: 0.5rem;
-      }
-
-      .tail {
-        right: var(--tail-shift);
+        padding-left: var(--extra-caption-padding, var(--caption-padding));
       }
     }
 
@@ -114,43 +101,6 @@ comic-panel {
 
   /* Face icon present */
   &:has(.face) {
-    /* Show text in speech balloon */
-    .caption {
-      padding-bottom: 0.5rem;
-
-      .bubble {
-        --bubble-border-color: black;
-        --bubble-border-width: 2px;
-        align-items: center;
-        background: white;
-        border: var(--bubble-border-width) solid var(--bubble-border-color);
-        border-radius: 0.5rem;
-        display: flex;
-        position: relative;
-      }
-
-      .tail {
-        --tail-shift: -5px;
-        aspect-ratio: 1;
-        background: white;
-        border: var(--bubble-border-width) solid var(--bubble-border-color);
-        box-sizing: border-box;
-        height: 15px;
-        position: absolute;
-        transform: rotate(45deg);
-        width: 15px;
-      }
-
-      .speech {
-        background: white;
-        border-radius: 0.5rem;
-        box-sizing: content-box; /* Simplifies auto fit */
-        padding: var(--speech-padding, 0.5rem 0.75rem 0.7rem 0.85rem);
-        text-wrap: balance;
-        z-index: 1;
-      }
-    }
-
     /* Set border on panel scene */
     & > .scene {
       border: var(--border);
@@ -166,7 +116,7 @@ comic-panel {
       background: white;
       border-bottom: var(--border);
       box-sizing: border-box;  
-      padding: 0.5rem 0.5rem;
+      padding: var(--caption-padding);
 
       .speech {
         padding-bottom: 0.2rem;
@@ -202,7 +152,7 @@ comic-panel {
       box-shadow: 4px 4px 6px rgba(0,0,0,0.4);
       box-sizing: content-box; /* Simplifies auto fit */
       font-style: italic;
-      padding: var(--text-padding);
+      padding: var(--comic-text-padding);
       
       p {
         text-wrap: balance;
@@ -229,11 +179,31 @@ comic-panel {
 
 /*
 Captured PNGs need spacing around the caption so that the balloon and face
-circle don't end up touching the edge of the image.
-
-To achieve this, we shift spacing from the speech text to the caption.
+circle don't end up touching the edge of the image. We want the horizontal width
+of the paragraph inside the speech balloon to be the same in both modes so that
+text doesn't wrap differently when captured.
 */
-.capture comic-panel {
+body:not(.capture) comic-panel:has(.face) {
+  /* Normal mode */
+
+  /* Caption not inset */
+  --caption-padding: 0;
+  
+  /* 0.5 rem extra padding of caption on side opposite face circle */
+  --extra-caption-padding: 0.5rem;
+  
+  /* 0.25 rem extra horizontal padding inside speech balloon */
+  --speech-padding: 0.75rem;
+}
+
+body.capture comic-panel:has(.face) {
+  /* Capture mode */
+
+  /* Inset caption */
   --caption-padding: 0.5rem;
-  --speech-padding: var(--text-padding);
+
+  /* No extra caption padding */
+
+  /* Remove extra padding from inside speech balloon */
+  --speech-padding: 0.5rem;
 }

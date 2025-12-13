@@ -61,6 +61,7 @@
 .hljs-value,
 .hljs-inheritance,
 .hljs-header,
+.hljs-section, /* Origami addition */
 .ruby .hljs-symbol,
 .xml .hljs-cdata {
   color: #99C794;
@@ -106,4 +107,18 @@
 .xml .css,
 .xml .hljs-cdata {
   opacity: 0.5;
+}
+
+/* Origami additions */
+.language-console {
+    color: #c9cdd6;
+
+    .language-bash {
+      color: var(--text-color);
+      font-weight: bold;
+    
+      .hljs-string {
+        color: inherit;
+      }
+    }
 }

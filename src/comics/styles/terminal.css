@@ -4,6 +4,7 @@ comic-terminal {
   display: grid;
   font-family: var(--editor-font-family);
   grid-auto-rows: min-content;
+  overflow: scroll;
   padding: var(--window-padding);
   
   comic-typewriter {

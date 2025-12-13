@@ -15,7 +15,7 @@ function autoFitWidth(element) {
 }
 
 function autoFitWidths() {
-  const captionsWithFaces = document.querySelectorAll(".caption:has(.face)");
+  const captionsWithFaces = document.querySelectorAll("comic-bubble");
   const speeches = Array.from(captionsWithFaces).map((caption) =>
     caption.querySelector(".speech")
   );

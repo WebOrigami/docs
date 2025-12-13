@@ -1,0 +1,63 @@
+panels:
+  - text: >
+      An Origami **template document** combines text with placeholder
+      expressions in JavaScript.
+    actor: Alice
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: products.ori.md
+        content: !ori products.ori.md
+      - scene: browser.ori.html
+        url: http://localhost:5000/products.html
+        content: !ori Origami.mdHtml(products.ori.md())
+    footnote: It's a JS **template literal** as a file.
+
+  - text: >
+      A template itself is a **function**: call it with data, and it gives you
+      back the text with all the values inlined.
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: postLink.ori.html
+        content: !ori postLink.ori.html
+      - scene: session.ori.html
+        content: |
+          $ ori "postLink.ori.html({ title: 'Hello', url: 'post1.html' })"
+          ${ postLink.ori.html({ title: 'Hello', url: 'post1.html' }) }
+          $
+
+  - text: >
+      If you already have a **JavaScript function** that does what you want,
+      Origami lets you call that directly by file name.
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: index.ori.md
+        content: !ori index.ori.md
+      - scene: browser.ori.html
+        url: http://localhost:5000/index.html
+        content: !ori Origami.mdHtml(index.ori.md())
+
+  - text: >
+      You can break complex pages into smaller templates and scripts, then
+      **combine them** to create the final output!
+    actor: Alice
+    face: grin
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: page.ori.html
+        content: !ori page.ori.html
+      - scene: editor.ori.html
+        name: header.ori.html
+        content: !ori header.ori.html
+      - scene: session.ori.html
+        content: |
+          $ ori "page.ori.html()"
+          ${ page.ori.html() }
+          $
+
+link:
+  href: https://weborigami.org/language/templatedocuments
+  text: Origami template documents
