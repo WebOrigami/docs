@@ -15,6 +15,7 @@
 .comicLink {
   --left-tail-shift: -5px;
   --right-tail-shift: inherit;
+  --comic-text-color: #555;
   color: inherit;
   display: flex;
   margin-top: 2rem;
@@ -25,7 +26,21 @@
     --right-tail-shift: -5px;
     flex-direction: row-reverse;
   }
+
+  comic-bubble {
+    border-color: var(--comic-text-color);
+  }
+
+  .comicText {
+    color: var(--comic-text-color);
+
+    /* Emphasize bolded text in comic previews */
+    strong {
+      color: black;
+    }
+  }
 }
+
 </style>
 <script type="module" src="/scripts/comic.js"></script>
 

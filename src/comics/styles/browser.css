@@ -19,11 +19,11 @@ comic-browser {
     }
 
     .addressInput {
-      background: #f0f0f0;
+      background: #f8f8f8;
       box-sizing: border-box;
       border: 1px solid transparent;
       margin-left: 0.5rem;
-      padding: 0.5rem;
+      padding: 0 0.25rem;
     }
   }
 
