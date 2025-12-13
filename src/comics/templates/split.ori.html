@@ -2,6 +2,6 @@
 (panel, comic) => _template()
 ---
 
-<comic-split class="scene">
+<comic-split class="scene ${ panel.orientation ?? 'horizontal' }">
 ${ Tree.map(panel.panes, (pane) => .(pane.scene)(pane, comic)) }
 </comic-split>

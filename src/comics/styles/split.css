@@ -1,15 +1,25 @@
 comic-split {
+  --pane-border: 1px solid color-mix(in oklch, var(--terminal-background), white 25%);
   background: var(--terminal-background);
   color: var(--editor-color);
   display: grid;
-  grid-template-rows: auto;
   overflow: hidden;
+
+  &.horizontal {
+    grid-auto-flow: row;
+  }
+  &.vertical {
+    grid-auto-flow: column;
+  }
 
   pre {
     margin: 0;
   }
   
-  > *:not(:first-child) {
-    border-top: 1px solid color-mix(in oklch, var(--terminal-background), white 25%);
+  &.horizontal > *:not(:first-child) {
+    border-top: var(--pane-border);
+  }
+  &.vertical > *:not(:first-child) {
+    border-left: var(--pane-border);
   }
 }

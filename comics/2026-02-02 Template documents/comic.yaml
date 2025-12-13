@@ -31,6 +31,7 @@ panels:
       If you already have a **JavaScript function** that does what you want,
       Origami lets you call that directly by file name.
     scene: split.ori.html
+    orientation: vertical
     panes:
       - scene: editor.ori.html
         name: index.ori.md
@@ -45,13 +46,16 @@ panels:
     actor: Alice
     face: grin
     scene: split.ori.html
+    orientation: vertical
     panes:
-      - scene: editor.ori.html
-        name: page.ori.html
-        content: !ori page.ori.html
-      - scene: editor.ori.html
-        name: header.ori.html
-        content: !ori header.ori.html
+      - scene: split.ori.html
+        panes:
+          - scene: editor.ori.html
+            name: page.ori.html
+            content: !ori page.ori.html
+          - scene: editor.ori.html
+            name: header.ori.html
+            content: !ori header.ori.html
       - scene: session.ori.html
         content: |
           $ ori "page.ori.html()"

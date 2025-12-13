@@ -1,4 +1,4 @@
-If `data.json` contains a hierarchical tree:
+Consider this _hierarchical_ tree:
 
 <figure>
 ${ treeDiagram.js(data.json) }

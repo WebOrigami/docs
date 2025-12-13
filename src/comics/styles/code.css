@@ -113,6 +113,11 @@
 .language-console {
     color: #c9cdd6;
 
+    .hljs-meta {
+      color: #fac863;
+      font-weight: bold;
+    }
+
     .language-bash {
       color: var(--text-color);
       font-weight: bold;

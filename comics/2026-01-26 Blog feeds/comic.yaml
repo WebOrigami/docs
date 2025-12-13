@@ -25,7 +25,15 @@ panels:
             "outputFormats": [
               "rss",
               "jsonFeed"
-            ]
+            ],
+            "undisableFunctionality": false,
+            "plugins-for-feed-plugin": {
+              "fancy-date-plugin": {
+                "dateFormat": "MMMM D, YYYY",
+                "locale": "en-US",
+                "isoDates": false
+              }
+            }
           }
         ],
       }
