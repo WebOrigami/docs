@@ -23,3 +23,17 @@ comic-split {
     border-left: var(--pane-border);
   }
 }
+
+/* On narrow screens, vertical splits become horizontal ones */
+@container (max-width: 500px) {
+  comic-split {
+    &.vertical {
+      grid-auto-flow: row;
+
+      & > *:not(:first-child) {
+        border-left: none;
+        border-top: var(--pane-border);
+      }
+    }
+  }
+}

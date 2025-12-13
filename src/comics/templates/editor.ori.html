@@ -4,7 +4,7 @@
   </div>
   <div class="editor">
 ${ Origami.mdHtml(`\`\`\`${ Origami.extension.extname(_.name).slice(1) }
-${ _.content }
+${ Origami.string(_.content).trim() }
 ${ Origami.string(_.content).endsWith("\n") ? "" : "\n" }
 \`\`\``) }
   </div>

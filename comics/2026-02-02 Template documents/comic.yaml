@@ -6,16 +6,16 @@ panels:
     scene: split.ori.html
     panes:
       - scene: editor.ori.html
-        name: products.ori.md
-        content: !ori products.ori.md
+        name: products.ori.html
+        content: !ori products.ori.html
       - scene: browser.ori.html
         url: http://localhost:5000/products.html
-        content: !ori Origami.mdHtml(products.ori.md())
+        content: !ori products.ori.html()
     footnote: It's a JS **template literal** as a file.
 
   - text: >
-      A template itself is a **function**: call it with data, and it gives you
-      back the text with all the values inlined.
+      A template is a **function**: call it with data, get back the text with
+      all the values inlined.
     scene: split.ori.html
     panes:
       - scene: editor.ori.html
@@ -23,26 +23,26 @@ panels:
         content: !ori postLink.ori.html
       - scene: session.ori.html
         content: |
-          $ ori "postLink.ori.html({ title: 'Hello', url: 'post1.html' })"
-          ${ postLink.ori.html({ title: 'Hello', url: 'post1.html' }) }
+          $ ori "postLink.ori.html({ href: 'post1.html', title: 'Hello' })"
+          ${ postLink.ori.html({ href: 'post1.html', title: 'Hello' }) }
           $
+    footnote: In the template, an underscore represents the input.
 
   - text: >
-      If you already have a **JavaScript function** that does what you want,
-      Origami lets you call that directly by file name.
+      You can call any **JavaScript function** by file name.
     scene: split.ori.html
     orientation: vertical
     panes:
       - scene: editor.ori.html
-        name: index.ori.md
-        content: !ori index.ori.md
+        name: index.ori.html
+        content: !ori index.ori.html
       - scene: browser.ori.html
         url: http://localhost:5000/index.html
-        content: !ori Origami.mdHtml(index.ori.md())
+        content: !ori index.ori.html()
 
   - text: >
-      You can break complex pages into smaller templates and scripts, then
-      **combine them** to create the final output!
+      Break complex pages into smaller templates and scripts, then **combine
+      them** to create the final output!
     actor: Alice
     face: grin
     scene: split.ori.html
