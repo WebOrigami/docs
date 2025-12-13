@@ -21,6 +21,7 @@ panels:
           $ ori audit site.ori
           ${ Origami.yaml(Dev.audit(missing.ori)) }
           $
+    footnote: Oops, a typo!
 
   - text: >
       Fix the links and **audit again** to confirm all links work.

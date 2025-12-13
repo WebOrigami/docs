@@ -1,8 +1,8 @@
 {
-  // The posts area contains a page for each individual post
-  posts/ = Tree.map(postData.ori, singlePostPage.ori)
-
   // Render the posts in JSON Feed and RSS formats
   feed.json = Tree.json(feed.ori(postData.ori))
   feed.xml = Origami.rss(feed.ori(postData.ori))
+
+  // The posts area contains a page for each individual post
+  posts/ = Tree.map(postData.ori, singlePostPage.ori)
 }

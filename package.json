@@ -17,7 +17,7 @@
   },
   "scripts": {
     "build": "NODE_ENV=production ori 'copy netlify.js(Origami.jsonKeys(src/site.ori)), clear files:build'",
-    "comic-screenshots": "ori Tree.visit Tree.cache src/comics/comicScreenshots.ori, src/client/assets/screenshots/comics",
+    "comic-screenshots": "ori copy src/comics/comicScreenshots.ori, src/client/assets/screenshots/comics",
     "example-screenshots": "ori Tree.visit Tree.cache src/exampleScreenshots.ori, src/client/assets/screenshots/examples",
     "start": "ori serve watch ., =debug src/site.ori"
   }

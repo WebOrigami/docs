@@ -1,7 +1,7 @@
 panels:
   - text: >
-      An Origami **template document** combines text with placeholder
-      expressions in JavaScript.
+      An Origami **template document** is a text file with embedded JavaScript,
+      like a big template literal.
     actor: Alice
     scene: split.ori.html
     panes:
@@ -11,11 +11,10 @@ panels:
       - scene: browser.ori.html
         url: http://localhost:5000/products.html
         content: !ori products.ori.html()
-    footnote: It's a JS **template literal** as a file.
 
   - text: >
-      A template is a **function**: call it with data, get back the text with
-      all the values inlined.
+      Call a template like a **function**: give it data, get back the text with
+      all the expressions evaluated.
     scene: split.ori.html
     panes:
       - scene: editor.ori.html
@@ -29,7 +28,7 @@ panels:
     footnote: In the template, an underscore represents the input.
 
   - text: >
-      You can call any **JavaScript function** by file name.
+      The template can call any **JavaScript function** by file name.
     scene: split.ori.html
     orientation: vertical
     panes:
