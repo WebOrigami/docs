@@ -29,7 +29,7 @@ panels:
     footnoteAlign: right
 
   - text: >
-      The template can call any **JavaScript function** by file name.
+      Call any **JavaScript function** by file name - no config needed.
     scene: split.ori.html
     orientation: vertical
     panes:

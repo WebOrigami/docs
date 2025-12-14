@@ -21,7 +21,7 @@ panels:
           $ ori audit site.ori
           ${ Origami.yaml(Dev.audit(missing.ori)) }
           $
-    footnote: Oops, a **typo**!
+    footnote: Oops, a **typo**.
     footnoteAlign: right
 
   - text: >
@@ -40,7 +40,7 @@ panels:
 
   - text: You can even audit a **public site**!
     actor: Alice
-    face: grin
+    face: wink
     scene: terminal.ori.html
     content: |
       $ ori "audit('https://www.spacejam.com/1996/')"
