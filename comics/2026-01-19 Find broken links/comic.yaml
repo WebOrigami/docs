@@ -21,7 +21,8 @@ panels:
           $ ori audit site.ori
           ${ Origami.yaml(Dev.audit(missing.ori)) }
           $
-    footnote: Oops, a typo!
+    footnote: Oops, a **typo**!
+    footnoteAlign: right
 
   - text: >
       Fix the links and **audit again** to confirm all links work.
@@ -35,6 +36,7 @@ panels:
           $ ori audit site.ori
           ${ Dev.audit(fixed.ori) ? Origami.yaml(Dev.audit(fixed.ori)) : "" }
           $
+    footnote: All good!
 
   - text: You can even audit a **public site**!
     actor: Alice

@@ -20,7 +20,7 @@
 ${ .(panel.scene)(panel, comic) }
   ${ panel.footnote ?
     Tree.indent`
-      <div class="footnoteContainer">
+      <div class="footnoteContainer ${ panel.footnoteAlign ?? '' }">
         <div class="footnote comicText ${ panel.footnote.length > 60 ? "long" : "short" }">
           ${ Origami.mdHtml(panel.footnote) }
         </div>

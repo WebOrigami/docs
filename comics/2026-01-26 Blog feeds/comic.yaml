@@ -68,6 +68,7 @@ panels:
         url: https://bobscoolblog.com/feed.xml
         content: !ori rss.ori.html()
     footnote: You'll learn reusable concepts, and have total control!
+    footnoteAlign: right
 
 link:
   href: https://weborigami.org/builtins/origami/rss.html

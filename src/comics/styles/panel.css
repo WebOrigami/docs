@@ -145,6 +145,13 @@ comic-panel {
     left: 1em;
     position: absolute;
     right: 1em;
+
+    &.left {
+      flex-direction: row;
+    }
+    &.right {
+      flex-direction: row-reverse;
+    }
     
     .footnote {
       background: palegoldenrod;
