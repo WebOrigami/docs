@@ -1,0 +1,63 @@
+panels:
+  - text: >
+      While developing your static site, you can **serve it locally** with the Origami server.
+    actor: Alice
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: site.ori
+        content: !ori site.ori
+      - scene: browser.ori.html
+        url: http://localhost:5000/about/index.html
+        content: !ori site.ori/about/index.html
+
+  - text: >
+      You can serve a site defined in standard JavaScript, in the Origami
+      dialect, in a data file, a folder – anything with a **tree structure**.
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: site.js
+        content: !ori site.js
+      - scene: browser.ori.html
+        url: http://localhost:5000/index.html
+        content: !ori site.js/index.html
+
+  - text: >
+      The server **follows a URL** through that tree to find a resource.
+    scene: split.ori.html
+    style: |
+      grid-template-rows: 1fr auto;
+    panes:
+      - scene: split.ori.html
+        orientation: vertical
+        panes:
+          - scene: browser.ori.html
+            url: http://localhost:5000/about/index.html
+            content: !ori site.ori/about/index.html
+          - scene: editor.ori.html
+            name: site.ori
+            content: !ori site.ori
+      - scene: plain.ori.html
+        style: |
+          background: var(--editor-background)
+        content: |
+          * This URL path has two keys: `about` and `index.html`.
+          * Server looks at the site root for `about`, then inside that for `index.html`.
+          * Server sends resulting resource to browser.
+
+  - text: >
+      When serving locally, you can view an **interactive diagram** of your
+      entire site!
+    actor: Alice
+    face: lookLeft
+    scene: browser.ori.html
+    url: http://localhost:5000/!svg
+    content: !ori "Dev.svg(site.ori)"
+
+date: 2026-02-16
+post: |
+  #static #smallweb #devtools #javascript
+link:
+  href: https://weborigami.org/builtins/dev/serve
+  text: Origami serve command

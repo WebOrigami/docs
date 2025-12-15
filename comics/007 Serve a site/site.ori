@@ -1,0 +1,6 @@
+{
+  about: {
+    index.html: "<h2>About us</h2>"
+  },
+  index.html: "<h2>Our site</h2>"
+}

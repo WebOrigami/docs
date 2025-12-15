@@ -1,9 +1,7 @@
-date: 2026-02-09
-
 panels:
   - text: >
-      The most basic way to **include files** in your Origami site definition is
-      with a path.
+      The most basic way to **include a folder** in your Origami site definition
+      is with a path.
     actor: Bob
     scene: split.ori.html
     panes:
@@ -65,6 +63,9 @@ panels:
           $ ori Tree.paths site.ori
           ${ Origami.yaml(Tree.paths(site4.ori)) }
           $
+
+date: 2026-02-09
+post:
 
 link:
   href: https://weborigami.org/language/sites

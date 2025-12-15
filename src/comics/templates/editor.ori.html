@@ -1,10 +1,10 @@
 <comic-editor class="scene">
   <div class="tabBar">
-    <div class="tab">${ _.name }</div>
+    <div class="tab">${ _.name ?? "file" }</div>
   </div>
   <div class="editor">
-${ Origami.mdHtml(`\`\`\`${ Origami.extension.extname(_.name).slice(1) }
-${ Origami.string(_.content).trim() }
+${ Origami.mdHtml(`\`\`\`${ _.name ? Origami.extension.extname(_.name).slice(1) : "" }
+${ _.content ? Origami.string(_.content).trim() : "" }
 ${ Origami.string(_.content).endsWith("\n") ? "" : "\n" }
 \`\`\``) }
   </div>
