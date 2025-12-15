@@ -1,0 +1,69 @@
+panels:
+  - text: >
+      The most basic way to **include files** in your Origami site definition is
+      with a path.
+    actor: Bob
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: site.ori
+        content: !ori site1.ori
+      - scene: session.ori.html
+        content: |
+          $ ls src/assets
+          favicon.ico     main.css
+          $ ori Tree.paths site.ori
+          ${ Origami.yaml(Tree.paths(site1.ori)) }
+          $
+
+  - text: >
+      If the files should appear in a branch with the same name as the folder,
+      use **just the folder path** as a shorthand.
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: site.ori
+        content: !ori site2.ori
+      - scene: session.ori.html
+        content: |
+          $ ori Tree.paths site.ori
+          ${ Origami.yaml(Tree.paths(site2.ori)) }
+          $
+    footnote:
+      text: Just like JS property shorthand!
+
+  - text: >
+      You can individually include each of a folder's files with the **spread
+      operator**.
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: site.ori
+        content: !ori site3.ori
+      - scene: session.ori.html
+        content: |
+          $ ori Tree.paths site.ori
+          ${ Origami.yaml(Tree.paths(site3.ori)) }
+          $
+    footnote:
+      text: Standard JS syntax again.
+
+  - text: >
+      Built-in **tree operations** give you fine-grained control over what to
+      include!
+    actor: Bob
+    face: talk
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: site.ori
+        content: !ori site4.ori
+      - scene: session.ori.html
+        content: |
+          $ ori Tree.paths site.ori
+          ${ Origami.yaml(Tree.paths(site4.ori)) }
+          $
+
+link:
+  href: https://weborigami.org/language/sites
+  text: Site definitions

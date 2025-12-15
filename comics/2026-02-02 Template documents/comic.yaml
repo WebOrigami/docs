@@ -25,8 +25,8 @@ panels:
           $ ori "postLink.ori.html({ href: 'post1.html', title: 'Hello' })"
           ${ postLink.ori.html({ href: 'post1.html', title: 'Hello' }) }
           $
-    footnote: In the template, an underscore represents the input.
-    footnoteAlign: right
+    footnote:
+      text: In the template, an underscore represents the input.
 
   - text: >
       Call any **JavaScript function** by file name - no config needed.

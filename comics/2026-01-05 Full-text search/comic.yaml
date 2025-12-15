@@ -6,6 +6,9 @@ panels:
     scene: browser.ori.html
     url: https://pagefind.app
     screenshot: pagefind.png
+    footnote:
+      text: |
+        [Visit pagefind.app](https://pagefind.app)
 
   - text: >
       Create a **search page** that loads pagefind's styles and script.

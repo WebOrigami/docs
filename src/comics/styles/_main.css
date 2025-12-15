@@ -61,6 +61,12 @@ body {
   strong {
     font-style: italic;
   }
+
+  /* Links in footnotes look just like text */
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 }
 
 .readMore {

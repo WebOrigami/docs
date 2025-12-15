@@ -12,7 +12,8 @@ panels:
       - scene: editor.ori.html
         name: site.ori
         content: !ori site.ori
-    footnote: The **greet.js** gets the file's default export.
+    footnote:
+      text: The **greet.js** gets the file's default export.
 
   - text: >
       You can call a JavaScript function by path in a **site definition**.

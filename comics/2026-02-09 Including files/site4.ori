@@ -1,0 +1,6 @@
+{
+  // Expose just the stylesheets in src/assets
+  styles: Tree.mask(src/assets, Tree.globKeys({
+    "*.css": true
+  }))
+}

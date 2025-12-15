@@ -1,0 +1,4 @@
+{
+  // Expose everything in the src/assets folder as the `/stuff` route
+  stuff: src/assets/
+}

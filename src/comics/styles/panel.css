@@ -71,7 +71,7 @@ comic-panel {
     }
   }
 
-  /* Alternate left/right placement of face and footnote */
+  /* Alternate left/right placement of face */
   &.even {
     --left-tail-shift: -5px;
     --right-tail-shift: inherit;
@@ -92,10 +92,6 @@ comic-panel {
         flex-direction: row-reverse;
         padding-left: var(--extra-caption-padding, var(--caption-padding));
       }
-    }
-
-    .footnoteContainer {
-      flex-direction: row;
     }
   }
 
@@ -152,7 +148,7 @@ comic-panel {
     &.right {
       flex-direction: row-reverse;
     }
-    
+
     .footnote {
       background: palegoldenrod;
       border: 1px solid #ccc;
