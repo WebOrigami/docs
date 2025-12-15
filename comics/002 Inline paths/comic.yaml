@@ -1,3 +1,5 @@
+date: 2026-01-12
+
 panels:
   - text: >
       Origami is a dialect of JavaScript expressions with **inline paths**
@@ -57,6 +59,8 @@ panels:
         name: site.js
         content: !ori site2.js
 
+post: |
+  #programming #javascript
 link:
   href: https://weborigami.org/language/expressions
   text: Origami JavaScript expressions

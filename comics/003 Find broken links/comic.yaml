@@ -63,6 +63,9 @@ panels:
       cmp/lineup/quiz4.html:
         - cmp/lineup/img/quiz/q4.gif
 
+date: 2026-01-19
+post: |
+  #static #indieweb
 link:
   href: https://weborigami.org/builtins/dev/audit
   text: Origami's Dev.audit function

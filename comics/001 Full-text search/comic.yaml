@@ -30,6 +30,9 @@ panels:
     url: http://localhost:5000/search.html
     content: !ori results.html
 
+date: 2026-01-05
+post: |
+  #static #smallweb
 link:
   href: https://github.com/WebOrigami/extensions/tree/main/pagefind
   text: Origami's pagefind extension

@@ -74,6 +74,9 @@ panels:
     footnote:
       text: You'll learn reusable concepts, and have total control!
 
+date: 2026-01-26
+post: |
+  #blogging #rss
 link:
   href: https://weborigami.org/builtins/origami/rss.html
   text: The Origami.rss() function
