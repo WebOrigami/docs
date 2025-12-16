@@ -1,0 +1,51 @@
+panels:
+  - text: >
+      If you have an idea to share, face-to-face conversation is a very **direct
+      way** to communicate it.
+    actor: Alice
+    face: talk
+    scene: plain.ori.html
+    style: |
+      align-items: center; background: white; display: grid; justify-items: center;
+    content: |
+      <img src="/comics/images/transform-content/speech.png">
+
+  - text: >
+      Writing a document is a comparatively **indirect way** to share your idea
+      - but you can reach a broader audience.
+    scene: plain.ori.html
+    style: |
+      align-items: center; background: white; display: grid; justify-items: center;
+    content: |
+      <img src="/comics/images/008 Transform content/document.png">
+
+  - text: >
+      You can even make a site this way, writing HTML directly **by hand**.
+    scene: plain.ori.html
+    style: |
+      align-items: center; background: white; display: grid; justify-items: center;
+    content: |
+      <img src="/comics/images/008 Transform content/site.png">
+    footnote:
+      text: That works but is labor-intensive.
+
+  - text: >
+      It's more efficient to write your content in a simpler form and
+      **transform** it into your final site.
+    actor: Alice
+    face: happy
+    scene: plain.ori.html
+    style: |
+      align-items: center; background: white; display: grid; justify-items: center;
+    content: |
+      <img src="/comics/images/008 Transform content/program.png">
+    footnote:
+      align: left
+      text: Origami is a good way to do that!
+
+date: 2026-02-23
+post: |
+  #static #smallweb
+link:
+  href: https://weborigami.org/model.html
+  text: The Content/Transformation model
