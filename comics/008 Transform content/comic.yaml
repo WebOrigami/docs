@@ -2,7 +2,7 @@ panels:
   - text: >
       If you have an idea to share, face-to-face conversation is a very **direct
       way** to communicate it.
-    actor: Alice
+    actor: Bob
     face: talk
     scene: plain.ori.html
     style: |
@@ -32,8 +32,7 @@ panels:
   - text: >
       It's more efficient to write your content in a simpler form and
       **transform** it into your final site.
-    actor: Alice
-    face: happy
+    actor: Bob
     scene: plain.ori.html
     style: |
       align-items: center; background: white; display: grid; justify-items: center;
