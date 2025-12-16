@@ -17,7 +17,7 @@ panels:
     style: |
       align-items: center; background: white; display: grid; justify-items: center;
     content: |
-      <img src="/comics/images/008 Transform content/document.png">
+      <img src="/comics/images/transform-content/document.png">
 
   - text: >
       You can even make a site this way, writing HTML directly **by hand**.
@@ -25,7 +25,7 @@ panels:
     style: |
       align-items: center; background: white; display: grid; justify-items: center;
     content: |
-      <img src="/comics/images/008 Transform content/site.png">
+      <img src="/comics/images/transform-content/site.png">
     footnote:
       text: That works but is labor-intensive.
 
@@ -38,7 +38,7 @@ panels:
     style: |
       align-items: center; background: white; display: grid; justify-items: center;
     content: |
-      <img src="/comics/images/008 Transform content/program.png">
+      <img src="/comics/images/transform-content/program.png">
     footnote:
       align: left
       text: Origami is a good way to do that!
