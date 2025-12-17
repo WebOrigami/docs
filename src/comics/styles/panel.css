@@ -210,3 +210,7 @@ body.capture comic-panel:has(.face) {
   /* Remove extra padding from inside speech balloon */
   --speech-padding: 0.5rem;
 }
+
+.js-loading .footnote {
+  visibility: hidden;
+}

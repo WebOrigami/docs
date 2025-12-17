@@ -10,7 +10,7 @@
     <title>${ page.title }</title>
     <link rel="icon" href="/assets/origami/${ page.icon }" type="image/svg+xml">
   </head>
-  <body${ page.numberHeadings ? ` class="numberHeadings"` : "" }>
+  <body class="no-js${ page.numberHeadings ? ' numberHeadings' : '' }">
     <div id="page">
       <div id="topNav" class="pageRow">
         <div id="homeContainer">

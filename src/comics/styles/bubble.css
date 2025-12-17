@@ -32,3 +32,7 @@ comic-bubble {
     z-index: 1;
   }
 }
+
+.js-loading comic-bubble {
+  visibility: hidden;
+}
