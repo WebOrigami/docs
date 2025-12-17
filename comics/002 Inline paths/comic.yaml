@@ -46,8 +46,8 @@ panels:
             content: !ori site2.ori/greeting.html
 
   - text: >
-      Paths in Origami are **much more concise** than the equivalent standard
-      JavaScript!
+      Paths in the Origami dialect are **much more concise** than the equivalent
+      standard JavaScript!
     actor: Bob
     face: happy
     scene: split.ori.html
