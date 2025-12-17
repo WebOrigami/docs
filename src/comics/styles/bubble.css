@@ -33,6 +33,10 @@ comic-bubble {
   }
 }
 
+.no-js .speech {
+  text-wrap: inherit;
+}
+
 .js-loading comic-bubble {
   visibility: hidden;
 }

@@ -1,7 +1,7 @@
 panels:
   - text: >
       If you have an idea to share, face-to-face conversation is a very **direct
-      way** to communicate it.
+      way** to do it.
     actor: Bob
     face: talk
     scene: plain.ori.html
@@ -12,7 +12,7 @@ panels:
 
   - text: >
       Writing a document is a comparatively **indirect way** to share your idea
-      - but you can reach a broader audience.
+      - which lets you reach a broader audience.
     scene: plain.ori.html
     style: |
       align-items: center; background: white; display: grid; justify-items: center;
@@ -27,7 +27,7 @@ panels:
     content: |
       <img src="/comics/images/transform-content/site.png">
     footnote:
-      text: That works but is labor-intensive.
+      text: That works but is **labor-intensive**.
 
   - text: >
       It's more efficient to write your content in a simpler form and
@@ -40,7 +40,7 @@ panels:
       <img src="/comics/images/transform-content/program.png">
     footnote:
       align: left
-      text: Origami is a good way to do that!
+      text: "**Origami** is a good way to do that!"
 
 date: 2026-02-23
 post: |
