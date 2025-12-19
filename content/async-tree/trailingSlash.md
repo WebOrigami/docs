@@ -28,7 +28,7 @@ $ ori keys myProject
 - test/
 ```
 
-The trailing slashes let you quickly see that `src/` and `test/` represent subfolders.
+The trailing slashes let you quickly see that `src/` and `test/` represent subfolders. It may help to think about the trailing slash as a file extension added to the names of folders.
 
 ## Saving work in tree traversal
 
