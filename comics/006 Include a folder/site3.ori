@@ -1,4 +1,4 @@
 {
   // Expose everything in the src/assets folder at the top level
-  ...src/assets/
+  ...src/assets
 }

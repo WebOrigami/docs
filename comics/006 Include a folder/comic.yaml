@@ -30,7 +30,7 @@ panels:
           ${ Origami.yaml(Tree.paths(site2.ori)) }
           $
     footnote:
-      text: Just like JS property shorthand!
+      text: Works like JS property shorthand
 
   - text: >
       You can individually include each of a folder's files with the three-dot
@@ -45,8 +45,6 @@ panels:
           $ ori Tree.paths site.ori
           ${ Origami.yaml(Tree.paths(site3.ori)) }
           $
-    footnote:
-      text: Standard JS syntax again.
 
   - text: >
       Built-in **tree operations** give you fine-grained control over what to

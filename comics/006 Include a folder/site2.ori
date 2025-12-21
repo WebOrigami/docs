@@ -1,4 +1,4 @@
 {
   // Expose everything in the src/assets folder as the `/assets` route
-  src/assets/
+  src/assets
 }
