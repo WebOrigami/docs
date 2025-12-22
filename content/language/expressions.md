@@ -764,6 +764,7 @@ Origami closely follows [JavaScript operator precedence](https://developer.mozil
 | Group                                                                                   | `(x)`                         | n/a           |
 | [Path](#paths)                                                                          | `x/y/z`                       | left-to-right |
 | [Member access](#property-access)                                                       | `x.y`                         | left-to-right |
+| Optional chaining                                                                       | `x?.y`                        | left-to-right |
 | Computed member access                                                                  | `x[y]`                        | n/a           |
 | [Function call](#function-calls)                                                        | `x(y)`                        | n/a           |
 | import                                                                                  | `import(x)`                   | n/a           |
@@ -824,8 +825,6 @@ Some addition usage notes:
 
 - Instead of calling [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import), you can generally use a [path](#paths) instead.
 - The `await` operator is implied in Origami so can always be omitted.
-
-Origami does not yet support JavaScript's [optional chaining operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining): `x?.y`.
 
 ### Spread operator
 
@@ -969,6 +968,3 @@ Additionally, Origami does not currently support these features from JavaScript:
 
 - binary, octal, hexadecimal numeric literals, or exponential notation (see [Numbers](#numbers))
 - default parameters, rest parameters, parameter destructuring (see [Arrow functions](#arrow-functions))
-- `...` spread operator in function calls
-- `?.` optional chaining operator (see [Operators](#operators))
-- defining an object key with a computed property
