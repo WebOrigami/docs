@@ -361,14 +361,17 @@ The only characters that cannot be used in a URL are whitespace or characters th
 
 ## Numbers
 
-Origami supports integers and floating point JavaScript [Number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) values.
+Origami supports the same [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) values as JavaScript:
 
-Origami does not yet support binary, octal, hexadecimal numeric literals, nor does it support exponential notation. If necessary you can create such numbers with the JavaScript `Number()` function:
+- integers: `255`
+- floating point: `255.0`
+- exponential notation: `0.255e3`
+- binary: `0b11111111`
+- octal: `0o377`
+- hexadecimal: `0xff`
+- [BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt): `255n`
 
-```ori
-Number('0xf')     // ${ Number("0xf") }
-Number('1e2')     // ${ Number("1e2") }
-```
+Caution: if you need to reference a file name that matches one the above formats, use [angle brackets](#angle-brackets): `1n` is a number (a `BitInt`), but `<1n>` is a file name.
 
 ## Strings
 
@@ -753,7 +756,7 @@ ${ Origami.yaml(
 ) }
 ```
 
-Origami arrow function syntax does not yet support JavaScript's syntax for default parameters, rest parameters, or parameter destructuring.
+Origami supports JavaScript's syntax for [default parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters), [rest parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters), and [parameter destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring).
 
 ## Operators
 
@@ -963,8 +966,3 @@ As an expression language, Origami does not include any of JavaScript's control 
 - Postfix and prefix operators `++`, `--`
 - Assignment operators `=`, `+=`, `-=`, etc.
 - `delete` operator
-
-Additionally, Origami does not currently support these features from JavaScript:
-
-- binary, octal, hexadecimal numeric literals, or exponential notation (see [Numbers](#numbers))
-- default parameters, rest parameters, parameter destructuring (see [Arrow functions](#arrow-functions))
