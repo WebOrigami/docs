@@ -7,7 +7,7 @@ ${ src/templates/blocks.ori(areaLinks) }
 
 The Origami expression language lets you write concise formulas that determine the contents of your site.
 
-If you're not a programmer, it's roughly equivalent to writing **spreadsheet formulas**. If you know JavaScript, Origami is essentially **JavaScript expressions plus paths**.
+If you're not a programmer, it's roughly equivalent to writing **spreadsheet formulas**. If you know JavaScript, Origami is essentially **JavaScript expressions with paths**.
 
 The language is focused on being the most concise way possible to:
 

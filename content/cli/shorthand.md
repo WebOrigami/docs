@@ -81,11 +81,13 @@ The function's single parameter will be available as `_`.
 
 ### Guillemet strings
 
-Since command lines often process both single and double quotes, Origami also supports the use of French-style `«` and `»` guillemet quote characters:
+Since command lines often process both single and double quotes, Origami also supports the use of European `«` and `»` guillemet quote characters. Either character can start a string; the complementary character ends it.
 
 ```console
-$ ori «Hello»
-Hello
+$ ori «France»
+France
+$ ori »Denmark«
+Denmark
 ```
 
 On macOS, you can type the `«` character with Option+Backslash, and the `»` character with Option+Shift+Backslash. On Windows, you can type Alt+0171 and Alt+0187, respectively.

@@ -3,7 +3,7 @@ title: Origami expressions
 subtitle: A dialect of JavaScript expressions
 ---
 
-If you're familiar with JavaScript, Origami is essentially **JavaScript expressions plus paths**. It also includes minor adaptations that make it easier to define sites with expressions.
+If you're familiar with JavaScript, Origami is essentially **JavaScript expressions with paths**. It also includes minor adaptations that make it easier to define sites with expressions.
 
 Origami language features are generally optional, but it does enforce one stylistic rule: you have to put spaces around operators like math operators.
 
@@ -371,7 +371,9 @@ Origami supports the same [number](https://developer.mozilla.org/en-US/docs/Web/
 - hexadecimal: `0xff`
 - [BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt): `255n`
 
-Caution: if you need to reference a file name that matches one the above formats, use [angle brackets](#angle-brackets): `1n` is a number (a `BitInt`), but `<1n>` is a file name.
+Caution: if you need to reference a file name that matches one the above formats, use [angle brackets](#angle-brackets): `1n` is a `BigInt` number, but `<1n>` is a file name.
+
+Numbers can include underscores as [numeric separators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#numeric_separators) to improve legibility: `1_000_000_000`.
 
 ## Strings
 
@@ -809,6 +811,8 @@ Origami closely follows [JavaScript operator precedence](https://developer.mozil
 | [Spread](#spread-operator)                                                              | `...x`                        | n/a           |
 | Comma                                                                                   | `x, y`                        | left-to-right |
 
+Note that Origami does not support the JavaScript operators that have side effects: the postfix and prefix operators `++` and `--`; the assignment operators like `=`, `+=`, `-=`, etc.; or the `delete` operator.
+
 An operator’s precedence determines how the Origami parser handles expressions that have more than one possible interpretation.
 
 Example: `a -> b => c` could be interpreted as `a -> (b => c)` or `(a -> b) => c`. Origami uses the former interpretation, because the standard `=>` arrow operator has a higher precedence than Origami's `->` pipe operator.
@@ -961,7 +965,9 @@ To accommodate the use of Origami on the command line, the Origami [CLI](/cli) s
 
 ## Unsupported JavaScript features
 
-As an expression language, Origami does not include any of JavaScript's control structures like `for` or `while` loops. For the same reason, Origami doesn't support JavaScript operators that have side effects:
+As an expression language, Origami does not include any of JavaScript's control structures like `for` or `while` loops.
+
+Origami does not support JavaScript operators that have side effects:
 
 - Postfix and prefix operators `++`, `--`
 - Assignment operators `=`, `+=`, `-=`, etc.
