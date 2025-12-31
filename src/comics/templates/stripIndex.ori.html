@@ -31,7 +31,9 @@ comic-strip {
   }
 }
 </style>
-
+<p>
+  Click a comic to read it.
+</p>
 <comic-strip>
 ${ Tree.map(comics, (comic, key) => Tree.indent`
   <h3>${ comic.title }</h3>
