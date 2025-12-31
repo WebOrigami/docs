@@ -1,5 +1,5 @@
 // A single comic panel
-(panel, index, comic) => Tree.indent`
+(panel, index, comic, options = {}) => Tree.indent`
   <comic-panel class="${ index % 2 === 0 ? 'even' : 'odd' }">
     <div class="caption">
       ${ panel.actor
@@ -22,7 +22,11 @@ ${ .(panel.scene)(panel, comic) }
     Tree.indent`
       <div class="footnoteContainer ${ panel.footnote.align ?? '' }">
         <div class="footnote comicText ${ panel.footnote.text.length > 60 ? "long" : "short" }">
-          ${ Origami.mdHtml(panel.footnote.text) }
+          ${ Origami.mdHtml(
+            options.stripLinks
+              ? stripLinks.js(panel.footnote.text)
+              : panel.footnote.text
+          ) }
         </div>
       </div>
     ` : ""
