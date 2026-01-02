@@ -1,0 +1,65 @@
+panels:
+  - text: >
+      To transform bulk content and data into a presentable form for your site,
+      use a **map**!
+    actor: Alice
+    scene: editor.ori.html
+    name: post1.md
+    content: !ori markdown/post1.md
+    footnote:
+      text: Markdown is easy to edit, but your site needs HTML.
+
+  - text: >
+      Suppose you have a function that transforms a **single item** of content
+      or data.
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: post1.md
+        content: !ori markdown/post1.md
+      - scene: session.ori.html
+        content: |
+          $ ori Origami.mdHtml post1.md
+          ${ Origami.mdHtml(markdown/post1.md) }
+          $
+    footnote:
+      text: This one transforms markdown to HTML.
+
+  - text: >
+      Origami's **Tree.map** builtin can apply that function to every item in a
+      collection, returning a new collection of transformed items.
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: site.ori
+        content: !ori site.ori
+      - scene: session.ori.html
+        content: |
+          $ ori site.ori/
+          ${ Origami.yaml(site.ori/) }
+          $
+    footnote:
+      text: |
+        **File names** changed too!
+
+  - text: >
+      The same map operation can generate a list in an **index page**, the pages
+      in an area, or items in a data feed.
+    actor: Alice
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: index.ori.html
+        content: !ori index.ori.html
+      - scene: session.ori.html
+        content: |
+          $ ori site.ori/index.html
+          ${ index.ori.html(Tree.map(markdown/, Origami.mdHtml)) }
+          $
+
+date: 2026-03-02
+post: |
+  #blogging #static #smallweb
+link:
+  href: https://weborigami.org/builtins/tree/map
+  text: Tree.map builtin function

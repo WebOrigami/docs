@@ -1,0 +1,7 @@
+${ Tree.map(_, (post, key) => Tree.indent`
+  <li>
+    <a href="${ key }">
+      ${ post }
+    </a>
+  </li>
+`)}

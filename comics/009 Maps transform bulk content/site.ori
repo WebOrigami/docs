@@ -1,0 +1,3 @@
+{
+  posts/ = Tree.map(markdown/, Origami.mdHtml)
+}
