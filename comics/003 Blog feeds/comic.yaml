@@ -2,15 +2,15 @@ panels:
   - text: >
       Site generators create **blog feeds** via plugins that are often magic and
       hard to configure.
-    actor: Bob
-    face: concerned
+    actor: Alice
+    face: meh
     scene: editor.ori.html
     name: ssg.config.json
     content: |
       {
-        "title": "Bob's Cool Blog",
-        "author": "Bob Barnes",
-        "url": "https://bobscoolblog.com",
+        "title": "Alice's Cool Blog",
+        "author": "Alice Andrews",
+        "url": "https://alicescoolblog.com",
         "plugins": [
           "blog-feed-plugin": {
             "itemsPerPage": 10,
@@ -61,20 +61,20 @@ panels:
   - text: >
       The same object can be turned into an **RSS feed**. You can define your
       blog feeds without any plugins!
-    actor: Bob
-    face: wink
+    actor: Alice
+    face: grin
     scene: split.ori.html
     panes:
       - scene: editor.ori.html
         name: site.ori
         content: !ori site.ori
       - scene: browser.ori.html
-        url: https://bobscoolblog.com/feed.xml
+        url: https://alicescoolblog.com/feed.xml
         content: !ori rss.ori.html()
     footnote:
       text: You'll learn reusable concepts, and have total control!
 
-date: 2026-01-26
+date: 2026-01-19
 post: |
   #blogging #rss
 link:

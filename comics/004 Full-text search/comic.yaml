@@ -1,14 +1,14 @@
 panels:
   - text: >
       Easily add **full-text search** to your Origami static site with pagefind!
-    actor: Alice
-    face: wow
+    actor: Bob
+    face: happy
     scene: browser.ori.html
     url: https://pagefind.app
     screenshot: pagefind.png
     footnote:
       text: |
-        [Visit pagefind.app](https://pagefind.app)
+        [See pagefind.app](https://pagefind.app)
 
   - text: >
       Create a **search page** that loads pagefind's styles and script.
@@ -24,13 +24,13 @@ panels:
     content: !ori site.ori
 
   - text: Test your **new search page** locally, then deploy!
-    actor: Alice
-    face: grin
+    actor: Bob
+    face: talk
     scene: browser.ori.html
     url: http://localhost:5000/search.html
     content: !ori results.html
 
-date: 2026-01-05
+date: 2026-01-26
 post: |
   #static #smallweb
 link:

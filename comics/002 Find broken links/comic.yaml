@@ -1,8 +1,8 @@
 panels:
   - text: >
       As you evolve your site, you might end up with **broken links**!
-    actor: Alice
-    face: meh
+    actor: Bob
+    face: concerned
     scene: browser.ori.html
     url: https://mycoolsite.com/aboot.html
     content: |
@@ -40,7 +40,7 @@ panels:
       text: All good!
 
   - text: You can even audit a **public site**!
-    actor: Alice
+    actor: Bob
     face: wink
     scene: terminal.ori.html
     content: |
@@ -63,7 +63,7 @@ panels:
       cmp/lineup/quiz4.html:
         - cmp/lineup/img/quiz/q4.gif
 
-date: 2026-01-19
+date: 2026-01-12
 post: |
   #static #indieweb
 link:

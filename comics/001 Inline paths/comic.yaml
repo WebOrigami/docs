@@ -1,11 +1,9 @@
-date: 2026-01-12
-
 panels:
   - text: >
       Origami is a dialect of JavaScript expressions with **inline paths**
       instead of import statements.
-    actor: Bob
-    face: talk
+    actor: Alice
+    face: happy
     scene: split.ori.html
     panes:
       - scene: editor.ori.html
@@ -46,10 +44,9 @@ panels:
             content: !ori site2.ori/greeting.html
 
   - text: >
-      Paths in the Origami dialect can be **much more concise** than the
-      equivalent standard JavaScript!
-    actor: Bob
-    face: happy
+      Paths can let Origami be **much more concise** than the equivalent
+      standard JavaScript!
+    actor: Alice
     scene: split.ori.html
     panes:
       - scene: editor.ori.html
@@ -59,6 +56,7 @@ panels:
         name: site.js
         content: !ori svgSite.js
 
+date: 2026-01-05
 post: |
   #programming #javascript
 link:

@@ -63,8 +63,8 @@ panels:
           $
 
 date: 2026-02-09
-post:
-
+post: |
+  #programming #sites
 link:
   href: https://weborigami.org/language/sites
   text: Site definitions
