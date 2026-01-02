@@ -4,14 +4,4 @@ comic-strip {
   display: grid;
   gap: 3rem 0;
   padding: 3rem 0;
-
-  @media (prefers-color-scheme: dark) {
-    background: #111;
-    color: white;
-  }
-
-  @media (prefers-color-scheme: light) {
-    background: #faf9f6;
-    color: #333;
-  }
 }
