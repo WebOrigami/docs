@@ -8,7 +8,7 @@ Tree.map(Origami.project()/comics/, (folder, key) => {
 // Add `published` field
 → (comics) => Tree.map(comics, (comic) => {
   ...comic
-  published: (node:process).env.NODE_ENV !== "production" || comic.date < new Date().toISOString().slice(0, 10)
+  published: (node:process).env.NODE_ENV !== "production" || comic.date <= new Date().toISOString().slice(0, 10)
 })
 
 // Use slug as key
