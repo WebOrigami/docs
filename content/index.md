@@ -53,22 +53,13 @@ Web Origami includes these tools and ideas:
 
 <span class="tutorialStep"></span> Make a basic blog in the [tutorial](/language/tutorial.html)
 
-## Building sites through transformation
+## Latest comic
 
-Web Origami takes its name from the traditional paper folding art of origami, in which you can transform a flat square of paper into an artwork.
+The [Origami Comics](/comics) area presents graphical introductions to Origami uses and features.
 
-<figure style="align-items: center; display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(125px, 1fr)); justify-items: center; max-width: calc(4 * 125px + 6rem);">
-  <img src="/assets/heart/step1.svg">
-  <img src="/assets/heart/step2.svg">
-  <img src="/assets/heart/step3.svg">
-  <img src="/assets/heart/step4.svg">
-  <img src="/assets/heart/step5.svg">
-  <img src="/assets/heart/step6.svg">
-  <img src="/assets/heart/step7.svg">
-  <img src="/assets/heart/step8.svg">
-</figure>
-
-The steps may be simple but the end result can be complex and beautiful. In the same way, Origami lets you transform your content into something to share.
+<link rel="stylesheet" href="/styles/comic.css">
+<script type="module" src="/scripts/comic.js"></script>
+${ src/comics/templates/latestComic.ori/ }
 
 ## Community
 
