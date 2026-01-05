@@ -27,6 +27,17 @@ comic-editor {
       font-family: inherit;
       margin: 0;
     }
+
+    /* mdHtml injects paragraph tags when comics are embedded in markdown */
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    .hljs {
+      background: transparent;
+      padding: 0;
+    }
   }
 
   comic-terminal {

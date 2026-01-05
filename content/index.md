@@ -57,10 +57,6 @@ Web Origami includes these tools and ideas:
 
 The [Origami Comics](/comics) area presents graphical introductions to Origami uses and features.
 
-<link rel="stylesheet" href="/styles/comic.css">
-<script type="module" src="/scripts/comic.js"></script>
-${ src/comics/templates/latestComic.ori/ }
-
 ## Community
 
 If you'd like to ask questions, visit the [Web Origami room](https://matrix.to/#/%23weborigami:envs.net) on [Matrix](https://matrix.org).
