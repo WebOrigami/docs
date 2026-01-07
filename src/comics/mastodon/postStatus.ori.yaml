@@ -6,4 +6,4 @@ status: |
 
   ${ _.post }
 media_ids: !ori (media.yaml).map(data => data.id)
-visibility: direct
+visibility: public
