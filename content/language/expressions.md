@@ -517,6 +517,34 @@ Each time this object is asked for the value of `index.html`, Origami will invok
 }
 ```
 
+### Computed properties
+
+As in JavaScript, Origami lets you define an object property whose name is computed by putting the property name in `[` `]` square brackets:
+
+```ori
+// fileInfo.ori
+${ samples/help/fileInfo.ori }
+```
+
+Sample usage:
+
+```console
+$ ori fileInfo.ori/v1.0.2
+${ Origami.yaml(
+  samples/help/fileInfo.ori('v1.0.2')
+) }
+
+```
+
+Caution: While Origami generally allows a newline to be used as a separator between object properties, when using a computed property name, you must put a comma on any line defining a property that comes before it:
+
+```ori
+{
+  project: "My Blog",         // Comma required here
+  [fileName]: "File content"  // so that this computed property works
+}
+```
+
 ### Property access
 
 There are several ways to access the property of an object.
