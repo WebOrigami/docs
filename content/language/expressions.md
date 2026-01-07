@@ -428,7 +428,7 @@ Origami's basic syntax for constructing object literals is essentially the same 
 }
 ```
 
-You can separate key/value pairs with commas, newlines, or both.
+You can separate key/value pairs with commas, newlines, or both. (See [Computed properties](#computed-properties) for a note about using commas with computed properties.)
 
 Any valid Origami [identifier](#identifiers) can be used as an object key without being quoted. This means you can define a virtual file with a name like `index.html`:
 
