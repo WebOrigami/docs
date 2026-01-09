@@ -1,0 +1,53 @@
+panels:
+  - text: >
+      A **slug** is a URL portion that identifies a page with human-readable keywords.
+    actor: Bob
+    face: skeptical
+    scene: browser.ori.html
+    url: https://bobscoolblog.com/posts/happy-new-year.html
+    content: !ori template.ori.html(markdown/post1.md)
+    footnote:
+      text: |
+        The term comes from **newspapers and typesetting**.
+
+  - text: >
+      Some people like to write a slug by hand in the **front matter** at the top of a file.
+    scene: editor.ori.html
+    name: post1.md
+    content: !ori markdown/post1.md
+    footnote:
+      text: |
+        Slugs are generally lowercase with hyphens.
+
+  - text: >
+      An Origami map can **change the keys** of a set of files from file names to the slugs.
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: site.ori
+        content: !ori site1.ori
+      - scene: browser.ori.html
+        url: http://localhost:5000/posts
+        content: !ori "Origami.indexPage(site1.ori/posts)"
+
+  - text: >
+      Don't want to write slugs by hand? Generate them from titles with the **slug function**!
+    actor: Bob
+    face: happy
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: post1.md
+        content: !ori post1b.md
+      - scene: editor.ori.html
+        name: site.ori
+        content: !ori site2.ori
+
+date: 2026-03-09
+post: |
+
+  Fun etymolgy: https://archive.nytimes.com/www.nytimes.com/times-insider/2014/11/24/whats-in-a-slug/
+
+link:
+  href: https://weborigami.org/builtins/origami/slug
+  text: Origami.slug() function

@@ -1,0 +1,5 @@
+{
+  posts/ = Tree.map(markdown/, {
+    key: (post) => `${ Origami.slug(post.title) }.html`
+  })
+}

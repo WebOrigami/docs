@@ -1,0 +1,5 @@
+{
+  posts/ = Tree.map(markdown/, {
+    key: (post) => `${ post.slug }.html`
+  })
+}
