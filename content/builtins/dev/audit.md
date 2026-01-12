@@ -29,13 +29,17 @@ ${ Origami.yaml(Dev.audit(samples/help/hasMissingPage.ori)) }
 
 Here `audit` reports that `a.html` has a link to a non-existent page `b.html`.
 
+Auditing a site directly (via the `.ori` example above) lets you audit it without having to build it first.
+
+## Auditing a folder created by a static site generator
+
 Because Origami treats all trees equally, you can also audit a folder of HTML pages. For example, if you're using `copy` to [build your site](/builtins/dev/copy.html#copy-to-build), you could audit the build output folder:
 
 ```console
 $ ori audit build
 ```
 
-Auditing a site directly (via the `.ori` example above) lets you audit it without having to build it first.
+Use this same approach to audit the output of pages built with other static site generators (SSGs). Build the site with the SSG as usual, then run `audit` against the output folder.
 
 ## Auditing a live site
 

@@ -9,7 +9,7 @@ Ideas in this section:
 
 - **You can represent almost any source of data** as a subclass of the standard JavaScript [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) class or an asynchronous variation.
 - **You can transform maps** in various ways — for example changing data into a presentable web page — using fast, general-purpose operations.
-- **You can organize maps** into hierarchical tree structures, like a site's tree of resource.
+- **You can organize maps** into hierarchical tree structures, like a site's tree of resources.
 
 This is an excellent way to serve or build many types of software artifacts:
 

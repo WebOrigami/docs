@@ -31,7 +31,7 @@ panels:
         content: !ori "Origami.indexPage(site1.ori/posts)"
 
   - text: >
-      Don't want to write slugs by hand? Generate them from titles with the **slug function**!
+      Don't want to write slugs by hand? Turn titles into slugs with the **slug function**!
     actor: Bob
     face: happy
     scene: split.ori.html

@@ -54,7 +54,7 @@ To translate markdown to HTML, we will use the [marked](https://github.com/marke
 
 ## Transform the keys
 
-When dealing with content, we often use an extension in a name as a type signature to indicate the type of data contained therein.
+When dealing with content in files, we often use a file extension in a name as a type signature to indicate the type of data contained therein.
 
 In this case, we want the keys of the transformed map to reflect the fact its contents are no longer markdown, but HTML instead. So the first step in our transformation is to change the file extensions on the keys from `.md` to `.html`.
 
