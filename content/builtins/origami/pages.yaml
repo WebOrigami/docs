@@ -38,8 +38,8 @@
   text: ori
 - href: post.html
   text: post
-- href: project.html
-  text: project
+- href: projectRoot.html
+  text: projectRoot
 - href: redirect.html
   text: redirect
 - href: repeat.html

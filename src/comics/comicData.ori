@@ -1,4 +1,4 @@
-Tree.map(Tree.root(.)/comics/, (folder, key) => {
+Tree.map(Origami.projectRoot()/comics/, (folder, key) => {
   slug: Origami.slug(title)
   title: Origami.slash.remove(key).match(/^(?<number>\d\d\d) (?<title>.+)/).groups.title
   ...folder/comic.yaml
