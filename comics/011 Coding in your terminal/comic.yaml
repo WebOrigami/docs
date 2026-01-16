@@ -1,0 +1,73 @@
+panels:
+  - text: >
+      The ori command line tool **evaluates JavaScript expressions**, calling functions by file name.
+    actor: Alice
+    face: grin
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: popStats.js
+        content: !ori popStats.js
+      - scene: session.ori.html
+        content: |
+          $ ori popStats.js [{ population: 1000 }, { population: 2000 }]
+          ${ Origami.yaml(popStats.js([{ population: 1000 }, { population: 2000 }])) }
+          $
+    footnote:
+      text: Parens in calls can often be omitted.
+
+  - text: >
+      You can easily pass data to JavaScript functions from files, standard input, or **directly from a server**.
+    scene: split.ori.html
+    panes:
+      - scene: browser.ori.html
+        url: https://example.com/data.csv
+        content: !ori data.ori.html/
+      - scene: session.ori.html
+        content: |
+          $ ori popStats.js https://example.com/data.csv/
+          ${ Origami.yaml(popStats.js(data.csv/)) }
+          $
+    footnote:
+      text: Origami understands file extensions.
+
+  - text: >
+      You can traverse to the specific part of a function's result that you're interested in.
+    scene: split.ori.html
+    panes:
+      - scene: browser.ori.html
+        url: https://example.com/data.csv
+        content: !ori data.ori.html/
+      - scene: session.ori.html
+        content: |
+          $ ori "popStats.js(https://example.com/data.csv/).max"
+          ${ popStats.js(data.csv/).max }
+
+          $
+    footnote:
+      text: This expression needs parens.
+
+  - text: >
+      This development style lets you code without having to **constantly restart** a larger application.
+    actor: Alice
+    face: wow
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: popStats.js
+        content: !ori popStats2.js
+      - scene: session.ori.html
+        content: |
+          $ ori popStats.js https://example.com/data.csv/
+          ${ Origami.yaml(popStats2.js(data.csv/)) }
+          $
+
+date: 2026-03-16
+post: |
+  Using ori in a VS Code JavaScript Debug Terminal lets you set breakpoints, inspect variables, and step through code you start from a terminal!
+
+  #javascript #programming
+
+link:
+  href: https://weborigami.org/cli/
+  text: The ori command-line interface
