@@ -43,19 +43,7 @@ comic-panel {
       
       .face {
         position: relative;
-        
-        /* Adjustments for specific SVG positions */
-        &[src*="alice"] {
-          left: -9px;
-          top: 3px;
-          width: 84px;
-        }
-        
-        &[src*="bob"] {
-          left: -13px;
-          top: 4px;
-          width: 88px;
-        }
+        width: 100%;
       }
     }
   }
