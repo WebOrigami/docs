@@ -5,8 +5,7 @@
       ${ panel.actor
         ? Tree.indent`
             <div class="faceCircle">
-              <div class="faceContainer">
-                <img class="face" src="/assets/faces/${ panel.actor.toLowerCase() }/${ panel.face ?? 'default' }.svg" />
+              <div class="face" style="background-image: url('/assets/faces/${ panel.actor.toLowerCase() }/${ panel.face ?? 'default' }.svg')">
               </div>
             </div>
             ${ bubble.ori.html(Origami.mdHtml(panel.text)) }
