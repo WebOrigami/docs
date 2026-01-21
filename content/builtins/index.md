@@ -18,7 +18,7 @@ Origami builtin functions are organized into JavaScript-style top-level globals:
 ${ Tree.map(node_modules/@weborigami/origami/src/dev/help.yaml, (help, namespaceSlash) => Tree.indent`
 
   <div>
-    <a href="${ namespaceSlash }">${ Origami.slash.remove(namespaceSlash) }</a>
+    <a href="${ namespaceSlash.toLowerCase() }">${ Origami.slash.remove(namespaceSlash) }</a>
     — ${ help.description }
   </div>
 `)

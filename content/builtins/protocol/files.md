@@ -41,7 +41,7 @@ myProject/
 
 If site.ori contains the expression `files:foo`. this reference returns `myProject/src/foo`.
 
-If you want a file reference that’s relative to your project root, use [`Origami.projectRoot`](/builtins/Origami/projectRoot.html). If the above site.ori wanted to reference `myProject/foo`, it could do so with `Origami.projectRoot()/foo`.
+If you want a file reference that’s relative to your project root, use [`Origami.projectRoot`](/builtins/origami/projectRoot.html). If the above site.ori wanted to reference `myProject/foo`, it could do so with `Origami.projectRoot()/foo`.
 
 ## Root directory
 
