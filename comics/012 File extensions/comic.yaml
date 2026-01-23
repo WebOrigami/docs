@@ -1,0 +1,82 @@
+panels:
+  - text: >
+      The Origami dialect of JavaScript can associate a **file extension** with code to implicitly unpack that kind of file.
+    actor: Bob
+    face: happyRight
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: movies.yaml
+        content: !ori movies.yaml
+      - scene: session.ori.html
+        content: |
+          $ ori movies.yaml/spirited/title
+          ${ Origami.yaml(movies.yaml/spirited/title) }
+          $
+
+  - text: >
+      Origami comes with file extension handlers for **common file types** like .json, .yaml, .csv, .tsv… even the metadata in .jpeg files.
+    scene: session.ori.html
+    content: |
+      $ ls
+      bunnies.tsv   meissner.jpeg
+      $ ori bunnies.tsv
+      ${ bunnies.tsv }
+      $ ori bunnies.tsv[1]
+      ${ Origami.yaml(bunnies.tsv[1]) }
+      $ ori meissner.jpeg/exif/ModifyDate
+      Thu Jan 12 2017 05:00:00 GMT-0800 (Pacific Standard Time)
+      $ ori meissner.jpeg/caption
+      Look at those ears!
+      $
+
+  - text: >
+      Origami extension use this ability to add support for additional **template languages** like Handlebars and Liquid.
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: countries.hbs
+        content: !ori countries.hbs
+      - scene: session.ori.html
+        content: |
+          $ ori countries.hbs countries.yaml
+          <ul>
+              <li>🇫🇷 France</li>
+              <li>🇬🇷 Greece</li>
+              <li>🇮🇹 Italy</li>
+              <li>🇵🇹 Portugal</li>
+              <li>🇪🇸 Spain</li>
+          </ul>
+          $
+
+  - text: >
+      You can define **your own file extension handlers** for the file types that come up in your projects!
+    actor: Bob
+    face: wow
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: user_handler.js
+        # Use a `./` to avoid conflict with user_handler defined in config.ori
+        content: !ori ./user_handler.js
+      - scene: split.ori.html
+        orientation: vertical
+        panes:
+          - scene: editor.ori.html
+            name: alice.user
+            content: !ori alice.user
+          - scene: session.ori.html
+            content: |
+              $ ori alice.user/name
+              ${ user_handler.unpack(alice.user)/name }
+
+              $
+
+date: 2026-03-23
+post: |
+
+  #programming #templates
+
+link:
+  href: https://weborigami.org/language/filetypes
+  text: Working with file types in Origami
