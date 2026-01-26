@@ -1,6 +1,6 @@
 panels:
   - text: >
-      The Origami dialect of JavaScript can associate a **file extension** with code to implicitly unpack that kind of file.
+      The Origami dialect of JavaScript can associate a **file extension** with a function that unpacks that kind of file.
     actor: Bob
     face: happyRight
     scene: split.ori.html
@@ -15,7 +15,7 @@ panels:
           $
 
   - text: >
-      Origami comes with file extension handlers for **common file types** like .json, .yaml, .csv, .tsv… even the metadata in .jpeg files.
+      Origami comes with file extension handlers for **common file types** like .json, .yaml, .csv, .tsv, even the metadata in .jpeg files.
     scene: session.ori.html
     content: |
       $ ls
@@ -31,7 +31,7 @@ panels:
       $
 
   - text: >
-      Origami extension use this ability to add support for additional **template languages** like Handlebars and Liquid.
+      Origami uses this to add support for additional **template languages** like Handlebars and Liquid.
     scene: split.ori.html
     panes:
       - scene: editor.ori.html
