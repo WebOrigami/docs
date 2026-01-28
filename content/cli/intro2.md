@@ -72,7 +72,7 @@ $ ori greet.js/Alice
 Hello, Alice.
 ```
 
-In this path syntax, the first path segment (`greet`) will be looked up in the current scope. All subsequent path segments (like `Alice`) are treated as plain text. Otherwise, both ways of passing arguments behave the same.
+In this path syntax, the first path segment (`greet.js`) will be looked up in the current scope. All subsequent path segments (like `Alice`) are treated as plain text. Otherwise, both ways of passing arguments behave the same.
 
 In this way, ori lets you call a JavaScript function from the shell without needing to write JavaScript code to parse command line arguments.
 
