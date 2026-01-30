@@ -1,0 +1,6 @@
+{
+  // Use log statements so we can see when work happens.
+  // Both pages will get evaluated even if only one is requested.
+  page1.html: Dev.log("Page 1", "Creating page 1")
+  page2.html: Dev.log("Page 2", "Creating page 2")
+}

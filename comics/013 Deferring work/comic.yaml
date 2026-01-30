@@ -1,0 +1,68 @@
+panels:
+  - text: >
+      When you define pages in your Origami site using a **colon**, that work happens when the site loads.
+    actor: Alice
+    face: thinkRight
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: site.ori
+        content: !ori site1.ori
+      - scene: session.ori.html
+        content: |
+          $ ori site.ori/page1.html
+          Creating page 1
+          Creating page 2
+          Page 1
+          $ 
+
+  - text: >
+      You can defer that work by using an **equals sign**. Now the work only happens when you ask for that specific page!
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: site.ori
+        content: !ori site2.ori
+      - scene: session.ori.html
+        content: |
+          $ ori site.ori/page1.html
+          Creating page 1
+          Page 1
+          $ 
+
+  - text: >
+      The equals sign is Origami shorthand for a **property getter**, equivalent to more verbose syntax in JavaScript.
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: site.ori
+        content: !ori site3.ori
+      - scene: editor.ori.html
+        name: site.js
+        content: !ori site.js
+
+  - text: >
+      This makes it faster for you to **preview a specific page** - it skips the work for the rest of the site!
+    actor: Alice
+    face: grinLeft
+    scene: split.ori.html
+    panes:
+      - scene: browser.ori.html
+        url: http://localhost:5000/page1.html
+        content: !ori site3.ori/page1.html
+      - scene: session.ori.html
+        content: |
+          $ ori serve site.ori
+          Server running at http://localhost:5000. Press Ctrl+C to stop.
+          /page1.html
+          Creating page 1
+    footnote:
+      text: Didn't need to create page 2!
+
+date: 2026-03-30
+post: |
+  #programming
+
+link:
+  href: https://weborigami.org/language/expressions#property-getters
+  text: Property getters in Origami
