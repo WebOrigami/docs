@@ -1,0 +1,25 @@
+panels:
+  - text: >
+      Hello
+    actor: Bob
+    scene: editor.ori.html
+
+  - text: >
+      Hello
+    scene: editor.ori.html
+
+  - text: >
+      Hello
+    scene: editor.ori.html
+
+  - text: >
+      Hello
+    actor: Bob
+    scene: editor.ori.html
+
+date:
+post: |
+
+link:
+  href:
+  text:

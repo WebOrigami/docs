@@ -42,7 +42,7 @@ panels:
         content: !ori site.js
 
   - text: >
-      This makes it faster for you to **preview a specific page** - it skips the work for the rest of the site!
+      Reducing the work to load your site makes it faster to reload the **specific page you're working on!**
     actor: Alice
     face: grinLeft
     scene: split.ori.html

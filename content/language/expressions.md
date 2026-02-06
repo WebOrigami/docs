@@ -995,6 +995,13 @@ To accommodate the use of Origami on the command line, the Origami [CLI](/cli) s
 
 As an expression language, Origami does not include any of JavaScript's control structures like `for` or `while` loops.
 
+Origami does not support these JavaScript keywords because only make sense if in a language with statements:
+
+- `class`
+- `extends`
+- `function`
+- `this`
+
 Origami does not support JavaScript operators that have side effects:
 
 - Postfix and prefix operators `++`, `--`
