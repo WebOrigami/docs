@@ -2,6 +2,7 @@ panels:
   - text: >
       Like all web servers, Origami's server can serve content from **files in folders**.
     actor: Bob
+    face: talkRight
     scene: split.ori.html
     panes:
       - scene: session.ori.html
@@ -42,6 +43,7 @@ panels:
       Origami's concise dialect of JavaScript expressions lets you easily **mix in
       content from any source**!
     actor: Bob
+    face: wow
     scene: split.ori.html
     panes:
       - scene: editor.ori.html
