@@ -1,0 +1,7 @@
+{
+  about.html: "<h1>About Us</h1>" // direct
+  blog/                           // static files
+  index.html = index.js()         // JavaScript file
+  products = products.yaml        // data file
+  support = support.ori()         // other Origami file
+}

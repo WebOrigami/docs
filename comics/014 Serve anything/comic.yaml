@@ -1,25 +1,60 @@
 panels:
   - text: >
-      Hello
+      Like all web servers, Origami's server can serve content from **files in folders**.
     actor: Bob
-    scene: editor.ori.html
+    scene: split.ori.html
+    panes:
+      - scene: session.ori.html
+        content: |
+          $ ls blog
+          index.html    posts
+          $ cat blog/index.html
+          ${ blog/index.html }
+          $ ori serve blog
+          Server running at http://localhost:5000. Press Ctrl+C to stop.
+      - scene: browser.ori.html
+        url: http://localhost:5000/index.html
+        content: !ori blog/index.html
 
   - text: >
-      Hello
-    scene: editor.ori.html
+      But Origami tools are general and can serve content from any hierarchical structure - like a **data file**!
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: products.yaml
+        content: !ori products.yaml
+      - scene: browser.ori.html
+        url: http://localhost:5000/gadgets/gizmo.html
+        content: !ori products.yaml/gadgets/gizmo.html
 
   - text: >
-      Hello
-    scene: editor.ori.html
+      You can also serve content from a **JavaScript object** in which you can do anything.
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: site.js
+        content: !ori site.js
+      - scene: browser.ori.html
+        url: http://localhost:5000/index.html
+        content: !ori site.js/index.html
 
   - text: >
-      Hello
+      Origami's concise dialect of JavaScript expressions lets you easily **mix in
+      content from any source**!
     actor: Bob
-    scene: editor.ori.html
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: site.ori
+        content: !ori site.ori
+      - scene: browser.ori.html
+        url: http://localhost:5000/index.html
+        content: !ori site.ori/index.html
 
-date:
+date: 2026-04-06
 post: |
+  #static #staticsite #smallweb
 
 link:
-  href:
-  text:
+  href: https://weborigami.org/builtins/dev/serve
+  text: Origami's serve command

@@ -1,0 +1,10 @@
+gadgets:
+  doodad.html: |
+    <h1>Doodad</h1>
+  gizmo.html: |
+    <h1>Gizmo</h1>
+whatsits:
+  thingamabob.html: |
+    <h1>Thingamabob</h1>
+  thingamajig.html: |
+    <h1>Thingamajig</h1>
