@@ -15,6 +15,8 @@ panels:
           $ ori Tree.paths site.ori
           ${ Origami.yaml(Tree.paths(site1.ori)) }
           $
+    footnote:
+      text: Tree.paths lists all routes in the site.
 
   - text: >
       If the files should appear in a branch with the same name as the folder,
@@ -45,6 +47,8 @@ panels:
           $ ori Tree.paths site.ori
           ${ Origami.yaml(Tree.paths(site3.ori)) }
           $
+    footnote:
+      text: Now the files are at the top level.
 
   - text: >
       Built-in **tree operations** give you fine-grained control over what to
@@ -61,6 +65,8 @@ panels:
           $ ori Tree.paths site.ori
           ${ Origami.yaml(Tree.paths(site4.ori)) }
           $
+    footnote:
+      text: Just the CSS files now.
 
 date: 2026-02-09
 post: |
