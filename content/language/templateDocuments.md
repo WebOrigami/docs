@@ -44,6 +44,12 @@ $ ori inline.ori.html/
 ${ samples/templateDocuments/inline.ori.html/ }
 ```
 
+### Escaping substitutions
+
+You can generally put any text in a template document outside of a substitution and the text will be included as is. Unlike template literal expressions in an Origami (or JavaScript) program, template document text may contain embedded `` ` `` backticks; they will be included directly in the output.
+
+One catch arises in a situation where your document text discusses JavaScript or Origami templates. If you want the plain text to include a template substitution, escape the `$` with a backslash, like `\\$\{ \}`, to avoid having the substitution interpreted.
+
 ### Accepting an argument
 
 By default, a template document like this can be called as a function with one argument referenced with a `_` underscore.
