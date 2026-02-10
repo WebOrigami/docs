@@ -29,7 +29,7 @@ panels:
         content: !ori products.yaml/gadgets/gizmo.html
 
   - text: >
-      You can also serve content from a **JavaScript object** in which you can do anything.
+      You can also serve content from a **JavaScript object** that creates resources with code.
     scene: split.ori.html
     panes:
       - scene: editor.ori.html
