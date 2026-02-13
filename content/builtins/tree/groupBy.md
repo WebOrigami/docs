@@ -5,47 +5,50 @@ supertitle: "Tree."
 
 Groups values in the [map-like](/async-tree/maplike.html) object according to the result of a grouping function, returning a new [map-based tree](/async-tree/mapBasedTree.html).
 
-For example, suppose the data for a set of books includes a `genre` field that can have multiple values:
+For example, suppose the data for a set of anime includes a `genre` field that can have multiple values:
 
 ```console
-$ cat books.yaml
-${ samples/help/books.yaml }
+$ cat anime.yaml
+${ samples/help/anime.yaml }
 ```
 
-The books can then be grouped by genre. Here the `=_/genre` function is shorthand for `(book) => book/genre`. This function lets the `groupBy` built-in know what the books should be grouped by.
+The anime can then be grouped by genre:
 
 ```console
-$ ori Tree.groupBy books.yaml, =_.genre
-${ Origami.yaml(Tree.groupBy(samples/help/books.yaml, (book) => book.genre)) }
+$ ori "Tree.groupBy(anime.yaml, (anime) => anime.genre)"
+${ Origami.yaml(Tree.groupBy(samples/help/anime.yaml, (anime) => anime.genre)) }
 ```
 
-In the result tree, the top-level keys for the groups are the individual values found in the `genre` field: "Sci-Fi", "Romance", and "Gothic". The group values are arrays containing references to all the books that included that particular genre; a single book can appear in multiple groups.
+In the result tree, the top-level keys for the groups are the individual values found in the `genre` field: "Comedy", "Drama", etc. The group values are arrays containing references to all the items that included that particular genre; a single item can appear in multiple groups.
 
 <div class="sideBySide">
   <figure>
     ${ svg([
-      "[data for 1984]"
-      "[data for Pride and Prejudice]"
-      "[data for Jane Eyre]"
-      "[data for Frankenstein]"
-      "[data for The Time Traveler's Wife]"
+      "[data for Kaguya-sama]"
+      "[data for Oshi no Ko]"
+      "[data for Spy x Family]"
+      "[data for Wolf Children]"
     ]) }
   </figure>
   <figure>
     ${ svg({
-      "Sci-Fi": [
-        "[data for 1984]"
-        "[data for Frankenstein]"
-        "[data for The Time Traveler's Wife]"
+      "Comedy": [
+        "[data for Kaguya-sama]"
+        "[data for Spy x Family]"
+      ]
+      Drama: [
+        "[data for Oshi no Ko]"
+        "[data for Wolf Children]"
+      ]
+      Fantasy: [
+        "[data for Wolf Children]"
       ]
       Romance: [
-        "[data for Pride and Prejudice]"
-        "[data for Jane Eyre]"
-        "[data for The Time Traveler's Wife]"
+        "[data for Kaguya-sama]"
       ]
-      Gothic: [
-        "[data for Jane Eyre]"
-        "[data for Frankenstein]"
+      "Slice of Life": [
+        "[data for Oshi no Ko]"
+        "[data for Wolf Children]"
       ]
     }) }
   </figure>
@@ -54,3 +57,5 @@ In the result tree, the top-level keys for the groups are the individual values 
 </div>
 
 A common use for `groupBy` comes up anywhere content is tagged. For example, a blog with posts that can have multiple tags may want to offer a `/tags` area showing blog posts grouped by tag.
+
+It's also common to group items by year or month.
