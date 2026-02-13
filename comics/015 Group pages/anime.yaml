@@ -1,0 +1,51 @@
+- name: "Frieren: Beyond Journey's End"
+  genre:
+    - Adventure
+    - Fantasy
+  image: frieren-beyond-journeys-end.webp
+
+- name: "Kaguya-sama: Love is War"
+  genre:
+    - Comedy
+    - Romance
+  image: kaguya-sama-love-is-war.webp
+
+- name: "Natsume's Book of Friends"
+  genre:
+    - Drama
+    - Supernatural
+    - Slice of Life
+  image: natsumes-book-of-friends.webp
+
+- name: Oshi no Ko
+  genre:
+    - Drama
+    - Slice of Life
+    - Supernatural
+  image: oshi-no-ko.webp
+
+- name: Spy x Family
+  genre:
+    - Action
+    - Comedy
+  image: spy-x-family.webp
+
+- name: The Apothecary Diaries
+  genre:
+    - Drama
+    - Historical
+    - Mystery
+  image: the-apothecary-diaries.webp
+
+- name: Violet Evergarden
+  genre:
+    - Drama
+    - War
+  image: violet-evergarden.webp
+
+- name: Wolf Children
+  genre:
+    - Drama
+    - Fantasy
+    - Slice of Life
+  image: wolf-children.webp

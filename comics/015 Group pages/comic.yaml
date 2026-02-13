@@ -1,0 +1,46 @@
+panels:
+  - text: >
+      Once you've made a set of pages, Origami makes it easy to **group those pages** by tags or other data.
+    actor: Alice
+    scene: browser.ori.html
+    url: http://localhost:5000/
+    content: !ori site1.ori/index.html
+
+  - text: >
+      Call the **groupby** builtin function and tell it what data you want to your pages by.
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: site.ori
+        content: !ori site1.ori
+      - scene: editor.ori.html
+        name: anime.yaml
+        content: !ori anime.yaml
+    footnote:
+      text: Could also group by year, etc.
+
+  - text: >
+      Create a **page template** to render a single group of items as HTML.
+    scene: editor.ori.html
+    name: genre.ori.html
+    content: !ori genre.ori.html
+
+  - text: >
+      Then define a site area that **transforms each group** into a page using that template.
+    actor: Alice
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: site.ori
+        content: !ori site2.ori
+      - scene: browser.ori.html
+        url: http://localhost:5000/genre/Drama.html
+        content: !ori site2.ori/genre/Drama.html
+
+date: 026-04-13
+post: |
+  #static #staticsite #smallweb
+
+link:
+  href: https://weborigami.org/builtins/tree/groupby
+  text: Tree.groupBy builtin function

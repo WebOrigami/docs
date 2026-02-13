@@ -1,0 +1,6 @@
+{
+  index.html = index.ori.html(anime.yaml)
+
+  // Group the anime by genre
+  (grouped) = Tree.groupBy(anime.yaml, (anime) => anime.genre)
+}

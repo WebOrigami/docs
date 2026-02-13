@@ -1,0 +1,9 @@
+---
+(animes, genre) => _template()
+---
+
+<link rel="stylesheet" href="/comics/assets/group-pages/styles.css">
+<h1>${ genre }</h1>
+<div class="animeGrid">
+  ${ Tree.map(animes, animeCard.ori.html ) }
+</div>

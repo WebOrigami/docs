@@ -1,9 +1,9 @@
 // Comics area
 {
-  // Extract images from comics
-  images/ = Tree.map(comicData.ori, {
+  // Extract assets from comics
+  assets/ = Tree.map(comicData.ori, {
     key: (comic) => comic.slug
-    value: (comic) => images.ori(comic.files)
+    value: (comic) => assets.ori(comic.files)
   })
 
   index.html = templates/stripIndex.ori.html(publishedComics.ori)

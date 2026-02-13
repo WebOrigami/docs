@@ -1,5 +1,6 @@
 (files) => Tree.mask(files, Tree.globKeys({
   "**": {
+    "*.css": true
     "*.gif": true
     "*.ico": true
     "*.jpeg": true

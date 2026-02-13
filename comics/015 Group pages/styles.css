@@ -1,0 +1,24 @@
+.animeGrid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  
+  .animeCard {
+    align-content: start;
+    display: grid;
+    font-size: smaller;
+    gap: 4px;
+    grid-template-rows: auto auto;
+    line-height: 1.2;
+
+    img {
+      aspect-ratio: 0.71;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .name {
+      text-align: center;
+    }
+  }
+}
