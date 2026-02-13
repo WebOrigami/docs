@@ -8,10 +8,12 @@
 - href: intro2.html
   text: Basic usage
 - href: intro3.html
-  text: Working with trees
+  text: Reading data
 - href: intro4.html
-  text: Transformations
+  text: Working with trees
 - href: intro5.html
+  text: Transformations
+- href: intro6.html
   text: Serving trees
 - text: "Additional topics:"
 - href: shorthand.html

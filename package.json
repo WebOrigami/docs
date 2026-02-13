@@ -4,6 +4,7 @@
   "type": "module",
   "dependencies": {
     "@weborigami/origami": "0.6.10",
+    "@weborigami/ori-intro": "github:WebOrigami/ori-intro#7dd72758",
     "@weborigami/pagefind": "0.0.15",
     "@weborigami/pattern-intro": "github:WebOrigami/pattern-intro#4de23649",
     "@weborigami/samples": "github:WebOrigami/samples#ba1bd2c6",

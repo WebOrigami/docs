@@ -720,8 +720,6 @@ Origami assumes that any function might be asynchronous, so implicitly uses `awa
 
 The Origami language runtime itself is written in JavaScript, so types such as numbers, strings, and objects are the same as in JavaScript. E.g., the above example passes an Origami string to a JavaScript function; inside that function, the supplied argument will be a regular JavaScript string.
 
-Origami does not yet support `...` spreads in function calls.
-
 ### Maps as functions
 
 The [Map interface](/async-tree/interface.html) lets you treat a wide variety of [map-like](/async-tree/maplike.html) structures as maps. You can use function syntax to obtain a value from the map; this invokes the map's `get` method.
@@ -863,7 +861,7 @@ Some addition usage notes:
 
 ### Spread operator
 
-You can use `...` three periods to merge arrays and objects.
+You can use `...` three periods to merge arrays and objects, or to incorporate an array of items into a set of function arguments.
 
 ```console
 $ ori data1.yaml

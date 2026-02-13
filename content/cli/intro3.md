@@ -1,189 +1,89 @@
 ---
-title: Working with trees
+title: Reading data
 numberHeadings: true
 ---
 
-## Trees
+## Unpacking files
 
-ori is especially good at dealing with trees. More specifically, ori is designed to work with [map-based trees](/async-tree/mapBasedTree.html) constructed from objects supporting the [Map interface](/async-tree/interface.html). Such nodes can enumerate their keys and, given a key, can return the corresponding value. Many common data structures can be represented as trees.
+Origami natively understands a number of common [file types](/language/fileTypes.html) used by web developers, such as JSON and YAML files. These files are generally recognized by their file extension (`.json`, `.yaml`, etc.).
 
-To accommodate remote data sources, ori can also work with asynchronous trees. The nodes of such trees have the same methods as a standard JavaScript `Map` but the methods are asynchronous.
+If you give Origami a path _inside a file_, it will implicitly use the file's extension to identify how it should [unpack](/language/fileTypes.html#unpacking-files) that file's data. It will then extract the requested data from that file.
 
-<span class="tutorialStep"></span> One way to define a tree is in [YAML](https://yaml.org/) format.
-
-```console
-$ ori greetings.yaml
-${ samples/cli/greetings.yaml }
-```
-
-ori can interpret this file as the following tree:
-
-<figure>
-${ svg(samples/cli/greetings.yaml) }
-</figure>
-
-The YAML data format shown above can be easier for people to read than formats like JSON. If you prefer, you can just as easily use the ubiquitous JSON format.
-
-ori itself natively understands several types of map-based trees:
-
-- JSON
-- YAML
-- JavaScript objects
-- JavaScript `Array`, `Iterator`, `Map`, or `Set` instances
-- JavaScript functions
-- folder trees
-- web sites (some operations require support for [JSON Keys](/async-tree/jsonKeys.html) files, discussed later)
-- any object that implements the [Map interface](/async-tree/interface.html)
-
-## Extract specific values out of a tree
-
-<span class="tutorialStep"></span> You can use path syntax to extract a specific value from a tree.
+For example, `teamData.yaml` contains some data about people. If you ask for the file, you get the whole file back:
 
 ```console
-$ ori greetings.yaml/Alice
-Hello, Alice.
+$ ori teamData.yaml
+${ ori-intro/teamData.yaml }
 ```
 
-The `greetings.yaml` tree is a flat list, but it can be a hierarchical tree or arbitrarily complex.
-
-<span class="tutorialStep"></span> A tree can also be invoked like a function, so you also have the option of using function call syntax:
+But you can provide a slash-separated path to get data out of the file:
 
 ```console
-$ ori "greetings.yaml('Alice')"
-Hello, Alice.
+$ ori teamData.yaml/0/name
+${ ori-intro/teamData.yaml/0/name }
+
 ```
 
-<span class="tutorialStep"></span> You can easily combine ori features like JSON/YAML parsing, path syntax, and function invocation to have ori parse a specific value out of a tree and feed that directly to your function.
+Alternately, you can use array and property synax:
 
 ```console
-$ ori uppercase.js greetings.yaml/Alice
-HELLO, ALICE.
+$ ori "(teamData.yaml)[1].location"
+${ (ori-intro/teamData.yaml)[1].location }
+
 ```
 
-## Translate JSON to YAML and vice versa
+You can define your own file extension handlers for [custom file types](/language/fileTypes.html#custom-file-types).
 
-<span class="tutorialStep"></span> You can use ori to transform a tree from one format to another. By default, ori renders trees in YAML format, but you can ask for JSON format with the [`json`](/builtins/tree/json.html) function:
+## Passing data to functions
+
+You can use Origami's ability to read data out of files to pass data directly to a function written in JavaScript, Origami, or WebAssembly.
 
 ```console
-$ ori greetings.yaml
-${ samples/cli/greetings.yaml }
-$ ori json greetings.yaml
-${ Tree.json(samples/cli/greetings.yaml) + "\n" }
+$ ori greet.js teamData.yaml/2/name
+${ ori-intro/greet.js(ori-intro/teamData.yaml/2/name) }
+
 ```
 
-<span class="tutorialStep"></span> In the other direction, you can render a JSON file as YAML with the [`Origami.yaml`](/builtins/origami/yaml.html) function:
+## Passing data as arguments
+
+You can combine the above ability with the Origami / JavaScript [spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) to define an array of function arguments in a file.
+
+If you want to repeatedly test or invoke a JavaScript function under particular conditions -- say, to test a network service -- you can put those in a JSON, YAML, or Origami file. You can then use the spread operator to pass that array as the arguments to a function.
+
+For example, you could call the standard JavaScript [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Window/fetch) method with arguments that make a call to a web service that echoes the request back to you:
 
 ```console
-$ ori letters.json
-${ samples/cli/letters.json }
-$ ori Origami.yaml letters.json
-${ Origami.yaml(samples/cli/letters.json) }
+$ ori postArgs.yaml
+${ ori-intro/postArgs.yaml }
+$ ori fetch ...postArgs.yaml
+{"args":{},"data":"This is the body of the POST request.","files":{},"form":{},"headers":{"host":"postman-echo.com","content-length":"37","accept-encoding":"gzip, br","accept-language":"*","x-forwarded-proto":"https","accept":"*/*","content-type":"text/plain;charset=UTF-8","user-agent":"node","sec-fetch-mode":"cors"},"json":null,"url":"https://postman-echo.com/post"}
 ```
 
-The `json` function isn't a specific YAML-to-JSON transformation; it can transform any tree to JSON text. Similarly, `yaml` can transform any tree to YAML text.
-
-## Parse JSON/YAML files
-
-You can use ori to parse a JSON or YAML file into a plain JavaScript object that your JavaScript function can then handle.
-
-Suppose you have a focused function that does something with a flat, plain object. Perhaps it returns the text of an object's values:
+If you want to pass files as arguments, you can reference those in an Origami file. You could send a local `hello.md` file to the web echo service:
 
 ```console
-$ ori text.js
-${ samples/cli/text.js }
+$ ori hello.md
+${ ori-intro/hello.md }
+
+$ ori putArgs.ori
+${ ori-intro/putArgs.ori }
+$ ori fetch ...putArgs.ori
+{"args":{},"data":"Hello, world.","files":{},"form":{},"headers":{"host":"postman-echo.com","content-length":"13","accept-encoding":"gzip, br","accept-language":"*","x-forwarded-proto":"https","accept":"*/*","sec-fetch-mode":"cors","user-agent":"node","content-type":"application/json"},"json":null,"url":"https://postman-echo.com/put"}
 ```
 
-<span class="tutorialStep"></span> If you append a `/` slash to the name of the YAML file, Origami will [unpack](/language/fileTypes.html#unpacking-files) into a plain JavaScript object. You can then pass that object to the sample `text.js` function:
+Here a set of arguments was passed to `fetch`. The `body` argument referenced a local file `hello.md` which was then uploaded to the service.
+
+## Unpacking web resources
+
+Origami can also implicitly unpack data retrieved from network locations.
+
+The network location https://weborigami.org/samples/help/catBreeds.csv provides a small data set about cats. You can set that URL in parentheses, then traverse the resulting download data with a slash path or array/property syntax to extract specific data within that resource:
 
 ```console
-$ ori text.js greetings.yaml/
-${ samples/cli/text.js(samples/cli/greetings.yaml/) + "\n" }
+$ ori "(https://weborigami.org/samples/help/catBreeds.csv)[1]"
+${ Origami.yaml((samples/help/catBreeds.csv)[1]) }
 ```
-
-<span class="tutorialStep"></span> Or pass a parsed JSON file to your function:
-
-```console
-$ ori text.js letters.json/
-${ samples/cli/text.js(samples/cli/letters.json/) + "\n" }
-```
-
-Separating the parsing from your function like this lets you keep your function as general as possible.
-
-## Render the current file system tree as a tree
-
-<span class="tutorialStep"></span> The file system is just another tree that ori natively understands. If you give ori a path to a folder, it will treat that as a tree. For example, you can specify the current folder with a period (`.`):
-
-```console
-$ ori .
-```
-
-This will render the complete contents of the current folder, including subfolders, in YAML.
-
-<span class="tutorialStep"></span> You can capture that result to package up the current folder as a YAML file.
-
-```console
-$ ori . > files.yaml
-```
-
-<span class="tutorialStep"></span> Or package the folder as JSON:
-
-```console
-$ ori json . > files.json
-```
-
-## Copy data into the file system
-
-<span class="tutorialStep"></span> You can copy the data in `greetings.yaml` into individual files:
-
-```console
-$ ori greetings.yaml
-Alice: Hello, Alice.
-Bob: Hello, Bob.
-Carol: Hello, Carol.
-$ ori copy greetings.yaml, files:greetings
-$ ls greetings
-Alice   Bob     Carol
-$ cat greetings/Alice
-Hello, Alice.
-```
-
-The `files:greetings` argument indicates that [`copy`](/builtins/dev/copy.html) should copy the input YAML tree to a file system tree under a folder named `greetings`. As a result, the key/value pairs in the YAML file are now individual files in a `greetings` folder.
-
-<span class="tutorialStep"></span> The important point here is that _all trees look the same to ori_. It doesn't matter whether a tree is defined in a single file like YAML, or a collection of loose files in the file system. Having unpacked the `greetings.yaml` file above, we can ask ori to display the `greetings` folder we just created:
-
-```console
-$ ori greetings
-Alice: Hello, Alice.
-Bob: Hello, Bob.
-Carol: Hello, Carol.
-```
-
-It _looks_ like `greetings` is a YAML file, but it's not — it's really a folder. ori is just displaying the folder's contents in the default YAML output format. Each line of that output is actually coming from a different file.
-
-The `greetings` folder and the `greetings.yaml` file both define the same tree, even though the underlying data is stored in completely different ways and accessed via different APIs.
-
-## Process a folder tree as a JavaScript object
-
-<span class="tutorialStep"></span> Because the `greetings` folder created in the above example is just another tree ori can process, you can feed it to the simple JavaScript `text.js` function shown earlier.
-
-A folder's values will be file buffers, while `text.js` is expecting strings. To convert the entire `greetings` folder to a plain JavaScript object with string values, you can apply the [`plain`](/builtins/tree/plain.html) function, then pass that result to `text.js`.
-
-```console
-$ ori text.js plain greetings
-${ samples/cli/text.js(samples/cli/greetings.yaml/) + "\n" }
-```
-
-This connects two ideas:
-
-- A folder like `greetings` is a tree ori can understand.
-- ori can convert any tree to a plain JavaScript object with the `plain` function.
-
-This means that you can use the `plain` function to convert a folder to a plain JavaScript object too. The keys will be the file/folder names, and the values will be the file contents or folder subtrees.
-
-Writing code to work with folder and files this way can be much easier than using Node's file system API directly. There is a performance trade-off implied by building an in-memory object to hold the file system data, but in many cases this is still very fast. And in practice it can much easier to manipulate a complete file system hierarchy as an in-memory object than working with a file system API.
-
-Another important benefit of working with trees is that you can change your mind later about how you want to represent data without having to rewrite code that processes that data. You could start a small project by representing data in a single file and then, if your needs change later, switch to representing that data in a hierarchical tree of files, or data stored as web resources.
 
 &nbsp;
 
-Next: [Transforming data and trees](intro4.html) »
+Next: [Using trees with the ori CLI](intro4.html) »

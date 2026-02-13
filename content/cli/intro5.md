@@ -1,83 +1,106 @@
 ---
-title: Serving trees
+title: Transforming data and trees
 numberHeadings: true
 ---
 
-## Serve a tree
+## Transform data into something presentable with a template
 
-You can serve any tree with the [`serve`](/builtins/dev/serve.html) function. For example, the sample `site.yaml` file defines a tiny tree with two web pages:
-
-```console
-$ ori site.yaml
-index.html: |
-  <!DOCTYPE html>
-  <html>
-    <body>
-      <h1>Index</h1>
-      <a href="about/">About</a>
-    </body>
-  </html>
-
-about:
-  index.html: |
-    <!DOCTYPE html>
-    <html>
-      <body>
-        <h1>About</h1>
-        <p>This site is defined in a YAML file.</p>
-      </body>
-    </html>
-```
-
-The tree looks like this:
-
-<figure>
-${ svg(samples/cli/site.yaml) }
-</figure>
-
-<span class="tutorialStep"></span> You can serve this tiny site directly from the file:
+Template languages are useful for translating data into something you can present to a user. As a bare-bones template system, let's look at a function that renders HTML using a native JavaScript template literal:
 
 ```console
-$ ori serve site.yaml
-Server running at http://localhost:5000
+$ ori template.js
+export default (body) => `<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: Zapfino, Segoe Script, cursive;
+        color: darkred;
+        font-size: 48px;
+      }
+    </style>
+  </head>
+  <body>
+    \${body}
+  </body>
+</html>
+`;
 ```
 
-If you open the indicated URL in your browser, you'll be able to browse between the two pages in the site. The YAML file defines a tree, and the server translates each HTTP URL into a tree traversal.
-
-Press Ctrl+C to stop the server.
-
-## Serve a folder
-
-<span class="tutorialStep"></span> You can serve any tree. To serve the current folder:
+<span class="tutorialStep"></span> We can use ori to apply this template to data, potentially plucked out of a tree, to render that data as HTML:
 
 ```console
-$ ori serve .
-Server running at http://localhost:5000
+$ ori template.js greetings.yaml/Alice
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: Zapfino, Segoe Script, cursive;
+        color: darkred;
+        font-size: 48px;
+      }
+    </style>
+  </head>
+  <body>
+    Hello, Alice.
+  </body>
+</html>
 ```
 
-This effectively lets ori work as a static file server.
+You could save this output as an HTML file and open it in your browser, or in a minute you'll see another way to view such a page directly.
 
-As a shorthand, you can omit the period (`.`). If you don't specify a tree to serve, `serve` serves up the current folder.
+## Transform a whole tree of stuff
+
+Earlier you saw an `uppercase` function that takes a string argument and returns an uppercase version:
 
 ```console
-$ ori serve
-Server running at http://localhost:5000
+$ ori uppercase.js greetings.yaml/Alice
+HELLO, ALICE.
 ```
 
-## Serve a transformed tree of stuff
-
-<span class="tutorialStep"></span> You can ask ori to serve data transformed on demand into HTML using `Tree.map` and the template we saw earlier.
+<span class="tutorialStep"></span> You can apply that `uppercase` transformation to an entire tree with the ori's built-in [`Tree.map`](/builtins/tree/map.html) function:
 
 ```console
-$ ori "serve Tree.map greetings.yaml, template.js"
-Server running at http://localhost:5000
+$ ori Tree.map greetings.yaml, uppercase.js
+Alice: HELLO, ALICE.
+Bob: HELLO, BOB.
+Carol: HELLO, CAROL.
 ```
 
-You can browse to one of the defined pages like http://localhost:5000/Alice. You'll see "Hello, Alice." rendered in HTML. Due to the lazy nature of map-based trees, that rendering work is only done on request.
+It is easy to transform an entire tree of one type of object into a new tree of a different type of object. You only need to identify or define a one-to-one transformation function that handles a single object, and ori can apply that as a many-to-many transformation of an entire tree.
 
-## Transforming data into static files and then serving
+The second argument to `map` is a function. Technically, the second argument can be any tree, but for the moment, we'll use a regular JavaScript function.
 
-Earlier you saw how you can transform a tree and save the results as files.
+The map example above takes the original greetings tree and creates a new tree where all the values are uppercase:
+
+<div class="sideBySide">
+  <figure>
+    ${ svg(samples/cli/greetings.yaml) }
+  </figure>
+  <figure>
+    ${ svg(Tree.map(samples/cli/greetings.yaml, samples/cli/uppercase.js)) }
+  </figure>
+  <figcaption>Original tree</figcaption>
+  <figcaption>Mapped values</figcaption>
+</div>
+
+In this intro, we're just transforming text, but you can transform anything in bulk, including images and other binaries. If you can write a function to transform a single thing in JavaScript, you can use ori to apply that transformation to an entire tree of things.
+
+## Traversing a transformed tree
+
+<span class="tutorialStep"></span> If you ask for a specific value from a mapped tree, then only that value is computed:
+
+```console
+$ ori "Tree.map(greetings.yaml, uppercase.js)/Alice"
+HELLO, ALICE.
+```
+
+`map` doesn't do all its work when invoked, but immediately returns a new tree that will invoke the mapping function on demand. You can think of such a tree as a _lazy dictionary_. The lazy dictionary doesn't have a permanent entry for "Alice", but if you ask for "Alice", the lazy dictionary will go and compute the desired value.
+
+## Turn a transformed tree of stuff into files
+
+<span class="tutorialStep"></span> You can transform a tree and save the results as files.
 
 ```console
 $ ori "copy Tree.map(greetings.yaml, template.js), files:html"
@@ -85,69 +108,8 @@ $ ls html
 Alice   Bob     Carol
 ```
 
-<span class="tutorialStep"></span> If you serve the `html` folder created this way, the user experience will be the same as above, when the HTML pages were generated dynamically by `map`:
-
-```console
-$ ori serve html
-Server running at http://localhost:5000
-```
-
-You can perform a `copy` operation like the one in this example in preparation for deploying HTML pages to a static web server. The web page you're reading right now was created and deployed in exactly that way.
-
-## Inspect a live web site
-
-<span class="tutorialStep"></span> The web site you're reading now supports viewing its contents as a tree, so you can reference it directly in ori. For example, this site includes a route `/samples/greetings/`. You can pass that URL to ori with the custom [httpstree:](/builtins/protocol/httpstree.html) protocol to treat that route as a tree, and display all the files at that route:
-
-```console
-$ ori httpstree://weborigami.org/samples/greetings/
-Alice: Hello, Alice.
-Bob: Hello, Bob.
-Carol: Hello, Carol.
-```
-
-<span class="tutorialStep"></span> While the result above may look like a YAML file, each of those lines is actually coming from a separate web resource.
-
-```console
-$ ori https://weborigami.org/samples/greetings/Alice
-Hello, Alice.
-```
-
-<span class="tutorialStep"></span> ori can discover all the resources at the `/samples/greetings/` route because this server supports a simple protocol: for every route on this server, a [.keys.json](/async-tree/jsonKeys.html) file exists that enumerates the resources at that route.
-
-```console
-$ ori https://weborigami.org/samples/greetings/.keys.json
-["Alice","Bob","Carol"]
-```
-
-When you ask to view a route via `tree`, ori asks that server for its `.keys.json` file, then uses that information to traverse all the resources at that route.
-
-Making the full contents of a site more freely available might be concerning to some people, but most web content is already available to users; it's just not conveniently inspectable. ori extends the spirit of the browser's View Source feature, which looks at a single web page at a time, to let you inspect everything at a particular web route.
-
-## Copy a live web site to local files
-
-<span class="tutorialStep"></span> You can also use ori to copy a site as a tree to local files:
-
-```console
-$ ori copy httpstree://weborigami.org/samples/greetings/, files:snapshot
-$ ls snapshot
-Alice Bob   Carol
-```
-
-While some people may balk at letting people freely copy web resources to their own machine, there are plenty of cases where the entire point of the site is to make information freely available.
-
-Of course, just because copying a site is possible doesn't mean it's efficient. If you regularly need to copy web resources to local files, there are faster tools for that job. But if you only do that infrequently, the general-purpose ori may suffice.
-
-## Finish
-
-This concludes the ori introduction. As you've seen, ori is useful for
-
-- invoking JavaScript functions from the shell
-- parsing arguments from the command line and passing those to JavaScript functions
-- passing files and folder trees to JavaScript functions
-- capturing function output to files
-- working with trees defined in JSON/YAML files, the file system, or web sites
-- serving trees to a web browser
+<span class="tutorialStep"></span> Inspect the contents of the `html` directory to confirm that each greeting has been rendered into a separate file.
 
 &nbsp;
 
-Back to [CLI](/cli/)
+Next: [Serving trees](intro5.html) »

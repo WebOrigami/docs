@@ -5,6 +5,8 @@
   // type information and comments.
   api = Origami.once(() => src/js/jsApi.js(node_modules/@weborigami/async-tree/src/))
 
+  ori-intro: node_modules/@weborigami/ori-intro/src/
+
   pattern: node_modules/@weborigami/pattern-intro/src/
 
   samples: node_modules/@weborigami/samples/src/
