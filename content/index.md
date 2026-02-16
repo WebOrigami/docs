@@ -59,6 +59,6 @@ The [Origami Comics](/comics) area presents graphical introductions to Origami u
 
 ## Community
 
-If you'd like to ask questions, visit the [Web Origami room](https://matrix.to/#/%23weborigami:envs.net) on [Matrix](https://matrix.org).
+If you'd like to ask questions, visit the [Web Origami chat room](https://weborigami.zulipchat.com/login/). You can view the chat without an account.
 
 If you're interested in trying Origami in a friendly setting, you can participate in a guided playtest and share your feedback. Or join a pair programming session to use these new techniques and tools to collaboratively implement a site. Contact [Jan Miksovsky](https://jan.miksovsky.com/contact.html).
