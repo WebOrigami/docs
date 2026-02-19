@@ -1,0 +1,11 @@
+{
+  // Step 1: Sort posts by date
+  sorted: Tree.sort(markdown/, (post) => post.date)
+
+  // Step 2: Convert markdown to HTML
+  html: Tree.map(sorted, Origami.mdHtml)
+
+  // Step 3: Apply template
+  result: Tree.map(html, post.ori.html)
+  
+}.result // Only expose final result

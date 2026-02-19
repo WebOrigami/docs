@@ -37,7 +37,7 @@ panels:
         url: http://localhost:5000/genre/Drama.html
         content: !ori site2.ori/genre/Drama.html
 
-date: 026-04-13
+date: 2026-04-13
 post: |
   #static #staticsite #smallweb
 

@@ -1,0 +1,12 @@
+// You have to read nested calls inside-out to understand the flow.
+
+// Step 3: Apply template
+Tree.map(
+  // Step 2: Convert markdown to HTML
+  Tree.map(
+    // Step 1: Sort posts by date
+    Tree.sort(markdown/, (post) => post.date),
+    Origami.mdHtml
+  ),
+  post.ori.html
+)

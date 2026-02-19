@@ -1,0 +1,44 @@
+panels:
+  - text: >
+      If **nested function calls** become hard to read, Origami's expression dialect
+      offers several alternatives.
+    actor: Bob
+    face: thinkRight
+    scene: editor.ori.html
+    name: posts.ori
+    content: !ori posts1.ori
+
+  - text: >
+      Origami's **pipe operator** can clarify the flow of data from one function
+      to the next function.
+    scene: editor.ori.html
+    name: posts.ori
+    content: !ori posts2.ori
+    footnote:
+      text: Maybe **JavaScript** will have this someday.
+
+  - text: >
+      Origami object properties can also reference **local keys**, which you can use like temp variables.
+    scene: editor.ori.html
+    name: posts.ori
+    content: !ori posts3.ori
+
+  - text: >
+      You can do such calculations inside an object, then pluck out **just the result**.
+    actor: Bob
+    face: happy
+    scene: editor.ori.html
+    name: posts.ori
+    content: !ori posts4.ori
+    footnote:
+      text: The last line does the trick.
+
+date: 2026-04-20
+post: |
+  #staticsite #programming
+
+  FWIW there's a (stale?) JS proposal for a pipe operator: https://github.com/tc39/proposal-pipeline-operator
+
+link:
+  href: https://weborigami.org/language/expressions#pipe-operator
+  text: Origami pipe operator
