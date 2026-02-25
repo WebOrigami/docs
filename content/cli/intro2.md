@@ -37,21 +37,22 @@ In this case, ori finds that "sample.txt" is the name of a file, and reads that 
 
 ```console
 $ ori greet.js
-export default (name = "world") => `Hello, \${name}.`;
+${ samples/cli/greet.js }
 ```
 
 <span class="tutorialStep"></span> You can _invoke_ the function exported by that module by adding parentheses. Since most command-line shells interpret parentheses, you'll need to quote the expression:
 
 ```console
 $ ori "greet.js()"
-Hello, world.
+${ samples/cli/greet.js() }
+
 ```
 
 When you ask ori to evaluate `greet.js()`:
 
 - ori sees if `greet.js` exists. In this case, it finds a JavaScript module with that name.
 - ori dynamically imports the module and obtains the default export (a function).
-- Because the result is a JavaScript function, ori executes it.
+- The result is a JavaScript function which ori executes.
 - The function's result is the string "Hello, world.", which ori displays.
 
 ## Pass a string to a function
@@ -60,7 +61,8 @@ When you ask ori to evaluate `greet.js()`:
 
 ```console
 $ ori "greet.js('Alice')"
-Hello, Alice.
+${ samples/cli/greet.js("Alice") }
+
 ```
 
 ori accepts strings in single quotes or double quotes. In this case, the double quotes above are parsed by the _shell_, and are necessary because the `bash` shell shown here would otherwise prevent ori from seeing the single quotes.
@@ -69,12 +71,21 @@ ori accepts strings in single quotes or double quotes. In this case, the double 
 
 ```console
 $ ori greet.js/Alice
-Hello, Alice.
+${ samples/cli/greet.js/Alice }
+
 ```
 
 In this path syntax, the first path segment (`greet.js`) will be looked up in the current scope. All subsequent path segments (like `Alice`) are treated as plain text. Otherwise, both ways of passing arguments behave the same.
 
-In this way, ori lets you call a JavaScript function from the shell without needing to write JavaScript code to parse command line arguments.
+Ending a file name with a slash [unpacks that file](/language/fileTypes.html#unpacking-files). In the case of `greet.js/`, the result of unpacking the file will be the greet function. If the result of an expression is a function, `ori` will invoke it and display the result. The effect of this is to give you a shortcut for invoking a function with no arguments:
+
+```console
+$ ori greet.js/
+${ samples/cli/greet.js() }
+
+```
+
+These techniques let you call a JavaScript function from the shell without needing to write JavaScript code to parse command line arguments.
 
 ## Aside: Loading functions as ES modules
 
