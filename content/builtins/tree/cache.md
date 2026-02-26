@@ -25,7 +25,7 @@ You might generate maps for these locations via an API like the [MapBox Static I
 ${ samples/help/maps/map.ori }
 ```
 
-And then you can use [`Tree.map`](map.html) to map the cities to map images:
+You can then use [`Tree.map`](map.html) to map the cities to map images:
 
 ```ori
 // cityMaps.ori
@@ -49,6 +49,10 @@ ${ samples/help/maps/cachedMaps.ori }
 ```
 
 This will fetch images on demand from the slow API-based `cityMaps.ori` tree, saving them in the fast file-based tree. In this case, the files will be saved in a folder called `mapImages`.
+
+You now have the following arrangement of calls:
+
+cachedMaps.ori → Tree.cache → cityMaps.ori (if image doesn't exist yet) → map.ori → MapBox API
 
 To retrieve all the maps at once, you can use the [`Tree.visit`](visit.html) builtin, which will get all the values (images) in this collection.
 
