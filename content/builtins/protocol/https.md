@@ -14,4 +14,4 @@ $ ori https://example.com
 …
 ```
 
-See also [`http:`](http.html).
+See also [`http:`](http.html). If you have a path with a dynamic portion, the Origami-specific [`httpstree:`](httpstree.html) protocol may be useful; see that page for an example.
