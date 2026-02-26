@@ -114,6 +114,8 @@
   text: traversePath
 - href: values.html
   text: values
+- href: visit.html
+  text: visit
 - href: withKeys.html
   text: withKeys
 
