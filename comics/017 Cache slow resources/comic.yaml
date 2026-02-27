@@ -1,0 +1,47 @@
+panels:
+  - text: >
+      Are some of your site's resources slow to retrieve or generate? You can
+      **cache them!**
+    actor: Alice
+    face: thinkRight
+    scene: editor.ori.html
+    name: cityMaps.ori
+    content: !ori cityMaps.ori
+
+  - text: >
+      In Origami, a cache is a general operation that combines a **slow tree** of resources and a **fast one**.
+    scene: editor.ori.html
+    name: site.ori
+    content: !ori site.ori
+
+  - text: >
+      If you ask for a resource the fast tree doesn't have yet, the cache gets the
+      resource from the slow tree and saves it for next time.
+    scene: session.ori.html
+    content: |
+      $ ls mapImages
+      bogotá.png      sãoPaulo.png
+      $ ori site.ori/maps/lima.png > /dev/null
+      $ ls mapImages
+      bogotá.png      lima.png        sãoPaulo.png
+      $ 
+    footnote:
+      text: Asking for a new map adds it to local files.
+
+  - text: >
+      Making it more pleasant to use generated resources can open
+      up more **creative possibilities** for your site!
+    actor: Alice
+    face: grinRight
+    scene: browser.ori.html
+    url: http://localhost:5000/maps/lima.png
+    content: |
+      <img src="/comics/assets/cache-slow-resources/mapImages/lima.png">
+
+date: 2026-04-27
+post: |
+  #programming #staticsite
+
+link:
+  href: https://weborigami.org/builtins/tree/cache
+  text: Origami's Tree.cache builtin

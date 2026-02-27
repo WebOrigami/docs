@@ -1,0 +1,12 @@
+//
+// This little Origami program generates a folder of street map images for
+// cities in a data file. This uses the nice Mapbox Static Images API, but
+// making network calls can be a little slow.
+//
+Tree.mapExtension(
+  cities.yaml,
+  "→.png",
+  ({ lat, long }) => fetch(
+    `https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/pin-s+ff0000(${long},${lat})/${long},${lat},9/400x400@2x?access_token=${ token.txt }`
+  )?.arrayBuffer()  
+)

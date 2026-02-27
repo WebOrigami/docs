@@ -1,0 +1,7 @@
+{
+  // The maps route of our site has a cache to speed local development
+  maps/: Tree.cache(
+    cityMaps.ori, // slow tree based on network API calls
+    files:mapImages // fast tree based on local files
+  )
+}
