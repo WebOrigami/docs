@@ -14,6 +14,8 @@ These extensions include map classes so you can work with additional storage sys
 - [gist](https://github.com/WebOrigami/extensions/tree/main/gist): A map class for [GitHub gists](https://docs.github.com/en/get-started/writing-on-github/editing-and-sharing-content-with-gists)
 - [handlebars](https://github.com/WebOrigami/extensions/tree/main/handlebars): An extension handler for the `.hbs` extension used by [Handlebars](https://handlebarsjs.com/) template language; allows you to invoke a Handlebars template as a function in an Origami site or in the command line.
 - [json-schema](https://github.com/WebOrigami/extensions/tree/main/json-schema): Validates data using a schema in [JSON Schema](https://json-schema.org/) format
+- [liquid](https://github.com/WebOrigami/extensions/tree/main/liquid): An extension handler for `.liquid` files defining [Liquid template files](https://shopify.github.io/liquid/).
+- [netlify-deploy](https://github.com/WebOrigami/extensions/tree/main/netlify-deploy): Utility for deploying an Origami site straight from a `.ori` file to a [Netlify](https://netlify.com) site.
 - [pagefind](https://github.com/WebOrigami/extensions/tree/main/pagefind): Allows you to easily add full-text search to your static site via the [Pagefind](https://pagefind.app/) static search library.
 - [screenshot](https://github.com/WebOrigami/extensions/tree/main/screenshot): Utility functions that accept a URL or a block of HTML and return a PNG image of that page.
 - [zip](https://github.com/WebOrigami/extensions/tree/main/zip): Tree driver for ZIP files.
