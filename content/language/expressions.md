@@ -357,7 +357,14 @@ If a sequence starts with a scheme (protocol) and a colon, Origami treats it as 
 https://example.com
 ```
 
-The only characters that cannot be used in a URL are whitespace or characters that end an expression: `,` `)`, `]`, `}`. If you need to incorporate such a character into a URL, escape it with a `\\` backslash. Alternatively, place the URL in [angle brackets](#angle-brackets).
+Characters that cannot be used in a URL:
+
+- whitespace
+- `,` comma
+- `(`, `[`, `{` opening brackets
+- `)`, `]`, `}` closing brackets
+
+If you need to incorporate such a character into a URL, escape it with a `\\` backslash. Alternatively, place the URL in [angle brackets](#angle-brackets).
 
 ## Numbers
 
