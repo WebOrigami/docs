@@ -1,0 +1,6 @@
+// Simple blog site
+{
+  posts/ = Tree.map(markdown, Origami.mdHtml)
+  index.html = index.ori.html(posts)
+  feed.json = feed.ori(posts)
+}

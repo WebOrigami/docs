@@ -1,0 +1,6 @@
+---
+title: Tiny home
+date: 2025-07-07
+---
+
+When I first decided to move off-grid, I knew I wanted to build my own home.

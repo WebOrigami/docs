@@ -1,0 +1,75 @@
+panels:
+  - text: >
+      Your static site has a secret superpower: you can compare it with **previous versions** of your site!
+    actor: Bob
+    face: talk
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: site.ori
+        content: !ori site.ori
+      - scene: session.ori.html
+        content: |
+          $ npm run build
+          $ cp -r build baseline
+          $ 
+    footnote:
+      text: Start by copying a build to a "baseline" folder.
+
+  - text: >
+      If you **add a new post**, you should only see changes for that post's specific page, the index page, and the feed.
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: post4.md
+        content: !ori markdown/post4.md
+      - scene: session.ori.html
+        content: |
+          $ npm run build
+          $ ori changes baseline, build
+          posts:
+            post4.html: added
+          index.html: changed
+          feed.json: changed
+          $ 
+
+  - text: >
+      If you **change a template**, you should only see changes in pages that use that template.
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: index.ori.html
+        content: !ori index.ori.html
+      - scene: session.ori.html
+        content: |
+          $ npm run build
+          $ ori changes baseline, build
+          index.html: changed
+          $ 
+
+  - text: >
+      No changes means there's no need to check the browser: **the entire site is exactly the same as before!**
+    actor: Bob
+    face: wow
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: index.ori.html
+        content: !ori index2.ori.html
+      - scene: session.ori.html
+        content: |
+          $ npm run build
+          $ ori changes baseline, build
+          $ 
+    footnote:
+      text: A perfect technique for **refactoring!**
+
+date: 2026-05-04
+post: |
+  This Origami tool works with any #staticsite generator!
+
+  #ssg #smallweb #blogging
+
+link:
+  href: https://weborigami.org/builtins/dev/changes
+  text: Origami's Dev.changes builtin
