@@ -315,4 +315,4 @@ ${ (samples/cli/alice.user).name }
 
 ### Defining a handler for a template language
 
-As a reference example, the [Origami Handlebars extension](https://github.com/WebOrigami/extensions/tree/main/handlebars) defines a handler for `.hbs` files that contain [Handlebars](https://handlebarsjs.com) templates.
+As a reference example, the [Origami Handlebars extension](https://github.com/WebOrigami/extensions/tree/main/handlebars) defines a handler for `.hbs` files that contain [Handlebars](https://handlebarsjs.com) templates. The [Origami Liquid extension](https://github.com/WebOrigami/extensions/tree/main/liquid) does the same for `.liquid` files with [LiquidJS](https://liquidjs.com/) templates.
