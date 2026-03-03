@@ -5,5 +5,5 @@ status: |
   HTML comic: https://weborigami.org/comics/${ _.slug }.html
 
   ${ _.post }
-media_ids: !ori (media.yaml).map(data => data.id)
+media_ids: !ori Tree.map(media.yaml, (data) => data.id)
 visibility: public

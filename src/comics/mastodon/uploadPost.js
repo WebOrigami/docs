@@ -5,11 +5,12 @@ const MASTODON_BASE_URL = "https://fosstodon.org";
 // Upload a post with the given data
 export default async function uploadPost(data) {
   const body = JSON.stringify(data);
+
   const response = await fetch(`${MASTODON_BASE_URL}/api/v1/statuses`, {
-    method: 'POST',
+    method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body,
   });
