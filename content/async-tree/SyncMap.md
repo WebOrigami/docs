@@ -185,7 +185,7 @@ To account for this potential disconnect between keys and values, the map helper
 
 ## Limitations
 
-`SyncMap` can be generally used as a drop-in replacement for `Map`. One situation where `SyncMap` will not work as expected is with the JavaScript function [`structuredClone`](https://developer.mozilla.org/en-US/docs/Web/API/Window/structuredClone). `structuredClone` will accept a `Map` object but will directly accesses a map's built-in storage. If you pass a `SyncMap` to `structuredClone`, the function will not call your `get()` or `keys()` methods, and the cloned result will be an empty `Map`.
+`SyncMap` can be generally used as a drop-in replacement for `Map`. One situation where `SyncMap` will not work as expected is with the JavaScript function [`structuredClone`](https://developer.mozilla.org/en-US/docs/Web/API/Window/structuredClone). `structuredClone` will accept a `Map` object but will directly access the map's built-in storage. If you pass a `SyncMap` to `structuredClone`, the function will not call your `get()` or `keys()` methods, and the cloned result will be an empty `Map`.
 
 ## API
 
