@@ -41,4 +41,4 @@ ${ Origami.yaml({
 }) }
 ```
 
-The merge operation is shallow; for a deep merge operation, see [`deepMerge`](deepMerge.html).
+The merge operation is shallow; for a deep merge operation, see [`Tree.deepMerge`](deepMerge.html). If your goal is to combine two or more arrays, see [`Tree.concat`](concat.html).

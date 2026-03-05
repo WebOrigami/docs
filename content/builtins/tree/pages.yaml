@@ -12,6 +12,8 @@
   text: child
 - href: clear.html
   text: clear
+- href: concat.html
+  text: concat
 - href: constant.html
   text: constant
 - href: deepMap.html
@@ -32,6 +34,8 @@
   text: entries
 - href: filter.html
   text: filter
+- href: flat.html
+  text: flat
 - href: first.html
   text: first
 - href: forEach.html

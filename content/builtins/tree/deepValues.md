@@ -22,4 +22,4 @@ ${ Origami.yaml(Tree.deepValues(samples/help/greetings.yaml)) }
   <figcaption>Result</figcaption>
 </div>
 
-If you want to limit the number of results, see [`deepTake`](deepTake.html).
+If you want to limit the number of results, see [`deepTake`](deepTake.html). Also see [`Tree.flat`](flat.html), which lets you control the maximum depth at which values are returned.

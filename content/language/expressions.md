@@ -893,7 +893,7 @@ In an `.ori` file, you can use this to merge a folder into an object that also d
 }
 ```
 
-The spread operator performs a shallow merge. You can also perform a shallow merge with the built-in [`Tree.merge`](/builtins/tree/merge.html) function. For a deep merge, see [`Tree.deepMerge`](/builtins/tree/deepMerge.html).
+If you'd prefer to use a function to merge objects instead of the spread operator, you can perform a shallow merge with [`Tree.merge`](/builtins/tree/merge.html) or a deep merge with [`Tree.deepMerge`](/builtins/tree/deepMerge.html). For concatenating arrays with a function, use [`Tree.concat`](/builtins/tree/concat.html).
 
 ### Pipe operator
 
