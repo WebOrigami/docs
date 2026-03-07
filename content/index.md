@@ -1,6 +1,6 @@
 ---
 title: Web Origami
-subtitle: A way of making sites where you can understand how they're made
+subtitle: Complements HTML and CSS so you can make an expressive site you understand
 icon: bird.svg
 area: "home"
 fileName: index.html
@@ -8,11 +8,11 @@ fileName: index.html
 
 ${ src/templates/blocks.ori(areaLinks) }
 
-Origami is a system for creating sites that complements HTML and CSS with the ability to concisely define the structure and content of your site.
+Origami is a system for creating sites that complements your understanding of HTML and CSS with the ability to concisely define the structure and content of the site you want.
 
 **Everybody has something to say,** and the web is a great place to say it, but creating interesting sites can be hard or expensive. Standard HTML and CSS let you define individual pages, but it’s hard to efficiently create a bunch of pages and organize them into a coherent site.
 
-Origami is designed for you: someone who wants to make a site for yourself or a small organization, who can write some HTML and CSS, who wants to understand how their site is put together. Maybe you're not a professional developer — or you are, but want to build sites more quickly.
+Origami is designed for you: someone who wants to make a site for yourself or a small organization, who can write some HTML and CSS, who wants to understand how their site is put together. Maybe you're not a professional developer — or you are, but want to build sites more interesting sites more quickly.
 
 The core idea is to describe the site you want at a high level as concisely as possible. If you can sketch your site like this:
 

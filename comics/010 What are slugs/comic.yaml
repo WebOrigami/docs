@@ -42,6 +42,8 @@ panels:
       - scene: editor.ori.html
         name: site.ori
         content: !ori site2.ori
+    footnote:
+      text: Same result, less typing per post.
 
 date: 2026-03-09
 post: |
