@@ -19,7 +19,7 @@ panels:
       - scene: session.ori.html
         content: |
           $ ori audit site.ori
-          ${ String(Dev.audit(missing.ori)) }
+          ${ Origami.yaml(Dev.audit(missing.ori)) }
           $
     footnote:
       text: Oops, a **typo**.
