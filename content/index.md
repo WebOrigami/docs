@@ -8,7 +8,7 @@ fileName: index.html
 
 ${ src/templates/blocks.ori(areaLinks) }
 
-Origami is a system for creating sites that complements your understanding of HTML and CSS with the ability to concisely define the structure and content of the site you want.
+Web Origami is a system for creating sites that complements your understanding of HTML and CSS with the ability to concisely define the structure and content of the site you want.
 
 **Everybody has something to say,** and the web is a great place to say it, but creating interesting sites can be hard or expensive. Standard HTML and CSS let you define individual pages, but it’s hard to efficiently create a bunch of pages and organize them into a coherent site.
 
