@@ -24,6 +24,9 @@ Tree.mapExtension(content, {
   // Comics
   comics/ = comics/comics.ori/
 
+  // For LLMs
+  llms.txt = templates/llms.ori.md()
+
   // Folder of search indexes and resources created on demand (but only once)
   pagefind/ = Origami.once(() => package:@weborigami/pagefind(pages))
 
