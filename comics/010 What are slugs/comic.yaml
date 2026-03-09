@@ -50,6 +50,7 @@ post: |
 
   Fun etymolgy: https://archive.nytimes.com/www.nytimes.com/times-insider/2014/11/24/whats-in-a-slug/
 
+  #staticsite #indieweb #smallweb #blogging
 link:
   href: https://weborigami.org/builtins/origami/slug
   text: Origami.slug() function
