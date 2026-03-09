@@ -10,8 +10,8 @@ This is a collection of functions for working with file extensions.
 This behaves the same as the [path.extname()](https://nodejs.org/api/path.html#pathextnamepath) in Node.js. It returns the extension of the given file name or path.
 
 ```console
-$ ori "Origami.extension.extname('foo.html')"
-${ Origami.extension.extname('foo.html') + "\n" }
+$ ori "Origami.extension.extname('about.html')"
+${ Origami.extension.extname('about.html') + "\n" }
 ```
 
 `extname` ignores trailing slashes:

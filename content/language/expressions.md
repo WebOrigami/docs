@@ -859,7 +859,7 @@ Origami requires spaces around binary operators:
 
 Without the spaces, Origami interprets `x/y` as a [path](#paths). Similarly, operators without surrounding spaces are treated as part of an [identifier](#identifiers): `package-lock.json` is an identifier, not a subtraction.
 
-Spaces are not required around unary operators: `-foo` negates the value of `foo`. If you need to reference a local file that starts with a hyphen, put the name in [angle brackets](#angle-brackets): `<-foo>`.
+Spaces are not required around unary operators: `-x` negates the value of `x`. If you need to reference a local file that starts with a hyphen, put the name in [angle brackets](#angle-brackets): `<-x>`.
 
 Some addition usage notes:
 

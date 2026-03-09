@@ -7,9 +7,9 @@ This audits the site defined by the given [map-based tree](/async-tree/mapBasedT
 
 - The audit only verifies links to internal pages and resources. It does not verify links to external pages and resources, i.e., outside the site being audited.
 - The audit process currently ignores errors. If, when attempting to retrieve a given resource, an error is generated, that resource will be skipped.
-- A link to a page is considered valid if the page exists; if a link includes an anchor, the audit does not confirm that the specific anchor exists on that page. E.g., a link to `foo.html#example` is valid if `foo.html` exists, regardless of whether that page has an `#example` anchor.
-- Links to `foo`, `foo/`, and `foo/index.html` are considered equal.
-- The audit process is unaware of any redirects you may have configured for your web server. For example, you might configure a web host with redirects that arrange for other kinds of equivalence so that `foo/` and `foo.html` are equivalent. But `audit` will consider those to be different paths.
+- A link to a page is considered valid if the page exists; if a link includes an anchor, the audit does not confirm that the specific anchor exists on that page. E.g., a link to `about.html#example` is valid if `about.html` exists, regardless of whether that page has an `#example` anchor.
+- Links to `area`, `area/`, and `area/index.html` are considered equal.
+- The audit process is unaware of any redirects you may have configured for your web server. For example, you might configure a web host with redirects that arrange for other kinds of equivalence so that `area/` and `area.html` are equivalent. But `audit` will consider those to be different paths.
 
 ## Auditing an Origami site
 

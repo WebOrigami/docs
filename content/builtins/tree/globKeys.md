@@ -11,9 +11,9 @@ Treats the keys of the given [map-based tree](/async-tree/mapBasedTree.html) as 
 
 ```console
 $ cat globKeys.yaml
-${ samples/help/globKeys.yaml }$ ori "Tree.globKeys(globKeys.yaml)/foo.jpg"
+${ samples/help/globKeys.yaml }$ ori "Tree.globKeys(globKeys.yaml)/file.jpg"
 false
-$ ori "Tree.globKeys(globKeys.yaml)/foo.txt"
+$ ori "Tree.globKeys(globKeys.yaml)/file.txt"
 true
 ```
 

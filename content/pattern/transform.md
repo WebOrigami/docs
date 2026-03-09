@@ -84,7 +84,7 @@ The second step is to transform the markdown values into HTML values.
   }
 ```
 
-The `get` function is given a key, most likely one ending in `.html`. This function will then ask the underlying markdown map for a corresponding markdown file. If asked for `foo.html`, it asks the markdown map for `foo.md`.
+The `get` function is given a key, most likely one ending in `.html`. This function will then ask the underlying markdown map for a corresponding markdown file. If asked for `contact.html`, it asks the markdown map for `contact.md`.
 
 When it comes to keys, the `get` function is working in the opposite direction of the `keys` method. The `keys` method maps a markdown key to an HTML key so that it can enumerate what HTML keys it virtually contains. The `get` function maps an HTML key to a markdown key so that it can retrieve the corresponding markdown content.
 

@@ -40,7 +40,7 @@ function classDocs(checker, symbol) {
   // Get the construct signatures
   let constructorType = checker.getTypeOfSymbolAtLocation(
     symbol,
-    symbol.valueDeclaration
+    symbol.valueDeclaration,
   );
   const constructorSignature = constructorType.getConstructSignatures()[0];
   if (constructorSignature.declaration) {
@@ -48,7 +48,9 @@ function classDocs(checker, symbol) {
       name: checker.typeToString(constructorSignature.getReturnType()),
       isConstructor: true,
       description: ts.displayPartsToString(
-        constructorSignature.declaration.symbol.getDocumentationComment(checker)
+        constructorSignature.declaration.symbol.getDocumentationComment(
+          checker,
+        ),
       ),
       parameters: parametersDocs(checker, constructorSignature),
     };
@@ -84,19 +86,19 @@ async function docsTree(sourceTree, program, docsPath = "") {
       extension.match(resultKey, ".yaml")
         ? extension.replace(resultKey, ".yaml", ".js")
         : trailingSlash.has(resultKey)
-        ? resultKey
-        : undefined,
+          ? resultKey
+          : undefined,
 
     key: async (sourceValue, sourceKey) =>
       extension.match(sourceKey, ".js")
         ? extension.replace(sourceKey, ".js", ".yaml")
         : trailingSlash.has(sourceKey)
-        ? sourceKey
-        : undefined,
+          ? sourceKey
+          : undefined,
 
     value: async (sourceValue, sourceKey) => {
       const sourcePath = `${trailingSlash.add(docsPath)}${trailingSlash.remove(
-        sourceKey
+        sourceKey,
       )}`;
       if (Tree.isMap(sourceValue)) {
         // Folder; add the key to the path
@@ -156,7 +158,7 @@ function isNodeExported(node) {
 function methodDocs(checker, symbol) {
   const methodType = checker.getTypeOfSymbolAtLocation(
     symbol,
-    symbol.valueDeclaration
+    symbol.valueDeclaration,
   );
   const signature = methodType.getCallSignatures()[0];
   const returnType = signature.getReturnType();
@@ -217,7 +219,7 @@ function parameterDocs(checker, parameter) {
     types =
       parameterTypesFromComment(
         checker,
-        valueDeclaration.jsDocCache?.[0]?.typeExpression.type
+        valueDeclaration.jsDocCache?.[0]?.typeExpression.type,
       ) ?? types;
   }
 
@@ -235,7 +237,7 @@ function parameterDocs(checker, parameter) {
 
 function parametersDocs(checker, signature) {
   const docs = signature.parameters.map((parameter) =>
-    symbolDocs(checker, parameter)
+    symbolDocs(checker, parameter),
   );
 
   // TypeScript adds a mysterious `args` parameter to the end of every function
@@ -255,7 +257,7 @@ function parameterTypesFromComment(checker, comment) {
   } else if (comment.types) {
     // Multiple types in comment
     const typeNames = comment.types.map((type) =>
-      parameterTypeFromCommentType(checker, type)
+      parameterTypeFromCommentType(checker, type),
     );
     return typeNames;
   } else {
@@ -275,7 +277,7 @@ function parameterTypeFromCommentType(checker, commentType) {
 function propertyDocs(checker, symbol) {
   const propertyType = checker.getTypeOfSymbolAtLocation(
     symbol,
-    symbol.valueDeclaration
+    symbol.valueDeclaration,
   );
   const types = renderTypes(checker, propertyType);
   return {
@@ -293,7 +295,7 @@ function symbolDocs(checker, symbol) {
     // is; improvising.
     name = symbol.declarations[0]?.localSymbol.getName() ?? name;
   } else if (name.startsWith("__@")) {
-    // Use more standard `[Symbol.foo]` notation.
+    // Use more standard `[Symbol.x]` notation.
     name = `[Symbol.${name.slice(3)}]`;
   }
 
@@ -306,7 +308,7 @@ function symbolDocs(checker, symbol) {
   }
 
   const description = ts.displayPartsToString(
-    symbol.getDocumentationComment(checker)
+    symbol.getDocumentationComment(checker),
   );
   if (description) {
     result.description = description;

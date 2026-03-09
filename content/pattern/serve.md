@@ -12,7 +12,7 @@ Using the `Map` interface to model the nodes of the site tree lets us browse con
 
 The first thing is to recognize a URL as a tree traversal — we can treat a URL path as a series of keys to follow through a tree.
 
-Specifically, we convert a string URL path like `/foo/bar` into an array of keys `["foo", "bar"]`.
+Specifically, we convert a string URL path like `/path/to/file.html` into an array of keys `["path", "to", "file.html"]`.
 
 ```js
 /* In src/site/serve.js */
@@ -20,7 +20,7 @@ Specifically, we convert a string URL path like `/foo/bar` into an array of keys
 ${ src/js/codeFunctions.js(pattern/site/serve.js).keysFromUrl }
 ```
 
-If the path ends in a slash like `foo/`, this produces the keys `["foo", "index.html"]`.
+If the path ends in a slash like `area/`, this produces the keys `["area/", "index.html"]`.
 
 ## Traverse a tree
 

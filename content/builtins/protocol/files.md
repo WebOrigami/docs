@@ -39,9 +39,9 @@ myProject/
     site.ori
 ```
 
-If site.ori contains the expression `files:foo`. this reference returns `myProject/src/foo`.
+If site.ori contains the expression `files:markdown`. this reference returns `myProject/src/markdown`.
 
-If you want a file reference that’s relative to your project root, use [`Origami.projectRoot`](/builtins/origami/projectRoot.html). If the above site.ori wanted to reference `myProject/foo`, it could do so with `Origami.projectRoot()/foo`.
+If you want a file reference that’s relative to your project root, use [`Origami.projectRoot`](/builtins/origami/projectRoot.html). If the above site.ori wanted to reference `myProject/markdown`, it could do so with `Origami.projectRoot()/markdown`.
 
 ## Root directory
 
