@@ -58,4 +58,6 @@ Each page includes:
   <figcaption>Grouped into pages</figcaption>
 </div>
 
+Once you've grouped the entries into pages, you can render each group with a template. The template can take into account the page's position in the set, display a page number, or display links to the previous and next pages. See the [pondlife sample blog](https://github.com/WebOrigami/pondlife) for an example of a blog with [such a template](https://github.com/WebOrigami/pondlife/blob/main/src/multiPostPage.ori).
+
 See also [`addNextPrevious`](addNextPrevious.html), which cross-links a series of items without grouping them into pages.

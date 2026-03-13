@@ -1,0 +1,36 @@
+panels:
+  - text: >
+      Use **pagination** to break up a long set of posts or articles into multiple cross-linked pages.
+    actor: Alice
+    face: grin
+    scene: browser.ori.html
+    url: http://localhost:5000/pages/1.html
+    content: !ori page.html
+
+  - text: >
+      Pass any collection of items to the **paginate** function to get back the items in groups.
+    scene: editor.ori.html
+    name: site.ori
+    content: !ori site.ori
+
+  - text: >
+      Each group includes some items and data about that **group's position in the sequence**.
+    scene: session.ori.html
+    content: |
+      $ ori site.ori/grouped/1
+      ${ Origami.yaml(site.ori/grouped/1) }
+
+  - text: >
+      You can write a template that links to the **previous and next pages**, displays a page number, etc.
+    actor: Alice
+    scene: editor.ori.html
+    name: groupPage.ori
+    content: !ori groupPage.ori
+
+date: 2026-05-11
+post: |
+  #staticsite #blogging
+
+link:
+  href: https://weborigami.org/builtins/tree/paginate.html
+  text: Origami Tree.paginate builtin function

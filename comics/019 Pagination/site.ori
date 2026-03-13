@@ -1,0 +1,10 @@
+{
+  // Posts area has one page per post
+  posts/ = Tree.map(markdown/, Origami.mdHtml)
+
+  // Group the posts into pages of 3 posts each
+  (grouped) = Tree.paginate(posts, 3)
+
+  // Pages area renders each group as its own page
+  pages/ = Tree.mapExtension(grouped, "→.html", groupPage.ori)
+}

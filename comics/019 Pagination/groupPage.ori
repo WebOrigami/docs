@@ -1,0 +1,13 @@
+// A page showing a group of multiple posts
+(group) => Tree.indent`
+  <h1>Page ${ group.pageNumber }</h1>
+  ${
+    Tree.map(group.items, postFragment.ori) // List all the posts
+  }
+  ${ group.nextPage ? Tree.indent`
+    <a href="/pages/${ group.nextPage }.html">Older posts</a>
+  ` : "" }
+  ${ group.previousPage ? Tree.indent`
+    <a href="${ group.previousPage == 1 ? "/" : `/pages/${ group.previousPage }.html` }">Newer posts</a>
+  ` : "" }
+`
