@@ -8,6 +8,6 @@
     <a href="/pages/${ group.nextPage }.html">Older posts</a>
   ` : "" }
   ${ group.previousPage ? Tree.indent`
-    <a href="${ group.previousPage == 1 ? "/" : `/pages/${ group.previousPage }.html` }">Newer posts</a>
+    <a href="/pages/${ group.previousPage }.html">Newer posts</a>
   ` : "" }
 `
