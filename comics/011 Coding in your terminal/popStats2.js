@@ -5,6 +5,7 @@ export default function popStats(areas) {
   return {
     // Add average to stats
     average: Math.round(total / populations.length),
+
     min: Math.min(...populations),
     max: Math.max(...populations),
     total,

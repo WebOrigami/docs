@@ -29,7 +29,7 @@ panels:
           ${ Origami.yaml(popStats.js(data.csv/)) }
           $
     footnote:
-      text: Origami understands file extensions.
+      text: Origami knows file extensions like **CSV**.
 
   - text: >
       You can traverse to the specific part of a function's result that you're interested in.
@@ -48,7 +48,7 @@ panels:
       text: This expression needs parens.
 
   - text: >
-      This development style lets you code without having to **constantly restart** a larger application.
+      This lets you develop code without having to **constantly restart** a larger application.
     actor: Alice
     face: wow
     scene: split.ori.html
