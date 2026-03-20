@@ -1,0 +1,14 @@
+(outline) => Tree.indent`
+  <ul>
+    ${ Tree.map(outline, (content, heading) =>
+      heading === "_text"
+        ? ""
+        : Tree.indent`
+          <li>
+            <a href="#${ Origami.slug(heading) }">${ heading }</a>
+          </li>
+          ${ typeof content === "object" ? headings.ori(content) : "" }
+        `
+    ) }
+  </ul>
+`
