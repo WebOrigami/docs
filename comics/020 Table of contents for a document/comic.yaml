@@ -1,13 +1,13 @@
 panels:
   - text: >
-      Give your site's long pages a **table of contents** so readers can quickly navigate to a particular section.
+      A long page with many headings can benefit from a **table of contents**.
     actor: Bob
     scene: editor.ori.html
     name: headings.md
     content: !ori headings.md
 
   - text: >
-      The **markdown outline** function analyzes a markdown document and returns an object with the document's structure.
+      The **markdown outline** function regroups markdown content into an object reflecting the document's heading structure.
     scene: session.ori.html
     content: |
       $ ori Origami.mdOutline headings.md
@@ -21,7 +21,7 @@ panels:
     content: !ori headings.ori
 
   - text: >
-      This lets you add links on the page **to all the headings!**
+      This lets you give a page a table of contents with **links to all the headings!**
     actor: Bob
     scene: browser.ori.html
     url: http://localhost:5000/rules.html
