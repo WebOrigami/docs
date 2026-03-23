@@ -28,6 +28,8 @@
   text: deepText
 - href: deepValues.html
   text: deepValues
+- href: deflatePaths.html
+  text: deflatePaths
 - href: delete.html
   text: delete
 - href: entries.html
@@ -50,6 +52,8 @@
   text: has
 - href: indent.html
   text: indent
+- href: inflatePaths.html
+  text: inflatePaths
 - href: inners.html
   text: inners
 - href: invokeFunctions.html
