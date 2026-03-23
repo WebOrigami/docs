@@ -22,7 +22,7 @@ $ ori Origami.mdOutline headings.md
 ${ Origami.yaml(Origami.mdOutline(samples/help/headings.md)) }
 ```
 
-A common use for an outline is to render the outline's keys as navigation links. For example, the following template converts an outline to a list of links for the top-level headings:
+A common use for an outline is to render the outline's keys as navigation links. For example, the following template converts an outline to a list of links for all the headings:
 
 ```ori
 ${ samples/help/headings.ori }

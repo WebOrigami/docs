@@ -9,7 +9,7 @@
           <li>
             <a href="#${ Origami.slug(heading) }">${ heading }</a>
           </li>
-          ${ Tree.isMaplike(content) ? headingsStyled.ori(content) : "" }
+          ${ Tree.isMaplike(content) ? headings.ori(content) : "" }
         `
     ) }
   </ul>

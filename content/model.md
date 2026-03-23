@@ -159,7 +159,7 @@ Configuration can lead to as many problems as it solves:
 
 Configuring software without a real understanding of how it works can be frustrating, and often leads to uncomfortably superstitious thinking: “My navigation looks good with option A on but then the header’s ugly, but if A is off the header looks wrong on mobile. I saw that if you want to use option A you might need to disable option B… Maybe that will work?!?”
 
-You may be happiest with a framework if the default results — or some very lightly-configured variation — are good enough for you.
+You may be happiest with a framework if the default results — or some very lightly-configured variation — are good enough for you. If you're interested in deeper comparisons with such site frameworks, there are comparisons of [Origami and Eleventy](https://jan.miksovsky.com/posts/2026/03-17-code-is-easier-to-follow-than-configuration.html) and [Origami and Astro](https://jan.miksovsky.com/posts/2025/04-14-astro.html).
 
 ## Use a hosted site authoring platform
 
