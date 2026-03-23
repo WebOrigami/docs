@@ -19,4 +19,4 @@ $ ori Tree.deflatePaths posts
 ${ Origami.yaml(Tree.deflatePaths(samples/help/paths/posts)) }
 ```
 
-See also the inverse operation, [`Tree.inflatePaths`](inflatePaths.html). The related [`Tree.paths`](paths.html) returns just the paths an array.
+See also the inverse operation, [`Tree.inflatePaths`](inflatePaths.html). The related [`Tree.paths`](paths.html) returns just the paths as an array.
