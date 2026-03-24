@@ -3,9 +3,11 @@ title: Origami expressions
 subtitle: A dialect of JavaScript expressions
 ---
 
-If you're familiar with JavaScript, Origami is essentially **JavaScript expressions with paths**. It also includes minor adaptations that make it easier to define sites with expressions.
+Origami is **JavaScript expressions with paths** — a dialect of JavaScript expressions that includes minor adaptations that make it easier to define sites. If you can already write even a little JavaScript, then you know 95% of what you need to write Origami.
 
-Origami language features are generally optional, but it does enforce one stylistic rule: you have to put spaces around operators like math operators.
+Origami's language features are generally optional, but it does enforce one stylistic rule: you have to put spaces around operators like math operators.
+
+Origami only deals with JavaScript expressions, which is sufficient to handle most tasks related to creating a site. This avoids many of the complexities and pitfalls of using JavaScript _statements_ (including control structures like `for`, `while`, etc.), which are not supported. If you need full JavaScript, you can write an Origami expression that [calls a JavaScript function](/language/fileTypes.html#javascript-files).
 
 ## Quick reference
 

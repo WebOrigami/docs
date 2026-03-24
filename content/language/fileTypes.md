@@ -102,7 +102,25 @@ For formatting an array of objects as CSV, see [`Origami.csv`](/builtins/origami
 
 ### JavaScript files
 
-Unpacking a `.js` file returns the file's default export or, if there are multiple exports, all the exports. If that export is [map-like](/async-tree/maplike.html), you can traverse into that export using slash syntax.
+Unpacking a `.js` file returns the file's default export or, if there are multiple exports, all the exports.
+
+Example: if `greet.js` contains
+
+```js
+${ samples/help/greet.js }
+```
+
+You can invoke that from Origami via the file name:
+
+```console
+$ ori "greet.js('Alice')"
+${ samples/help/greet.js("Alice") }
+
+```
+
+Here `greet.js` returns the file's default export: the greet function.
+
+If the export of a JavaScript file is [map-like](/async-tree/maplike.html), you can traverse into that export using slash syntax.
 
 Example: If `data.js` contains
 
