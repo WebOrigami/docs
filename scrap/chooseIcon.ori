@@ -1,0 +1,4 @@
+// Pick an icon for a page that is psuedo-random but stable across visits.
+(filePath, icons) => Tree.keys(icons)[
+  <node:crypto>.createHash("sha256").update(filePath).digest().readUInt32LE(0) % icons.size
+]
