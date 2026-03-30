@@ -14,7 +14,7 @@ panels:
           Creating page 1
           Creating page 2
           Page 1
-          $ 
+          $
 
   - text: >
       You can defer that work by using an **equals sign**. Now the work only happens when you ask for that specific page!
@@ -28,7 +28,7 @@ panels:
           $ ori site.ori/page1.html
           Creating page 1
           Page 1
-          $ 
+          $
 
   - text: >
       The equals sign is Origami shorthand for a **property getter**, equivalent to more verbose syntax in JavaScript.
@@ -61,7 +61,7 @@ panels:
 
 date: 2026-03-30
 post: |
-  #programming
+  #programming #staticsite
 
 link:
   href: https://weborigami.org/language/expressions#property-getters

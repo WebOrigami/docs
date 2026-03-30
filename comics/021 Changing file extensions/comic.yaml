@@ -1,0 +1,48 @@
+panels:
+  - text: >
+      As you process files to make your site, you'll often want to **change the file extensions**.
+    actor: Alice
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: banff.yaml
+        content: file goes here
+      - scene: browser.ori.html
+        url: http://localhost:5000/banff.html
+        content: file goes here
+    footnote:
+      text: Here the .yaml file becomes a .html file.
+
+  - text: >
+      A file extension like .md or .txt tells us what's in the file.
+    scene: editor.ori.html
+    footnote:
+      text: A file extension's a kind of **type signature**.
+
+  - text: >
+      Origami's **mapextension** function changes both the file's extension and its content.
+    scene: editor.ori.html
+    name: site.ori
+    content: |
+      
+
+  - text: >
+      For more custom file name changes, a **key function** can convert the original file name into a new one.
+    actor: Alice
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: file
+        content: file goes here
+      - scene: session.ori.html
+        content: |
+          $ cat file
+          file goes here
+
+date: 2026-05-18
+post: |
+  #staticsite #ssg
+
+link:
+  href: https://weborigami.org/builtins/tree/mapextension
+  text: Origami's mapExtension function
