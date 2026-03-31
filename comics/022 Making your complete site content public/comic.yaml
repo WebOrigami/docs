@@ -1,0 +1,52 @@
+panels:
+  - text: >
+      The web's **View Source** command taught HTML to a generation! But it only lets you see one page.
+    actor: Bob
+    face: concerned
+    scene: split.ori.html
+    panes:
+      - scene: browser.ori.html
+        url: https://bobscoolblog.com
+        content: file goes here
+      - scene: browser.ori.html
+        url: view-source:https://bobscoolblog.com/
+        content: file goes here
+
+  - text: >
+      The simple **JSON Keys** protocol lets you tell the world what's on your site in a way that's easy to view.
+    scene: editor.ori.html
+
+  - text: >
+      For any given route, add a **.keys.json** file that's an array of the names that extend that route.
+    scene: session.ori.html
+    content: |
+      $
+    footnote:
+      text: Add trailing slashes for subareas.
+
+  - text: >
+      You can let someone see everything in your site, including letting them **download** part or all of it!
+    actor: Bob
+    face: wow
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: file
+        content: file goes here
+      - scene: session.ori.html
+        content: |
+          $ cat file
+          file goes here
+    footnote:
+      text: As open as the web can get!
+
+date: 2026-05-25
+post: |
+  #web #openweb #staticsite
+
+  The protocol is simple and independent of the Web Origami project.
+  Everyone benefits from an open web!
+
+link:
+  href: https://weborigami.org/async-tree/jsonKeys.html
+  text: JSON Keys protocol

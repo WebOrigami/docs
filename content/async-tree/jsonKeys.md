@@ -5,7 +5,9 @@ subtitle: Simple system for making sites traversable
 
 The JSON Keys protocol lets you make a site fully traversable so that users and programs can easily determine what files the site provides.
 
-We can think of a site as an asynchronous tree whose values can be retrieved via HTTP requests. Sadly, HTTP does not provide a way to list the keys of a subtree, so normally it is impossible to completely traverse a site's tree. JSON Keys attempts to fill this gap in the simplest way possible.
+We can think of a site as an asynchronous tree whose values can be retrieved via HTTP requests. Sadly, HTTP does not provide a way to list the keys of a subtree, so normally it is impossible to completely traverse a site's tree. [Sitemaps](/builtins/origami/sitemap.html) can play a role, but they're verbose, can get very large, and don't focus on what's available at a specific route.
+
+JSON Keys attempts to fill this gap in the simplest way possible.
 
 ## JSON Keys protocol
 
@@ -18,28 +20,27 @@ A site can indicate which keys are available at a given route by supporting the 
 
 ## Example
 
-This weborigami.org site supports the JSON Keys protocol. For example, it has a route `/samples/greetings` containing some trivial files like [/samples/greetings/Alice](/samples/greetings/Alice). The structure of the route looks like:
+This weborigami.org site supports the JSON Keys protocol. For example, it has a route `/samples/greetings` containing some trivial files like [/samples/greetings/Alice](/samples/greetings/Alice). The structure of that part of the site looks like:
 
 ```
 samples/
-  index.html
   greetings/
     Alice
     Bob
     Carol
-    index.html
+  ... more entries ...
 ```
 
 To expose all these files, the `/samples` route defines a [/samples/.keys.json](/samples/.keys.json) file listing its keys (the files and subfolders it contains) as a JSON array of strings:
 
 ```json
-["greetings/", "index.html"]
+["greetings/", ... more entries ...]
 ```
 
 Likewise, the `/sample/greetings` route defines a JSON file at [/samples/greetings/.keys.json](/samples/greetings/.keys.json) that enumerates the names of its files:
 
 ```json
-["Alice", "Bob", "Carol", "index.html"]
+["Alice", "Bob", "Carol"]
 ```
 
 These `.keys.json` files can be viewed by users or consumed by programs so they can discover the full set of files available on the site.
@@ -83,3 +84,9 @@ You can apply the [`jsonKeys`](/builtins/origami/jsonKeys.html) function to your
 ## Supporting JSON Keys on other platforms
 
 The JSON Keys protocol strives to be as simple as possible so that it can be implemented in other systems. Example: an implementation of [JSON Keys for Apache and PHP](https://gist.github.com/JanMiksovsky/e748cab5d3e8f460d23ca7e51798ad27).
+
+## Why not a well-known URI?
+
+Adding a `.keys.json` file directly at a given route is easy to author and easy to navigate.
+
+A [well-known URI](https://en.wikipedia.org/wiki/Well-known_URI) is a standards-compliant way to add metadata to a site. However, such URIs are expected to _start_ with `/.well-known/`, so they wouldn't be suitable for documenting the keys within a specific route. Instead, the site's structure would end up captured at its top level, much like a sitemap.
