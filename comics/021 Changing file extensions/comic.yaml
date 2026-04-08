@@ -17,14 +17,13 @@ panels:
       A file extension like .md or .txt tells us what's in the file.
     scene: editor.ori.html
     footnote:
-      text: A file extension's a kind of **type signature**.
+      text: A file extension is a kind of **type signature**.
 
   - text: >
       Origami's **mapextension** function changes both the file's extension and its content.
     scene: editor.ori.html
     name: site.ori
     content: |
-      
 
   - text: >
       For more custom file name changes, a **key function** can convert the original file name into a new one.

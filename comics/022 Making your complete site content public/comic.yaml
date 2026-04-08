@@ -7,36 +7,38 @@ panels:
     panes:
       - scene: browser.ori.html
         url: https://bobscoolblog.com
-        content: file goes here
+        content: !ori index.html
       - scene: browser.ori.html
         url: view-source:https://bobscoolblog.com/
-        content: file goes here
+        content: !ori viewSource.ori.html()
+    footnote:
+      text: View source also can't tell you what's on the site.
 
   - text: >
       The simple **JSON Keys** protocol lets you tell the world what's on your site in a way that's easy to view.
-    scene: editor.ori.html
+    scene: browser.ori.html
+    url: https://weborigami.org/async-tree/jsonkeys
+    screenshot: jsonKeys.png
 
   - text: >
-      For any given route, add a **.keys.json** file that's an array of the names that extend that route.
-    scene: session.ori.html
-    content: |
-      $
+      For any given route, type or generate a **.keys.json** file as an array of the names that extend that route.
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: .keys.json
+        content: !ori sample.json
+      - scene: browser.ori.html
+        url: https://bobscoolblog.com/.keys.json
+        content: !ori sample.json
     footnote:
       text: Add trailing slashes for subareas.
 
   - text: >
-      You can let someone see everything in your site, including letting them **download** part or all of it!
+      This lets people see part or all of your site, including **downloading** it!
     actor: Bob
     face: wow
-    scene: split.ori.html
-    panes:
-      - scene: editor.ori.html
-        name: file
-        content: file goes here
-      - scene: session.ori.html
-        content: |
-          $ cat file
-          file goes here
+    scene: session.ori.html
+    content: !ori session.ori.html()
     footnote:
       text: As open as the web can get!
 

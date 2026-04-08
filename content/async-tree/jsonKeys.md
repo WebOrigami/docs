@@ -79,7 +79,7 @@ You can also use the [`explore:`](/builtins/dev/explore.html) protocol to create
 
 ## Adding support for JSON Keys to your site
 
-You can apply the [`jsonKeys`](/builtins/origami/jsonKeys.html) function to your site to define default `.keys.json` files for all your site's routes. Alternatively, you can apply the [`static`](/builtins/origami/static.html) function to define both default `.keys.json` and `index.html` files for your site.
+You can apply the [`Origami.jsonKeys`](/builtins/origami/jsonKeys.html) function to your site to define default `.keys.json` files for all your site's routes. Alternatively, you can apply the [`static`](/builtins/origami/static.html) function to define both default `.keys.json` and `index.html` files for your site.
 
 ## Supporting JSON Keys on other platforms
 

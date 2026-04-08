@@ -9,26 +9,33 @@ Suppose a site has the following structure:
 
 ```ori
 // site.ori
-{
-  about: {
-    index.html: "About Us"
-  }
-
-  index.html: "Home page"
-}
+${ samples/help/jsonKeys/site.ori }
 ```
 
-Applying the `jsonKeys` function to this tree will add the `.keys.json` files at all levels:
+You can wrap the site definition with a call to`jsonKeys`:
+
+```ori
+// site.ori
+${ samples/help/jsonKeys/site2.ori }
+```
+
+to add the `.keys.json` files at all levels:
 
 ```console
-$ ori Origami.jsonKeys site.ori
-about:
-  index.html: About Us
-  .keys.json: '["index.html"]'
-index.html: Home page
-.keys.json: '["about/","index.html"]'
+$ ori site.ori/.keys.json
+${ samples/help/jsonKeys/site2.ori/.keys.json }
+
+$ ori site.ori/about/.keys.json
+${ samples/help/jsonKeys/site2.ori/about/.keys.json }
+
 ```
 
-By including the `.keys.json` files in the static build of the site, you will make it possible for yourself and others to completely traverse the site tree using the [SiteMap](/async-tree/SiteMap.html) class and the [`httpstree:`](/builtins/protocol/httpstree.html) protocol.
+Alternatively, you could change the site's [build script](/cli/incantations.html#building-a-site-as-static-files) in `package.json` to invoke `Origami.jsonKeys`:
+
+```
+"build": "ori 'copy Origami.jsonKeys(src/site.ori), clear files:build'"
+```
+
+By including the `.keys.json` files in the static build of the site, you will make it possible for yourself and others to completely traverse the site tree using the [SiteMap](/async-tree/SiteMap.html) class and the [`explore:`](/builtins/protocol/explore.html) protocol.
 
 See also [`static`](static.html).
