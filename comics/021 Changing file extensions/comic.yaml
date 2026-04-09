@@ -5,25 +5,31 @@ panels:
     scene: split.ori.html
     panes:
       - scene: editor.ori.html
-        name: banff.yaml
-        content: file goes here
+        name: kingfisher.md
+        content: !ori content/kingfisher.md
       - scene: browser.ori.html
-        url: http://localhost:5000/banff.html
-        content: file goes here
+        url: http://localhost:5000/kingfisher.html
+        content: !ori site.ori/stories/kingfisher.html
     footnote:
-      text: Here the .yaml file becomes a .html file.
+      text: Here the .md file becomes a .html file.
 
   - text: >
       A file extension like .md or .txt tells us what's in the file.
     scene: editor.ori.html
+    name: kingfisher.md
+    content: !ori content/kingfisher.md
     footnote:
       text: A file extension is a kind of **type signature**.
 
   - text: >
       Origami's **mapextension** function changes both the file's extension and its content.
-    scene: editor.ori.html
-    name: site.ori
-    content: |
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: site.ori
+        content: !ori site.ori
+      - scene: session.ori.html
+        content: !ori session1.ori.html()
 
   - text: >
       For more custom file name changes, a **key function** can convert the original file name into a new one.
@@ -31,12 +37,10 @@ panels:
     scene: split.ori.html
     panes:
       - scene: editor.ori.html
-        name: file
-        content: file goes here
+        name: site.ori
+        content: !ori site2.ori
       - scene: session.ori.html
-        content: |
-          $ cat file
-          file goes here
+        content: !ori session2.ori.html()
 
 date: 2026-05-18
 post: |

@@ -1,0 +1,7 @@
+{
+  // Stories area is based on markdown files in the `content` folder
+  stories/ = Tree.mapExtension(content/, {
+    extension: ".md→.html"  // Change file extension from .md to .html
+    value: story.ori        // Apply the story template to the content
+  })
+}

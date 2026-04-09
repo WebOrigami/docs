@@ -1,0 +1,14 @@
+// Story template converts a markdown input document to HTML
+(story) => Tree.indent`
+  <div class="bleed">
+    <header style="background: #99383b; color: white;">
+      <nav style="font-weight: bold; padding: 1rem;">
+        <div>Cherokee Myths</div>
+      </nav>
+    </header>
+    <article style="padding: 1rem;">
+      <h1>${ story.title }</h1>
+      ${ Origami.mdHtml(story._body) }
+    </article>
+  </div>
+`

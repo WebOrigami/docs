@@ -1,0 +1,7 @@
+{
+  stories/ = Tree.map(content/, {
+    // Change a file name like "hello.md" to "story-hello"
+    key: (value, key) => `story-${ key.replace(".md", "") }`
+    value: story.ori
+  })
+}

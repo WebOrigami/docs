@@ -40,7 +40,7 @@ comic-browser {
       font-size: inherit;
     }
 
-    &:not(:has(.screenshot)) {
+    &:not(:has(.bleed)):not(:has(.screenshot)) {
       padding: 1rem;
     }
     
