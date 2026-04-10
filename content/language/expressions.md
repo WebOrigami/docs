@@ -411,7 +411,7 @@ Expressions inside an Origami template literal can directly return complex value
 
 This is different than JavaScript, where the above produces: `"Hello, [object Object]."`
 
-Among other things, this means that a template can inline the text content a file by name:
+Among other things, this means that a template can inline the text content of a file by name:
 
 ```console
 $ cat pet.txt
