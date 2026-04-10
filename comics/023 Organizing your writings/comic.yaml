@@ -1,0 +1,176 @@
+panels:
+  - text: >
+      Your content's **organization and structure** can determine how easy it is to create and update your site.
+    actor: Alice
+    face: thinkRight
+    scene: split.ori.html
+    panes:
+      - scene: split.ori.html
+        orientation: vertical
+        style: |
+          grid-template-columns: 1fr 1fr
+        panes:
+          - scene: editor.ori.html
+            name: Example 1
+            content: |
+              posts/
+                2027/
+                  07/
+                    04/
+                      index.md
+                      pond.jpeg
+                    07/
+                      cabin.jpeg
+                      index.md
+          - scene: editor.ori.html
+            name: Example 2
+            content: |
+              images/
+                cabin.jpeg
+                pond.jpeg
+              posts/
+                Hello from the pond.md
+                Tiny home.md
+      - scene: plain.ori.html
+        style: |
+          background: var(--editor-background)
+        content: |
+          * There are many ways to organize text and images for a blog.
+          * Your strategy determines how quickly you can add new content and find old content.
+    footnote:
+      text: Before diving in, consider…
+
+  - text: >
+      Question 1: How will you **unique identify** each piece of writing?
+    scene: split.ori.html
+    style: |
+      grid-template-rows: auto max-content
+    panes:
+      - scene: split.ori.html
+        orientation: vertical
+        style: |
+          grid-template-columns: 1fr 1fr
+        panes:
+          - scene: editor.ori.html
+            name: Files with dates
+            content: |
+              posts/
+                2027-07-04.md
+                2027-07-07.md
+                2027-07-10.md
+          - scene: editor.ori.html
+            name: Files with titles
+            content: |
+              posts/
+                Cozy.md
+                Hello from the pond.md
+                Tiny home.md
+      - scene: plain.ori.html
+        style: |
+          background: var(--editor-background)
+        content: |
+          * Each post or other thing you write will typically need a unique ID called a **slug**.
+          * The slug can appear in a page's URL to signal to your audience what's on that page.
+          * A slug can reflect a file's name, metadata, body text, and position in the folder structure.
+          * You can use a mix of tactics: a file name that includes both date and title, say.
+
+  - text: >
+      Question 2: Realistically, how **frequently** will you add content?
+    scene: split.ori.html
+    style: |
+      grid-template-rows: auto max-content
+    panes:
+      - scene: split.ori.html
+        orientation: vertical
+        style: |
+          grid-template-columns: 1fr 1fr
+        panes:
+          - scene: editor.ori.html
+            name: Deep structure
+            content: |
+              posts/
+                2027/
+                  07/
+                    04/
+                      index.md
+                  08/
+                    13/
+                      index.md
+                  09/
+                    01/
+                      index.md
+                  10/
+                    29/
+                      index.md
+          - scene: editor.ori.html
+            name: Flat structure
+            content: |
+              posts/
+                2027-07-04 Hello from the pond.md
+                2027-08-13 Tiny home.md
+                2027-09-01 Cozy.md
+                2027-10-29 Reading.md
+      - scene: plain.ori.html
+        style: |
+          background: var(--editor-background)
+        content: |
+          * Flat folders are easier to navigate; deep structures keep many files organized.
+          * The structure should reflect your pace; the left structure here is overkill.
+          * You can have a blend, e.g. folders by year, file names with month and day.
+          * Some people post more than once a day — most don't.
+
+  - text: >
+      Question 3: Will your writing have **accompanying images** or other media?
+    actor: Alice
+    face: thinkLeft
+    scene: split.ori.html
+    style: |
+      grid-template-rows: auto max-content
+    panes:
+      - scene: split.ori.html
+        orientation: vertical
+        style: |
+          grid-template-columns: 1fr 1fr
+        panes:
+          - scene: editor.ori.html
+            name: Images together with text
+            content: |
+              posts/
+                2027/
+                  07/
+                    04/
+                      Hello from the pond.md
+                      pond.jpeg
+                    07/
+                      cabin.jpeg
+                      Tiny home.md
+                    10/
+                      Cozy.md
+                      interior.jpeg
+          - scene: editor.ori.html
+            name: Images and text separate
+            content: |
+              images/
+                cabin.jpeg
+                interior.jpeg
+                pond.jpeg
+              posts/
+                Cozy.md
+                Hello from the pond.md
+                Tiny home.md
+      - scene: plain.ori.html
+        style: |
+          background: var(--editor-background)
+        content: |
+          * The left arrangement keeps each image in a folder with the text file that references it, so it's clear what goes with what — but maybe a little harder to navigate.
+          * The arrangement on the right separates image and text files — a flatter structure appropriate if you only occasionally have images, or manage your images with an image library tool.
+
+date: 2026-06-01
+post: |
+  #smallweb #blogging #staticsite
+
+  Does your site publishing tool let you organize your writing the way you want?
+
+link:
+  href: https://weborigami.org/model
+  text: A model for thinking about turning your writing into a site
