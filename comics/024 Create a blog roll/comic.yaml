@@ -1,0 +1,52 @@
+panels:
+  - text: >
+      Your blog can support other independent bloggers by linking to them in a **blogroll!**
+    actor: Bob
+    scene: browser.ori.html
+    url: https://bobscoolblog.com/
+    content: !ori blogroll.ori.html/
+
+  - text: >
+      One way is to create a small **data file** listing the blogs you like.
+    scene: editor.ori.html
+    name: blogs.yaml
+    content: !ori blogs.yaml
+    footnote:
+      text: This is YAML, could also use JSON, CSV, OPML…
+
+  - text: >
+      Use a template to convert your blog list to **HTML links**.
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: blogroll.ori.html
+        content: !ori blogroll.ori.html
+      - scene: session.ori.html
+        content: |
+          $ ori blogroll.ori.html/
+          ${ blogroll.ori.html() }
+          $ 
+
+  - text: >
+      A separate template can generate an **OPML file** to let your readers quickly download all your blog links.
+    actor: Bob
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: blogs.ori.opml
+        content: !ori blogs.ori.opml
+      - scene: session.ori.html
+        content: |
+          $ ori blogs.ori.opml/
+          ${ blogs.ori.opml() }
+          $
+    footnote:
+      text: This is a kind of an XML file.
+
+date: 2026-06-08
+post: |
+  #indieweb #blogging
+
+link:
+  href: https://weborigami.org/builtins/origami/xmlDom.html
+  text: Reading in an OPML file and transforming it to HTML

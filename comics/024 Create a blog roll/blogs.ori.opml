@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>${ blogs.yaml/title }</title>
+  </head>
+  <body>
+    ${ Tree.map(blogs.yaml/blogs, (blog) => Tree.indent`
+      <outline
+        type="rss"
+        text="${ blog.title }"
+        htmlUrl="${ blog.url }"
+        xmlUrl="${ blog.feed }"
+      />
+    ` )}
+  </body>
+</opml>

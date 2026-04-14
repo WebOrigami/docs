@@ -1,0 +1,13 @@
+title: Blogs using Web Origami
+blogs:
+  - title: Jim Nielsen's Blog
+    url: https://blog.jim-nielsen.com
+    feed: https://blog.jim-nielsen.com/feed.xml
+
+  - title: Posts and notes from Nick Simson
+    url: https://www.nicksimson.com
+    feed: https://www.nicksimson.com/feed.xml
+
+  - title: Vale.Rocks Posts
+    url: https://vale.rocks
+    feed: https://vale.rocks/posts/feed.xml
