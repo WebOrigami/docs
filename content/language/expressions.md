@@ -268,8 +268,8 @@ package.json/name
 
 In a path, the first part of the path (here, `package.json`) will _always_ be treated as a complete [identifier](#identifiers). If that name matches a local variable, then the path will be evaluated using that variable as the start. Otherwise Origami assumes the path starts with the name of a local file or folder.
 
-- A path beginning with `~/` will be taken as a reference to the user's home directory.
 - If you want to reference an absolute path that starts with a slash, use [angle brackets](#angle-brackets). This avoids conflict with JavaScript's regular expression syntax: `/etc/` is a regular expression, not a path.
+- A path beginning with `~/` will be taken as a reference to the user's home directory. (Note: when used on the command line, a `~` at the start of a path will typically be translated immediately into an absolute path, so per the above point it must be enclosed in angle brackets like `<~>`. Unfortunately, on the command line you have to quote angle brackets.)
 
 ### Angle brackets
 
