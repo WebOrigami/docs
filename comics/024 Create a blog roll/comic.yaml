@@ -23,7 +23,7 @@ panels:
         content: !ori blogroll.ori.html
       - scene: session.ori.html
         content: |
-          $ ori blogroll.ori.html/
+          $ ori "blogroll.ori.html()"
           ${ blogroll.ori.html() }
           $ 
 
@@ -37,7 +37,7 @@ panels:
         content: !ori blogs.ori.opml
       - scene: session.ori.html
         content: |
-          $ ori blogs.ori.opml/
+          $ ori "blogs.ori.opml()"
           ${ blogs.ori.opml() }
           $
     footnote:
