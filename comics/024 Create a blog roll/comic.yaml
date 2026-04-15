@@ -25,7 +25,7 @@ panels:
         content: |
           $ ori "blogroll.ori.html()"
           ${ blogroll.ori.html() }
-          $ 
+          $
 
   - text: >
       A separate template can generate an **OPML file** to let your readers quickly download all your blog links.
@@ -48,5 +48,5 @@ post: |
   #indieweb #blogging
 
 link:
-  href: https://weborigami.org/builtins/origami/xmlDom.html
+  href: https://weborigami.org/builtins/origami/xmlParse.html
   text: Reading in an OPML file and transforming it to HTML

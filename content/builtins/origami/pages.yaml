@@ -14,8 +14,8 @@
   text: fetch
 - href: htmlEscape.html
   text: htmlEscape
-- href: htmlDom.html
-  text: htmlDom
+- href: htmlParse.html
+  text: htmlParse
 - href: image.html
   text: image
 - href: indexPage.html
@@ -66,8 +66,8 @@
   text: toFunction
 - href: unpack.html
   text: unpack
-- href: xmlDom.html
-  text: xmlDom
+- href: xmlParse.html
+  text: xmlParse
 - href: yaml.html
   text: yaml
 - href: yamlParse.html
