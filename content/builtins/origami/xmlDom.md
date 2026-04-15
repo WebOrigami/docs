@@ -3,7 +3,7 @@ title: xmlDom(xml)
 supertitle: "Origami."
 ---
 
-This parses the given XML text into a DOM structure, which it returns as a plain JavaScript object. This object has the same format used by the related [`Origami.htmlDom`](htmlDom.html) builtin.
+This parses the given XML text into a DOM structure, which it returns as a plain JavaScript object. This object has the same format used by the related [`Origami.htmlDom`](htmlDom.html) builtin. See also support for [XML files](/language/fileTypes.html#xml-files).
 
 ## Example
 

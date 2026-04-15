@@ -33,6 +33,7 @@ Origami has built-in support for handling the following types of files.
 | .txt                | [Text](#text-files)                                     |
 | .wasm               | [WebAssembly](#webassembly-files)                       |
 | .xhtml              | [Text](#text-files)                                     |
+| .xml                | [XML](#xml-files)                                       |
 | .yaml               | [YAML](#yaml-files)                                     |
 | .yml                | [YAML](#yaml-files)                                     |
 
@@ -283,6 +284,22 @@ $ ori "(https://webassembly.js.org/example-add.wasm)/add(2, 3)"
 ```
 
 The parentheses around the URL for a WebAssembly module cause it to be evaluated first, which downloads the module. The `/` slash after the `.wasm` causes the downloaded module to be loaded, and the `add` obtains a function with that name from the module. The final `(2, 3)` invokes the `add` function and passes those two values to it.
+
+### XML files
+
+Origami unpacks XML files to a plain JavaScript object. If `feed.xml` contains:
+
+```xml
+${ samples/help/feed.xml }
+```
+
+then unpacking this file returns a plain object, represented here in YAML form:
+
+```yaml
+${ Origami.yaml(samples/help/feed.xml/) }
+```
+
+If an element node contains only text nodes, the text will be returned as a `text` property of the element. Runs of leading and trailing whitespace in text nodes is collapsed to a single space character.
 
 ### YAML files
 
