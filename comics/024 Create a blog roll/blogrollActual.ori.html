@@ -1,0 +1,9 @@
+<!-- Links to each blog in the data file -->
+<h2>Blogroll</h2>
+<ul>
+  ${ Tree.map(blogs.yaml/blogs, (blog) => Tree.indent`
+    <li>
+      <span class="fakeLink">${blog.title}</span>
+    </li>
+  ` )}
+</ul>

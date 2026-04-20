@@ -4,7 +4,7 @@ panels:
     actor: Bob
     scene: browser.ori.html
     url: https://bobscoolblog.com/
-    content: !ori blogroll.ori.html/
+    content: !ori blogrollActual.ori.html()
 
   - text: >
       One way is to create a small **data file** listing the blogs you like.
