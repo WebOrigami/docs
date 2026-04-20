@@ -15,5 +15,5 @@
   svg: (treelike) => Dev.svg(treelike, { createLinks: false })
 
   // So we can demo config.ori and confirm it's working in doc examples
-  user_handler = samples/cli/user_handler.js
+  user_handler: samples/cli/user_handler.js
 }
