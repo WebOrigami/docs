@@ -1,0 +1,7 @@
+/* Styles for posts */
+article.post {
+  p {
+    color: orange;
+  }
+}
+

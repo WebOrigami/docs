@@ -1,0 +1,4 @@
+{
+  // Concatenate all files in the styles folder into a single CSS file
+  styles.css = Tree.deepText(styles/)
+}

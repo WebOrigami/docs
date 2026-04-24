@@ -1,0 +1,51 @@
+panels:
+  - text: >
+      Define styles in multiple CSS files for clarity, then **bundle them** into a single file for faster page loads.
+    actor: Alice
+    face: smileLeft
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: styles/about.css
+        content: !ori styles/about.css
+      - scene: editor.ori.html
+        name: styles/posts.css
+        content: !ori styles/posts.css
+
+  - text: >
+      A simple strategy is to use **nested styles** so the rules in a given file only apply to elements with a given class or semantic tag.
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: about.html
+        content: !ori about.html
+      - scene: browser.ori.html
+        url: https://localhost:5000/about.html
+        content: !ori aboutStyled.html
+
+  - text: >
+      Add a line to your site definition that calls Origami's **deeptext** function to concatenate the stylesheets together.
+    scene: editor.ori.html
+    name: site.ori
+    content: !ori site.ori
+    footnote:
+      text: You could also select specific files to include.
+
+  - text: >
+      The styles end up in a **single file**, and the nested styles ensure the rules only affect the intended elements!
+    actor: Alice
+    face: grin
+    scene: session.ori.html
+    content: |
+      $ ori site.ori/styles.css
+      ${ site.ori/styles.css }
+      $ 
+
+date: 2026-06-15
+post: |
+  #blogging #css #staticsite
+
+link:
+  href: https://weborigami.org/builtins/tree/deeptext
+  text: Tree.deepText builtin function
+
