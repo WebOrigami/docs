@@ -1,0 +1,54 @@
+panels:
+  - text: >
+      To **download bulk resources** from a public site, create a YAML file with the structure of what you want.
+    actor: Bob
+    face: skeptical
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: resources.yaml
+        content: !ori resources.yaml
+      - scene: browser.ori.html
+        url: https://pondlife.netlify.app/images/narcissus.jpg
+        content: |
+          <img style="max-width: 100%;" src="/comics/assets/extract-specific-files-from-a-site/snapshot/images/narcissus.jpg">
+
+  - text: >
+      Apply that to the public site as a **mask**. The YAML file provides the keys at each level, the site provides the values.
+    scene: editor.ori.html
+    name: download.ori
+    content: !ori download.ori
+
+  - text: >
+      Copy the result to **local files**, or include it in a larger build process.
+    scene: session.ori.html
+    content: |
+      $ ori copy download.ori, files:snapshot
+      $ ls -R snapshot
+      feed.xml        images          index.html      posts
+
+      snapshot/images:
+      narcissus.jpg
+
+      snapshot/posts:
+      2025-08-13.html
+      $ 
+    footnote:
+      text: The files we wanted are all local now!
+
+  - text: >
+      Tree operations like mask are like **math for sites**; you can use them in a variety of ways!
+    actor: Bob
+    face: happy
+    scene: browser.ori.html
+    url: localhost:5000/images/narcissus.jpg
+    content: |
+      <img style="max-width: 100%;" src="/comics/assets/extract-specific-files-from-a-site/snapshot/images/narcissus.jpg">
+
+date: 2026-06-22
+post: |
+  #shell #programming #staticsite
+
+link:
+  href: https://weborigami.org/builtins/tree/mask
+  text: Tree.mask builtin function

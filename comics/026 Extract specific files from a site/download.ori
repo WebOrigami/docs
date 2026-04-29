@@ -1,0 +1,5 @@
+// This little Origami program gets the sites we want from a public site
+Tree.mask(
+  httpstree://pondlife.netlify.app, // the site to download from
+  resources.yaml                    // the resources we want
+)
