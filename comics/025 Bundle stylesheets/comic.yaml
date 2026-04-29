@@ -39,7 +39,7 @@ panels:
     content: |
       $ ori site.ori/styles.css
       ${ site.ori/styles.css }
-      $ 
+      $
 
 date: 2026-06-15
 post: |
@@ -48,4 +48,3 @@ post: |
 link:
   href: https://weborigami.org/builtins/tree/deeptext
   text: Tree.deepText builtin function
-
