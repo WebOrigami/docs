@@ -42,7 +42,7 @@ panels:
       - scene: session.ori.html
         content: !ori session2.ori.html()
 
-date: 2026-05-18
+date: 2026-06-01
 post: |
   #staticsite #ssg
 

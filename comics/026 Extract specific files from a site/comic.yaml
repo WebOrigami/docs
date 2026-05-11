@@ -32,7 +32,7 @@ panels:
 
       snapshot/posts:
       2025-08-13.html
-      $ 
+      $
     footnote:
       text: The files we wanted are all local now!
 
@@ -45,7 +45,7 @@ panels:
     content: |
       <img style="max-width: 100%;" src="/comics/assets/extract-specific-files-from-a-site/snapshot/images/narcissus.jpg">
 
-date: 2026-06-22
+date: 2026-07-06
 post: |
   #shell #programming #staticsite
 

@@ -12,12 +12,12 @@ panels:
         content: |
           $ npm run build
           $ cp -r build baseline
-          $ 
+          $
     footnote:
       text: Start by copying a build to a "baseline" folder.
 
   - text: >
-      If you **add a new post**, you should only see changes for that post's specific page, the index page, and the feed.
+      If you **add a new post**, comparing a build against the baseline now shows changes: a new post, and updated indexes.
     scene: split.ori.html
     panes:
       - scene: editor.ori.html
@@ -31,7 +31,7 @@ panels:
             post4.html: added
           index.html: changed
           feed.json: changed
-          $ 
+          $
 
   - text: >
       If you **change a template**, you should only see changes in pages that use that template.
@@ -45,7 +45,7 @@ panels:
           $ npm run build
           $ ori changes baseline, build
           index.html: changed
-          $ 
+          $
 
   - text: >
       No changes means there's no need to check the browser: **the entire site is exactly the same as before!**
@@ -60,11 +60,11 @@ panels:
         content: |
           $ npm run build
           $ ori changes baseline, build
-          $ 
+          $
     footnote:
       text: A perfect technique for **refactoring!**
 
-date: 2026-05-04
+date: 2026-05-11
 post: |
   This Origami tool works with any #staticsite generator!
 
