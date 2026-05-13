@@ -27,8 +27,8 @@ Tree.mapExtension(content, {
   // For LLMs
   llms.txt = templates/llms.ori.md()
 
-  // Folder of search indexes and resources created on demand (but only once)
-  pagefind/ = Origami.once(() => package:@weborigami/pagefind(pages))
+  // Folder of search indexes and resources created on demand
+  pagefind/ = package:@weborigami/pagefind(pages)
 
   // All generated pages
   ...pages
