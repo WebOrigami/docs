@@ -1,0 +1,55 @@
+panels:
+  - text: >
+      Origami expressions can directly refer to files using inline **paths** - but how do those paths work?
+    actor: Alice
+    face: thinkRight
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: site.ori
+        content: !ori src/site.ori
+      - scene: editor.ori.html
+        name: site.js
+        content: !ori src/site.js
+
+  - text: >
+      JavaScript and Origami resolve variable references using a **scope**, searching up until they find the variable.
+    scene: editor.ori.html
+    name: sumTo.js
+    content: !ori sumTo.js
+
+  - text: >
+      But Origami extends its scope to the **file system**, searching up the folder tree until it finds a file.
+    scene: session.ori.html
+    content: |
+      The package.json file is one level above this folder:
+      
+      $ cat ../package.json
+      ${ package.json }
+      
+      Origami can still find it by searching parent folders:
+
+      $ ori package.json
+      ${ package.json } 
+
+  - text: >
+      Your file paths can be concise and still find **exactly the right file**!
+    actor: Alice
+    face: grin
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: site.ori
+        content: !ori src/site.ori
+      - scene: session.ori.html
+        content: |
+          $ ori src/site.ori/
+          ${ Origami.yaml(src/site.ori/) }
+          $ 
+
+date:
+post: |
+
+link:
+  href:
+  text:

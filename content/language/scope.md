@@ -81,7 +81,7 @@ const power = 2;
 // Return the sum of the squares from 1 to n.
 function sumSquares(n) {
   let total = 0;
-  for (const i = 1; i <= n; i++) {
+  for (let i = 1; i <= n; i++) {
     const squared = Math.pow(i, power);
     const newTotal = total + squared; // What variables can be referenced here?
     total = newTotal;

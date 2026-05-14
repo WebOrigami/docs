@@ -1,0 +1,4 @@
+// An Origami inline path can find a file further up the folder tree
+{
+  index.html: `Hello from ${ package.json/name }!`
+}
