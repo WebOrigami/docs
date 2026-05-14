@@ -7,10 +7,10 @@ panels:
     panes:
       - scene: editor.ori.html
         name: site.ori
-        content: !ori src/site.ori
+        content: !ori sample/src/site.ori
       - scene: editor.ori.html
         name: site.js
-        content: !ori src/site.js
+        content: !ori sample/src/site.js
 
   - text: >
       JavaScript and Origami resolve variable references using a **scope**, searching up until they find the variable.
@@ -23,14 +23,14 @@ panels:
     scene: session.ori.html
     content: |
       The package.json file is one level above this folder:
-      
+
       $ cat ../package.json
-      ${ package.json }
-      
+      ${ sample/package.json }
+
       Origami can still find it by searching parent folders:
 
       $ ori package.json
-      ${ package.json } 
+      ${ sample/package.json }
 
   - text: >
       Your file paths can be concise and still find **exactly the right file**!
@@ -40,16 +40,17 @@ panels:
     panes:
       - scene: editor.ori.html
         name: site.ori
-        content: !ori src/site.ori
+        content: !ori sample/src/site.ori
       - scene: session.ori.html
         content: |
           $ ori src/site.ori/
-          ${ Origami.yaml(src/site.ori/) }
-          $ 
+          ${ Origami.yaml(sample/src/site.ori/) }
+          $
 
-date:
+date: 2026-07-13
 post: |
+  #programming
 
 link:
-  href:
-  text:
+  href: https://weborigami.org/language/scope.html
+  text: Scope in Origami expressions
