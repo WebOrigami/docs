@@ -12,7 +12,6 @@ Origami’s caching is designed to be largely invisible, but understanding how a
 
 ## What gets cached
 
-- Local files. All files loaded by your site are cached in memory. If you edit files while a site is running, Origami throws away all cached values that depend on that file so that they may be recalculated; see below.
 - Unpacked file data. Text files in formats like JSON, YAML, or Origami are _unpacked_ to objects that you can work with in code. Any given file will only need to be unpacked at most once. If one part of your site references `data.json/name` and another location references `data.json/description`, the `data.json` file will be unpacked only once.
 - Values addressable with a path. Using the `ori` command-line tool, you can extract values from your site using a slash-separated path. If `site.ori` defines `index.html`, then `site.ori/index.html` returns that page. That page is _addressable_ with that path; all such addressable values are cached. (See below for more details.) This also applies to extracting values from a site while serving it, so serving `site.ori` and then navigating to `index.html` caches that page.
 - Scope references. If your Origami file includes a file path like `src/template.ori`, Origami searches up the file hierarchy to figure out which `src` folder you’re referring to. (See [Scope](scope.html) for details on this.) Origami will do that search once and save the reference.
@@ -68,7 +67,7 @@ Unless you have to interoperate with JavaScript (see above), it is always prefer
 
 ## File changes automatically clear cache entries
 
-To support local development sessions in the browser, Origami tracks which files your code loads in order to generate specific site resources. When those files change, Origami clears all affected cache entries so that subsequent requests will recalculate those resources.
+To support local development sessions in the browser, Origami tracks which files your code loads in order to generate specific site resources. When files inside your project change, Origami clears all affected cache entries so that subsequent requests will recalculate those resources. Note: Origami doesn't watch for file changes outside your project; if you change a file elsewhere in the file system, you may need to reload the site to see the changes.
 
 Given this site definition:
 
