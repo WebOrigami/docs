@@ -12,11 +12,11 @@ Origami’s caching is designed to be largely invisible, but understanding how a
 
 ## What gets cached
 
-* Local files. All files loaded by your site are cached in memory. If you edit files while a site is running, Origami throws away all cached values that depend on that file so that they may be recalculated; see below.
-* Unpacked file data. Text files in formats like JSON, YAML, or Origami are _unpacked_ to objects that you can work with in code. Any given file will only need to be unpacked at most once. If one part of your site references `data.json/name` and another location references `data.json/description`, the `data.json` file will be unpacked only once.
-* Values addressable with a path. Using the `ori` command-line tool, you can extract values from your site using a slash-separated path. If `site.ori` defines `index.html`, then `site.ori/index.html` returns that page. That page is _addressable_ with that path; all such addressable values are cached. (See below for more details.) This also applies to extracting values from a site while serving it, so serving `site.ori` and then navigating to `index.html` caches that page.
-* Scope references. If your Origami file includes a file path like `src/template.ori`, Origami searches up the file hierarchy to figure out which `src` folder you’re referring to. (See [Scope](scope.html) for details on this.) Origami will do that search once and save the reference.
-* Referenced URLs. If you reference an `https:` or other URL, that data will be downloaded and saved in memory. That happens only once per URL, regardless of where the URL is used in your site.
+- Local files. All files loaded by your site are cached in memory. If you edit files while a site is running, Origami throws away all cached values that depend on that file so that they may be recalculated; see below.
+- Unpacked file data. Text files in formats like JSON, YAML, or Origami are _unpacked_ to objects that you can work with in code. Any given file will only need to be unpacked at most once. If one part of your site references `data.json/name` and another location references `data.json/description`, the `data.json` file will be unpacked only once.
+- Values addressable with a path. Using the `ori` command-line tool, you can extract values from your site using a slash-separated path. If `site.ori` defines `index.html`, then `site.ori/index.html` returns that page. That page is _addressable_ with that path; all such addressable values are cached. (See below for more details.) This also applies to extracting values from a site while serving it, so serving `site.ori` and then navigating to `index.html` caches that page.
+- Scope references. If your Origami file includes a file path like `src/template.ori`, Origami searches up the file hierarchy to figure out which `src` folder you’re referring to. (See [Scope](scope.html) for details on this.) Origami will do that search once and save the reference.
+- Referenced URLs. If you reference an `https:` or other URL, that data will be downloaded and saved in memory. That happens only once per URL, regardless of where the URL is used in your site.
 
 ### Addressable vs non-addressable values
 
