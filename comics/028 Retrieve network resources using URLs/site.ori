@@ -1,0 +1,4 @@
+{
+  // Retrieve text from the network
+  sample = https://weborigami.org/samples/cli/sample.txt
+}

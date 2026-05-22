@@ -1,0 +1,57 @@
+panels:
+  - text: >
+      The Origami dialect of JavaScript lets you use a **URL** directly in an expression.
+    actor: Bob
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: site.ori
+        content: !ori site.ori
+      - scene: session.ori.html
+        content: |
+          $ ori site.ori/
+          ${ Origami.yaml(site.ori) }
+          $
+
+  - text: >
+      Use a URL to **inline an SVG** from a server of design assets directly into an HTML page.
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: page.ori.html
+        content: !ori page.ori.html
+      - scene: browser.ori.html
+        url: http://localhost:5000/
+        content: !ori page.ori.html()
+
+  - text: >
+      Since Origami supports **file extensions**, you can download data with a URL and then extract the information you want.
+    scene: session.ori.html
+    content: |
+      $ ori https://weborigami.org/samples/help/pet.json
+      ${ https://weborigami.org/samples/help/pet.json }
+      $ ori "(https://weborigami.org/samples/help/pet.json).name"
+      ${ (https://weborigami.org/samples/help/pet.json).name }
+
+      $ 
+
+  - text: >
+      You can even use network data in a **map** to render each item as HTML!
+    actor: Bob
+    face: wow
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: books.ori.html
+        content: !ori books.ori.html
+      - scene: browser.ori.html
+        url: http://localhost:5000/books.html
+        content: !ori books.ori.html()
+
+date: 2026-07-20
+post: |
+  #programming
+
+link:
+  href: https://weborigami.org/language/expressions#urls
+  text: URLs in Origami expressions
