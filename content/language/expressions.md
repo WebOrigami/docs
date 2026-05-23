@@ -368,6 +368,16 @@ Characters that cannot be used in a URL:
 
 If you need to incorporate such a character into a URL, escape it with a `\\` backslash. Alternatively, place the URL in [angle brackets](#angle-brackets).
 
+If you use a URL to obtain a file with a known [file extension](fileTypes.html), you can extract the data from it by surrounding the URL in parentheses:
+
+```console
+$ ori https://weborigami.org/samples/help/pet.json
+${ https://weborigami.org/samples/help/pet.json }
+$ ori "(https://weborigami.org/samples/help/pet.json).name"
+${ (https://weborigami.org/samples/help/pet.json).name }
+
+```
+
 ## Numbers
 
 Origami supports the same [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) values as JavaScript:
