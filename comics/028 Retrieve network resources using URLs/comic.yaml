@@ -25,7 +25,7 @@ panels:
         content: !ori page.ori.html()
 
   - text: >
-      Since Origami supports **file extensions**, you can download data with a URL and then extract the information you want.
+      Origami supports **file extensions**, so you can download data with a URL and then extract the information you want.
     scene: session.ori.html
     content: |
       $ ori https://weborigami.org/samples/help/pet.json
