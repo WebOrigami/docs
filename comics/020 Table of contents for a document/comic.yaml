@@ -7,7 +7,7 @@ panels:
     content: !ori headings.md
 
   - text: >
-      The **markdown outline** function regroups markdown content into an object reflecting the document's heading structure.
+      Origami's **markdown outline** function regroups markdown content into an object reflecting the document's heading structure.
     scene: session.ori.html
     content: |
       $ ori Origami.mdOutline headings.md
@@ -31,7 +31,7 @@ panels:
 
 date: 2026-05-25
 post: |
-  #documentation
+  #documentation #staticsite
 
 link:
   href: https://weborigami.org/builtins/origami/mdoutline
