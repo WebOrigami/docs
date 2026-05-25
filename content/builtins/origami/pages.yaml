@@ -12,6 +12,8 @@
   text: extension
 - href: fetch.html
   text: fetch
+- href: hash.html
+  text: hash
 - href: htmlEscape.html
   text: htmlEscape
 - href: htmlParse.html
@@ -42,6 +44,10 @@
   text: post
 - href: projectRoot.html
   text: projectRoot
+- href: randomFrom.html
+  text: randomFrom
+- href: randomsFrom.html
+  text: randomsFrom
 - href: redirect.html
   text: redirect
 - href: repeat.html
