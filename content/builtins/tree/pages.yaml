@@ -12,6 +12,8 @@
   text: child
 - href: clear.html
   text: clear
+- href: combine.html
+  text: combine
 - href: concat.html
   text: concat
 - href: constant.html
