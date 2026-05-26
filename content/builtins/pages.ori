@@ -1,0 +1,17 @@
+(namespace) =>
+  Tree.keys((node_modules/@weborigami/origami/src/dev/help.yaml)[namespace].commands)
+  -> (commands) => Tree.flat([
+    [{ href: "index.html", text: `${namespace} commands` }]
+    commands.map((name) => {
+      href: `${name}.html`
+      text: name
+    })
+    [
+      { text: "&nbsp;" }
+      { href: "/builtins", text: "All namespaces" }
+      { href: "/builtins/dev/", text: "Dev" }
+      { href: "/builtins/origami/", text: "Origami" }
+      { href: "/builtins/protocol/", text: "Protocol" }
+      { href: "/builtins/tree/", text: "Tree" }
+    ]
+  ])
