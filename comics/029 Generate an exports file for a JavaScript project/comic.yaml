@@ -1,0 +1,53 @@
+panels:
+  - text: >
+      Beyond sites, Origami is good for any **build process** - like generating a main.js file for a JavaScript project.
+    actor: Alice
+    face: talk
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: main.js
+        content: !ori main.ori.js/
+    footnote:
+      text: "Builds transform trees: Origami's speciality!"
+
+  - text: >
+      Suppose your src folder has JavaScript modules that export individual functions.
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: add.js
+        content: !ori src/add.js
+      - scene: editor.ori.html
+        name: subtract.js
+        content: !ori src/subtract.js
+
+  - text: >
+      To generate a top-level file with all the exports, use a **template** to turn src files into export statements.
+    scene: editor.ori.html
+    name: main.ori.js
+    content: !ori main.ori.js
+
+  - text: >
+      Run this template in your **build script** to create the export file!
+    actor: Alice
+    face: lookDown
+    scene: split.ori.html
+    panes:
+      - scene: editor.ori.html
+        name: package.json
+        content: !ori package.json
+      - scene: session.ori.html
+        content: |
+          $ npm run build
+          $ cat main.js
+          ${ main.ori.js() }
+          $ 
+
+date: 2026-07-27
+post: |
+  #programming #build
+
+link:
+  href: https://weborigami.org/language/templatedocuments
+  text: Origami template documents

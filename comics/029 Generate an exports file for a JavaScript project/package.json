@@ -1,0 +1,7 @@
+{
+  "name": "my-project",
+  "type": "module",
+  "scripts": {
+    "build": "ori main.ori.js/ > main.js"
+  }
+}
