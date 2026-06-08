@@ -42,9 +42,9 @@ panels:
           $ npm run build
           $ cat main.js
           ${ main.ori.js() }
-          $ 
+          $
 
-date: 2026-07-27
+date: 2026-08-03
 post: |
   #programming #build
 

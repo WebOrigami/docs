@@ -47,7 +47,7 @@ panels:
           ${ Origami.yaml(sample/src/site.ori/) }
           $
 
-date: 2026-07-13
+date: 2026-07-20
 post: |
   #programming
 

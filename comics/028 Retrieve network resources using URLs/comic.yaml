@@ -33,7 +33,7 @@ panels:
       $ ori "(https://weborigami.org/samples/help/pet.json).name"
       ${ (https://weborigami.org/samples/help/pet.json).name }
 
-      $ 
+      $
 
   - text: >
       You can even use network data in a **map** to render each item as HTML!
@@ -48,7 +48,7 @@ panels:
         url: http://localhost:5000/books.html
         content: !ori books.ori.html()
 
-date: 2026-07-20
+date: 2026-07-27
 post: |
   #programming
 
