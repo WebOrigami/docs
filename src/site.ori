@@ -5,10 +5,6 @@ Tree.mapExtension(content, {
   value: transform.ori
 })
 
-→ (pages) => (node:process).env.NODE_ENV === "production"
-    ? Tree.cache(pages) // Cache the pages in production
-    : pages // No caching in development
-
 // The top-level structure of the site
 → (pages) => {
   // Static files
@@ -27,8 +23,8 @@ Tree.mapExtension(content, {
   // For LLMs
   llms.txt = templates/llms.ori.md()
 
-  // Folder of search indexes and resources created on demand (but only once)
-  pagefind/ = Origami.once(() => package:@weborigami/pagefind(pages))
+  // Folder of search indexes and resources
+  pagefind/ = package:@weborigami/pagefind(pages)
 
   // All generated pages
   ...pages
