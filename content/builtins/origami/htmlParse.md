@@ -15,5 +15,5 @@ Passing this to `Origami.htmlParse` returns the document structure as a plain ob
 
 ```console
 $ ori Origami.htmlParse adams.html
-${ Origami.yaml(Origami.htmlParse(samples/help/adams.html)) }
+${ Origami.yaml(Origami.htmlDom(samples/help/adams.html)) }
 ```
