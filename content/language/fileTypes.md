@@ -287,7 +287,7 @@ The parentheses around the URL for a WebAssembly module cause it to be evaluated
 
 ### XML files
 
-Origami unpacks XML files to a plain JavaScript object. If `feed.xml` contains:
+Origami unpacks XML files to the corresponding XML DOM (document object model) representation. If `feed.xml` contains:
 
 ```xml
 ${ samples/help/feed.xml }
