@@ -16,6 +16,8 @@
   text: File types
 - href: documents.html
   text: Documents
+- href: caching.html
+  text: Caching
 - href: yaml.html
   text: In YAML
 - href: configuration.html
