@@ -293,13 +293,15 @@ Origami unpacks XML files to a plain JavaScript object. If `feed.xml` contains:
 ${ samples/help/feed.xml }
 ```
 
-then unpacking this file returns a plain object, represented here in YAML form:
+then unpacking this file returns the DOM for the XML document. You can then extract data using DOM methods:
 
-```yaml
-${ Origami.yaml(samples/help/feed.xml/) }
+```console
+$ ori "(src/help/feed.xml).querySelector('title').textContent"
+${ (samples/help/feed.xml).querySelector('title').textContent }
+
 ```
 
-If an element node contains only text nodes, the text will be returned as a `text` property of the element. Runs of leading and trailing whitespace in text nodes is collapsed to a single space character.
+You can also convert the DOM to a plain object using [`Origami.domObject`](/builtins/origami/domObject.html).
 
 ### YAML files
 
