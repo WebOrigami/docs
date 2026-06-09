@@ -65,6 +65,8 @@ JSON.stringify({ timestamp: Date.now() })
 
 Here the standard `JSON.stringify` function expects a plain JavaScript object, so you must define the `timestamp` property with a `:`. If you were to use `=` in this situation, the `timestamp` would be a `Promise`, which `JSON.stringify` cannot render.
 
+The Origami builtin functions are also callable from JavaScript, so when passing options to a function like `Tree.map`, use a `:` to define the options.
+
 ### Prefer `=` syntax for object properties
 
 Unless you have to interoperate with JavaScript (see above), it is always preferable to define a property as lazy by using `=`. When serving locally, depending on what page you’re looking at, the value might not need to be calculated at all, so your site will be faster. And if the value is requested, it's calculated only once and then cached.
