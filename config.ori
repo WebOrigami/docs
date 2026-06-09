@@ -3,7 +3,7 @@
   // library. That formula uses a custom transform called `jsApi`, based on the
   // Microsoft TypeScript compiler, which parses JavaScript source to extract
   // type information and comments.
-  api = Origami.once(() => src/js/jsApi.js(node_modules/@weborigami/async-tree/src/))
+  api = src/js/jsApi.js(node_modules/@weborigami/async-tree/src/)
 
   ori-intro: node_modules/@weborigami/ori-intro/src/
 

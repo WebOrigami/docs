@@ -2,8 +2,8 @@
   // Search page
   search.html
 
-  // Search indexes generated on demand (but only once)
-  pagefind/ = Origami.once(() => package:@weborigami/pagefind({ posts }))
+  // Search indexes generated on demand
+  pagefind/ = package:@weborigami/pagefind({ posts })
 
   // The rest of your site…
   assets/

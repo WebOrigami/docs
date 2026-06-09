@@ -11,7 +11,7 @@ When you serve or build your site, Origami must calculate the values of pages an
 
 Origami’s caching is designed to be largely invisible, but understanding how and when it comes into play can help you get better performance in your Origami projects.
 
-[Watch a video](https://www.youtube.com/watch?v=3MAk2XbYsMQ) about Origami's caching features.
+Watch a [video about Origami's caching features](https://www.youtube.com/watch?v=3MAk2XbYsMQ).
 
 ## What gets cached
 
