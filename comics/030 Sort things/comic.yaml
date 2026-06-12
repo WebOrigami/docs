@@ -29,7 +29,9 @@ panels:
       For an **arbitrary order**, create an object with the file names in the order you want them.
     scene: editor.ori.html
     name: ordered.ori
-    content: !ori ordered.ori
+    content: !ori ordered/poems/ordered.ori
+    footnote:
+      text: This can go in the folder with the files.
 
   - text: >
       Use that object as your data source, and the template will **use your order** to list things.
@@ -38,10 +40,10 @@ panels:
     panes:
       - scene: editor.ori.html
         name: haiku.ori
-        content: !ori haiku3.ori.html
+        content: !ori ordered/haiku3.ori.html
       - scene: browser.ori.html
         url: http://localhost:5000/haiku.html
-        content: !ori haiku3.ori.html()
+        content: !ori ordered/haiku3.ori.html()
 
 date: 2026-08-11
 post: |
