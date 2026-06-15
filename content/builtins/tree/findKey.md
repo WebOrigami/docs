@@ -1,9 +1,11 @@
 ---
-title: findKey(map, fn)
+title: findKey(map, test)
 supertitle: "Tree."
 ---
 
-This returns the key of the first entry in the [map-like](/async-tree/maplike.html) object for which the `fn` test returns `true`. This is analogous to the standard JavaScript [`Array.prototype.findKey`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findKey) function but extended to cover objects and other types of maps.
+This returns the key of the first entry in the [map-like](/async-tree/maplike.html) object for which the `test` function returns `true`. This is analogous to the standard JavaScript [`Array.prototype.findKey`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findKey) function but extended to cover objects and other types of maps.
+
+The `test` function will be called with the `value`, `key`, and `map` of each key/value in the map. The `test` function should return a [truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) result if the entry passes the test.
 
 Example: if `bunnies.tsv` contains
 

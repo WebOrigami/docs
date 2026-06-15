@@ -17,6 +17,7 @@ Origami has built-in support for handling the following types of files.
 | :------------------ | :------------------------------------------------------ |
 | .css                | [Text](#text-files)                                     |
 | .csv                | [Comma-separated values](#comma-separated-values-files) |
+| .epub               | [EPUB](#epub-files)                                     |
 | .htm                | [Text](#text-files)                                     |
 | .html               | [Text](#text-files)                                     |
 | .jpeg               | [JPEG image](#jpeg-image-files)                         |
@@ -36,6 +37,7 @@ Origami has built-in support for handling the following types of files.
 | .xml                | [XML](#xml-files)                                       |
 | .yaml               | [YAML](#yaml-files)                                     |
 | .yml                | [YAML](#yaml-files)                                     |
+| .zip                | [ZIP](#zip-files)                                       |
 
 See below for details on these types.
 
@@ -100,6 +102,20 @@ ${ Origami.yaml(samples/help/catBreeds.csv) }
 ```
 
 For formatting an array of objects as CSV, see [`Origami.csv`](/builtins/origami/csv.html).
+
+### EPUB files
+
+Electronic books in the standard [EPUB format](https://en.wikipedia.org/wiki/EPUB) are essentially ZIP files containing HTML and other standard web resources. Origami can [handle ZIP files](#zip-files) and similarly can work with EPUB files.
+
+You can create an e-book by defining your book's structure as an Origami file and then package it with:
+
+```console
+$ ori epub_handler.pack myBook.ori > myBook.epub
+```
+
+See the [sample ebook project](https://github.com/WebOrigami/japan-hike-ebook) for more details.
+
+As with ZIP files, you can also directly extract resources from EPUB files.
 
 ### JavaScript files
 
@@ -308,6 +324,35 @@ You can also convert the DOM to a plain object using [`Origami.domObject`](/buil
 Like JSON files, you can traverse into a YAML file using slash syntax.
 
 When loaded in Origami, YAML files can contain Origami expressions; see [Origami in YAML](yaml.html).
+
+### ZIP files
+
+You can treat files in the standard [ZIP format](<https://en.wikipedia.org/wiki/ZIP_(file_format)>) as a [map-based tree](/async-tree/mapBasedTree.html) of content.
+
+You can pack any tree into a ZIP file by calling `zip_handler.pack`. For example, suppose you have a tiny site:
+
+```ori
+// tinySite.ori
+${ samples/help/tinySite.ori }
+```
+
+You can pack this into a ZIP file with:
+
+```console
+$ ori zip_handler.pack tinySite.ori > tinySite.zip
+```
+
+Files with the `.zip` extension are implicitly unpacked into a map-based tree. Continuing the above example, you can directly extract values from the `.zip` file:
+
+```console
+$ ori keys tinySite.zip
+${ Origami.yaml(Tree.keys(samples/help/tinySite.zip)) }
+$ ori tinySite.zip/about.html
+${ samples/help/tinySite.zip/about.html }
+
+```
+
+You can use Origami's [`Tree`](/builtins/tree) builtins to perform operations directly on the contents of a ZIP file, serve a site packaged in a ZIP file, etc. See also [support for EPUB e-book files](#epub-files).
 
 ## Custom file types
 
