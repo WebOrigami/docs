@@ -352,6 +352,16 @@ ${ samples/help/tinySite.zip/about.html }
 
 ```
 
+You can generate `.zip` files as part of a site definition to make generated content available for download:
+
+```ori
+{
+  files.zip = zip_handler.pack({
+    example.txt = … generate file here …
+  })
+}
+```
+
 You can use Origami's [`Tree`](/builtins/tree) builtins to perform operations directly on the contents of a ZIP file, serve a site packaged in a ZIP file, etc. See also [support for EPUB e-book files](#epub-files).
 
 ## Custom file types
