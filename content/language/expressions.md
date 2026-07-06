@@ -527,7 +527,7 @@ Origami lets you define property getters that will be evaluated each time the pr
 }
 ```
 
-Each time this object is asked for the value of `index.html`, Origami will invoke `createPage.js()` and return that result. The above is roughly equivalent to the following JavaScript syntax:
+The first time this object is asked for the value of `index.html`, Origami will invoke `createPage.js()` and return that result. The above is roughly equivalent to the following JavaScript syntax:
 
 ```js
 /* JavaScript approximation of the above */
@@ -535,6 +535,8 @@ Each time this object is asked for the value of `index.html`, Origami will invok
   get ["index.html"]() { return createPage(); }
 }
 ```
+
+When handling the first request for `index.html`, Origami [caches the property value](caching.html) so that subsequent requests immediately return the value.
 
 ### Computed properties
 

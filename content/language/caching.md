@@ -1,8 +1,9 @@
 ---
 title: Caching
+subtitle: Integrated saving of results for faster site development
 ---
 
-_This page documents experimental behavior caching behavior in an Origami test release. This material is not yet relevant for regular Origami releases._
+This page documents experimental behavior caching behavior in an Origami beta release. This material is not yet relevant for regular Origami releases.
 
 _There is currently no way to turn off this caching; such a feature would only be added if it proves to be necessary. If you have concrete cases where caching is inappropriate, and you need to compute a value each time it's requested, please describe your scenario in the Origami chat._
 
@@ -10,31 +11,15 @@ When you serve or build your site, Origami must calculate the values of pages an
 
 Origami’s caching is designed to be largely invisible, but understanding how and when it comes into play can help you get better performance in your Origami projects.
 
+Watch a [video about Origami's caching features](https://www.youtube.com/watch?v=3MAk2XbYsMQ).
+
 ## What gets cached
 
 - Unpacked file data. Text files in formats like JSON, YAML, or Origami are _unpacked_ to objects that you can work with in code. Any given file will only need to be unpacked at most once. If one part of your site references `data.json/name` and another location references `data.json/description`, the `data.json` file will be unpacked only once.
-- Values addressable with a path. Using the `ori` command-line tool, you can extract values from your site using a slash-separated path. If `site.ori` defines `index.html`, then `site.ori/index.html` returns that page. That page is _addressable_ with that path; all such addressable values are cached. (See below for more details.) This also applies to extracting values from a site while serving it, so serving `site.ori` and then navigating to `index.html` caches that page.
+- Files that have been unpacked. If a file is unpacked (above), the original file data will also be kept in memory.
+- Object [property getters](expressions.html#property-getters) defined with an `=` equals sign.
 - Scope references. If your Origami file includes a file path like `src/template.ori`, Origami searches up the file hierarchy to figure out which `src` folder you’re referring to. (See [Scope](scope.html) for details on this.) Origami will do that search once and save the reference.
 - Referenced URLs. If you reference an `https:` or other URL, that data will be downloaded and saved in memory. That happens only once per URL, regardless of where the URL is used in your site.
-
-### Addressable vs non-addressable values
-
-To elaborate on what is meant by an "addressable" value, consider the following Origami file:
-
-```ori
-// addressable.ori
-${ samples/help/caching/addressable.ori }
-```
-
-Here it's possible for you to directly extract `addressable.ori/about/index.html`, so by definition that page is addressable — which means that value is cacheable. If you ask for that page, the call to the template `page.ori.html` will happen once, and the result remembered for next time.
-
-But not everything in Origami is addressable. Consider this file that defines a function that returns the maximum of two numbers:
-
-```ori
-${ samples/help/caching/max.ori }
-```
-
-This function can't be invoked with a path — paths must take string arguments — so Origami won't cache calls to this function. If you were to call this function and incorporate the resulting number into, say, building an HTML page with a string name, Origami wouldn't cache the intermediate number, but would cache the complete page text.
 
 ## Eager versus lazy properties
 
@@ -49,7 +34,7 @@ Origami provides two ways of defining object properties: standard eager properti
 
 Here `a` is an eager property that will always be evaluated as soon as this file is loaded. This is standard JavaScript behavior.
 
-In contrast, `b` is a lazy property and will only be evaluated if you ask this object for that property. If you were to inspect this object, `b` will be a property getter (alternatively known as a property accessor). Because Origami expressions are fundamentally asynchronous, the `b` property getter returns a `Promise` for a result.
+In contrast, `b` is a lazy property and will only be evaluated if you ask this object for that property. If you were to inspect this object, `b` will be a property getter (alternatively known as a property accessor). Because Origami expressions are fundamentally asynchronous, the `b` property getter returns a `Promise` for a result. This lazy `b` property will only be evaluated when requested, and then its value will be cached so that subsequent requests immediately return the same value.
 
 ### The `:` syntax is for JavaScript interoperability
 
@@ -61,9 +46,33 @@ JSON.stringify({ timestamp: Date.now() })
 
 Here the standard `JSON.stringify` function expects a plain JavaScript object, so you must define the `timestamp` property with a `:`. If you were to use `=` in this situation, the `timestamp` would be a `Promise`, which `JSON.stringify` cannot render.
 
+The Origami builtin functions are also callable from JavaScript, so when passing options to a function like `Tree.map`, use a `:` to define the options.
+
 ### Prefer `=` syntax for object properties
 
 Unless you have to interoperate with JavaScript (see above), it is always preferable to define a property as lazy by using `=`. When serving locally, depending on what page you’re looking at, the value might not need to be calculated at all, so your site will be faster. And if the value is requested, it's calculated only once and then cached.
+
+To observe the difference between eager and lazy properties, we can add [`Dev.log`](/builtins/dev/log.html) calls that display when the properties are evaluated:
+
+```ori
+// props.ori
+{
+  a: Dev.log(1, "Evaluating a")
+  b = Dev.log(2, "Evaluating b")
+}
+```
+
+Evaluating this object will always evaluate the eager `a` property, but `b` is only evaluated when requested:
+
+```console
+$ ori props.ori/a
+Evaluating a
+1
+$ ori props.ori/b
+Evaluating a
+Evaluating b
+2
+```
 
 ## File changes automatically clear cache entries
 
