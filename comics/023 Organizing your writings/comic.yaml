@@ -165,7 +165,7 @@ panels:
           * The left arrangement keeps each image in a folder with the text file that references it, so it's clear what goes with what — but maybe a little harder to navigate.
           * The arrangement on the right separates image and text files — a flatter structure appropriate if you only occasionally have images, or manage your images with an image library tool.
 
-date: 2026-06-29
+date: 2026-07-06
 post: |
   #smallweb #blogging #staticsite
 
