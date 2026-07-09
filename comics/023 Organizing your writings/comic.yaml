@@ -41,7 +41,7 @@ panels:
       text: Before diving in, consider…
 
   - text: >
-      Question 1: How will you **unique identify** each piece of writing?
+      Question 1: How will you **uniquely identify** each piece of writing?
     scene: split.ori.html
     style: |
       grid-template-rows: auto max-content
