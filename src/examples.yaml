@@ -25,6 +25,14 @@ aventour-expeditions:
     different template language (Handlebars), the transformation of markdown
     with front matter into HTML, and the creation of an image gallery that shows
     all the photos in a given folder.
+benjamin-kenawell:
+  name: Benjamin Kenawell's Blog
+  url: https://blog.kena.dev
+  repo: https://git.sr.ht/~benjk/benjk.srht.site
+  description: |
+    A personal site with a blog, resume, portfolio, links, and a Now page. The
+    page templates are defined in the Liquid template language, supported via a
+    custom file extension handler.
 cat-prints-store:
   name: Cat Prints Store
   url: https://cat-prints-store.weborigami.org
