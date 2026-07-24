@@ -29,7 +29,7 @@ As a pattern, _there is no code library or framework_. The Map Tree pattern itse
 
 You can use this pattern in your own projects without taking on any new dependencies. Additionally, this Map Tree pattern serves as the foundation for the Web Origami project. If you use the [async-tree](/async-tree/) library, the higher-level [Origami language](/language/), or the [command-line interface](/cli/), you will find it useful to understand this foundational pattern.
 
-Follow the walkthrough to see how to represent and transform data using this pattern. This uses JavaScript and Node.js, but you can apply the pattern in other languages [like Python](https://github.com/JanMiksovsky/pondlife-python) or [Zig](https://github.com/WebOrigami/pondlife-zig).
+Follow the walkthrough to see how to represent and transform data using this pattern. This uses JavaScript and Node.js, but you can apply the pattern in other languages [like Python](https://github.com/JanMiksovsky/pondlife-python) or [Zig](https://github.com/JanMiksovsky/pondlife-zig).
 
 &nbsp;
 
