@@ -1,5 +1,9 @@
 title: Blogs using Web Origami
 blogs:
+  - title: Ben Kenawell's Blog
+    url: https://blog.kena.dev
+    feed: https://blog.kena.dev/feed.xml
+
   - title: Jim Nielsen's Blog
     url: https://blog.jim-nielsen.com
     feed: https://blog.jim-nielsen.com/feed.xml
