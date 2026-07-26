@@ -68,6 +68,25 @@ ${ samples/templateDocuments/bold.ori.html("Hooray") }
 
 Such templates behave like simple components. You can use them decompose the construction of complex documents into smaller pieces that are easier to understand.
 
+### Conditions
+
+Like regular Origami templates, template documents can [use the conditional operator](templates.html#conditions) to include text that depends on a given condition.
+
+If `earth.ori.html` contains:
+
+```ori
+${ samples/templateDocuments/earth.ori.html }
+```
+
+then:
+
+```console
+$ ori earth.ori.html/CA
+${ samples/templateDocuments/earth.ori.html/CA }
+$ ori earth.ori.html/US
+${ samples/templateDocuments/earth.ori.html/US }
+```
+
 ## Body text with YAML front matter
 
 Like other text [documents](documents.html), a template document can include YAML front matter at the top of the document, enclosed in lines of `---` three hyphens.
