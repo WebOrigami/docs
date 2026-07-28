@@ -16,5 +16,5 @@ LLMs can easily forget that the Origami dialect of JavaScript expressions only s
 
 ## Other tools
 
-- [Microsoft VS Code language support](https://marketplace.visualstudio.com/items?itemName=WebOrigami.origami-vscode-extension) for syntax highlighting
-- [Neovim plugin](https://github.com/DeclanChidlow/weborigami-nvim) for syntax highlighting
+- [Microsoft VS Code language support](https://marketplace.visualstudio.com/items?itemName=WebOrigami.origami-vscode-extension) for language support including syntax highlighting
+- [Neovim plugin](https://tangled.org/vale.rocks/weborigami-nvim/) for language support including syntax highlighting
