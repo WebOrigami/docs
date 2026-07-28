@@ -6,6 +6,7 @@ subtitle: Suggestions for common tasks
 [Define a shared header, footer, or side bar](#topNav)<br>
 [Define a base page template](#baseTemplate)<br>
 [Transform a folder of markdown into HTML](#transform-markdown-folder)<br>
+[Create a subfolder for each post](#create-a-subfolder-for-each-post)<br>
 [Merge one folder into another](#spread)<br>
 [Add an index page to a folder created with a map](#transform-with-index)<br>
 [Hide parts of a tree](#hide-parts-of-a-tree)<br>
@@ -136,7 +137,36 @@ The `map` builtin will use `mdHtml` to transform both the keys (names) and value
 ${ svg(samples/howTo/markdown/site.ori) }
 </figure>
 
+Also see the following section for an alternate navigational hierarchy.
+
 If you want the pages to appear at a higher level of the site, you can combine this technique with the spread operator; see below.
+
+## Create a subfolder for each document
+
+The example in the preceding section has URLs like `pages/products.html`. Keeping the HTML extension communicates what kind of page it is to both the user and their browser. This naming approach also keeps your site's navigational structure shallow and easy to explore.
+
+That said, you may prefer to give your pages URLs like `pages/products`, without the `.html` extension. A common way to achieve that is to define each document as an `index.html` page inside of a subfolder: `/pages/products/index.html`.
+
+For that approach, instead of mapping each document to an individual HTML page, you map each document to a small object with an `index.html` property:
+
+```ori
+// site.ori
+${ samples/howTo/markdown/siteSubfolders.ori }
+```
+
+This uses [`Tree.mapExtension`](/builtins/tree/mapExtension.html), which is like `Tree.map` but also modifies a file's extension; here it removes the `.md` extension from names like `about.md` to produce `about`. This then creates a small object with an `index.html` property containing the markdown transformed to HTML. If that small object is copied to the file system, it will create an `about` subfolder containing an `index.html` page.
+
+This produces the following navigational structure:
+
+<figure>
+${ svg(samples/howTo/markdown/siteSubfolders.ori) }
+</figure>
+
+Since `index.html` is generally the default page on many web servers, your users will most likely be able navigate to the page with any of the following:
+
+- `/pages/products`
+- `/pages/products/` (trailing slash)
+- `/pages/products/index.html`
 
 <a name="spread"></a>
 
