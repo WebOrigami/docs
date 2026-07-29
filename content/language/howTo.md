@@ -6,7 +6,7 @@ subtitle: Suggestions for common tasks
 [Define a shared header, footer, or side bar](#topNav)<br>
 [Define a base page template](#baseTemplate)<br>
 [Transform a folder of markdown into HTML](#transform-markdown-folder)<br>
-[Create a subfolder for each post](#create-a-subfolder-for-each-post)<br>
+[Create a subfolder for each document](#create-a-subfolder-for-each-document)<br>
 [Merge one folder into another](#spread)<br>
 [Add an index page to a folder created with a map](#transform-with-index)<br>
 [Hide parts of a tree](#hide-parts-of-a-tree)<br>
