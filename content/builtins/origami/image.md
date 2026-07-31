@@ -5,6 +5,30 @@ supertitle: "Origami."
 
 A collection of functions for working with images. Internally, these make use of the [sharp](https://sharp.pixelplumbing.com/) image library.
 
+## dimensions(buffer)
+
+Returns the `height` and `width` of the image in pixels.
+
+```console
+$ ori Origami.image.dimensions image.jpeg
+${ Origami.yaml(Origami.image.dimensions(samples/help/image.jpeg)) }
+
+```
+
+One use for this is to add explicit `height` and `width` attributes to an `<img>` tag:
+
+```ori
+// imageDimensions.ori
+${ samples/help/imageDimensions.ori }
+```
+
+This template uses `Origami.image.dimensions` to obtain the height and width, then incorporates those as attributes on an `<img>` tag:
+
+```console
+$ ori imageDimensions.ori image.jpeg, «image.jpeg»
+${ samples/help/imageDimensions.ori(samples/help/image.jpeg, "image.jpeg") }
+```
+
 ## format(buffer, format, [options])
 
 Returns the image represented by `buffer` in a new image format. The `format` must be one of the following strings:
