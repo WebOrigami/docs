@@ -19,12 +19,13 @@ See also [`Origami.mdOutline`](mdOutline.html) for extracting the outline struct
 The `Origami.mdHtml` command supports Github-Flavored Markdown, a strict superset of [CommonMark](https://spec.commonmark.org) that includes:
 
 - Automatic translation of links like https://example.com
-- Strikethrough
-- Tables
+- Strikethrough: `~mistake~` becomes ~mistake~
+- [Tables](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/organizing-information-with-tables)
+- [Task lists](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#task-lists)
 - Syntax highlighting of programming code in code blocks
 - Creation of heading IDs: `# Hello, world!` generates: `<h1 id="hello-world">Hello, world!</h1>`
 
-Additionally, `Origami.mdHtml` adds support for:
+Additionally, `Origami.mdHtml` adds typgraphic support for:
 
 - Smart quotes: `"Yes"` and `'No'` become "Yes" and 'No'.
 - En-dashes: `--` becomes --
