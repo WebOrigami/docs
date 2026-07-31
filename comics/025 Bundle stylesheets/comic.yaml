@@ -17,12 +17,15 @@ panels:
     scene: split.ori.html
     panes:
       - scene: editor.ori.html
+        name: styles/about.css
+        content: !ori styles/about.css
+      - scene: editor.ori.html
         name: about.html
         content: !ori about.html
       - scene: browser.ori.html
         url: https://localhost:5000/about.html
         content: !ori aboutStyled.html
-
+        
   - text: >
       Add a line to your site definition that calls Origami's **deeptext** function to concatenate the stylesheets together.
     scene: editor.ori.html
@@ -41,7 +44,7 @@ panels:
       ${ site.ori/styles.css }
       $
 
-date: 2026-07-20
+date: 2026-07-27
 post: |
   #blogging #css #staticsite
 
