@@ -21,11 +21,14 @@ The `Origami.mdHtml` command supports Github-Flavored Markdown, a strict superse
 - Automatic translation of links like https://example.com
 - Strikethrough: `~mistake~` becomes ~mistake~
 - [Tables](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/organizing-information-with-tables)
+- [Footnotes](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#footnotes)
 - [Task lists](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#task-lists)
 - Syntax highlighting of programming code in code blocks
 - Creation of heading IDs: `# Hello, world!` generates: `<h1 id="hello-world">Hello, world!</h1>`
 
-Additionally, `Origami.mdHtml` adds typgraphic support for:
+(Origami does not support GitHub-Flavored Markdown features that are specific to the GitHub service, including GitHub-style alert blocks and auto-linking to GitHub user profiles, GitHub issues, or GitHub pull requests.)
+
+`Origami.mdHtml` includes typographic support for:
 
 - Smart quotes: `"Yes"` and `'No'` become "Yes" and 'No'.
 - En-dashes: `--` becomes --
