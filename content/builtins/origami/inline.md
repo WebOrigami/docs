@@ -1,5 +1,5 @@
 ---
-title: inline(text)
+title: inline(text, [options])
 supertitle: "Origami."
 ---
 
@@ -48,4 +48,20 @@ $ ori Origami.inline page.html
     <p>Hello, world.</p>
   </body>
 </html>
+```
+
+## Specifying the scope for the expressions
+
+To resolve any file references in the expressions found in the document, Origami uses a [scope](/language/scope.html) that requires identifying the real or implied `parent` folder for the document.
+
+If you pass `Origami.inline` a file by reference, the default `parent` folder will be the file system folder that contains that file:
+
+```ori
+Origami.inline(path/to/file)
+```
+
+If you pass `Origami.inline` plain text, you will need to manually indicate the `parent` folder via an option:
+
+```ori
+Origami.inline(text, { parent: path/to/folder })
 ```
