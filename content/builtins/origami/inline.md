@@ -70,4 +70,4 @@ This evaluates any expressions in `text` as if the text were a file in the given
 
 ## Escaping template substitutions in the text
 
-Suppose you have a document that discusses JavaScript, Origami, or other language that uses the `${ }` syntax for template substitutions. `Origami.inline` would normally interpret those, but you can prevent that by escaping the `$` with a backslash: `\\$\{ \}`.
+Suppose you have a document that discusses JavaScript, Origami, or other language that uses the `\${ }` syntax for template substitutions. `Origami.inline` would normally interpret those, but you can prevent that by escaping the `$` with a backslash: `\\$\{ \}`.
