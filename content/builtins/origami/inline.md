@@ -60,8 +60,10 @@ If you pass `Origami.inline` a file by reference, the default `parent` folder wi
 Origami.inline(path/to/file)
 ```
 
-If you pass `Origami.inline` plain text, you will need to manually indicate the `parent` folder via an option:
+If you pass `Origami.inline` plain text, or file downloaded from a network location, you will need to manually indicate the implied `parent` folder via an option:
 
 ```ori
 Origami.inline(text, { parent: path/to/folder })
 ```
+
+This evaluates any expressions in `text` as if the text were a file in the given folder.
