@@ -83,6 +83,13 @@ pondlife:
   description: |
     A sample blog built from markdown posts, with generated index pages, post
     pages, and feeds.
+stephanmax:
+  name: Stephan Max
+  url: https://stephanmax.com
+  repo: https://git.sr.ht/~stephanmax/website
+  description: |
+    A personal site pulling its images directly from an image CDN, with a
+    two-dimensional home page layout showing categories as columns.
 valerocks:
   name: vale.rocks
   url: https://vale.rocks/
