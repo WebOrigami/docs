@@ -85,12 +85,14 @@ const object = {
   a = fn()
 }</code></pre></td>
     <td>
-      <pre><code>{
+      <pre><code>let saved;
+const object = {
   get a() {
-    return fn();
+    saved ??= fn();
+    return saved;
   }
 }</code></pre>
-      <p>Define a getter with an equals sign.</p>
+      <p>Define a getter with an equals sign; the value will be evaluated only once.</p>
     </td>
   </tr>
   <tr>
@@ -531,12 +533,18 @@ The first time this object is asked for the value of `index.html`, Origami will 
 
 ```js
 /* JavaScript approximation of the above */
-{
-  get ["index.html"]() { return createPage(); }
+let saved;
+const object = {
+  get ["index.html"]() {
+    saved ??= createPage();
+    return saved;
+  }
 }
 ```
 
-When handling the first request for `index.html`, Origami [caches the property value](caching.html) so that subsequent requests immediately return the value.
+When handling the first request for `index.html`, Origami [caches the property value](caching.html) so that subsequent requests immediately return the value. Because `=` defers work until it's actually requested, it's more efficient than declaring a property with `:`, which always evaluates its value immediately.
+
+For that reason, you should generally use `=` for declaring site resources. Use `:` only when you are constructing plain objects that will be passed to JavaScript functions. (That includes using `:` when defining options objects passed to Origami builtins.)
 
 ### Computed properties
 
