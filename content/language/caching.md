@@ -3,10 +3,6 @@ title: Caching
 subtitle: Integrated saving of results for faster site development
 ---
 
-This page documents experimental behavior caching behavior in an Origami beta release. This material is not yet relevant for regular Origami releases.
-
-_There is currently no way to turn off this caching; such a feature would only be added if it proves to be necessary. If you have concrete cases where caching is inappropriate, and you need to compute a value each time it's requested, please describe your scenario in the Origami chat._
-
 When you serve or build your site, Origami must calculate the values of pages and other resources. To improve performance, Origami caches (remembers) the values in memory so that subsequent requests can immediately return a result without rerunning the original code logic.
 
 Origami’s caching is designed to be largely invisible, but understanding how and when it comes into play can help you get better performance in your Origami projects.
@@ -15,7 +11,7 @@ Watch a [video about Origami's caching features](https://www.youtube.com/watch?v
 
 ## What gets cached
 
-- Unpacked file data. Text files in formats like JSON, YAML, or Origami are _unpacked_ to objects that you can work with in code. Any given file will only need to be unpacked at most once. If one part of your site references `data.json/name` and another location references `data.json/description`, the `data.json` file will be unpacked only once.
+- Unpacked file data. Text files in formats like JavaScript, JSON, Origami, or YAML are _unpacked_ to objects that you can work with in code. Any given file will only need to be unpacked at most once. If one part of your site references `data.json/name` and another location references `data.json/description`, the `data.json` file will be unpacked only once. Likewise, if your Origami site definition calls `myFunction.js()`, then that function will only be called once.
 - Files that have been unpacked. If a file is unpacked (above), the original file data will also be kept in memory.
 - Object [property getters](expressions.html#property-getters) defined with an `=` equals sign.
 - Scope references. If your Origami file includes a file path like `src/template.ori`, Origami searches up the file hierarchy to figure out which `src` folder you’re referring to. (See [Scope](scope.html) for details on this.) Origami will do that search once and save the reference.
@@ -96,4 +92,4 @@ If you are viewing `index.html` and edit `about.md`, Origami retains the cached 
 
 ## Persistent caching in the file system
 
-Origami automatically caches the value of network resources in memory, so the cached values are lost when Origami exits. If you have a site that depends on many network resources, it can be useful to explicitly ask for those resources to be cached as local files using the [`Tree.cache`](/builtins/tree/cache.html) operation.
+Origami automatically caches the value of network resources in memory, so the cached values are lost when Origami exits. If you have a site that depends on many network resources, it can be useful to explicitly ask for those resources to be persisted as local files using the [`Tree.cache`](/builtins/tree/cache.html) operation.
