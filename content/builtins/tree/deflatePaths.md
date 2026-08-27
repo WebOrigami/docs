@@ -1,11 +1,18 @@
 ---
-title: deflatePaths(map, [basePath])
+title: deflatePaths(map, [options])
 supertitle: "Tree."
 ---
 
-Given a [map-based tree](/async-tree/mapBasedTree.html), this returns a flattened `Map` of slash-separated paths to values. If the optional `basePath` is provided, that will be prepended to all the paths.
+Given a [map-based tree](/async-tree/mapBasedTree.html), this returns a flattened `Map` of slash-separated paths to values.
 
-Example: A folder contains a set of markdown posts organized into subfolders for year and month:
+The `options` argument can include:
+
+- `assumeSlashKeys`: if true, the operation will skip descending into a value if the tree supports [trailing slashes](/async-tree/trailingSlash.html) and the key does not end in a trailing slash. This speeds up the operation on large trees.
+- `base`: a string that will be prepended to all the paths.
+
+## Example
+
+A folder contains a set of markdown posts organized into subfolders for year and month:
 
 ```console
 $ ori posts

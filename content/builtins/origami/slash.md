@@ -3,7 +3,7 @@ title: slash
 supertitle: "Origami."
 ---
 
-This is a collection of functions for working with [trailing slashes](/async-tree/interface.html#trailing-slash-convention), which are commonly used in Origami keys to indicate that the value for that key is a subtree. For example, the key for a subfolder `content` may be given as `content/`.
+This is a collection of functions for working with [trailing slashes](/async-tree/trailingSlash.html), which are commonly used in Origami keys to indicate that the value for that key is a subtree. For example, the key for a subfolder `content` may be given as `content/`.
 
 These `slash` functions can be useful when working inside a [`map`](/builtins/tree/map.html) that operates over the top level of a folder.
 

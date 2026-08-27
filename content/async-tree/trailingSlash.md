@@ -32,9 +32,13 @@ The trailing slashes let you quickly see that `src/` and `test/` represent subfo
 
 ## Saving work in tree traversal
 
-Operations that traverse a tree also benefit from quickly knowing which keys represent subtrees.
+Operations that traverse a tree also benefit from quickly knowing which keys represent subtrees. These include:
 
-As an example, the builtin [`Tree.paths`](/builtins/tree/paths.html) operation returns a list of path-separated paths for every value in a tree. The function needs to visit each node in the tree — but it wants to avoid wasting work getting values that aren't map nodes.
+- [`Tree.paths`](/builtins/tree/paths.html)
+- [`Tree.deflatePaths`](/builtins/tree/deflatePaths.html)
+- [`Origami.sitemap`](/builtins/origami/sitemap.html)
+
+As an example, the builtin `Tree.paths` operation returns a list of path-separated paths for every value in a tree. The function needs to visit each node in the tree — but it wants to avoid wasting work getting values that aren't map nodes.
 
 - If the map for a node has a `trailingSlashKeys` property (below) that is `true`, the `paths` operation knows it only needs to get the values for keys that end in slashes. The keys without slashes won't be child nodes.
 - If the map for a node doesn't support trailing slashes, then `paths` must get every value in that node to decide whether it needs to descend into it.
