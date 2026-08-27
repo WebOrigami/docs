@@ -23,7 +23,7 @@ then calling `sitemap` generates:
 
 ```console
 $ ori Origami.sitemap tinySite.ori, "'https://mysite.org'"
-${ Origami.sitemap(samples/help/tinySite.ori, "https://mysite.org") }
+${ Origami.sitemap(samples/help/tinySite.ori, { base: "https://mysite.org" }) }
 ```
 
 ## When to define a sitemap
