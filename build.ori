@@ -1,0 +1,7 @@
+Dev.publish(
+  netlify.js(Origami.jsonKeys(src/site.ori))
+  files:build
+  {
+    manifest: "built-files.json"
+  }
+)
