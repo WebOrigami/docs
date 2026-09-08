@@ -3,37 +3,7 @@ title: changes(oldTree, newTree)
 supertitle: "Dev."
 ---
 
-This compares an old [map-based](/async-tree/mapBasedTree.html) with a new one, indicating which values have been added, changed, or deleted.
-
-## Example
-
-A YAML file contains the following tree:
-
-```yaml
-# oldTree.yaml
-${ samples/help/oldTree.yaml }
-```
-
-The file is copied and then modified to produce:
-
-```yaml
-# newTree.yaml
-${ samples/help/newTree.yaml }
-```
-
-Calling `changes` indicates what values have changed:
-
-```console
-$ ori changes oldTree.yaml, newTree.yaml
-${ Origami.yaml(Dev.changes(samples/help/oldTree.yaml, samples/help/newTree.yaml)) }
-```
-
-Invoking `changes` if the trees are the same returns an empty object, indicating nothing has changed:
-
-```console
-$ ori changes newTree.yaml, newTree.yaml
-$
-```
+`Dev.changes` is an alias of [`Tree.changes`](/builtins/tree/changes.html) that exists to expose `changes` as a top-level command when using the [CLI](/cli). See that page for details on the function's basic behavior.
 
 ## Using `changes` for testing static sites
 
