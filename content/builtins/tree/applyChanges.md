@@ -11,7 +11,7 @@ Given a target tree and a source tree, this:
 
 After the operation, the target should exactly match the source. The function returns the result of the comparison in the same format as `Tree.changes` so you can see what was changed.
 
-When the target is a tree of files on a network server, calling `applyChanges` can be much more efficient than clearing the target and copying over all entries from the source. This relies on representing the target using an Origami extension that exposes a `manifest()` method.
+When the target is a tree of files on a network server, calling `applyChanges` can be much more efficient than clearing the target and copying over all entries from the source. This relies on representing the target using an Origami extension that exposes a `manifest()` method. See [`Dev.publish`](/builtins/dev/publish.html) for a discussion of publishing a site this way.
 
 ## Example
 
