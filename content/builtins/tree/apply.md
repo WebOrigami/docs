@@ -15,7 +15,7 @@ A `build` folder contains a tiny set of files:
 
 ```console
 $ ori build
-${ Origami.yaml(samples/help/publish/build.ori) }
+${ Origami.yaml(samples/help/publish/site1.ori) }
 ```
 
 An Origami file contains a tree of changes to be applied:
@@ -33,7 +33,7 @@ $ ori build
 ${ Origami.yaml(
   Tree.apply(
     samples/help/publish/changes.ori
-    samples/help/publish/build.ori
+    samples/help/publish/site1.ori
   )
 ) }
 ```
