@@ -41,6 +41,8 @@ the hash value for `about.html` has changed. The hash value for `index.html` rem
 
 In this way, a manifest for a site (or a folder of files, etc.) is a way of very concisely reflecting the state of all the content.
 
+## Comparing manifests
+
 You can compare two manifests to see if they reflect exactly the same content. The [`Tree.changes`](changes.html) builtin exists for precisely that purpose. Give the function two sites, and it will compare manifests to determine any changes between them:
 
 ```console
@@ -51,4 +53,7 @@ ${ Origami.yaml(
     samples/help/publish/site2.ori
   )
 ) }
+
 ```
+
+The [`Tree.applyChanges`](applyChanges.html) function compares manifests in this way to determine what values have changed and therefore need to be applied to a target tree.
