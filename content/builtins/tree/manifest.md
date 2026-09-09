@@ -56,4 +56,4 @@ ${ Origami.yaml(
 
 ```
 
-The [`Tree.applyChanges`](applyChanges.html) function compares manifests in this way to determine what values have changed and therefore need to be applied to a target tree.
+The [`Tree.applyChanges`](applyChanges.html) function compares manifests in this way to determine what values have changed and therefore need to be applied to a target tree. That process is one of the ways [`Dev.publish`](/builtins/dev/publish.html) may use to publish a site to a network host.

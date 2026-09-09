@@ -239,6 +239,10 @@ nav a:hover {
 #sideBar li {
   list-style: none;
   margin-bottom: 0.5rem;
+
+  &:has(.noLink) {
+    margin-top: 1.5rem;
+  }
 }
 
 #sideBar [aria-current] {

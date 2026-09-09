@@ -2,7 +2,7 @@
   text: Introduction
 - href: installing.html
   text: Installing
-- text: "Tutorial:"
+- text: Tutorial
 - href: intro1.html
   text: Start tutorial
 - href: intro2.html
@@ -15,10 +15,12 @@
   text: Transformations
 - href: intro6.html
   text: Serving trees
-- text: "Additional topics:"
+- text: Additional topics
 - href: shorthand.html
   text: Shorthand syntax
 - href: incantations.html
   text: Incantations
+- href: network.html
+  text: Network hosts
 - href: shell.html
   text: Shell scripting
