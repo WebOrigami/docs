@@ -5,7 +5,7 @@ supertitle: "Dev."
 
 Returns a web page that lets you explore the scope at a current point in a tree.
 
-This is intended to be used in conjunction with the [`debug`](debug.html) command, which lets you invoke Origami commands in the browser. When serving a tree with `debug`, you can then browse to a route like
+This is intended to be used in conjunction with the [`debug2`](debug2.html) command, which lets you invoke Origami commands in the browser. When serving a tree with `debug2`, you can then browse to a route like
 
 ```
 http://localhost:5000/path/to/something/!explore

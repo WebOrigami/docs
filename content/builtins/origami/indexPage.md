@@ -15,7 +15,7 @@ public = {
 }
 ```
 
-In conjunction with [`debug`](/builtins/dev/debug.html), you can invoke `indexPage` from the browser address bar to obtain a listing of the contents of that point in the site's tree:
+In conjunction with [`debug2`](/builtins/dev/debug2.html), you can invoke `indexPage` from the browser address bar to obtain a listing of the contents of that point in the site's tree:
 
 ```
 http://localhost:5000/path/to/something/!indexPage

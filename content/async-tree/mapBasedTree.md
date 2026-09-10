@@ -31,7 +31,7 @@ While any `Map` (or [`AsyncMap`](AsyncMap.html)) object can be treated as a tree
 
 ### `child(key)` method
 
-Tree operations like [`Tree.assign`](/builtins/tree/assign.html) and [`Dev.copy`](/builtins/dev/copy.html) copy one map-based tree into another. During the operation, they need the ability to retrieve or create a child node in a map. The [`Tree.child`](/builtins/tree/child.html) operation can do that, but particularly for async maps the default behavior may not be the most efficient behavior possible.
+Tree operations like [`Tree.apply`](/builtins/tree/apply.html) and [`Dev.copy`](/builtins/dev/copy.html) copy one map-based tree into another. During the operation, they need the ability to retrieve or create a child node in a map. The [`Tree.child`](/builtins/tree/child.html) operation can do that, but particularly for async maps the default behavior may not be the most efficient behavior possible.
 
 A map class can implement a `child(key)` method that retrieves a child node with the given key, creating it if necessary.
 

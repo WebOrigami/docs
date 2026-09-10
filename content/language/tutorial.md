@@ -33,7 +33,7 @@ Origami is based on a conceptual model called [Content/Transformation](/model.ht
   },
   "scripts": {
     "build": "ori copy src/site.ori, clear files:build",
-    "start": "ori serve watch src, =debug src/site.ori"
+    "start": "ori debug src/site.ori"
   }
 }
 </pre>
@@ -132,7 +132,7 @@ This executes a command that starts the Origami server with some debugging facil
 
 ```console
 > start
-> ori serve watch src, =debug src/site.ori
+> ori debug2 src/site.ori
 
 Server running at http://localhost:5000. Press Ctrl+C to stop.
 ```
@@ -211,7 +211,7 @@ Using functions for templates means there’s nothing special for you to learn a
 
 ## Define a property getter
 
-As `site.ori` is written, the `index.html` value of this site is calculated when you start the server and it loads the site. Because the `start` script invokes a debugging facility called [`watch`](/builtins/dev/watch.html), the site will be reloaded whenever you change something in the `src` folder.
+As `site.ori` is written, the `index.html` value of this site is calculated when you start the server and it loads the site. Because the `start` script invokes a debugging facility called [`debug2`](/builtins/dev/debug2.html), the site will be reloaded whenever you change something in the `src` folder.
 
 As your site grows, it can become expensive to recalculate the value of every site resource every time the site is loaded or reloaded. You can arrange to have the value of `index.html` calculated upon request instead.
 
