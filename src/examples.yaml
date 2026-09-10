@@ -76,11 +76,7 @@ notes-jim-nielsen:
   url: https://notes.jim-nielsen.com/
   repo: https://github.com/jimniels/notes/
   description: |
-    Short responses to other people's writings. Reads notes from Dropbox via the
-    Origami <a
-    href="https://github.com/WebOrigami/extensions/tree/main/dropbox">Dropbox
-    extension</a> and formats them as a single page with JSON and RSS feeds. Jim
-    also has also written <a
+    Short responses to other people's writings. Jim also has also written <a
     href="https://blog.jim-nielsen.com/tags/#webOrigami">a number of blog
     posts</a> about making sites with Web Origami. He describes the Origami code
     he writes as "beautiful and succinct".

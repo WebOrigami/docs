@@ -5,8 +5,6 @@ supertitle: "Origami."
 
 This function returns a [map-based tree](/async-tree/mapBasedTree.html) of network files on a server that supports [SFTP](https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol) (SSH File Transfer Protocol), a standard internet protocol for transferring files. You can use this to create a [network host connection](/cli/network.html) to server files so you can retrieve files or [publish](/builtins/dev/publish.html) them directly to a server from Origami.
 
-## Representing a network connection
-
 The current state of server hosting is such that setting up an SFTP connection is generally complicated, and the instructions will vary from one hosting company to another. Most hosts that support downloading and uploading files via SFTP will document the process somewhere in their Help or Support area.
 
 You will generally have two ways you can connect to an SFTP server:
@@ -16,10 +14,11 @@ You will generally have two ways you can connect to an SFTP server:
 
 The rest of this example will assume the use of a username and password.
 
-Create a file to represent your network host, call it `host.ori` or incorporate the name of your hosting company. Copy and paste the following
+## Create a network connection file
+
+Create a new file to represent your network host, calling it `host.ori` or else incorporating the name of your hosting company. Copy and paste the following:
 
 ```ori
-// host.ori
 Origami.sftp({
   host: "example.com"
   password: "passwordGoesHere"
@@ -33,7 +32,6 @@ Edit the text to reflect your `host`, `password`, and `username`. The `path` arg
 Note: If you use a source control system like git, add this file to `.gitignore`. Never check passwords into source control! Because this is an Origami file, you also have the option of breaking it up into smaller pieces. You could store the password separately in a file called `password.txt` that is _not_ saved in source control, then have `host.ori` reference that file:
 
 ```ori
-// host.ori
 Origami.sftp({
   host: "example.com"
   password: password.txt
@@ -48,7 +46,7 @@ If your using cryptographic keys, omit the `password` field. `Origami.sftp` shou
 
 ## Test your connection
 
-After creating an SFTP connection file like `host.ori`, you can test it by using [`Tree.keys`](/builtins/tree/keys.html) to list out the top level files and subfolders:
+After creating a file like `host.ori` to represent your SFTP host server, you can test it by using [`Tree.keys`](/builtins/tree/keys.html) to list out the top level files and subfolders:
 
 ```console
 $ ori keys host.ori
@@ -59,7 +57,7 @@ index.html
 README.md
 ```
 
-Once you've tested that your connection works, you can retrieve files from the host; see [using the network connection](/cli/network.html#using-the-network-connection-in-origami-commands).
+Once you've tested that your connection works, you can read and write files; see [using the network connection](/cli/network.html#using-the-network-connection-in-origami-commands).
 
 ## Publish
 
@@ -77,7 +75,7 @@ The `manifest` option lets the publish operation keep track of what's already be
 
 Additionally, some hosting companies that support SFTP will include full shell access, which lets you log into your account on their server. Other companies will give you SFTP access, but not provide a way for you to sign in.
 
-If you do have shell access, add the following option to your `host.ori` file:
+If you do have shell access, add the following option to the `sftp` function call in `host.ori`:
 
 ```
   shellAccess: true

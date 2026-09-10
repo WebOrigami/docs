@@ -61,6 +61,20 @@ $ ori publish src/site.ori, host.ori
 
 This lets you publish a site (or a folder of files, etc.) directly to the host.
 
+## Copying network files locally
+
+You can copy files from the network to your local machine with [`Dev.copy`](/builtins/dev/copy.html):
+
+```console
+$ ori copy host.ori, files:snapshot
+```
+
+This will leave alone any pre-existing files in the `snapshot` folder. If you want instead to have `snapshot` completely match the network files, you can use `Dev.publish` as above — but in the other direction:
+
+```console
+$ ori publish host.ori, files:snapshot
+```
+
 ## Caching network files locally
 
 If you will often download files from a network host, it can be helpful to cache a copy of the files locally with [`Tree.cache`](/builtins/tree/cache.html). For example, you can arrange to have files from `host.ori` cached in a local folder called `cache`:
