@@ -59,14 +59,17 @@ h2,
 h3 {
   text-wrap: balance;
 
-  a {
+  &:not(:hover) a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  a[href^="#"] {
     visibility: hidden;
   }
 
-  &:hover {
-    a {
-      visibility: visible;
-    }
+  &:hover a[href^="#"] {
+    visibility: visible;
   }
 }
 

@@ -32,7 +32,10 @@ benjamin-kenawell:
   description: |
     A personal site with a blog, resume, portfolio, links, and a Now page. The
     page templates are defined in the Liquid template language, supported via a
-    custom file extension handler.
+    custom file extension handler. In his post, <a
+    href="https://blog.kena.dev/p/migrating-from-jekyll-to-weborigami.html">Migrating
+    from Jekyll to Web Origami</a>, he writes, "I've had a fun experience with
+    Web Origami."
 cat-prints-store:
   name: Cat Prints Store
   url: https://cat-prints-store.weborigami.org
@@ -73,9 +76,14 @@ notes-jim-nielsen:
   url: https://notes.jim-nielsen.com/
   repo: https://github.com/jimniels/notes/
   description: |
-    Short responses to other people's writings. Reads notes from Dropbox via
-    the Origami <a href="https://github.com/WebOrigami/extensions/tree/main/dropbox">Dropbox extension</a>
-    and formats them as a single page with JSON and RSS feeds.
+    Short responses to other people's writings. Reads notes from Dropbox via the
+    Origami <a
+    href="https://github.com/WebOrigami/extensions/tree/main/dropbox">Dropbox
+    extension</a> and formats them as a single page with JSON and RSS feeds. Jim
+    also has also written <a
+    href="https://blog.jim-nielsen.com/tags/#webOrigami">a number of blog
+    posts</a> about making sites with Web Origami. He describes the Origami code
+    he writes as "beautiful and succinct".
 pondlife:
   name: pondlife
   url: https://pondlife.netlify.app
@@ -89,13 +97,24 @@ stephanmax:
   repo: https://git.sr.ht/~stephanmax/website
   description: |
     A personal site pulling its images directly from an image CDN, with a
-    two-dimensional home page layout showing categories as columns.
+    two-dimensional home page layout showing categories as columns. In a post
+    covering <a
+    href="https://stephanmax.com/migrating-from-astro-to-web-origami/">migrating
+    from Astro to Web Origami</a>, he calls out the "massive support from the
+    small but smart and super helpful community."
 valerocks:
   name: vale.rocks
   url: https://vale.rocks/
   repo: https://github.com/DeclanChidlow/vale.rocks
   description: |
-    The personal site of Declan Chidlow, including a blog and a portfolio.
+    The personal site of Declan Chidlow, including a blog, a portfolio,
+    photography, and reviews of films, games, and other media. In his post, <a
+    href="https://vale.rocks/posts/web-origami">It's all just trees with Web
+    Origami</a>, he writes, "Origami is thankfully not magic in the sense that
+    it abstracts things away and does some unknowns behind the scenes that you
+    just have to trust. Instead, it is magic in the sense that it just seems to
+    work."
+
 web-origami:
   name: Web Origami documentation
   url: https://weborigami.org

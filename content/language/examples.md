@@ -5,7 +5,7 @@ subtitle: Created with the Origami language
 
 ${ Tree.map(src/examples.yaml, (example, keySlash) => `
 
-<h2>${ example.name }</h2>
+<h2><a href="${ example.url ?? example.repo }">${ example.name }</a></h2>
 <a href="${ example.url ?? example.repo }">
   <img class="screenshot" src="${
     example.image ??
