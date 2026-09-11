@@ -1,5 +1,5 @@
 ---
-title: "sync(tree)"
+title: "awaitValues(tree)"
 supertitle: "Tree."
 ---
 

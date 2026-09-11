@@ -1,5 +1,5 @@
 ---
-title: Network host connection
+title: Network host connections
 subtitle: Representing file storage servers in Origami
 ---
 
@@ -20,7 +20,7 @@ You can create an Origami file called, for example, `host.ori`, which will repre
 
 Origami includes an [`Origami.sftp`](/builtins/origami/sftp.html) builtin for representing a connection to a network host via [SFTP](https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol) (SSH File Transfer Protocol). See that page for setup instructions.
 
-Origami also has several [extensions](/builtins/extensions.html) that can represent connections to other services; see the extension's README file for instructions.
+Origami also has several [extensions](/builtins/extensions.html) that can represent connections to services like Dropbox, Google Drive, Neocities, and Netlify. See the extension's README file for instructions.
 
 ## Using the network connection in Origami commands
 
