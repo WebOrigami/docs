@@ -22,7 +22,7 @@ Origami includes an [`Origami.sftp`](/builtins/origami/sftp.html) builtin for re
 
 Origami also has several [extensions](/builtins/extensions.html) that can represent connections to services like Dropbox, Google Drive, Neocities, and Netlify. See the extension's README file for instructions.
 
-## Using the network connection in Origami commands
+## Using the network connection in commands
 
 Once you've defined your host connection in a file, you can pass that file to any Origami function that accepts a tree.
 

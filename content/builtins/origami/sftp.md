@@ -73,7 +73,7 @@ The `manifest` option lets the publish operation keep track of what's already be
 
 ## Shell access
 
-Additionally, some hosting companies that support SFTP will include full shell access, which lets you log into your account on their server. Other companies will give you SFTP access, but not provide a way for you to sign in.
+Some hosting companies that offer SFTP include full shell access so you can log into your account on their server. Other companies will give you SFTP access, but not provide a way for you to sign in.
 
 If you do have shell access, add the following option to the `sftp` function call in `host.ori`:
 

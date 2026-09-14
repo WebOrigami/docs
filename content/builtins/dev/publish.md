@@ -3,7 +3,7 @@ title: publish(source, target, [options])
 supertitle: "Dev."
 ---
 
-This updates the `target` [map-based tree](/async-tree/mapBasedTree.html) to match the `source` tree using one of several different methods. You can call this function to publish your Origami site to a network host in one of several ways.
+This updates the `target` [map-based tree](/async-tree/mapBasedTree.html) to match the `source` tree using one of several different methods. You can call this function to publish your Origami site to a [network host](/cli/network.html) in one of several ways.
 
 Depending on the `target` and `options`, `publish` will pick the first of these methods that applies:
 
@@ -19,7 +19,7 @@ To avoid copying over the entire contents of a source tree to a target tree, you
 - `manifest` - the name of a local manifest file in JSON format, like `published-files.json`. This file does not need to exist; `publish` will create it.
 - `manifestContainer` - an optional reference to a local folder where the manifest file can be found. (This is an Origami reference like `path/to/files`, not a quoted string path like `"path/to/files"`.) If omitted, by default the manifest container will be the current folder if using the command line or, if calling `publish` in a `.ori` file, the folder containing that file.
 
-For example, suppose you have followed the instructions for Origami's [SFTP extension](https://github.com/WebOrigami/extensions/tree/main/sftp) and created a file called `heliohost.ori` that connects to your site hosted on [Heliohost](https://heliohost.org).
+For example, suppose you have followed the instructions for [`Origami.sftp`](/builtins/origami/sftp.html) and created a file called `heliohost.ori` that connects to your site hosted on [Heliohost](https://heliohost.org).
 
 With that in place, you can then publish to Heliohost with:
 
