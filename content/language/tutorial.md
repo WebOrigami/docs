@@ -742,7 +742,7 @@ Many template systems have special concepts to support base templates. Origami t
   &lt;html lang="en">
     &lt;head>
       &lt;meta charset="utf-8">
-      &lt;meta name="viewport" content="width=device-width, initial-scale=1">
+      &lt;meta name="viewport" content="width=device-width">
       &lt;link rel="stylesheet" type="text/css" href="/assets/styles.css">
       &lt;title>\${ page.title }&lt;/title>
     &lt;/head>
@@ -933,7 +933,7 @@ You can do two final things to make your blog's feeds more discoverable.
   &lt;html lang="en">
     &lt;head>
       &lt;meta charset="utf-8">
-      &lt;meta name="viewport" content="width=device-width, initial-scale=1">
+      &lt;meta name="viewport" content="width=device-width">
       &lt;link rel="stylesheet" type="text/css" href="/assets/styles.css">
       <b>&lt;link rel="alternate" type="application/rss+xml" href="/feed.xml">
       &lt;link rel="alternate" type="application/json" href="/feed.json"></b>
