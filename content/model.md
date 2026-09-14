@@ -1,5 +1,5 @@
 ---
-title: The Content/Transformation model
+title: The Content&#8203;/&#8203;Transformation model
 subtitle: How to think about making a site
 area: home
 ---
