@@ -3,18 +3,18 @@
   "version": "0.0.1",
   "type": "module",
   "dependencies": {
-    "@weborigami/origami": "0.7.1",
+    "@weborigami/origami": "0.7.2",
     "@weborigami/ori-intro": "github:WebOrigami/ori-intro#7dd72758",
-    "@weborigami/pagefind": "0.0.16",
+    "@weborigami/pagefind": "0.0.20",
     "@weborigami/pattern-intro": "github:WebOrigami/pattern-intro#4de23649",
     "@weborigami/samples": "github:WebOrigami/samples#2d376f04",
-    "marked": "17.0.0",
-    "sharp": "0.34.5",
+    "marked": "18.0.13",
+    "sharp": "0.35.4",
     "typescript": "5.9.3",
-    "yaml": "2.8.1"
+    "yaml": "2.9.1"
   },
   "devDependencies": {
-    "@weborigami/screenshot": "0.0.17"
+    "@weborigami/screenshot": "0.0.18"
   },
   "scripts": {
     "build": "NODE_ENV=production ori 'copy netlify.js(Origami.jsonKeys(src/site.ori)), clear files:build'",
