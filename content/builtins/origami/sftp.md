@@ -42,7 +42,7 @@ Origami.sftp({
 
 With this approach, `host.ori` contains no sensitive information and so is safe to check into source control.
 
-If your using cryptographic keys, omit the `password` field. `Origami.sftp` should connect with the same keys available to you via `ssh`.
+If you're using cryptographic keys, omit the `password` field. `Origami.sftp` should connect with the same keys available to you via `ssh`.
 
 ## Test your connection
 
