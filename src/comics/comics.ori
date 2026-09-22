@@ -7,7 +7,9 @@
   })
 
   index.html = templates/stripIndex.ori.html(publishedComics.ori)
-  _review.html = templates/stripIndex.ori.html(comicData.ori)
+
+  // For previewing comics on the production site before they're public
+  // _review.html = templates/stripIndex.ori.html(comicData.ori)
 
   // For debugging: panels in screenshot form
   // panels/ = Tree.map(comicData.ori, templates/panels.ori)
