@@ -9,7 +9,7 @@ export default async function addData(
   areas,
   tree,
   pages,
-  icons
+  icons,
 ) {
   const object = await documentObject(buffer);
 
@@ -41,6 +41,7 @@ export default async function addData(
       icon,
       pageLinks,
     },
-    object
+    object,
   );
 }
+addData.unpackArgs = true;

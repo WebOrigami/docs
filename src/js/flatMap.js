@@ -7,3 +7,4 @@ export default async function flatMap(treelike, options) {
   const merged = await Tree.merge(...filtered);
   return merged;
 }
+flatMap.unpackArgs = true;

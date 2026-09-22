@@ -17,3 +17,4 @@ export default async function markCurrent(treelike, currentPage) {
   });
   return result;
 }
+markCurrent.unpackArgs = true;
