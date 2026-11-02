@@ -9,9 +9,11 @@ The specific form a "file" takes can depend on how you reference it.
 - When you reference a file in the file system in Origami, Origami uses a [`FileMap`](/async-tree/FileMap.html) to resolve the reference and return the value as a [`Uint8Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array). This is a more standard representation of a Node [`Buffer`](https://nodejs.org/api/buffer.html) object.
 - When you reference a file on a site via a URL, Origami uses a [`SiteMap`](/async-tree/SiteMap.html) to resolve the reference and return the value as a JavaScript [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer).
 
+Origami refers to such a `Uint8Array` or `ArrayBuffer` representation of a file as a _packed_ file. Origami can implicitly _unpack_ such files into data you can work with as long as they have a standard file extension. You can also [manually unpack files](#manually-unpacking-files).
+
 ## Standard file types
 
-Origami has built-in support for handling the following types of files.
+Origami has built-in support for handling files with the following standard file extensions:
 
 | File extension      | Type                                                    |
 | :------------------ | :------------------------------------------------------ |
@@ -40,49 +42,6 @@ Origami has built-in support for handling the following types of files.
 | .zip                | [ZIP](#zip-files)                                       |
 
 See below for details on these types.
-
-### Unpacking files
-
-Regardless of a file's representation, you can use Origami path syntax to traverse the file and work with a more meaningful representation that reflects the file's type. Origami determines how to "unpack" the file contents based on the file extension. Origami does this automatically when:
-
-1. You traverse inside them with an operator like `/`, `.`, or `[ ]`.
-1. You pass them to one of Origami's [builtin function](/builtins) that implies traversal, like [`Tree.map`](https://weborigami.org/builtins/tree/map.html).
-
-For example, suppose you have a JSON file `pet.json` containing
-
-```json
-${ samples/help/pet.json }
-```
-
-If you use the `ori` [CLI](/cli) to display this file, you will see the plain file contents:
-
-```console
-$ ori pet.json
-${ Tree.json(samples/help/pet.json) + "\n" }
-```
-
-Since JSON files are a supported file type, you can unpack this file and traverse into its data with a slash path:
-
-```console
-$ ori pet.json/name
-${ samples/help/pet.json/name + "\n" }
-```
-
-Ending a path with a slash unpacks the file and returns all the data. By default, `ori` will display it in YAML format:
-
-```console
-$ ori pet.json/
-${ Origami.yaml(samples/help/pet.json) }
-```
-
-Most builtin functions that work on data will implicitly unpack a file in order to work on it. For example, you can hand the above JSON file directly to the [`Tree.keys`](/builtins/tree/keys.html) function to view the keys of the data in that file, without having to append a `/` trailing slash to the `pet.json` file name:
-
-```console
-$ ori keys pet.json
-${ Origami.yaml(Tree.keys(samples/help/pet.json)) }
-```
-
-If you're writing Origami that works with a file and needs to explicitly unpack it, you can call the [`unpack`](/builtins/origami/unpack.html) builtin function.
 
 ### Comma-separated values files
 
@@ -153,6 +112,8 @@ then you can retrieve traverse the data with a slash path:
 $ ori data.js/a
 1
 ```
+
+You can write a function in a JavaScript file that can implicitly unpack data files passed to it; see [manually unpacking files](#manually-unpacking-files).
 
 ### JPEG image files
 
@@ -363,6 +324,93 @@ You can generate `.zip` files as part of a site definition to make generated con
 ```
 
 You can use Origami's [`Tree`](/builtins/tree) builtins to perform operations directly on the contents of a ZIP file, serve a site packaged in a ZIP file, etc. See also [support for EPUB e-book files](#epub-files).
+
+## Unpacking files
+
+### Automatically unpacking files
+
+Regardless of a file's representation, you can use Origami path syntax to traverse the file and work with a more meaningful representation that reflects the file's type. Origami determines how to "unpack" the file contents based on the file extension. Origami does this automatically when:
+
+1. You traverse inside them with an operator like `/`, `.`, or `[ ]`.
+1. You pass them to one of Origami's [builtin function](/builtins) that implies traversal, like [`Tree.map`](https://weborigami.org/builtins/tree/map.html).
+
+For example, suppose you have a JSON file `pet.json` containing
+
+```json
+${ samples/help/pet.json }
+```
+
+If you use the `ori` [CLI](/cli) to display this file, you will see the plain file contents:
+
+```console
+$ ori pet.json
+${ Tree.json(samples/help/pet.json) + "\n" }
+```
+
+Since JSON files are a supported file type, you can unpack this file and traverse into its data with a slash path:
+
+```console
+$ ori pet.json/name
+${ samples/help/pet.json/name + "\n" }
+```
+
+Ending a path with a slash unpacks the file and returns all the data. By default, `ori` will display it in YAML format:
+
+```console
+$ ori pet.json/
+${ Origami.yaml(samples/help/pet.json) }
+```
+
+Most builtin functions that work on data will implicitly unpack a file in order to work on it. For example, you can hand the above JSON file directly to the [`Tree.keys`](/builtins/tree/keys.html) function to view the keys of the data in that file, without having to append a `/` trailing slash to the `pet.json` file name:
+
+```console
+$ ori keys pet.json
+${ Origami.yaml(Tree.keys(samples/help/pet.json)) }
+```
+
+### Manually unpacking files
+
+If you're writing an Origami function that needs to explicitly unpack a file, your Origami code can call the [`unpack`](/builtins/origami/unpack.html) builtin function.
+
+If you're writing a JavaScript function that accepts data, and you want your function to be able to implicitly unpack a file passed to it into usable data, you have two options.
+
+The first and simplest option for unpacking all files passed as arguments to a JavaScript function is to mark the function with an `unpackArgs` property set to `true`:
+
+```js
+// getVersion1.js
+
+${ samples/help/unpack/getVersion1.js }
+```
+
+Before Origami calls a function marked in this way, Origami unpacks any packed file arguments, then calls the function with the unpacked data:
+
+```console
+$ ori data.yaml
+${ samples/help/unpack/data.yaml }
+$ ori getVersion1.js data.yaml
+${ samples/help/unpack/getVersion1.js(samples/help/unpack/data.yaml) }
+
+```
+
+If you'd like finer-grained control over how input files are unpacked, the second option is to have your JavaScript code test the input to see if it's a packed file (a `Uint8Array` or `ArrayBuffer`) that can be unpacked.
+
+```js
+// getVersion2.js
+
+${ samples/help/unpack/getVersion2.js }
+```
+
+This relies on an `isUnpackable` utility function that returns true for a packed file with a known file extension. In that case, the input file can be unpacked by calling its `unpack()` method.
+
+You can then call this JavaScript function in an Origami expression and pass it a file:
+
+```console
+$ ori getVersion2.js data.yaml
+${ samples/help/unpack/getVersion2.js(samples/help/unpack/data.yaml) }
+
+```
+
+Here the `data.yaml` is a reference to a file buffer with a known `.yaml` file extension. The JavaScript function can see that the input can be unpacked, so it unpacks the file before extracting the desired information.
 
 ## Custom file types
 
