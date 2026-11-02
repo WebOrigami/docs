@@ -4,8 +4,8 @@
   "type": "module",
   "dependencies": {
     "@weborigami/ori-intro": "github:WebOrigami/ori-intro#7dd72758",
-    "@weborigami/origami": "0.7.3",
-    "@weborigami/pagefind": "0.0.20",
+    "@weborigami/origami": "0.7.5",
+    "@weborigami/pagefind": "0.0.21",
     "@weborigami/pattern-intro": "github:WebOrigami/pattern-intro#4de23649",
     "@weborigami/samples": "github:WebOrigami/samples#d90a551d",
     "marked": "18.0.13",
