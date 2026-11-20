@@ -353,6 +353,48 @@ This returns the content of `post1.md` as an object, including any front matter 
 
 Note that most Origami [builtin functions](/builtins) that expect a [map-like](/async-tree/maplike.html) argument will automatically unpack a file or resource (such as `Uint8Array` or `ArrayBuffer`) value as long as the path includes a known file extension.
 
+### Windows paths
+
+Origami generally uses POSIX-style paths with forward slashes: `./src/assets`. Such paths should generally work the same on Windows, so when developing on Windows, one option is to always use POSIX-style paths. In such paths, Origami interprets a `\\` as an escape character.
+
+To support the use of the [`ori` CLI](/cli) on Windows, Origami can also recognize certain Windows-style paths as valid Origami expressions:
+
+1. A relative path beginning with `.` or `..`, such as `.\src\assets`
+2. An absolute path with a drive letter: `C:\Users\Alice`
+3. A UNC path: `\\server\share\file.txt`
+
+In these Windows path expressions, a `\` backslash represents a separator and not an escape character. Origami always treats a Windows path as a file path, so Origami's [file name heuristic](#file-name-heuristic) does not apply. Origami also accepts Windows paths in angle brackets: `<\\server\share\file.txt>`.
+
+This support for Windows paths is mostly useful in the CLI. For example, in Windows PowerShell you could type `ori src/site`, press Tab to have PowerShell autocomplete that to `ori .\src\site.ori`, then press Enter to run that command as is.
+
+Just as POSIX-style paths with forward slashes can traverse inside files (`project/package.json/name`), a Windows-style path with backslashes can also traverse inside a file: `C:\project\package.json\name`.
+
+If you prefer writing Windows paths, you can use them in an Origami program. For example, a relative Windows path like `.\src\index.md` will work everywhere; on macOS and Linux this will be treated the same as `./src/index.md`. A Windows path with a drive letter or UNC path will only work on Windows.
+
+You can use Windows paths as shorthand object properties, but only for relative or UNC paths:
+
+```ori
+{
+  \\Design\Public\assets
+}
+```
+
+is shorthand for
+
+```ori
+{
+  assets: \\Design\Public\assets
+}
+```
+
+Absolute paths beginning with a drive letter (`C:\src\assets`) are not supported as shorthand properties because `C:` looks like an object property. You can, however, use an angle bracket path as a shorthand property:
+
+```ori
+{
+  <C:\src\assets>
+}
+```
+
 ## URLs
 
 If a sequence starts with a scheme (protocol) and a colon, Origami treats it as a URL:
@@ -538,8 +580,8 @@ const object = {
   get ["index.html"]() {
     saved ??= createPage();
     return saved;
-  }
-}
+  },
+};
 ```
 
 When handling the first request for `index.html`, Origami [caches the property value](caching.html) so that subsequent requests immediately return the value. Because `=` defers work until it's actually requested, it's more efficient than declaring a property with `:`, which always evaluates its value immediately.
