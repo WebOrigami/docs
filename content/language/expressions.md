@@ -147,6 +147,15 @@ const object = {
       <p>The pipe operator lets left-to-right order indicate the order of evaluation.</p>
     </td>
   </tr>
+  <tr>
+    <td><pre><code>.\\src\\assets
+C:\\Users\\Alice
+\\\\Design\\Public\\styles.css
+</code></pre></td>
+    <td>
+      <p>Windows paths with backslashes are recognized as file or folder paths.</p>
+    </td>
+  </tr>
 </table>
 
 When evaluating Origami expressions on the command line, some additional [shell shorthand](/cli/shorthand.html) features are also available.
